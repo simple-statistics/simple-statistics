@@ -1,0 +1,55 @@
+body {
+  font:14px/20px monospace;
+  margin:0;
+  padding:0;
+}
+
+.wrapper {
+}
+
+h1 {
+  position:absolute;
+  top:10px;
+  left:10px;
+}
+
+#tag {
+  position:absolute;
+  top:20px;
+  left:250px;
+  width:200px;
+  font-size:30px;
+}
+
+#add {
+  position:absolute;
+  top:20px;
+  left:450px;
+  font-size:30px;
+}
+
+#tags {
+  position:absolute;
+  top:420px;
+  left:10px;
+  font-size:30px;
+}
+
+#tags span {
+  padding:5px;
+  margin:10px;
+  background:#000;
+  color:#fff;
+}
+
+#p {
+  position:absolute;
+  top:100px;
+  left:420px;
+}
+
+#c {
+  position:absolute;
+  top:100px;
+  left:10px;
+}
