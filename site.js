@@ -38,11 +38,25 @@ var preview_canvas, preview_ctx, canvas, ctx, d, w, h;
 function direct() {
     var d = {};
     var hits = {};
+    var rounding = 0;
+
+    d.rounding = function(x) {
+        if (x == undefined) return rounding;
+        rounding = x;
+        return d;
+    };
+
+    function round(x) {
+        return x.map(function(i) { Math.round(x * rounding) / rounding; });
+    }
+
     d.add = function(x, result) {
-        hits[x.join(',')] = true;
+        if (rounding) x = round(x);
+        hits[x.join(',')] = result;
     };
 
     d.get = function(x) {
+        if (rounding) x = round(x);
         return hits[x.join(',')];
     };
     return d;
@@ -60,6 +74,11 @@ loadImage('wcu_small.jpg', function(i) {
     canvas.height = h;
     ctx.drawImage(i, 0, 0);
 
+    o_canvas = document.getElementById('co');
+    o_ctx = o_canvas.getContext('2d');
+    o_canvas.width = w;
+    o_canvas.height = h;
+
     d = ctx.getImageData(0, 0, w, h);
 
     preview_canvas = document.getElementById('p');
@@ -68,12 +87,14 @@ loadImage('wcu_small.jpg', function(i) {
     preview_canvas.height = h;
     preview_ctx.drawImage(i, 0, 0);
 
-    var tags = [];
+    var tags = [], tag;
     var tags_div = document.getElementById('tags');
 
     document.getElementById('add').addEventListener('click', function() {
         var td = tags_div.appendChild(document.createElement('span'));
         td.innerHTML = document.getElementById('tag').value;
+        document.getElementById('tag').value = '';
+        document.getElementById('tag').focus();
     });
 
     function register(e) {
@@ -82,10 +103,15 @@ loadImage('wcu_small.jpg', function(i) {
             y = e.offsetY;
         var p = px(d, x, y);
         classifier.add(p, 'black');
+        o_ctx.fillRect(x, y, 2, 2);
         e.preventDefault();
         e.stopPropagation();
         window.setTimeout(update, 0);
     }
+
+    document.getElementById('rounding').addEventListener('change', function() {
+        classifier.rounding(this.value);
+    });
 
     var down = false;
     function isdown() { down = true; }

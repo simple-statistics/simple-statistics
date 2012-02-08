@@ -48,8 +48,20 @@ h1 {
   left:420px;
 }
 
-#c {
+#c, #co {
   position:absolute;
   top:100px;
+  left:10px;
+}
+
+#preview {
+  position:absolute;
+  top:50px;
+  left:420px;
+}
+
+#draw {
+  position:absolute;
+  top:50px;
   left:10px;
 }
