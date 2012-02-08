@@ -76,7 +76,8 @@ loadImage('wcu_small.jpg', function(i) {
         td.innerHTML = document.getElementById('tag').value;
     });
 
-    document.addEventListener('mousedown', function(e) {
+    function register(e) {
+        if (!down) return;
         var x = e.offsetX,
             y = e.offsetY;
         var p = px(d, x, y);
@@ -84,5 +85,13 @@ loadImage('wcu_small.jpg', function(i) {
         e.preventDefault();
         e.stopPropagation();
         window.setTimeout(update, 0);
-    });
+    }
+
+    var down = false;
+    function isdown() { down = true; }
+    function isup() { down = false; }
+
+    document.addEventListener('mousemove', register);
+    document.addEventListener('mousedown', isdown);
+    document.addEventListener('mouseup', isup);
 });
