@@ -21,10 +21,13 @@ module.exports = [
     'rainy mild high true no'
 ].map(function(l) {
     var x = l.split(' ');
-    return [{
-        outlook: x[0],
-        temperature: x[1],
-        humidity: x[2],
-        windy: x[3]
-    }, x[4]];
+    return {
+        observation: {
+            outlook: x[0],
+            temperature: x[1],
+            humidity: x[2],
+            windy: x[3]
+        },
+        category: x[4]
+    };
 });

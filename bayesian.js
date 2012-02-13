@@ -1,27 +1,31 @@
+// Categorical bayes implementation
 function bayesian() {
     var c = {};
-    // <string> classname, <hash> bands, <string> author
-    // bands = {"bandname1": value1, "bandname2": value2}
-    // c.train = function(classname, bands, author) {
-    //     // we're going to have classname collisions, better use authorname too...
-    //     author = author || 'anonymous'; // anomymous default
-    //     bandstring = bands; // must validate this as correctly-formatted JSON...
-    //     sample = Sample.new({:classname => classname,:bandstring => bandstring,:author => author});
-    //     sample.save;
-    // };
 
-    // // measures cartesian distance between two band hashes
-    // function distance(a,b) {
-    //     bands = 0;
-    //     // a.each do |band,value|
-    //     //   bands += (value.to_i-b[band].to_i)**2 unless b[band].nil?
-    //     // end
-    //     return bands**0.5;
-    // }
+    // A dictionary of labels to the number of instances
+    // they occur in the dataset.
+    var categoryCount = {};
 
-    c.add = function(x, tag) {
+    // Keep track of the number of samples in order to
+    // fill out some blanks with explaining the dataset.
+    var n_samples = 0;
 
+    c.categoryCount = categoryCount;
+
+    c.n_samples = function() { return n_samples; };
+    c.train = function(observation, category) {
+        // Set the count to either one or one
+        // greater than what it used to be.
+        if (categoryCount[category]) {
+            categoryCount[category]++;
+        } else {
+            categoryCount[category] = 1;
+        }
+        // This always counts as one sample
+        n_samples++;
     };
 
     return c;
 }
+
+module.exports = bayesian;
