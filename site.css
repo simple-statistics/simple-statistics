@@ -1,38 +1,13 @@
 body {
-  font:14px/20px monospace;
-  margin:0;
+  font:14px/20px 'Helvetica Neue Light', 'Helvetica Neue', sans-serif;
+  font-weight:300;
+  margin:10px auto;
   padding:0;
+  width:640px;
 }
 
-.wrapper {
-}
-
-h1 {
-  position:absolute;
-  top:10px;
-  left:10px;
-}
-
-#tag {
-  position:absolute;
-  top:20px;
-  left:250px;
-  width:200px;
-  font-size:30px;
-}
-
-#add {
-  position:absolute;
-  top:20px;
-  left:450px;
-  font-size:30px;
-}
-
-#tags {
-  position:absolute;
-  top:420px;
-  left:10px;
-  font-size:30px;
+h2 {
+  font-weight:300;
 }
 
 #tags span {
@@ -40,28 +15,4 @@ h1 {
   margin:10px;
   background:#000;
   color:#fff;
-}
-
-#p {
-  position:absolute;
-  top:100px;
-  left:420px;
-}
-
-#c, #co {
-  position:absolute;
-  top:100px;
-  left:10px;
-}
-
-#preview {
-  position:absolute;
-  top:50px;
-  left:420px;
-}
-
-#draw {
-  position:absolute;
-  top:50px;
-  left:10px;
 }

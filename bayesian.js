@@ -1,31 +1,99 @@
-// Categorical bayes implementation
+// A simple, universal [Naive Bayes classifier](http://en.wikipedia.org/wiki/Naive_Bayes_classifier)
+// implementation.
 function bayesian() {
-    var c = {};
+    // Create the bayes_model object, that will
+    // expose methods
+    var bayes_model = {},
+        // The number of items that are currently
+        // classified in the model
+        total_count = 0,
+        // Every item classified in the model
+        data = {};
 
-    // A dictionary of labels to the number of instances
-    // they occur in the dataset.
-    var categoryCount = {};
+    // ## Train
+    // Train the classifier with a new item, which has a single
+    // dimension of Javascript literal keys and values.
+    bayes_model.train = function(item, category) {
+        // If the data object doesn't have any values
+        // for this category, create a new object for it.
+        if (!data[category]) data[category] = {};
 
-    // Keep track of the number of samples in order to
-    // fill out some blanks with explaining the dataset.
-    var n_samples = 0;
+        // Iterate through each key in the item.
+        for (var k in item) {
+            // Initialize the nested object `data[category][k][item[k]]`
+            // with an object of keys that equal 0.
+            if (data[category][k] === undefined) data[category][k] = {};
+            if (data[category][k][item[k]] === undefined) data[category][k][item[k]] = 0;
 
-    c.categoryCount = categoryCount;
-
-    c.n_samples = function() { return n_samples; };
-    c.train = function(observation, category) {
-        // Set the count to either one or one
-        // greater than what it used to be.
-        if (categoryCount[category]) {
-            categoryCount[category]++;
-        } else {
-            categoryCount[category] = 1;
+            // And increment the key for this key/value combination.
+            data[category][k][item[k]]++;
         }
-        // This always counts as one sample
-        n_samples++;
+        // Increment the number of items classified
+        total_count++;
     };
 
-    return c;
+    // ## Score
+    // Generate a score of how well this item matches all
+    // possible categories based on its attributes
+    bayes_model.score = function(item) {
+        // Initialize an empty array of odds per category.
+        var odds = {};
+        // Iterate through each key in the item,
+        // then iterate through each category that has been used
+        // in previous calls to `.train()`
+        for (var k in item) {
+            var v = item[k];
+            for (var category in data) {
+                // Create an empty object for storing key - value combinations
+                // for this category.
+                if (odds[category] === undefined) odds[category] = {};
+
+                // If this item doesn't even have a property, it counts for nothing,
+                // but if it does have the property that we're looking for from
+                // the item to categorize, it counts based on how popular it is
+                // versus the whole population.
+                if (data[category][k]) {
+                    odds[category][k + '_' + v] = data[category][k][v] / total_count;
+                } else {
+                    odds[category][k + '_' + v] = 0;
+                }
+            }
+        }
+
+        // Set up a new object that will contain sums of these odds by category
+        var odds_sums = {};
+
+        for (var category in odds) {
+            for (var combination in odds[category]) {
+                if (odds_sums[category] === undefined) odds_sums[category] = 0;
+                odds_sums[category] += odds[category][combination];
+            }
+        }
+
+        return odds_sums;
+    };
+
+    // Return the completed model.
+    return bayes_model;
 }
 
-module.exports = bayesian;
+if (typeof module !== 'undefined') {
+    module.exports = bayesian;
+
+    var b = bayesian();
+
+    for (var i = 0; i < 100; i++) {
+        b.train({
+            color: 'red',
+            skin: 'thin'
+        }, 'apple');
+    }
+
+    for (var i = 0; i < 10; i++) {
+        b.train({
+            color: 'red'
+        }, 'orange');
+    }
+
+    console.log(b.score({ color: 'red', skin: 'thin' }));
+}
