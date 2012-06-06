@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>linear regression</title>
+        <style>
+            #chart svg {
+                border:1px solid #000;
+            }
+            circle.dot {
+                fill:#000;
+            }
+        </style>
+    </head>
+    <body>
+        <div id='chart'></div>
+        <script src='lib/d3.v2.min.js'></script>
+        <script>
+    var width = 500, height = 500;
+    var d = [[10, 10]];
+    var vis = d3.select("#chart")
+    .append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+    var x = d3.scale.linear()
+        .domain([0, 500])
+        .range([0, 500]);
+
+    var y = d3.scale.linear()
+        .domain([0, 500])
+        .range([0, 500]);
+
+    function draw() {
+        var dots = vis.selectAll('circle.dot')
+            .data(d)
+            .enter()
+            .append('circle')
+            .attr('class', 'dot')
+            .attr('r', 5)
+            .attr('cx', function(d) { return d[0]; })
+            .attr('cy', function(d) { return d[1]; });
+    }
+
+    vis.on('click', function() {
+        d.push(d3.mouse(vis.node()));
+        draw();
+    });
+
+    draw();
+        </script>
+    </body>
+</html>

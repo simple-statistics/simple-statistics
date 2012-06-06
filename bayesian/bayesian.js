@@ -20,10 +20,11 @@ function bayesian() {
 
         // Iterate through each key in the item.
         for (var k in item) {
+            var v = item[k];
             // Initialize the nested object `data[category][k][item[k]]`
             // with an object of keys that equal 0.
             if (data[category][k] === undefined) data[category][k] = {};
-            if (data[category][k][item[k]] === undefined) data[category][k][item[k]] = 0;
+            if (data[category][k][v] === undefined) data[category][k][v] = 0;
 
             // And increment the key for this key/value combination.
             data[category][k][item[k]]++;
