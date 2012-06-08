@@ -20,31 +20,38 @@ function linearregression() {
     // of the regression line at each point in `x`.
     linreg.line = function() {
 
-        // Initialize our sums and scope the `m` and `b`
-        // variables that define the line.
-        var sum_x = 0, sum_y = 0,
-            sum_xx = 0, sum_xy = 0,
-            m, b;
+        //if there's only one point, arbitrarily choose a slope of 0
+        //and a y-intercept of whatever the y of the initial point is
+        if (data.length == 1) {
+            m = 0;
+            b = data[0][1];
+        } else {
+            // Initialize our sums and scope the `m` and `b`
+            // variables that define the line.
+            var sum_x = 0, sum_y = 0,
+                sum_xx = 0, sum_xy = 0,
+                m, b;
 
-        // Gather the sum of all x values, the sum of all
-        // y values, and the sum of x^2 and (x*y) for each
-        // value.
-        //
-        // In math notation, these would be SS_x, SS_y, SS_xx, and SS_xy
-        for (var i = 0; i < data.length; i++) {
-            sum_x += data[i][0];
-            sum_y += data[i][1];
+            // Gather the sum of all x values, the sum of all
+            // y values, and the sum of x^2 and (x*y) for each
+            // value.
+            //
+            // In math notation, these would be SS_x, SS_y, SS_xx, and SS_xy
+            for (var i = 0; i < data.length; i++) {
+                sum_x += data[i][0];
+                sum_y += data[i][1];
 
-            sum_xx += data[i][0] * data[i][0];
-            sum_xy += data[i][0] * data[i][1];
+                sum_xx += data[i][0] * data[i][0];
+                sum_xy += data[i][0] * data[i][1];
+            }
+
+            // `m` is the slope of the regression line
+            m = ((data.length * sum_xy) - (sum_x * sum_y)) /
+                ((data.length * sum_xx) - (sum_x * sum_x));
+
+            // `b` is the y-intercept of the line.
+            b = (sum_y / data.length) - ((m * sum_x) / data.length);
         }
-
-        // `m` is the slope of the regression line
-        m = ((data.length * sum_xy) - (sum_x * sum_y)) /
-            ((data.length * sum_xx) - (sum_x * sum_x));
-
-        // `b` is the y-intercept of the line.
-        b = (sum_y / data.length) - ((m * sum_x) / data.length);
 
         // Return a function that computes a `y` value for each
         // x value it is given, based on the values of `b` and `a`
