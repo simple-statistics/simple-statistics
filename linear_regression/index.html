@@ -9,14 +9,19 @@
             circle.dot {
                 fill:#000;
             }
+            path.linreg {
+                stroke-width:5;
+                stroke:black;
+            }
         </style>
     </head>
     <body>
         <div id='chart'></div>
         <script src='lib/d3.v2.min.js'></script>
+        <script src='linearregression.js'></script>
         <script>
     var width = 500, height = 500;
-    var d = [[10, 10]];
+    var d = [[250, 250]];
     var vis = d3.select("#chart")
     .append("svg")
       .attr("width", width)
@@ -29,8 +34,15 @@
     var y = d3.scale.linear()
         .domain([0, 500])
         .range([0, 500]);
+    var linreg = linearregression();
+
+    var fit = vis.append('path')
+        .attr('class', 'linreg');
 
     function draw() {
+
+        linreg.data(d);
+
         var dots = vis.selectAll('circle.dot')
             .data(d)
             .enter()
@@ -39,6 +51,8 @@
             .attr('r', 5)
             .attr('cx', function(d) { return d[0]; })
             .attr('cy', function(d) { return d[1]; });
+
+        fit.attr('d', function() { return 'M' + linreg.path(); });
     }
 
     vis.on('click', function() {
