@@ -9,6 +9,9 @@
                 width:500px;
                 margin:0 auto;
             }
+            #chart {
+                background:#fff;
+            }
             #chart svg {
                 border:1px solid #000;
             }
@@ -23,15 +26,22 @@
                 stroke-dasharray:5 2;
                 stroke:#000;
             }
+            p.em {
+                background:#FFFEE2;
+                text-align:center;
+            }
         </style>
     </head>
     <body>
         <h2>Linear Regression</h2>
         <div id='chart'></div>
+        <p class='em'><strong>Click in the box above</strong>
+        to add values and start generating the regression line.</p>
         <p><a href='http://en.wikipedia.org/wiki/Simple_linear_regression'>Simple linear regression</a> -
         a basic way to generate a regression line for x, y values.</p>
         <p><a href='../docs/linear_regression.html'>See the literate source code to understand
-            the inner workings.</a></p>
+            the inner workings.</a> This demo uses <a href='https://github.com/mbostock/d3'>d3.js</a>
+        for visualization.</p>
         <script src='../lib/d3.v2.min.js'></script>
         <script src='linear_regression.js'></script>
         <script>
