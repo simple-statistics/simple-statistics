@@ -3,22 +3,37 @@
     <head>
         <title>linear regression</title>
         <style>
+            body {
+                background:#eee;
+                font:13px/20px 'Helvetica';
+                width:500px;
+                margin:0 auto;
+            }
             #chart svg {
                 border:1px solid #000;
             }
             circle.dot {
-                fill:#000;
+                fill:#888;
+                stroke-width:1;
+                stroke-opacity:0.5;
+                stroke:#000;
             }
             path.linreg {
-                stroke-width:5;
-                stroke:black;
+                stroke-width:1;
+                stroke-dasharray:5 2;
+                stroke:#000;
             }
         </style>
     </head>
     <body>
+        <h2>Linear Regression</h2>
         <div id='chart'></div>
-        <script src='lib/d3.v2.min.js'></script>
-        <script src='linearregression.js'></script>
+        <p><a href='http://en.wikipedia.org/wiki/Simple_linear_regression'>Simple linear regression</a> -
+        a basic way to generate a regression line for x, y values.</p>
+        <p><a href='../docs/linear_regression.html'>See the literate source code to understand
+            the inner workings.</a></p>
+        <script src='../lib/d3.v2.min.js'></script>
+        <script src='linear_regression.js'></script>
         <script>
     var width = 500, height = 500;
     var d = [[250, 250]];
@@ -40,19 +55,21 @@
         .attr('class', 'linreg');
 
     function draw() {
-
         linreg.data(d);
-
         var dots = vis.selectAll('circle.dot')
             .data(d)
             .enter()
             .append('circle')
             .attr('class', 'dot')
-            .attr('r', 5)
+            .attr('r', 4)
             .attr('cx', function(d) { return d[0]; })
             .attr('cy', function(d) { return d[1]; });
-
-        fit.attr('d', function() { return 'M' + linreg.path(); });
+        var regression_line = linreg.line();
+        var path = [
+            x.domain()[0], regression_line(x.domain()[0]),
+            x.domain()[1], regression_line(x.domain()[1])
+            ];
+        fit.attr('d', function() { return 'M' + path; });
     }
 
     vis.on('click', function() {
