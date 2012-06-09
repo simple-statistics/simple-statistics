@@ -43,7 +43,9 @@
             the inner workings.</a> This demo uses <a href='https://github.com/mbostock/d3'>d3.js</a>
         for visualization. It's part of the <a href='https://github.com/tmcw/classifiers'>classifiers experiments</a>,
         a collection of literate statistics and related algorithms.</p>
+        <p>The r-squared algorithm also has a <a href='../docs/r_squared.html'>Literate implementation.</a>
         <script src='../lib/d3.v2.min.js'></script>
+        <script src='../r_squared/r_squared.js'></script>
         <script src='linear_regression.js'></script>
         <script>
     var width = 500, height = 500;
@@ -61,12 +63,19 @@
         .domain([0, 500])
         .range([0, 500]);
     var linreg = linearregression();
+    var r_squared = r_squared();
 
     var fit = vis.append('path')
         .attr('class', 'linreg');
 
+    var r_indicator = vis.append('text')
+        .attr('class', 'r_squared')
+        .attr('x', 10)
+        .attr('y', 20);
+
     function draw() {
         linreg.data(d);
+        r_squared.data(d);
         var dots = vis.selectAll('circle.dot')
             .data(d)
             .enter()
@@ -81,6 +90,7 @@
             x.domain()[1], regression_line(x.domain()[1])
             ];
         fit.attr('d', function() { return 'M' + path; });
+        r_indicator.text('r squared: ' + r_squared.f(regression_line).r_squared());
     }
 
     vis.on('click', function() {
