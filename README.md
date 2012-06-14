@@ -1,4 +1,4 @@
-A project to learn about and make simple, slow reference implementations
+A project to learn about and make simple reference implementations
 of statistics algorithms.
 
 Implementations are going to be **literate, general, and straightforward.**

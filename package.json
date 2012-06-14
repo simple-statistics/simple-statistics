@@ -1,0 +1,16 @@
+{
+  "author": "Tom MacWright <tom@macwright.org> (http://macwright.org/)",
+  "name": "simple-statistics",
+  "description": "Simple Statistics",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tmcw/node-statistics.git"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}

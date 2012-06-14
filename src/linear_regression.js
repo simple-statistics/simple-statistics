@@ -2,7 +2,7 @@
 // [Simple linear regression](http://en.wikipedia.org/wiki/Simple_linear_regression)
 // is a simple way to find a fitted line
 // between a set of coordinates.
-function linearregression() {
+function linear_regression() {
     var linreg = {},
         data = [];
 
