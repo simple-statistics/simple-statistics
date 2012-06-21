@@ -8,8 +8,13 @@
     "url": "git://github.com/tmcw/node-statistics.git"
   },
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "1.2.x"
+  },
   "optionalDependencies": {},
+  "scripts": {
+    "test": "mocha"
+  },
   "engines": {
     "node": "*"
   }

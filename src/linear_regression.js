@@ -64,6 +64,8 @@ function linear_regression() {
     return linreg;
 }
 
+if (module && module.exports) module.exports = linear_regression;
+
 // This implementation was influenced by
 //
 // * [Least squares in Javascript](http://dracoblue.net/dev/linear-least-squares-in-javascript/159/)
