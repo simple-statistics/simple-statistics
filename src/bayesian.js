@@ -78,23 +78,4 @@ function bayesian() {
     return bayes_model;
 }
 
-if (typeof module !== 'undefined') {
-    module.exports = bayesian;
-
-    var b = bayesian();
-
-    for (var i = 0; i < 100; i++) {
-        b.train({
-            color: 'red',
-            skin: 'thin'
-        }, 'apple');
-    }
-
-    for (var i = 0; i < 10; i++) {
-        b.train({
-            color: 'red'
-        }, 'orange');
-    }
-
-    console.log(b.score({ color: 'red', skin: 'thin' }));
-}
+if (typeof module !== 'undefined') module.exports = bayesian;

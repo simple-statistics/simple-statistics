@@ -56,3 +56,5 @@ function r_squared() {
 
     return r;
 }
+
+if (module && module.exports) module.exports = r_squared;
