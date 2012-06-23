@@ -15,6 +15,7 @@
   "scripts": {
     "test": "mocha"
   },
+  "main": "src/simple_statistics.js",
   "engines": {
     "node": "*"
   }

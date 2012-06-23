@@ -1,5 +1,5 @@
 var assert = require('assert');
-var ss = require('../index.js');
+var ss = require('../');
 
 it('correctly generates a line for a 0, 0 to 1, 1 dataset', function() {
     var l = ss.linear_regression().data([[0, 0], [1, 1]]);

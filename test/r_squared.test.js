@@ -1,5 +1,5 @@
 var assert = require('assert');
-var ss = require('../index.js');
+var ss = require('../');
 
 it('says that the r squared of a two-point line is perfect', function() {
     var d = [[0, 0], [1, 1]];
