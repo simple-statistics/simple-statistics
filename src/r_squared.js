@@ -19,7 +19,7 @@ function r_squared() {
         return r;
     };
 
-    r.r_squared = function(x) {
+    r.r_squared = function() {
         if (data.length < 2) return 1;
 
         // Compute the average y value for the actual
