@@ -205,4 +205,34 @@
         // Return the completed model.
         return bayes_model;
     };
+
+    // The sum is simply the result of adding all numbers
+    // together, starting from zero.
+    ss.sum = function(x) {
+        var sum = 0;
+        for (var i = 0; i < x.length; i++) {
+            sum += x[i];
+        }
+        return sum;
+    };
+
+    // The mean is the sum over the number of values
+    ss.mean = function(x) {
+        return ss.sum(x) / x.length;
+    }
+
+    // The variance is the sum of squared deviations from the mean
+    ss.variance = function(x) {
+        var mean = ss.mean(x),
+            deviations = [];
+
+        // Make a list of squared deviations from the mean.
+        for (var i = 0; i < x.length; i++) {
+            deviations.push(Math.pow(x[i] - mean, 2));
+        }
+
+        // Find the mean value of that list
+        return ss.mean(deviations);
+    };
+
 })(this);

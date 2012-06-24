@@ -1,4 +1,7 @@
 docs:
 	docco src/*.js
 
-.PHONY: docs
+test:
+	mocha
+
+.PHONY: docs test
