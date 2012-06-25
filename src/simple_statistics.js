@@ -68,6 +68,11 @@
         return linreg;
     };
 
+    // # R Squared
+    //
+    // The r-squared value of data compared with a function `f`
+    // is the sum of the squared differences between the prediction
+    // and the actual value.
     ss.r_squared = function(data, f) {
         if (data.length < 2) return 1;
 
@@ -103,6 +108,10 @@
     };
 
 
+    // # Bayesian Classifier
+    //
+    // This is a naïve bayesian classifier that takes
+    // singly-nested objects.
     ss.bayesian = function() {
         // Create the bayes_model object, that will
         // expose methods
@@ -181,7 +190,7 @@
         return bayes_model;
     };
 
-    // ## sum
+    // # sum
     //
     // is simply the result of adding all numbers
     // together, starting from zero.
@@ -193,14 +202,14 @@
         return sum;
     };
 
-    // ## mean
+    // # mean
     //
     // is the sum over the number of values
     ss.mean = function(x) {
         return ss.sum(x) / x.length;
     }
 
-    // ## variance
+    // # variance
     //
     // is the sum of squared deviations from the mean
     ss.variance = function(x) {
@@ -216,7 +225,7 @@
         return ss.mean(deviations);
     };
 
-    // ## standard deviation
+    // # standard deviation
     //
     // is just the square root of the variance.
     ss.standard_deviation = function(x) {
