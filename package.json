@@ -13,7 +13,7 @@
   },
   "optionalDependencies": {},
   "scripts": {
-    "test": "mocha"
+    "test": "mocha -R spec"
   },
   "main": "src/simple_statistics.js",
   "engines": {

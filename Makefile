@@ -2,6 +2,6 @@ docs:
 	docco src/*.js
 
 test:
-	mocha
+	mocha -R spec
 
 .PHONY: docs test

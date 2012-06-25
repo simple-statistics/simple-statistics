@@ -206,13 +206,19 @@
     //
     // is the sum over the number of values
     ss.mean = function(x) {
+        // The mean of no numbers is null
+        if (x.length === 0) return null;
+
         return ss.sum(x) / x.length;
-    }
+    };
 
     // # variance
     //
     // is the sum of squared deviations from the mean
     ss.variance = function(x) {
+        // The variance of no numbers is null
+        if (x.length === 0) return null;
+
         var mean = ss.mean(x),
             deviations = [];
 
@@ -229,6 +235,9 @@
     //
     // is just the square root of the variance.
     ss.standard_deviation = function(x) {
+        // The standard deviation of no numbers is null
+        if (x.length === 0) return null;
+
         return Math.sqrt(ss.variance(x));
     }
 
