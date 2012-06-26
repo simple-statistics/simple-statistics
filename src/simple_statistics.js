@@ -178,6 +178,9 @@
             var odds_sums = {};
 
             for (var category in odds) {
+                // Tally all of the odds for each category-combination pair -
+                // the non-existence of a category does not add anything to the
+                // score.
                 for (var combination in odds[category]) {
                     if (odds_sums[category] === undefined) odds_sums[category] = 0;
                     odds_sums[category] += odds[category][combination];
@@ -243,16 +246,19 @@
     };
 
     // # [median](http://en.wikipedia.org/wiki/Median)
-    //
-    // The median is either the central value of an odd-length
-    // list or the mean of the two center values of an even-length list
     ss.median = function(x) {
+        // The median of an empty list is null
         if (x.length === 0) return null;
 
+        // Sorting the array makes it easy to find the center, but
+        // use `.slice()` to ensure the original array `x` is not modified
         var sorted = x.slice().sort();
 
+        // If the length of the list is odd, it's the central number
         if (sorted.length % 2 === 1) {
             return sorted[(sorted.length - 1) / 2];
+        // Otherwise, the median is the average of the two numbers
+        // at the center of the list
         } else {
             var a = sorted[(sorted.length / 2) - 1];
             var b = sorted[(sorted.length / 2)];
