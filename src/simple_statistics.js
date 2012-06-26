@@ -2,7 +2,8 @@
     var ss = {};
     exports = module.exports = ss;
 
-    // # Linear Regression
+    // # [Linear Regression](http://en.wikipedia.org/wiki/Linear_regression)
+    //
     // [Simple linear regression](http://en.wikipedia.org/wiki/Simple_linear_regression)
     // is a simple way to find a fitted line
     // between a set of coordinates.
@@ -68,7 +69,7 @@
         return linreg;
     };
 
-    // # R Squared
+    // # [R Squared](http://en.wikipedia.org/wiki/Coefficient_of_determination)
     //
     // The r-squared value of data compared with a function `f`
     // is the sum of the squared differences between the prediction
@@ -108,7 +109,7 @@
     };
 
 
-    // # Bayesian Classifier
+    // # [Bayesian Classifier](http://en.wikipedia.org/wiki/Naive_Bayes_classifier)
     //
     // This is a naïve bayesian classifier that takes
     // singly-nested objects.
@@ -212,7 +213,7 @@
         return ss.sum(x) / x.length;
     };
 
-    // # variance
+    // # [variance](http://en.wikipedia.org/wiki/Variance)
     //
     // is the sum of squared deviations from the mean
     ss.variance = function(x) {
@@ -231,7 +232,7 @@
         return ss.mean(deviations);
     };
 
-    // # standard deviation
+    // # [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
     //
     // is just the square root of the variance.
     ss.standard_deviation = function(x) {
