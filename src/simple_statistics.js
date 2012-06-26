@@ -239,6 +239,24 @@
         if (x.length === 0) return null;
 
         return Math.sqrt(ss.variance(x));
-    }
+    };
+
+    // # [median](http://en.wikipedia.org/wiki/Median)
+    //
+    // The median is either the central value of an odd-length
+    // list or the mean of the two center values of an even-length list
+    ss.median = function(x) {
+        if (x.length === 0) return null;
+
+        var sorted = x.slice().sort();
+
+        if (sorted.length % 2 === 1) {
+            return sorted[(sorted.length - 1) / 2];
+        } else {
+            var a = sorted[(sorted.length / 2) - 1];
+            var b = sorted[(sorted.length / 2)];
+            return (a + b) / 2;
+        }
+    };
 
 })(this);
