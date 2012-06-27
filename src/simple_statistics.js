@@ -1,6 +1,13 @@
 (function() {
     var ss = {};
-    exports = module.exports = ss;
+
+    if (typeof module !== 'undefined') {
+        // node.js
+        exports = module.exports = ss;
+    } else {
+        // browser
+        this.ss = ss;
+    }
 
     // # [Linear Regression](http://en.wikipedia.org/wiki/Linear_regression)
     //
