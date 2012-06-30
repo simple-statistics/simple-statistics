@@ -273,4 +273,22 @@
         }
     };
 
+    // # [t-test](http://en.wikipedia.org/wiki/Student's_t-test)
+    // This is to compute a one-sample t-test, comparing the mean
+    // of a sample to a known value.
+    ss.t_test = function(x, mu) {
+      // The median of the sample
+      var xBar = ss.mean(x);
+
+      // The standard deviation of the sample
+      var sd = ss.standard_deviation(x);
+
+      // Square root the length of the sample
+      var rootN = Math.sqrt(x.length);
+
+      // Compute the known value against the sample,
+      // returning the t value
+      return (xBar - mu) / (sd / rootN);
+    };
+
 })(this);
