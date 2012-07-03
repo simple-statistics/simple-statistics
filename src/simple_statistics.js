@@ -205,6 +205,8 @@
     //
     // is simply the result of adding all numbers
     // together, starting from zero.
+    //
+    // This runs on `O(n)`, linear time in respect to the array
     ss.sum = function(x) {
         var sum = 0;
         for (var i = 0; i < x.length; i++) {
@@ -216,11 +218,43 @@
     // # mean
     //
     // is the sum over the number of values
+    //
+    // This runs on `O(n)`, linear time in respect to the array
     ss.mean = function(x) {
         // The mean of no numbers is null
         if (x.length === 0) return null;
 
         return ss.sum(x) / x.length;
+    };
+
+    // # min
+    //
+    // This is simply the minimum number in the set.
+    //
+    // This runs on `O(n)`, linear time in respect to the array
+    ss.min = function(x) {
+        var min;
+        for (var i = 0; i < x.length; i++) {
+            // On the first iteration of this loop, min is
+            // undefined and is thus made the minimum element in the array
+            if (x[i] < min || min === undefined) min = x[i];
+        }
+        return min;
+    };
+
+    // # max
+    //
+    // This is simply the maximum number in the set.
+    //
+    // This runs on `O(n)`, linear time in respect to the array
+    ss.max = function(x) {
+        var max;
+        for (var i = 0; i < x.length; i++) {
+            // On the first iteration of this loop, min is
+            // undefined and is thus made the minimum element in the array
+            if (x[i] > max || max === undefined) max = x[i];
+        }
+        return max;
     };
 
     // # [variance](http://en.wikipedia.org/wiki/Variance)
