@@ -13,3 +13,9 @@ as well as in node.js.
 
 * Tom MacWright
 * [Matt Sacks](https://github.com/mattsa)
+
+## See Also
+
+* [stream-statistics](https://github.com/tmcw/stream-statistics), a sister project that implements
+  many of the same measures for streaming data - as online algorithms
+* [Other statistics libraries](https://github.com/tmcw/simple-statistics/wiki/Other-statistics-libraries)
