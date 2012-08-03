@@ -333,4 +333,47 @@
       return (sample_mean - x) / (sd / rootN);
     };
 
+    // # quantile
+    // This is a population quantile, since we assume to know the entire
+    // dataset in this library. Thus I'm trying to follow the
+    // [Quantiles of a Population](http://en.wikipedia.org/wiki/Quantile#Quantiles_of_a_population)
+    // algorithm from wikipedia.
+    //
+    // Sample is a one-dimensional array of numbers,
+    // and p is a decimal number from 0 to 1. In terms of a k/q
+    // quantile, p = k/q - it's just dealing with fractions or dealing
+    // with decimal values.
+    ss.quantile = function(sample, p) {
+
+        // We can't derive quantiles from an empty list
+        if (sample.length === 0) return null;
+
+        // invalid bounds. Microsoft Excel accepts 0 and 1, but
+        // we won't.
+        if (p >= 1 || p <= 0) return null;
+
+        // Sort a copy of the array. We'll need a sorted array to index
+        // the values in sorted order.
+        var sorted = sample.slice().sort();
+
+        // Find a potential index in the list. In Wikipedia's terms, this
+        // is I<sub>p</sub>.
+        var idx = (sorted.length) * p;
+
+        // If this isn't an integer, we'll round up to the next value in
+        // the list.
+        if (idx % 1 !== 0) {
+            return sample[Math.ceil(idx) - 1];
+        } else if (sample.length % 2 === 0) {
+            // If the list has even-length and we had an integer in the
+            // first place, we'll take the average of this number
+            // and the next value, if there is one
+            return (sample[idx - 1] + sample[idx]) / 2;
+        } else {
+            // Finally, in the simple case of an integer value
+            // with an odd-length list, return the sample value at the index.
+            return sample[idx];
+        }
+    };
+
 })(this);
