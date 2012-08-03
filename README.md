@@ -6,7 +6,7 @@ of statistics algorithms.
 This code is designed to work in browsers (including IE)
 as well as in node.js.
 
-# [Documentation](https://github.com/tmcw/simple-statistics/wiki)
+# [Documentation](https://github.com/tmcw/simple-statistics/blob/master/API.md)
 # [Tests](http://travis-ci.org/#!/tmcw/simple-statistics)
 
 # Contributors
