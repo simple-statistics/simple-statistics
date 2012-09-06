@@ -293,7 +293,7 @@
 
         // Sorting the array makes it easy to find the center, but
         // use `.slice()` to ensure the original array `x` is not modified
-        var sorted = x.slice().sort();
+        var sorted = x.slice().sort(function (a, b) { return a - b; });
 
         // If the length of the list is odd, it's the central number
         if (sorted.length % 2 === 1) {
@@ -354,7 +354,7 @@
 
         // Sort a copy of the array. We'll need a sorted array to index
         // the values in sorted order.
-        var sorted = sample.slice().sort();
+        var sorted = sample.slice().sort(function (a, b) { return a - b; });
 
         // Find a potential index in the list. In Wikipedia's terms, this
         // is I<sub>p</sub>.
