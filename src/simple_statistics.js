@@ -363,16 +363,16 @@
         // If this isn't an integer, we'll round up to the next value in
         // the list.
         if (idx % 1 !== 0) {
-            return sample[Math.ceil(idx) - 1];
+            return sorted[Math.ceil(idx) - 1];
         } else if (sample.length % 2 === 0) {
             // If the list has even-length and we had an integer in the
             // first place, we'll take the average of this number
             // and the next value, if there is one
-            return (sample[idx - 1] + sample[idx]) / 2;
+            return (sorted[idx - 1] + sorted[idx]) / 2;
         } else {
             // Finally, in the simple case of an integer value
             // with an odd-length list, return the sample value at the index.
-            return sample[idx];
+            return sorted[idx];
         }
     };
 
