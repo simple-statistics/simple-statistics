@@ -227,6 +227,9 @@
         return ss.sum(x) / x.length;
     };
 
+    // Alias this into its common name
+    ss.average = ss.mean;
+
     // # min
     //
     // This is simply the minimum number in the set.
