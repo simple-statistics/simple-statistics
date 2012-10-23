@@ -43,6 +43,10 @@ To use it in node, install it with [npm](https://npmjs.org/) or add it to your p
 
     npm install simple-statistics
 
+To use it with [component](https://github.com/component/component),
+
+    component install tmcw/simple-statistics
+
 # [Documentation](https://github.com/tmcw/simple-statistics/blob/master/API.md)
 # [Tests](http://travis-ci.org/#!/tmcw/simple-statistics)
 
