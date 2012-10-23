@@ -38,6 +38,12 @@ var line = ss.linear_regression()
 ss.r_squared(data, line);
 ```
 
+## Examples
+
+* [Linear regression with simple-statistics and d3js](http://bl.ocks.org/3931800)
+
+## Usage
+
 To use it in browsers, grab [simple_statistics.js](https://raw.github.com/tmcw/simple-statistics/master/src/simple_statistics.js).
 To use it in node, install it with [npm](https://npmjs.org/) or add it to your package.json.
 
