@@ -174,7 +174,7 @@
                     // the item to categorize, it counts based on how popular it is
                     // versus the whole population.
                     if (data[category][k]) {
-                        odds[category][k + '_' + v] = data[category][k][v] / total_count;
+                        odds[category][k + '_' + v] = (data[category][k][v] || 0) / total_count;
                     } else {
                         odds[category][k + '_' + v] = 0;
                     }
