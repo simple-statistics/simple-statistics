@@ -36,6 +36,11 @@ var line = ss.linear_regression()
 
 // Get the r-squared value of the line estimation
 ss.r_squared(data, line);
+
+var bayes = ss.bayesian();
+bayes.train({ species: 'Cat' }, 'animal');
+bayes.score({ species: 'Cat' });
+// { animal: 1 }
 ```
 
 ## Examples
