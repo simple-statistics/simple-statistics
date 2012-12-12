@@ -46,6 +46,9 @@ ss.r_squared(data, line);
 
 ### Mixin Style
 
+_This is **optional** and not used by default. You can opt-in to mixins
+with `ss.mixin()`._
+
 This mixes `simple-statistics` methods into the Array prototype - note that
 [extending native objects](http://perfectionkills.com/extending-built-in-native-objects-evil-or-not/) is a
 tricky move.
