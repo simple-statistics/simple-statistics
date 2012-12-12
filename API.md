@@ -5,6 +5,11 @@ Basic contracts of functions:
 
 # Basic Array Operations
 
+### .mixin()
+
+_Optionally_ mix in the following functions into the `Array` prototype. Otherwise
+you can use them off of the simple-statistics object itself.
+
 ### .mean(x)
 
 Mean of a single-dimensional Array of numbers.
@@ -24,6 +29,10 @@ Sum of a single-dimensional Array of numbers.
 ### .median(x)
 
 [Median](http://en.wikipedia.org/wiki/Median) of a single-dimensional array of numbers.
+
+### .geometric_mean(x)
+
+[Geometric mean](http://en.wikipedia.org/wiki/Geometric_mean) of a single-dimensional array of **positive** numbers.
 
 ### .min(x)
 

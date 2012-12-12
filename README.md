@@ -19,6 +19,7 @@ var list = [1, 2, 3];
 var sum = ss.sum(list),
     mean = ss.mean(list),
     min = ss.min(list),
+    geometric_mean = ss.geometric_mean(list),
     max = ss.max(list),
     quantile = ss.quantile(0.25);
 ```
