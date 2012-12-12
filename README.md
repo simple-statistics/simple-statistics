@@ -6,6 +6,8 @@ of statistics algorithms.
 This code is designed to work in browsers (including IE)
 as well as in node.js.
 
+## Basic Descriptive Statistics
+
 ```javascript
 // Require simple statistics
 var ss = require('simple-statistics');
@@ -17,9 +19,13 @@ var list = [1, 2, 3];
 var sum = ss.sum(list),
     mean = ss.mean(list),
     min = ss.min(list),
-    max = ss.min(list),
+    max = ss.max(list),
     quantile = ss.quantile(0.25);
+```
 
+## Linear Regression
+
+```javascript
 // For a linear regression, it's a two-dimensional array
 var data = [ [1, 2], [2, 3] ];
 
@@ -36,7 +42,35 @@ var line = ss.linear_regression()
 
 // Get the r-squared value of the line estimation
 ss.r_squared(data, line);
+```
 
+### Mixin Style
+
+This mixes `simple-statistics` methods into the Array prototype - note that
+[extending native objects](http://perfectionkills.com/extending-built-in-native-objects-evil-or-not/) is a
+tricky move.
+
+This will _only work_ if `defineProperty` is available, which means modern browsers
+and nodejs - on IE8 and below, calling `ss.mixin()` will throw an exception.
+
+```javascript
+// mixin to Array class
+ss.mixin();
+
+// The input is a simple array
+var list = [1, 2, 3];
+
+// The same descriptive techniques as above, but in a simpler style
+var sum = list.sum(),
+    mean = list.mean(),
+    min = list.min(),
+    max = list.max(),
+    quantile = list.quantile(0.25);
+```
+
+### Bayesian Classifier
+
+```javascript
 var bayes = ss.bayesian();
 bayes.train({ species: 'Cat' }, 'animal');
 bayes.score({ species: 'Cat' });
