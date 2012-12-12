@@ -227,6 +227,32 @@
         return ss.sum(x) / x.length;
     };
 
+    // # geometric mean
+    //
+    // a mean function that is more useful for numbers in different
+    // ranges.
+    //
+    // this is the nth root of the input numbers multipled by each other
+    //
+    // This runs on `O(n)`, linear time in respect to the array
+    ss.geometric_mean = function(x) {
+        // The mean of no numbers is null
+        if (x.length === 0) return null;
+
+        // the starting value.
+        var value = 1;
+
+        for (var i = 0; i < x.length; i++) {
+            // the geometric mean is only valid for positive numbers
+            if (x[i] <= 0) return null;
+
+            // repeatedly multiply the value by each number
+            value *= x[i];
+        }
+
+        return Math.pow(value, 1 / x.length);
+    };
+
     // Alias this into its common name
     ss.average = ss.mean;
 
@@ -384,7 +410,7 @@
         if (!support) throw new Error('without defineProperty, simple-statistics cannot be mixed in');
 
         var arrayMethods = ['median', 'standard_deviation', 'sum',
-            'mean', 'min', 'max', 'quantile'];
+            'mean', 'min', 'max', 'quantile', 'geometric_mean'];
 
         // create a closure with a method name so that a reference
         // like arrayMethods[i] doesn't follow the loop increment
