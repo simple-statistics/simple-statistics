@@ -1,5 +1,5 @@
-var assert = require('assert');
-var ss = require('../');
+var assert = require('chai').assert;
+var ss = require('../../');
 
 describe('sum', function() {
     it('can get the sum of two numbers', function() {

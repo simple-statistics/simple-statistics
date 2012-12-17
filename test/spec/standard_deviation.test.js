@@ -1,5 +1,5 @@
-var assert = require('assert');
-var ss = require('../');
+var assert = require('chai').assert;
+var ss = require('../../');
 
 function rnd(x) {
     return Math.round(x * 1000) / 1000;

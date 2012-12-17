@@ -1,5 +1,5 @@
-var assert = require('assert');
-var ss = require('../');
+var assert = require('chai').assert;
+var ss = require('../../');
 
 describe('geometric mean', function() {
     // From http://en.wikipedia.org/wiki/Geometric_mean

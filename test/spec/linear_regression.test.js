@@ -1,5 +1,5 @@
-var assert = require('assert');
-var ss = require('../');
+var assert = require('chai').assert;
+var ss = require('../../');
 
 describe('linear regression', function() {
     it('correctly generates a line for a 0, 0 to 1, 1 dataset', function() {

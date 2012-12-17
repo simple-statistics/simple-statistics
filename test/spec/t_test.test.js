@@ -1,5 +1,5 @@
-var assert = require('assert');
-var ss     = require('../');
+var assert = require('chai').assert;
+var ss     = require('../../');
 
 describe('t test', function() {
     it('can compare a known value to the mean of samples', function() {

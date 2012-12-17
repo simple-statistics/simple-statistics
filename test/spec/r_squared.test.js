@@ -1,5 +1,5 @@
-var assert = require('assert');
-var ss = require('../');
+var assert = require('chai').assert;
+var ss = require('../../');
 
 describe('r-squared', function() {
     it('says that the r squared of a two-point line is perfect', function() {

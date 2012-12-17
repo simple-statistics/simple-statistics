@@ -1,5 +1,5 @@
-var assert = require('assert');
-var ss = require('../');
+var assert = require('chai').assert;
+var ss = require('../../');
 
 describe('mode', function() {
     it('the mode of a single-number array is that one number', function() {

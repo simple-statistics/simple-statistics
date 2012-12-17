@@ -9,11 +9,12 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "mocha": "1.2.x"
+    "mocha": "1.2.x",
+    "chai": "1.4.x"
   },
   "optionalDependencies": {},
   "scripts": {
-    "test": "mocha -R spec"
+    "test": "mocha -R spec test/spec"
   },
   "main": "src/simple_statistics.js",
   "engines": {

@@ -1,5 +1,5 @@
-var assert = require('assert');
-var ss = require('../');
+var assert = require('chai').assert;
+var ss = require('../../');
 
 describe('min', function() {
     it('can get the minimum of one number', function() {
@@ -11,6 +11,8 @@ describe('min', function() {
     });
 });
 
-it('can get the maximum of three numbers', function() {
-    assert.equal(ss.max([1, 7, -1000]), 7);
+describe('max', function() {
+    it('can get the maximum of three numbers', function() {
+        assert.equal(ss.max([1, 7, -1000]), 7);
+    });
 });

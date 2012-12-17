@@ -1,5 +1,5 @@
 var assert = require('assert');
-var ss = require('../');
+var ss = require('../../');
 
 describe('median', function() {
     it('can get the median of three numbers', function() {

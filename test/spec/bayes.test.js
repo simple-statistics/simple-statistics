@@ -1,11 +1,11 @@
-var assert = require('assert');
-var ss = require('../');
+var ss = require('../../');
+var assert = require('chai').assert;
 
 describe('bayes', function() {
     it('makes an easy call with one training round', function() {
         var bayes = ss.bayesian();
         bayes.train({ species: 'Cat' }, 'animal');
-        assert.deepEqual(bayes.score({ species: 'Cat' }), { animal: 1 });
+        assert(bayes.score({ species: 'Cat' }), { animal: 1 });
     });
 
     it('makes fify-fifty call', function() {
