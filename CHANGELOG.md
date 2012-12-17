@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.3.0
+
+* Adds `simple_statistics.mixin()`
+* Adds `simple_statistics.geometric_mean()`
+
 ## 0.2.0
 
 * Adds `simple_statistics.quantile()`

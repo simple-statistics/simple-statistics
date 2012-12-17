@@ -158,13 +158,13 @@
         // possible categories based on its attributes
         bayes_model.score = function(item) {
             // Initialize an empty array of odds per category.
-            var odds = {};
+            var odds = {}, category;
             // Iterate through each key in the item,
             // then iterate through each category that has been used
             // in previous calls to `.train()`
             for (var k in item) {
                 var v = item[k];
-                for (var category in data) {
+                for (category in data) {
                     // Create an empty object for storing key - value combinations
                     // for this category.
                     if (odds[category] === undefined) odds[category] = {};
@@ -184,7 +184,7 @@
             // Set up a new object that will contain sums of these odds by category
             var odds_sums = {};
 
-            for (var category in odds) {
+            for (category in odds) {
                 // Tally all of the odds for each category-combination pair -
                 // the non-existence of a category does not add anything to the
                 // score.
@@ -334,6 +334,55 @@
             var b = sorted[(sorted.length / 2)];
             return (a + b) / 2;
         }
+    };
+
+    // # [mode](http://en.wikipedia.org/wiki/Mode_(statistics))
+    // This implementation is inspired by science.js:
+    // https://github.com/jasondavies/science.js/blob/master/src/stats/mode.js
+    ss.mode = function(x) {
+
+        // Handle edge cases:
+        // The median of an empty list is null
+        if (x.length === 0) return null;
+        else if (x.length === 1) return x[0];
+
+        // Sorting the array lets us iterate through it below and be sure
+        // that every time we see a new number it's new and we'll never
+        // see the same number twice
+        var sorted = x.slice().sort(function (a, b) { return a - b; });
+
+        // This assumes it is dealing with an array of size > 1, since size
+        // 0 and 1 are handled immediately. Hence it starts at index 1 in the
+        // array.
+        var last = sorted[0],
+            // store the mode as we find new modes
+            mode,
+            // store how many times we've seen the mode
+            max_seen = 0,
+            // how many times the current candidate for the mode
+            // has been seen
+            seen_this = 1;
+
+        // end at sorted.length + 1 to fix the case in which the mode is
+        // the highest number that occurs in the sequence. the last iteration
+        // compares sorted[i], which is undefined, to the highest number
+        // in the series
+        for (var i = 1; i < sorted.length + 1; i++) {
+            // we're seeing a new number pass by
+            if (sorted[i] !== last) {
+                // the last number is the new mode since we saw it more
+                // often than the old one
+                if (seen_this > max_seen) {
+                    max_seen = seen_this;
+                    seen_this = 1;
+                    mode = last;
+                }
+                last = sorted[i];
+            // if this isn't a new number, it's one more occurrence of
+            // the potential mode
+            } else { seen_this++; }
+        }
+        return mode;
     };
 
     // # [t-test](http://en.wikipedia.org/wiki/Student's_t-test)
