@@ -42,10 +42,19 @@ Finds the minimum of a single-dimensional array of numbers. This runs in linear 
 
 Finds the maximum of a single-dimensional array of numbers. This runs in linear `O(n)` time.
 
-
 ### .t_test(sample, x)
 
 Does a [student's t-test](http://en.wikipedia.org/wiki/Student's_t-test) of a dataset `sample`, represented by a single-dimensional array of numbers. `x` is the known value, and the result is a measure of [statistical significance](http://en.wikipedia.org/wiki/Statistical_significance).
+
+### .sample_variance(x)
+
+Produces [sample variance](http://mathworld.wolfram.com/SampleVariance.html)
+of a single-dimensional array of numbers.
+
+### .sample_covariance(x)
+
+Produces [sample covariance](http://en.wikipedia.org/wiki/Sample_mean_and_sample_covariance)
+of two single-dimensional arrays of numbers.
 
 ### .quantile(sample, p)
 
