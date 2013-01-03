@@ -315,6 +315,70 @@
         return Math.sqrt(ss.variance(x));
     };
 
+    // # [variance](http://en.wikipedia.org/wiki/Variance)
+    //
+    // is the sum of squared deviations from the mean
+    ss.sample_variance = function(x) {
+        // The variance of no numbers is null
+        if (x.length <= 1) return null;
+
+        var mean = ss.mean(x),
+            sum = 0.0;
+
+        // Make a list of squared deviations from the mean.
+        for (var i = 0; i < x.length; i++) {
+            sum += Math.pow(x[i] - mean, 2);
+        }
+
+        // Find the mean value of that list
+        return sum / (x.length - 1);
+    };
+
+    // # [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
+    //
+    // is just the square root of the variance.
+    ss.sample_standard_deviation = function(x) {
+        // The standard deviation of no numbers is null
+        if (x.length <= 1) return null;
+
+        return Math.sqrt(ss.sample_variance(x));
+    };
+
+    // # [covariance](http://en.wikipedia.org/wiki/Covariance)
+    //
+    // sample covariance of two datasets: how much do the two datasets move together?
+    ss.sample_covariance = function(x, y){
+        // The two datasets must have the same length which must be more than 1
+        if (x.length <= 1 || x.length != y.length){
+          return null;
+        }
+
+        var xmean = ss.mean(x);
+        var ymean = ss.mean(y);
+
+        var sum = 0.0;
+
+        for (var i = 0; i < x.length; i++){
+          sum += (x[i] - xmean) * (y[i] - ymean);
+        }
+
+        return sum / (x.length - 1);
+    };
+
+    // # [correlation)(http://en.wikipedia.org/wiki/Correlation_and_dependence
+    //
+    // Gets a measure of how correlated two datasets are, between -1 and 1
+    ss.sample_correlation = function(x, y){
+        var cov = ss.sample_covariance(x, y);
+        var xstd = ss.sample_standard_deviation(x);
+        var ystd = ss.sample_standard_deviation(y);
+
+        if (cov === null || xstd === null || ystd === null){
+          return null;
+        }
+        return cov / xstd / ystd;
+    };
+
     // # [median](http://en.wikipedia.org/wiki/Median)
     ss.median = function(x) {
         // The median of an empty list is null
