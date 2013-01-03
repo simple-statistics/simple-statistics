@@ -369,9 +369,9 @@
     //
     // Gets a measure of how correlated two datasets are, between -1 and 1
     ss.sample_correlation = function(x, y){
-        var cov = ss.covariance(x, y);
-        var xstd = ss.standard_deviation(x);
-        var ystd = ss.standard_deviation(y);
+        var cov = ss.sample_covariance(x, y);
+        var xstd = ss.sample_standard_deviation(x);
+        var ystd = ss.sample_standard_deviation(y);
 
         if (cov === null || xstd === null || ystd === null){
           return null;
