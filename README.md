@@ -116,6 +116,7 @@ To use it with [component](https://github.com/component/component),
 * [descriptive_statistics](https://github.com/thirtysixthspan/descriptive_statistics)
 * [jStat](http://www.jstat.org/)
 * [classifier](https://github.com/harthur/classifier) is a naive bayesian classifier (though specialized for the words-spam case)
+* [underscore.math](https://github.com/syntagmatic/underscore.math/blob/master/underscore.math.js)
 
 ### Python
 
