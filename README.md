@@ -45,6 +45,8 @@ var line = ss.linear_regression()
 ss.r_squared(data, line);
 ```
 
+## [Literate Documentation](http://macwright.org/simple-statistics/)
+
 ### Mixin Style
 
 _This is **optional** and not used by default. You can opt-in to mixins
