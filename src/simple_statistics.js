@@ -1,11 +1,19 @@
+// # simple-statistics
+//
+// A simple, literate statistics system. The code below uses the
+// [Javascript module pattern](http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth),
+// eventually assigning `simple-statistics` to `ss` in browsers or the
+// `exports object for node.js
 (function() {
     var ss = {};
 
     if (typeof module !== 'undefined') {
-        // node.js
+        // Assign the `ss` object to exports, so that you can require
+        // it in [node.js](http://nodejs.org/)
         exports = module.exports = ss;
     } else {
-        // browser
+        // Otherwise, in a browser, we assign `ss` to the window object,
+        // so you can simply refer to it as `ss`.
         this.ss = ss;
     }
 
@@ -18,7 +26,7 @@
         var linreg = {},
             data = [];
 
-        // Assign the data to the model.
+        // Assign data to the model. Data is assumed to be an array.
         linreg.data = function(x) {
             if (!arguments.length) return data;
             data = x.slice();
@@ -121,8 +129,9 @@
     // This is a naïve bayesian classifier that takes
     // singly-nested objects.
     ss.bayesian = function() {
-        // Create the bayes_model object, that will
-        // expose methods
+        // The `bayes_model` object is what will be exposed
+        // by this closure, with all of its extended methods, and will
+        // have access to all scope variables, like `total_count`.
         var bayes_model = {},
             // The number of items that are currently
             // classified in the model
@@ -365,7 +374,7 @@
         return sum / (x.length - 1);
     };
 
-    // # [correlation)(http://en.wikipedia.org/wiki/Correlation_and_dependence
+    // # [correlation](http://en.wikipedia.org/wiki/Correlation_and_dependence)
     //
     // Gets a measure of how correlated two datasets are, between -1 and 1
     ss.sample_correlation = function(x, y){
@@ -400,9 +409,8 @@
         }
     };
 
-    // # [mode](http://en.wikipedia.org/wiki/Mode_(statistics))
-    // This implementation is inspired by science.js:
-    // https://github.com/jasondavies/science.js/blob/master/src/stats/mode.js
+    // # [mode](http://bit.ly/W5K4Yt)
+    // This implementation is inspired by [science.js](https://github.com/jasondavies/science.js/blob/master/src/stats/mode.js)
     ss.mode = function(x) {
 
         // Handle edge cases:
@@ -526,7 +534,7 @@
             'mean', 'min', 'max', 'quantile', 'geometric_mean'];
 
         // create a closure with a method name so that a reference
-        // like arrayMethods[i] doesn't follow the loop increment
+        // like `arrayMethods[i]` doesn't follow the loop increment
         function wrap(method) {
             return function() {
                 // cast any arguments into an array, since they're
@@ -541,7 +549,10 @@
 
         // for each array function, define a function off of the Array
         // prototype which automatically gets the array as the first
-        // argument
+        // argument. We use [defineProperty](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/defineProperty)
+        // because it allows these properties to be non-enumerable:
+        // `for (var in x)` loops will not run into problems with this
+        // implementation.
         for (var i = 0; i < arrayMethods.length; i++) {
             Object.defineProperty(Array.prototype, arrayMethods[i], {
                 value: wrap(arrayMethods[i]),
