@@ -526,6 +526,24 @@
         }
     };
 
+    // # [Jenks natural breaks optimization](http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization)
+    //
+    // a data classification algorithm popular in cartography that
+    // aims to optimize similarity within classes as well as separation between
+    // classes.
+    ss.jenks = function(data, number_of_classes) {
+
+        // if data is empty or we've requested too many classes, return
+        // an empty classing
+        if (!data.length) return null;
+
+        var sorted = data.slice().sort(function (a, b) { return a - b; });
+
+        // initialize the breaks as quantiles
+        var breaks = ss.quantile(data, number_of_classes);
+
+    };
+
     ss.mixin = function() {
         var support = !!(Object.defineProperty && Object.defineProperties);
         if (!support) throw new Error('without defineProperty, simple-statistics cannot be mixed in');
