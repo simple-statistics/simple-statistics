@@ -56,6 +56,11 @@ of a single-dimensional array of numbers.
 Produces [sample covariance](http://en.wikipedia.org/wiki/Sample_mean_and_sample_covariance)
 of two single-dimensional arrays of numbers.
 
+### .sample_correlation(x)
+
+Produces [sample correlation](http://en.wikipedia.org/wiki/Correlation_and_dependence)
+of two single-dimensional arrays of numbers.
+
 ### .quantile(sample, p)
 
 Does a [quantile](http://en.wikipedia.org/wiki/Quantile) of a dataset `sample`,
