@@ -324,23 +324,30 @@
         return Math.sqrt(ss.variance(x));
     };
 
-    // # [variance](http://en.wikipedia.org/wiki/Variance)
-    //
-    // is the sum of squared deviations from the mean
-    ss.sample_variance = function(x) {
+     ss.sum_squared_deviations = function(x) {
         // The variance of no numbers is null
         if (x.length <= 1) return null;
 
         var mean = ss.mean(x),
-            sum = 0.0;
+            sum = 0;
 
         // Make a list of squared deviations from the mean.
         for (var i = 0; i < x.length; i++) {
             sum += Math.pow(x[i] - mean, 2);
         }
 
+        return sum;
+     };
+
+    // # [variance](http://en.wikipedia.org/wiki/Variance)
+    //
+    // is the sum of squared deviations from the mean
+    ss.sample_variance = function(x) {
+        var sum_squared_deviations = ss.sum_squared_deviations(x);
+        if (sum_squared_deviations === null) return null;
+
         // Find the mean value of that list
-        return sum / (x.length - 1);
+        return sum_squared_deviations / (x.length - 1);
     };
 
     // # [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
@@ -543,7 +550,9 @@
     // a data classification algorithm popular in cartography that
     // aims to optimize similarity within classes as well as separation between
     // classes.
-    ss.jenks = function(data, number_of_classes) {
+    //
+    // http://bit.ly/VKxIKQ
+    ss.jenks = function(data, n_classes) {
 
         // if data is empty or we've requested too many classes, return
         // an empty classing
@@ -551,9 +560,27 @@
 
         var sorted = data.slice().sort(function (a, b) { return a - b; });
 
-        // initialize the breaks as quantiles
-        var breaks = ss.quantile(data, number_of_classes);
+        // we can start off with arbitrary breaks an iteratively improve them.
+        // let's start with quantiles.
+        var class_size = Math.floor(data.length / n_classes),
+            groups = [],
+            squared_deviations = [],
+            start = 0,
+            total_sum_of_squared_deviations = 0;
 
+        // fill each group with class_size items
+        for (var i = 0; i < n_classes; i++) {
+            groups.push(data.slice(start, start += class_size));
+        }
+
+        // add any trailing items to the last group.
+        groups[n_classes - 1] = groups[n_classes - 1].concat(data.slice(start));
+
+        for (i = 0; i < groups.length; i++) {
+            squared_deviations.push(ss.sum_squared_deviations(groups[i]));
+        }
+
+        total_sum_of_squared_deviations = ss.sum(squared_deviations);
     };
 
     ss.mixin = function() {
