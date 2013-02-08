@@ -355,36 +355,48 @@
 
     // # [covariance](http://en.wikipedia.org/wiki/Covariance)
     //
-    // sample covariance of two datasets: how much do the two datasets move together?
-    ss.sample_covariance = function(x, y){
+    // sample covariance of two datasets:
+    // how much do the two datasets move together?
+    // x and y are two datasets, represented as arrays of numbers.
+    ss.sample_covariance = function(x, y) {
+
         // The two datasets must have the same length which must be more than 1
         if (x.length <= 1 || x.length != y.length){
           return null;
         }
 
-        var xmean = ss.mean(x);
-        var ymean = ss.mean(y);
+        // determine the mean of each dataset so that we can judge each
+        // value of the dataset fairly as the difference from the mean. this
+        // way, if one dataset is [1, 2, 3] and [2, 3, 4], their covariance
+        // does not suffer because of the difference in absolute values
+        var xmean = ss.mean(x),
+            ymean = ss.mean(y),
+            sum = 0;
 
-        var sum = 0.0;
-
+        // for each pair of values, the covariance increases when their
+        // difference from the mean is associated - if both are well above
+        // or if both are well below
+        // the mean, the covariance increases significantly.
         for (var i = 0; i < x.length; i++){
-          sum += (x[i] - xmean) * (y[i] - ymean);
+            sum += (x[i] - xmean) * (y[i] - ymean);
         }
 
+        // the covariance is weighted by the length of the datasets.
         return sum / (x.length - 1);
     };
 
     // # [correlation](http://en.wikipedia.org/wiki/Correlation_and_dependence)
     //
     // Gets a measure of how correlated two datasets are, between -1 and 1
-    ss.sample_correlation = function(x, y){
-        var cov = ss.sample_covariance(x, y);
-        var xstd = ss.sample_standard_deviation(x);
-        var ystd = ss.sample_standard_deviation(y);
+    ss.sample_correlation = function(x, y) {
+        var cov = ss.sample_covariance(x, y),
+            xstd = ss.sample_standard_deviation(x),
+            ystd = ss.sample_standard_deviation(y);
 
-        if (cov === null || xstd === null || ystd === null){
-          return null;
+        if (cov === null || xstd === null || ystd === null) {
+            return null;
         }
+
         return cov / xstd / ystd;
     };
 
