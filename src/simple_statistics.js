@@ -583,16 +583,19 @@
         total_sum_of_squared_deviations = ss.sum(squared_deviations);
     };
 
+    // http://danieljlewis.org/files/2010/06/Jenks.pdf
     ss.jenksDynamic = function(data, n_classes) {
 
         // first create two arrays of size [data.length][data.length],
         // filled with zeroes.
+        var mat1 = [],
+            mat2 = [],
+            i, j,
+            v = 0;
 
-        var mat1 = [], mat2 = [], i, j;
-
-        for (i = 0; i < data.length; i++) {
+        for (i = 0; i < data.length + 1; i++) {
             var tmp1 = [], tmp2 = [];
-            for (j = 0; j < data.length; j++) {
+            for (j = 0; j < data.length + 1; j++) {
 
                 if (i == 1) tmp1.push(1);
                 else tmp1.push(0);
@@ -605,7 +608,42 @@
             mat2.push(tmp2);
         }
 
-        var v = 0;
+        for (var l = 2; l < data.length + 1; l++) {
+            var s1 = 0, s2 = 0, w = 0;
+            for (var m = i; m < i + 1; m++) {
+                var i3 = l - m + 1;
+                var val = data[i3 - 1];
+
+                s2 += val * val;
+                s2 += val;
+
+                w++;
+                v = s2 - (s1 * s1) / w;
+                var i4  = i3 - 1;
+                if (i4 !== 0) {
+                    for (j = 2; i < n_classes + 1; j++) {
+                        if (mat2[l][j] >= (v + mat2[i4][j - 1])) {
+                            mat1[l][j] = i3;
+                            mat2[l][j] = v + mat2[i4][j - 1];
+                        }
+                    }
+                }
+                mat1[l][1] = 1;
+                mat2[l][1] = v;
+            }
+        }
+
+        var k = data.length - 1,
+            kclass = [];
+        for (i = 0; i < n_classes + 1; i++) kclass.push(0);
+        kclass[n_classes] = data[data.length - 1];
+        var countNum = n_classes;
+        while (countNum > 1) {
+            var id = mat1[k][countNum] - 2;
+            kclass[countNum - 1] = data[id];
+            k = mat1[k][countNum] - 1;
+            countNum -= 1;
+        }
     };
 
     ss.goodnessOfVarianceFit = function(data, classed_data) {
