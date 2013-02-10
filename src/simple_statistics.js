@@ -583,6 +583,49 @@
         total_sum_of_squared_deviations = ss.sum(squared_deviations);
     };
 
+    ss.jenksDynamic = function(data, n_classes) {
+
+        // first create two arrays of size [data.length][data.length],
+        // filled with zeroes.
+
+        var mat1 = [], mat2 = [], i, j;
+
+        for (i = 0; i < data.length; i++) {
+            var tmp1 = [], tmp2 = [];
+            for (j = 0; j < data.length; j++) {
+
+                if (i == 1) tmp1.push(1);
+                else tmp1.push(0);
+
+                if (i > 2) tmp2.push(Infinity);
+                else tmp2.push(0);
+
+            }
+            mat1.push(tmp1);
+            mat2.push(tmp2);
+        }
+
+        var v = 0;
+    };
+
+    ss.goodnessOfVarianceFit = function(data, classed_data) {
+        // sum of squared deviances from the array mean
+        var sd_array_mean = ss.sum_squared_deviations(data);
+
+        // sum of squared deviances between classes
+        var sd_between_classes = 0;
+        for (var i = 0; i < classed_data.length; i++) {
+            sd_between_classes += ss.sum_squared_deviations(classed_data[i]);
+        }
+
+        // if there is no variance at all between the classes, it's
+        // a perfect binning.
+        if (sd_array_mean === 0) return Infinity;
+        return (sd_array_mean - sd_between_classes) / sd_array_mean;
+    };
+
+    ss.gvf = ss.goodnessOfVarianceFit;
+
     ss.mixin = function() {
         var support = !!(Object.defineProperty && Object.defineProperties);
         if (!support) throw new Error('without defineProperty, simple-statistics cannot be mixed in');
