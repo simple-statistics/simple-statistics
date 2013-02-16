@@ -583,69 +583,87 @@
         total_sum_of_squared_deviations = ss.sum(squared_deviations);
     };
 
-    // http://danieljlewis.org/files/2010/06/Jenks.pdf
+    // ## Jenks (dynamic programming approach)
+    //
+    // Implementations: [1](http://danieljlewis.org/files/2010/06/Jenks.pdf) (python),
+    // [2](https://github.com/vvoovv/djeo-jenks/blob/master/main.js) (buggy),
+    // [3](https://github.com/simogeo/geostats/blob/master/lib/geostats.js#L407) (works)
     ss.jenksDynamic = function(data, n_classes) {
 
-        // first create two arrays of size [data.length][data.length],
-        // filled with zeroes.
         var mat1 = [],
             mat2 = [],
+            // loop counters
             i, j,
             v = 0;
 
+        // two arrays of size `[data][classes]`,
+        // filled with zeroes.
         for (i = 0; i < data.length + 1; i++) {
             var tmp1 = [], tmp2 = [];
-            for (j = 0; j < data.length + 1; j++) {
-
-                if (i == 1) tmp1.push(1);
-                else tmp1.push(0);
-
-                if (i > 2) tmp2.push(Infinity);
-                else tmp2.push(0);
-
+            for (j = 0; j < n_classes + 1; j++) {
+                tmp1.push(0);
+                tmp2.push(0);
             }
             mat1.push(tmp1);
             mat2.push(tmp2);
         }
 
+        for (i = 1; i < n_classes + 1; i++) {
+            mat1[1][i] = 1;
+            mat2[1][i] = 0;
+            for(j = 2; j < data.length + 1; j++) {
+                mat2[j][i] = Infinity;
+            }
+        }
+
         for (var l = 2; l < data.length + 1; l++) {
-            var s1 = 0, s2 = 0, w = 0;
-            for (var m = i; m < i + 1; m++) {
-                var i3 = l - m + 1;
-                var val = data[i3 - 1];
+            var s1 = 0, s2 = 0, w = 0, i4 = 0;
+            for (var m = 1; m < l + 1; m++) {
+                var i3 = l - m + 1,
+                    val = data[i3 - 1];
 
                 s2 += val * val;
-                s2 += val;
-
+                s1 += val;
                 w++;
                 v = s2 - (s1 * s1) / w;
-                var i4  = i3 - 1;
+                i4 = i3 - 1;
+
                 if (i4 !== 0) {
-                    for (j = 2; i < n_classes + 1; j++) {
+                    for (j = 2; j < n_classes + 1; j++) {
                         if (mat2[l][j] >= (v + mat2[i4][j - 1])) {
                             mat1[l][j] = i3;
                             mat2[l][j] = v + mat2[i4][j - 1];
                         }
                     }
                 }
-                mat1[l][1] = 1;
-                mat2[l][1] = v;
             }
+            mat1[l][1] = 1;
+            mat2[l][1] = v;
         }
 
         var k = data.length - 1,
-            kclass = [];
+            kclass = [],
+            countNum = n_classes;
+
         for (i = 0; i < n_classes + 1; i++) kclass.push(0);
+
         kclass[n_classes] = data[data.length - 1];
-        var countNum = n_classes;
+        kclass[0] = data[0];
+
         while (countNum > 1) {
-            var id = mat1[k][countNum] - 2;
-            kclass[countNum - 1] = data[id];
+            kclass[countNum - 1] = data[mat1[k][countNum] - 2];
             k = mat1[k][countNum] - 1;
-            countNum -= 1;
+            countNum--;
         }
+
+        return kclass;
     };
 
+    // ## Goodness of Variance Fit
+    //
+    // Along with the Jenks Natural Breaks Optimization, Jenks
+    // also proposed this way to determine the quality of
+    // different classifications.
     ss.goodnessOfVarianceFit = function(data, classed_data) {
         // sum of squared deviances from the array mean
         var sd_array_mean = ss.sum_squared_deviations(data);
