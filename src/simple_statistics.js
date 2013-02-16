@@ -545,114 +545,132 @@
         }
     };
 
-    // # [Jenks natural breaks optimization](http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization)
-    //
-    // a data classification algorithm popular in cartography that
-    // aims to optimize similarity within classes as well as separation between
-    // classes.
-    //
-    // http://bit.ly/VKxIKQ
-    ss.jenks = function(data, n_classes) {
+    // Compute the matrices required for Jenks breaks. These matrices
+    // can be used for any classing of data with `classes <= n_classes`
+    ss.jenksMatrices = function(data, n_classes) {
 
-        // if data is empty or we've requested too many classes, return
-        // an empty classing
-        if (!data.length) return null;
-
-        var sorted = data.slice().sort(function (a, b) { return a - b; });
-
-        // we can start off with arbitrary breaks an iteratively improve them.
-        // let's start with quantiles.
-        var class_size = Math.floor(data.length / n_classes),
-            groups = [],
-            squared_deviations = [],
-            start = 0,
-            total_sum_of_squared_deviations = 0;
-
-        // fill each group with class_size items
-        for (var i = 0; i < n_classes; i++) {
-            groups.push(data.slice(start, start += class_size));
-        }
-
-        // add any trailing items to the last group.
-        groups[n_classes - 1] = groups[n_classes - 1].concat(data.slice(start));
-
-        for (i = 0; i < groups.length; i++) {
-            squared_deviations.push(ss.sum_squared_deviations(groups[i]));
-        }
-
-        total_sum_of_squared_deviations = ss.sum(squared_deviations);
-    };
-
-    // ## Jenks (dynamic programming approach)
-    //
-    // Implementations: [1](http://danieljlewis.org/files/2010/06/Jenks.pdf) (python),
-    // [2](https://github.com/vvoovv/djeo-jenks/blob/master/main.js) (buggy),
-    // [3](https://github.com/simogeo/geostats/blob/master/lib/geostats.js#L407) (works)
-    ss.jenksDynamic = function(data, n_classes) {
-
-        var mat1 = [],
-            mat2 = [],
+        // in the original implementation, these matrices are referred to
+        // as `LC` and `OP`
+        //
+        // * lower_class_limits (LC): optimal lower class limits
+        // * variance_combinations (OP): optimal variance combinations for all classes
+        var lower_class_limits = [],
+            variance_combinations = [],
             // loop counters
             i, j,
-            v = 0;
+            // the variance, as computed at each step in the calculation
+            variance = 0;
 
-        // two arrays of size `[data][classes]`,
-        // filled with zeroes.
+        // Initialize and fill each matrix with zeroes
         for (i = 0; i < data.length + 1; i++) {
             var tmp1 = [], tmp2 = [];
             for (j = 0; j < n_classes + 1; j++) {
                 tmp1.push(0);
                 tmp2.push(0);
             }
-            mat1.push(tmp1);
-            mat2.push(tmp2);
+            lower_class_limits.push(tmp1);
+            variance_combinations.push(tmp2);
         }
 
         for (i = 1; i < n_classes + 1; i++) {
-            mat1[1][i] = 1;
-            mat2[1][i] = 0;
-            for(j = 2; j < data.length + 1; j++) {
-                mat2[j][i] = Infinity;
+            lower_class_limits[1][i] = 1;
+            variance_combinations[1][i] = 0;
+            // in the original implementation, 9999999 is used but
+            // since Javascript has `Infinity`, we use that.
+            for (j = 2; j < data.length + 1; j++) {
+                variance_combinations[j][i] = Infinity;
             }
         }
 
         for (var l = 2; l < data.length + 1; l++) {
-            var s1 = 0, s2 = 0, w = 0, i4 = 0;
-            for (var m = 1; m < l + 1; m++) {
-                var i3 = l - m + 1,
-                    val = data[i3 - 1];
 
-                s2 += val * val;
-                s1 += val;
+            // `SZ` originally. this is the sum of the values seen thus
+            // far when calculating variance.
+            var sum = 0, 
+                // `ZSQ` originally. the sum of squares of values seen
+                // thus far
+                sum_squares = 0,
+                // `WT` originally. This is the number of 
+                w = 0,
+                // `IV` originally
+                i4 = 0;
+
+            // in several instances, you could say `Math.pow(x, 2)`
+            // instead of `x * x`, but this is slower in some browsers
+            // introduces an unnecessary concept.
+            for (var m = 1; m < l + 1; m++) {
+
+                // `III` originally
+                var lower_class_limit = l - m + 1,
+                    val = data[lower_class_limit - 1];
+
+                // here we're estimating variance for each potential classing
+                // of the data, for each potential number of classes. `w`
+                // is the number of data points considered so far.
                 w++;
-                v = s2 - (s1 * s1) / w;
-                i4 = i3 - 1;
+
+                // increase the current sum and sum-of-squares
+                sum += val;
+                sum_squares += val * val;
+
+                // the variance at this point in the sequence is the difference
+                // between the sum of squares and the total x 2, over the number
+                // of samples.
+                variance = sum_squares - (sum * sum) / w;
+
+                i4 = lower_class_limit - 1;
 
                 if (i4 !== 0) {
                     for (j = 2; j < n_classes + 1; j++) {
-                        if (mat2[l][j] >= (v + mat2[i4][j - 1])) {
-                            mat1[l][j] = i3;
-                            mat2[l][j] = v + mat2[i4][j - 1];
+                        if (variance_combinations[l][j] >=
+                            (variance + variance_combinations[i4][j - 1])) {
+                            lower_class_limits[l][j] = lower_class_limit;
+                            variance_combinations[l][j] = variance +
+                                variance_combinations[i4][j - 1];
                         }
                     }
                 }
             }
-            mat1[l][1] = 1;
-            mat2[l][1] = v;
+
+            lower_class_limits[l][1] = 1;
+            variance_combinations[l][1] = variance;
         }
 
-        var k = data.length - 1,
+        return {
+            lower_class_limits: lower_class_limits,
+            variance_combinations: variance_combinations
+        };
+    };
+
+    // # [Jenks natural breaks optimization](http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization)
+    //
+    // Implementations: [1](http://danieljlewis.org/files/2010/06/Jenks.pdf) (python),
+    // [2](https://github.com/vvoovv/djeo-jenks/blob/master/main.js) (buggy),
+    // [3](https://github.com/simogeo/geostats/blob/master/lib/geostats.js#L407) (works)
+
+    ss.jenks = function(data, n_classes) {
+
+        // sort data in numerical order
+        data = data.slice().sort(function (a, b) { return a - b; });
+
+        // get our basic matrices
+        var matrices = ss.jenksMatrices(data, n_classes),
+            // we only need lower class limits here
+            lower_class_limits = matrices.lower_class_limits,
+            k = data.length - 1,
             kclass = [],
             countNum = n_classes;
 
-        for (i = 0; i < n_classes + 1; i++) kclass.push(0);
-
+        // the calculation of classes will never include the upper and
+        // lower bounds, so we need to explicitly set them
         kclass[n_classes] = data[data.length - 1];
         kclass[0] = data[0];
 
+        // the lower_class_limits matrix is used as indexes into itself
+        // here: the `k` variable is reused in each iteration.
         while (countNum > 1) {
-            kclass[countNum - 1] = data[mat1[k][countNum] - 2];
-            k = mat1[k][countNum] - 1;
+            kclass[countNum - 1] = data[lower_class_limits[k][countNum] - 2];
+            k = lower_class_limits[k][countNum] - 1;
             countNum--;
         }
 
