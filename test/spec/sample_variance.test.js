@@ -10,6 +10,14 @@ describe('sample variance', function() {
         assert.equal(rnd(ss.sample_variance([1, 2, 3, 4, 5, 6])), 3.5);
     });
 
+    // confirmed in R
+    //
+    // > var(1:10)
+    // [1] 9.166667
+    it('can get the sample variance of numbers 1-10', function() {
+        assert.equal(rnd(ss.sample_variance([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])), 9.167);
+    });
+
     it('the sample variance of two numbers that are the same is 0', function() {
         assert.equal(rnd(ss.sample_variance([1, 1])), 0);
     });
