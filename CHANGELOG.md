@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.3.0
+
+* Adds `simple_statistics.jenks()`
+* Adds `simple_statistics.jenksMatrices()`
+* Improves test coverage and validation
+
 ## 0.2.0
 
 * Adds `simple_statistics.quantile()`
