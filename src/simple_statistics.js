@@ -677,33 +677,17 @@
         return kclass;
     };
 
-    // ## Goodness of Variance Fit
+    // # Mixin
     //
-    // Along with the Jenks Natural Breaks Optimization, Jenks
-    // also proposed this way to determine the quality of
-    // different classifications.
-    ss.goodnessOfVarianceFit = function(data, classed_data) {
-        // sum of squared deviances from the array mean
-        var sd_array_mean = ss.sum_squared_deviations(data);
-
-        // sum of squared deviances between classes
-        var sd_between_classes = 0;
-        for (var i = 0; i < classed_data.length; i++) {
-            sd_between_classes += ss.sum_squared_deviations(classed_data[i]);
-        }
-
-        // if there is no variance at all between the classes, it's
-        // a perfect binning.
-        if (sd_array_mean === 0) return Infinity;
-        return (sd_array_mean - sd_between_classes) / sd_array_mean;
-    };
-
-    ss.gvf = ss.goodnessOfVarianceFit;
-
+    // Mixin simple_statistics to the Array native object. This is an optional
+    // feature that lets you treat simple_statistics as a native feature
+    // of Javascript.
     ss.mixin = function() {
         var support = !!(Object.defineProperty && Object.defineProperties);
         if (!support) throw new Error('without defineProperty, simple-statistics cannot be mixed in');
 
+        // only methods which work on basic arrays in a single step
+        // are supported
         var arrayMethods = ['median', 'standard_deviation', 'sum',
             'mean', 'min', 'max', 'quantile', 'geometric_mean'];
 
