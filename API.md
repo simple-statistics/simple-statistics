@@ -68,6 +68,13 @@ at p. For those familiary with the `k/q` syntax, `p == k/q`. `sample` must
 be a single-dimensional array of numbers, and p must be a number greater
 than zero and less than one.
 
+### .jenks(data, number_of_classes)
+
+Find the [Jenks Natural Breaks](http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization) for
+a single-dimensional array of numbers as input and a desired `number_of_classes`.
+The result is a single-dimensional with class breaks, including the minimum
+and maximum of the input array.
+
 ### .r_squared(data, function)
 
 Find the [r-squared](http://en.wikipedia.org/wiki/Coefficient_of_determination) value of a particular dataset, expressed as a two-dimensional `Array` of numbers, against a `Function`.
