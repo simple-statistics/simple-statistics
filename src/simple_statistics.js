@@ -622,6 +622,10 @@
 
                 if (i4 !== 0) {
                     for (j = 2; j < n_classes + 1; j++) {
+                        // if adding this element to an existing class
+                        // will increase its variance beyond the limit, break
+                        // the class at this point, setting the lower_class_limit
+                        // at this point.
                         if (variance_combinations[l][j] >=
                             (variance + variance_combinations[i4][j - 1])) {
                             lower_class_limits[l][j] = lower_class_limit;
@@ -636,28 +640,20 @@
             variance_combinations[l][1] = variance;
         }
 
+        // return the two matrices. for just providing breaks, only
+        // `lower_class_limits` is needed, but variances can be useful to
+        // evaluage goodness of fit.
         return {
             lower_class_limits: lower_class_limits,
             variance_combinations: variance_combinations
         };
     };
 
-    // # [Jenks natural breaks optimization](http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization)
-    //
-    // Implementations: [1](http://danieljlewis.org/files/2010/06/Jenks.pdf) (python),
-    // [2](https://github.com/vvoovv/djeo-jenks/blob/master/main.js) (buggy),
-    // [3](https://github.com/simogeo/geostats/blob/master/lib/geostats.js#L407) (works)
+    // the second part of the jenks recipe: take the calculated matrices
+    // and derive an array of n breaks.
+    ss.jenksBreaks = function(data, lower_class_limits, n_classes) {
 
-    ss.jenks = function(data, n_classes) {
-
-        // sort data in numerical order
-        data = data.slice().sort(function (a, b) { return a - b; });
-
-        // get our basic matrices
-        var matrices = ss.jenksMatrices(data, n_classes),
-            // we only need lower class limits here
-            lower_class_limits = matrices.lower_class_limits,
-            k = data.length - 1,
+        var k = data.length - 1,
             kclass = [],
             countNum = n_classes;
 
@@ -675,6 +671,29 @@
         }
 
         return kclass;
+    };
+
+    // # [Jenks natural breaks optimization](http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization)
+    //
+    // Implementations: [1](http://danieljlewis.org/files/2010/06/Jenks.pdf) (python),
+    // [2](https://github.com/vvoovv/djeo-jenks/blob/master/main.js) (buggy),
+    // [3](https://github.com/simogeo/geostats/blob/master/lib/geostats.js#L407) (works)
+    ss.jenks = function(data, n_classes) {
+
+        if (n_classes > data.length) return null;
+
+        // sort data in numerical order, since this is expected
+        // by the matrices function
+        data = data.slice().sort(function (a, b) { return a - b; });
+
+        // get our basic matrices
+        var matrices = ss.jenksMatrices(data, n_classes),
+            // we only need lower class limits here
+            lower_class_limits = matrices.lower_class_limits;
+
+        // extract n_classes out of the computed matrices
+        return ss.jenksBreaks(data, lower_class_limits, n_classes);
+
     };
 
     // # Mixin
