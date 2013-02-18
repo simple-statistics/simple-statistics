@@ -545,6 +545,8 @@
         }
     };
 
+    // ## Compute Matrices for Jenks
+    //
     // Compute the matrices required for Jenks breaks. These matrices
     // can be used for any classing of data with `classes <= n_classes`
     ss.jenksMatrices = function(data, n_classes) {
@@ -564,6 +566,9 @@
         // Initialize and fill each matrix with zeroes
         for (i = 0; i < data.length + 1; i++) {
             var tmp1 = [], tmp2 = [];
+            // despite these arrays having the same values, we need
+            // to keep them separate so that changing one does not change
+            // the other
             for (j = 0; j < n_classes + 1; j++) {
                 tmp1.push(0);
                 tmp2.push(0);
@@ -586,11 +591,11 @@
 
             // `SZ` originally. this is the sum of the values seen thus
             // far when calculating variance.
-            var sum = 0, 
+            var sum = 0,
                 // `ZSQ` originally. the sum of squares of values seen
                 // thus far
                 sum_squares = 0,
-                // `WT` originally. This is the number of 
+                // `WT` originally. This is the number of
                 w = 0,
                 // `IV` originally
                 i4 = 0;
@@ -624,7 +629,7 @@
                     for (j = 2; j < n_classes + 1; j++) {
                         // if adding this element to an existing class
                         // will increase its variance beyond the limit, break
-                        // the class at this point, setting the lower_class_limit
+                        // the class at this point, setting the `lower_class_limit`
                         // at this point.
                         if (variance_combinations[l][j] >=
                             (variance + variance_combinations[i4][j - 1])) {
@@ -649,6 +654,8 @@
         };
     };
 
+    // ## Pull Breaks Values for Jenks
+    //
     // the second part of the jenks recipe: take the calculated matrices
     // and derive an array of n breaks.
     ss.jenksBreaks = function(data, lower_class_limits, n_classes) {
