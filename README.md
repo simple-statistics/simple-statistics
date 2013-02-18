@@ -86,6 +86,7 @@ bayes.score({ species: 'Cat' });
 ## Examples
 
 * [Linear regression with simple-statistics and d3js](http://bl.ocks.org/3931800)
+* [Jenks Natural Breaks with a choropleth map with d3js](http://bl.ocks.org/tmcw/4969184)
 
 ## Usage
 
