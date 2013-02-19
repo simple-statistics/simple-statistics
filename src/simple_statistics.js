@@ -591,8 +591,6 @@
             for (j = 1; j < data.length; j++) variances[j][i] = Infinity;
         }
 
-        // console.log(arrayPrettyPrint(variances));
-
         // The Fisher paper refers to the dimension of the data as `K`
         // and number of groups as `G`. This has three loops:
         //
@@ -613,8 +611,8 @@
             for (j = 0; j < i + 1; j++) {
 
                 // `III` originally
-                var index = i - j;
-                var val = data[index];
+                var index = i - j,
+                    val = data[index];
 
                 // `w` is the number of data points considered so far. technically
                 // this is a 'weighting factor' but in this implementation
@@ -630,18 +628,16 @@
                 // of samples.
                 variance = sum_squares - (sum * sum) / w;
 
-                if (index !== 0) {
-                    for (k = 0; k < n_classes; k++) {
-                        var potential_variance = variance + variances[index][k];
-                        // is the variance we found in the last grouping
-                        // greater than the variance we would have if we
-                        // created a new group at this point?
-                        if (potential_variance <= variances[i][k]) {
-                            // If so, let's break here, set the index
-                            lower_class_limits[i][k] = index;
-                            // and the variance, for future groupings to use.
-                            variances[i][k] = potential_variance;
-                        }
+                for (k = 1; k < n_classes; k++) {
+                    var potential_variance = variance + variances[index][k - 1];
+                    // is the variance we found in the last grouping
+                    // greater than the variance we would have if we
+                    // created a new group at this point?
+                    if (potential_variance < variances[i][k]) {
+                        // If so, let's break here, set the index
+                        lower_class_limits[i][k] = index;
+                        // and the variance, for future groupings to use.
+                        variances[i][k] = potential_variance;
                     }
                 }
             }
@@ -650,8 +646,8 @@
             variances[i][0] = variance;
         }
 
-        console.log(arrayPrettyPrint(variances));
-
+        // console.log(arrayPrettyPrint(lower_class_limits));
+        // console.log(arrayPrettyPrint(variances));
 
         // return the two matrices. for just providing breaks, only
         // `lower_class_limits` is needed, but variances can be useful to
@@ -669,11 +665,10 @@
     //
     // the second part of the jenks recipe: take the calculated matrices
     // and derive an array of n breaks.
-    ss.jenksBreaks = function(data, lower_class_limits, n_classes) {
+    ss.jenksBreaks = function(data, class_limits, n_classes) {
 
         var k = data.length - 1,
-            kclass = [],
-            countNum = n_classes;
+            kclass = [];
 
         // the calculation of classes will never include the upper and
         // lower bounds, so we need to explicitly set them
@@ -682,10 +677,9 @@
 
         // the lower_class_limits matrix is used as indexes into itself
         // here: the `k` variable is reused in each iteration.
-        while (countNum > 1) {
-            kclass[countNum - 1] = data[lower_class_limits[k][countNum] - 1];
-            k = lower_class_limits[k][countNum] - 1;
-            countNum--;
+        for (var c = n_classes - 1; c > 0; c--) {
+            kclass[c] = data[class_limits[k][c] - 1];
+            k = class_limits[k][c];
         }
 
         return kclass;
