@@ -123,7 +123,6 @@
         return 1 - (err / sum_of_squares);
     };
 
-
     // # [Bayesian Classifier](http://en.wikipedia.org/wiki/Naive_Bayes_classifier)
     //
     // This is a naïve bayesian classifier that takes
@@ -549,45 +548,58 @@
     //
     // Compute the matrices required for Jenks breaks. These matrices
     // can be used for any classing of data with `classes <= n_classes`
+    //
+    // This computation is strongly based on
+    // [On Grouping For Maximum Homogeneity](http://www.csiss.org/SPACE/workshops/2004/SAC/files/fisher.pdf)
+    // by Walter D. Fisher. It's a dynamic programming approach (or
+    // 'sub-optimization' in Fisher's words) that aims to solve for increasing
+    // numbers of classes by first splitting the work into two classes
+    // and then sub-diving until the desired number of classes is found.
     ss.jenksMatrices = function(data, n_classes) {
 
         // in the original implementation, these matrices are referred to
         // as `LC` and `OP`
         //
         // * lower_class_limits (LC): optimal lower class limits
-        // * variance_combinations (OP): optimal variance combinations for all classes
+        // * variances (OP): optimal variance combinations for all classes
         var lower_class_limits = [],
-            variance_combinations = [],
+            variances = [],
             // loop counters
-            i, j,
+            i, j, k,
             // the variance, as computed at each step in the calculation
             variance = 0;
 
         // Initialize and fill each matrix with zeroes
-        for (i = 0; i < data.length + 1; i++) {
+        for (i = 0; i < data.length; i++) {
             var tmp1 = [], tmp2 = [];
             // despite these arrays having the same values, we need
             // to keep them separate so that changing one does not change
             // the other
-            for (j = 0; j < n_classes + 1; j++) {
+            for (j = 0; j < n_classes; j++) {
                 tmp1.push(0);
                 tmp2.push(0);
             }
             lower_class_limits.push(tmp1);
-            variance_combinations.push(tmp2);
+            variances.push(tmp2);
         }
 
-        for (i = 1; i < n_classes + 1; i++) {
-            lower_class_limits[1][i] = 1;
-            variance_combinations[1][i] = 0;
+        // initialize potential variances to `Infinity`, since any
+        // candidate for a new variance in the matrix will be better.
+        for (i = 0; i < n_classes; i++) {
             // in the original implementation, 9999999 is used but
             // since Javascript has `Infinity`, we use that.
-            for (j = 2; j < data.length + 1; j++) {
-                variance_combinations[j][i] = Infinity;
-            }
+            for (j = 1; j < data.length; j++) variances[j][i] = Infinity;
         }
 
-        for (var l = 2; l < data.length + 1; l++) {
+        // console.log(arrayPrettyPrint(variances));
+
+        // The Fisher paper refers to the dimension of the data as `K`
+        // and number of groups as `G`. This has three loops:
+        //
+        //     for (i) // each data point
+        //       for (j) // each index from 1 to i
+        //         for (k) // each potential class break point
+        for (i = 1; i < data.length; i++) {
 
             // `SZ` originally. this is the sum of the values seen thus
             // far when calculating variance.
@@ -596,22 +608,17 @@
                 // thus far
                 sum_squares = 0,
                 // `WT` originally. This is the number of
-                w = 0,
-                // `IV` originally
-                i4 = 0;
+                w = 0;
 
-            // in several instances, you could say `Math.pow(x, 2)`
-            // instead of `x * x`, but this is slower in some browsers
-            // introduces an unnecessary concept.
-            for (var m = 1; m < l + 1; m++) {
+            for (j = 0; j < i + 1; j++) {
 
                 // `III` originally
-                var lower_class_limit = l - m + 1,
-                    val = data[lower_class_limit - 1];
+                var index = i - j;
+                var val = data[index];
 
-                // here we're estimating variance for each potential classing
-                // of the data, for each potential number of classes. `w`
-                // is the number of data points considered so far.
+                // `w` is the number of data points considered so far. technically
+                // this is a 'weighting factor' but in this implementation
+                // all data points have the same weight: 1.
                 w++;
 
                 // increase the current sum and sum-of-squares
@@ -623,36 +630,40 @@
                 // of samples.
                 variance = sum_squares - (sum * sum) / w;
 
-                i4 = lower_class_limit - 1;
-
-                if (i4 !== 0) {
-                    for (j = 2; j < n_classes + 1; j++) {
-                        // if adding this element to an existing class
-                        // will increase its variance beyond the limit, break
-                        // the class at this point, setting the `lower_class_limit`
-                        // at this point.
-                        if (variance_combinations[l][j] >=
-                            (variance + variance_combinations[i4][j - 1])) {
-                            lower_class_limits[l][j] = lower_class_limit;
-                            variance_combinations[l][j] = variance +
-                                variance_combinations[i4][j - 1];
+                if (index !== 0) {
+                    for (k = 0; k < n_classes; k++) {
+                        var potential_variance = variance + variances[index][k];
+                        // is the variance we found in the last grouping
+                        // greater than the variance we would have if we
+                        // created a new group at this point?
+                        if (potential_variance <= variances[i][k]) {
+                            // If so, let's break here, set the index
+                            lower_class_limits[i][k] = index;
+                            // and the variance, for future groupings to use.
+                            variances[i][k] = potential_variance;
                         }
                     }
                 }
             }
 
-            lower_class_limits[l][1] = 1;
-            variance_combinations[l][1] = variance;
+            lower_class_limits[i][0] = 0;
+            variances[i][0] = variance;
         }
+
+        console.log(arrayPrettyPrint(variances));
+
 
         // return the two matrices. for just providing breaks, only
         // `lower_class_limits` is needed, but variances can be useful to
         // evaluage goodness of fit.
         return {
             lower_class_limits: lower_class_limits,
-            variance_combinations: variance_combinations
+            variances: variances
         };
     };
+    // note: in several instances, you could say `Math.pow(x, 2)`
+    // instead of `x * x`, but this is slower in some browsers
+    // introduces an unnecessary concept.
 
     // ## Pull Breaks Values for Jenks
     //
@@ -672,7 +683,7 @@
         // the lower_class_limits matrix is used as indexes into itself
         // here: the `k` variable is reused in each iteration.
         while (countNum > 1) {
-            kclass[countNum - 1] = data[lower_class_limits[k][countNum] - 2];
+            kclass[countNum - 1] = data[lower_class_limits[k][countNum] - 1];
             k = lower_class_limits[k][countNum] - 1;
             countNum--;
         }
