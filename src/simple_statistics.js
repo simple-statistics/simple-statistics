@@ -569,6 +569,8 @@
             // the variance, as computed at each step in the calculation
             variance = 0;
 
+        // ### Initializing the Matrices
+        //
         // Initialize and fill each matrix with zeroes
         for (i = 0; i < data.length; i++) {
             var tmp1 = [], tmp2 = [];
@@ -591,6 +593,8 @@
             for (j = 1; j < data.length; j++) variances[j][i] = Infinity;
         }
 
+        // ### Computing Break Points and Variances
+        //
         // The Fisher paper refers to the dimension of the data as `K`
         // and number of groups as `G`. This has three loops:
         //
@@ -619,8 +623,9 @@
                 // all data points have the same weight: 1.
                 w++;
 
-                // increase the current sum and sum-of-squares
+                // increase the current sum of all values
                 sum += val;
+                // and sum of all squared values
                 sum_squares += val * val;
 
                 // the variance at this point in the sequence is the difference
@@ -646,9 +651,6 @@
             variances[i][0] = variance;
         }
 
-        // console.log(arrayPrettyPrint(lower_class_limits));
-        // console.log(arrayPrettyPrint(variances));
-
         // return the two matrices. for just providing breaks, only
         // `lower_class_limits` is needed, but variances can be useful to
         // evaluage goodness of fit.
@@ -667,18 +669,23 @@
     // and derive an array of n breaks.
     ss.jenksBreaks = function(data, class_limits, n_classes) {
 
-        var k = data.length - 1,
-            kclass = [];
-
         // the calculation of classes will never include the upper and
         // lower bounds, so we need to explicitly set them
-        kclass[n_classes] = data[data.length - 1];
-        kclass[0] = data[0];
+        var k = data.length - 1,
+            // set the lower bound
+            kclass = [data[0]];
 
-        // the lower_class_limits matrix is used as indexes into itself
+        // and the upper bound
+        kclass[n_classes] = data[data.length - 1];
+
+        // note that at this point in the computation, we have a sparse
+        // array, with indexes 0 and `data.length - 1` filled (only).
+        // this is fine - we'll fill it.
+
+        // the `class_limits` matrix is used as indexes into itself
         // here: the `k` variable is reused in each iteration.
         for (var c = n_classes - 1; c > 0; c--) {
-            kclass[c] = data[class_limits[k][c] - 1];
+            kclass[c] = data[class_limits[k][c]];
             k = class_limits[k][c];
         }
 
