@@ -603,13 +603,14 @@
         //         for (k) // each potential class break point
         for (i = 1; i < data.length; i++) {
 
-            // `SZ` originally. this is the sum of the values seen thus
+            // `sum`: `SZ` originally. this is the sum of the values seen thus
             // far when calculating variance.
+            // `sum_of_squares`: `ZSQ` originally. the sum of squares of values seen
+            // thus far
+            // `w`: `WT` originally. This is the number of
             var sum = 0,
-                // `ZSQ` originally. the sum of squares of values seen
-                // thus far
                 sum_squares = 0,
-                // `WT` originally. This is the number of
+                potential_variance = 0,
                 w = 0;
 
             for (j = 0; j < i + 1; j++) {
@@ -624,8 +625,8 @@
                 w++;
 
                 // increase the current sum of all values
-                sum += val;
                 // and sum of all squared values
+                sum += val;
                 sum_squares += val * val;
 
                 // the variance at this point in the sequence is the difference
@@ -633,16 +634,21 @@
                 // of samples.
                 variance = sum_squares - (sum * sum) / w;
 
-                for (k = 1; k < n_classes; k++) {
-                    var potential_variance = variance + variances[index][k - 1];
-                    // is the variance we found in the last grouping
-                    // greater than the variance we would have if we
-                    // created a new group at this point?
-                    if (potential_variance < variances[i][k]) {
-                        // If so, let's break here, set the index
-                        lower_class_limits[i][k] = index;
-                        // and the variance, for future groupings to use.
-                        variances[i][k] = potential_variance;
+                if (index !== 0) {
+
+                    for (k = 1; k < n_classes; k++) {
+
+                        // is the variance we found in the last grouping
+                        // greater than the variance we would have if we
+                        // created a new group at this point?
+                        potential_variance = variance + variances[index][k - 1];
+
+                        if (potential_variance <= variances[i][k]) {
+                            // If so, let's break here, set the index
+                            lower_class_limits[i][k] = index;
+                            // and the variance, for future groupings to use.
+                            variances[i][k] = potential_variance;
+                        }
                     }
                 }
             }
@@ -650,6 +656,8 @@
             lower_class_limits[i][0] = 0;
             variances[i][0] = variance;
         }
+
+        console.log(arrayPrettyPrint(variances));
 
         // return the two matrices. for just providing breaks, only
         // `lower_class_limits` is needed, but variances can be useful to
