@@ -14,6 +14,26 @@
     <script src="../src/simple_statistics.js"></script>
 
     <script>
+        // random util helper
+function arrayPrettyPrint(a) {
+    var s = '[\n';
+    for (var i = 0; i < a.length; i++) {
+        s += '  [' + a[i].map(function(x) {
+            var n = x.toFixed(3)
+            while (n.length < 10) {
+                n = ' ' + n;
+            }
+            return n;
+        }).join(', ') + ']';
+        if (i !== a.length - 1) s += ',';
+        s += '\n';
+    }
+    s += ']';
+    return s;
+}
+
+    </script>
+    <script>
         mocha.setup('bdd');
         var expect = chai.expect;
         function require(x) {
