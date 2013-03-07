@@ -1,5 +1,5 @@
-var assert = require('chai').assert;
-var ss = require('../../');
+var assert = require('chai').assert,
+    ss = require('../../');
 
 describe('jenks', function() {
     it('will not try to assign more classes than datapoints', function() {
