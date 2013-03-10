@@ -105,7 +105,7 @@ To use it with [component](https://github.com/component/component),
 # Contributors
 
 * Tom MacWright
-* [Matt Sacks](https://github.com/mattsa)
+* [Matt Sacks](https://github.com/mattsacks)
 
 ## See Also
 
