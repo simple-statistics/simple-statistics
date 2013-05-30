@@ -22,7 +22,7 @@
     // [Simple linear regression](http://en.wikipedia.org/wiki/Simple_linear_regression)
     // is a simple way to find a fitted line
     // between a set of coordinates.
-    ss.linear_regression = function() {
+    function linear_regression() {
         var linreg = {},
             data = [];
 
@@ -82,14 +82,14 @@
         };
 
         return linreg;
-    };
+    }
 
     // # [R Squared](http://en.wikipedia.org/wiki/Coefficient_of_determination)
     //
     // The r-squared value of data compared with a function `f`
     // is the sum of the squared differences between the prediction
     // and the actual value.
-    ss.r_squared = function(data, f) {
+    function r_squared(data, f) {
         if (data.length < 2) return 1;
 
         // Compute the average y value for the actual
@@ -121,14 +121,14 @@
         // sum of squares increases and the r squared
         // value grows lower.
         return 1 - (err / sum_of_squares);
-    };
+    }
 
 
     // # [Bayesian Classifier](http://en.wikipedia.org/wiki/Naive_Bayes_classifier)
     //
     // This is a naïve bayesian classifier that takes
     // singly-nested objects.
-    ss.bayesian = function() {
+    function bayesian() {
         // The `bayes_model` object is what will be exposed
         // by this closure, with all of its extended methods, and will
         // have access to all scope variables, like `total_count`.
@@ -208,7 +208,7 @@
 
         // Return the completed model.
         return bayes_model;
-    };
+    }
 
     // # sum
     //
@@ -216,25 +216,25 @@
     // together, starting from zero.
     //
     // This runs on `O(n)`, linear time in respect to the array
-    ss.sum = function(x) {
+    function sum(x) {
         var sum = 0;
         for (var i = 0; i < x.length; i++) {
             sum += x[i];
         }
         return sum;
-    };
+    }
 
     // # mean
     //
     // is the sum over the number of values
     //
     // This runs on `O(n)`, linear time in respect to the array
-    ss.mean = function(x) {
+    function mean(x) {
         // The mean of no numbers is null
         if (x.length === 0) return null;
 
-        return ss.sum(x) / x.length;
-    };
+        return sum(x) / x.length;
+    }
 
     // # geometric mean
     //
@@ -244,7 +244,7 @@
     // this is the nth root of the input numbers multipled by each other
     //
     // This runs on `O(n)`, linear time in respect to the array
-    ss.geometric_mean = function(x) {
+    function geometric_mean(x) {
         // The mean of no numbers is null
         if (x.length === 0) return null;
 
@@ -260,112 +260,124 @@
         }
 
         return Math.pow(value, 1 / x.length);
-    };
+    }
 
-    // Alias this into its common name
-    ss.average = ss.mean;
 
     // # min
     //
     // This is simply the minimum number in the set.
     //
     // This runs on `O(n)`, linear time in respect to the array
-    ss.min = function(x) {
-        var min;
+    function min(x) {
+        var value;
         for (var i = 0; i < x.length; i++) {
             // On the first iteration of this loop, min is
             // undefined and is thus made the minimum element in the array
-            if (x[i] < min || min === undefined) min = x[i];
+            if (x[i] < value || value === undefined) value = x[i];
         }
-        return min;
-    };
+        return value;
+    }
 
     // # max
     //
     // This is simply the maximum number in the set.
     //
     // This runs on `O(n)`, linear time in respect to the array
-    ss.max = function(x) {
-        var max;
+    function max(x) {
+        var value;
         for (var i = 0; i < x.length; i++) {
-            // On the first iteration of this loop, min is
-            // undefined and is thus made the minimum element in the array
-            if (x[i] > max || max === undefined) max = x[i];
+            // On the first iteration of this loop, max is
+            // undefined and is thus made the maximum element in the array
+            if (x[i] > value || value === undefined) value = x[i];
         }
-        return max;
-    };
+        return value;
+    }
 
     // # [variance](http://en.wikipedia.org/wiki/Variance)
     //
     // is the sum of squared deviations from the mean
-    ss.variance = function(x) {
+    //
+    // depends on `mean()`
+    function variance(x) {
         // The variance of no numbers is null
         if (x.length === 0) return null;
 
-        var mean = ss.mean(x),
+        var mean_value = mean(x),
             deviations = [];
 
         // Make a list of squared deviations from the mean.
         for (var i = 0; i < x.length; i++) {
-            deviations.push(Math.pow(x[i] - mean, 2));
+            deviations.push(Math.pow(x[i] - mean_value, 2));
         }
 
         // Find the mean value of that list
-        return ss.mean(deviations);
-    };
+        return mean(deviations);
+    }
 
     // # [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
     //
     // is just the square root of the variance.
-    ss.standard_deviation = function(x) {
+    //
+    // depends on `variance()`
+    function standard_deviation(x) {
         // The standard deviation of no numbers is null
         if (x.length === 0) return null;
 
-        return Math.sqrt(ss.variance(x));
-    };
+        return Math.sqrt(variance(x));
+    }
 
-     ss.sum_squared_deviations = function(x) {
+    // The sum of squared deviations - this is a basic unit of many other
+    // operations.
+    //
+    // depends on `mean()`
+    function sum_squared_deviations(x) {
         // The variance of no numbers is null
         if (x.length <= 1) return null;
 
-        var mean = ss.mean(x),
+        var mean_value = mean(x),
             sum = 0;
 
         // Make a list of squared deviations from the mean.
         for (var i = 0; i < x.length; i++) {
-            sum += Math.pow(x[i] - mean, 2);
+            sum += Math.pow(x[i] - mean_value, 2);
         }
 
         return sum;
-     };
+     }
 
     // # [variance](http://en.wikipedia.org/wiki/Variance)
     //
     // is the sum of squared deviations from the mean
-    ss.sample_variance = function(x) {
-        var sum_squared_deviations = ss.sum_squared_deviations(x);
-        if (sum_squared_deviations === null) return null;
+    //
+    // depends on `sum_squared_deviations`
+    function sample_variance(x) {
+        var sum_squared_deviations_value = sum_squared_deviations(x);
+        if (sum_squared_deviations_value === null) return null;
 
         // Find the mean value of that list
-        return sum_squared_deviations / (x.length - 1);
-    };
+        return sum_squared_deviations_value / (x.length - 1);
+    }
 
     // # [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
     //
     // is just the square root of the variance.
-    ss.sample_standard_deviation = function(x) {
+    //
+    // depends on `sample_variance()`
+    function sample_standard_deviation(x) {
         // The standard deviation of no numbers is null
         if (x.length <= 1) return null;
 
-        return Math.sqrt(ss.sample_variance(x));
-    };
+        return Math.sqrt(sample_variance(x));
+    }
 
     // # [covariance](http://en.wikipedia.org/wiki/Covariance)
     //
     // sample covariance of two datasets:
     // how much do the two datasets move together?
     // x and y are two datasets, represented as arrays of numbers.
-    ss.sample_covariance = function(x, y) {
+    //
+    // depends on `mean()`
+    function sample_covariance(x, y) {
 
         // The two datasets must have the same length which must be more than 1
         if (x.length <= 1 || x.length != y.length){
@@ -376,8 +388,8 @@
         // value of the dataset fairly as the difference from the mean. this
         // way, if one dataset is [1, 2, 3] and [2, 3, 4], their covariance
         // does not suffer because of the difference in absolute values
-        var xmean = ss.mean(x),
-            ymean = ss.mean(y),
+        var xmean = mean(x),
+            ymean = mean(y),
             sum = 0;
 
         // for each pair of values, the covariance increases when their
@@ -390,25 +402,30 @@
 
         // the covariance is weighted by the length of the datasets.
         return sum / (x.length - 1);
-    };
+    }
 
     // # [correlation](http://en.wikipedia.org/wiki/Correlation_and_dependence)
     //
     // Gets a measure of how correlated two datasets are, between -1 and 1
-    ss.sample_correlation = function(x, y) {
-        var cov = ss.sample_covariance(x, y),
-            xstd = ss.sample_standard_deviation(x),
-            ystd = ss.sample_standard_deviation(y);
+    //
+    // depends on `sample_standard_deviation()` and `sample_covariance()`
+    function sample_correlation(x, y) {
+        var cov = sample_covariance(x, y),
+            xstd = sample_standard_deviation(x),
+            ystd = sample_standard_deviation(y);
 
         if (cov === null || xstd === null || ystd === null) {
             return null;
         }
 
         return cov / xstd / ystd;
-    };
+    }
 
     // # [median](http://en.wikipedia.org/wiki/Median)
-    ss.median = function(x) {
+    //
+    // The middle number of a list. This is often a good indicator of 'the middle'
+    // when there are outliers that skew the `mean()` value.
+    function median(x) {
         // The median of an empty list is null
         if (x.length === 0) return null;
 
@@ -426,11 +443,11 @@
             var b = sorted[(sorted.length / 2)];
             return (a + b) / 2;
         }
-    };
+    }
 
     // # [mode](http://bit.ly/W5K4Yt)
     // This implementation is inspired by [science.js](https://github.com/jasondavies/science.js/blob/master/src/stats/mode.js)
-    ss.mode = function(x) {
+    function mode(x) {
 
         // Handle edge cases:
         // The median of an empty list is null
@@ -474,7 +491,7 @@
             } else { seen_this++; }
         }
         return mode;
-    };
+    }
 
     // # [t-test](http://en.wikipedia.org/wiki/Student's_t-test)
     //
@@ -487,12 +504,14 @@
     // [p-value](http://en.wikipedia.org/wiki/P-value), which, for
     // a certain level of significance, will let you determine that the
     // null hypothesis can or cannot be rejected.
-    ss.t_test = function(sample, x) {
+    //
+    // Depends on `standard_deviation()` and `mean()`
+    function t_test(sample, x) {
       // The mean of the sample
-      var sample_mean = ss.mean(sample);
+      var sample_mean = mean(sample);
 
       // The standard deviation of the sample
-      var sd = ss.standard_deviation(sample);
+      var sd = standard_deviation(sample);
 
       // Square root the length of the sample
       var rootN = Math.sqrt(sample.length);
@@ -500,7 +519,7 @@
       // Compute the known value against the sample,
       // returning the t value
       return (sample_mean - x) / (sd / rootN);
-    };
+    }
 
     // # quantile
     // This is a population quantile, since we assume to know the entire
@@ -512,7 +531,7 @@
     // and p is a decimal number from 0 to 1. In terms of a k/q
     // quantile, p = k/q - it's just dealing with fractions or dealing
     // with decimal values.
-    ss.quantile = function(sample, p) {
+    function quantile(sample, p) {
 
         // We can't derive quantiles from an empty list
         if (sample.length === 0) return null;
@@ -543,13 +562,13 @@
             // with an odd-length list, return the sample value at the index.
             return sorted[idx];
         }
-    };
+    }
 
     // ## Compute Matrices for Jenks
     //
     // Compute the matrices required for Jenks breaks. These matrices
     // can be used for any classing of data with `classes <= n_classes`
-    ss.jenksMatrices = function(data, n_classes) {
+    function jenksMatrices(data, n_classes) {
 
         // in the original implementation, these matrices are referred to
         // as `LC` and `OP`
@@ -652,13 +671,13 @@
             lower_class_limits: lower_class_limits,
             variance_combinations: variance_combinations
         };
-    };
+    }
 
     // ## Pull Breaks Values for Jenks
     //
     // the second part of the jenks recipe: take the calculated matrices
     // and derive an array of n breaks.
-    ss.jenksBreaks = function(data, lower_class_limits, n_classes) {
+    function jenksBreaks(data, lower_class_limits, n_classes) {
 
         var k = data.length - 1,
             kclass = [],
@@ -678,14 +697,16 @@
         }
 
         return kclass;
-    };
+    }
 
     // # [Jenks natural breaks optimization](http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization)
     //
     // Implementations: [1](http://danieljlewis.org/files/2010/06/Jenks.pdf) (python),
     // [2](https://github.com/vvoovv/djeo-jenks/blob/master/main.js) (buggy),
     // [3](https://github.com/simogeo/geostats/blob/master/lib/geostats.js#L407) (works)
-    ss.jenks = function(data, n_classes) {
+    //
+    // Depends on `jenksBreaks()` and `jenksMatrices()`
+    function jenks(data, n_classes) {
 
         if (n_classes > data.length) return null;
 
@@ -694,21 +715,21 @@
         data = data.slice().sort(function (a, b) { return a - b; });
 
         // get our basic matrices
-        var matrices = ss.jenksMatrices(data, n_classes),
+        var matrices = jenksMatrices(data, n_classes),
             // we only need lower class limits here
             lower_class_limits = matrices.lower_class_limits;
 
         // extract n_classes out of the computed matrices
-        return ss.jenksBreaks(data, lower_class_limits, n_classes);
+        return jenksBreaks(data, lower_class_limits, n_classes);
 
-    };
+    }
 
     // # Mixin
     //
     // Mixin simple_statistics to the Array native object. This is an optional
     // feature that lets you treat simple_statistics as a native feature
     // of Javascript.
-    ss.mixin = function() {
+    function mixin() {
         var support = !!(Object.defineProperty && Object.defineProperties);
         if (!support) throw new Error('without defineProperty, simple-statistics cannot be mixed in');
 
@@ -745,6 +766,37 @@
                 writable: true
             });
         }
-    };
+    }
+
+    ss.linear_regression = linear_regression;
+    ss.standard_deviation = standard_deviation;
+    ss.r_squared = r_squared;
+    ss.median = median;
+    ss.mean = mean;
+    ss.mode = mode;
+    ss.min = min;
+    ss.max = max;
+    ss.sum = sum;
+    ss.quantile = quantile;
+
+    ss.sample_covariance = sample_covariance;
+    ss.sample_correlation = sample_correlation;
+    ss.sample_variance = sample_variance;
+    ss.sample_standard_deviation = sample_standard_deviation;
+
+    ss.geometric_mean = geometric_mean;
+    ss.variance = variance;
+    ss.t_test = t_test;
+
+    // jenks
+    ss.jenksMatrices = jenksMatrices;
+    ss.jenksBreaks = jenksBreaks;
+    ss.jenks = jenks;
+
+    ss.bayesian = bayesian;
+
+    // Alias this into its common name
+    ss.average = mean;
+    ss.mixin = mixin;
 
 })(this);
