@@ -1,1 +1,139 @@
-<meta http-equiv="refresh" content="0;URL='docs/simple_statistics.html'">
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>simple statistics</title>
+        <link rel='stylesheet' type='text/css' href='css/style.css' />
+        <link rel='stylesheet' type='text/css' href='css/site.css' />
+        <meta http-equiv='content-type' content='text/html; charset=utf-8' />
+        <meta name='viewport' content='initial-scale=1.0 maximum-scale=1.0'>
+    </head>
+    <body>
+        <div class='col6 margin3'>
+            <div class='pad2'>
+                <div class='right'>
+                    <a class='other' href='https://github.com/tmcw/simple-statistics'>fork tmcw/simple-statistics on github</a>
+                </div>
+                <h1 class='title'>Simple Statistics, <em>a programming library for doing statistics.</em></h1>
+                <p>Simple statistics is a JavaScript library that does <a href='https://en.wikipedia.org/wiki/Descriptive_statistics'>descriptive statistics</a>,
+                regression, and classification. It can tell you basic things
+                like <strong>minimum</strong> and <strong>maximum</strong>,
+                but it can also compute tricky things like <strong>standard deviation</strong>
+                and <strong>sample correlation</strong>.
+                But more importantly, it's <strong>see-through</strong>: <a href='./docs/simple_statistics.html'>
+                    you can read it, and it's written in a friendly, literate manner.</a></p>
+            </div>
+            <div class='pad2'>
+                <h2 class='title'>Play!</h2>
+                <div class='col6'>edit the left</div>
+                <div class='col6'>to change the right</div>
+                <iframe src='http://mistakes.io/#5789934' class='play-frame col12'></iframe>
+            </div>
+            <div class='pad2'>
+                <h2 class='title'>Use Simple Statistics</h2>
+                <div class='col12 lined clearfix'>
+                    <div class='col4'>
+                        <strong>node.js</strong>
+                    </div>
+                    <div class='col8'>
+                        <pre><code>npm install simple-statistics</code></pre>
+                        <pre><code>var ss = require('simple-statistics');</code></pre>
+                    </div>
+                </div>
+                <div class='col12 lined clearfix'>
+                    <div class='col4'>
+                        <strong>browser</strong>
+                    </div>
+                    <div class='col8'>
+                        <a href='https://github.com/tmcw/simple-statistics/archive/master.zip'>Download master.zip</a>
+                    </div>
+                </div>
+                <div class='col12 lined clearfix'>
+                    <div class='col4'>
+                        <strong>git</strong>
+                    </div>
+                    <div class='col8'>
+                        <pre><code>git clone git://github.com/tmcw/simple-statistics.git</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class='pad2'>
+                <h2 class='title'>API</h2>
+                <div class='api pad2 fillL'>
+<p>Basic contracts of functions:</p>
+<ul>
+<li>Functions do not modify their arguments e.g. change their order</li>
+<li>Invalid input, like empty lists to functions that need 1+ items to work, will cause functions to return <code>null</code>.</li>
+</ul>
+<h1>Basic Array Operations</h1>
+<h3>.mixin()</h3>
+<p><em>Optionally</em> mix in the following functions into the <code>Array</code> prototype. Otherwise
+you can use them off of the simple-statistics object itself.</p>
+<h3>.mean(x)</h3>
+<p>Mean of a single-dimensional Array of numbers.</p>
+<h3>.sum(x)</h3>
+<p>Sum of a single-dimensional Array of numbers.</p>
+<h3>.variance(x)</h3>
+<p><a href="http://en.wikipedia.org/wiki/Variance">Variance</a> of a single-dimensional Array of numbers.</p>
+<h3>.standard_deviation(x)</h3>
+<p><a href="http://en.wikipedia.org/wiki/Standard_deviation">Standard Deviation</a> of a single-dimensional Array of numbers.</p>
+<h3>.median(x)</h3>
+<p><a href="http://en.wikipedia.org/wiki/Median">Median</a> of a single-dimensional array of numbers.</p>
+<h3>.geometric_mean(x)</h3>
+<p><a href="http://en.wikipedia.org/wiki/Geometric_mean">Geometric mean</a> of a single-dimensional array of <strong>positive</strong> numbers.</p>
+<h3>.min(x)</h3>
+<p>Finds the minimum of a single-dimensional array of numbers. This runs in linear <code>O(n)</code> time.</p>
+<h3>.max(x)</h3>
+<p>Finds the maximum of a single-dimensional array of numbers. This runs in linear <code>O(n)</code> time.</p>
+<h3>.t_test(sample, x)</h3>
+<p>Does a <a href="http://en.wikipedia.org/wiki/Student&#39;s_t-test">student&#39;s t-test</a> of a dataset <code>sample</code>, represented by a single-dimensional array of numbers. <code>x</code> is the known value, and the result is a measure of <a href="http://en.wikipedia.org/wiki/Statistical_significance">statistical significance</a>.</p>
+<h3>.sample_variance(x)</h3>
+<p>Produces <a href="http://mathworld.wolfram.com/SampleVariance.html">sample variance</a>
+of a single-dimensional array of numbers.</p>
+<h3>.sample_covariance(x)</h3>
+<p>Produces <a href="http://en.wikipedia.org/wiki/Sample_mean_and_sample_covariance">sample covariance</a>
+of two single-dimensional arrays of numbers.</p>
+<h3>.sample_correlation(x)</h3>
+<p>Produces <a href="http://en.wikipedia.org/wiki/Correlation_and_dependence">sample correlation</a>
+of two single-dimensional arrays of numbers.</p>
+<h3>.quantile(sample, p)</h3>
+<p>Does a <a href="http://en.wikipedia.org/wiki/Quantile">quantile</a> of a dataset <code>sample</code>,
+at p. For those familiary with the <code>k/q</code> syntax, <code>p == k/q</code>. <code>sample</code> must
+be a single-dimensional array of numbers, and p must be a number greater
+than zero and less than one.</p>
+<h3>.jenks(data, number_of_classes)</h3>
+<p>Find the <a href="http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization">Jenks Natural Breaks</a> for
+a single-dimensional array of numbers as input and a desired <code>number_of_classes</code>.
+The result is a single-dimensional with class breaks, including the minimum
+and maximum of the input array.</p>
+<h3>.r_squared(data, function)</h3>
+<p>Find the <a href="http://en.wikipedia.org/wiki/Coefficient_of_determination">r-squared</a> value of a particular dataset, expressed as a two-dimensional <code>Array</code> of numbers, against a <code>Function</code>.</p>
+<pre><code>var r_squared = ss.r_squared([[1, 1]], function(x) { return x * 2; });</code></pre>
+<h2>Regression</h2>
+<h3>.linear_regression()</h3>
+<p>Create a new linear regression solver.</p>
+<h4>.data([[1, 1], [2, 2]])</h4>
+<p>Set the data of a linear regression. The input is a two-dimensional array of numbers, which are treated as coordinates, like <code>[[x, y], [x1, y1]]</code>.</p>
+<h4>.line()</h4>
+<p>Get the linear regression line: this returns a function that you can give <code>x</code> values and it will return <code>y</code> values.</p>
+<pre><code>var linear_regression_line = ss.linear_regression()
+    .data([[0, 1], [2, 2], [3, 3]]).line();
+linear_regression_line(5);</code></pre>
+<h2>Classification</h2>
+<h3>.bayesian()</h3>
+<p>Create a bayesian classifier.</p>
+<h3>.train(item, category)</h3>
+<p>Train the classifier to classify a certain item, given as an object with keys,
+to be in a certain category, given as a string.</p>
+<h3>.score(item)</h3>
+<p>Get the classifications of a certain item, given as an object of
+<code>category -&gt; score</code> mappings.</p>
+<pre><code>var bayes = ss.bayesian();
+bayes.train({ species: &#39;Cat&#39; }, &#39;animal&#39;);
+bayes.score({ species: &#39;Cat&#39; });
+// { animal: 1 }</code></pre>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+

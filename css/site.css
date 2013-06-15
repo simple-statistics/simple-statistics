@@ -1,0 +1,112 @@
+h1.title {
+    font: normal 40px/50px 'Coming Soon';
+    border:1px solid #999;
+}
+
+.title {
+    padding:20px;
+    border-radius:10px;
+}
+
+h2.title {
+    background:#f8f8f8;
+}
+
+h2 {
+    font: normal 30px/40px 'Coming Soon';
+}
+
+h3 {
+    margin-top:20px;
+}
+
+a {
+    color:#4B7E3C;
+}
+
+a.other {
+    color:#1C3157;
+}
+
+.play-frame {
+    height:500px;
+    border:1px solid #aaa;
+}
+
+.right {
+    text-align:right;
+}
+
+a.button-like {
+    background:#4B7E3C;
+    color:#fff;
+    display:inline-block;
+    padding:5px;
+    text-decoration:none;
+    border:1px solid #2A571C;
+    border-radius: 5px;
+}
+
+.tagline {
+    font-size:20px;
+}
+
+.lined {
+    border-top:1px solid #ccc;
+    padding-top:20px;
+    padding-bottom:10px;
+}
+
+.lined strong {
+    text-transform:uppercase;
+    font-size:150%;
+    color:#aaa;
+}
+
+h1 em {
+    font-style:normal;
+    color:#ccc;
+}
+
+.tagline em {
+    padding:5px;
+    background:#fcfc8d;
+}
+
+.fit {
+    width:600px;
+    max-width:100%;
+}
+
+.fillL {
+    border:1px solid #ddd;
+}
+
+.fn {
+    float:left;
+    padding:2px 4px;
+    border:1px solid #aaa;
+    font:normal 16px/20px monospace;
+    margin:2px;
+    border-radius:3px;
+    background:#fff;
+}
+
+.api h1 {
+    margin-top:20px;
+    font: normal 30px/50px monospace;
+}
+
+.api h2 {
+    font: normal 20px/30px monospace;
+    border-bottom:1px solid #222;
+}
+
+.api h3 {
+    font: normal 20px/30px monospace;
+    border-bottom:1px solid #ddd;
+}
+
+.api h4 {
+    font: normal 14px/30px monospace;
+}
