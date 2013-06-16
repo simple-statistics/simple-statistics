@@ -564,6 +564,17 @@
         }
     }
 
+    // # [interquartile_range](http://en.wikipedia.org/wiki/Interquartile_range)
+    //
+    // Third quartile - first quartile
+    // 25% trimmed mid-range
+    function iqr(sample){
+	    // We can't derive quantiles from an empty list
+        if (sample.length === 0) return null;
+
+        return quantile(sample,0.75) - quantile(sample,0.25)
+    }
+
     // ## Compute Matrices for Jenks
     //
     // Compute the matrices required for Jenks breaks. These matrices
@@ -778,6 +789,7 @@
     ss.max = max;
     ss.sum = sum;
     ss.quantile = quantile;
+    ss.iqr = iqr;
 
     ss.sample_covariance = sample_covariance;
     ss.sample_correlation = sample_correlation;
