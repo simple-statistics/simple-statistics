@@ -60,6 +60,7 @@
             <div class='pad2'>
                 <h2 class='title'>API</h2>
                 <div class='api pad2 fillL'>
+
 <p>Basic contracts of functions:</p>
 <ul>
 <li>Functions do not modify their arguments e.g. change their order</li>
@@ -70,7 +71,7 @@
 <p><em>Optionally</em> mix in the following functions into the <code>Array</code> prototype. Otherwise
 you can use them off of the simple-statistics object itself.</p>
 <h3>.mean(x)</h3>
-<p>Mean of a single-dimensional Array of numbers.</p>
+<p>Mean of a single-dimensional Array of numbers. <em>Also available as <code>.average(x)</code></em></p>
 <h3>.sum(x)</h3>
 <p>Sum of a single-dimensional Array of numbers.</p>
 <h3>.variance(x)</h3>
@@ -101,6 +102,11 @@ of two single-dimensional arrays of numbers.</p>
 at p. For those familiary with the <code>k/q</code> syntax, <code>p == k/q</code>. <code>sample</code> must
 be a single-dimensional array of numbers, and p must be a number greater
 than zero and less than one.</p>
+<h3>.iqr(sample)</h3>
+<p>Calculates the <a href="http://en.wikipedia.org/wiki/Interquartile_range">Interquartile range</a> of
+a sample - the difference between the upper and lower quartiles. Useful
+as a measure of dispersion.</p>
+<p><em>Also available as <code>.interquartile_range(x)</code></em></p>
 <h3>.jenks(data, number_of_classes)</h3>
 <p>Find the <a href="http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization">Jenks Natural Breaks</a> for
 a single-dimensional array of numbers as input and a desired <code>number_of_classes</code>.
@@ -115,13 +121,21 @@ and maximum of the input array.</p>
 <h4>.data([[1, 1], [2, 2]])</h4>
 <p>Set the data of a linear regression. The input is a two-dimensional array of numbers, which are treated as coordinates, like <code>[[x, y], [x1, y1]]</code>.</p>
 <h4>.line()</h4>
-<p>Get the linear regression line: this returns a function that you can give <code>x</code> values and it will return <code>y</code> values.</p>
+<p>Get the linear regression line: this returns a function that you can
+give <code>x</code> values and it will return <code>y</code> values. Internally, this uses the <code>m()</code>
+and <code>b()</code> values and the classic <code>y = mx + b</code> equation.</p>
 <pre><code>var linear_regression_line = ss.linear_regression()
     .data([[0, 1], [2, 2], [3, 3]]).line();
 linear_regression_line(5);</code></pre>
+<h4>.m()</h4>
+<p>Just get the slope of the fitted regression line, the <code>m</code> component of the full
+line equation. Returns a number.</p>
+<h4>.b()</h4>
+<p>Just get the y-intercept of the fitted regression line, the <code>b</code> component
+of the line equation. Returns a number.</p>
 <h2>Classification</h2>
 <h3>.bayesian()</h3>
-<p>Create a bayesian classifier.</p>
+<p>Create a naïve bayesian classifier.</p>
 <h3>.train(item, category)</h3>
 <p>Train the classifier to classify a certain item, given as an object with keys,
 to be in a certain category, given as a string.</p>
@@ -132,6 +146,10 @@ to be in a certain category, given as a string.</p>
 bayes.train({ species: &#39;Cat&#39; }, &#39;animal&#39;);
 bayes.score({ species: &#39;Cat&#39; });
 // { animal: 1 }</code></pre>
+
+
+
+
                 </div>
             </div>
         </div>
