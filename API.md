@@ -12,7 +12,7 @@ you can use them off of the simple-statistics object itself.
 
 ### .mean(x)
 
-Mean of a single-dimensional Array of numbers.
+Mean of a single-dimensional Array of numbers. _Also available as `.average(x)`_
 
 ### .sum(x)
 
@@ -67,6 +67,14 @@ Does a [quantile](http://en.wikipedia.org/wiki/Quantile) of a dataset `sample`,
 at p. For those familiary with the `k/q` syntax, `p == k/q`. `sample` must
 be a single-dimensional array of numbers, and p must be a number greater
 than zero and less than one.
+
+### .iqr(sample)
+
+Calculates the [Interquartile range](http://en.wikipedia.org/wiki/Interquartile_range) of
+a sample - the difference between the upper and lower quartiles. Useful
+as a measure of dispersion.
+
+_Also available as `.interquartile_range(x)`_
 
 ### .jenks(data, number_of_classes)
 

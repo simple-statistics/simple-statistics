@@ -217,11 +217,11 @@
     //
     // This runs on `O(n)`, linear time in respect to the array
     function sum(x) {
-        var sum = 0;
+        var value = 0;
         for (var i = 0; i < x.length; i++) {
-            sum += x[i];
+            value += x[i];
         }
-        return sum;
+        return value;
     }
 
     // # mean
@@ -464,7 +464,7 @@
         // array.
         var last = sorted[0],
             // store the mode as we find new modes
-            mode,
+            value,
             // store how many times we've seen the mode
             max_seen = 0,
             // how many times the current candidate for the mode
@@ -483,14 +483,14 @@
                 if (seen_this > max_seen) {
                     max_seen = seen_this;
                     seen_this = 1;
-                    mode = last;
+                    value = last;
                 }
                 last = sorted[i];
             // if this isn't a new number, it's one more occurrence of
             // the potential mode
             } else { seen_this++; }
         }
-        return mode;
+        return value;
     }
 
     // # [t-test](http://en.wikipedia.org/wiki/Student's_t-test)
@@ -564,15 +564,18 @@
         }
     }
 
-    // # [interquartile_range](http://en.wikipedia.org/wiki/Interquartile_range)
+    // # [Interquartile range](http://en.wikipedia.org/wiki/Interquartile_range)
     //
-    // Third quartile - first quartile
-    // 25% trimmed mid-range
+    // A measure of statistical dispersion, or how scattered, spread, or
+    // concentrated a distribution is. It's computed as the difference betwen
+    // the third quartile and first quartile.
     function iqr(sample){
 	    // We can't derive quantiles from an empty list
         if (sample.length === 0) return null;
 
-        return quantile(sample,0.75) - quantile(sample,0.25)
+        // Interquartile range is the span between the upper quartile,
+        // at `0.75`, and lower quartile, `0.25`
+        return quantile(sample, 0.75) - quantile(sample, 0.25);
     }
 
     // ## Compute Matrices for Jenks
@@ -809,6 +812,7 @@
 
     // Alias this into its common name
     ss.average = mean;
+    ss.interquartile_range = iqr;
     ss.mixin = mixin;
 
 })(this);

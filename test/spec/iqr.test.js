@@ -14,9 +14,7 @@ describe('interquartile range (iqr)', function() {
         assert.equal(ss.quantile(odd, 0.75) - ss.quantile(odd, 0.25), ss.iqr(odd));
     });
 
-
     it('an iqr of a zero-length list produces null', function() {
-    assert.equal(ss.iqr([]), null);
+        assert.equal(ss.iqr([]), null);
     });
-
 });
