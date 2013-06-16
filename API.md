@@ -101,11 +101,23 @@ Set the data of a linear regression. The input is a two-dimensional array of num
 
 #### .line()
 
-Get the linear regression line: this returns a function that you can give `x` values and it will return `y` values.
+Get the linear regression line: this returns a function that you can
+give `x` values and it will return `y` values. Internally, this uses the `m()`
+and `b()` values and the classic `y = mx + b` equation.
 
     var linear_regression_line = ss.linear_regression()
         .data([[0, 1], [2, 2], [3, 3]]).line();
     linear_regression_line(5);
+
+#### .m()
+
+Just get the slope of the fitted regression line, the `m` component of the full
+line equation. Returns a number.
+
+#### .b()
+
+Just get the y-intercept of the fitted regression line, the `b` component
+of the line equation. Returns a number.
 
 ## Classification
 

@@ -33,12 +33,10 @@
             return linreg;
         };
 
-        // ## Fitting The Regression Line
-        //
-        // This is called after `.data()` and returns the
-        // equation `y = f(x)` which gives the position
-        // of the regression line at each point in `x`.
-        linreg.line = function() {
+        // Calculate the slope and y-intercept of the regression line
+        // by calculating the least sum of squares
+        linreg.mb = function() {
+            var m, b;
 
             //if there's only one point, arbitrarily choose a slope of 0
             //and a y-intercept of whatever the y of the initial point is
@@ -49,8 +47,7 @@
                 // Initialize our sums and scope the `m` and `b`
                 // variables that define the line.
                 var sum_x = 0, sum_y = 0,
-                    sum_xx = 0, sum_xy = 0,
-                    m, b;
+                    sum_xx = 0, sum_xy = 0;
 
                 // Gather the sum of all x values, the sum of all
                 // y values, and the sum of x^2 and (x*y) for each
@@ -72,6 +69,33 @@
                 // `b` is the y-intercept of the line.
                 b = (sum_y / data.length) - ((m * sum_x) / data.length);
             }
+
+            // Return both values as an object.
+            return { m: m, b: b };
+        };
+
+        // a shortcut for simply getting the slope of the regression line
+        linreg.m = function() {
+            return linreg.mb().m;
+        };
+
+        // a shortcut for simply getting the y-intercept of the regression
+        // line.
+        linreg.b = function() {
+            return linreg.mb().b;
+        };
+
+        // ## Fitting The Regression Line
+        //
+        // This is called after `.data()` and returns the
+        // equation `y = f(x)` which gives the position
+        // of the regression line at each point in `x`.
+        linreg.line = function() {
+
+            // Get the slope, `m`, and y-intercept, `b`, of the line.
+            var mb = linreg.mb(),
+                m = mb.m,
+                b = mb.b;
 
             // Return a function that computes a `y` value for each
             // x value it is given, based on the values of `b` and `a`
