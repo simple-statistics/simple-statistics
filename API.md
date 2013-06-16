@@ -103,7 +103,7 @@ Get the linear regression line: this returns a function that you can give `x` va
 
 ### .bayesian()
 
-Create a bayesian classifier.
+Create a naïve bayesian classifier.
 
 ### .train(item, category)
 
