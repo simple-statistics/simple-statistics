@@ -76,6 +76,18 @@ as a measure of dispersion.
 
 _Also available as `.interquartile_range(x)`_
 
+### .sample_skewness(sample)
+
+Calculates the [skewness](http://en.wikipedia.org/wiki/Skewness) of
+a sample, a measure of the extent to which a probability distribution of a
+real-valued random variable "leans" to one side of the mean.
+The skewness value can be positive or negative, or even undefined.
+
+This implementation uses the [Fisher-Pearson standardized moment coefficient](http://en.wikipedia.org/wiki/Skewness#Pearson.27s_skewness_coefficients),
+which means that it behaves the same as Excel, Minitab, SAS, and SPSS.
+
+Skewness is only valid for samples of over three values.
+
 ### .jenks(data, number_of_classes)
 
 Find the [Jenks Natural Breaks](http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization) for
