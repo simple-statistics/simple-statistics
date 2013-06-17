@@ -106,6 +106,8 @@ To use it with [component](https://github.com/component/component),
 
 * Tom MacWright
 * [Matt Sacks](https://github.com/mattsacks)
+* Doron Linder
+* [Alexander Sicular](https://github.com/siculars)
 
 ## See Also
 
