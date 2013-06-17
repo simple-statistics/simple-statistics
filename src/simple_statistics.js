@@ -350,33 +350,32 @@
         return Math.sqrt(variance(x));
     }
 
-    // The sum of squared deviations - this is a basic unit of many other
-    // operations.
+    // The sum of deviations to the Nth power.
+    // When n=2 it's the sum of squared deviations.
+    // When n=3 it's the sum of cubed deviations.
     //
     // depends on `mean()`
-    function sum_squared_deviations(x) {
-        // The variance of no numbers is null
-        if (x.length <= 1) return null;
-
+    function sum_nth_power_deviations(x, n) {
         var mean_value = mean(x),
             sum = 0;
 
-        // Make a list of squared deviations from the mean.
         for (var i = 0; i < x.length; i++) {
-            sum += Math.pow(x[i] - mean_value, 2);
+            sum += Math.pow(x[i] - mean_value, n);
         }
 
         return sum;
-     }
+    }
 
     // # [variance](http://en.wikipedia.org/wiki/Variance)
     //
     // is the sum of squared deviations from the mean
     //
-    // depends on `sum_squared_deviations`
+    // depends on `sum_nth_power_deviations`
     function sample_variance(x) {
-        var sum_squared_deviations_value = sum_squared_deviations(x);
-        if (sum_squared_deviations_value === null) return null;
+        // The variance of no numbers is null
+        if (x.length <= 1) return null;
+
+        var sum_squared_deviations_value = sum_nth_power_deviations(x, 2);
 
         // Find the mean value of that list
         return sum_squared_deviations_value / (x.length - 1);
@@ -762,6 +761,28 @@
 
     }
 
+    // # [Skewness](http://en.wikipedia.org/wiki/Skewness)
+    //
+    // A measure of the extent to which a probability distribution of a
+    // real-valued random variable "leans" to one side of the mean.
+    // The skewness value can be positive or negative, or even undefined.
+    //
+    // Implementation is based on the adjusted Fisher-Pearson standardized
+    // moment coefficient, which is the version found in Excel and several
+    // statistical packages including Minitab, SAS and SPSS.
+    //
+    // Depends on `sum_nth_power_deviations()` and `sample_standard_deviation`
+    function sample_skewness(x) {
+        // The skewness of less than three arguments is null
+        if (x.length < 3) return null;
+
+        var n = x.length,
+            cubed_s = Math.pow(sample_standard_deviation(x), 3),
+            sum_cubed_deviations = sum_nth_power_deviations(x, 3);
+
+        return n * sum_cubed_deviations / ((n - 1) * (n - 2) * cubed_s);
+    }
+
     // # Mixin
     //
     // Mixin simple_statistics to the Array native object. This is an optional
@@ -822,6 +843,7 @@
     ss.sample_correlation = sample_correlation;
     ss.sample_variance = sample_variance;
     ss.sample_standard_deviation = sample_standard_deviation;
+    ss.sample_skewness = sample_skewness;
 
     ss.geometric_mean = geometric_mean;
     ss.variance = variance;
