@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.4.0
+
+* Adds `simple_statistics.median_absolute_deviation()` by siculars
+* Adds `simple_statistics.iqr()` by siculars
+* Adds `simple_statistics.skewness()` by Doron Linder
+* Lower-level accessors for linear regression allow users to do the line
+  equation themselves
+
 ## 0.3.0
 
 * Adds `simple_statistics.jenks()`
