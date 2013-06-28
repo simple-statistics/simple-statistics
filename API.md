@@ -26,6 +26,14 @@ Sum of a single-dimensional Array of numbers.
 
 [Standard Deviation](http://en.wikipedia.org/wiki/Standard_deviation) of a single-dimensional Array of numbers.
 
+### .median_absolute_deviation(x)
+
+The Median Absolute Deviation (MAD) is a robust measure of statistical
+dispersion. It is more resilient to outliers than the standard deviation.
+Accepts a single-dimensional array of numbers and returns a dispersion value.
+
+Also aliased to `.mad(x)` for brevity.
+
 ### .median(x)
 
 [Median](http://en.wikipedia.org/wiki/Median) of a single-dimensional array of numbers.
