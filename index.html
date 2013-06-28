@@ -60,7 +60,6 @@
             <div class='pad2'>
                 <h2 class='title'>API</h2>
                 <div class='api pad2 fillL'>
-
 <p>Basic contracts of functions:</p>
 <ul>
 <li>Functions do not modify their arguments e.g. change their order</li>
@@ -78,6 +77,11 @@ you can use them off of the simple-statistics object itself.</p>
 <p><a href="http://en.wikipedia.org/wiki/Variance">Variance</a> of a single-dimensional Array of numbers.</p>
 <h3>.standard_deviation(x)</h3>
 <p><a href="http://en.wikipedia.org/wiki/Standard_deviation">Standard Deviation</a> of a single-dimensional Array of numbers.</p>
+<h3>.median_absolute_deviation(x)</h3>
+<p>The Median Absolute Deviation (MAD) is a robust measure of statistical
+dispersion. It is more resilient to outliers than the standard deviation.
+Accepts a single-dimensional array of numbers and returns a dispersion value.</p>
+<p>Also aliased to <code>.mad(x)</code> for brevity.</p>
 <h3>.median(x)</h3>
 <p><a href="http://en.wikipedia.org/wiki/Median">Median</a> of a single-dimensional array of numbers.</p>
 <h3>.geometric_mean(x)</h3>
@@ -107,6 +111,14 @@ than zero and less than one.</p>
 a sample - the difference between the upper and lower quartiles. Useful
 as a measure of dispersion.</p>
 <p><em>Also available as <code>.interquartile_range(x)</code></em></p>
+<h3>.sample_skewness(sample)</h3>
+<p>Calculates the <a href="http://en.wikipedia.org/wiki/Skewness">skewness</a> of
+a sample, a measure of the extent to which a probability distribution of a
+real-valued random variable &quot;leans&quot; to one side of the mean.
+The skewness value can be positive or negative, or even undefined.</p>
+<p>This implementation uses the <a href="http://en.wikipedia.org/wiki/Skewness#Pearson.27s_skewness_coefficients">Fisher-Pearson standardized moment coefficient</a>,
+which means that it behaves the same as Excel, Minitab, SAS, and SPSS.</p>
+<p>Skewness is only valid for samples of over three values.</p>
 <h3>.jenks(data, number_of_classes)</h3>
 <p>Find the <a href="http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization">Jenks Natural Breaks</a> for
 a single-dimensional array of numbers as input and a desired <code>number_of_classes</code>.
