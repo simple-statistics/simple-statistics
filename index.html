@@ -60,6 +60,9 @@
             <div class='pad2'>
                 <h2 class='title'>API</h2>
                 <div class='api pad2 fillL'>
+
+
+
 <p>Basic contracts of functions:</p>
 <ul>
 <li>Functions do not modify their arguments e.g. change their order</li>
@@ -133,6 +136,9 @@ to calculate the probability of a random variable appearing with a given value.<
 <h3>.z_score(x, mean, standard_deviation)</h3>
 <p>The standard score is the number of standard deviations an observation
 or datum is above or below the mean.</p>
+<h3>.standard_normal_table</h3>
+<p>A <a href="http://en.wikipedia.org/wiki/Standard_normal_table">standard normal table</a> from
+which to pull values of Φ (phi).</p>
 <h2>Regression</h2>
 <h3>.linear_regression()</h3>
 <p>Create a new linear regression solver.</p>
@@ -164,6 +170,8 @@ to be in a certain category, given as a string.</p>
 bayes.train({ species: &#39;Cat&#39; }, &#39;animal&#39;);
 bayes.score({ species: &#39;Cat&#39; });
 // { animal: 1 }</code></pre>
+
+                    
 
 
                 </div>
