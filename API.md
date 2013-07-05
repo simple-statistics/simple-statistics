@@ -119,6 +119,11 @@ to calculate the probability of a random variable appearing with a given value.
 The standard score is the number of standard deviations an observation
 or datum is above or below the mean.
 
+### .standard_normal_table
+
+A [standard normal table](http://en.wikipedia.org/wiki/Standard_normal_table) from
+which to pull values of Φ (phi).
+
 ## Regression
 
 ### .linear_regression()

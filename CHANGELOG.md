@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.5.0
+
+* Adds `simple_statistics.cumulative_std_normal_probability` by [doronlinder](https://github.com/doronlinder)
+* Adds `simple_statistics.z_score` by doronlinder
+* Adds `simple_statistics.standard_normal_table`
+
 ## 0.4.0
 
 * Adds `simple_statistics.median_absolute_deviation()` by siculars

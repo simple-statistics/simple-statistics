@@ -975,6 +975,7 @@
     // Normal distribution
     ss.z_score = z_score;
     ss.cumulative_std_normal_probability = cumulative_std_normal_probability;
+    ss.standard_normal_table = standard_normal_table;
 
     // Alias this into its common name
     ss.average = mean;

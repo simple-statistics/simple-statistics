@@ -3,6 +3,11 @@ var ss = require('../../');
 
 describe('natural distribution and z-score', function() {
 
+    it('normal table is exposed in the API', function() {
+        assert.equal(ss.standard_normal_table.length, 310);
+        assert.equal(ss.standard_normal_table[0], 0.5);
+    });
+
     it('P(Z <= 0.4) is 0.6554', function() {
         // Taken from the examples of use in http://en.wikipedia.org/wiki/Standard_normal_table
         assert.equal(ss.cumulative_std_normal_probability(0.4), 0.6554);
