@@ -78,6 +78,11 @@ you can use them off of the simple-statistics object itself.</p>
 <p><a href="http://en.wikipedia.org/wiki/Variance">Variance</a> of a single-dimensional Array of numbers.</p>
 <h3>.standard_deviation(x)</h3>
 <p><a href="http://en.wikipedia.org/wiki/Standard_deviation">Standard Deviation</a> of a single-dimensional Array of numbers.</p>
+<h3>.median_absolute_deviation(x)</h3>
+<p>The Median Absolute Deviation (MAD) is a robust measure of statistical
+dispersion. It is more resilient to outliers than the standard deviation.
+Accepts a single-dimensional array of numbers and returns a dispersion value.</p>
+<p>Also aliased to <code>.mad(x)</code> for brevity.</p>
 <h3>.median(x)</h3>
 <p><a href="http://en.wikipedia.org/wiki/Median">Median</a> of a single-dimensional array of numbers.</p>
 <h3>.geometric_mean(x)</h3>
@@ -107,6 +112,14 @@ than zero and less than one.</p>
 a sample - the difference between the upper and lower quartiles. Useful
 as a measure of dispersion.</p>
 <p><em>Also available as <code>.interquartile_range(x)</code></em></p>
+<h3>.sample_skewness(sample)</h3>
+<p>Calculates the <a href="http://en.wikipedia.org/wiki/Skewness">skewness</a> of
+a sample, a measure of the extent to which a probability distribution of a
+real-valued random variable &quot;leans&quot; to one side of the mean.
+The skewness value can be positive or negative, or even undefined.</p>
+<p>This implementation uses the <a href="http://en.wikipedia.org/wiki/Skewness#Pearson.27s_skewness_coefficients">Fisher-Pearson standardized moment coefficient</a>,
+which means that it behaves the same as Excel, Minitab, SAS, and SPSS.</p>
+<p>Skewness is only valid for samples of over three values.</p>
 <h3>.jenks(data, number_of_classes)</h3>
 <p>Find the <a href="http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization">Jenks Natural Breaks</a> for
 a single-dimensional array of numbers as input and a desired <code>number_of_classes</code>.
@@ -115,6 +128,12 @@ and maximum of the input array.</p>
 <h3>.r_squared(data, function)</h3>
 <p>Find the <a href="http://en.wikipedia.org/wiki/Coefficient_of_determination">r-squared</a> value of a particular dataset, expressed as a two-dimensional <code>Array</code> of numbers, against a <code>Function</code>.</p>
 <pre><code>var r_squared = ss.r_squared([[1, 1]], function(x) { return x * 2; });</code></pre>
+<h3>.cumulative_std_normal_probability(z)</h3>
+<p>Look up the given <code>z</code> value in a <a href="http://en.wikipedia.org/wiki/Standard_normal_table">standard normal table</a>
+to calculate the probability of a random variable appearing with a given value.</p>
+<h3>.z_score(x, mean, standard_deviation)</h3>
+<p>The standard score is the number of standard deviations an observation
+or datum is above or below the mean.</p>
 <h2>Regression</h2>
 <h3>.linear_regression()</h3>
 <p>Create a new linear regression solver.</p>
@@ -146,8 +165,6 @@ to be in a certain category, given as a string.</p>
 bayes.train({ species: &#39;Cat&#39; }, &#39;animal&#39;);
 bayes.score({ species: &#39;Cat&#39; });
 // { animal: 1 }</code></pre>
-
-
 
 
                 </div>
