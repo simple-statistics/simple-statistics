@@ -109,6 +109,16 @@ Find the [r-squared](http://en.wikipedia.org/wiki/Coefficient_of_determination) 
 
     var r_squared = ss.r_squared([[1, 1]], function(x) { return x * 2; });
 
+### .cumulative_std_normal_probability(z)
+
+Look up the given `z` value in a [standard normal table](http://en.wikipedia.org/wiki/Standard_normal_table)
+to calculate the probability of a random variable appearing with a given value.
+
+### .z_score(x, mean, standard_deviation)
+
+The standard score is the number of standard deviations an observation
+or datum is above or below the mean.
+
 ## Regression
 
 ### .linear_regression()

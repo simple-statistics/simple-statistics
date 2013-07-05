@@ -880,23 +880,23 @@
         }
     }
 
-	// # [Z-Score, or Standard Score](http://en.wikipedia.org/wiki/Standard_score)
-	//
-	// The standard score is the number of standard deviations an observation
-	// or datum is above or below the mean. Thus, a positive standard score
-	// represents a datum above the mean, while a negative standard score
-	// represents a datum below the mean. It is a dimensionless quantity
-	// obtained by subtracting the population mean from an individual raw
-	// score and then dividing the difference by the population standard
-	// deviation.
+    // # [Z-Score, or Standard Score](http://en.wikipedia.org/wiki/Standard_score)
     //
-	// The z-score is only defined if one knows the population parameters;
-	// if one only has a sample set, then the analogous computation with
-	// sample mean and sample standard deviation yields the
-	// Student's t-statistic.
-	function z_score(x, mean, standard_deviation) {
-		return (x - mean) / standard_deviation;
-	}
+    // The standard score is the number of standard deviations an observation
+    // or datum is above or below the mean. Thus, a positive standard score
+    // represents a datum above the mean, while a negative standard score
+    // represents a datum below the mean. It is a dimensionless quantity
+    // obtained by subtracting the population mean from an individual raw
+    // score and then dividing the difference by the population standard
+    // deviation.
+    //
+    // The z-score is only defined if one knows the population parameters;
+    // if one only has a sample set, then the analogous computation with
+    // sample mean and sample standard deviation yields the
+    // Student's t-statistic.
+    function z_score(x, mean, standard_deviation) {
+        return (x - mean) / standard_deviation;
+    }
 
     // # Mixin
     //
@@ -972,9 +972,9 @@
 
     ss.bayesian = bayesian;
 
-	// Normal distribution
-	ss.z_score = z_score;
-	ss.cumulative_std_normal_probability = cumulative_std_normal_probability;
+    // Normal distribution
+    ss.z_score = z_score;
+    ss.cumulative_std_normal_probability = cumulative_std_normal_probability;
 
     // Alias this into its common name
     ss.average = mean;
