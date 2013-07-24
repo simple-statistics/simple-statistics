@@ -543,7 +543,36 @@
       // returning the t value
       return (sample_mean - x) / (sd / rootN);
     }
-
+    // # [t-test-2-samples](http://en.wikipedia.org/wiki/Student's_t-test)
+    //
+    // This is to compute two sample t-test.
+    // Basically it tests whether "mean(X)-mean(Y) = mu", (
+    // in the most common case, we often have "mu==0" to test if two samples
+    //  are likely to be taken from populations with the same mean value)  with
+    //  no prior knowledge on stdandard deviations of both samples
+    //  other than the fact that they have the same standard deviation.
+    //  usually the results here are used to look up a
+    // [p-value](http://en.wikipedia.org/wiki/P-value), which, for
+    // a certain level of significance, will let you determine that the
+    // null hypothesis can or cannot be rejected.
+    // 
+    // `mu` can be omitted if it equals 0.
+    //
+    // Depends on `sample_variance()` and `mean()`
+    function t_test_two_sample(sample_x, sample_y, mu) {
+        var n = sample_x.length;
+        var m = sample_y.length;
+        if (n + m - 2 <= 0 || n<=0 || m<=0)
+            return null ;
+        var meanX = mean(sample_x);
+        var meanY = mean(sample_y);
+        var weightedVar = (n - 1) * sample_variance(sample_x) +
+                          (m - 1) * sample_variance(sample_y) ;
+        weightedVar = weightedVar / (n + m - 2);
+        var diff = mu || 0; // default value 0 for mu
+        var T = (meanX - meanY - diff)/Math.sqrt(weightedVar*(1.0/n + 1.0/m));
+        return T;
+    }
     // # quantile
     // This is a population quantile, since we assume to know the entire
     // dataset in this library. Thus I'm trying to follow the
@@ -964,7 +993,8 @@
     ss.geometric_mean = geometric_mean;
     ss.variance = variance;
     ss.t_test = t_test;
-
+    ss.t_test_two_sample = t_test_two_sample
+    
     // jenks
     ss.jenksMatrices = jenksMatrices;
     ss.jenksBreaks = jenksBreaks;
