@@ -1656,13 +1656,16 @@ returning the t value</p>
               </div>
               <h1><a href="http://en.wikipedia.org/wiki/Student&#39;s_t-test">t-test-2-samples</a></h1>
 <p>This is to compute two sample t-test.
-Basically it tests whether mean(X)-mean(Y)=mu, with
+Basically it tests whether &quot;mean(X)-mean(Y) = mu&quot;, (
+in the most common case, we often have &quot;mu==0&quot; to test if two samples
+ are likely to be taken from populations with the same mean value)  with
  no prior knowledge on stdandard deviations of both samples
  other than the fact that they have the same standard deviation.
  usually the results here are used to look up a
 <a href="http://en.wikipedia.org/wiki/P-value">p-value</a>, which, for
 a certain level of significance, will let you determine that the
 null hypothesis can or cannot be rejected.</p>
+<p><code>mu</code> can be omitted if it equals 0.</p>
 <p>Depends on <code>standard_deviation()</code> and <code>mean()</code></p>
 
             </div>
@@ -1670,14 +1673,15 @@ null hypothesis can or cannot be rejected.</p>
             <div class="content"><div class='highlight'><pre>    <span class="function"><span class="keyword">function</span> <span class="title">t_test_two_sample</span><span class="params">( sample_x , sample_y , mu )</span> {</span>
         <span class="keyword">var</span> n = sample_x.length
         <span class="keyword">var</span> m = sample_y.length
-        <span class="keyword">if</span> ( n + m - <span class="number">2</span> &lt;= <span class="number">0</span> )
+        <span class="keyword">if</span> ( n + m - <span class="number">2</span> &lt;= <span class="number">0</span> &amp;&amp; n&lt;=<span class="number">0</span> &amp;&amp; m&lt;=<span class="number">0</span> )
             <span class="keyword">return</span> <span class="literal">null</span> ;
         <span class="keyword">var</span> meanX = mean( sample_x )
         <span class="keyword">var</span> meanY = mean( sample_y )
-        <span class="keyword">var</span> Sw = ( n - <span class="number">1</span> )*sample_variance( sample_x ) +
+        <span class="keyword">var</span> weightedVar = ( n - <span class="number">1</span> )*sample_variance( sample_x ) +
                 ( m - <span class="number">1</span> )*sample_variance( sample_y ) ;
-        Sw = Sw / ( n + m - <span class="number">2</span> )
-        <span class="keyword">var</span> T = ( meanX - meanY - mu )/Math.sqrt(Sw*( <span class="number">1.0</span>/n + <span class="number">1.0</span>/m ))
+        weightedVar = weightedVar / ( n + m - <span class="number">2</span> )
+        <span class="keyword">var</span> diff = mu || <span class="number">0</span> <span class="comment">// default value 0 for mu</span>
+        <span class="keyword">var</span> T = ( meanX - meanY - diff )/Math.sqrt(weightedVar*( <span class="number">1.0</span>/n + <span class="number">1.0</span>/m ))
         <span class="keyword">return</span> T ;
     }</pre></div></div>
             
