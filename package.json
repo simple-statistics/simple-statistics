@@ -9,8 +9,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "mocha": "1.12.x",
-    "chai": "1.7.x"
+    "mocha": "1.13.x",
+    "chai": "1.8.x"
   },
   "optionalDependencies": {},
   "scripts": {
