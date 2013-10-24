@@ -9,6 +9,7 @@ describe('mixin', function() {
         assert.equal(even.mean(), 5);
         assert.equal(even.max(), 8);
         assert.equal(even.min(), 2);
+        assert.equal(even.sample_skewness(), 0);
     });
 
     it('mixins can take arguments', function() {

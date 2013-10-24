@@ -945,6 +945,7 @@
         // only methods which work on basic arrays in a single step
         // are supported
         var arrayMethods = ['median', 'standard_deviation', 'sum',
+            'sample_skewness',
             'mean', 'min', 'max', 'quantile', 'geometric_mean'];
 
         // create a closure with a method name so that a reference
