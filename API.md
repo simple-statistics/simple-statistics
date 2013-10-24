@@ -54,6 +54,16 @@ Finds the maximum of a single-dimensional array of numbers. This runs in linear 
 
 Does a [student's t-test](http://en.wikipedia.org/wiki/Student's_t-test) of a dataset `sample`, represented by a single-dimensional array of numbers. `x` is the known value, and the result is a measure of [statistical significance](http://en.wikipedia.org/wiki/Statistical_significance).
 
+### .t_test_two_sample(sample_x, sample_y, difference)
+
+The two-sample t-test is used to compare samples from two populations or groups,
+confirming or denying the suspicion (null hypothesis) that the populations are
+the same. It returns a t-value that you can then look up to give certain
+judgements of confidence based on a t distribution table.
+
+This implementation expects the samples `sample_x` and `sample_y` to be given
+as one-dimensional arrays of more than one number each.
+
 ### .sample_variance(x)
 
 Produces [sample variance](http://mathworld.wolfram.com/SampleVariance.html)

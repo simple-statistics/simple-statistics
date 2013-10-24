@@ -560,15 +560,21 @@
     //
     // `diff` can be omitted if it equals 0.
     //
+    // [This is used to confirm or deny](http://www.monarchlab.org/Lab/Research/Stats/2SampleT.aspx)
+    // a null hypothesis that the two populations that have been sampled into
+    // `sample_x` and `sample_y` are equal to each other.
+    //
     // Depends on `sample_variance()` and `mean()`
-    function t_test_two_sample(sample_x, sample_y, diff) {
+    function t_test_two_sample(sample_x, sample_y, difference) {
         var n = sample_x.length,
             m = sample_y.length;
 
+        // If either sample doesn't actually have any values, we can't
+        // compute this at all, so we return `null`.
         if (!n || !m) return null ;
 
         // default difference (mu) is zero
-        if (!diff) diff = 0;
+        if (!difference) difference = 0;
 
         var meanX = mean(sample_x),
             meanY = mean(sample_y);
@@ -576,7 +582,8 @@
         var weightedVariance = ((n - 1) * sample_variance(sample_x) +
             (m - 1) * sample_variance(sample_y)) / (n + m - 2);
 
-        return (meanX - meanY - diff) / Math.sqrt(weightedVariance * (1 / n + 1 / m));
+        return (meanX - meanY - difference) /
+            Math.sqrt(weightedVariance * (1 / n + 1 / m));
     }
 
     // # quantile
