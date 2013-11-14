@@ -36,17 +36,18 @@
         // Calculate the slope and y-intercept of the regression line
         // by calculating the least sum of squares
         linreg.mb = function() {
-            var m, b;
+            var m, b, data_length = data.length;
 
             //if there's only one point, arbitrarily choose a slope of 0
             //and a y-intercept of whatever the y of the initial point is
-            if (data.length == 1) {
+            if (data_length === 1) {
                 m = 0;
                 b = data[0][1];
             } else {
                 // Initialize our sums and scope the `m` and `b`
                 // variables that define the line.
-                var sum_x = 0, sum_y = 0,
+                var point, x, y,
+                    sum_x = 0, sum_y = 0,
                     sum_xx = 0, sum_xy = 0;
 
                 // Gather the sum of all x values, the sum of all
@@ -54,20 +55,24 @@
                 // value.
                 //
                 // In math notation, these would be SS_x, SS_y, SS_xx, and SS_xy
-                for (var i = 0; i < data.length; i++) {
-                    sum_x += data[i][0];
-                    sum_y += data[i][1];
+                for (var i = 0; i < data_length; i++) {
+                    point = data[i];
+                    x = point[0];
+                    y = point[1];
 
-                    sum_xx += data[i][0] * data[i][0];
-                    sum_xy += data[i][0] * data[i][1];
+                    sum_x += x;
+                    sum_y += y;
+
+                    sum_xx += x * x;
+                    sum_xy += x * y;
                 }
 
                 // `m` is the slope of the regression line
-                m = ((data.length * sum_xy) - (sum_x * sum_y)) /
-                    ((data.length * sum_xx) - (sum_x * sum_x));
+                m = ((data_length * sum_xy) - (sum_x * sum_y)) /
+                    ((data_length * sum_xx) - (sum_x * sum_x));
 
                 // `b` is the y-intercept of the line.
-                b = (sum_y / data.length) - ((m * sum_x) / data.length);
+                b = (sum_y / data_length) - ((m * sum_x) / data_length);
             }
 
             // Return both values as an object.
