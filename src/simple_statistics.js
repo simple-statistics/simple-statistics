@@ -36,7 +36,11 @@
         // Calculate the slope and y-intercept of the regression line
         // by calculating the least sum of squares
         linreg.mb = function() {
-            var m, b, data_length = data.length;
+            var m, b;
+
+            // Store data length in a local variable to reduce
+            // repeated object property lookups
+            var data_length = data.length;
 
             //if there's only one point, arbitrarily choose a slope of 0
             //and a y-intercept of whatever the y of the initial point is
@@ -46,9 +50,12 @@
             } else {
                 // Initialize our sums and scope the `m` and `b`
                 // variables that define the line.
-                var point, x, y,
-                    sum_x = 0, sum_y = 0,
+                var sum_x = 0, sum_y = 0,
                     sum_xx = 0, sum_xy = 0;
+
+                // Use local variables to grab point values 
+                // with minimal object property lookups
+                var point, x, y;
 
                 // Gather the sum of all x values, the sum of all
                 // y values, and the sum of x^2 and (x*y) for each
