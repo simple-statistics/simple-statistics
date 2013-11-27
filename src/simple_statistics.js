@@ -620,46 +620,50 @@
         // the values in sorted order.
         var sorted = sample.slice().sort(function (a, b) { return a - b; });
 
-        // if we have a single p value, wrap it inside an array
-		var quantiles = (typeof(p) === "number")?[p]:p;
-		var results = [];
+        // If we have a single p value, wrap it inside an array
+        var quantiles = (typeof(p) === "number")?[p]:p;
+        // Initialize the result array
+        var results = [];
 
-        // iterate over all the requested quantiles
+        // For each requested quantiles
         quantiles.forEach( function (pVal) {
             // Find a potential index in the list. In Wikipedia's terms, this
             // is I<sub>p</sub>.
             var idx = (sorted.length) * pVal;
-
+            // Initialize the default response for non-valid quantile input
             var quantileValue = null;
             
-            // make sure the requested quantile value is within the [0..1] range
+            // Make sure the requested quantile value is within the [0..1] range
             if ((pVal <= 1) && (pVal >= 0)) {
-				// p is 1 directly return the max element
-				if (pVal === 1) {
-					quantileValue = sorted[sorted.length-1]
-				} else if (pVal === 0) {
-					quantileValue = sorted[0]
-				} else if ( idx % 1 !== 0) {
-				    quantileValue = sorted[Math.ceil(idx)-1]
-				} else if (sample.length % 2 === 0) {
-					// If the list has even-length, we'll take the average of this number
-					// and the next value, if there is one
-					quantileValue = (sorted[idx - 1] + sorted[idx]) / 2;
-				} else {
-					// Finally, in the simple case of an integer value
-					// with an odd-length list, return the sample value at the index.
-					quantileValue = sorted[idx];
-				}
+                if (pVal === 1) {
+	                // If p is 1, directly return the last element
+                    quantileValue = sorted[sorted.length-1]
+                } else if (pVal === 0) {
+                   // If p is 0, directly return the first element
+                   quantileValue = sorted[0]
+                } else if ( idx % 1 !== 0) {
+                   // If p is not integer, return the next element in array
+                    quantileValue = sorted[Math.ceil(idx)-1]
+                } else if (sample.length % 2 === 0) {
+                    // If the list has even-length, we'll take the average of this number
+                    // and the next value, if there is one
+                    quantileValue = (sorted[idx - 1] + sorted[idx]) / 2;
+                } else {
+                    // Finally, in the simple case of an integer value
+                    // with an odd-length list, return the sample value at the index.
+                    quantileValue = sorted[idx];
+                }
             }
             
-            // add the value to the result array
+            // Now, add the value to the result array
             results.push(quantileValue);
         });
         
         if (quantiles !== p) {
-            // if we have wrapped the input values, we need to unwrap the response
+            // If we have wrapped the input values, we need to unwrap the response
             return results[0];
         } else {
+            // else simply return the results array
             return results;         
         }
     }
@@ -670,7 +674,7 @@
     // concentrated a distribution is. It's computed as the difference betwen
     // the third quartile and first quartile.
     function iqr(sample){
-	    // We can't derive quantiles from an empty list
+        // We can't derive quantiles from an empty list
         if (sample.length === 0) return null;
 
         // Interquartile range is the span between the upper quartile,
