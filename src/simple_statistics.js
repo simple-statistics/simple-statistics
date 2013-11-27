@@ -605,39 +605,62 @@
     // algorithm from wikipedia.
     //
     // Sample is a one-dimensional array of numbers,
-    // and p is a decimal number from 0 to 1. In terms of a k/q
-    // quantile, p = k/q - it's just dealing with fractions or dealing
+    // and p is either a decimal number from 0 to 1 or an array of decimal
+    // numbers from 0 to 1. 
+    // In terms of a k/q quantile, p = k/q - it's just dealing with fractions or dealing
     // with decimal values.
+    // When p is an array, the result of the function is also an array containing the appropriate
+    // quantiles in input order
     function quantile(sample, p) {
 
         // We can't derive quantiles from an empty list
         if (sample.length === 0) return null;
 
-        // invalid bounds. Microsoft Excel accepts 0 and 1, but
-        // we won't.
-        if (p >= 1 || p <= 0) return null;
-
         // Sort a copy of the array. We'll need a sorted array to index
         // the values in sorted order.
         var sorted = sample.slice().sort(function (a, b) { return a - b; });
 
-        // Find a potential index in the list. In Wikipedia's terms, this
-        // is I<sub>p</sub>.
-        var idx = (sorted.length) * p;
+        // if we have a single p value, wrap it inside an array
+		var quantiles = (typeof(p) === "number")?[p]:p;
+		var results = [];
 
-        // If this isn't an integer, we'll round up to the next value in
-        // the list.
-        if (idx % 1 !== 0) {
-            return sorted[Math.ceil(idx) - 1];
-        } else if (sample.length % 2 === 0) {
-            // If the list has even-length and we had an integer in the
-            // first place, we'll take the average of this number
-            // and the next value, if there is one
-            return (sorted[idx - 1] + sorted[idx]) / 2;
+        // iterate over all the requested quantiles
+        quantiles.forEach( function (pVal) {
+            // Find a potential index in the list. In Wikipedia's terms, this
+            // is I<sub>p</sub>.
+            var idx = (sorted.length) * pVal;
+
+            var quantileValue = null;
+            
+            // make sure the requested quantile value is within the [0..1] range
+            if ((pVal <= 1) && (pVal >= 0)) {
+				// p is 1 directly return the max element
+				if (pVal === 1) {
+					quantileValue = sorted[sorted.length-1]
+				} else if (pVal === 0) {
+					quantileValue = sorted[0]
+				} else if ( idx % 1 !== 0) {
+				    quantileValue = sorted[Math.ceil(idx)-1]
+				} else if (sample.length % 2 === 0) {
+					// If the list has even-length, we'll take the average of this number
+					// and the next value, if there is one
+					quantileValue = (sorted[idx - 1] + sorted[idx]) / 2;
+				} else {
+					// Finally, in the simple case of an integer value
+					// with an odd-length list, return the sample value at the index.
+					quantileValue = sorted[idx];
+				}
+            }
+            
+            // add the value to the result array
+            results.push(quantileValue);
+        });
+        
+        if (quantiles !== p) {
+            // if we have wrapped the input values, we need to unwrap the response
+            return results[0];
         } else {
-            // Finally, in the simple case of an integer value
-            // with an odd-length list, return the sample value at the index.
-            return sorted[idx];
+            return results;         
         }
     }
 
