@@ -1,10 +1,28 @@
 [![Build Status](https://secure.travis-ci.org/tmcw/simple-statistics.png?branch=master)](http://travis-ci.org/tmcw/simple-statistics)
 
-A project to learn about and make simple reference implementations
-of statistics algorithms.
+A JavaScript implementation of descriptive, regression, and inference statistics.
 
-This code is designed to work in browsers (including IE)
-as well as in node.js.
+Implemented in literate JavaScript with no dependencies, designed to work
+in all modern browsers (including IE) as well as in node.js.
+
+# [Documentation](API.md)
+
+# [Literate Source](http://macwright.org/simple-statistics/)
+
+## Usage
+
+To use it in browsers, grab [simple_statistics.js](https://raw.github.com/tmcw/simple-statistics/master/src/simple_statistics.js).
+To use it in node, install it with [npm](https://npmjs.org/) or add it to your package.json.
+
+    npm install simple-statistics
+
+To use it with [component](https://github.com/component/component),
+
+    component install tmcw/simple-statistics
+
+To use it with [bower](http://bower.io/),
+
+    bower install simple-statistics
 
 ## Basic Descriptive Statistics
 
@@ -45,7 +63,14 @@ var line = ss.linear_regression()
 ss.r_squared(data, line);
 ```
 
-## [Literate Documentation](http://macwright.org/simple-statistics/)
+### Bayesian Classifier
+
+```javascript
+var bayes = ss.bayesian();
+bayes.train({ species: 'Cat' }, 'animal');
+bayes.score({ species: 'Cat' });
+// { animal: 1 }
+```
 
 ### Mixin Style
 
@@ -74,37 +99,10 @@ var sum = list.sum(),
     quantile = list.quantile(0.25);
 ```
 
-### Bayesian Classifier
-
-```javascript
-var bayes = ss.bayesian();
-bayes.train({ species: 'Cat' }, 'animal');
-bayes.score({ species: 'Cat' });
-// { animal: 1 }
-```
-
 ## Examples
 
 * [Linear regression with simple-statistics and d3js](http://bl.ocks.org/3931800)
 * [Jenks Natural Breaks with a choropleth map with d3js](http://bl.ocks.org/tmcw/4969184)
-
-## Usage
-
-To use it in browsers, grab [simple_statistics.js](https://raw.github.com/tmcw/simple-statistics/master/src/simple_statistics.js).
-To use it in node, install it with [npm](https://npmjs.org/) or add it to your package.json.
-
-    npm install simple-statistics
-
-To use it with [component](https://github.com/component/component),
-
-    component install tmcw/simple-statistics
-    
-To use it with [bower](http://bower.io/),
-
-    bower install simple-statistics
-
-# [Documentation](https://github.com/tmcw/simple-statistics/blob/master/API.md)
-# [Tests](http://travis-ci.org/#!/tmcw/simple-statistics)
 
 # Contributors
 
@@ -112,27 +110,3 @@ To use it with [bower](http://bower.io/),
 * [Matt Sacks](https://github.com/mattsacks)
 * Doron Linder
 * [Alexander Sicular](https://github.com/siculars)
-
-## See Also
-
-* [stream-statistics](https://github.com/tmcw/stream-statistics), a sister project that implements
-  many of the same measures for streaming data - as online algorithms
-
-### Javascript
-
-* [science.js](https://github.com/jasondavies/science.js)
-* [atoll.js](https://github.com/nsfmc/atoll.js)
-* [descriptive_statistics](https://github.com/thirtysixthspan/descriptive_statistics)
-* [jStat](http://www.jstat.org/)
-* [classifier](https://github.com/harthur/classifier) is a naive bayesian classifier (though specialized for the words-spam case)
-* [underscore.math](https://github.com/syntagmatic/underscore.math/blob/master/underscore.math.js)
-
-### Python
-
-* [Pandas](http://pandas.pydata.org/)
-* [SciPy](http://www.scipy.org/)
-
-### Their Own Language
-
-* [Julia Language](http://julialang.org/)
-* [R language](http://www.r-project.org/)
