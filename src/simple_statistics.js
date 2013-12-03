@@ -930,7 +930,7 @@
             // due to floating-point arithmetic, values in the table with
             // 4 significant figures can nevertheless end up as repeating
             // fractions when they're computed here.
-            return (1 - standard_normal_table[index]).toFixed(4);
+            return +(1 - standard_normal_table[index]).toFixed(4);
         }
     }
 
