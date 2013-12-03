@@ -14,7 +14,8 @@
   },
   "optionalDependencies": {},
   "scripts": {
-    "test": "mocha -R spec test/spec"
+    "test": "mocha -R spec test/spec",
+    "api": "node api.js"
   },
   "main": "src/simple_statistics.js",
   "engines": {
