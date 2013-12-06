@@ -83,8 +83,16 @@ of two single-dimensional arrays of numbers.
 
 Does a [quantile](http://en.wikipedia.org/wiki/Quantile) of a dataset `sample`,
 at p. For those familiary with the `k/q` syntax, `p == k/q`. `sample` must
-be a single-dimensional array of numbers, and p must be a number greater
-than zero and less than one.
+be a single-dimensional array of numbers. p must be a number greater than or equal to
+than zero and less or equal to than one, or an array of numbers following that rule.
+If an array is given, an array of results will be returned instead of a single
+number.
+
+### .quantileSorted(sample, p)
+
+Does a [quantile](http://en.wikipedia.org/wiki/Quantile) of a dataset `sample`,
+at p. `sample` must be a one-dimensional _sorted_ array of numbers, and
+`p` must be a single number from zero to one.
 
 ### .iqr(sample)
 
