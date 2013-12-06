@@ -625,15 +625,15 @@
             var results = [];
             // For each requested quantile
             for (var i = 0; i < p.length; i++) {
-                results[i] = quantileSorted(sorted, p[i]);
+                results[i] = quantile_sorted(sorted, p[i]);
             }
             return results;
         } else {
-            return quantileSorted(sorted, p);
+            return quantile_sorted(sorted, p);
         }
     }
 
-    function quantileSorted(sample, p) {
+    function quantile_sorted(sample, p) {
         var idx = (sample.length) * p;
         if (p < 0 || p > 1) {
             return null;
@@ -1023,6 +1023,7 @@
     ss.max = max;
     ss.sum = sum;
     ss.quantile = quantile;
+    ss.quantile_sorted = quantile_sorted;
     ss.iqr = iqr;
     ss.mad = mad;
 

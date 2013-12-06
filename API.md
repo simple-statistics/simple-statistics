@@ -88,7 +88,7 @@ than zero and less or equal to than one, or an array of numbers following that r
 If an array is given, an array of results will be returned instead of a single
 number.
 
-### .quantileSorted(sample, p)
+### .quantile_sorted(sample, p)
 
 Does a [quantile](http://en.wikipedia.org/wiki/Quantile) of a dataset `sample`,
 at p. `sample` must be a one-dimensional _sorted_ array of numbers, and
