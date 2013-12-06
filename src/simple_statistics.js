@@ -621,39 +621,39 @@
         var sorted = sample.slice().sort(function (a, b) { return a - b; });
 
         // Initialize the input parameters array
-        var quantiles = []
+        var quantiles = [];
 
-        if (typeof(p) === "number") {
-            // If we have a single p value, wrap it inside an array        
-            quantiles.push(p)
+        if (typeof(p) === 'number') {
+            // If we have a single p value, wrap it inside an array
+            quantiles.push(p);
         } else {
             // Else use it directly as the input arrau
             quantiles = p;
         }
-        
+
         // Initialize the result array
         var results = [];
 
         // For each requested quantile
-        for (var i in quantiles) {
+        for (var i = 0; i < quantiles.length; i++) {
             var pVal = quantiles[i];
             // Find a potential index in the list. In Wikipedia's terms, this
             // is I<sub>p</sub>.
             var idx = (sorted.length) * pVal;
             // Initialize the default response for non-valid quantile input
             var quantileValue = null;
-            
+
             // Make sure the requested quantile value is within the [0..1] range
             if (pVal <= 1 && pVal >= 0) {
                 if (pVal === 1) {
                     // If p is 1, directly return the last element
-                    quantileValue = sorted[sorted.length - 1]
+                    quantileValue = sorted[sorted.length - 1];
                 } else if (pVal === 0) {
                    // If p is 0, directly return the first element
-                   quantileValue = sorted[0]
-                } else if ( idx % 1 !== 0) {
+                   quantileValue = sorted[0];
+                } else if (idx % 1 !== 0) {
                    // If p is not integer, return the next element in array
-                    quantileValue = sorted[Math.ceil(idx) - 1]
+                    quantileValue = sorted[Math.ceil(idx) - 1];
                 } else if (sample.length % 2 === 0) {
                     // If the list has even-length, we'll take the average of this number
                     // and the next value, if there is one
@@ -664,17 +664,17 @@
                     quantileValue = sorted[idx];
                 }
             }
-            
+
             // Now, add the value to the result array
             results.push(quantileValue);
         }
-        
-        if (typeof(p) === "number") {
+
+        if (typeof(p) === 'number') {
             // If we have wrapped the input values, we need to unwrap the response
             return results[0];
         } else {
             // else simply return the results array
-            return results;         
+            return results;
         }
     }
 
