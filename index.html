@@ -63,58 +63,74 @@
 
 
 
+
+
+
 <p>Basic contracts of functions:</p>
 <ul>
 <li>Functions do not modify their arguments e.g. change their order</li>
 <li>Invalid input, like empty lists to functions that need 1+ items to work, will cause functions to return <code>null</code>.</li>
 </ul>
-<h1>Basic Array Operations</h1>
-<h3>.mixin()</h3>
+<h1 id="basic-array-operations">Basic Array Operations</h1>
+<h3 id="-mixin-">.mixin()</h3>
 <p><em>Optionally</em> mix in the following functions into the <code>Array</code> prototype. Otherwise
 you can use them off of the simple-statistics object itself.</p>
-<h3>.mean(x)</h3>
+<h3 id="-mean-x-">.mean(x)</h3>
 <p>Mean of a single-dimensional Array of numbers. <em>Also available as <code>.average(x)</code></em></p>
-<h3>.sum(x)</h3>
+<h3 id="-sum-x-">.sum(x)</h3>
 <p>Sum of a single-dimensional Array of numbers.</p>
-<h3>.variance(x)</h3>
+<h3 id="-variance-x-">.variance(x)</h3>
 <p><a href="http://en.wikipedia.org/wiki/Variance">Variance</a> of a single-dimensional Array of numbers.</p>
-<h3>.standard_deviation(x)</h3>
+<h3 id="-standard_deviation-x-">.standard_deviation(x)</h3>
 <p><a href="http://en.wikipedia.org/wiki/Standard_deviation">Standard Deviation</a> of a single-dimensional Array of numbers.</p>
-<h3>.median_absolute_deviation(x)</h3>
+<h3 id="-median_absolute_deviation-x-">.median_absolute_deviation(x)</h3>
 <p>The Median Absolute Deviation (MAD) is a robust measure of statistical
 dispersion. It is more resilient to outliers than the standard deviation.
 Accepts a single-dimensional array of numbers and returns a dispersion value.</p>
 <p>Also aliased to <code>.mad(x)</code> for brevity.</p>
-<h3>.median(x)</h3>
+<h3 id="-median-x-">.median(x)</h3>
 <p><a href="http://en.wikipedia.org/wiki/Median">Median</a> of a single-dimensional array of numbers.</p>
-<h3>.geometric_mean(x)</h3>
+<h3 id="-geometric_mean-x-">.geometric_mean(x)</h3>
 <p><a href="http://en.wikipedia.org/wiki/Geometric_mean">Geometric mean</a> of a single-dimensional array of <strong>positive</strong> numbers.</p>
-<h3>.min(x)</h3>
+<h3 id="-min-x-">.min(x)</h3>
 <p>Finds the minimum of a single-dimensional array of numbers. This runs in linear <code>O(n)</code> time.</p>
-<h3>.max(x)</h3>
+<h3 id="-max-x-">.max(x)</h3>
 <p>Finds the maximum of a single-dimensional array of numbers. This runs in linear <code>O(n)</code> time.</p>
-<h3>.t_test(sample, x)</h3>
+<h3 id="-t_test-sample-x-">.t_test(sample, x)</h3>
 <p>Does a <a href="http://en.wikipedia.org/wiki/Student&#39;s_t-test">student&#39;s t-test</a> of a dataset <code>sample</code>, represented by a single-dimensional array of numbers. <code>x</code> is the known value, and the result is a measure of <a href="http://en.wikipedia.org/wiki/Statistical_significance">statistical significance</a>.</p>
-<h3>.sample_variance(x)</h3>
+<h3 id="-t_test_two_sample-sample_x-sample_y-difference-">.t_test_two_sample(sample_x, sample_y, difference)</h3>
+<p>The two-sample t-test is used to compare samples from two populations or groups,
+confirming or denying the suspicion (null hypothesis) that the populations are
+the same. It returns a t-value that you can then look up to give certain
+judgements of confidence based on a t distribution table.</p>
+<p>This implementation expects the samples <code>sample_x</code> and <code>sample_y</code> to be given
+as one-dimensional arrays of more than one number each.</p>
+<h3 id="-sample_variance-x-">.sample_variance(x)</h3>
 <p>Produces <a href="http://mathworld.wolfram.com/SampleVariance.html">sample variance</a>
 of a single-dimensional array of numbers.</p>
-<h3>.sample_covariance(x)</h3>
+<h3 id="-sample_covariance-x-">.sample_covariance(x)</h3>
 <p>Produces <a href="http://en.wikipedia.org/wiki/Sample_mean_and_sample_covariance">sample covariance</a>
 of two single-dimensional arrays of numbers.</p>
-<h3>.sample_correlation(x)</h3>
+<h3 id="-sample_correlation-x-">.sample_correlation(x)</h3>
 <p>Produces <a href="http://en.wikipedia.org/wiki/Correlation_and_dependence">sample correlation</a>
 of two single-dimensional arrays of numbers.</p>
-<h3>.quantile(sample, p)</h3>
+<h3 id="-quantile-sample-p-">.quantile(sample, p)</h3>
 <p>Does a <a href="http://en.wikipedia.org/wiki/Quantile">quantile</a> of a dataset <code>sample</code>,
 at p. For those familiary with the <code>k/q</code> syntax, <code>p == k/q</code>. <code>sample</code> must
-be a single-dimensional array of numbers, and p must be a number greater
-than zero and less than one.</p>
-<h3>.iqr(sample)</h3>
+be a single-dimensional array of numbers. p must be a number greater than or equal to
+than zero and less or equal to than one, or an array of numbers following that rule.
+If an array is given, an array of results will be returned instead of a single
+number.</p>
+<h3 id="-quantile_sorted-sample-p-">.quantile_sorted(sample, p)</h3>
+<p>Does a <a href="http://en.wikipedia.org/wiki/Quantile">quantile</a> of a dataset <code>sample</code>,
+at p. <code>sample</code> must be a one-dimensional <em>sorted</em> array of numbers, and
+<code>p</code> must be a single number from zero to one.</p>
+<h3 id="-iqr-sample-">.iqr(sample)</h3>
 <p>Calculates the <a href="http://en.wikipedia.org/wiki/Interquartile_range">Interquartile range</a> of
 a sample - the difference between the upper and lower quartiles. Useful
 as a measure of dispersion.</p>
 <p><em>Also available as <code>.interquartile_range(x)</code></em></p>
-<h3>.sample_skewness(sample)</h3>
+<h3 id="-sample_skewness-sample-">.sample_skewness(sample)</h3>
 <p>Calculates the <a href="http://en.wikipedia.org/wiki/Skewness">skewness</a> of
 a sample, a measure of the extent to which a probability distribution of a
 real-valued random variable &quot;leans&quot; to one side of the mean.
@@ -122,48 +138,48 @@ The skewness value can be positive or negative, or even undefined.</p>
 <p>This implementation uses the <a href="http://en.wikipedia.org/wiki/Skewness#Pearson.27s_skewness_coefficients">Fisher-Pearson standardized moment coefficient</a>,
 which means that it behaves the same as Excel, Minitab, SAS, and SPSS.</p>
 <p>Skewness is only valid for samples of over three values.</p>
-<h3>.jenks(data, number_of_classes)</h3>
+<h3 id="-jenks-data-number_of_classes-">.jenks(data, number_of_classes)</h3>
 <p>Find the <a href="http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization">Jenks Natural Breaks</a> for
 a single-dimensional array of numbers as input and a desired <code>number_of_classes</code>.
 The result is a single-dimensional with class breaks, including the minimum
 and maximum of the input array.</p>
-<h3>.r_squared(data, function)</h3>
+<h3 id="-r_squared-data-function-">.r_squared(data, function)</h3>
 <p>Find the <a href="http://en.wikipedia.org/wiki/Coefficient_of_determination">r-squared</a> value of a particular dataset, expressed as a two-dimensional <code>Array</code> of numbers, against a <code>Function</code>.</p>
 <pre><code>var r_squared = ss.r_squared([[1, 1]], function(x) { return x * 2; });</code></pre>
-<h3>.cumulative_std_normal_probability(z)</h3>
+<h3 id="-cumulative_std_normal_probability-z-">.cumulative_std_normal_probability(z)</h3>
 <p>Look up the given <code>z</code> value in a <a href="http://en.wikipedia.org/wiki/Standard_normal_table">standard normal table</a>
 to calculate the probability of a random variable appearing with a given value.</p>
-<h3>.z_score(x, mean, standard_deviation)</h3>
+<h3 id="-z_score-x-mean-standard_deviation-">.z_score(x, mean, standard_deviation)</h3>
 <p>The standard score is the number of standard deviations an observation
 or datum is above or below the mean.</p>
-<h3>.standard_normal_table</h3>
+<h3 id="-standard_normal_table">.standard_normal_table</h3>
 <p>A <a href="http://en.wikipedia.org/wiki/Standard_normal_table">standard normal table</a> from
 which to pull values of Φ (phi).</p>
-<h2>Regression</h2>
-<h3>.linear_regression()</h3>
+<h2 id="regression">Regression</h2>
+<h3 id="-linear_regression-">.linear_regression()</h3>
 <p>Create a new linear regression solver.</p>
-<h4>.data([[1, 1], [2, 2]])</h4>
+<h4 id="-data-1-1-2-2-">.data([[1, 1], [2, 2]])</h4>
 <p>Set the data of a linear regression. The input is a two-dimensional array of numbers, which are treated as coordinates, like <code>[[x, y], [x1, y1]]</code>.</p>
-<h4>.line()</h4>
+<h4 id="-line-">.line()</h4>
 <p>Get the linear regression line: this returns a function that you can
 give <code>x</code> values and it will return <code>y</code> values. Internally, this uses the <code>m()</code>
 and <code>b()</code> values and the classic <code>y = mx + b</code> equation.</p>
 <pre><code>var linear_regression_line = ss.linear_regression()
     .data([[0, 1], [2, 2], [3, 3]]).line();
 linear_regression_line(5);</code></pre>
-<h4>.m()</h4>
+<h4 id="-m-">.m()</h4>
 <p>Just get the slope of the fitted regression line, the <code>m</code> component of the full
 line equation. Returns a number.</p>
-<h4>.b()</h4>
+<h4 id="-b-">.b()</h4>
 <p>Just get the y-intercept of the fitted regression line, the <code>b</code> component
 of the line equation. Returns a number.</p>
-<h2>Classification</h2>
-<h3>.bayesian()</h3>
+<h2 id="classification">Classification</h2>
+<h3 id="-bayesian-">.bayesian()</h3>
 <p>Create a naïve bayesian classifier.</p>
-<h3>.train(item, category)</h3>
+<h3 id="-train-item-category-">.train(item, category)</h3>
 <p>Train the classifier to classify a certain item, given as an object with keys,
 to be in a certain category, given as a string.</p>
-<h3>.score(item)</h3>
+<h3 id="-score-item-">.score(item)</h3>
 <p>Get the classifications of a certain item, given as an object of
 <code>category -&gt; score</code> mappings.</p>
 <pre><code>var bayes = ss.bayesian();
@@ -171,7 +187,13 @@ bayes.train({ species: &#39;Cat&#39; }, &#39;animal&#39;);
 bayes.score({ species: &#39;Cat&#39; });
 // { animal: 1 }</code></pre>
 
-                    
+
+
+
+
+
+
+
 
 
                 </div>
