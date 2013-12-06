@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.6.0
+
+* Adds `simple_statistics.quantile_sorted` thanks to [rluta](http://github.com/rluta)
+* `simple_statistics.quantile` now accepts a sorted list of quantiles as a second argument
+* Improved test coverage
+
 ## 0.5.0
 
 * Adds `simple_statistics.cumulative_std_normal_probability` by [doronlinder](https://github.com/doronlinder)
