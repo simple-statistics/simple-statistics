@@ -683,7 +683,7 @@
     // A measure of statistical dispersion, or how scattered, spread, or
     // concentrated a distribution is. It's computed as the difference betwen
     // the third quartile and first quartile.
-    function iqr(sample){
+    function iqr(sample) {
         // We can't derive quantiles from an empty list
         if (sample.length === 0) return null;
 
