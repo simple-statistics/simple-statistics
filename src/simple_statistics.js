@@ -606,7 +606,7 @@
     //
     // Sample is a one-dimensional array of numbers,
     // and p is either a decimal number from 0 to 1 or an array of decimal
-    // numbers from 0 to 1. 
+    // numbers from 0 to 1.
     // In terms of a k/q quantile, p = k/q - it's just dealing with fractions or dealing
     // with decimal values.
     // When p is an array, the result of the function is also an array containing the appropriate
@@ -620,61 +620,40 @@
         // the values in sorted order.
         var sorted = sample.slice().sort(function (a, b) { return a - b; });
 
-        // Initialize the input parameters array
-        var quantiles = [];
-
-        if (typeof(p) === 'number') {
-            // If we have a single p value, wrap it inside an array
-            quantiles.push(p);
-        } else {
-            // Else use it directly as the input arrau
-            quantiles = p;
-        }
-
-        // Initialize the result array
-        var results = [];
-
-        // For each requested quantile
-        for (var i = 0; i < quantiles.length; i++) {
-            var pVal = quantiles[i];
-            // Find a potential index in the list. In Wikipedia's terms, this
-            // is I<sub>p</sub>.
-            var idx = (sorted.length) * pVal;
-            // Initialize the default response for non-valid quantile input
-            var quantileValue = null;
-
-            // Make sure the requested quantile value is within the [0..1] range
-            if (pVal <= 1 && pVal >= 0) {
-                if (pVal === 1) {
-                    // If p is 1, directly return the last element
-                    quantileValue = sorted[sorted.length - 1];
-                } else if (pVal === 0) {
-                   // If p is 0, directly return the first element
-                   quantileValue = sorted[0];
-                } else if (idx % 1 !== 0) {
-                   // If p is not integer, return the next element in array
-                    quantileValue = sorted[Math.ceil(idx) - 1];
-                } else if (sample.length % 2 === 0) {
-                    // If the list has even-length, we'll take the average of this number
-                    // and the next value, if there is one
-                    quantileValue = (sorted[idx - 1] + sorted[idx]) / 2;
-                } else {
-                    // Finally, in the simple case of an integer value
-                    // with an odd-length list, return the sample value at the index.
-                    quantileValue = sorted[idx];
-                }
+        if (p.length) {
+            // Initialize the result array
+            var results = [];
+            // For each requested quantile
+            for (var i = 0; i < p.length; i++) {
+                results[i] = quantileSorted(sorted, p[i]);
             }
-
-            // Now, add the value to the result array
-            results.push(quantileValue);
-        }
-
-        if (typeof(p) === 'number') {
-            // If we have wrapped the input values, we need to unwrap the response
-            return results[0];
-        } else {
-            // else simply return the results array
             return results;
+        } else {
+            return quantileSorted(sorted, p);
+        }
+    }
+
+    function quantileSorted(sample, p) {
+        var idx = (sample.length) * p;
+        if (p < 0 || p > 1) {
+            return null;
+        } else if (p === 1) {
+            // If p is 1, directly return the last element
+            return sample[sample.length - 1];
+        } else if (p === 0) {
+           // If p is 0, directly return the first element
+           return sample[0];
+        } else if (idx % 1 !== 0) {
+           // If p is not integer, return the next element in array
+            return sample[Math.ceil(idx) - 1];
+        } else if (sample.length % 2 === 0) {
+            // If the list has even-length, we'll take the average of this number
+            // and the next value, if there is one
+            return (sample[idx - 1] + sample[idx]) / 2;
+        } else {
+            // Finally, in the simple case of an integer value
+            // with an odd-length list, return the sample value at the index.
+            return sample[idx];
         }
     }
 
