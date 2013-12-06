@@ -18,10 +18,10 @@
         <li id="section-1">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
+              <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              <h1>simple-statistics</h1>
+              <h1 id="simple-statistics">simple-statistics</h1>
 <p>A simple, literate statistics system. The code below uses the
 <a href="http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth">Javascript module pattern</a>,
 eventually assigning <code>simple-statistics</code> to <code>ss</code> in browsers or the
@@ -29,7 +29,7 @@ eventually assigning <code>simple-statistics</code> to <code>ss</code> in browse
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>(<span class="keyword">function</span>() {
+            <div class="content"><div class='highlight'><pre>(<span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
     <span class="keyword">var</span> ss = {};
 
     <span class="keyword">if</span> (<span class="keyword">typeof</span> module !== <span class="string">'undefined'</span>) {</pre></div></div>
@@ -74,10 +74,10 @@ so you can simply refer to it as <code>ss</code>.</p>
         <li id="section-4">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
+              <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <h1><a href="http://en.wikipedia.org/wiki/Linear_regression">Linear Regression</a></h1>
+              <h1 id="-linear-regression-http-en-wikipedia-org-wiki-linear_regression-"><a href="http://en.wikipedia.org/wiki/Linear_regression">Linear Regression</a></h1>
 <p><a href="http://en.wikipedia.org/wiki/Simple_linear_regression">Simple linear regression</a>
 is a simple way to find a fitted line
 between a set of coordinates.</p>
@@ -101,7 +101,7 @@ between a set of coordinates.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        linreg.data = <span class="keyword">function</span>(x) {
+            <div class="content"><div class='highlight'><pre>        linreg.data = <span class="function"><span class="keyword">function</span><span class="params">(x)</span> {</span>
             <span class="keyword">if</span> (!arguments.length) <span class="keyword">return</span> data;
             data = x.slice();
             <span class="keyword">return</span> linreg;
@@ -121,7 +121,7 @@ by calculating the least sum of squares</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        linreg.mb = <span class="keyword">function</span>() {
+            <div class="content"><div class='highlight'><pre>        linreg.mb = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
             <span class="keyword">var</span> m, b;</pre></div></div>
             
         </li>
@@ -133,15 +133,12 @@ by calculating the least sum of squares</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
-              <p>if there&#39;s only one point, arbitrarily choose a slope of 0
-and a y-intercept of whatever the y of the initial point is</p>
+              <p>Store data length in a local variable to reduce
+repeated object property lookups</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>            <span class="keyword">if</span> (data.length == <span class="number">1</span>) {
-                m = <span class="number">0</span>;
-                b = data[<span class="number">0</span>][<span class="number">1</span>];
-            } <span class="keyword">else</span> {</pre></div></div>
+            <div class="content"><div class='highlight'><pre>            <span class="keyword">var</span> data_length = data.length;</pre></div></div>
             
         </li>
         
@@ -151,6 +148,25 @@ and a y-intercept of whatever the y of the initial point is</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>if there&#39;s only one point, arbitrarily choose a slope of 0
+and a y-intercept of whatever the y of the initial point is</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="keyword">if</span> (data_length === <span class="number">1</span>) {
+                m = <span class="number">0</span>;
+                b = data[<span class="number">0</span>][<span class="number">1</span>];
+            } <span class="keyword">else</span> {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
               <p>Initialize our sums and scope the <code>m</code> and <code>b</code>
 variables that define the line.</p>
@@ -163,42 +179,18 @@ variables that define the line.</p>
         </li>
         
         
-        <li id="section-9">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
-              </div>
-              <p>Gather the sum of all x values, the sum of all
-y values, and the sum of x^2 and (x*y) for each
-value.</p>
-<p>In math notation, these would be SS_x, SS_y, SS_xx, and SS_xy</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>                <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; data.length; i++) {
-                    sum_x += data[i][<span class="number">0</span>];
-                    sum_y += data[i][<span class="number">1</span>];
-
-                    sum_xx += data[i][<span class="number">0</span>] * data[i][<span class="number">0</span>];
-                    sum_xy += data[i][<span class="number">0</span>] * data[i][<span class="number">1</span>];
-                }</pre></div></div>
-            
-        </li>
-        
-        
         <li id="section-10">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
-              <p><code>m</code> is the slope of the regression line</p>
+              <p>Use local variables to grab point values 
+with minimal object property lookups</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>                m = ((data.length * sum_xy) - (sum_x * sum_y)) /
-                    ((data.length * sum_xx) - (sum_x * sum_x));</pre></div></div>
+            <div class="content"><div class='highlight'><pre>                <span class="keyword">var</span> point, x, y;</pre></div></div>
             
         </li>
         
@@ -209,12 +201,24 @@ value.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
-              <p><code>b</code> is the y-intercept of the line.</p>
+              <p>Gather the sum of all x values, the sum of all
+y values, and the sum of x^2 and (x*y) for each
+value.</p>
+<p>In math notation, these would be SS_x, SS_y, SS_xx, and SS_xy</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>                b = (sum_y / data.length) - ((m * sum_x) / data.length);
-            }</pre></div></div>
+            <div class="content"><div class='highlight'><pre>                <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; data_length; i++) {
+                    point = data[i];
+                    x = point[<span class="number">0</span>];
+                    y = point[<span class="number">1</span>];
+
+                    sum_x += x;
+                    sum_y += y;
+
+                    sum_xx += x * x;
+                    sum_xy += x * y;
+                }</pre></div></div>
             
         </li>
         
@@ -224,6 +228,38 @@ value.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p><code>m</code> is the slope of the regression line</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                m = ((data_length * sum_xy) - (sum_x * sum_y)) /
+                    ((data_length * sum_xx) - (sum_x * sum_x));</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p><code>b</code> is the y-intercept of the line.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                b = (sum_y / data_length) - ((m * sum_x) / data_length);
+            }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
               <p>Return both values as an object.</p>
 
@@ -235,55 +271,19 @@ value.</p>
         </li>
         
         
-        <li id="section-13">
+        <li id="section-15">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-13">&#182;</a>
+                <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
               <p>a shortcut for simply getting the slope of the regression line</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        linreg.m = <span class="keyword">function</span>() {
+            <div class="content"><div class='highlight'><pre>        linreg.m = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
             <span class="keyword">return</span> linreg.mb().m;
         };</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-14">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-14">&#182;</a>
-              </div>
-              <p>a shortcut for simply getting the y-intercept of the regression
-line.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>        linreg.b = <span class="keyword">function</span>() {
-            <span class="keyword">return</span> linreg.mb().b;
-        };</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-15">
-            <div class="annotation">
-              
-              <div class="pilwrap for-h2">
-                <a class="pilcrow" href="#section-15">&#182;</a>
-              </div>
-              <h2>Fitting The Regression Line</h2>
-<p>This is called after <code>.data()</code> and returns the
-equation <code>y = f(x)</code> which gives the position
-of the regression line at each point in <code>x</code>.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>        linreg.line = <span class="keyword">function</span>() {</pre></div></div>
             
         </li>
         
@@ -293,6 +293,42 @@ of the regression line at each point in <code>x</code>.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>a shortcut for simply getting the y-intercept of the regression
+line.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        linreg.b = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+            <span class="keyword">return</span> linreg.mb().b;
+        };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <h2 id="fitting-the-regression-line">Fitting The Regression Line</h2>
+<p>This is called after <code>.data()</code> and returns the
+equation <code>y = f(x)</code> which gives the position
+of the regression line at each point in <code>x</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        linreg.line = <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
               <p>Get the slope, <code>m</code>, and y-intercept, <code>b</code>, of the line.</p>
 
@@ -305,11 +341,11 @@ of the regression line at each point in <code>x</code>.</p>
         </li>
         
         
-        <li id="section-17">
+        <li id="section-19">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
+                <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               <p>Return a function that computes a <code>y</code> value for each
 x value it is given, based on the values of <code>b</code> and <code>a</code>
@@ -317,7 +353,7 @@ that we just computed.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>            <span class="keyword">return</span> <span class="keyword">function</span>(x) {
+            <div class="content"><div class='highlight'><pre>            <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">(x)</span> {</span>
                 <span class="keyword">return</span> b + (m * x);
             };
         };
@@ -328,13 +364,13 @@ that we just computed.</p>
         </li>
         
         
-        <li id="section-18">
+        <li id="section-20">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
-                <a class="pilcrow" href="#section-18">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
-              <h1><a href="http://en.wikipedia.org/wiki/Coefficient_of_determination">R Squared</a></h1>
+              <h1 id="-r-squared-http-en-wikipedia-org-wiki-coefficient_of_determination-"><a href="http://en.wikipedia.org/wiki/Coefficient_of_determination">R Squared</a></h1>
 <p>The r-squared value of data compared with a function <code>f</code>
 is the sum of the squared differences between the prediction
 and the actual value.</p>
@@ -347,11 +383,11 @@ and the actual value.</p>
         </li>
         
         
-        <li id="section-19">
+        <li id="section-21">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
+                <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
               <p>Compute the average y value for the actual
 data set in order to compute the
@@ -368,11 +404,11 @@ data set in order to compute the
         </li>
         
         
-        <li id="section-20">
+        <li id="section-22">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
+                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               <p>Compute the total sum of squares - the
 squared difference between each point
@@ -388,11 +424,11 @@ and the average of all points.</p>
         </li>
         
         
-        <li id="section-21">
+        <li id="section-23">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
+                <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               <p>Finally estimate the error: the squared
 difference between the estimate and the actual data
@@ -408,11 +444,11 @@ value at each point.</p>
         </li>
         
         
-        <li id="section-22">
+        <li id="section-24">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
+                <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
               <p>As the error grows larger, it&#39;s ratio to the
 sum of squares increases and the r squared
@@ -426,13 +462,13 @@ value grows lower.</p>
         </li>
         
         
-        <li id="section-23">
+        <li id="section-25">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
-              <h1><a href="http://en.wikipedia.org/wiki/Naive_Bayes_classifier">Bayesian Classifier</a></h1>
+              <h1 id="-bayesian-classifier-http-en-wikipedia-org-wiki-naive_bayes_classifier-"><a href="http://en.wikipedia.org/wiki/Naive_Bayes_classifier">Bayesian Classifier</a></h1>
 <p>This is a naïve bayesian classifier that takes
 singly-nested objects.</p>
 
@@ -443,11 +479,11 @@ singly-nested objects.</p>
         </li>
         
         
-        <li id="section-24">
+        <li id="section-26">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-26">&#182;</a>
               </div>
               <p>The <code>bayes_model</code> object is what will be exposed
 by this closure, with all of its extended methods, and will
@@ -460,11 +496,11 @@ have access to all scope variables, like <code>total_count</code>.</p>
         </li>
         
         
-        <li id="section-25">
+        <li id="section-27">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+                <a class="pilcrow" href="#section-27">&#182;</a>
               </div>
               <p>The number of items that are currently
 classified in the model</p>
@@ -476,11 +512,11 @@ classified in the model</p>
         </li>
         
         
-        <li id="section-26">
+        <li id="section-28">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
+                <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
               <p>Every item classified in the model</p>
 
@@ -491,28 +527,28 @@ classified in the model</p>
         </li>
         
         
-        <li id="section-27">
+        <li id="section-29">
             <div class="annotation">
               
-              <div class="pilwrap for-h2">
-                <a class="pilcrow" href="#section-27">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
-              <h2>Train</h2>
+              <h2 id="train">Train</h2>
 <p>Train the classifier with a new item, which has a single
 dimension of Javascript literal keys and values.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        bayes_model.train = <span class="keyword">function</span>(item, category) {</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        bayes_model.train = <span class="function"><span class="keyword">function</span><span class="params">(item, category)</span> {</span></pre></div></div>
             
         </li>
         
         
-        <li id="section-28">
+        <li id="section-30">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-28">&#182;</a>
+                <a class="pilcrow" href="#section-30">&#182;</a>
               </div>
               <p>If the data object doesn&#39;t have any values
 for this category, create a new object for it.</p>
@@ -524,11 +560,11 @@ for this category, create a new object for it.</p>
         </li>
         
         
-        <li id="section-29">
+        <li id="section-31">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-29">&#182;</a>
+                <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
               <p>Iterate through each key in the item.</p>
 
@@ -540,11 +576,11 @@ for this category, create a new object for it.</p>
         </li>
         
         
-        <li id="section-30">
+        <li id="section-32">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-30">&#182;</a>
+                <a class="pilcrow" href="#section-32">&#182;</a>
               </div>
               <p>Initialize the nested object <code>data[category][k][item[k]]</code>
 with an object of keys that equal 0.</p>
@@ -557,11 +593,11 @@ with an object of keys that equal 0.</p>
         </li>
         
         
-        <li id="section-31">
+        <li id="section-33">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-31">&#182;</a>
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <p>And increment the key for this key/value combination.</p>
 
@@ -573,11 +609,11 @@ with an object of keys that equal 0.</p>
         </li>
         
         
-        <li id="section-32">
+        <li id="section-34">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-32">&#182;</a>
+                <a class="pilcrow" href="#section-34">&#182;</a>
               </div>
               <p>Increment the number of items classified</p>
 
@@ -589,28 +625,28 @@ with an object of keys that equal 0.</p>
         </li>
         
         
-        <li id="section-33">
+        <li id="section-35">
             <div class="annotation">
               
-              <div class="pilwrap for-h2">
-                <a class="pilcrow" href="#section-33">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
-              <h2>Score</h2>
+              <h2 id="score">Score</h2>
 <p>Generate a score of how well this item matches all
 possible categories based on its attributes</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        bayes_model.score = <span class="keyword">function</span>(item) {</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        bayes_model.score = <span class="function"><span class="keyword">function</span><span class="params">(item)</span> {</span></pre></div></div>
             
         </li>
         
         
-        <li id="section-34">
+        <li id="section-36">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-34">&#182;</a>
+                <a class="pilcrow" href="#section-36">&#182;</a>
               </div>
               <p>Initialize an empty array of odds per category.</p>
 
@@ -621,11 +657,11 @@ possible categories based on its attributes</p>
         </li>
         
         
-        <li id="section-35">
+        <li id="section-37">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-35">&#182;</a>
+                <a class="pilcrow" href="#section-37">&#182;</a>
               </div>
               <p>Iterate through each key in the item,
 then iterate through each category that has been used
@@ -640,11 +676,11 @@ in previous calls to <code>.train()</code></p>
         </li>
         
         
-        <li id="section-36">
+        <li id="section-38">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-36">&#182;</a>
+                <a class="pilcrow" href="#section-38">&#182;</a>
               </div>
               <p>Create an empty object for storing key - value combinations
 for this category.</p>
@@ -656,11 +692,11 @@ for this category.</p>
         </li>
         
         
-        <li id="section-37">
+        <li id="section-39">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-37">&#182;</a>
+                <a class="pilcrow" href="#section-39">&#182;</a>
               </div>
               <p>If this item doesn&#39;t even have a property, it counts for nothing,
 but if it does have the property that we&#39;re looking for from
@@ -680,11 +716,11 @@ versus the whole population.</p>
         </li>
         
         
-        <li id="section-38">
+        <li id="section-40">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-38">&#182;</a>
+                <a class="pilcrow" href="#section-40">&#182;</a>
               </div>
               <p>Set up a new object that will contain sums of these odds by category</p>
 
@@ -697,11 +733,11 @@ versus the whole population.</p>
         </li>
         
         
-        <li id="section-39">
+        <li id="section-41">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-39">&#182;</a>
+                <a class="pilcrow" href="#section-41">&#182;</a>
               </div>
               <p>Tally all of the odds for each category-combination pair -
 the non-existence of a category does not add anything to the
@@ -721,11 +757,11 @@ score.</p>
         </li>
         
         
-        <li id="section-40">
+        <li id="section-42">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-40">&#182;</a>
+                <a class="pilcrow" href="#section-42">&#182;</a>
               </div>
               <p>Return the completed model.</p>
 
@@ -737,13 +773,13 @@ score.</p>
         </li>
         
         
-        <li id="section-41">
+        <li id="section-43">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
-                <a class="pilcrow" href="#section-41">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-43">&#182;</a>
               </div>
-              <h1>sum</h1>
+              <h1 id="sum">sum</h1>
 <p>is simply the result of adding all numbers
 together, starting from zero.</p>
 <p>This runs on <code>O(n)</code>, linear time in respect to the array</p>
@@ -761,56 +797,19 @@ together, starting from zero.</p>
         </li>
         
         
-        <li id="section-42">
+        <li id="section-44">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
-                <a class="pilcrow" href="#section-42">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-44">&#182;</a>
               </div>
-              <h1>mean</h1>
+              <h1 id="mean">mean</h1>
 <p>is the sum over the number of values</p>
 <p>This runs on <code>O(n)</code>, linear time in respect to the array</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>    <span class="function"><span class="keyword">function</span> <span class="title">mean</span><span class="params">(x)</span> {</span></pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-43">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-43">&#182;</a>
-              </div>
-              <p>The mean of no numbers is null</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>        <span class="keyword">if</span> (x.length === <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">null</span>;
-
-        <span class="keyword">return</span> sum(x) / x.length;
-    }</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-44">
-            <div class="annotation">
-              
-              <div class="pilwrap for-h1">
-                <a class="pilcrow" href="#section-44">&#182;</a>
-              </div>
-              <h1>geometric mean</h1>
-<p>a mean function that is more useful for numbers in different
-ranges.</p>
-<p>this is the nth root of the input numbers multipled by each other</p>
-<p>This runs on <code>O(n)</code>, linear time in respect to the array</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="function"><span class="keyword">function</span> <span class="title">geometric_mean</span><span class="params">(x)</span> {</span></pre></div></div>
             
         </li>
         
@@ -825,7 +824,10 @@ ranges.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="keyword">if</span> (x.length === <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">null</span>;</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        <span class="keyword">if</span> (x.length === <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">null</span>;
+
+        <span class="keyword">return</span> sum(x) / x.length;
+    }</pre></div></div>
             
         </li>
         
@@ -835,6 +837,40 @@ ranges.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-46">&#182;</a>
+              </div>
+              <h1 id="geometric-mean">geometric mean</h1>
+<p>a mean function that is more useful for numbers in different
+ranges.</p>
+<p>this is the nth root of the input numbers multipled by each other</p>
+<p>This runs on <code>O(n)</code>, linear time in respect to the array</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="function"><span class="keyword">function</span> <span class="title">geometric_mean</span><span class="params">(x)</span> {</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-47">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-47">&#182;</a>
+              </div>
+              <p>The mean of no numbers is null</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="keyword">if</span> (x.length === <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">null</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-48">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-48">&#182;</a>
               </div>
               <p>the starting value.</p>
 
@@ -847,11 +883,11 @@ ranges.</p>
         </li>
         
         
-        <li id="section-47">
+        <li id="section-49">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-47">&#182;</a>
+                <a class="pilcrow" href="#section-49">&#182;</a>
               </div>
               <p>the geometric mean is only valid for positive numbers</p>
 
@@ -862,11 +898,11 @@ ranges.</p>
         </li>
         
         
-        <li id="section-48">
+        <li id="section-50">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-48">&#182;</a>
+                <a class="pilcrow" href="#section-50">&#182;</a>
               </div>
               <p>repeatedly multiply the value by each number</p>
 
@@ -881,13 +917,13 @@ ranges.</p>
         </li>
         
         
-        <li id="section-49">
+        <li id="section-51">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
-                <a class="pilcrow" href="#section-49">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-51">&#182;</a>
               </div>
-              <h1>min</h1>
+              <h1 id="min">min</h1>
 <p>This is simply the minimum number in the set.</p>
 <p>This runs on <code>O(n)</code>, linear time in respect to the array</p>
 
@@ -900,11 +936,11 @@ ranges.</p>
         </li>
         
         
-        <li id="section-50">
+        <li id="section-52">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-50">&#182;</a>
+                <a class="pilcrow" href="#section-52">&#182;</a>
               </div>
               <p>On the first iteration of this loop, min is
 undefined and is thus made the minimum element in the array</p>
@@ -919,13 +955,13 @@ undefined and is thus made the minimum element in the array</p>
         </li>
         
         
-        <li id="section-51">
+        <li id="section-53">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
-                <a class="pilcrow" href="#section-51">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-53">&#182;</a>
               </div>
-              <h1>max</h1>
+              <h1 id="max">max</h1>
 <p>This is simply the maximum number in the set.</p>
 <p>This runs on <code>O(n)</code>, linear time in respect to the array</p>
 
@@ -938,11 +974,11 @@ undefined and is thus made the minimum element in the array</p>
         </li>
         
         
-        <li id="section-52">
+        <li id="section-54">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-52">&#182;</a>
+                <a class="pilcrow" href="#section-54">&#182;</a>
               </div>
               <p>On the first iteration of this loop, max is
 undefined and is thus made the maximum element in the array</p>
@@ -957,13 +993,13 @@ undefined and is thus made the maximum element in the array</p>
         </li>
         
         
-        <li id="section-53">
+        <li id="section-55">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
-                <a class="pilcrow" href="#section-53">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-55">&#182;</a>
               </div>
-              <h1><a href="http://en.wikipedia.org/wiki/Variance">variance</a></h1>
+              <h1 id="-variance-http-en-wikipedia-org-wiki-variance-"><a href="http://en.wikipedia.org/wiki/Variance">variance</a></h1>
 <p>is the sum of squared deviations from the mean</p>
 <p>depends on <code>mean()</code></p>
 
@@ -974,11 +1010,11 @@ undefined and is thus made the maximum element in the array</p>
         </li>
         
         
-        <li id="section-54">
+        <li id="section-56">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-54">&#182;</a>
+                <a class="pilcrow" href="#section-56">&#182;</a>
               </div>
               <p>The variance of no numbers is null</p>
 
@@ -992,11 +1028,11 @@ undefined and is thus made the maximum element in the array</p>
         </li>
         
         
-        <li id="section-55">
+        <li id="section-57">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-55">&#182;</a>
+                <a class="pilcrow" href="#section-57">&#182;</a>
               </div>
               <p>Make a list of squared deviations from the mean.</p>
 
@@ -1009,11 +1045,11 @@ undefined and is thus made the maximum element in the array</p>
         </li>
         
         
-        <li id="section-56">
+        <li id="section-58">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-56">&#182;</a>
+                <a class="pilcrow" href="#section-58">&#182;</a>
               </div>
               <p>Find the mean value of that list</p>
 
@@ -1025,13 +1061,13 @@ undefined and is thus made the maximum element in the array</p>
         </li>
         
         
-        <li id="section-57">
+        <li id="section-59">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
-                <a class="pilcrow" href="#section-57">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-59">&#182;</a>
               </div>
-              <h1><a href="http://en.wikipedia.org/wiki/Standard_deviation">standard deviation</a></h1>
+              <h1 id="-standard-deviation-http-en-wikipedia-org-wiki-standard_deviation-"><a href="http://en.wikipedia.org/wiki/Standard_deviation">standard deviation</a></h1>
 <p>is just the square root of the variance.</p>
 <p>depends on <code>variance()</code></p>
 
@@ -1042,11 +1078,11 @@ undefined and is thus made the maximum element in the array</p>
         </li>
         
         
-        <li id="section-58">
+        <li id="section-60">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-58">&#182;</a>
+                <a class="pilcrow" href="#section-60">&#182;</a>
               </div>
               <p>The standard deviation of no numbers is null</p>
 
@@ -1060,11 +1096,11 @@ undefined and is thus made the maximum element in the array</p>
         </li>
         
         
-        <li id="section-59">
+        <li id="section-61">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-59">&#182;</a>
+                <a class="pilcrow" href="#section-61">&#182;</a>
               </div>
               <p>The sum of deviations to the Nth power.
 When n=2 it&#39;s the sum of squared deviations.
@@ -1087,13 +1123,13 @@ When n=3 it&#39;s the sum of cubed deviations.</p>
         </li>
         
         
-        <li id="section-60">
+        <li id="section-62">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
-                <a class="pilcrow" href="#section-60">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-62">&#182;</a>
               </div>
-              <h1><a href="http://en.wikipedia.org/wiki/Variance">variance</a></h1>
+              <h1 id="-variance-http-en-wikipedia-org-wiki-variance-"><a href="http://en.wikipedia.org/wiki/Variance">variance</a></h1>
 <p>is the sum of squared deviations from the mean</p>
 <p>depends on <code>sum_nth_power_deviations</code></p>
 
@@ -1104,11 +1140,11 @@ When n=3 it&#39;s the sum of cubed deviations.</p>
         </li>
         
         
-        <li id="section-61">
+        <li id="section-63">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-61">&#182;</a>
+                <a class="pilcrow" href="#section-63">&#182;</a>
               </div>
               <p>The variance of no numbers is null</p>
 
@@ -1121,11 +1157,11 @@ When n=3 it&#39;s the sum of cubed deviations.</p>
         </li>
         
         
-        <li id="section-62">
+        <li id="section-64">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-62">&#182;</a>
+                <a class="pilcrow" href="#section-64">&#182;</a>
               </div>
               <p>Find the mean value of that list</p>
 
@@ -1137,13 +1173,13 @@ When n=3 it&#39;s the sum of cubed deviations.</p>
         </li>
         
         
-        <li id="section-63">
+        <li id="section-65">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
-                <a class="pilcrow" href="#section-63">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-65">&#182;</a>
               </div>
-              <h1><a href="http://en.wikipedia.org/wiki/Standard_deviation">standard deviation</a></h1>
+              <h1 id="-standard-deviation-http-en-wikipedia-org-wiki-standard_deviation-"><a href="http://en.wikipedia.org/wiki/Standard_deviation">standard deviation</a></h1>
 <p>is just the square root of the variance.</p>
 <p>depends on <code>sample_variance()</code></p>
 
@@ -1154,11 +1190,11 @@ When n=3 it&#39;s the sum of cubed deviations.</p>
         </li>
         
         
-        <li id="section-64">
+        <li id="section-66">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-64">&#182;</a>
+                <a class="pilcrow" href="#section-66">&#182;</a>
               </div>
               <p>The standard deviation of no numbers is null</p>
 
@@ -1172,13 +1208,13 @@ When n=3 it&#39;s the sum of cubed deviations.</p>
         </li>
         
         
-        <li id="section-65">
+        <li id="section-67">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
-                <a class="pilcrow" href="#section-65">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-67">&#182;</a>
               </div>
-              <h1><a href="http://en.wikipedia.org/wiki/Covariance">covariance</a></h1>
+              <h1 id="-covariance-http-en-wikipedia-org-wiki-covariance-"><a href="http://en.wikipedia.org/wiki/Covariance">covariance</a></h1>
 <p>sample covariance of two datasets:
 how much do the two datasets move together?
 x and y are two datasets, represented as arrays of numbers.</p>
@@ -1191,11 +1227,11 @@ x and y are two datasets, represented as arrays of numbers.</p>
         </li>
         
         
-        <li id="section-66">
+        <li id="section-68">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-66">&#182;</a>
+                <a class="pilcrow" href="#section-68">&#182;</a>
               </div>
               <p>The two datasets must have the same length which must be more than 1</p>
 
@@ -1208,11 +1244,11 @@ x and y are two datasets, represented as arrays of numbers.</p>
         </li>
         
         
-        <li id="section-67">
+        <li id="section-69">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-67">&#182;</a>
+                <a class="pilcrow" href="#section-69">&#182;</a>
               </div>
               <p>determine the mean of each dataset so that we can judge each
 value of the dataset fairly as the difference from the mean. this
@@ -1228,11 +1264,11 @@ does not suffer because of the difference in absolute values</p>
         </li>
         
         
-        <li id="section-68">
+        <li id="section-70">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-68">&#182;</a>
+                <a class="pilcrow" href="#section-70">&#182;</a>
               </div>
               <p>for each pair of values, the covariance increases when their
 difference from the mean is associated - if both are well above
@@ -1248,11 +1284,11 @@ the mean, the covariance increases significantly.</p>
         </li>
         
         
-        <li id="section-69">
+        <li id="section-71">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-69">&#182;</a>
+                <a class="pilcrow" href="#section-71">&#182;</a>
               </div>
               <p>the covariance is weighted by the length of the datasets.</p>
 
@@ -1264,13 +1300,13 @@ the mean, the covariance increases significantly.</p>
         </li>
         
         
-        <li id="section-70">
+        <li id="section-72">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
-                <a class="pilcrow" href="#section-70">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-72">&#182;</a>
               </div>
-              <h1><a href="http://en.wikipedia.org/wiki/Correlation_and_dependence">correlation</a></h1>
+              <h1 id="-correlation-http-en-wikipedia-org-wiki-correlation_and_dependence-"><a href="http://en.wikipedia.org/wiki/Correlation_and_dependence">correlation</a></h1>
 <p>Gets a measure of how correlated two datasets are, between -1 and 1</p>
 <p>depends on <code>sample_standard_deviation()</code> and <code>sample_covariance()</code></p>
 
@@ -1291,13 +1327,13 @@ the mean, the covariance increases significantly.</p>
         </li>
         
         
-        <li id="section-71">
+        <li id="section-73">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
-                <a class="pilcrow" href="#section-71">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-73">&#182;</a>
               </div>
-              <h1><a href="http://en.wikipedia.org/wiki/Median">median</a></h1>
+              <h1 id="-median-http-en-wikipedia-org-wiki-median-"><a href="http://en.wikipedia.org/wiki/Median">median</a></h1>
 <p>The middle number of a list. This is often a good indicator of &#39;the middle&#39;
 when there are outliers that skew the <code>mean()</code> value.</p>
 
@@ -1308,11 +1344,11 @@ when there are outliers that skew the <code>mean()</code> value.</p>
         </li>
         
         
-        <li id="section-72">
+        <li id="section-74">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-72">&#182;</a>
+                <a class="pilcrow" href="#section-74">&#182;</a>
               </div>
               <p>The median of an empty list is null</p>
 
@@ -1323,11 +1359,11 @@ when there are outliers that skew the <code>mean()</code> value.</p>
         </li>
         
         
-        <li id="section-73">
+        <li id="section-75">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-73">&#182;</a>
+                <a class="pilcrow" href="#section-75">&#182;</a>
               </div>
               <p>Sorting the array makes it easy to find the center, but
 use <code>.slice()</code> to ensure the original array <code>x</code> is not modified</p>
@@ -1339,11 +1375,11 @@ use <code>.slice()</code> to ensure the original array <code>x</code> is not mod
         </li>
         
         
-        <li id="section-74">
+        <li id="section-76">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-74">&#182;</a>
+                <a class="pilcrow" href="#section-76">&#182;</a>
               </div>
               <p>If the length of the list is odd, it&#39;s the central number</p>
 
@@ -1355,11 +1391,11 @@ use <code>.slice()</code> to ensure the original array <code>x</code> is not mod
         </li>
         
         
-        <li id="section-75">
+        <li id="section-77">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-75">&#182;</a>
+                <a class="pilcrow" href="#section-77">&#182;</a>
               </div>
               <p>Otherwise, the median is the average of the two numbers
 at the center of the list</p>
@@ -1376,13 +1412,13 @@ at the center of the list</p>
         </li>
         
         
-        <li id="section-76">
+        <li id="section-78">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
-                <a class="pilcrow" href="#section-76">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-78">&#182;</a>
               </div>
-              <h1><a href="http://bit.ly/W5K4Yt">mode</a></h1>
+              <h1 id="-mode-http-bit-ly-w5k4yt-"><a href="http://bit.ly/W5K4Yt">mode</a></h1>
 <p>This implementation is inspired by <a href="https://github.com/jasondavies/science.js/blob/master/src/stats/mode.js">science.js</a></p>
 
             </div>
@@ -1392,11 +1428,11 @@ at the center of the list</p>
         </li>
         
         
-        <li id="section-77">
+        <li id="section-79">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-77">&#182;</a>
+                <a class="pilcrow" href="#section-79">&#182;</a>
               </div>
               <p>Handle edge cases:
 The median of an empty list is null</p>
@@ -1409,11 +1445,11 @@ The median of an empty list is null</p>
         </li>
         
         
-        <li id="section-78">
+        <li id="section-80">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-78">&#182;</a>
+                <a class="pilcrow" href="#section-80">&#182;</a>
               </div>
               <p>Sorting the array lets us iterate through it below and be sure
 that every time we see a new number it&#39;s new and we&#39;ll never
@@ -1426,11 +1462,11 @@ see the same number twice</p>
         </li>
         
         
-        <li id="section-79">
+        <li id="section-81">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-79">&#182;</a>
+                <a class="pilcrow" href="#section-81">&#182;</a>
               </div>
               <p>This assumes it is dealing with an array of size &gt; 1, since size
 0 and 1 are handled immediately. Hence it starts at index 1 in the
@@ -1443,11 +1479,11 @@ array.</p>
         </li>
         
         
-        <li id="section-80">
+        <li id="section-82">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-80">&#182;</a>
+                <a class="pilcrow" href="#section-82">&#182;</a>
               </div>
               <p>store the mode as we find new modes</p>
 
@@ -1458,11 +1494,11 @@ array.</p>
         </li>
         
         
-        <li id="section-81">
+        <li id="section-83">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-81">&#182;</a>
+                <a class="pilcrow" href="#section-83">&#182;</a>
               </div>
               <p>store how many times we&#39;ve seen the mode</p>
 
@@ -1473,11 +1509,11 @@ array.</p>
         </li>
         
         
-        <li id="section-82">
+        <li id="section-84">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-82">&#182;</a>
+                <a class="pilcrow" href="#section-84">&#182;</a>
               </div>
               <p>how many times the current candidate for the mode
 has been seen</p>
@@ -1489,11 +1525,11 @@ has been seen</p>
         </li>
         
         
-        <li id="section-83">
+        <li id="section-85">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-83">&#182;</a>
+                <a class="pilcrow" href="#section-85">&#182;</a>
               </div>
               <p>end at sorted.length + 1 to fix the case in which the mode is
 the highest number that occurs in the sequence. the last iteration
@@ -1507,11 +1543,11 @@ in the series</p>
         </li>
         
         
-        <li id="section-84">
+        <li id="section-86">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-84">&#182;</a>
+                <a class="pilcrow" href="#section-86">&#182;</a>
               </div>
               <p>we&#39;re seeing a new number pass by</p>
 
@@ -1522,11 +1558,11 @@ in the series</p>
         </li>
         
         
-        <li id="section-85">
+        <li id="section-87">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-85">&#182;</a>
+                <a class="pilcrow" href="#section-87">&#182;</a>
               </div>
               <p>the last number is the new mode since we saw it more
 often than the old one</p>
@@ -1543,11 +1579,11 @@ often than the old one</p>
         </li>
         
         
-        <li id="section-86">
+        <li id="section-88">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-86">&#182;</a>
+                <a class="pilcrow" href="#section-88">&#182;</a>
               </div>
               <p>if this isn&#39;t a new number, it&#39;s one more occurrence of
 the potential mode</p>
@@ -1562,13 +1598,13 @@ the potential mode</p>
         </li>
         
         
-        <li id="section-87">
+        <li id="section-89">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
-                <a class="pilcrow" href="#section-87">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-89">&#182;</a>
               </div>
-              <h1><a href="http://en.wikipedia.org/wiki/Student&#39;s_t-test">t-test</a></h1>
+              <h1 id="-t-test-http-en-wikipedia-org-wiki-student-s_t-test-"><a href="http://en.wikipedia.org/wiki/Student&#39;s_t-test">t-test</a></h1>
 <p>This is to compute a one-sample t-test, comparing the mean
 of a sample to a known value, x.</p>
 <p>in this case, we&#39;re trying to determine whether the
@@ -1586,11 +1622,11 @@ null hypothesis can or cannot be rejected.</p>
         </li>
         
         
-        <li id="section-88">
+        <li id="section-90">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-88">&#182;</a>
+                <a class="pilcrow" href="#section-90">&#182;</a>
               </div>
               <p>The mean of the sample</p>
 
@@ -1601,11 +1637,11 @@ null hypothesis can or cannot be rejected.</p>
         </li>
         
         
-        <li id="section-89">
+        <li id="section-91">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-89">&#182;</a>
+                <a class="pilcrow" href="#section-91">&#182;</a>
               </div>
               <p>The standard deviation of the sample</p>
 
@@ -1616,11 +1652,11 @@ null hypothesis can or cannot be rejected.</p>
         </li>
         
         
-        <li id="section-90">
+        <li id="section-92">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-90">&#182;</a>
+                <a class="pilcrow" href="#section-92">&#182;</a>
               </div>
               <p>Square root the length of the sample</p>
 
@@ -1631,11 +1667,11 @@ null hypothesis can or cannot be rejected.</p>
         </li>
         
         
-        <li id="section-91">
+        <li id="section-93">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-91">&#182;</a>
+                <a class="pilcrow" href="#section-93">&#182;</a>
               </div>
               <p>Compute the known value against the sample,
 returning the t value</p>
@@ -1648,13 +1684,13 @@ returning the t value</p>
         </li>
         
         
-        <li id="section-92">
+        <li id="section-94">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
-                <a class="pilcrow" href="#section-92">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-94">&#182;</a>
               </div>
-              <h1><a href="http://en.wikipedia.org/wiki/Student&#39;s_t-test">2-sample t-test</a></h1>
+              <h1 id="-2-sample-t-test-http-en-wikipedia-org-wiki-student-s_t-test-"><a href="http://en.wikipedia.org/wiki/Student&#39;s_t-test">2-sample t-test</a></h1>
 <p>This is to compute two sample t-test.
 Tests whether &quot;mean(X)-mean(Y) = difference&quot;, (
 in the most common case, we often have <code>difference == 0</code> to test if two samples
@@ -1666,62 +1702,16 @@ other than the fact that they have the same standard deviation.</p>
 a certain level of significance, will let you determine that the
 null hypothesis can or cannot be rejected.</p>
 <p><code>diff</code> can be omitted if it equals 0.</p>
+<p><a href="http://www.monarchlab.org/Lab/Research/Stats/2SampleT.aspx">This is used to confirm or deny</a>
+a null hypothesis that the two populations that have been sampled into
+<code>sample_x</code> and <code>sample_y</code> are equal to each other.</p>
 <p>Depends on <code>sample_variance()</code> and <code>mean()</code></p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="function"><span class="keyword">function</span> <span class="title">t_test_two_sample</span><span class="params">(sample_x, sample_y, diff)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    <span class="function"><span class="keyword">function</span> <span class="title">t_test_two_sample</span><span class="params">(sample_x, sample_y, difference)</span> {</span>
         <span class="keyword">var</span> n = sample_x.length,
-            m = sample_y.length;
-
-        <span class="keyword">if</span> (!n || !m) <span class="keyword">return</span> <span class="literal">null</span> ;</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-93">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-93">&#182;</a>
-              </div>
-              <p>default difference (mu) is zero</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>        <span class="keyword">if</span> (!diff) diff = <span class="number">0</span>;
-
-        <span class="keyword">var</span> meanX = mean(sample_x),
-            meanY = mean(sample_y);
-
-        <span class="keyword">var</span> weightedVariance = ((n - <span class="number">1</span>) * sample_variance(sample_x) +
-            (m - <span class="number">1</span>) * sample_variance(sample_y)) / (n + m - <span class="number">2</span>);
-
-        <span class="keyword">return</span> (meanX - meanY - diff) / Math.sqrt(weightedVariance * (<span class="number">1</span> / n + <span class="number">1</span> / m));
-    }</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-94">
-            <div class="annotation">
-              
-              <div class="pilwrap for-h1">
-                <a class="pilcrow" href="#section-94">&#182;</a>
-              </div>
-              <h1>quantile</h1>
-<p>This is a population quantile, since we assume to know the entire
-dataset in this library. Thus I&#39;m trying to follow the
-<a href="http://en.wikipedia.org/wiki/Quantile#Quantiles_of_a_population">Quantiles of a Population</a>
-algorithm from wikipedia.</p>
-<p>Sample is a one-dimensional array of numbers,
-and p is a decimal number from 0 to 1. In terms of a k/q
-quantile, p = k/q - it&#39;s just dealing with fractions or dealing
-with decimal values.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="function"><span class="keyword">function</span> <span class="title">quantile</span><span class="params">(sample, p)</span> {</span></pre></div></div>
+            m = sample_y.length;</pre></div></div>
             
         </li>
         
@@ -1732,11 +1722,12 @@ with decimal values.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-95">&#182;</a>
               </div>
-              <p>We can&#39;t derive quantiles from an empty list</p>
+              <p>If either sample doesn&#39;t actually have any values, we can&#39;t
+compute this at all, so we return <code>null</code>.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="keyword">if</span> (sample.length === <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">null</span>;</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        <span class="keyword">if</span> (!n || !m) <span class="keyword">return</span> <span class="literal">null</span> ;</pre></div></div>
             
         </li>
         
@@ -1747,12 +1738,21 @@ with decimal values.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-96">&#182;</a>
               </div>
-              <p>invalid bounds. Microsoft Excel accepts 0 and 1, but
-we won&#39;t.</p>
+              <p>default difference (mu) is zero</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="keyword">if</span> (p &gt;= <span class="number">1</span> || p &lt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">null</span>;</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        <span class="keyword">if</span> (!difference) difference = <span class="number">0</span>;
+
+        <span class="keyword">var</span> meanX = mean(sample_x),
+            meanY = mean(sample_y);
+
+        <span class="keyword">var</span> weightedVariance = ((n - <span class="number">1</span>) * sample_variance(sample_x) +
+            (m - <span class="number">1</span>) * sample_variance(sample_y)) / (n + m - <span class="number">2</span>);
+
+        <span class="keyword">return</span> (meanX - meanY - difference) /
+            Math.sqrt(weightedVariance * (<span class="number">1</span> / n + <span class="number">1</span> / m));
+    }</pre></div></div>
             
         </li>
         
@@ -1762,6 +1762,47 @@ we won&#39;t.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-97">&#182;</a>
+              </div>
+              <h1 id="quantile">quantile</h1>
+<p>This is a population quantile, since we assume to know the entire
+dataset in this library. Thus I&#39;m trying to follow the
+<a href="http://en.wikipedia.org/wiki/Quantile#Quantiles_of_a_population">Quantiles of a Population</a>
+algorithm from wikipedia.</p>
+<p>Sample is a one-dimensional array of numbers,
+and p is either a decimal number from 0 to 1 or an array of decimal
+numbers from 0 to 1. 
+In terms of a k/q quantile, p = k/q - it&#39;s just dealing with fractions or dealing
+with decimal values.
+When p is an array, the result of the function is also an array containing the appropriate
+quantiles in input order</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="function"><span class="keyword">function</span> <span class="title">quantile</span><span class="params">(sample, p)</span> {</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-98">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-98">&#182;</a>
+              </div>
+              <p>We can&#39;t derive quantiles from an empty list</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="keyword">if</span> (sample.length === <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">null</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-99">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-99">&#182;</a>
               </div>
               <p>Sort a copy of the array. We&#39;ll need a sorted array to index
 the values in sorted order.</p>
@@ -1773,54 +1814,19 @@ the values in sorted order.</p>
         </li>
         
         
-        <li id="section-98">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-98">&#182;</a>
-              </div>
-              <p>Find a potential index in the list. In Wikipedia&#39;s terms, this
-is I<sub>p</sub>.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>        <span class="keyword">var</span> idx = (sorted.length) * p;</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-99">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-99">&#182;</a>
-              </div>
-              <p>If this isn&#39;t an integer, we&#39;ll round up to the next value in
-the list.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>        <span class="keyword">if</span> (idx % <span class="number">1</span> !== <span class="number">0</span>) {
-            <span class="keyword">return</span> sorted[Math.ceil(idx) - <span class="number">1</span>];
-        } <span class="keyword">else</span> <span class="keyword">if</span> (sample.length % <span class="number">2</span> === <span class="number">0</span>) {</pre></div></div>
-            
-        </li>
-        
-        
         <li id="section-100">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-100">&#182;</a>
               </div>
-              <p>If the list has even-length and we had an integer in the
-first place, we&#39;ll take the average of this number
-and the next value, if there is one</p>
+              <p>Initialize the input parameters array</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>            <span class="keyword">return</span> (sorted[idx - <span class="number">1</span>] + sorted[idx]) / <span class="number">2</span>;
-        } <span class="keyword">else</span> {</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        <span class="keyword">var</span> quantiles = []
+
+        <span class="keyword">if</span> (<span class="keyword">typeof</span>(p) === <span class="string">"number"</span>) {</pre></div></div>
             
         </li>
         
@@ -1831,14 +1837,12 @@ and the next value, if there is one</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-101">&#182;</a>
               </div>
-              <p>Finally, in the simple case of an integer value
-with an odd-length list, return the sample value at the index.</p>
+              <p>If we have a single p value, wrap it inside an array        </p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>            <span class="keyword">return</span> sorted[idx];
-        }
-    }</pre></div></div>
+            <div class="content"><div class='highlight'><pre>            quantiles.push(p)
+        } <span class="keyword">else</span> {</pre></div></div>
             
         </li>
         
@@ -1846,10 +1850,238 @@ with an odd-length list, return the sample value at the index.</p>
         <li id="section-102">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
+              <div class="pilwrap ">
                 <a class="pilcrow" href="#section-102">&#182;</a>
               </div>
-              <h1><a href="http://en.wikipedia.org/wiki/Interquartile_range">Interquartile range</a></h1>
+              <p>Else use it directly as the input arrau</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            quantiles = p;
+        }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-103">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-103">&#182;</a>
+              </div>
+              <p>Initialize the result array</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="keyword">var</span> results = [];</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-104">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-104">&#182;</a>
+              </div>
+              <p>For each requested quantile</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> quantiles) {
+            <span class="keyword">var</span> pVal = quantiles[i];</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-105">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-105">&#182;</a>
+              </div>
+              <p>Find a potential index in the list. In Wikipedia&#39;s terms, this
+is I<sub>p</sub>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="keyword">var</span> idx = (sorted.length) * pVal;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-106">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-106">&#182;</a>
+              </div>
+              <p>Initialize the default response for non-valid quantile input</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="keyword">var</span> quantileValue = <span class="literal">null</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-107">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-107">&#182;</a>
+              </div>
+              <p>Make sure the requested quantile value is within the [0..1] range</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="keyword">if</span> (pVal &lt;= <span class="number">1</span> &amp;&amp; pVal &gt;= <span class="number">0</span>) {
+                <span class="keyword">if</span> (pVal === <span class="number">1</span>) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-108">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-108">&#182;</a>
+              </div>
+              <p>If p is 1, directly return the last element</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                    quantileValue = sorted[sorted.length - <span class="number">1</span>]
+                } <span class="keyword">else</span> <span class="keyword">if</span> (pVal === <span class="number">0</span>) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-109">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-109">&#182;</a>
+              </div>
+              <p>If p is 0, directly return the first element</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                   quantileValue = sorted[<span class="number">0</span>]
+                } <span class="keyword">else</span> <span class="keyword">if</span> ( idx % <span class="number">1</span> !== <span class="number">0</span>) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-110">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-110">&#182;</a>
+              </div>
+              <p>If p is not integer, return the next element in array</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                    quantileValue = sorted[Math.ceil(idx) - <span class="number">1</span>]
+                } <span class="keyword">else</span> <span class="keyword">if</span> (sample.length % <span class="number">2</span> === <span class="number">0</span>) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-111">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-111">&#182;</a>
+              </div>
+              <p>If the list has even-length, we&#39;ll take the average of this number
+and the next value, if there is one</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                    quantileValue = (sorted[idx - <span class="number">1</span>] + sorted[idx]) / <span class="number">2</span>;
+                } <span class="keyword">else</span> {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-112">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-112">&#182;</a>
+              </div>
+              <p>Finally, in the simple case of an integer value
+with an odd-length list, return the sample value at the index.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                    quantileValue = sorted[idx];
+                }
+            }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-113">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-113">&#182;</a>
+              </div>
+              <p>Now, add the value to the result array</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            results.push(quantileValue);
+        }
+        
+        <span class="keyword">if</span> (<span class="keyword">typeof</span>(p) === <span class="string">"number"</span>) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-114">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-114">&#182;</a>
+              </div>
+              <p>If we have wrapped the input values, we need to unwrap the response</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="keyword">return</span> results[<span class="number">0</span>];
+        } <span class="keyword">else</span> {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-115">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-115">&#182;</a>
+              </div>
+              <p>else simply return the results array</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="keyword">return</span> results;         
+        }
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-116">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-116">&#182;</a>
+              </div>
+              <h1 id="-interquartile-range-http-en-wikipedia-org-wiki-interquartile_range-"><a href="http://en.wikipedia.org/wiki/Interquartile_range">Interquartile range</a></h1>
 <p>A measure of statistical dispersion, or how scattered, spread, or
 concentrated a distribution is. It&#39;s computed as the difference betwen
 the third quartile and first quartile.</p>
@@ -1861,11 +2093,11 @@ the third quartile and first quartile.</p>
         </li>
         
         
-        <li id="section-103">
+        <li id="section-117">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-103">&#182;</a>
+                <a class="pilcrow" href="#section-117">&#182;</a>
               </div>
               <p>We can&#39;t derive quantiles from an empty list</p>
 
@@ -1876,11 +2108,11 @@ the third quartile and first quartile.</p>
         </li>
         
         
-        <li id="section-104">
+        <li id="section-118">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-104">&#182;</a>
+                <a class="pilcrow" href="#section-118">&#182;</a>
               </div>
               <p>Interquartile range is the span between the upper quartile,
 at <code>0.75</code>, and lower quartile, <code>0.25</code></p>
@@ -1893,13 +2125,13 @@ at <code>0.75</code>, and lower quartile, <code>0.25</code></p>
         </li>
         
         
-        <li id="section-105">
+        <li id="section-119">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
-                <a class="pilcrow" href="#section-105">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-119">&#182;</a>
               </div>
-              <h1><a href="http://en.wikipedia.org/wiki/Median_absolute_deviation">Median Absolute Deviation</a></h1>
+              <h1 id="-median-absolute-deviation-http-en-wikipedia-org-wiki-median_absolute_deviation-"><a href="http://en.wikipedia.org/wiki/Median_absolute_deviation">Median Absolute Deviation</a></h1>
 <p>The Median Absolute Deviation (MAD) is a robust measure of statistical
 dispersion. It is more resilient to outliers than the standard deviation.</p>
 
@@ -1910,11 +2142,11 @@ dispersion. It is more resilient to outliers than the standard deviation.</p>
         </li>
         
         
-        <li id="section-106">
+        <li id="section-120">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-106">&#182;</a>
+                <a class="pilcrow" href="#section-120">&#182;</a>
               </div>
               <p>The mad of nothing is null</p>
 
@@ -1928,11 +2160,11 @@ dispersion. It is more resilient to outliers than the standard deviation.</p>
         </li>
         
         
-        <li id="section-107">
+        <li id="section-121">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-107">&#182;</a>
+                <a class="pilcrow" href="#section-121">&#182;</a>
               </div>
               <p>Make a list of absolute deviations from the median</p>
 
@@ -1945,11 +2177,11 @@ dispersion. It is more resilient to outliers than the standard deviation.</p>
         </li>
         
         
-        <li id="section-108">
+        <li id="section-122">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-108">&#182;</a>
+                <a class="pilcrow" href="#section-122">&#182;</a>
               </div>
               <p>Find the median value of that list</p>
 
@@ -1961,13 +2193,13 @@ dispersion. It is more resilient to outliers than the standard deviation.</p>
         </li>
         
         
-        <li id="section-109">
+        <li id="section-123">
             <div class="annotation">
               
-              <div class="pilwrap for-h2">
-                <a class="pilcrow" href="#section-109">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-123">&#182;</a>
               </div>
-              <h2>Compute Matrices for Jenks</h2>
+              <h2 id="compute-matrices-for-jenks">Compute Matrices for Jenks</h2>
 <p>Compute the matrices required for Jenks breaks. These matrices
 can be used for any classing of data with <code>classes &lt;= n_classes</code></p>
 
@@ -1978,11 +2210,11 @@ can be used for any classing of data with <code>classes &lt;= n_classes</code></
         </li>
         
         
-        <li id="section-110">
+        <li id="section-124">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-110">&#182;</a>
+                <a class="pilcrow" href="#section-124">&#182;</a>
               </div>
               <p>in the original implementation, these matrices are referred to
 as <code>LC</code> and <code>OP</code></p>
@@ -1999,11 +2231,11 @@ as <code>LC</code> and <code>OP</code></p>
         </li>
         
         
-        <li id="section-111">
+        <li id="section-125">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-111">&#182;</a>
+                <a class="pilcrow" href="#section-125">&#182;</a>
               </div>
               <p>loop counters</p>
 
@@ -2014,11 +2246,11 @@ as <code>LC</code> and <code>OP</code></p>
         </li>
         
         
-        <li id="section-112">
+        <li id="section-126">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-112">&#182;</a>
+                <a class="pilcrow" href="#section-126">&#182;</a>
               </div>
               <p>the variance, as computed at each step in the calculation</p>
 
@@ -2029,11 +2261,11 @@ as <code>LC</code> and <code>OP</code></p>
         </li>
         
         
-        <li id="section-113">
+        <li id="section-127">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-113">&#182;</a>
+                <a class="pilcrow" href="#section-127">&#182;</a>
               </div>
               <p>Initialize and fill each matrix with zeroes</p>
 
@@ -2045,11 +2277,11 @@ as <code>LC</code> and <code>OP</code></p>
         </li>
         
         
-        <li id="section-114">
+        <li id="section-128">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-114">&#182;</a>
+                <a class="pilcrow" href="#section-128">&#182;</a>
               </div>
               <p>despite these arrays having the same values, we need
 to keep them separate so that changing one does not change
@@ -2072,11 +2304,11 @@ the other</p>
         </li>
         
         
-        <li id="section-115">
+        <li id="section-129">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-115">&#182;</a>
+                <a class="pilcrow" href="#section-129">&#182;</a>
               </div>
               <p>in the original implementation, 9999999 is used but
 since Javascript has <code>Infinity</code>, we use that.</p>
@@ -2093,11 +2325,11 @@ since Javascript has <code>Infinity</code>, we use that.</p>
         </li>
         
         
-        <li id="section-116">
+        <li id="section-130">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-116">&#182;</a>
+                <a class="pilcrow" href="#section-130">&#182;</a>
               </div>
               <p><code>SZ</code> originally. this is the sum of the values seen thus
 far when calculating variance.</p>
@@ -2109,11 +2341,11 @@ far when calculating variance.</p>
         </li>
         
         
-        <li id="section-117">
+        <li id="section-131">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-117">&#182;</a>
+                <a class="pilcrow" href="#section-131">&#182;</a>
               </div>
               <p><code>ZSQ</code> originally. the sum of squares of values seen
 thus far</p>
@@ -2125,11 +2357,11 @@ thus far</p>
         </li>
         
         
-        <li id="section-118">
+        <li id="section-132">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-118">&#182;</a>
+                <a class="pilcrow" href="#section-132">&#182;</a>
               </div>
               <p><code>WT</code> originally. This is the number of</p>
 
@@ -2140,11 +2372,11 @@ thus far</p>
         </li>
         
         
-        <li id="section-119">
+        <li id="section-133">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-119">&#182;</a>
+                <a class="pilcrow" href="#section-133">&#182;</a>
               </div>
               <p><code>IV</code> originally</p>
 
@@ -2155,11 +2387,11 @@ thus far</p>
         </li>
         
         
-        <li id="section-120">
+        <li id="section-134">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-120">&#182;</a>
+                <a class="pilcrow" href="#section-134">&#182;</a>
               </div>
               <p>in several instances, you could say <code>Math.pow(x, 2)</code>
 instead of <code>x * x</code>, but this is slower in some browsers
@@ -2172,11 +2404,11 @@ introduces an unnecessary concept.</p>
         </li>
         
         
-        <li id="section-121">
+        <li id="section-135">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-121">&#182;</a>
+                <a class="pilcrow" href="#section-135">&#182;</a>
               </div>
               <p><code>III</code> originally</p>
 
@@ -2188,11 +2420,11 @@ introduces an unnecessary concept.</p>
         </li>
         
         
-        <li id="section-122">
+        <li id="section-136">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-122">&#182;</a>
+                <a class="pilcrow" href="#section-136">&#182;</a>
               </div>
               <p>here we&#39;re estimating variance for each potential classing
 of the data, for each potential number of classes. <code>w</code>
@@ -2205,11 +2437,11 @@ is the number of data points considered so far.</p>
         </li>
         
         
-        <li id="section-123">
+        <li id="section-137">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-123">&#182;</a>
+                <a class="pilcrow" href="#section-137">&#182;</a>
               </div>
               <p>increase the current sum and sum-of-squares</p>
 
@@ -2221,11 +2453,11 @@ is the number of data points considered so far.</p>
         </li>
         
         
-        <li id="section-124">
+        <li id="section-138">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-124">&#182;</a>
+                <a class="pilcrow" href="#section-138">&#182;</a>
               </div>
               <p>the variance at this point in the sequence is the difference
 between the sum of squares and the total x 2, over the number
@@ -2243,11 +2475,11 @@ of samples.</p>
         </li>
         
         
-        <li id="section-125">
+        <li id="section-139">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-125">&#182;</a>
+                <a class="pilcrow" href="#section-139">&#182;</a>
               </div>
               <p>if adding this element to an existing class
 will increase its variance beyond the limit, break
@@ -2273,11 +2505,11 @@ at this point.</p>
         </li>
         
         
-        <li id="section-126">
+        <li id="section-140">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-126">&#182;</a>
+                <a class="pilcrow" href="#section-140">&#182;</a>
               </div>
               <p>return the two matrices. for just providing breaks, only
 <code>lower_class_limits</code> is needed, but variances can be useful to
@@ -2294,13 +2526,13 @@ evaluage goodness of fit.</p>
         </li>
         
         
-        <li id="section-127">
+        <li id="section-141">
             <div class="annotation">
               
-              <div class="pilwrap for-h2">
-                <a class="pilcrow" href="#section-127">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-141">&#182;</a>
               </div>
-              <h2>Pull Breaks Values for Jenks</h2>
+              <h2 id="pull-breaks-values-for-jenks">Pull Breaks Values for Jenks</h2>
 <p>the second part of the jenks recipe: take the calculated matrices
 and derive an array of n breaks.</p>
 
@@ -2315,11 +2547,11 @@ and derive an array of n breaks.</p>
         </li>
         
         
-        <li id="section-128">
+        <li id="section-142">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-128">&#182;</a>
+                <a class="pilcrow" href="#section-142">&#182;</a>
               </div>
               <p>the calculation of classes will never include the upper and
 lower bounds, so we need to explicitly set them</p>
@@ -2332,11 +2564,11 @@ lower bounds, so we need to explicitly set them</p>
         </li>
         
         
-        <li id="section-129">
+        <li id="section-143">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-129">&#182;</a>
+                <a class="pilcrow" href="#section-143">&#182;</a>
               </div>
               <p>the lower_class_limits matrix is used as indexes into itself
 here: the <code>k</code> variable is reused in each iteration.</p>
@@ -2355,13 +2587,13 @@ here: the <code>k</code> variable is reused in each iteration.</p>
         </li>
         
         
-        <li id="section-130">
+        <li id="section-144">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
-                <a class="pilcrow" href="#section-130">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-144">&#182;</a>
               </div>
-              <h1><a href="http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization">Jenks natural breaks optimization</a></h1>
+              <h1 id="-jenks-natural-breaks-optimization-http-en-wikipedia-org-wiki-jenks_natural_breaks_optimization-"><a href="http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization">Jenks natural breaks optimization</a></h1>
 <p>Implementations: <a href="http://danieljlewis.org/files/2010/06/Jenks.pdf">1</a> (python),
 <a href="https://github.com/vvoovv/djeo-jenks/blob/master/main.js">2</a> (buggy),
 <a href="https://github.com/simogeo/geostats/blob/master/lib/geostats.js#L407">3</a> (works)</p>
@@ -2376,11 +2608,11 @@ here: the <code>k</code> variable is reused in each iteration.</p>
         </li>
         
         
-        <li id="section-131">
+        <li id="section-145">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-131">&#182;</a>
+                <a class="pilcrow" href="#section-145">&#182;</a>
               </div>
               <p>sort data in numerical order, since this is expected
 by the matrices function</p>
@@ -2392,11 +2624,11 @@ by the matrices function</p>
         </li>
         
         
-        <li id="section-132">
+        <li id="section-146">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-132">&#182;</a>
+                <a class="pilcrow" href="#section-146">&#182;</a>
               </div>
               <p>get our basic matrices</p>
 
@@ -2407,11 +2639,11 @@ by the matrices function</p>
         </li>
         
         
-        <li id="section-133">
+        <li id="section-147">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-133">&#182;</a>
+                <a class="pilcrow" href="#section-147">&#182;</a>
               </div>
               <p>we only need lower class limits here</p>
 
@@ -2422,11 +2654,11 @@ by the matrices function</p>
         </li>
         
         
-        <li id="section-134">
+        <li id="section-148">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-134">&#182;</a>
+                <a class="pilcrow" href="#section-148">&#182;</a>
               </div>
               <p>extract n_classes out of the computed matrices</p>
 
@@ -2439,13 +2671,13 @@ by the matrices function</p>
         </li>
         
         
-        <li id="section-135">
+        <li id="section-149">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
-                <a class="pilcrow" href="#section-135">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-149">&#182;</a>
               </div>
-              <h1><a href="http://en.wikipedia.org/wiki/Skewness">Skewness</a></h1>
+              <h1 id="-skewness-http-en-wikipedia-org-wiki-skewness-"><a href="http://en.wikipedia.org/wiki/Skewness">Skewness</a></h1>
 <p>A measure of the extent to which a probability distribution of a
 real-valued random variable &quot;leans&quot; to one side of the mean.
 The skewness value can be positive or negative, or even undefined.</p>
@@ -2461,11 +2693,11 @@ statistical packages including Minitab, SAS and SPSS.</p>
         </li>
         
         
-        <li id="section-136">
+        <li id="section-150">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-136">&#182;</a>
+                <a class="pilcrow" href="#section-150">&#182;</a>
               </div>
               <p>The skewness of less than three arguments is null</p>
 
@@ -2483,13 +2715,13 @@ statistical packages including Minitab, SAS and SPSS.</p>
         </li>
         
         
-        <li id="section-137">
+        <li id="section-151">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
-                <a class="pilcrow" href="#section-137">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-151">&#182;</a>
               </div>
-              <h1>Standard Normal Table</h1>
+              <h1 id="standard-normal-table">Standard Normal Table</h1>
 <p>A standard normal table, also called the unit normal table or Z table,
 is a mathematical table for the values of Φ (phi), which are the values of
 the cumulative distribution function of the normal distribution.
@@ -2540,13 +2772,13 @@ The table used is the cumulative, and not cumulative from 0 to mean
         </li>
         
         
-        <li id="section-138">
+        <li id="section-152">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
-                <a class="pilcrow" href="#section-138">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-152">&#182;</a>
               </div>
-              <h1><a href="http://en.wikipedia.org/wiki/Standard_normal_table">Cumulative Standard Normal Probability</a></h1>
+              <h1 id="-cumulative-standard-normal-probability-http-en-wikipedia-org-wiki-standard_normal_table-"><a href="http://en.wikipedia.org/wiki/Standard_normal_table">Cumulative Standard Normal Probability</a></h1>
 <p>Since probability tables cannot be
 printed for every normal distribution, as there are an infinite variety
 of normal distributions, it is common practice to convert a normal to a
@@ -2559,11 +2791,11 @@ standard normal and then use the standard normal table to find probabilities</p>
         </li>
         
         
-        <li id="section-139">
+        <li id="section-153">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-139">&#182;</a>
+                <a class="pilcrow" href="#section-153">&#182;</a>
               </div>
               <p>Calculate the position of this value.</p>
 
@@ -2574,11 +2806,11 @@ standard normal and then use the standard normal table to find probabilities</p>
         </li>
         
         
-        <li id="section-140">
+        <li id="section-154">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-140">&#182;</a>
+                <a class="pilcrow" href="#section-154">&#182;</a>
               </div>
               <p>Each row begins with a different
 significant digit: 0.5, 0.6, 0.7, and so on. So the row is simply
@@ -2594,11 +2826,11 @@ this value&#39;s significant digit: 0.567 will be in row 0, so row=0,
         </li>
         
         
-        <li id="section-141">
+        <li id="section-155">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-141">&#182;</a>
+                <a class="pilcrow" href="#section-155">&#182;</a>
               </div>
               <p>The index we calculate must be in the table as a positive value,
 but we still pay attention to whether the input is postive
@@ -2613,11 +2845,11 @@ or negative, and flip the output value as a last step.</p>
         </li>
         
         
-        <li id="section-142">
+        <li id="section-156">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-142">&#182;</a>
+                <a class="pilcrow" href="#section-156">&#182;</a>
               </div>
               <p>due to floating-point arithmetic, values in the table with
 4 significant figures can nevertheless end up as repeating
@@ -2632,13 +2864,13 @@ fractions when they&#39;re computed here.</p>
         </li>
         
         
-        <li id="section-143">
+        <li id="section-157">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
-                <a class="pilcrow" href="#section-143">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-157">&#182;</a>
               </div>
-              <h1><a href="http://en.wikipedia.org/wiki/Standard_score">Z-Score, or Standard Score</a></h1>
+              <h1 id="-z-score-or-standard-score-http-en-wikipedia-org-wiki-standard_score-"><a href="http://en.wikipedia.org/wiki/Standard_score">Z-Score, or Standard Score</a></h1>
 <p>The standard score is the number of standard deviations an observation
 or datum is above or below the mean. Thus, a positive standard score
 represents a datum above the mean, while a negative standard score
@@ -2660,13 +2892,13 @@ Student&#39;s t-statistic.</p>
         </li>
         
         
-        <li id="section-144">
+        <li id="section-158">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
-                <a class="pilcrow" href="#section-144">&#182;</a>
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-158">&#182;</a>
               </div>
-              <h1>Mixin</h1>
+              <h1 id="mixin">Mixin</h1>
 <p>Mixin simple_statistics to the Array native object. This is an optional
 feature that lets you treat simple_statistics as a native feature
 of Javascript.</p>
@@ -2680,11 +2912,11 @@ of Javascript.</p>
         </li>
         
         
-        <li id="section-145">
+        <li id="section-159">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-145">&#182;</a>
+                <a class="pilcrow" href="#section-159">&#182;</a>
               </div>
               <p>only methods which work on basic arrays in a single step
 are supported</p>
@@ -2692,16 +2924,17 @@ are supported</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>        <span class="keyword">var</span> arrayMethods = [<span class="string">'median'</span>, <span class="string">'standard_deviation'</span>, <span class="string">'sum'</span>,
+            <span class="string">'sample_skewness'</span>,
             <span class="string">'mean'</span>, <span class="string">'min'</span>, <span class="string">'max'</span>, <span class="string">'quantile'</span>, <span class="string">'geometric_mean'</span>];</pre></div></div>
             
         </li>
         
         
-        <li id="section-146">
+        <li id="section-160">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-146">&#182;</a>
+                <a class="pilcrow" href="#section-160">&#182;</a>
               </div>
               <p>create a closure with a method name so that a reference
 like <code>arrayMethods[i]</code> doesn&#39;t follow the loop increment</p>
@@ -2709,16 +2942,16 @@ like <code>arrayMethods[i]</code> doesn&#39;t follow the loop increment</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>        <span class="function"><span class="keyword">function</span> <span class="title">wrap</span><span class="params">(method)</span> {</span>
-            <span class="keyword">return</span> <span class="keyword">function</span>() {</pre></div></div>
+            <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span></pre></div></div>
             
         </li>
         
         
-        <li id="section-147">
+        <li id="section-161">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-147">&#182;</a>
+                <a class="pilcrow" href="#section-161">&#182;</a>
               </div>
               <p>cast any arguments into an array, since they&#39;re
 natively objects</p>
@@ -2730,11 +2963,11 @@ natively objects</p>
         </li>
         
         
-        <li id="section-148">
+        <li id="section-162">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-148">&#182;</a>
+                <a class="pilcrow" href="#section-162">&#182;</a>
               </div>
               <p>make the first argument the array itself</p>
 
@@ -2745,11 +2978,11 @@ natively objects</p>
         </li>
         
         
-        <li id="section-149">
+        <li id="section-163">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-149">&#182;</a>
+                <a class="pilcrow" href="#section-163">&#182;</a>
               </div>
               <p>return the result of the ss method</p>
 
@@ -2762,11 +2995,11 @@ natively objects</p>
         </li>
         
         
-        <li id="section-150">
+        <li id="section-164">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-150">&#182;</a>
+                <a class="pilcrow" href="#section-164">&#182;</a>
               </div>
               <p>for each array function, define a function off of the Array
 prototype which automatically gets the array as the first
@@ -2814,11 +3047,11 @@ implementation.</p>
         </li>
         
         
-        <li id="section-151">
+        <li id="section-165">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-151">&#182;</a>
+                <a class="pilcrow" href="#section-165">&#182;</a>
               </div>
               <p>jenks</p>
 
@@ -2833,11 +3066,11 @@ implementation.</p>
         </li>
         
         
-        <li id="section-152">
+        <li id="section-166">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-152">&#182;</a>
+                <a class="pilcrow" href="#section-166">&#182;</a>
               </div>
               <p>Normal distribution</p>
 
@@ -2850,11 +3083,11 @@ implementation.</p>
         </li>
         
         
-        <li id="section-153">
+        <li id="section-167">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-153">&#182;</a>
+                <a class="pilcrow" href="#section-167">&#182;</a>
               </div>
               <p>Alias this into its common name</p>
 

@@ -30,7 +30,21 @@ describe('quantile', function() {
     });
 
     it('bad bounds produce null', function() {
-        assert.equal(ss.quantile([1, 2, 3], 1), null);
-        assert.equal(ss.quantile([1, 2, 3], 0), null);
+        assert.equal(ss.quantile([1, 2, 3], 1.1), null);
+        assert.equal(ss.quantile([1, 2, 3], -0.5), null);
+    });
+
+    it('max quantile is equal to the max', function() {
+        assert.equal(ss.quantile([1, 2, 3], 1), ss.max([1,2,3]));
+    });
+
+    it('min quantile is equal to the min', function() {
+        assert.equal(ss.quantile([1, 2, 3], 0), ss.min([1,2,3]));
+    });
+
+    it('if quantile arg is an array, response is an array of quantiles', function() {
+        var odd = [3, 6, 7, 8, 8, 9, 10, 13, 15, 16, 20];
+        assert.deepEqual(ss.quantile(odd, [0,0.25,0.5,0.75,1]), [3,7,9,15,20]);
+        assert.deepEqual(ss.quantile(odd, [0.75,0.5]), [15,9]);
     });
 });
