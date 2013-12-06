@@ -29,6 +29,10 @@ describe('quantile', function() {
         assert.equal(ss.quantile([], 0.5), null);
     });
 
+    it('test odd-value case', function() {
+        assert.equal(ss.quantile([0, 1, 2, 3, 4], 0.2), 1);
+    });
+
     it('bad bounds produce null', function() {
         assert.equal(ss.quantile([1, 2, 3], 1.1), null);
         assert.equal(ss.quantile([1, 2, 3], -0.5), null);

@@ -18,4 +18,8 @@ describe('sample correlation', function() {
         assert.equal(rnd(ss.sample_correlation(a, b)), 0.691);
     });
 
+    it('zero-length corner case', function() {
+        assert.equal(rnd(ss.sample_correlation([], [])), 0);
+    });
+
 });

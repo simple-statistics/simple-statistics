@@ -24,6 +24,16 @@ describe('bayes', function() {
         assert.deepEqual(bayes.score({ species: 'Cat' }), { animal: 0.75, chair: 0.25 });
     });
 
+    it('tests multiple properties', function() {
+        var bayes = ss.bayesian();
+        bayes.train({ species: 'Cat' }, 'animal');
+        bayes.train({ species: 'Cat' }, 'animal');
+        bayes.train({ species: 'Cat' }, 'animal');
+        bayes.train({ species: 'Cat' }, 'chair');
+        bayes.train({ species: 'Cat', color: 'white' }, 'chair');
+        assert.deepEqual(bayes.score({ color: 'white' }), { animal: 0, chair: 0.2 });
+    });
+
     it('classifies multiple things', function() {
         var bayes = ss.bayesian();
         bayes.train({ species: 'Cat' }, 'animal');

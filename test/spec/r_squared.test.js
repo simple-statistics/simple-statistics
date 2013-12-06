@@ -13,4 +13,10 @@ describe('r-squared', function() {
         var l = ss.linear_regression().data(d);
         assert.notEqual(ss.r_squared(d, l.line()), 1);
     });
+
+    it('r-squared of single sample is 1', function() {
+        var d = [[0, 0]];
+        var l = ss.linear_regression().data(d);
+        assert.equal(ss.r_squared(d, l.line()), 1);
+    });
 });

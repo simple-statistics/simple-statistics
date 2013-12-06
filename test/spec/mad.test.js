@@ -14,4 +14,8 @@ describe('median absolute deviation (mad)', function() {
     it('median absolute deviation of one number is zero', function() {
         assert.equal(ss.mad([1]), 0);
     });
+
+    it('zero-length corner case', function() {
+        assert.equal(ss.mad([]), null);
+    });
 });

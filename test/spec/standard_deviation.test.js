@@ -17,6 +17,10 @@ describe('standard_deviation', function() {
         assert.equal(rnd(ss.standard_deviation([1, 2, 3])), 0.816);
     });
 
+    it('zero-length array corner case', function() {
+        assert.equal(rnd(ss.standard_deviation([])), 0);
+    });
+
     // In [6]: numpy.std([0,1,2,3,4,5,6,7,8,9,10])
     // Out[6]: 3.1622776601683795
     it('can get the standard deviation of 1-10', function() {

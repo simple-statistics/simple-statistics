@@ -16,6 +16,16 @@ describe('linear regression', function() {
         assert.equal(l.line()(1), 0);
     });
 
+    it('returns the data assigned to it', function() {
+        var l = ss.linear_regression().data([[0, 0], [1, 0]]);
+        assert.deepEqual(l.data(), [[0, 0],[1, 0]]);
+    });
+
+    it('handles a single-point sample', function() {
+        var l = ss.linear_regression().data([[0, 0]]).line();
+        assert.deepEqual(l(10), 0);
+    });
+
     it('a straight line will have a slope of 0', function() {
         var l = ss.linear_regression().data([[0, 0], [1, 0]]);
         assert.equal(l.m(), 0);
