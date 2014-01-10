@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.7.0
+
+* Adds `simple_statistics.harmonic_mean` thanks to [jseppi](https://github.com/jseppi)
+
 ## 0.6.0
 
 * Adds `simple_statistics.quantile_sorted` thanks to [rluta](http://github.com/rluta)
