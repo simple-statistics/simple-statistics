@@ -303,7 +303,7 @@
     //
     // a mean function typically used to find the average of rates
     //
-    // this is the reciprocal of the arithmetic mean of the recipricols
+    // this is the reciprocal of the arithmetic mean of the reciprocals
     // of the input numbers
     //
     // This runs on `O(n)`, linear time in respect to the array
