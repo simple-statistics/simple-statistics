@@ -53,6 +53,10 @@ Also aliased to `.mad(x)` for brevity.
 
 [Geometric mean](http://en.wikipedia.org/wiki/Geometric_mean) of a single-dimensional array of **positive** numbers.
 
+### .harmonic_mean(x)
+
+[Harmonic mean](http://en.wikipedia.org/wiki/Harmonic_mean) of a single-dimensional array of **positive** numbers.
+
 ### .min(x)
 
 Finds the minimum of a single-dimensional array of numbers. This runs in linear `O(n)` time.
