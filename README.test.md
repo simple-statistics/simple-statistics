@@ -21,6 +21,7 @@ in all modern browsers (including IE) as well as in node.js.
     .median_absolute_deviation(x)
     .median(x)
     .geometric_mean(x)
+    .harmonic_mean(x)
     .min(x)
     .max(x)
     .t_test(sample, x)

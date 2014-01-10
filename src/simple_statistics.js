@@ -277,7 +277,7 @@
     // a mean function that is more useful for numbers in different
     // ranges.
     //
-    // this is the nth root of the input numbers multipled by each other
+    // this is the nth root of the input numbers multiplied by each other
     //
     // This runs on `O(n)`, linear time in respect to the array
     function geometric_mean(x) {
@@ -296,6 +296,32 @@
         }
 
         return Math.pow(value, 1 / x.length);
+    }
+
+
+    // # harmonic mean
+    //
+    // a mean function typically used to find the average of rates
+    //
+    // this is the reciprocal of the arithmetic mean of the recipricols
+    // of the input numbers
+    //
+    // This runs on `O(n)`, linear time in respect to the array
+    function harmonic_mean(x) {
+        // The mean of no numbers is null
+        if (x.length === 0) return null;
+
+        var reciprocal_sum = 0;
+
+        for (var i = 0; i < x.length; i++) {
+            // the harmonic mean is only valid for positive numbers
+            if (x[i] <= 0) return null;
+
+            reciprocal_sum += 1 / x[i];
+        }
+
+        // divide n by the the reciprocal sum
+        return x.length / reciprocal_sum;
     }
 
 
@@ -981,7 +1007,8 @@
         // are supported
         var arrayMethods = ['median', 'standard_deviation', 'sum',
             'sample_skewness',
-            'mean', 'min', 'max', 'quantile', 'geometric_mean'];
+            'mean', 'min', 'max', 'quantile', 'geometric_mean',
+            'harmonic_mean'];
 
         // create a closure with a method name so that a reference
         // like `arrayMethods[i]` doesn't follow the loop increment
@@ -1034,6 +1061,7 @@
     ss.sample_skewness = sample_skewness;
 
     ss.geometric_mean = geometric_mean;
+    ss.harmonic_mean = harmonic_mean;
     ss.variance = variance;
     ss.t_test = t_test;
     ss.t_test_two_sample = t_test_two_sample;
