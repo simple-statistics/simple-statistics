@@ -22,12 +22,27 @@ describe('uniform_quantile', function() {
         assert.equal(ss.uniform_quantile(0.5, 5, 2), null);
     });
 
-    it('computes the lower tail value by default', function() {
-        assert.equal(ss.uniform_quantile(0.2, 0, 1), 0.2);
+});
+
+describe('uniform_quantile_complement', function() {
+
+    it('handles out of bound probability parameter', function() {
+        assert.equal(ss.uniform_quantile_complement(-1, 0, 1), null);
+        assert.equal(ss.uniform_quantile_complement(2, 0, 1), null);
     });
 
-    it('can compute the upper tail value', function() {
-        assert.equal(ss.uniform_quantile(0.2, 0, 1, false), 0.8);
+    it('handles different min/max values', function() {
+        assert.equal(ss.uniform_quantile_complement(0.2, 1, 10), 8.2);
+        assert.equal(ss.uniform_quantile_complement(0.2, 10, 20), 18);
+    });
+
+    it('handles wrong min/max values', function() {
+        assert.equal(ss.uniform_quantile_complement(0.5, 5, 2), null);
+    });
+
+    it('can compute the upper tail quantile of the standard uniform distribution', function() {
+        for (var i = 0; i <= 1; i += 0.1)
+          assert.equal(ss.uniform_quantile_complement(i, 0, 1), 1 - i);
     });
 
 });
