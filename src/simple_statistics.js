@@ -683,6 +683,47 @@
         }
     }
 
+    // # [The quantile function of the Uniform distribution](http://www.mathworks.de/de/help/symbolic/mupad_ref/stats-uniformquantile.html)
+    //
+    // Computes the 
+    // [inverse](http://en.wikipedia.org/wiki/Cumulative_distribution_function#Inverse_distribution_function_.28quantile_function.29)
+    // $F^{-1}(z)$ of the cumulative distribution function $F$;
+    // i.e. is the lower tail integral of the probability density function.
+    function uniform_quantile(probability, min, max) {
+        return uniform_compute_quantile(probability, min, max, true);
+    }
+
+    // # [The quantile function of the complement of the CDF of the Uniform distribution](http://www.mathworks.de/de/help/symbolic/mupad_ref/stats-uniformquantile.html)
+    //
+    // Computes the 
+    // [inverse](http://en.wikipedia.org/wiki/Cumulative_distribution_function#Inverse_distribution_function_.28quantile_function.29)
+    // $F^{-1}(z)$ of the complement of the cumulative distribution function;
+    // i.e. is the upper tail integral of the probability density function.
+    function uniform_quantile_complement(probability, min, max) {
+        return uniform_compute_quantile(probability, min, max, false);
+    }
+
+    function uniform_compute_quantile(probability, min, max, lower_tail) {
+        if (probability < 0 || probability > 1 )
+            return null;
+        if (parameterNotSet(lower_tail))
+            lower_tail = true;
+        if (lower_tail !== false)
+            lower_tail = true;
+        if (min > max)
+            return null;
+        if (min === max)
+            return min;
+        if (lower_tail)
+            return max * probability + min * (1 - probability);
+        else
+            return min * probability + max * (1 - probability);
+    }
+
+    function parameterNotSet(parameter) {
+        return typeof parameter === 'undefined';
+    }
+
     // # [Interquartile range](http://en.wikipedia.org/wiki/Interquartile_range)
     //
     // A measure of statistical dispersion, or how scattered, spread, or
@@ -993,6 +1034,8 @@
     function z_score(x, mean, standard_deviation) {
         return (x - mean) / standard_deviation;
     }
+    
+    
 
     // # Mixin
     //
@@ -1077,6 +1120,10 @@
     ss.z_score = z_score;
     ss.cumulative_std_normal_probability = cumulative_std_normal_probability;
     ss.standard_normal_table = standard_normal_table;
+
+    // Uniform distribution
+    ss.uniform_quantile = uniform_quantile;
+    ss.uniform_quantile_complement = uniform_quantile_complement;
 
     // Alias this into its common name
     ss.average = mean;
