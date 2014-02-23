@@ -690,7 +690,7 @@
     // $F^{-1}(z)$ of the cumulative distribution function $F$;
     // i.e. is the lower tail integral of the probability density function.
     function uniform_quantile(probability, min, max) {
-        return uniform_compute_quantile(probability, min, max, true)
+        return uniform_compute_quantile(probability, min, max, true);
     }
 
     // # [The quantile function of the complement of the CDF of the Uniform distribution](http://www.mathworks.de/de/help/symbolic/mupad_ref/stats-uniformquantile.html)
@@ -700,7 +700,7 @@
     // $F^{-1}(z)$ of the complement of the cumulative distribution function;
     // i.e. is the upper tail integral of the probability density function.
     function uniform_quantile_complement(probability, min, max) {
-        return uniform_compute_quantile(probability, min, max, false)
+        return uniform_compute_quantile(probability, min, max, false);
     }
 
     function uniform_compute_quantile(probability, min, max, lower_tail) {
