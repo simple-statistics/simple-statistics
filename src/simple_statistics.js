@@ -5,7 +5,13 @@
 // eventually assigning `simple-statistics` to `ss` in browsers or the
 // `exports object for node.js
 (function() {
-    var ss = {};
+    // The primary `ss` function acts as a convenience method
+    // that returns the result of `mixin` for a single array
+    // without any danger of accidentally mixing in with the
+    // Array prototype.
+    function ss(data) {
+        return mixin(data || []);
+    }
 
     if (typeof module !== 'undefined') {
         // Assign the `ss` object to exports, so that you can require
@@ -996,13 +1002,20 @@
 
     // # Mixin
     //
-    // Mixin simple_statistics to the Array native object. This is an optional
+    // Mixin simple_statistics to a single Array instance if provided 
+    // or the Array native object if not. This is an optional
     // feature that lets you treat simple_statistics as a native feature
     // of Javascript.
-    function mixin() {
+    function mixin(array) {
         var support = !!(Object.defineProperty && Object.defineProperties);
         if (!support) throw new Error('without defineProperty, simple-statistics cannot be mixed in');
 
+        var objectString = ({}).toString.call(array);
+
+        // an array is the only acceptable argument
+        var acceptableArg = !arguments.length || objectString === '[object Array]';
+        if (!acceptableArg) throw new Error('simple-statistics supports the extension of arrays only. cannot extend ' + objectString);
+        
         // only methods which work on basic arrays in a single step
         // are supported
         var arrayMethods = ['median', 'standard_deviation', 'sum',
@@ -1010,34 +1023,42 @@
             'mean', 'min', 'max', 'quantile', 'geometric_mean',
             'harmonic_mean'];
 
+        // grab `slice` method for use in the `wrap` function
+        var slice = [].slice;
+
         // create a closure with a method name so that a reference
         // like `arrayMethods[i]` doesn't follow the loop increment
         function wrap(method) {
             return function() {
                 // cast any arguments into an array, since they're
                 // natively objects
-                var args = Array.prototype.slice.apply(arguments);
+                var args = slice.call(arguments);
                 // make the first argument the array itself
                 args.unshift(this);
                 // return the result of the ss method
                 return ss[method].apply(ss, args);
             };
         }
+ 
+        // select object to extend
+        var extending = array ? array.slice() : Array.prototype;
 
-        // for each array function, define a function off of the Array
-        // prototype which automatically gets the array as the first
-        // argument. We use [defineProperty](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/defineProperty)
+        // for each array function, define a function that gets 
+        // the array as the first argument. 
+        // We use [defineProperty](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/defineProperty)
         // because it allows these properties to be non-enumerable:
         // `for (var in x)` loops will not run into problems with this
         // implementation.
         for (var i = 0; i < arrayMethods.length; i++) {
-            Object.defineProperty(Array.prototype, arrayMethods[i], {
+            Object.defineProperty(extending, arrayMethods[i], {
                 value: wrap(arrayMethods[i]),
                 configurable: true,
                 enumerable: false,
                 writable: true
             });
         }
+
+        return extending;
     }
 
     ss.linear_regression = linear_regression;
