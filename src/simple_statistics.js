@@ -1004,12 +1004,6 @@
         var support = !!(Object.defineProperty && Object.defineProperties);
         if (!support) throw new Error('without defineProperty, simple-statistics cannot be mixed in');
 
-        var objectString = ({}).toString.call(array);
-
-        // an array is the only acceptable argument
-        var acceptableArg = !arguments.length || objectString === '[object Array]';
-        if (!acceptableArg) throw new Error('simple-statistics supports the extension of arrays only. cannot extend ' + objectString);
-        
         // only methods which work on basic arrays in a single step
         // are supported
         var arrayMethods = ['median', 'standard_deviation', 'sum',
