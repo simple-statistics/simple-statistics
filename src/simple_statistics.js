@@ -1011,16 +1011,13 @@
             'mean', 'min', 'max', 'quantile', 'geometric_mean',
             'harmonic_mean'];
 
-        // grab `slice` method for use in the `wrap` function
-        var slice = [].slice;
-
         // create a closure with a method name so that a reference
         // like `arrayMethods[i]` doesn't follow the loop increment
         function wrap(method) {
             return function() {
                 // cast any arguments into an array, since they're
                 // natively objects
-                var args = slice.call(arguments);
+                var args = Array.prototype.slice.apply(arguments);
                 // make the first argument the array itself
                 args.unshift(this);
                 // return the result of the ss method
