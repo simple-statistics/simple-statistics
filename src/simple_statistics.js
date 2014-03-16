@@ -5,13 +5,7 @@
 // eventually assigning `simple-statistics` to `ss` in browsers or the
 // `exports object for node.js
 (function() {
-    // The primary `ss` function acts as a convenience method
-    // that returns the result of `mixin` for a single array
-    // without any danger of accidentally mixing in with the
-    // Array prototype.
-    function ss(data) {
-        return mixin(data || []);
-    }
+    var ss = {};
 
     if (typeof module !== 'undefined') {
         // Assign the `ss` object to exports, so that you can require
