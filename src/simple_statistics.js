@@ -994,6 +994,45 @@
         return (x - mean) / standard_deviation;
     }
 
+    // We use `ε`, epsilon, as a stopping criterion when we want to iterate until we're "close enough".
+    var ε = 0.0001;
+
+    // A factorial, usually written n!, is the product of all positive integers less than or equal to n. We use
+    // a standard, recursion-based implementation.
+    function _factorial(n) {
+        if (n < 0 ) { return null }
+        return n <= 1 ? 1 : n * _factorial(n - 1);
+    }
+
+    function _get_random(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+
+    // # Poisson Distribution
+    // The (Poisson Distribution)[http://en.wikipedia.org/wiki/Poisson_distribution] is a discrete probability
+    // distribution that expresses the probability of a given number of events occurring in a fixed interval of time
+    // and/or space if these events occur with a known average rate and independently of the time since the last event.
+    //
+    // The Poisson Distribution is characterized by the strictly positive mean arrival or occurrence rate, `λ`.
+    function poisson_distribution(λ) {
+        // Check that λ is strictly positive
+        if (λ <= 0) { return null }
+
+        // We initialize `x`, the random variable, and `acc`, an accumulator for the cumulative distribution function
+        // to 0. `df` is the object we'll return with individual & cumulative probabilities, as well as the
+        // trivially calculated mean & variance. We iterate until the cumulative distribution function is within
+        // ε of 1.0.
+        var x = acc = 0, df = { mean: λ, variance: λ };
+        do {
+            p = (Math.pow(Math.E, -λ) * Math.pow(λ, x))/_factorial(x);
+            acc += p;
+            df[x] = { p: p, c: acc };
+            x++;
+        }
+        while (df[x - 1].c < 1.0 - ε);
+    return df;
+    }
+
     // # Mixin
     //
     // Mixin simple_statistics to the Array native object. This is an optional
@@ -1072,6 +1111,11 @@
     ss.jenks = jenks;
 
     ss.bayesian = bayesian;
+
+    // Distribution methods
+    ss.ε = ε; // We make ε available to the test suite.
+    ss._factorial = _factorial;
+    ss.poisson_distribution = poisson_distribution;
 
     // Normal distribution
     ss.z_score = z_score;
