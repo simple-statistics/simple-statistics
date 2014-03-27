@@ -995,7 +995,7 @@
     }
 
     // We use `ε`, epsilon, as a stopping criterion when we want to iterate until we're "close enough".
-    var ε = 0.0001;
+    var epsilon = 0.0001;
 
     // A factorial, usually written n!, is the product of all positive integers less than or equal to n. We use
     // a standard, recursion-based implementation.
@@ -1014,22 +1014,22 @@
     // and/or space if these events occur with a known average rate and independently of the time since the last event.
     //
     // The Poisson Distribution is characterized by the strictly positive mean arrival or occurrence rate, `λ`.
-    function poisson_distribution(λ) {
+    function poisson_distribution(lambda) {
         // Check that λ is strictly positive
-        if (λ <= 0) { return null }
+        if (lambda <= 0) { return null }
 
         // We initialize `x`, the random variable, and `acc`, an accumulator for the cumulative distribution function
         // to 0. `df` is the object we'll return with individual & cumulative probabilities, as well as the
         // trivially calculated mean & variance. We iterate until the cumulative distribution function is within
         // ε of 1.0.
-        var x = acc = 0, df = { mean: λ, variance: λ };
+        var x = acc = 0, df = { mean: lambda, variance: lambda };
         do {
-            p = (Math.pow(Math.E, -λ) * Math.pow(λ, x))/_factorial(x);
+            p = (Math.pow(Math.E, -lambda) * Math.pow(lambda, x))/_factorial(x);
             acc += p;
             df[x] = { p: p, c: acc };
             x++;
         }
-        while (df[x - 1].c < 1.0 - ε);
+        while (df[x - 1].c < 1.0 - epsilon);
     return df;
     }
 
@@ -1055,11 +1055,11 @@
       // @todo: finish filling out this table; drudgery defined
     };
 
-    function chi_squared(data, hypo_dist, significance) {
+    function chi_squared_goodness_of_fit(data, hypo_dist, significance) {
         // The chi-squared goodness of fit test
 
         var mean = 0; // Estimate from the sample data, a weighted mean.
-        var χ2 = 0;   // Calculated value of the χ2 statistic.
+        var chi_squared = 0;   // Calculated value of the χ2 statistic.
         var dof;      // Degrees of freedom, calculated as (number of class intervals - number of hypothesized distribution parameters estimated - 1)
         var p;        // Number of hypothesized distribution parameters estimated, expected to be supplied in the distribution test.
         var H = {};   // The hypothesized distribution.
@@ -1102,13 +1102,13 @@
 
         // Iterate through the squared differences between observed & expected frequencies, accumulating the χ2 statistic.
         Object.keys(observed_frequencies).forEach(function(k) {
-            χ2 += (Math.pow((observed_frequencies[k] - expected_frequencies[k].e), 2) / expected_frequencies[k].e);
+            chi_squared += (Math.pow((observed_frequencies[k] - expected_frequencies[k].e), 2) / expected_frequencies[k].e);
         });
 
         // Calculate degrees of freedom for this test and look it up in the chi_squared_distribution_table in order to
         // accept or reject the goodness-of-fit of the hypothesized distribution.
         dof = Object.keys(observed_frequencies).length - p - 1;
-        return accept = chi_squared_distribution_table[dof][significance] < χ2 ? true : false;;
+        return accept = chi_squared_distribution_table[dof][significance] < chi_squared ? true : false;;
     }
 
     // # Mixin
@@ -1191,10 +1191,10 @@
     ss.bayesian = bayesian;
 
     // Distribution methods
-    ss.ε = ε; // We make ε available to the test suite.
+    ss.epsilon = epsilon; // We make ε available to the test suite.
     ss._factorial = _factorial;
     ss.poisson_distribution = poisson_distribution;
-    ss.chi_squared = chi_squared;
+    ss.chi_squared_goodness_of_fit = chi_squared_goodness_of_fit;
 
     // Normal distribution
     ss.z_score = z_score;

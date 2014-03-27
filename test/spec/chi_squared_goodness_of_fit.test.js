@@ -9,14 +9,14 @@ data_10_19 = [
     2,2,2,2,2,2,2,2,2,
     3,3,3,3
 ];
-describe('chi_squared', function() {
+describe('chi_squared_goodness_of_fit', function() {
     it('can reject the null hypothesis with an unspecified level of confidence', function() {
-        assert.isFalse(ss.chi_squared(data_10_19, 'Poisson'));
+        assert.isFalse(ss.chi_squared_goodness_of_fit(data_10_19, 'Poisson'));
     });
     it('can reject the null hypothesis with level of confidence specified at 0.05', function() {
-        assert.isFalse(ss.chi_squared(data_10_19, 'Poisson', 0.05));
+        assert.isFalse(ss.chi_squared_goodness_of_fit(data_10_19, 'Poisson', 0.05));
     });
     it('can accept the null hypothesis with level of confidence specified at 0.10', function() {
-        assert.isTrue(ss.chi_squared(data_10_19, 'Poisson', 0.10));
+        assert.isTrue(ss.chi_squared_goodness_of_fit(data_10_19, 'Poisson', 0.10));
     });
 });
