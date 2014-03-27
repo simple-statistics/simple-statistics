@@ -1001,7 +1001,11 @@
     // a standard, recursion-based implementation.
     function factorial(n) {
         if (n < 0 ) { return null }
-        return n <= 1 ? 1 : n * factorial(n - 1);
+        if (n <= 1) {
+            return 1
+        } else {
+            return n * factorial(n - 1)
+        }
     }
 
     function _get_random(min, max) {
@@ -1072,7 +1076,11 @@
 
         // Create an object holding a histogram from the sample data, simultaneously calculating the sample mean.
         for (i = 0; i < data.length; i++) {
-            [data[i]] in observed_frequencies ? observed_frequencies[data[i]]++ : observed_frequencies[data[i]] = 1;
+            if ([data[i]] in observed_frequencies) {
+                observed_frequencies[data[i]]++
+            } else {
+                observed_frequencies[data[i]] = 1
+            }
             mean += data[i]/data.length;
         }
 
@@ -1108,7 +1116,11 @@
         // Calculate degrees of freedom for this test and look it up in the chi_squared_distribution_table in order to
         // accept or reject the goodness-of-fit of the hypothesized distribution.
         degrees_of_freedom = Object.keys(observed_frequencies).length - p - 1;
-        accept = chi_squared_distribution_table[degrees_of_freedom][significance] < chi_squared ? true : false;
+        if (chi_squared_distribution_table[degrees_of_freedom][significance] < chi_squared) {
+            accept = true
+        } else {
+            accept = false
+        }
         return accept;
     }
 
