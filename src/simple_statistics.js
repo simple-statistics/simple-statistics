@@ -1108,7 +1108,8 @@
         // Calculate degrees of freedom for this test and look it up in the chi_squared_distribution_table in order to
         // accept or reject the goodness-of-fit of the hypothesized distribution.
         degrees_of_freedom = Object.keys(observed_frequencies).length - p - 1;
-        return accept = chi_squared_distribution_table[degrees_of_freedom][significance] < chi_squared ? true : false;;
+        accept = chi_squared_distribution_table[degrees_of_freedom][significance] < chi_squared ? true : false;
+        return accept;
     }
 
     // # Mixin
