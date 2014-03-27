@@ -996,10 +996,11 @@
 
     // # Mixin
     //
-    // Mixin simple_statistics to the Array native object. This is an optional
+    // Mixin simple_statistics to a single Array instance if provided 
+    // or the Array native object if not. This is an optional
     // feature that lets you treat simple_statistics as a native feature
     // of Javascript.
-    function mixin() {
+    function mixin(array) {
         var support = !!(Object.defineProperty && Object.defineProperties);
         if (!support) throw new Error('without defineProperty, simple-statistics cannot be mixed in');
 
@@ -1023,21 +1024,26 @@
                 return ss[method].apply(ss, args);
             };
         }
+ 
+        // select object to extend
+        var extending = array ? array.slice() : Array.prototype;
 
-        // for each array function, define a function off of the Array
-        // prototype which automatically gets the array as the first
-        // argument. We use [defineProperty](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/defineProperty)
+        // for each array function, define a function that gets 
+        // the array as the first argument. 
+        // We use [defineProperty](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/defineProperty)
         // because it allows these properties to be non-enumerable:
         // `for (var in x)` loops will not run into problems with this
         // implementation.
         for (var i = 0; i < arrayMethods.length; i++) {
-            Object.defineProperty(Array.prototype, arrayMethods[i], {
+            Object.defineProperty(extending, arrayMethods[i], {
                 value: wrap(arrayMethods[i]),
                 configurable: true,
                 enumerable: false,
                 writable: true
             });
         }
+
+        return extending;
     }
 
     ss.linear_regression = linear_regression;
