@@ -5,14 +5,13 @@
   "version": "0.7.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/tmcw/node-statistics.git"
+    "url": "git://github.com/tmcw/simple-statistics.git"
   },
   "dependencies": {},
   "devDependencies": {
     "mocha": "1.17.x",
-    "chai": "1.8.x"
+    "chai": "1.9.x"
   },
-  "optionalDependencies": {},
   "scripts": {
     "test": "mocha -R spec test/spec",
     "api": "node api.js"
@@ -20,5 +19,6 @@
   "main": "src/simple_statistics.js",
   "engines": {
     "node": "*"
-  }
+  },
+  "license": "BSD"
 }
