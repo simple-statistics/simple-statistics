@@ -1008,6 +1008,32 @@
         return Math.random() * (max - min) + min;
     }
 
+//    function bernoulli_distribution(p) {
+//        // Check validity of probability (0 ≤ p ≤ 1)
+//        if (p < 0 || p > 1.0 ) { return null }
+//        q = 1.0 - p;
+//        return { probability: function(p) { Math.pow(p) }, mean: p, variance: (p * q) };
+//    }
+
+    function generate_bernoulli(p, n) {
+        // Generate one or more random variables using a Bernoulli distribution
+        // If n is unspecified, return an array of one random variable
+        if (typeof n === 'undefined' || n === null) { n = 1; }
+
+        // Check validity of probability (0 ≤ p ≤ 1) and sensibility of n
+        if (p < 0 || p > 1.0 || n < 1 ) { return null }
+
+        var x = [];
+        for (i = 0; i < n; i++) {
+            _get_random(0, 1) <= p ? x.push(1) : x.push(0);
+        }
+        return x;
+    }
+
+    function generate_binomial() {
+
+    }
+
     // # Poisson Distribution
     // The (Poisson Distribution)[http://en.wikipedia.org/wiki/Poisson_distribution] is a discrete probability
     // distribution that expresses the probability of a given number of events occurring in a fixed interval of time
@@ -1193,6 +1219,7 @@
     // Distribution methods
     ss.ε = ε; // We make ε available to the test suite.
     ss._factorial = _factorial;
+    ss.generate_bernoulli = generate_bernoulli;
     ss.poisson_distribution = poisson_distribution;
     ss.chi_squared = chi_squared;
 
