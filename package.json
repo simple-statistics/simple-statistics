@@ -1,23 +1,26 @@
 {
-  "author": "Tom MacWright <tom@macwright.org> (http://macwright.org/)",
-  "name": "simple-statistics",
-  "description": "Simple Statistics",
-  "version": "0.3.0",
+  "name": "simple-statistics-gh",
+  "version": "0.0.0",
+  "description": "[![Build Status](https://secure.travis-ci.org/tmcw/simple-statistics.png?branch=master)](http://travis-ci.org/tmcw/simple-statistics)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
-    "url": "git://github.com/tmcw/node-statistics.git"
+    "url": "git://github.com/tmcw/simple-statistics.git"
   },
-  "dependencies": {},
-  "devDependencies": {
-    "mocha": "1.2.x",
-    "chai": "1.4.x"
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tmcw/simple-statistics/issues"
   },
-  "optionalDependencies": {},
-  "scripts": {
-    "test": "mocha -R spec test/spec"
-  },
-  "main": "src/simple_statistics.js",
-  "engines": {
-    "node": "*"
+  "homepage": "https://github.com/tmcw/simple-statistics",
+  "dependencies": {
+    "marked": "~0.3.2",
+    "request": "~2.34.0"
   }
 }
