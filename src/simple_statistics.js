@@ -1033,6 +1033,84 @@
     return df;
     }
 
+    // # Percentage Points of the (χ2 (Chi-Squared) Distribution)
+    // The χ2 (Chi-Squared) Distribution)[http://en.wikipedia.org/wiki/Chi-squared_distribution] is used in the common
+    // chi-squared tests for goodness of fit of an observed distribution to a theoretical one, the independence of two
+    // criteria of classification of qualitative data, and in confidence interval estimation for a population standard
+    // deviation of a normal distribution from a sample standard deviation.
+    //
+    // Values from Appendix 1, Table III of William W. Hines & Douglas C. Montgomery, "Probability and Statistics in
+    // Engineering and Management Science", Wiley (1980).
+    var chi_squared_distribution_table = {
+      1: { .995:  0.00, .99:  0.00, .975:  0.00, .95:  0.00, .9:  0.02, .5:  0.45, .1:  2.71, .05:  3.84, .025:  5.02, .01:  6.63, .005:  7.88 },
+      2: { .995:  0.01, .99:  0.02, .975:  0.05, .95:  0.10, .9:  0.21, .5:  1.39, .1:  4.61, .05:  5.99, .025:  7.38, .01:  9.21, .005: 10.60 },
+      3: { .995:  0.07, .99:  0.11, .975:  0.22, .95:  0.35, .9:  0.58, .5:  2.37, .1:  6.25, .05:  7.81, .025:  9.35, .01: 11.34, .005: 12.84 },
+      4: { .995:  0.21, .99:  0.30, .975:  0.48, .95:  0.71, .9:  1.06, .5:  3.36, .1:  7.78, .05:  9.49, .025: 11.14, .01: 13.28, .005: 14.86 },
+      5: { .995:  0.41, .99:  0.55, .975:  0.83, .95:  1.15, .9:  1.61, .5:  4.35, .1:  9.24, .05: 11.07, .025: 12.83, .01: 15.09, .005: 16.75 },
+      6: { .995:  0.68, .99:  0.87, .975:  1.24, .95:  1.64, .9:  2.20, .5:  5.35, .1: 10.65, .05: 12.59, .025: 14.45, .01: 16.81, .005: 18.55 },
+      7: { .995:  0.99, .99:  1.25, .975:  1.69, .95:  2.17, .9:  2.83, .5:  6.35, .1: 12.02, .05: 14.07, .025: 16.01, .01: 18.48, .005: 20.28 },
+      8: { .995:  1.34, .99:  1.65, .975:  2.18, .95:  2.73, .9:  3.49, .5:  7.34, .1: 13.36, .05: 15.51, .025: 17.53, .01: 20.09, .005: 21.96 },
+      9: { .995:  1.73, .99:  2.09, .975:  2.70, .95:  3.33, .9:  4.17, .5:  8.34, .1: 14.68, .05: 16.92, .025: 19.02, .01: 21.67, .005: 23.59 },
+      10: { .995:  2.16 , .99:  2.56, .975:  3.25, .95:  3.94, .9:  4.87, .5:  9.34, .1: 15.99, .05: 18.31, .025: 20.48, .01: 23.21, .005: 25.19 }
+      // @todo: finish filling out this table; drudgery defined
+    };
+
+    function chi_squared(data, hypo_dist, significance) {
+        // The chi-squared goodness of fit test
+
+        var mean = 0; // Estimate from the sample data, a weighted mean.
+        var χ2 = 0;   // Calculated value of the χ2 statistic.
+        var dof;      // Degrees of freedom, calculated as (number of class intervals - number of hypothesized distribution parameters estimated - 1)
+        var p;        // Number of hypothesized distribution parameters estimated, expected to be supplied in the distribution test.
+        var H = {};   // The hypothesized distribution.
+        var observed_frequencies = {},
+            expected_frequencies = {},
+            accept = false;
+
+        // Assign a default significance if one hasn't been passed in.
+        if ((typeof significance === 'undefined')) { significance = 0.05 }
+
+        // Create an object holding a histogram from the sample data, simultaneously calculating the sample mean.
+        for (i = 0; i < data.length; i++) {
+            [data[i]] in observed_frequencies ? observed_frequencies[data[i]]++ : observed_frequencies[data[i]] = 1;
+            mean += data[i]/data.length;
+        }
+
+        // Generate the hypothesized distribution. Currently implemented for only the Poisson Distribution.
+        if (hypo_dist.toLowerCase() === 'poisson') {
+            H = poisson_distribution(mean);
+            p = 1; // Lose one degree of freedom for estimating λ from the sample data.
+        }
+
+        // Create an object holding a histogram of expected data given the sample size and hypothesized distribution.
+        Object.keys(H).forEach(function(k) {
+            if (!isNaN(k) && (k in Object.keys(observed_frequencies))) {
+                expected_frequencies[k] = { e: H[k].p * data.length };
+            }
+        });
+
+        // Working backward through the expected frequencies, collapse classes if less than three observations are
+        // expected for a class. This transformation is applied to the observed frequencies as well.
+        Object.keys(expected_frequencies).reverse().forEach(function(k) {
+            if (expected_frequencies[k].e < 3) {
+                expected_frequencies[k-1].e += expected_frequencies[k].e;
+                delete expected_frequencies[k];
+                observed_frequencies[k-1] += observed_frequencies[k];
+                delete observed_frequencies[k];
+            }
+        });
+
+        // Iterate through the squared differences between observed & expected frequencies, accumulating the χ2 statistic.
+        Object.keys(observed_frequencies).forEach(function(k) {
+            χ2 += (Math.pow((observed_frequencies[k] - expected_frequencies[k].e), 2) / expected_frequencies[k].e);
+        });
+
+        // Calculate degrees of freedom for this test and look it up in the chi_squared_distribution_table in order to
+        // accept or reject the goodness-of-fit of the hypothesized distribution.
+        dof = Object.keys(observed_frequencies).length - p - 1;
+        return accept = chi_squared_distribution_table[dof][significance] < χ2 ? true : false;;
+    }
+
     // # Mixin
     //
     // Mixin simple_statistics to the Array native object. This is an optional
@@ -1116,6 +1194,7 @@
     ss.ε = ε; // We make ε available to the test suite.
     ss._factorial = _factorial;
     ss.poisson_distribution = poisson_distribution;
+    ss.chi_squared = chi_squared;
 
     // Normal distribution
     ss.z_score = z_score;

@@ -1,7 +1,7 @@
 var assert = require('chai').assert;
 var ss = require('../../');
 
-// expected cumulative probabilities, c, taken from Appendix 1, Table 1 or William W. Hines & Douglas C.
+// expected cumulative probabilities, c, taken from Appendix 1, Table I of William W. Hines & Douglas C.
 // Montgomery, "Probability and Statistics in Engineering and Management Science", Wiley (1980).
 describe('poisson_distribution', function() {
     it('can return generate probability and cumulative probability distributions for λ = 3.0', function() {
