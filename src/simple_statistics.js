@@ -999,9 +999,9 @@
 
     // A factorial, usually written n!, is the product of all positive integers less than or equal to n. We use
     // a standard, recursion-based implementation.
-    function _factorial(n) {
+    function factorial(n) {
         if (n < 0 ) { return null }
-        return n <= 1 ? 1 : n * _factorial(n - 1);
+        return n <= 1 ? 1 : n * factorial(n - 1);
     }
 
     function _get_random(min, max) {
@@ -1024,7 +1024,7 @@
         // ε of 1.0.
         var x = acc = 0, df = { mean: lambda, variance: lambda };
         do {
-            p = (Math.pow(Math.E, -lambda) * Math.pow(lambda, x))/_factorial(x);
+            p = (Math.pow(Math.E, -lambda) * Math.pow(lambda, x))/factorial(x);
             acc += p;
             df[x] = { p: p, c: acc };
             x++;
@@ -1191,9 +1191,9 @@
 
     ss.bayesian = bayesian;
 
-    // Distribution methods
+    // Distribution-related methods
     ss.epsilon = epsilon; // We make ε available to the test suite.
-    ss._factorial = _factorial;
+    ss.factorial = factorial;
     ss.poisson_distribution = poisson_distribution;
     ss.chi_squared_goodness_of_fit = chi_squared_goodness_of_fit;
 
