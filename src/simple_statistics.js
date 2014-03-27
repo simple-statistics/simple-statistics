@@ -1058,11 +1058,11 @@
     function chi_squared_goodness_of_fit(data, hypo_dist, significance) {
         // The chi-squared goodness of fit test
 
-        var mean = 0; // Estimate from the sample data, a weighted mean.
-        var chi_squared = 0;   // Calculated value of the χ2 statistic.
-        var dof;      // Degrees of freedom, calculated as (number of class intervals - number of hypothesized distribution parameters estimated - 1)
-        var p;        // Number of hypothesized distribution parameters estimated, expected to be supplied in the distribution test.
-        var H = {};   // The hypothesized distribution.
+        var mean = 0;           // Estimate from the sample data, a weighted mean.
+        var chi_squared = 0;    // Calculated value of the χ2 statistic.
+        var degrees_of_freedom; // Degrees of freedom, calculated as (number of class intervals - number of hypothesized distribution parameters estimated - 1)
+        var p;                  // Number of hypothesized distribution parameters estimated, expected to be supplied in the distribution test.
+        var H = {};             // The hypothesized distribution.
         var observed_frequencies = {},
             expected_frequencies = {},
             accept = false;
@@ -1107,8 +1107,8 @@
 
         // Calculate degrees of freedom for this test and look it up in the chi_squared_distribution_table in order to
         // accept or reject the goodness-of-fit of the hypothesized distribution.
-        dof = Object.keys(observed_frequencies).length - p - 1;
-        return accept = chi_squared_distribution_table[dof][significance] < chi_squared ? true : false;;
+        degrees_of_freedom = Object.keys(observed_frequencies).length - p - 1;
+        return accept = chi_squared_distribution_table[degrees_of_freedom][significance] < chi_squared ? true : false;;
     }
 
     // # Mixin
