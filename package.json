@@ -2,7 +2,7 @@
   "author": "Tom MacWright <tom@macwright.org> (http://macwright.org/)",
   "name": "simple-statistics",
   "description": "Simple Statistics",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/tmcw/simple-statistics.git"
