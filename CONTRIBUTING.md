@@ -51,6 +51,21 @@ Every function has a comment that ideally includes:
 * If the function depends on another function in the library, a note of this, like
   `depends on mean()`
 
+## Documentation
+
+While the code is meant to readable, it is not documentation. We maintain
+documentation in `API.md`, which as the simple form:
+
+```md
+### .geometric_mean(x)
+
+[Geometric mean](http://en.wikipedia.org/wiki/Geometric_mean) of a single-dimensional array of **positive** numbers.
+```
+
+This file is written in [Markdown](https://daringfireball.net/projects/markdown/) and
+specifies which functions are available, what type of arguments they receive,
+what they compute, and what type of answer they return.
+
 ## Code Style
 
 We use the [Airbnb style for Javascript](https://github.com/airbnb/javascript) with
