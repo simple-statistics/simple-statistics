@@ -153,7 +153,7 @@
             err += Math.pow(data[k][1] - f(data[k][0]), 2);
         }
 
-        // As the error grows larger, it's ratio to the
+        // As the error grows larger, its ratio to the
         // sum of squares increases and the r squared
         // value grows lower.
         return 1 - (err / sum_of_squares);
@@ -588,7 +588,7 @@
     // Tests whether "mean(X)-mean(Y) = difference", (
     // in the most common case, we often have `difference == 0` to test if two samples
     // are likely to be taken from populations with the same mean value) with
-    // no prior knowledge on stdandard deviations of both samples
+    // no prior knowledge on standard deviations of both samples
     // other than the fact that they have the same standard deviation.
     //
     // Usually the results here are used to look up a
@@ -686,7 +686,7 @@
     // # [Interquartile range](http://en.wikipedia.org/wiki/Interquartile_range)
     //
     // A measure of statistical dispersion, or how scattered, spread, or
-    // concentrated a distribution is. It's computed as the difference betwen
+    // concentrated a distribution is. It's computed as the difference between
     // the third quartile and first quartile.
     function iqr(sample) {
         // We can't derive quantiles from an empty list
@@ -819,7 +819,7 @@
 
         // return the two matrices. for just providing breaks, only
         // `lower_class_limits` is needed, but variances can be useful to
-        // evaluage goodness of fit.
+        // evaluate goodness of fit.
         return {
             lower_class_limits: lower_class_limits,
             variance_combinations: variance_combinations
@@ -841,7 +841,7 @@
         kclass[n_classes] = data[data.length - 1];
         kclass[0] = data[0];
 
-        // the lower_class_limits matrix is used as indexes into itself
+        // the lower_class_limits matrix is used as indices into itself
         // here: the `k` variable is reused in each iteration.
         while (countNum > 1) {
             kclass[countNum - 1] = data[lower_class_limits[k][countNum] - 2];
@@ -964,7 +964,7 @@
             index = Math.min((row * 10) + column, standard_normal_table.length - 1);
 
         // The index we calculate must be in the table as a positive value,
-        // but we still pay attention to whether the input is postive
+        // but we still pay attention to whether the input is positive
         // or negative, and flip the output value as a last step.
         if (z >= 0) {
             return standard_normal_table[index];
