@@ -22,6 +22,12 @@ Mean of a single-dimensional Array of numbers. _Also available as `.average(x)`_
 
 Sum of a single-dimensional Array of numbers.
 
+### .mode(x)
+
+Returns the number that appears most frequently in a single-dimensional Array
+of numbers. If there are multiple modes, the one that appears last
+is returned.
+
 ### .variance(x)
 
 [Variance](http://en.wikipedia.org/wiki/Variance) of a single-dimensional Array of numbers.
