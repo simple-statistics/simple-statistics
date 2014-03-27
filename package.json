@@ -2,7 +2,7 @@
   "author": "Tom MacWright <tom@macwright.org> (http://macwright.org/)",
   "name": "simple-statistics",
   "description": "Simple Statistics",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/tmcw/simple-statistics.git"
@@ -10,10 +10,11 @@
   "dependencies": {},
   "devDependencies": {
     "mocha": "1.17.x",
-    "chai": "1.9.x"
+    "chai": "1.9.x",
+    "jshint": "2.4.4"
   },
   "scripts": {
-    "test": "mocha -R spec test/spec",
+    "test": "jshint src/*.js && mocha -R spec test/spec",
     "api": "node api.js"
   },
   "main": "src/simple_statistics.js",

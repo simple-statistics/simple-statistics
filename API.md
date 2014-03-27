@@ -5,10 +5,14 @@ Basic contracts of functions:
 
 # Basic Array Operations
 
-### .mixin()
+### .mixin(array)
 
 _Optionally_ mix in the following functions into the `Array` prototype. Otherwise
 you can use them off of the simple-statistics object itself.
+
+If given a particular array instance as an argument, this adds the functions
+only to that array rather than the global `Array.prototype`. Without an argument,
+it runs on the global `Array.prototype`.
 
 ### .mean(x)
 
