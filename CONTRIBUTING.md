@@ -51,10 +51,28 @@ Every function has a comment that ideally includes:
 * If the function depends on another function in the library, a note of this, like
   `depends on mean()`
 
+## Tests
+
+`simple-statistics` has a testsuite located in `test/spec/`. Each test file
+covers a specific topic and tries to test against known values:
+
+* Values produced by trusted statistics software like R or scipy
+* Common-sense results
+
+Tests can be run in [node.js](http://nodejs.org/) and are run on every commit
+to GitHub by Travis-CI.
+
+To run tests:
+
+```sh
+npm install
+npm test
+```
+
 ## Documentation
 
 While the code is meant to readable, it is not documentation. We maintain
-documentation in `API.md`, which as the simple form:
+documentation in `API.md`, which has the simple form:
 
 ```md
 ### .geometric_mean(x)
