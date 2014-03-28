@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.8.0
+
+* `mixin` can now take an array in order to mixin functions into a single array
+  instance rather than the global Array prototype.
+
 ## 0.7.0
 
 * Adds `simple_statistics.harmonic_mean` thanks to [jseppi](https://github.com/jseppi)
