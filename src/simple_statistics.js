@@ -1054,21 +1054,21 @@
     //
     // The Poisson Distribution is characterized by the strictly positive mean arrival or occurrence rate, `λ`.
     function poisson_distribution(lambda) {
-        // Check that λ is strictly positive
+        // Check that lambda is strictly positive
         if (lambda <= 0) { return null; }
 
         // We initialize `x`, the random variable, and `acc`, an accumulator for the cumulative distribution function
-        // to 0. `distribution_functions` is the object we'll return with individual (`p`) & cumulative (`c`)
-        // probabilities, as well as the trivially calculated mean & variance. We iterate until the cumulative
-        // distribution function is within ε of 1.0.
-        var p, x = 0, acc = 0, distribution_functions = { mean: lambda, variance: lambda };
+        // to 0. `distribution_functions` is the object we'll return with the `probability_of_x` and & the
+        // `cumulative_probability_of_x`, as well as the trivially calculated mean & variance. We iterate until the
+        // `cumulative_probability_of_x` is within `epsilon` of 1.0.
+        var probability_of_x, x = 0, acc = 0, distribution_functions = { mean: lambda, variance: lambda };
         do {
-            p = (Math.pow(Math.E, -lambda) * Math.pow(lambda, x))/factorial(x);
-            acc += p;
-            distribution_functions[x] = { p: p, c: acc };
+            probability_of_x = (Math.pow(Math.E, -lambda) * Math.pow(lambda, x))/factorial(x);
+            acc += probability_of_x;
+            distribution_functions[x] = { probability_of_x: probability_of_x, cumulative_probability_of_x: acc };
             x++;
         }
-        while (distribution_functions[x - 1].c < 1.0 - epsilon);
+        while (distribution_functions[x - 1].cumulative_probability_of_x < 1.0 - epsilon);
 
         return distribution_functions;
     }
@@ -1154,33 +1154,36 @@
         // Generate the hypothesized distribution. Currently implemented for only the Poisson Distribution.
         if (hypo_dist.toLowerCase() === 'poisson') {
             H = poisson_distribution(mean);
-            p = 1; // Lose one degree of freedom for estimating λ from the sample data.
+            p = 1; // Lose one degree of freedom for estimating `lambda` from the sample data.
         }
 
         // Create an array holding a histogram of expected data given the sample size and hypothesized distribution.
         for (k in Object.keys(H)) {
             if (!isNaN(k) && (k in Object.keys(observed_frequencies))) {
-                expected_frequencies[k] = { e: H[k].p * data.length };
+                expected_frequencies[k] = { x: k, expected_frequency_of_x: H[k].probability_of_x * data.length };
             }
         }
 
         // Working backward through the expected frequencies, collapse classes if less than three observations are
         // expected for a class. This transformation is applied to the observed frequencies as well.
         for (k = expected_frequencies.length - 1; k >= 0; k--) {
-            if (expected_frequencies[k].e < 3) {
-                expected_frequencies[k-1].e += expected_frequencies[k].e;
+            if (expected_frequencies[k].expected_frequency_of_x < 3) {
+                expected_frequencies[k-1] = {
+                    x: (expected_frequencies[k-1].x + ' or greater'),
+                    expected_frequency_of_x: (expected_frequencies[k-1].expected_frequency_of_x += expected_frequencies[k].expected_frequency_of_x)
+                };
                 expected_frequencies.pop(k);
                 observed_frequencies[k-1] += observed_frequencies[k];
                 observed_frequencies.pop(k);
             }
         }
 
-        // Iterate through the squared differences between observed & expected frequencies, accumulating the χ2 statistic.
+        // Iterate through the squared differences between observed & expected frequencies, accumulating the `chi_squared` statistic.
         for (k = 0; k < observed_frequencies.length; k++) {
-            chi_squared += (Math.pow((observed_frequencies[k] - expected_frequencies[k].e), 2) / expected_frequencies[k].e);
+            chi_squared += (Math.pow((observed_frequencies[k] - expected_frequencies[k].expected_frequency_of_x), 2) / expected_frequencies[k].expected_frequency_of_x);
         }
 
-        // Calculate degrees of freedom for this test and look it up in the chi_squared_distribution_table in order to
+        // Calculate degrees of freedom for this test and look it up in the `chi_squared_distribution_table` in order to
         // accept or reject the goodness-of-fit of the hypothesized distribution.
         degrees_of_freedom = observed_frequencies.length - p - 1;
         if (chi_squared_distribution_table[degrees_of_freedom][significance] < chi_squared) {
