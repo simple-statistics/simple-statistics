@@ -1026,7 +1026,7 @@
         // to 0. `df` is the object we'll return with individual & cumulative probabilities, as well as the
         // trivially calculated mean & variance. We iterate until the cumulative distribution function is within
         // ε of 1.0.
-        var x = 0, acc = 0, df = { mean: lambda, variance: lambda };
+        var p, x = 0, acc = 0, df = { mean: lambda, variance: lambda };
         do {
             p = (Math.pow(Math.E, -lambda) * Math.pow(lambda, x))/factorial(x);
             acc += p;
@@ -1101,7 +1101,7 @@
         if ((typeof significance === 'undefined')) { significance = 0.05; }
 
         // Create an object holding a histogram from the sample data, simultaneously calculating the sample mean.
-        for (i = 0; i < data.length; i++) {
+        for (var i = 0; i < data.length; i++) {
             if ([data[i]] in observed_frequencies) {
                 observed_frequencies[data[i]]++;
             } else {
