@@ -1073,7 +1073,7 @@
         return distribution_functions;
     }
 
-    // # Percentage Points of the (χ2 (Chi-Squared) Distribution)
+    // # Percentage Points of the χ2 (Chi-Squared) Distribution
     // The [χ2 (Chi-Squared) Distribution](http://en.wikipedia.org/wiki/Chi-squared_distribution) is used in the common
     // chi-squared tests for goodness of fit of an observed distribution to a theoretical one, the independence of two
     // criteria of classification of qualitative data, and in confidence interval estimation for a population standard
@@ -1121,13 +1121,23 @@
         100: { 0.995: 67.33, 0.99: 70.06, 0.975: 74.22, 0.95: 77.93, 0.9: 82.36, 0.5: 99.33, 0.1: 118.50, 0.05: 124.34, 0.025: 129.56, 0.01: 135.81, 0.005: 140.17 }
     };
 
+    // # χ2 (Chi-Squared) Goodness-of-Fit Test
+    // The [χ2 (Chi-Squared) Goodness-of-Fit Test](http://en.wikipedia.org/wiki/Goodness_of_fit#Pearson.27s_chi-squared_test)
+    // uses a measure of goodness of fit which is the sum of differences between observed and expected outcome frequencies
+    // (that is, counts of observations), each squared and divided by the number of observations expected given the
+    // hypothesized distribution. The resulting χ2 statistic, `chi_squared`, can be compared to the chi-squared distribution
+    // to determine the goodness of fit. In order to determine the degrees of freedom of the chi-squared distribution, one
+    // takes the total number of observed frequencies and subtracts the number of estimated parameters. The test statistic
+    // follows, approximately, a chi-square distribution with (k − c) degrees of freedom where `k` is the number of non-empty
+    // cells and `c` is the number of estimated parameters for the distribution.
+
     function chi_squared_goodness_of_fit(data, hypo_dist, significance) {
         // The chi-squared goodness of fit test
 
         var mean = 0;           // Estimate from the sample data, a weighted mean.
         var chi_squared = 0;    // Calculated value of the χ2 statistic.
         var degrees_of_freedom; // Degrees of freedom, calculated as (number of class intervals - number of hypothesized distribution parameters estimated - 1)
-        var p;                  // Number of hypothesized distribution parameters estimated, expected to be supplied in the distribution test.
+        var c;                  // Number of hypothesized distribution parameters estimated, expected to be supplied in the distribution test.
         var H = {};             // The hypothesized distribution.
         var observed_frequencies = [],
             expected_frequencies = [],
@@ -1154,7 +1164,7 @@
         // Generate the hypothesized distribution. Currently implemented for only the Poisson Distribution.
         if (hypo_dist.toLowerCase() === 'poisson') {
             H = poisson_distribution(mean);
-            p = 1; // Lose one degree of freedom for estimating `lambda` from the sample data.
+            c = 1; // Lose one degree of freedom for estimating `lambda` from the sample data.
         }
 
         // Create an array holding a histogram of expected data given the sample size and hypothesized distribution.
@@ -1185,7 +1195,7 @@
 
         // Calculate degrees of freedom for this test and look it up in the `chi_squared_distribution_table` in order to
         // accept or reject the goodness-of-fit of the hypothesized distribution.
-        degrees_of_freedom = observed_frequencies.length - p - 1;
+        degrees_of_freedom = observed_frequencies.length - c - 1;
         if (chi_squared_distribution_table[degrees_of_freedom][significance] < chi_squared) {
             return true;
         } else {
