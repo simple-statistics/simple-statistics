@@ -1130,7 +1130,6 @@
     // takes the total number of observed frequencies and subtracts the number of estimated parameters. The test statistic
     // follows, approximately, a chi-square distribution with (k − c) degrees of freedom where `k` is the number of non-empty
     // cells and `c` is the number of estimated parameters for the distribution.
-
     function chi_squared_goodness_of_fit(data, hypothesized_distribution, significance) {
         var mean = 0;           // Estimate from the sample data, a weighted mean.
         var chi_squared = 0;    // Calculated value of the χ2 statistic.
