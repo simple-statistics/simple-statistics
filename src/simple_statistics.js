@@ -1000,11 +1000,11 @@
     // A factorial, usually written n!, is the product of all positive integers less than or equal to n. We use
     // a standard, recursion-based implementation.
     function factorial(n) {
-        if (n < 0 ) { return null }
+        if (n < 0 ) { return null; }
         if (n <= 1) {
-            return 1
+            return 1;
         } else {
-            return n * factorial(n - 1)
+            return n * factorial(n - 1);
         }
     }
 
@@ -1020,13 +1020,13 @@
     // The Poisson Distribution is characterized by the strictly positive mean arrival or occurrence rate, `λ`.
     function poisson_distribution(lambda) {
         // Check that λ is strictly positive
-        if (lambda <= 0) { return null }
+        if (lambda <= 0) { return null; }
 
         // We initialize `x`, the random variable, and `acc`, an accumulator for the cumulative distribution function
         // to 0. `df` is the object we'll return with individual & cumulative probabilities, as well as the
         // trivially calculated mean & variance. We iterate until the cumulative distribution function is within
         // ε of 1.0.
-        var x = acc = 0, df = { mean: lambda, variance: lambda };
+        var x = 0, acc = 0, df = { mean: lambda, variance: lambda };
         do {
             p = (Math.pow(Math.E, -lambda) * Math.pow(lambda, x))/factorial(x);
             acc += p;
@@ -1098,14 +1098,14 @@
             accept = false;
 
         // Assign a default significance if one hasn't been passed in.
-        if ((typeof significance === 'undefined')) { significance = 0.05 }
+        if ((typeof significance === 'undefined')) { significance = 0.05; }
 
         // Create an object holding a histogram from the sample data, simultaneously calculating the sample mean.
         for (i = 0; i < data.length; i++) {
             if ([data[i]] in observed_frequencies) {
-                observed_frequencies[data[i]]++
+                observed_frequencies[data[i]]++;
             } else {
-                observed_frequencies[data[i]] = 1
+                observed_frequencies[data[i]] = 1;
             }
             mean += data[i]/data.length;
         }
@@ -1143,9 +1143,9 @@
         // accept or reject the goodness-of-fit of the hypothesized distribution.
         degrees_of_freedom = Object.keys(observed_frequencies).length - p - 1;
         if (chi_squared_distribution_table[degrees_of_freedom][significance] < chi_squared) {
-            accept = true
+            accept = true;
         } else {
-            accept = false
+            accept = false;
         }
         return accept;
     }
