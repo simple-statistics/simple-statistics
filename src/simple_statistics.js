@@ -1048,7 +1048,7 @@
     }
 
     // # Poisson Distribution
-    // The (Poisson Distribution)[http://en.wikipedia.org/wiki/Poisson_distribution] is a discrete probability
+    // The [Poisson Distribution](http://en.wikipedia.org/wiki/Poisson_distribution) is a discrete probability
     // distribution that expresses the probability of a given number of events occurring in a fixed interval of time
     // and/or space if these events occur with a known average rate and independently of the time since the last event.
     //
@@ -1074,7 +1074,7 @@
     }
 
     // # Percentage Points of the (χ2 (Chi-Squared) Distribution)
-    // The χ2 (Chi-Squared) Distribution)[http://en.wikipedia.org/wiki/Chi-squared_distribution] is used in the common
+    // The [χ2 (Chi-Squared) Distribution](http://en.wikipedia.org/wiki/Chi-squared_distribution) is used in the common
     // chi-squared tests for goodness of fit of an observed distribution to a theoretical one, the independence of two
     // criteria of classification of qualitative data, and in confidence interval estimation for a population standard
     // deviation of a normal distribution from a sample standard deviation.
