@@ -1131,9 +1131,7 @@
     // follows, approximately, a chi-square distribution with (k − c) degrees of freedom where `k` is the number of non-empty
     // cells and `c` is the number of estimated parameters for the distribution.
 
-    function chi_squared_goodness_of_fit(data, hypo_dist, significance) {
-        // The chi-squared goodness of fit test
-
+    function chi_squared_goodness_of_fit(data, hypothesized_distribution, significance) {
         var mean = 0;           // Estimate from the sample data, a weighted mean.
         var chi_squared = 0;    // Calculated value of the χ2 statistic.
         var degrees_of_freedom; // Degrees of freedom, calculated as (number of class intervals - number of hypothesized distribution parameters estimated - 1)
@@ -1162,7 +1160,7 @@
         }
 
         // Generate the hypothesized distribution. Currently implemented for only the Poisson Distribution.
-        if (hypo_dist.toLowerCase() === 'poisson') {
+        if (hypothesized_distribution.toLowerCase() === 'poisson') {
             H = poisson_distribution(mean);
             c = 1; // Lose one degree of freedom for estimating `lambda` from the sample data.
         }
