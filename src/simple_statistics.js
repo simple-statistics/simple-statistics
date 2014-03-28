@@ -1034,7 +1034,8 @@
             x++;
         }
         while (df[x - 1].c < 1.0 - epsilon);
-    return df;
+
+        return df;
     }
 
     // # Percentage Points of the (χ2 (Chi-Squared) Distribution)
@@ -1095,7 +1096,8 @@
         var H = {};             // The hypothesized distribution.
         var observed_frequencies = {},
             expected_frequencies = {},
-            accept = false;
+            accept = false,
+            k;
 
         // Assign a default significance if one hasn't been passed in.
         if ((typeof significance === 'undefined')) { significance = 0.05; }
@@ -1117,28 +1119,27 @@
         }
 
         // Create an object holding a histogram of expected data given the sample size and hypothesized distribution.
-        for (var k in Object.keys(H)) {
+        for (k in Object.keys(H)) {
             if (!isNaN(k) && (k in Object.keys(observed_frequencies))) {
                 expected_frequencies[k] = { e: H[k].p * data.length };
             }
-        };
-        console.log(expected_frequencies);
+        }
 
         // Working backward through the expected frequencies, collapse classes if less than three observations are
         // expected for a class. This transformation is applied to the observed frequencies as well.
-        for (var k in Object.keys(expected_frequencies).reverse()) {
+        for (k in Object.keys(expected_frequencies).reverse()) {
             if (expected_frequencies[k].e < 3) {
                 expected_frequencies[k-1].e += expected_frequencies[k].e;
                 delete expected_frequencies[k];
                 observed_frequencies[k-1] += observed_frequencies[k];
                 delete observed_frequencies[k];
             }
-        };
+        }
 
         // Iterate through the squared differences between observed & expected frequencies, accumulating the χ2 statistic.
-        for (var k in Object.keys(observed_frequencies)) {
+        for (k in Object.keys(observed_frequencies)) {
             chi_squared += (Math.pow((observed_frequencies[k] - expected_frequencies[k].e), 2) / expected_frequencies[k].e);
-        };
+        }
 
         // Calculate degrees of freedom for this test and look it up in the chi_squared_distribution_table in order to
         // accept or reject the goodness-of-fit of the hypothesized distribution.
