@@ -1047,10 +1047,6 @@
         }
     }
 
-    function _get_random(min, max) {
-        return Math.random() * (max - min) + min;
-    }
-
     // # Poisson Distribution
     // The (Poisson Distribution)[http://en.wikipedia.org/wiki/Poisson_distribution] is a discrete probability
     // distribution that expresses the probability of a given number of events occurring in a fixed interval of time
