@@ -1023,19 +1023,19 @@
         if (lambda <= 0) { return null; }
 
         // We initialize `x`, the random variable, and `acc`, an accumulator for the cumulative distribution function
-        // to 0. `df` is the object we'll return with individual & cumulative probabilities, as well as the
-        // trivially calculated mean & variance. We iterate until the cumulative distribution function is within
-        // ε of 1.0.
-        var p, x = 0, acc = 0, df = { mean: lambda, variance: lambda };
+        // to 0. `distribution_functions` is the object we'll return with individual (`p`) & cumulative (`c`)
+        // probabilities, as well as the trivially calculated mean & variance. We iterate until the cumulative
+        // distribution function is within ε of 1.0.
+        var p, x = 0, acc = 0, distribution_functions = { mean: lambda, variance: lambda };
         do {
             p = (Math.pow(Math.E, -lambda) * Math.pow(lambda, x))/factorial(x);
             acc += p;
-            df[x] = { p: p, c: acc };
+            distribution_functions[x] = { p: p, c: acc };
             x++;
         }
-        while (df[x - 1].c < 1.0 - epsilon);
+        while (distribution_functions[x - 1].c < 1.0 - epsilon);
 
-        return df;
+        return distribution_functions;
     }
 
     // # Percentage Points of the (χ2 (Chi-Squared) Distribution)
