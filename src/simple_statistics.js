@@ -1036,15 +1036,15 @@
     // We use `ε`, epsilon, as a stopping criterion when we want to iterate until we're "close enough".
     var epsilon = 0.0001;
 
-    // A factorial, usually written n!, is the product of all positive integers less than or equal to n. We use
-    // a standard, recursion-based implementation.
+    // A factorial, usually written n!, is the product of all positive integers less than or equal to n.
     function factorial(n) {
         if (n < 0 ) { return null; }
-        if (n <= 1) {
-            return 1;
-        } else {
-            return n * factorial(n - 1);
+
+        var acc = 1;
+        for (var i = 2; i <= n; i++) {
+            acc = acc * i;
         }
+        return acc;
     }
 
     // # Poisson Distribution
@@ -1131,7 +1131,6 @@
         var H = {};             // The hypothesized distribution.
         var observed_frequencies = [],
             expected_frequencies = [],
-            accept = false,
             k;
 
         // Assign a default significance if one hasn't been passed in.
@@ -1185,11 +1184,10 @@
         // accept or reject the goodness-of-fit of the hypothesized distribution.
         degrees_of_freedom = observed_frequencies.length - p - 1;
         if (chi_squared_distribution_table[degrees_of_freedom][significance] < chi_squared) {
-            accept = true;
+            return true;
         } else {
-            accept = false;
+            return false;
         }
-        return accept;
     }
 
     // # Mixin
