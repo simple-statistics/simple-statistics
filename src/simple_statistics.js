@@ -1047,28 +1047,6 @@
         return acc;
     }
 
-//    // # _get_random(min, max)
-//    // A private function for generating a random number between min and mix, inclusive, taken from
-//    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
-//    function _get_random(min, max) {
-//        return Math.random() * (max - min) + min;
-//    }
-//
-//    function generate_bernoulli(p, n) {
-//        // Generate one or more random variables using a Bernoulli distribution
-//        // If n is unspecified, return an array of one random variable
-//        if (typeof n === 'undefined' || n === null) { n = 1; }
-//
-//        // Check validity of probability (0 ≤ p ≤ 1) and sensibility of n
-//        if (p < 0 || p > 1.0 || n < 1 ) { return null; }
-//
-//        var x = [];
-//        for (i = 0; i < n; i++) {
-//            _get_random(0, 1) <= p ? x.push(1) : x.push(0);
-//        }
-//        return x;
-//    }
-
     // # Bernoulli Distribution
     // The [Bernoulli distribution](http://en.wikipedia.org/wiki/Bernoulli_distribution) is the probability discrete
     // distribution of a random variable which takes value 1 with success probability `p` and value 0 with failure
