@@ -1034,13 +1034,17 @@
     }
 
     // We use `ε`, epsilon, as a stopping criterion when we want to iterate until we're "close enough".
-    var ε = 0.0001;
+    var epsilon = 0.0001;
 
-    // A factorial, usually written n!, is the product of all positive integers less than or equal to n. We use
-    // a standard, recursion-based implementation.
-    function _factorial(n) {
-        if (n < 0 ) { return null }
-        return n <= 1 ? 1 : n * _factorial(n - 1);
+    // A factorial, usually written n!, is the product of all positive integers less than or equal to n.
+    function factorial(n) {
+        if (n < 0 ) { return null; }
+
+        var acc = 1;
+        for (var i = 2; i <= n; i++) {
+            acc = acc * i;
+        }
+        return acc;
     }
 
     function _get_random(min, max) {
@@ -1074,32 +1078,33 @@
     }
 
     // # Poisson Distribution
-    // The (Poisson Distribution)[http://en.wikipedia.org/wiki/Poisson_distribution] is a discrete probability
+    // The [Poisson Distribution](http://en.wikipedia.org/wiki/Poisson_distribution) is a discrete probability
     // distribution that expresses the probability of a given number of events occurring in a fixed interval of time
     // and/or space if these events occur with a known average rate and independently of the time since the last event.
     //
     // The Poisson Distribution is characterized by the strictly positive mean arrival or occurrence rate, `λ`.
-    function poisson_distribution(λ) {
-        // Check that λ is strictly positive
-        if (λ <= 0) { return null }
+    function poisson_distribution(lambda) {
+        // Check that lambda is strictly positive
+        if (lambda <= 0) { return null; }
 
         // We initialize `x`, the random variable, and `acc`, an accumulator for the cumulative distribution function
-        // to 0. `df` is the object we'll return with individual & cumulative probabilities, as well as the
-        // trivially calculated mean & variance. We iterate until the cumulative distribution function is within
-        // ε of 1.0.
-        var x = acc = 0, df = { mean: λ, variance: λ };
+        // to 0. `distribution_functions` is the object we'll return with the `probability_of_x` and & the
+        // `cumulative_probability_of_x`, as well as the trivially calculated mean & variance. We iterate until the
+        // `cumulative_probability_of_x` is within `epsilon` of 1.0.
+        var probability_of_x, x = 0, acc = 0, distribution_functions = { mean: lambda, variance: lambda };
         do {
-            p = (Math.pow(Math.E, -λ) * Math.pow(λ, x))/_factorial(x);
-            acc += p;
-            df[x] = { p: p, c: acc };
+            probability_of_x = (Math.pow(Math.E, -lambda) * Math.pow(lambda, x))/factorial(x);
+            acc += probability_of_x;
+            distribution_functions[x] = { probability_of_x: probability_of_x, cumulative_probability_of_x: acc };
             x++;
         }
-        while (df[x - 1].c < 1.0 - ε);
-    return df;
+        while (distribution_functions[x - 1].cumulative_probability_of_x < 1.0 - epsilon);
+
+        return distribution_functions;
     }
 
-    // # Percentage Points of the (χ2 (Chi-Squared) Distribution)
-    // The χ2 (Chi-Squared) Distribution)[http://en.wikipedia.org/wiki/Chi-squared_distribution] is used in the common
+    // # Percentage Points of the χ2 (Chi-Squared) Distribution
+    // The [χ2 (Chi-Squared) Distribution](http://en.wikipedia.org/wiki/Chi-squared_distribution) is used in the common
     // chi-squared tests for goodness of fit of an observed distribution to a theoretical one, the independence of two
     // criteria of classification of qualitative data, and in confidence interval estimation for a population standard
     // deviation of a normal distribution from a sample standard deviation.
@@ -1107,73 +1112,122 @@
     // Values from Appendix 1, Table III of William W. Hines & Douglas C. Montgomery, "Probability and Statistics in
     // Engineering and Management Science", Wiley (1980).
     var chi_squared_distribution_table = {
-      1: { .995:  0.00, .99:  0.00, .975:  0.00, .95:  0.00, .9:  0.02, .5:  0.45, .1:  2.71, .05:  3.84, .025:  5.02, .01:  6.63, .005:  7.88 },
-      2: { .995:  0.01, .99:  0.02, .975:  0.05, .95:  0.10, .9:  0.21, .5:  1.39, .1:  4.61, .05:  5.99, .025:  7.38, .01:  9.21, .005: 10.60 },
-      3: { .995:  0.07, .99:  0.11, .975:  0.22, .95:  0.35, .9:  0.58, .5:  2.37, .1:  6.25, .05:  7.81, .025:  9.35, .01: 11.34, .005: 12.84 },
-      4: { .995:  0.21, .99:  0.30, .975:  0.48, .95:  0.71, .9:  1.06, .5:  3.36, .1:  7.78, .05:  9.49, .025: 11.14, .01: 13.28, .005: 14.86 },
-      5: { .995:  0.41, .99:  0.55, .975:  0.83, .95:  1.15, .9:  1.61, .5:  4.35, .1:  9.24, .05: 11.07, .025: 12.83, .01: 15.09, .005: 16.75 },
-      6: { .995:  0.68, .99:  0.87, .975:  1.24, .95:  1.64, .9:  2.20, .5:  5.35, .1: 10.65, .05: 12.59, .025: 14.45, .01: 16.81, .005: 18.55 },
-      7: { .995:  0.99, .99:  1.25, .975:  1.69, .95:  2.17, .9:  2.83, .5:  6.35, .1: 12.02, .05: 14.07, .025: 16.01, .01: 18.48, .005: 20.28 },
-      8: { .995:  1.34, .99:  1.65, .975:  2.18, .95:  2.73, .9:  3.49, .5:  7.34, .1: 13.36, .05: 15.51, .025: 17.53, .01: 20.09, .005: 21.96 },
-      9: { .995:  1.73, .99:  2.09, .975:  2.70, .95:  3.33, .9:  4.17, .5:  8.34, .1: 14.68, .05: 16.92, .025: 19.02, .01: 21.67, .005: 23.59 },
-      10: { .995:  2.16 , .99:  2.56, .975:  3.25, .95:  3.94, .9:  4.87, .5:  9.34, .1: 15.99, .05: 18.31, .025: 20.48, .01: 23.21, .005: 25.19 }
-      // @todo: finish filling out this table; drudgery defined
+        1: { 0.995:  0.00, 0.99:  0.00, 0.975:  0.00, 0.95:  0.00, 0.9:  0.02, 0.5:  0.45, 0.1:  2.71, 0.05:  3.84, 0.025:  5.02, 0.01:  6.63, 0.005:  7.88 },
+        2: { 0.995:  0.01, 0.99:  0.02, 0.975:  0.05, 0.95:  0.10, 0.9:  0.21, 0.5:  1.39, 0.1:  4.61, 0.05:  5.99, 0.025:  7.38, 0.01:  9.21, 0.005: 10.60 },
+        3: { 0.995:  0.07, 0.99:  0.11, 0.975:  0.22, 0.95:  0.35, 0.9:  0.58, 0.5:  2.37, 0.1:  6.25, 0.05:  7.81, 0.025:  9.35, 0.01: 11.34, 0.005: 12.84 },
+        4: { 0.995:  0.21, 0.99:  0.30, 0.975:  0.48, 0.95:  0.71, 0.9:  1.06, 0.5:  3.36, 0.1:  7.78, 0.05:  9.49, 0.025: 11.14, 0.01: 13.28, 0.005: 14.86 },
+        5: { 0.995:  0.41, 0.99:  0.55, 0.975:  0.83, 0.95:  1.15, 0.9:  1.61, 0.5:  4.35, 0.1:  9.24, 0.05: 11.07, 0.025: 12.83, 0.01: 15.09, 0.005: 16.75 },
+        6: { 0.995:  0.68, 0.99:  0.87, 0.975:  1.24, 0.95:  1.64, 0.9:  2.20, 0.5:  5.35, 0.1: 10.65, 0.05: 12.59, 0.025: 14.45, 0.01: 16.81, 0.005: 18.55 },
+        7: { 0.995:  0.99, 0.99:  1.25, 0.975:  1.69, 0.95:  2.17, 0.9:  2.83, 0.5:  6.35, 0.1: 12.02, 0.05: 14.07, 0.025: 16.01, 0.01: 18.48, 0.005: 20.28 },
+        8: { 0.995:  1.34, 0.99:  1.65, 0.975:  2.18, 0.95:  2.73, 0.9:  3.49, 0.5:  7.34, 0.1: 13.36, 0.05: 15.51, 0.025: 17.53, 0.01: 20.09, 0.005: 21.96 },
+        9: { 0.995:  1.73, 0.99:  2.09, 0.975:  2.70, 0.95:  3.33, 0.9:  4.17, 0.5:  8.34, 0.1: 14.68, 0.05: 16.92, 0.025: 19.02, 0.01: 21.67, 0.005: 23.59 },
+        10: { 0.995:  2.16, 0.99:  2.56, 0.975:  3.25, 0.95:  3.94, 0.9:  4.87, 0.5:  9.34, 0.1: 15.99, 0.05: 18.31, 0.025: 20.48, 0.01: 23.21, 0.005: 25.19 },
+        11: { 0.995:  2.60, 0.99:  3.05, 0.975:  3.82, 0.95:  4.57, 0.9:  5.58, 0.5: 10.34, 0.1: 17.28, 0.05: 19.68, 0.025: 21.92, 0.01: 24.72, 0.005: 26.76 },
+        12: { 0.995:  3.07, 0.99:  3.57, 0.975:  4.40, 0.95:  5.23, 0.9:  6.30, 0.5: 11.34, 0.1: 18.55, 0.05: 21.03, 0.025: 23.34, 0.01: 26.22, 0.005: 28.30 },
+        13: { 0.995:  3.57, 0.99:  4.11, 0.975:  5.01, 0.95:  5.89, 0.9:  7.04, 0.5: 12.34, 0.1: 19.81, 0.05: 22.36, 0.025: 24.74, 0.01: 27.69, 0.005: 29.82 },
+        14: { 0.995:  4.07, 0.99:  4.66, 0.975:  5.63, 0.95:  6.57, 0.9:  7.79, 0.5: 13.34, 0.1: 21.06, 0.05: 23.68, 0.025: 26.12, 0.01: 29.14, 0.005: 31.32 },
+        15: { 0.995:  4.60, 0.99:  5.23, 0.975:  6.27, 0.95:  7.26, 0.9:  8.55, 0.5: 14.34, 0.1: 22.31, 0.05: 25.00, 0.025: 27.49, 0.01: 30.58, 0.005: 32.80 },
+        16: { 0.995:  5.14, 0.99:  5.81, 0.975:  6.91, 0.95:  7.96, 0.9:  9.31, 0.5: 15.34, 0.1: 23.54, 0.05: 26.30, 0.025: 28.85, 0.01: 32.00, 0.005: 34.27 },
+        17: { 0.995:  5.70, 0.99:  6.41, 0.975:  7.56, 0.95:  8.67, 0.9: 10.09, 0.5: 16.34, 0.1: 24.77, 0.05: 27.59, 0.025: 30.19, 0.01: 33.41, 0.005: 35.72 },
+        18: { 0.995:  6.26, 0.99:  7.01, 0.975:  8.23, 0.95:  9.39, 0.9: 10.87, 0.5: 17.34, 0.1: 25.99, 0.05: 28.87, 0.025: 31.53, 0.01: 34.81, 0.005: 37.16 },
+        19: { 0.995:  6.84, 0.99:  7.63, 0.975:  8.91, 0.95: 10.12, 0.9: 11.65, 0.5: 18.34, 0.1: 27.20, 0.05: 30.14, 0.025: 32.85, 0.01: 36.19, 0.005: 38.58 },
+        20: { 0.995:  7.43, 0.99:  8.26, 0.975:  9.59, 0.95: 10.85, 0.9: 12.44, 0.5: 19.34, 0.1: 28.41, 0.05: 31.41, 0.025: 34.17, 0.01: 37.57, 0.005: 40.00 },
+        21: { 0.995:  8.03, 0.99:  8.90, 0.975: 10.28, 0.95: 11.59, 0.9: 13.24, 0.5: 20.34, 0.1: 29.62, 0.05: 32.67, 0.025: 35.48, 0.01: 38.93, 0.005: 41.40 },
+        22: { 0.995:  8.64, 0.99:  9.54, 0.975: 10.98, 0.95: 12.34, 0.9: 14.04, 0.5: 21.34, 0.1: 30.81, 0.05: 33.92, 0.025: 36.78, 0.01: 40.29, 0.005: 42.80 },
+        23: { 0.995:  9.26, 0.99: 10.20, 0.975: 11.69, 0.95: 13.09, 0.9: 14.85, 0.5: 22.34, 0.1: 32.01, 0.05: 35.17, 0.025: 38.08, 0.01: 41.64, 0.005: 44.18 },
+        24: { 0.995:  9.89, 0.99: 10.86, 0.975: 12.40, 0.95: 13.85, 0.9: 15.66, 0.5: 23.34, 0.1: 33.20, 0.05: 36.42, 0.025: 39.36, 0.01: 42.98, 0.005: 45.56 },
+        25: { 0.995: 10.52, 0.99: 11.52, 0.975: 13.12, 0.95: 14.61, 0.9: 16.47, 0.5: 24.34, 0.1: 34.28, 0.05: 37.65, 0.025: 40.65, 0.01: 44.31, 0.005: 46.93 },
+        26: { 0.995: 11.16, 0.99: 12.20, 0.975: 13.84, 0.95: 15.38, 0.9: 17.29, 0.5: 25.34, 0.1: 35.56, 0.05: 38.89, 0.025: 41.92, 0.01: 45.64, 0.005: 48.29 },
+        27: { 0.995: 11.81, 0.99: 12.88, 0.975: 14.57, 0.95: 16.15, 0.9: 18.11, 0.5: 26.34, 0.1: 36.74, 0.05: 40.11, 0.025: 43.19, 0.01: 46.96, 0.005: 49.65 },
+        28: { 0.995: 12.46, 0.99: 13.57, 0.975: 15.31, 0.95: 16.93, 0.9: 18.94, 0.5: 27.34, 0.1: 37.92, 0.05: 41.34, 0.025: 44.46, 0.01: 48.28, 0.005: 50.99 },
+        29: { 0.995: 13.12, 0.99: 14.26, 0.975: 16.05, 0.95: 17.71, 0.9: 19.77, 0.5: 28.34, 0.1: 39.09, 0.05: 42.56, 0.025: 45.72, 0.01: 49.59, 0.005: 52.34 },
+        30: { 0.995: 13.79, 0.99: 14.95, 0.975: 16.79, 0.95: 18.49, 0.9: 20.60, 0.5: 29.34, 0.1: 40.26, 0.05: 43.77, 0.025: 46.98, 0.01: 50.89, 0.005: 53.67 },
+        40: { 0.995: 20.71, 0.99: 22.16, 0.975: 24.43, 0.95: 26.51, 0.9: 29.05, 0.5: 39.34, 0.1: 51.81, 0.05: 55.76, 0.025: 59.34, 0.01: 63.69, 0.005: 66.77 },
+        50: { 0.995: 27.99, 0.99: 29.71, 0.975: 32.36, 0.95: 34.76, 0.9: 37.69, 0.5: 49.33, 0.1: 63.17, 0.05: 67.50, 0.025: 71.42, 0.01: 76.15, 0.005: 79.49 },
+        60: { 0.995: 35.53, 0.99: 37.48, 0.975: 40.48, 0.95: 43.19, 0.9: 46.46, 0.5: 59.33, 0.1: 74.40, 0.05: 79.08, 0.025: 83.30, 0.01: 88.38, 0.005: 91.95 },
+        70: { 0.995: 43.28, 0.99: 45.44, 0.975: 48.76, 0.95: 51.74, 0.9: 55.33, 0.5: 69.33, 0.1: 85.53, 0.05: 90.53, 0.025: 95.02, 0.01: 100.42, 0.005: 104.22 },
+        80: { 0.995: 51.17, 0.99: 53.54, 0.975: 57.15, 0.95: 60.39, 0.9: 64.28, 0.5: 79.33, 0.1: 96.58, 0.05: 101.88, 0.025: 106.63, 0.01: 112.33, 0.005: 116.32 },
+        90: { 0.995: 59.20, 0.99: 61.75, 0.975: 65.65, 0.95: 69.13, 0.9: 73.29, 0.5: 89.33, 0.1: 107.57, 0.05: 113.14, 0.025: 118.14, 0.01: 124.12, 0.005: 128.30 },
+        100: { 0.995: 67.33, 0.99: 70.06, 0.975: 74.22, 0.95: 77.93, 0.9: 82.36, 0.5: 99.33, 0.1: 118.50, 0.05: 124.34, 0.025: 129.56, 0.01: 135.81, 0.005: 140.17 }
     };
 
-    function chi_squared(data, hypo_dist, significance) {
-        // The chi-squared goodness of fit test
-
-        var mean = 0; // Estimate from the sample data, a weighted mean.
-        var χ2 = 0;   // Calculated value of the χ2 statistic.
-        var dof;      // Degrees of freedom, calculated as (number of class intervals - number of hypothesized distribution parameters estimated - 1)
-        var p;        // Number of hypothesized distribution parameters estimated, expected to be supplied in the distribution test.
-        var H = {};   // The hypothesized distribution.
-        var observed_frequencies = {},
-            expected_frequencies = {},
-            accept = false;
+    // # χ2 (Chi-Squared) Goodness-of-Fit Test
+    // The [χ2 (Chi-Squared) Goodness-of-Fit Test](http://en.wikipedia.org/wiki/Goodness_of_fit#Pearson.27s_chi-squared_test)
+    // uses a measure of goodness of fit which is the sum of differences between observed and expected outcome frequencies
+    // (that is, counts of observations), each squared and divided by the number of observations expected given the
+    // hypothesized distribution. The resulting χ2 statistic, `chi_squared`, can be compared to the chi-squared distribution
+    // to determine the goodness of fit. In order to determine the degrees of freedom of the chi-squared distribution, one
+    // takes the total number of observed frequencies and subtracts the number of estimated parameters. The test statistic
+    // follows, approximately, a chi-square distribution with (k − c) degrees of freedom where `k` is the number of non-empty
+    // cells and `c` is the number of estimated parameters for the distribution.
+    function chi_squared_goodness_of_fit(data, hypothesized_distribution, significance) {
+        var mean = 0;           // Estimate from the sample data, a weighted mean.
+        var chi_squared = 0;    // Calculated value of the χ2 statistic.
+        var degrees_of_freedom; // Degrees of freedom, calculated as (number of class intervals - number of hypothesized distribution parameters estimated - 1)
+        var c;                  // Number of hypothesized distribution parameters estimated, expected to be supplied in the distribution test.
+        var H = {};             // The hypothesized distribution.
+        var observed_frequencies = [],
+            expected_frequencies = [],
+            k;
 
         // Assign a default significance if one hasn't been passed in.
-        if ((typeof significance === 'undefined')) { significance = 0.05 }
+        if ((typeof significance === 'undefined')) { significance = 0.05; }
 
-        // Create an object holding a histogram from the sample data, simultaneously calculating the sample mean.
-        for (i = 0; i < data.length; i++) {
-            [data[i]] in observed_frequencies ? observed_frequencies[data[i]]++ : observed_frequencies[data[i]] = 1;
+        // Create an array holding a histogram from the sample data, simultaneously calculating the sample mean.
+        for (var i = 0; i < data.length; i++) {
+            if ([data[i]] in observed_frequencies) {
+                observed_frequencies[data[i]]++;
+            } else {
+                observed_frequencies[data[i]] = 1;
+            }
             mean += data[i]/data.length;
+        }
+        for (i = 0; i < observed_frequencies.length; i++) {
+            if (typeof observed_frequencies[i] == 'undefined') {
+                observed_frequencies[i] = 0;
+            }
         }
 
         // Generate the hypothesized distribution. Currently implemented for only the Poisson Distribution.
-        if (hypo_dist.toLowerCase() === 'poisson') {
+        if (hypothesized_distribution.toLowerCase() === 'poisson') {
             H = poisson_distribution(mean);
-            p = 1; // Lose one degree of freedom for estimating λ from the sample data.
+            c = 1; // Lose one degree of freedom for estimating `lambda` from the sample data.
         }
 
-        // Create an object holding a histogram of expected data given the sample size and hypothesized distribution.
-        Object.keys(H).forEach(function(k) {
+        // Create an array holding a histogram of expected data given the sample size and hypothesized distribution.
+        for (k in Object.keys(H)) {
             if (!isNaN(k) && (k in Object.keys(observed_frequencies))) {
-                expected_frequencies[k] = { e: H[k].p * data.length };
+                expected_frequencies[k] = { x: k, expected_frequency_of_x: H[k].probability_of_x * data.length };
             }
-        });
+        }
 
         // Working backward through the expected frequencies, collapse classes if less than three observations are
         // expected for a class. This transformation is applied to the observed frequencies as well.
-        Object.keys(expected_frequencies).reverse().forEach(function(k) {
-            if (expected_frequencies[k].e < 3) {
-                expected_frequencies[k-1].e += expected_frequencies[k].e;
-                delete expected_frequencies[k];
+        for (k = expected_frequencies.length - 1; k >= 0; k--) {
+            if (expected_frequencies[k].expected_frequency_of_x < 3) {
+                expected_frequencies[k-1] = {
+                    x: (expected_frequencies[k-1].x + ' or greater'),
+                    expected_frequency_of_x: (expected_frequencies[k-1].expected_frequency_of_x += expected_frequencies[k].expected_frequency_of_x)
+                };
+                expected_frequencies.pop(k);
                 observed_frequencies[k-1] += observed_frequencies[k];
-                delete observed_frequencies[k];
+                observed_frequencies.pop(k);
             }
-        });
+        }
 
-        // Iterate through the squared differences between observed & expected frequencies, accumulating the χ2 statistic.
-        Object.keys(observed_frequencies).forEach(function(k) {
-            χ2 += (Math.pow((observed_frequencies[k] - expected_frequencies[k].e), 2) / expected_frequencies[k].e);
-        });
+        // Iterate through the squared differences between observed & expected frequencies, accumulating the `chi_squared` statistic.
+        for (k = 0; k < observed_frequencies.length; k++) {
+            chi_squared += (Math.pow((observed_frequencies[k] - expected_frequencies[k].expected_frequency_of_x), 2) / expected_frequencies[k].expected_frequency_of_x);
+        }
 
-        // Calculate degrees of freedom for this test and look it up in the chi_squared_distribution_table in order to
+        // Calculate degrees of freedom for this test and look it up in the `chi_squared_distribution_table` in order to
         // accept or reject the goodness-of-fit of the hypothesized distribution.
-        dof = Object.keys(observed_frequencies).length - p - 1;
-        return accept = chi_squared_distribution_table[dof][significance] < χ2 ? true : false;;
+        degrees_of_freedom = observed_frequencies.length - c - 1;
+        if (chi_squared_distribution_table[degrees_of_freedom][significance] < chi_squared) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // # Mixin
@@ -1261,12 +1315,12 @@
 
     ss.bayesian = bayesian;
 
-    // Distribution methods
-    ss.ε = ε; // We make ε available to the test suite.
-    ss._factorial = _factorial;
+    // Distribution-related methods
+    ss.epsilon = epsilon; // We make ε available to the test suite.
+    ss.factorial = factorial;
     ss.generate_bernoulli = generate_bernoulli;
     ss.poisson_distribution = poisson_distribution;
-    ss.chi_squared = chi_squared;
+    ss.chi_squared_goodness_of_fit = chi_squared_goodness_of_fit;
 
     // Normal distribution
     ss.z_score = z_score;
