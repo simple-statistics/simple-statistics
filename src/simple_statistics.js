@@ -1047,34 +1047,64 @@
         return acc;
     }
 
-    function _get_random(min, max) {
-        return Math.random() * (max - min) + min;
-    }
-
-//    function bernoulli_distribution(p) {
-//        // Check validity of probability (0 ≤ p ≤ 1)
-//        if (p < 0 || p > 1.0 ) { return null }
-//        q = 1.0 - p;
-//        return { probability: function(p) { Math.pow(p) }, mean: p, variance: (p * q) };
+//    // # _get_random(min, max)
+//    // A private function for generating a random number between min and mix, inclusive, taken from
+//    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+//    function _get_random(min, max) {
+//        return Math.random() * (max - min) + min;
+//    }
+//
+//    function generate_bernoulli(p, n) {
+//        // Generate one or more random variables using a Bernoulli distribution
+//        // If n is unspecified, return an array of one random variable
+//        if (typeof n === 'undefined' || n === null) { n = 1; }
+//
+//        // Check validity of probability (0 ≤ p ≤ 1) and sensibility of n
+//        if (p < 0 || p > 1.0 || n < 1 ) { return null; }
+//
+//        var x = [];
+//        for (i = 0; i < n; i++) {
+//            _get_random(0, 1) <= p ? x.push(1) : x.push(0);
+//        }
+//        return x;
 //    }
 
-    function generate_bernoulli(p, n) {
-        // Generate one or more random variables using a Bernoulli distribution
-        // If n is unspecified, return an array of one random variable
-        if (typeof n === 'undefined' || n === null) { n = 1; }
+    // # Bernoulli Distribution
+    // The [Bernoulli distribution](http://en.wikipedia.org/wiki/Bernoulli_distribution) is the probability discrete
+    // distribution of a random variable which takes value 1 with success probability `p` and value 0 with failure
+    // probability `q` = 1 - `p`. It can be used, for example, to represent the toss of a coin, where "1" is defined to
+    // mean "heads" and "0" is defined to mean "tails" (or vice versa). It is a special case of a Binomial Distribution
+    // where `n` = 1.
+    function bernoulli_distribution(p) {
+        // Check that `p` is a valid probability (0 ≤ p ≤ 1)
+        if (p < 0 || p > 1.0 ) { return null; }
 
-        // Check validity of probability (0 ≤ p ≤ 1) and sensibility of n
-        if (p < 0 || p > 1.0 || n < 1 ) { return null }
-
-        var x = [];
-        for (i = 0; i < n; i++) {
-            _get_random(0, 1) <= p ? x.push(1) : x.push(0);
-        }
-        return x;
+        return binomial_distribution(1, p);
     }
 
-    function generate_binomial() {
+    // # Binomial Distribution
+    // The [Binomial Distribution](http://en.wikipedia.org/wiki/Binomial_distribution) is the discrete probability
+    // distribution of the number of successes in a sequence of n independent yes/no experiments, each of which yields
+    // success with probability `p`. Such a success/failure experiment is also called a Bernoulli experiment or
+    // Bernoulli trial; when n = 1, the Binomial Distribution is a Bernoulli Distribution.
+    function binomial_distribution(n, p) {
+        // Check that `p` is a valid probability (0 ≤ p ≤ 1), and that `n` is an integer, strictly positive.
+        if (p < 0 || p > 1.0 || !/^\d+$/.test(n) || n <= 0) { return null; }
 
+        // We initialize `x`, the random variable, and `acc`, an accumulator for the cumulative distribution function
+        // to 0. `distribution_functions` is the object we'll return with the `probability_of_x` and the
+        // `cumulative_probability_of_x`, as well as the calculated mean & variance. We iterate until the
+        // `cumulative_probability_of_x` is within `epsilon` of 1.0.
+        var probability_of_x, x = 0, acc = 0, distribution_functions = { mean: n * p, variance: (n * p) * (1.0 - p) };
+        do {
+            probability_of_x = (factorial(n)/(factorial(x) * factorial(n - x)) * (Math.pow(p, x) * Math.pow(1.0 - p, (n - x))));
+            acc += probability_of_x;
+            distribution_functions[x] = { probability_of_x: probability_of_x, cumulative_probability_of_x: acc };
+            x++;
+        }
+        while (distribution_functions[x - 1].cumulative_probability_of_x < 1.0 - epsilon);
+
+        return distribution_functions;
     }
 
     // # Poisson Distribution
@@ -1088,7 +1118,7 @@
         if (lambda <= 0) { return null; }
 
         // We initialize `x`, the random variable, and `acc`, an accumulator for the cumulative distribution function
-        // to 0. `distribution_functions` is the object we'll return with the `probability_of_x` and & the
+        // to 0. `distribution_functions` is the object we'll return with the `probability_of_x` and the
         // `cumulative_probability_of_x`, as well as the trivially calculated mean & variance. We iterate until the
         // `cumulative_probability_of_x` is within `epsilon` of 1.0.
         var probability_of_x, x = 0, acc = 0, distribution_functions = { mean: lambda, variance: lambda };
@@ -1318,7 +1348,8 @@
     // Distribution-related methods
     ss.epsilon = epsilon; // We make ε available to the test suite.
     ss.factorial = factorial;
-    ss.generate_bernoulli = generate_bernoulli;
+    ss.bernoulli_distribution = bernoulli_distribution;
+    ss.binomial_distribution = binomial_distribution;
     ss.poisson_distribution = poisson_distribution;
     ss.chi_squared_goodness_of_fit = chi_squared_goodness_of_fit;
 
