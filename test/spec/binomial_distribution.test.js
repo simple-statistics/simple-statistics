@@ -2,8 +2,8 @@ var assert = require('chai').assert;
 var ss = require('../../');
 
 describe('binomial_distribution', function() {
-    // Data given in the [Wikipedia example](http://en.wikipedia.org/wiki/Binomial_distribution) retrieved 29 Mar 2014
-    // Cumulative probabilities worked by hand to reduce accumulated rounding errors.
+    // Data given in the [Wikipedia example](http://en.wikipedia.org/wiki/Binomial_distribution#Example) retrieved 29 Mar 2014
+    // Cumulative probabilities worked by hand to mitigate accumulated rounding errors.
     it('can return generate probability and cumulative probability distributions for n = 6, p = 0.3', function() {
         assert.isObject(ss.binomial_distribution(6, 0.3));
         assert.closeTo(ss.binomial_distribution(6, 0.3)[0].probability_of_x, 0.1176, ss.epsilon);
