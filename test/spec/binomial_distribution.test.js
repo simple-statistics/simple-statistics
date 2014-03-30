@@ -20,8 +20,8 @@ describe('binomial_distribution', function() {
         assert.closeTo(ss.binomial_distribution(6, 0.3)[5].cumulative_probability_of_x, 0.9993, ss.epsilon);
         assert.closeTo(ss.binomial_distribution(6, 0.3)[6].probability_of_x, 0.0007, ss.epsilon);
         assert.closeTo(ss.binomial_distribution(6, 0.3)[6].cumulative_probability_of_x, 1.0, ss.epsilon);
-
     });
+
     it('can return null when p or n are not valid parameters', function() {
         assert.isNull(ss.binomial_distribution(0, 0.5), 'n should be strictly positive');
         assert.isNull(ss.binomial_distribution(1.5, 0.5), 'n should be an integer');

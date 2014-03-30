@@ -3,7 +3,7 @@ var ss = require('../../');
 
 // Data from Poisson goodness-of-fit example 10-19 in William W. Hines & Douglas C. Montgomery,
 // "Probability and Statistics in Engineering and Management Science", Wiley (1980).
-data_10_19 = [
+var data_10_19 = [
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
     2,2,2,2,2,2,2,2,2,

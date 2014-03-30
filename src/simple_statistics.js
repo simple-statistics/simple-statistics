@@ -1033,80 +1033,128 @@
         return (x - mean) / standard_deviation;
     }
 
-    // We use `ε`, epsilon, as a stopping criterion when we want to iterate until we're "close enough".
+    // We use `ε`, epsilon, as a stopping criterion when we want to iterate
+    // until we're "close enough".
     var epsilon = 0.0001;
 
-    // A factorial, usually written n!, is the product of all positive integers less than or equal to n.
+    // # [Factorial](https://en.wikipedia.org/wiki/Factorial)
+    //
+    // A factorial, usually written n!, is the product of all positive
+    // integers less than or equal to n. Often factorial is implemented
+    // recursively, but this iterative approach is significantly faster
+    // and simpler.
     function factorial(n) {
+
+        // factorial is mathematically undefined for negative numbers
         if (n < 0 ) { return null; }
 
-        var acc = 1;
+        // typically you'll expand the factorial function going down, like
+        // 5! = 5 * 4 * 3 * 2 * 1. This is going in the opposite direction,
+        // counting from 2 up to the number in question, and since anything
+        // multiplied by 1 is itself, the loop only needs to start at 2.
+        var accumulator = 1;
         for (var i = 2; i <= n; i++) {
-            acc = acc * i;
+            // for each number up to and including the number `n`, multiply
+            // the accumulator my that number.
+            accumulator *= i;
         }
-        return acc;
+        return accumulator;
     }
 
     // # Bernoulli Distribution
-    // The [Bernoulli distribution](http://en.wikipedia.org/wiki/Bernoulli_distribution) is the probability discrete
-    // distribution of a random variable which takes value 1 with success probability `p` and value 0 with failure
-    // probability `q` = 1 - `p`. It can be used, for example, to represent the toss of a coin, where "1" is defined to
-    // mean "heads" and "0" is defined to mean "tails" (or vice versa). It is a special case of a Binomial Distribution
+    //
+    // The [Bernoulli distribution](http://en.wikipedia.org/wiki/Bernoulli_distribution)
+    // is the probability discrete
+    // distribution of a random variable which takes value 1 with success
+    // probability `p` and value 0 with failure
+    // probability `q` = 1 - `p`. It can be used, for example, to represent the
+    // toss of a coin, where "1" is defined to mean "heads" and "0" is defined
+    // to mean "tails" (or vice versa). It is
+    // a special case of a Binomial Distribution
     // where `n` = 1.
     function bernoulli_distribution(p) {
         // Check that `p` is a valid probability (0 ≤ p ≤ 1)
-        if (p < 0 || p > 1.0 ) { return null; }
+        if (p < 0 || p > 1 ) { return null; }
 
         return binomial_distribution(1, p);
     }
 
     // # Binomial Distribution
+    //
     // The [Binomial Distribution](http://en.wikipedia.org/wiki/Binomial_distribution) is the discrete probability
     // distribution of the number of successes in a sequence of n independent yes/no experiments, each of which yields
     // success with probability `p`. Such a success/failure experiment is also called a Bernoulli experiment or
     // Bernoulli trial; when n = 1, the Binomial Distribution is a Bernoulli Distribution.
     function binomial_distribution(n, p) {
-        // Check that `p` is a valid probability (0 ≤ p ≤ 1), and that `n` is an integer, strictly positive.
-        if (p < 0 || p > 1.0 || !/^\d+$/.test(n) || n <= 0) { return null; }
-
-        // We initialize `x`, the random variable, and `acc`, an accumulator for the cumulative distribution function
-        // to 0. `distribution_functions` is the object we'll return with the `probability_of_x` and the
-        // `cumulative_probability_of_x`, as well as the calculated mean & variance. We iterate until the
-        // `cumulative_probability_of_x` is within `epsilon` of 1.0.
-        var probability_of_x, x = 0, acc = 0, distribution_functions = { mean: n * p, variance: (n * p) * (1.0 - p) };
-        do {
-            probability_of_x = (factorial(n)/(factorial(x) * factorial(n - x)) * (Math.pow(p, x) * Math.pow(1.0 - p, (n - x))));
-            acc += probability_of_x;
-            distribution_functions[x] = { probability_of_x: probability_of_x, cumulative_probability_of_x: acc };
-            x++;
+        // Check that `p` is a valid probability (0 ≤ p ≤ 1),
+        // that `n` is an integer, strictly positive.
+        if (p < 0 || p > 1 || n <= 0 || n % 1 !== 0) {
+            return null;
         }
-        while (distribution_functions[x - 1].cumulative_probability_of_x < 1.0 - epsilon);
+
+        // We initialize `x`, the random variable, and `acc`, an accumulator
+        // for the cumulative distribution function to 0. `distribution_functions`
+        // is the object we'll return with the `probability_of_x` and the
+        // `cumulative_probability_of_x`, as well as the calculated mean &
+        // variance. We iterate until the `cumulative_probability_of_x` is
+        // within `epsilon` of 1.0.
+        var probability_of_x,
+            x = 0,
+            acc = 0,
+            distribution_functions = {
+                mean: n * p,
+                variance: (n * p) * (1 - p)
+            };
+
+        do {
+            probability_of_x = factorial(n) /
+                (factorial(x) * factorial(n - x)) *
+                (Math.pow(p, x) * Math.pow(1 - p, n - x));
+            acc += probability_of_x;
+            distribution_functions[x] = {
+                probability_of_x: probability_of_x,
+                cumulative_probability_of_x: acc
+            };
+            x++;
+        } while (distribution_functions[x - 1].cumulative_probability_of_x < 1 - epsilon);
 
         return distribution_functions;
     }
 
     // # Poisson Distribution
-    // The [Poisson Distribution](http://en.wikipedia.org/wiki/Poisson_distribution) is a discrete probability
-    // distribution that expresses the probability of a given number of events occurring in a fixed interval of time
-    // and/or space if these events occur with a known average rate and independently of the time since the last event.
     //
-    // The Poisson Distribution is characterized by the strictly positive mean arrival or occurrence rate, `λ`.
+    // The [Poisson Distribution](http://en.wikipedia.org/wiki/Poisson_distribution)
+    // is a discrete probability distribution that expresses the probability
+    // of a given number of events occurring in a fixed interval of time
+    // and/or space if these events occur with a known average rate and
+    // independently of the time since the last event.
+    //
+    // The Poisson Distribution is characterized by the strictly positive
+    // mean arrival or occurrence rate, `λ`.
     function poisson_distribution(lambda) {
         // Check that lambda is strictly positive
         if (lambda <= 0) { return null; }
 
-        // We initialize `x`, the random variable, and `acc`, an accumulator for the cumulative distribution function
-        // to 0. `distribution_functions` is the object we'll return with the `probability_of_x` and the
-        // `cumulative_probability_of_x`, as well as the trivially calculated mean & variance. We iterate until the
+        // We initialize `x`, the random variable, and `acc`, an accumulator
+        // for the cumulative distribution function to 0. `distribution_functions`
+        // is the object we'll return with the `probability_of_x` and the
+        // `cumulative_probability_of_x`, as well as the trivially calculated
+        // mean & variance. We iterate until the
         // `cumulative_probability_of_x` is within `epsilon` of 1.0.
-        var probability_of_x, x = 0, acc = 0, distribution_functions = { mean: lambda, variance: lambda };
+        var probability_of_x,
+            x = 0,
+            acc = 0,
+            distribution_functions = {
+                mean: lambda,
+                variance: lambda
+            };
+
         do {
             probability_of_x = (Math.pow(Math.E, -lambda) * Math.pow(lambda, x))/factorial(x);
             acc += probability_of_x;
             distribution_functions[x] = { probability_of_x: probability_of_x, cumulative_probability_of_x: acc };
             x++;
-        }
-        while (distribution_functions[x - 1].cumulative_probability_of_x < 1.0 - epsilon);
+        } while (distribution_functions[x - 1].cumulative_probability_of_x < 1 - epsilon);
 
         return distribution_functions;
     }
@@ -1160,6 +1208,7 @@
     };
 
     // # χ2 (Chi-Squared) Goodness-of-Fit Test
+    //
     // The [χ2 (Chi-Squared) Goodness-of-Fit Test](http://en.wikipedia.org/wiki/Goodness_of_fit#Pearson.27s_chi-squared_test)
     // uses a measure of goodness of fit which is the sum of differences between observed and expected outcome frequencies
     // (that is, counts of observations), each squared and divided by the number of observations expected given the
@@ -1169,17 +1218,20 @@
     // follows, approximately, a chi-square distribution with (k − c) degrees of freedom where `k` is the number of non-empty
     // cells and `c` is the number of estimated parameters for the distribution.
     function chi_squared_goodness_of_fit(data, hypothesized_distribution, significance) {
-        var mean = 0;           // Estimate from the sample data, a weighted mean.
-        var chi_squared = 0;    // Calculated value of the χ2 statistic.
-        var degrees_of_freedom; // Degrees of freedom, calculated as (number of class intervals - number of hypothesized distribution parameters estimated - 1)
-        var c;                  // Number of hypothesized distribution parameters estimated, expected to be supplied in the distribution test.
-        var H = {};             // The hypothesized distribution.
-        var observed_frequencies = [],
+        // Estimate from the sample data, a weighted mean.
+        var mean = 0,
+            // Calculated value of the χ2 statistic.
+            chi_squared = 0,
+            // Degrees of freedom, calculated as (number of class intervals -
+            // number of hypothesized distribution parameters estimated - 1)
+            degrees_of_freedom,
+            // Number of hypothesized distribution parameters estimated, expected to be supplied in the distribution test.
+            c,
+            // The hypothesized distribution.
+            H = {},
+            observed_frequencies = [],
             expected_frequencies = [],
             k;
-
-        // Assign a default significance if one hasn't been passed in.
-        if ((typeof significance === 'undefined')) { significance = 0.05; }
 
         // Create an array holding a histogram from the sample data, simultaneously calculating the sample mean.
         for (var i = 0; i < data.length; i++) {
@@ -1188,59 +1240,67 @@
             } else {
                 observed_frequencies[data[i]] = 1;
             }
-            mean += data[i]/data.length;
+            mean += data[i] / data.length;
         }
+
         for (i = 0; i < observed_frequencies.length; i++) {
-            if (typeof observed_frequencies[i] == 'undefined') {
+            if (observed_frequencies[i] === undefined) {
                 observed_frequencies[i] = 0;
             }
         }
 
-        // Generate the hypothesized distribution. Currently implemented for only the Poisson Distribution.
+        // Generate the hypothesized distribution.
         if (hypothesized_distribution.toLowerCase() === 'poisson') {
             H = poisson_distribution(mean);
-            c = 1; // Lose one degree of freedom for estimating `lambda` from the sample data.
+            // Lose one degree of freedom for estimating `lambda` from the sample data.
+            c = 1;
         }
 
-        // Create an array holding a histogram of expected data given the sample size and hypothesized distribution.
-        for (k in Object.keys(H)) {
-            if (!isNaN(k) && (k in Object.keys(observed_frequencies))) {
-                expected_frequencies[k] = { x: k, expected_frequency_of_x: H[k].probability_of_x * data.length };
+        // Create an array holding a histogram of expected data given the
+        // sample size and hypothesized distribution.
+        for (k in H) {
+            if (!isNaN(k) && (k in observed_frequencies)) {
+                expected_frequencies[k] = {
+                    x: k,
+                    expected_frequency_of_x: H[k].probability_of_x * data.length
+                };
             }
         }
 
-        // Working backward through the expected frequencies, collapse classes if less than three observations are
-        // expected for a class. This transformation is applied to the observed frequencies as well.
+        // Working backward through the expected frequencies, collapse classes
+        // if less than three observations are expected for a class.
+        // This transformation is applied to the observed frequencies as well.
         for (k = expected_frequencies.length - 1; k >= 0; k--) {
             if (expected_frequencies[k].expected_frequency_of_x < 3) {
-                expected_frequencies[k-1] = {
-                    x: (expected_frequencies[k-1].x + ' or greater'),
-                    expected_frequency_of_x: (expected_frequencies[k-1].expected_frequency_of_x += expected_frequencies[k].expected_frequency_of_x)
+                expected_frequencies[k - 1].expected_frequency_of_x += expected_frequencies[k].expected_frequency_of_x;
+                expected_frequencies[k - 1] = {
+                    x: expected_frequencies[k - 1].x + ' or greater',
+                    expected_frequency_of_x: expected_frequencies[k - 1].expected_frequency_of_x
                 };
-                expected_frequencies.pop(k);
-                observed_frequencies[k-1] += observed_frequencies[k];
-                observed_frequencies.pop(k);
+                expected_frequencies.pop();
+                observed_frequencies[k - 1] += observed_frequencies[k];
+                observed_frequencies.pop();
             }
         }
 
-        // Iterate through the squared differences between observed & expected frequencies, accumulating the `chi_squared` statistic.
+        // Iterate through the squared differences between observed & expected
+        // frequencies, accumulating the `chi_squared` statistic.
         for (k = 0; k < observed_frequencies.length; k++) {
-            chi_squared += (Math.pow((observed_frequencies[k] - expected_frequencies[k].expected_frequency_of_x), 2) / expected_frequencies[k].expected_frequency_of_x);
+            chi_squared += Math.pow(
+                observed_frequencies[k] - expected_frequencies[k].expected_frequency_of_x, 2) /
+                expected_frequencies[k].expected_frequency_of_x;
         }
 
-        // Calculate degrees of freedom for this test and look it up in the `chi_squared_distribution_table` in order to
+        // Calculate degrees of freedom for this test and look it up in the
+        // `chi_squared_distribution_table` in order to
         // accept or reject the goodness-of-fit of the hypothesized distribution.
         degrees_of_freedom = observed_frequencies.length - c - 1;
-        if (chi_squared_distribution_table[degrees_of_freedom][significance] < chi_squared) {
-            return true;
-        } else {
-            return false;
-        }
+        return chi_squared_distribution_table[degrees_of_freedom][significance] < chi_squared;
     }
 
     // # Mixin
     //
-    // Mixin simple_statistics to a single Array instance if provided 
+    // Mixin simple_statistics to a single Array instance if provided
     // or the Array native object if not. This is an optional
     // feature that lets you treat simple_statistics as a native feature
     // of Javascript.
