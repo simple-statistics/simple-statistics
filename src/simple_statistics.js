@@ -1083,16 +1083,17 @@
     //
     // The [Binomial Distribution](http://en.wikipedia.org/wiki/Binomial_distribution) is the discrete probability
     // distribution of the number of successes in a sequence of n independent yes/no experiments, each of which yields
-    // success with probability `p`. Such a success/failure experiment is also called a Bernoulli experiment or
-    // Bernoulli trial; when n = 1, the Binomial Distribution is a Bernoulli Distribution.
-    function binomial_distribution(n, p) {
+    // success with probability `probability`. Such a success/failure experiment is also called a Bernoulli experiment or
+    // Bernoulli trial; when trials = 1, the Binomial Distribution is a Bernoulli Distribution.
+    function binomial_distribution(trials, probability) {
         // Check that `p` is a valid probability (0 ≤ p ≤ 1),
         // that `n` is an integer, strictly positive.
-        if (p < 0 || p > 1 || n <= 0 || n % 1 !== 0) {
+        if (probability < 0 || probability > 1 ||
+            trials <= 0 || trials % 1 !== 0) {
             return null;
         }
 
-        // We initialize `x`, the random variable, and `acc`, an accumulator
+        // We initialize `x`, the random variable, and `accumulator`, an accumulator
         // for the cumulative distribution function to 0. `distribution_functions`
         // is the object we'll return with the `probability_of_x` and the
         // `cumulative_probability_of_x`, as well as the calculated mean &
@@ -1100,20 +1101,20 @@
         // within `epsilon` of 1.0.
         var probability_of_x,
             x = 0,
-            acc = 0,
+            accumulator = 0,
             distribution_functions = {
-                mean: n * p,
-                variance: (n * p) * (1 - p)
+                mean: trials * probability,
+                variance: (trials * probability) * (1 - probability)
             };
 
         do {
-            probability_of_x = factorial(n) /
-                (factorial(x) * factorial(n - x)) *
-                (Math.pow(p, x) * Math.pow(1 - p, n - x));
-            acc += probability_of_x;
+            probability_of_x = factorial(trials) /
+                (factorial(x) * factorial(trials - x)) *
+                (Math.pow(probability, x) * Math.pow(1 - probability, trials - x));
+            accumulator += probability_of_x;
             distribution_functions[x] = {
                 probability_of_x: probability_of_x,
-                cumulative_probability_of_x: acc
+                cumulative_probability_of_x: accumulator
             };
             x++;
         } while (distribution_functions[x - 1].cumulative_probability_of_x < 1 - epsilon);
@@ -1143,16 +1144,19 @@
         // `cumulative_probability_of_x` is within `epsilon` of 1.0.
         var probability_of_x,
             x = 0,
-            acc = 0,
+            accumulator = 0,
             distribution_functions = {
                 mean: lambda,
                 variance: lambda
             };
 
         do {
-            probability_of_x = (Math.pow(Math.E, -lambda) * Math.pow(lambda, x))/factorial(x);
-            acc += probability_of_x;
-            distribution_functions[x] = { probability_of_x: probability_of_x, cumulative_probability_of_x: acc };
+            probability_of_x = (Math.pow(Math.E, -lambda) * Math.pow(lambda, x)) /factorial(x);
+            accumulator += probability_of_x;
+            distribution_functions[x] = {
+                probability_of_x: probability_of_x,
+                cumulative_probability_of_x: accumulator
+            };
             x++;
         } while (distribution_functions[x - 1].cumulative_probability_of_x < 1 - epsilon);
 
@@ -1219,7 +1223,7 @@
     // cells and `c` is the number of estimated parameters for the distribution.
     function chi_squared_goodness_of_fit(data, hypothesized_distribution, significance) {
         // Estimate from the sample data, a weighted mean.
-        var mean = 0,
+        var input_mean = mean(data),
             // Calculated value of the χ2 statistic.
             chi_squared = 0,
             // Degrees of freedom, calculated as (number of class intervals -
@@ -1240,7 +1244,6 @@
             } else {
                 observed_frequencies[data[i]] = 1;
             }
-            mean += data[i] / data.length;
         }
 
         for (i = 0; i < observed_frequencies.length; i++) {
@@ -1250,11 +1253,9 @@
         }
 
         // Generate the hypothesized distribution.
-        if (hypothesized_distribution.toLowerCase() === 'poisson') {
-            H = poisson_distribution(mean);
-            // Lose one degree of freedom for estimating `lambda` from the sample data.
-            c = 1;
-        }
+        H = hypothesized_distribution(input_mean);
+        // Lose one degree of freedom for estimating `lambda` from the sample data.
+        c = 1;
 
         // Create an array holding a histogram of expected data given the
         // sample size and hypothesized distribution.
@@ -1328,12 +1329,19 @@
                 return ss[method].apply(ss, args);
             };
         }
- 
-        // select object to extend
-        var extending = array ? array.slice() : Array.prototype;
 
-        // for each array function, define a function that gets 
-        // the array as the first argument. 
+        // select object to extend
+        var extending;
+        if (array) {
+            // create a shallow copy of the array so that our internal
+            // operations do not change it by reference
+            extending = array.slice();
+        } else {
+            extending = Array.prototype;
+        }
+
+        // for each array function, define a function that gets
+        // the array as the first argument.
         // We use [defineProperty](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/defineProperty)
         // because it allows these properties to be non-enumerable:
         // `for (var in x)` loops will not run into problems with this
