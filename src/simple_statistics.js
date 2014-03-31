@@ -633,6 +633,7 @@
     }
 
     // # quantile
+    //
     // This is a population quantile, since we assume to know the entire
     // dataset in this library. Thus I'm trying to follow the
     // [Quantiles of a Population](http://en.wikipedia.org/wiki/Quantile#Quantiles_of_a_population)
@@ -667,6 +668,11 @@
         }
     }
 
+    // # quantile
+    //
+    // This is the internal implementation of quantiles: when you know
+    // that the order is sorted, you don't need to re-sort it, and the computations
+    // are much faster.
     function quantile_sorted(sample, p) {
         var idx = (sample.length) * p;
         if (p < 0 || p > 1) {
