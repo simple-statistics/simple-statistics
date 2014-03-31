@@ -1093,33 +1093,35 @@
             return null;
         }
 
+        // a [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function)
+        function probability_mass(x, trials, probability) {
+            return factorial(trials) /
+                (factorial(x) * factorial(trials - x)) *
+                (Math.pow(probability, x) * Math.pow(1 - probability, trials - x));
+        }
+
         // We initialize `x`, the random variable, and `accumulator`, an accumulator
         // for the cumulative distribution function to 0. `distribution_functions`
         // is the object we'll return with the `probability_of_x` and the
         // `cumulative_probability_of_x`, as well as the calculated mean &
         // variance. We iterate until the `cumulative_probability_of_x` is
         // within `epsilon` of 1.0.
-        var probability_of_x,
-            x = 0,
-            accumulator = 0,
-            distribution_functions = {
-                mean: trials * probability,
-                variance: (trials * probability) * (1 - probability)
-            };
+        var x = 0,
+            cumulative_probability = 0,
+            distribution = {};
 
+        // This algorithm iterates through each potential outcome,
+        // until the `cumulative_probability` is very close to 1, at
+        // which point we've defined the vast majority of outcomes
         do {
-            probability_of_x = factorial(trials) /
-                (factorial(x) * factorial(trials - x)) *
-                (Math.pow(probability, x) * Math.pow(1 - probability, trials - x));
-            accumulator += probability_of_x;
-            distribution_functions[x] = {
-                probability_of_x: probability_of_x,
-                cumulative_probability_of_x: accumulator
-            };
+            distribution[x] = probability_mass(x, trials, probability);
+            cumulative_probability += distribution[x];
             x++;
-        } while (distribution_functions[x - 1].cumulative_probability_of_x < 1 - epsilon);
+        // when the cumulative_probability is nearly 1, we've calculated
+        // the useful range of this distribution
+        } while (cumulative_probability < 1 - epsilon);
 
-        return distribution_functions;
+        return distribution;
     }
 
     // # Poisson Distribution
@@ -1136,31 +1138,32 @@
         // Check that lambda is strictly positive
         if (lambda <= 0) { return null; }
 
-        // We initialize `x`, the random variable, and `acc`, an accumulator
-        // for the cumulative distribution function to 0. `distribution_functions`
-        // is the object we'll return with the `probability_of_x` and the
-        // `cumulative_probability_of_x`, as well as the trivially calculated
-        // mean & variance. We iterate until the
-        // `cumulative_probability_of_x` is within `epsilon` of 1.0.
-        var probability_of_x,
-            x = 0,
-            accumulator = 0,
-            distribution_functions = {
-                mean: lambda,
-                variance: lambda
-            };
+        // our current place in the distribution
+        var x = 0,
+            // and we keep track of the current cumulative probability, in
+            // order to know when to stop calculating chances.
+            cumulative_probability = 0,
+            // the calculated distribution to be returned
+            distribution = {};
 
+        // a [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function)
+        function probability_mass(x, lambda) {
+            return (Math.pow(Math.E, -lambda) * Math.pow(lambda, x)) /
+                factorial(x);
+        }
+
+        // This algorithm iterates through each potential outcome,
+        // until the `cumulative_probability` is very close to 1, at
+        // which point we've defined the vast majority of outcomes
         do {
-            probability_of_x = (Math.pow(Math.E, -lambda) * Math.pow(lambda, x)) /factorial(x);
-            accumulator += probability_of_x;
-            distribution_functions[x] = {
-                probability_of_x: probability_of_x,
-                cumulative_probability_of_x: accumulator
-            };
+            distribution[x] = probability_mass(x, lambda);
+            cumulative_probability += distribution[x];
             x++;
-        } while (distribution_functions[x - 1].cumulative_probability_of_x < 1 - epsilon);
+        // when the cumulative_probability is nearly 1, we've calculated
+        // the useful range of this distribution
+        } while (cumulative_probability < 1 - epsilon);
 
-        return distribution_functions;
+        return distribution;
     }
 
     // # Percentage Points of the χ2 (Chi-Squared) Distribution
@@ -1221,7 +1224,7 @@
     // takes the total number of observed frequencies and subtracts the number of estimated parameters. The test statistic
     // follows, approximately, a chi-square distribution with (k − c) degrees of freedom where `k` is the number of non-empty
     // cells and `c` is the number of estimated parameters for the distribution.
-    function chi_squared_goodness_of_fit(data, hypothesized_distribution, significance) {
+    function chi_squared_goodness_of_fit(data, distribution_type, significance) {
         // Estimate from the sample data, a weighted mean.
         var input_mean = mean(data),
             // Calculated value of the χ2 statistic.
@@ -1232,12 +1235,12 @@
             // Number of hypothesized distribution parameters estimated, expected to be supplied in the distribution test.
             c,
             // The hypothesized distribution.
-            H = {},
+            hypothesized_distribution = {},
             observed_frequencies = [],
             expected_frequencies = [],
             k;
 
-        // Create an array holding a histogram from the sample data, simultaneously calculating the sample mean.
+        // Create an array holding a histogram from the sample data
         for (var i = 0; i < data.length; i++) {
             if ([data[i]] in observed_frequencies) {
                 observed_frequencies[data[i]]++;
@@ -1253,17 +1256,17 @@
         }
 
         // Generate the hypothesized distribution.
-        H = hypothesized_distribution(input_mean);
+        hypothesized_distribution = distribution_type(input_mean);
         // Lose one degree of freedom for estimating `lambda` from the sample data.
         c = 1;
 
         // Create an array holding a histogram of expected data given the
         // sample size and hypothesized distribution.
-        for (k in H) {
-            if (!isNaN(k) && (k in observed_frequencies)) {
+        for (k in hypothesized_distribution) {
+            if (k in observed_frequencies) {
                 expected_frequencies[k] = {
                     x: k,
-                    expected_frequency_of_x: H[k].probability_of_x * data.length
+                    expected_frequency_of_x: hypothesized_distribution[k] * data.length
                 };
             }
         }
@@ -1275,7 +1278,6 @@
             if (expected_frequencies[k].expected_frequency_of_x < 3) {
                 expected_frequencies[k - 1].expected_frequency_of_x += expected_frequencies[k].expected_frequency_of_x;
                 expected_frequencies[k - 1] = {
-                    x: expected_frequencies[k - 1].x + ' or greater',
                     expected_frequency_of_x: expected_frequencies[k - 1].expected_frequency_of_x
                 };
                 expected_frequencies.pop();
