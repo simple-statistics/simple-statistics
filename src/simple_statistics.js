@@ -1214,8 +1214,8 @@
         for (k = expected_frequencies.length - 1; k >= 0; k--) {
             if (expected_frequencies[k].expected_frequency_of_x < 3) {
                 expected_frequencies[k-1] = {
-                    x: (expected_frequencies[k-1].x + ' or greater'),
-                    expected_frequency_of_x: (expected_frequencies[k-1].expected_frequency_of_x += expected_frequencies[k].expected_frequency_of_x)
+                    x: expected_frequencies[k-1].x + ' or greater',
+                    expected_frequency_of_x: expected_frequencies[k-1].expected_frequency_of_x += expected_frequencies[k].expected_frequency_of_x
                 };
                 expected_frequencies.pop(k);
                 observed_frequencies[k-1] += observed_frequencies[k];
@@ -1225,7 +1225,7 @@
 
         // Iterate through the squared differences between observed & expected frequencies, accumulating the `chi_squared` statistic.
         for (k = 0; k < observed_frequencies.length; k++) {
-            chi_squared += (Math.pow((observed_frequencies[k] - expected_frequencies[k].expected_frequency_of_x), 2) / expected_frequencies[k].expected_frequency_of_x);
+            chi_squared += Math.pow((observed_frequencies[k] - expected_frequencies[k].expected_frequency_of_x), 2) / expected_frequencies[k].expected_frequency_of_x;
         }
 
         // Calculate degrees of freedom for this test and look it up in the `chi_squared_distribution_table` in order to
