@@ -1108,20 +1108,20 @@
         // within `epsilon` of 1.0.
         var x = 0,
             cumulative_probability = 0,
-            distribution = {};
+            cells = {};
 
         // This algorithm iterates through each potential outcome,
         // until the `cumulative_probability` is very close to 1, at
         // which point we've defined the vast majority of outcomes
         do {
-            distribution[x] = probability_mass(x, trials, probability);
-            cumulative_probability += distribution[x];
+            cells[x] = probability_mass(x, trials, probability);
+            cumulative_probability += cells[x];
             x++;
         // when the cumulative_probability is nearly 1, we've calculated
         // the useful range of this distribution
         } while (cumulative_probability < 1 - epsilon);
 
-        return distribution;
+        return cells;
     }
 
     // # Poisson Distribution
@@ -1143,8 +1143,8 @@
             // and we keep track of the current cumulative probability, in
             // order to know when to stop calculating chances.
             cumulative_probability = 0,
-            // the calculated distribution to be returned
-            distribution = {};
+            // the calculated cells to be returned
+            cells = {};
 
         // a [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function)
         function probability_mass(x, lambda) {
@@ -1156,14 +1156,14 @@
         // until the `cumulative_probability` is very close to 1, at
         // which point we've defined the vast majority of outcomes
         do {
-            distribution[x] = probability_mass(x, lambda);
-            cumulative_probability += distribution[x];
+            cells[x] = probability_mass(x, lambda);
+            cumulative_probability += cells[x];
             x++;
         // when the cumulative_probability is nearly 1, we've calculated
         // the useful range of this distribution
         } while (cumulative_probability < 1 - epsilon);
 
-        return distribution;
+        return cells;
     }
 
     // # Percentage Points of the χ2 (Chi-Squared) Distribution
@@ -1233,41 +1233,38 @@
             // number of hypothesized distribution parameters estimated - 1)
             degrees_of_freedom,
             // Number of hypothesized distribution parameters estimated, expected to be supplied in the distribution test.
-            c,
+            // Lose one degree of freedom for estimating `lambda` from the sample data.
+            c = 1,
             // The hypothesized distribution.
-            hypothesized_distribution = {},
+            // Generate the hypothesized distribution.
+            hypothesized_distribution = distribution_type(input_mean),
             observed_frequencies = [],
             expected_frequencies = [],
             k;
 
-        // Create an array holding a histogram from the sample data
+        // Create an array holding a histogram from the sample data, of
+        // the form `{ value: numberOfOcurrences }`
         for (var i = 0; i < data.length; i++) {
-            if ([data[i]] in observed_frequencies) {
-                observed_frequencies[data[i]]++;
-            } else {
-                observed_frequencies[data[i]] = 1;
+            if (observed_frequencies[data[i]] === undefined) {
+                observed_frequencies[data[i]] = 0;
             }
+            observed_frequencies[data[i]]++;
         }
 
+        // The histogram we created might be sparse - there might be gaps
+        // between values. So we iterate through the histogram, making
+        // sure that instead of undefined, gaps have 0 values.
         for (i = 0; i < observed_frequencies.length; i++) {
             if (observed_frequencies[i] === undefined) {
                 observed_frequencies[i] = 0;
             }
         }
 
-        // Generate the hypothesized distribution.
-        hypothesized_distribution = distribution_type(input_mean);
-        // Lose one degree of freedom for estimating `lambda` from the sample data.
-        c = 1;
-
         // Create an array holding a histogram of expected data given the
         // sample size and hypothesized distribution.
         for (k in hypothesized_distribution) {
             if (k in observed_frequencies) {
-                expected_frequencies[k] = {
-                    x: k,
-                    expected_frequency_of_x: hypothesized_distribution[k] * data.length
-                };
+                expected_frequencies[k] = hypothesized_distribution[k] * data.length;
             }
         }
 
@@ -1275,12 +1272,10 @@
         // if less than three observations are expected for a class.
         // This transformation is applied to the observed frequencies as well.
         for (k = expected_frequencies.length - 1; k >= 0; k--) {
-            if (expected_frequencies[k].expected_frequency_of_x < 3) {
-                expected_frequencies[k - 1].expected_frequency_of_x += expected_frequencies[k].expected_frequency_of_x;
-                expected_frequencies[k - 1] = {
-                    expected_frequency_of_x: expected_frequencies[k - 1].expected_frequency_of_x
-                };
+            if (expected_frequencies[k] < 3) {
+                expected_frequencies[k - 1] += expected_frequencies[k];
                 expected_frequencies.pop();
+
                 observed_frequencies[k - 1] += observed_frequencies[k];
                 observed_frequencies.pop();
             }
@@ -1290,8 +1285,8 @@
         // frequencies, accumulating the `chi_squared` statistic.
         for (k = 0; k < observed_frequencies.length; k++) {
             chi_squared += Math.pow(
-                observed_frequencies[k] - expected_frequencies[k].expected_frequency_of_x, 2) /
-                expected_frequencies[k].expected_frequency_of_x;
+                observed_frequencies[k] - expected_frequencies[k], 2) /
+                expected_frequencies[k];
         }
 
         // Calculate degrees of freedom for this test and look it up in the
