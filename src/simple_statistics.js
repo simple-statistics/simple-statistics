@@ -4,7 +4,7 @@
 // A simple, literate statistics system. The code below uses the
 // [Javascript module pattern](http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth),
 // eventually assigning `simple-statistics` to `ss` in browsers or the
-// `exports object for node.js
+// `exports` object for node.js
 (function() {
     var ss = {};
 
