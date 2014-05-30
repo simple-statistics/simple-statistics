@@ -1,8 +1,8 @@
 {
-  "author": "Tom MacWright <tom@macwright.org> (http://macwright.org/)",
   "name": "simple-statistics",
-  "description": "Simple Statistics",
   "version": "0.8.1",
+  "description": "Simple Statistics",
+  "author": "Tom MacWright <tom@macwright.org> (http://macwright.org/)",
   "repository": {
     "type": "git",
     "url": "git://github.com/tmcw/simple-statistics.git"
