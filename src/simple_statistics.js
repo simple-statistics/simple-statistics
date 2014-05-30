@@ -551,9 +551,9 @@
                 // often than the old one
                 if (seen_this > max_seen) {
                     max_seen = seen_this;
-                    seen_this = 1;
                     value = last;
                 }
+                seen_this = 1;
                 last = sorted[i];
             // if this isn't a new number, it's one more occurrence of
             // the potential mode
