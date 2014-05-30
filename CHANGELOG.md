@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.8.1
+
+* fixes a bug in `mode` that favored the last new number
+
 ## 0.8.0
 
 * `mixin` can now take an array in order to mixin functions into a single array
