@@ -33,6 +33,12 @@ Mean of a single-dimensional Array of numbers. _Also available as `.average(x)`_
 
 Sum of a single-dimensional Array of numbers.
 
+### .mode(x)
+
+Returns the number that appears most frequently in a single-dimensional Array
+of numbers. If there are multiple modes, the one that appears last
+is returned.
+
 ### .variance(x)
 
 [Variance](http://en.wikipedia.org/wiki/Variance) of a single-dimensional Array of numbers.
@@ -88,12 +94,12 @@ as one-dimensional arrays of more than one number each.
 Produces [sample variance](http://mathworld.wolfram.com/SampleVariance.html)
 of a single-dimensional array of numbers.
 
-### .sample_covariance(x)
+### .sample_covariance(a, b)
 
 Produces [sample covariance](http://en.wikipedia.org/wiki/Sample_mean_and_sample_covariance)
 of two single-dimensional arrays of numbers.
 
-### .sample_correlation(x)
+### .sample_correlation(a, b)
 
 Produces [sample correlation](http://en.wikipedia.org/wiki/Correlation_and_dependence)
 of two single-dimensional arrays of numbers.
