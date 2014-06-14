@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/tmcw/simple-statistics.png?branch=master)](http://travis-ci.org/tmcw/simple-statistics)
+[![Build Status](https://secure.travis-ci.org/tmcw/simple-statistics.png?branch=master)](http://travis-ci.org/tmcw/simple-statistics) [![Coverage Status](https://coveralls.io/repos/tmcw/simple-statistics/badge.png)](https://coveralls.io/r/tmcw/simple-statistics)
 
 A JavaScript implementation of descriptive, regression, and inference statistics.
 
