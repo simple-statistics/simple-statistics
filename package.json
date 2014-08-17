@@ -11,7 +11,8 @@
   "devDependencies": {
     "jshint": "2.4.4",
     "coveralls": "~2.10.0",
-    "istanbul": "~0.2.11"
+    "istanbul": "~0.2.11",
+    "tape": "~2.14.0"
   },
   "scripts": {
     "test": "tape test/spec/*.js",
