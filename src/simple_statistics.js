@@ -632,6 +632,17 @@
             Math.sqrt(weightedVariance * (1 / n + 1 / m));
     }
 
+    // # chunks
+    //
+    function chunks(sample, p) {
+        var chunkSize = Math.floor((sample.length + 1) / p);
+        var output = [];
+        for (var i = 0; i < sample.length; i += chunkSize) {
+            output.push(sample.slice(i, i + chunkSize));
+        }
+        return output;
+    }
+
     // # quantile
     //
     // This is a population quantile, since we assume to know the entire
@@ -1372,6 +1383,7 @@
     ss.sum = sum;
     ss.quantile = quantile;
     ss.quantile_sorted = quantile_sorted;
+    ss.chunks = chunks;
     ss.iqr = iqr;
     ss.mad = mad;
 
