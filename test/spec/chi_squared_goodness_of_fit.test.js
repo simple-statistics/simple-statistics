@@ -1,4 +1,4 @@
-var assert = require('chai').assert;
+var test = require('tape');
 var ss = require('../../');
 
 // Data from Poisson goodness-of-fit example 10-19 in William W. Hines & Douglas C. Montgomery,
@@ -10,11 +10,11 @@ var data_10_19 = [
     3,3,3,3
 ];
 
-describe('chi_squared_goodness_of_fit', function() {
-    it('can reject the null hypothesis with level of confidence specified at 0.05', function() {
-        assert.isFalse(ss.chi_squared_goodness_of_fit(data_10_19, ss.poisson_distribution, 0.05));
-    });
-    it('can accept the null hypothesis with level of confidence specified at 0.10', function() {
-        assert.isTrue(ss.chi_squared_goodness_of_fit(data_10_19, ss.poisson_distribution, 0.10));
-    });
-});
+test('chi_squared_goodness_of_fit', function(t) {
+    test('can reject the null hypothesis with level of confidence specified at 0.05', function(t) {
+        t.equal(false, ss.chi_squared_goodness_of_fit(data_10_19, ss.poisson_distribution, 0.05));
+t.end(); });
+    test('can accept the null hypothesis with level of confidence specified at 0.10', function(t) {
+        t.equal(true, ss.chi_squared_goodness_of_fit(data_10_19, ss.poisson_distribution, 0.10));
+t.end(); });
+t.end(); });

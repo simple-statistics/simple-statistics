@@ -1,41 +1,41 @@
-var assert = require('chai').assert;
+var test = require('tape');
 var ss = require('../../');
 
-describe('sample skewness', function() {
+test('sample skewness', function(t) {
 
-    it('the skewness of an empty sample is null', function() {
+    test('the skewness of an empty sample is null', function(t) {
         var data = [];
-        assert.equal(ss.sample_skewness(data), null);
-    });
+        t.equal(ss.sample_skewness(data), null);
+t.end(); });
 
-    it('the skewness of an sample with one number is null', function() {
+    test('the skewness of an sample with one number is null', function(t) {
         var data = [ 1 ];
-        assert.equal(ss.sample_skewness(data), null);
-    });
+        t.equal(ss.sample_skewness(data), null);
+t.end(); });
 
-    it('the skewness of an sample with two numbers is null', function() {
+    test('the skewness of an sample with two numbers is null', function(t) {
         var data = [ 1, 2 ];
-        assert.equal(ss.sample_skewness(data), null);
-    });
+        t.equal(ss.sample_skewness(data), null);
+t.end(); });
 
-    it('can calculate the skewness of SAS example 1', function() {
+    test('can calculate the skewness of SAS example 1', function(t) {
         // Data and answer taken from SKEWNESS function documentation at
         // http://support.sas.com/documentation/cdl/en/lrdict/64316/HTML/default/viewer.htm#a000245947.htm
         var data = [0, 1, 1];
-        assert.equal(ss.sample_skewness(data).toPrecision(10), -1.732050808);
-    });
+        t.equal(+ss.sample_skewness(data).toPrecision(10), -1.732050808);
+t.end(); });
 
-    it('can calculate the skewness of SAS example 2', function() {
+    test('can calculate the skewness of SAS example 2', function(t) {
         // Data and answer taken from SKEWNESS function documentation at
         // http://support.sas.com/documentation/cdl/en/lrdict/64316/HTML/default/viewer.htm#a000245947.htm
         var data = [2, 4, 6, 3, 1];
-        assert.equal(ss.sample_skewness(data).toPrecision(10), 0.5901286564);
-    });
+        t.equal(+ss.sample_skewness(data).toPrecision(10), 0.5901286564);
+t.end(); });
 
-    it('can calculate the skewness of SAS example 3', function() {
+    test('can calculate the skewness of SAS example 3', function(t) {
         // Data and answer taken from SKEWNESS function documentation at
         // http://support.sas.com/documentation/cdl/en/lrdict/64316/HTML/default/viewer.htm#a000245947.htm
         var data = [2, 0, 0];
-        assert.equal(ss.sample_skewness(data).toPrecision(10), 1.732050808);
-    });
-});
+        t.equal(+ss.sample_skewness(data).toPrecision(10), 1.732050808);
+t.end(); });
+t.end(); });

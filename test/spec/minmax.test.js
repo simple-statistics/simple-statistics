@@ -1,18 +1,18 @@
-var assert = require('chai').assert;
+var test = require('tape');
 var ss = require('../../');
 
-describe('min', function() {
-    it('can get the minimum of one number', function() {
-        assert.equal(ss.min([1]), 1);
-    });
+test('min', function(t) {
+    test('can get the minimum of one number', function(t) {
+        t.equal(ss.min([1]), 1);
+t.end(); });
 
-    it('can get the minimum of three numbers', function() {
-        assert.equal(ss.min([1, 7, -1000]), -1000);
-    });
-});
+    test('can get the minimum of three numbers', function(t) {
+        t.equal(ss.min([1, 7, -1000]), -1000);
+t.end(); });
+t.end(); });
 
-describe('max', function() {
-    it('can get the maximum of three numbers', function() {
-        assert.equal(ss.max([1, 7, -1000]), 7);
-    });
-});
+test('max', function(t) {
+    test('can get the maximum of three numbers', function(t) {
+        t.equal(ss.max([1, 7, -1000]), 7);
+t.end(); });
+t.end(); });

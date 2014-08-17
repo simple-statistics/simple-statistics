@@ -1,46 +1,46 @@
 var ss = require('../../');
-var assert = require('chai').assert;
+var test = require('tape');
 
-describe('bayes', function() {
-    it('makes an easy call with one training round', function() {
+test('bayes', function(t) {
+    test('makes an easy call with one training round', function(t) {
         var bayes = ss.bayesian();
         bayes.train({ species: 'Cat' }, 'animal');
-        assert(bayes.score({ species: 'Cat' }), { animal: 1 });
-    });
+        t.deepEqual(bayes.score({ species: 'Cat' }), { animal: 1 });
+t.end(); });
 
-    it('makes fify-fifty call', function() {
+    test('makes fify-fifty call', function(t) {
         var bayes = ss.bayesian();
         bayes.train({ species: 'Cat' }, 'animal');
         bayes.train({ species: 'Cat' }, 'chair');
-        assert.deepEqual(bayes.score({ species: 'Cat' }), { animal: 0.5, chair: 0.5 });
-    });
+        t.deepEqual(bayes.score({ species: 'Cat' }), { animal: 0.5, chair: 0.5 });
+t.end(); });
 
-    it('makes seventy-five/twenty-five call', function() {
+    test('makes seventy-five/twenty-five call', function(t) {
         var bayes = ss.bayesian();
         bayes.train({ species: 'Cat' }, 'animal');
         bayes.train({ species: 'Cat' }, 'animal');
         bayes.train({ species: 'Cat' }, 'animal');
         bayes.train({ species: 'Cat' }, 'chair');
-        assert.deepEqual(bayes.score({ species: 'Cat' }), { animal: 0.75, chair: 0.25 });
-    });
+        t.deepEqual(bayes.score({ species: 'Cat' }), { animal: 0.75, chair: 0.25 });
+t.end(); });
 
-    it('tests multiple properties', function() {
+    test('tests multiple properties', function(t) {
         var bayes = ss.bayesian();
         bayes.train({ species: 'Cat' }, 'animal');
         bayes.train({ species: 'Cat' }, 'animal');
         bayes.train({ species: 'Cat' }, 'animal');
         bayes.train({ species: 'Cat' }, 'chair');
         bayes.train({ species: 'Cat', color: 'white' }, 'chair');
-        assert.deepEqual(bayes.score({ color: 'white' }), { animal: 0, chair: 0.2 });
-    });
+        t.deepEqual(bayes.score({ color: 'white' }), { animal: 0, chair: 0.2 });
+t.end(); });
 
-    it('classifies multiple things', function() {
+    test('classifies multiple things', function(t) {
         var bayes = ss.bayesian();
         bayes.train({ species: 'Cat' }, 'animal');
         bayes.train({ species: 'Dog' }, 'animal');
         bayes.train({ species: 'Dog' }, 'animal');
         bayes.train({ species: 'Cat' }, 'chair');
-        assert.deepEqual(bayes.score({ species: 'Cat' }), { animal: 0.25, chair: 0.25 });
-        assert.deepEqual(bayes.score({ species: 'Dog' }), { animal: 0.5, chair: 0 });
-    });
-});
+        t.deepEqual(bayes.score({ species: 'Cat' }), { animal: 0.25, chair: 0.25 });
+        t.deepEqual(bayes.score({ species: 'Dog' }), { animal: 0.5, chair: 0 });
+t.end(); });
+t.end(); });

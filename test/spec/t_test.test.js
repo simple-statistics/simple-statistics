@@ -1,32 +1,32 @@
-var assert = require('chai').assert,
+var test = require('tape'),
     ss = require('../../');
 
-describe('t test', function() {
+test('t test', function(t) {
 
-    it('can compare a known value to the mean of samples', function() {
-      var t = ss.t_test([1, 2, 3, 4, 5, 6], 3.385);
-      assert.equal(t, 0.1649415480881466);
-    });
+    test('can compare a known value to the mean of samples', function(t) {
+      var res = ss.t_test([1, 2, 3, 4, 5, 6], 3.385);
+      t.equal(res, 0.1649415480881466);
+t.end(); });
 
-    it('can test independency of two samples', function() {
-      var t = ss.t_test_two_sample([1,2,3,4],[3,4,5,6], 0);
-      assert.equal(t, -2.1908902300206643);
-    });
+    test('can test independency of two samples', function(t) {
+      var res = ss.t_test_two_sample([1,2,3,4],[3,4,5,6], 0);
+      t.equal(res, -2.1908902300206643);
+t.end(); });
 
-    it('can test independency of two samples (mu == -2)', function() {
-      var t = ss.t_test_two_sample([1,2,3,4],[3,4,5,6], -2);
-      assert.equal(t, 0);
-    });
+    test('can test independency of two samples (mu == -2)', function(t) {
+      var res = ss.t_test_two_sample([1,2,3,4],[3,4,5,6], -2);
+      t.equal(res, 0);
+t.end(); });
 
-    it('can test independency of two samples of different lengths', function() {
-      var t = ss.t_test_two_sample([1,2,3,4],[3,4,5,6,1,2,0]);
-      assert.equal(t, -0.4165977904505309);
-    });
+    test('can test independency of two samples of different lengths', function(t) {
+      var res = ss.t_test_two_sample([1,2,3,4],[3,4,5,6,1,2,0]);
+      t.equal(res, -0.4165977904505309);
+t.end(); });
 
-    it('has an edge case for one sample being of size zero', function() {
-      assert.equal(ss.t_test_two_sample([1,2,3,4],[]), null);
-      assert.equal(ss.t_test_two_sample([], [1,2,3,4]), null);
-      assert.equal(ss.t_test_two_sample([], []), null);
-    });
+    test('has an edge case for one sample being of size zero', function(t) {
+      t.equal(ss.t_test_two_sample([1,2,3,4],[]), null);
+      t.equal(ss.t_test_two_sample([], [1,2,3,4]), null);
+      t.equal(ss.t_test_two_sample([], []), null);
+t.end(); });
 
-});
+t.end(); });

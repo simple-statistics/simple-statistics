@@ -1,19 +1,19 @@
-var assert = require('chai').assert;
+var test = require('tape');
 var ss = require('../../');
 
-describe('geometric mean', function() {
+test('geometric mean', function(t) {
     // From http://en.wikipedia.org/wiki/Geometric_mean
-    it('can get the mean of two numbers', function() {
-        assert.equal(ss.geometric_mean([2, 8]), 4);
-        assert.equal(ss.geometric_mean([4, 1, 1/32]), 0.5);
-        assert.equal(Math.round(ss.geometric_mean([2, 32, 1])), 4);
-    });
+    test('can get the mean of two numbers', function(t) {
+        t.equal(ss.geometric_mean([2, 8]), 4);
+        t.equal(ss.geometric_mean([4, 1, 1/32]), 0.5);
+        t.equal(Math.round(ss.geometric_mean([2, 32, 1])), 4);
+t.end(); });
 
-    it('returns null for empty lists', function() {
-        assert.equal(ss.geometric_mean([]), null);
-    });
+    test('returns null for empty lists', function(t) {
+        t.equal(ss.geometric_mean([]), null);
+t.end(); });
 
-    it('returns null for lists with negative numbers', function() {
-        assert.equal(ss.geometric_mean([-1]), null);
-    });
-});
+    test('returns null for lists with negative numbers', function(t) {
+        t.equal(ss.geometric_mean([-1]), null);
+t.end(); });
+t.end(); });

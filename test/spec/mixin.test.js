@@ -1,30 +1,30 @@
-var assert = require('chai').assert;
+var test = require('tape');
 var ss = require('../../');
 
-describe('mixin', function() {
-    it('can mix into a single array', function() {
+test('mixin', function(t) {
+    test('can mix into a single array', function(t) {
         var even = ss.mixin([2, 4, 6, 8]);
-        assert.equal(even.sum(), 20);
-        assert.equal(even.mean(), 5);
-        assert.equal(even.max(), 8);
-        assert.equal(even.min(), 2);
-        assert.equal(even.sample_skewness(), 0);
-    });
+        t.equal(even.sum(), 20);
+        t.equal(even.mean(), 5);
+        t.equal(even.max(), 8);
+        t.equal(even.min(), 2);
+        t.equal(even.sample_skewness(), 0);
+t.end(); });
 
-    it('can mix into Array.prototype', function() {
+    test('can mix into Array.prototype', function(t) {
         ss.mixin();
         var even = [2, 4, 6, 8];
-        assert.equal(even.sum(), 20);
-        assert.equal(even.mean(), 5);
-        assert.equal(even.max(), 8);
-        assert.equal(even.min(), 2);
-        assert.equal(even.sample_skewness(), 0);
-    });
+        t.equal(even.sum(), 20);
+        t.equal(even.mean(), 5);
+        t.equal(even.max(), 8);
+        t.equal(even.min(), 2);
+        t.equal(even.sample_skewness(), 0);
+t.end(); });
 
-    it('mixins can take arguments', function() {
+    test('mixins can take arguments', function(t) {
         ss.mixin();
         var even = [2, 4, 6, 8];
-        assert.equal(even.quantile(0.2), 2);
-        assert.equal(even.quantile(0.8), 8);
-    });
-});
+        t.equal(even.quantile(0.2), 2);
+        t.equal(even.quantile(0.8), 8);
+t.end(); });
+t.end(); });

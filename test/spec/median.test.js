@@ -1,31 +1,31 @@
-var assert = require('assert');
+var test = require('tape');
 var ss = require('../../');
 
-describe('median', function() {
-    it('can get the median of three numbers', function() {
-        assert.equal(ss.median([1, 2, 3]), 2);
-    });
+test('median', function(t) {
+    test('can get the median of three numbers', function(t) {
+        t.equal(ss.median([1, 2, 3]), 2);
+t.end(); });
 
-    it('can get the median of two numbers', function() {
-        assert.equal(ss.median([1, 2]), 1.5);
-    });
+    test('can get the median of two numbers', function(t) {
+        t.equal(ss.median([1, 2]), 1.5);
+t.end(); });
 
-    it('can get the median of four numbers', function() {
-        assert.equal(ss.median([1, 2, 3, 4]), 2.5);
-    });
+    test('can get the median of four numbers', function(t) {
+        t.equal(ss.median([1, 2, 3, 4]), 2.5);
+t.end(); });
 
-    it('gives null for the median of an empty list', function() {
-        assert.equal(ss.median([]), null);
-    });
+    test('gives null for the median of an empty list', function(t) {
+        t.equal(ss.median([]), null);
+t.end(); });
 
-    it('sorts numbers numerically', function() {
-        assert.equal(ss.median([8, 9, 10]), 9);
-    });
+    test('sorts numbers numerically', function(t) {
+        t.equal(ss.median([8, 9, 10]), 9);
+t.end(); });
 
-    it('does not change the sorting order of its input', function() {
+    test('does not change the sorting order of its input', function(t) {
         var x = [1, 0];
-        assert.equal(ss.median(x), 0.5);
-        assert.equal(x[0], 1);
-        assert.equal(x[1], 0);
-    });
-});
+        t.equal(ss.median(x), 0.5);
+        t.equal(x[0], 1);
+        t.equal(x[1], 0);
+t.end(); });
+t.end(); });

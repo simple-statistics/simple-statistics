@@ -1,11 +1,11 @@
-var assert = require('chai').assert;
+var test = require('tape');
 var ss = require('../../');
 
-describe('chunks', function() {
-    it('can get chunks of an array', function() {
-        assert.deepEqual(ss.chunks([1, 2], 2), [[1], [2]]);
-        assert.deepEqual(ss.chunks([1, 2], 1), [[1, 2]]);
-        assert.deepEqual(ss.chunks([1, 2, 3, 4], 1), [[1, 2, 3, 4]]);
-        assert.deepEqual(ss.chunks([1, 2, 3, 4], 2), [[1, 2], [3, 4]]);
-    });
-});
+test('chunks', function(t) {
+    test('can get chunks of an array', function(t) {
+        t.deepEqual(ss.chunks([1, 2], 2), [[1], [2]]);
+        t.deepEqual(ss.chunks([1, 2], 1), [[1, 2]]);
+        t.deepEqual(ss.chunks([1, 2, 3, 4], 1), [[1, 2, 3, 4]]);
+        t.deepEqual(ss.chunks([1, 2, 3, 4], 2), [[1, 2], [3, 4]]);
+t.end(); });
+t.end(); });

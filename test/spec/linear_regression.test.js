@@ -1,46 +1,46 @@
-var assert = require('chai').assert;
+var test = require('tape');
 var ss = require('../../');
 
-describe('linear regression', function() {
-    it('correctly generates a line for a 0, 0 to 1, 1 dataset', function() {
+test('linear regression', function(t) {
+    test('correctly generates a line for a 0, 0 to 1, 1 dataset', function(t) {
         var l = ss.linear_regression().data([[0, 0], [1, 1]]);
-        assert.equal(l.line()(0), 0);
-        assert.equal(l.line()(0.5), 0.5);
-        assert.equal(l.line()(1), 1);
-    });
+        t.equal(l.line()(0), 0);
+        t.equal(l.line()(0.5), 0.5);
+        t.equal(l.line()(1), 1);
+t.end(); });
 
-    it('correctly generates a line for a 0, 0 to 1, 0 dataset', function() {
+    test('correctly generates a line for a 0, 0 to 1, 0 dataset', function(t) {
         var l = ss.linear_regression().data([[0, 0], [1, 0]]);
-        assert.equal(l.line()(0), 0);
-        assert.equal(l.line()(0.5), 0);
-        assert.equal(l.line()(1), 0);
-    });
+        t.equal(l.line()(0), 0);
+        t.equal(l.line()(0.5), 0);
+        t.equal(l.line()(1), 0);
+t.end(); });
 
-    it('returns the data assigned to it', function() {
+    test('returns the data assigned to it', function(t) {
         var l = ss.linear_regression().data([[0, 0], [1, 0]]);
-        assert.deepEqual(l.data(), [[0, 0],[1, 0]]);
-    });
+        t.deepEqual(l.data(), [[0, 0],[1, 0]]);
+t.end(); });
 
-    it('handles a single-point sample', function() {
+    test('handles a single-point sample', function(t) {
         var l = ss.linear_regression().data([[0, 0]]).line();
-        assert.deepEqual(l(10), 0);
-    });
+        t.deepEqual(l(10), 0);
+t.end(); });
 
-    it('a straight line will have a slope of 0', function() {
+    test('a straight line will have a slope of 0', function(t) {
         var l = ss.linear_regression().data([[0, 0], [1, 0]]);
-        assert.equal(l.m(), 0);
-        assert.equal(l.b(), 0);
-    });
+        t.equal(l.m(), 0);
+        t.equal(l.b(), 0);
+t.end(); });
 
-    it('a line at 50% grade', function() {
+    test('a line at 50% grade', function(t) {
         var l = ss.linear_regression().data([[0, 0], [1, 0.5]]);
-        assert.equal(l.m(), 0.5);
-        assert.equal(l.b(), 0);
-    });
+        t.equal(l.m(), 0.5);
+        t.equal(l.b(), 0);
+t.end(); });
 
-    it('a line with a high y-intercept', function() {
+    test('a line with a high y-intercept', function(t) {
         var l = ss.linear_regression().data([[0, 20], [1, 10]]);
-        assert.equal(l.m(), -10);
-        assert.equal(l.b(), 20);
-    });
-});
+        t.equal(l.m(), -10);
+        t.equal(l.b(), 20);
+t.end(); });
+t.end(); });
