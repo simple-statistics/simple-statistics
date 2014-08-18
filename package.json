@@ -9,9 +9,9 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "jshint": "2.4.4",
-    "coveralls": "~2.10.0",
-    "istanbul": "~0.2.11",
+    "jshint": "2.5.3",
+    "coveralls": "~2.11.1",
+    "istanbul": "~0.3.0",
     "tape": "~2.14.0"
   },
   "scripts": {
