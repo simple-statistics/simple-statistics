@@ -102,6 +102,13 @@ than zero and less or equal to than one, or an array of numbers following that r
 If an array is given, an array of results will be returned instead of a single
 number.
 
+### .chunk(sample, chunkSize)
+
+Given a `sample` array, and a positive integer `chunkSize`, splits an array
+into chunks of `chunkSize` size and returns an array of those chunks. This
+does not change the input value. If the length of `sample` is not divisible
+by `chunkSize`, the last array will be shorter than the rest.
+
 ### .quantile_sorted(sample, p)
 
 Does a [quantile](http://en.wikipedia.org/wiki/Quantile) of a dataset `sample`,
