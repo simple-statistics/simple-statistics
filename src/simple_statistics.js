@@ -666,6 +666,23 @@
         return output;
     }
 
+    // # partition
+    //
+    function partition(sample, chunks) {
+
+        // `chunks` must be zero or higher - we can't partition a non-zero
+        // list into zero parts.
+        // So, we'll detect and return null in that case to indicate
+        // invalid input.
+        if (chunks <= 0) {
+            return null;
+        }
+
+        var chunkSize = Math.ceil(sample.length / chunks);
+
+        return chunk(sample, chunkSize);
+    }
+
     // # quantile
     //
     // This is a population quantile, since we assume to know the entire
@@ -1410,6 +1427,7 @@
     ss.mad = mad;
 
     ss.chunk = chunk;
+    ss.partition = partition;
 
     ss.sample_covariance = sample_covariance;
     ss.sample_correlation = sample_correlation;
