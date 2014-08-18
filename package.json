@@ -9,16 +9,14 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "mocha": "1.17.x",
-    "chai": "1.9.x",
     "jshint": "2.4.4",
-    "mocha-lcov-reporter": "0.0.1",
     "coveralls": "~2.10.0",
-    "istanbul": "~0.2.11"
+    "istanbul": "~0.2.11",
+    "tape": "~2.14.0"
   },
   "scripts": {
-    "test": "jshint src/*.js && mocha -R spec test/spec",
-    "cov": "istanbul cover node_modules/.bin/_mocha --report lcovonly test/spec && coveralls < ./coverage/lcov.info",
+    "test": "tape test/*.js",
+    "cov": "istanbul cover ./node_modules/.bin/tape test/*.js && coveralls < ./coverage/lcov.info",
     "api": "node api.js"
   },
   "main": "src/simple_statistics.js",
