@@ -15,8 +15,8 @@
     "tape": "~2.14.0"
   },
   "scripts": {
-    "test": "tape test/spec/*.js",
-    "cov": "istanbul cover ./node_modules/.bin/tape test/spec/*.js && coveralls < ./coverage/lcov.info",
+    "test": "tape test/*.js",
+    "cov": "istanbul cover ./node_modules/.bin/tape test/*.js && coveralls < ./coverage/lcov.info",
     "api": "node api.js"
   },
   "main": "src/simple_statistics.js",
