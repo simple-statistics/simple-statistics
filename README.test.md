@@ -22,6 +22,7 @@ in all modern browsers (including IE) as well as in node.js.
     .median(x)
     .geometric_mean(x)
     .harmonic_mean(x)
+    .root_mean_square(x)
     .min(x)
     .max(x)
     .t_test(sample, x)

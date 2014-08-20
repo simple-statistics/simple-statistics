@@ -67,6 +67,10 @@ Also aliased to `.mad(x)` for brevity.
 
 [Harmonic mean](http://en.wikipedia.org/wiki/Harmonic_mean) of a single-dimensional array of **positive** numbers.
 
+### .root_mean_square(x)
+
+[Root mean square (RMS)](http://en.wikipedia.org/wiki/Root_mean_square) of a single-dimensional array of numbers.
+
 ### .min(x)
 
 Finds the minimum of a single-dimensional array of numbers. This runs in linear `O(n)` time.
