@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.9.0
+
+* Adds `.sample` for simple random sampling
+* Adds `.shuffle` and `.shuffle_in_place` for random permutations
+* Adds `.chunk` for splitting arrays into chunked subsets
+
 ## 0.8.1
 
 * fixes a bug in `mode` that favored the last new number
