@@ -109,6 +109,21 @@ into chunks of `chunkSize` size and returns an array of those chunks. This
 does not change the input value. If the length of `sample` is not divisible
 by `chunkSize`, the last array will be shorter than the rest.
 
+### .shuffle(sample)
+
+Given a `sample` array (with any type of contents), return a random permutation
+of that array, using the [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
+algorithm.
+
+### .shuffle_in_place(sample)
+
+Given a `sample` array (with any type of contents), return a random permutation
+of that array, using the [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
+algorithm.
+
+This changes the input array in-place, as well as returns it - unlike `.shuffle()`,
+it does not create a shallow copy of the array.
+
 ### .quantile_sorted(sample, p)
 
 Does a [quantile](http://en.wikipedia.org/wiki/Quantile) of a dataset `sample`,
