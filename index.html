@@ -84,6 +84,10 @@ is returned.</p>
 <p><a href="http://en.wikipedia.org/wiki/Variance">Variance</a> of a single-dimensional Array of numbers.</p>
 <h3 id="-standard_deviation-x-">.standard_deviation(x)</h3>
 <p><a href="http://en.wikipedia.org/wiki/Standard_deviation">Standard Deviation</a> of a single-dimensional Array of numbers.</p>
+<h3 id="-sample-array-n-">.sample(array, n)</h3>
+<p>Return a <a href="http://en.wikipedia.org/wiki/Simple_random_sample">simple random sample</a>
+of the given array. The sampling is <em>without replacement</em>, and uses a Fisher-Yates
+sample to randomize.</p>
 <h3 id="-median_absolute_deviation-x-">.median_absolute_deviation(x)</h3>
 <p>The Median Absolute Deviation (MAD) is a robust measure of statistical
 dispersion. It is more resilient to outliers than the standard deviation.
@@ -111,10 +115,10 @@ as one-dimensional arrays of more than one number each.</p>
 <h3 id="-sample_variance-x-">.sample_variance(x)</h3>
 <p>Produces <a href="http://mathworld.wolfram.com/SampleVariance.html">sample variance</a>
 of a single-dimensional array of numbers.</p>
-<h3 id="-sample_covariance-x-">.sample_covariance(x)</h3>
+<h3 id="-sample_covariance-a-b-">.sample_covariance(a, b)</h3>
 <p>Produces <a href="http://en.wikipedia.org/wiki/Sample_mean_and_sample_covariance">sample covariance</a>
 of two single-dimensional arrays of numbers.</p>
-<h3 id="-sample_correlation-x-">.sample_correlation(x)</h3>
+<h3 id="-sample_correlation-a-b-">.sample_correlation(a, b)</h3>
 <p>Produces <a href="http://en.wikipedia.org/wiki/Correlation_and_dependence">sample correlation</a>
 of two single-dimensional arrays of numbers.</p>
 <h3 id="-quantile-sample-p-">.quantile(sample, p)</h3>
@@ -124,6 +128,21 @@ be a single-dimensional array of numbers. p must be a number greater than or equ
 than zero and less or equal to than one, or an array of numbers following that rule.
 If an array is given, an array of results will be returned instead of a single
 number.</p>
+<h3 id="-chunk-sample-chunksize-">.chunk(sample, chunkSize)</h3>
+<p>Given a <code>sample</code> array, and a positive integer <code>chunkSize</code>, splits an array
+into chunks of <code>chunkSize</code> size and returns an array of those chunks. This
+does not change the input value. If the length of <code>sample</code> is not divisible
+by <code>chunkSize</code>, the last array will be shorter than the rest.</p>
+<h3 id="-shuffle-sample-">.shuffle(sample)</h3>
+<p>Given a <code>sample</code> array (with any type of contents), return a random permutation
+of that array, using the <a href="http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle">Fisher-Yates shuffle</a>
+algorithm.</p>
+<h3 id="-shuffle_in_place-sample-">.shuffle_in_place(sample)</h3>
+<p>Given a <code>sample</code> array (with any type of contents), return a random permutation
+of that array, using the <a href="http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle">Fisher-Yates shuffle</a>
+algorithm.</p>
+<p>This changes the input array in-place, as well as returns it - unlike <code>.shuffle()</code>,
+it does not create a shallow copy of the array.</p>
 <h3 id="-quantile_sorted-sample-p-">.quantile_sorted(sample, p)</h3>
 <p>Does a <a href="http://en.wikipedia.org/wiki/Quantile">quantile</a> of a dataset <code>sample</code>,
 at p. <code>sample</code> must be a one-dimensional <em>sorted</em> array of numbers, and
