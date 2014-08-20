@@ -1,14 +1,9 @@
 {
   "name": "simple-statistics",
-  "version": "0.8.1",
-  "description": "simple descriptive statistics for javascript in node and in browser",
+  "version": "0.9.0",
+  "description": "Simple Statistics",
   "repo": "tmcw/simple-statistics",
-  "keywords": [
-    "statistics",
-    "math",
-    "computation",
-    "stats"
-  ],
+  "keywords": [],
   "license": "ISC",
   "dependencies": {},
   "development": {},
