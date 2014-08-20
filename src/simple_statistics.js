@@ -718,6 +718,18 @@
         return shuffle_in_place(sample.slice(), randomSource);
     }
 
+    // # sample
+    //
+    // Create a [simple random sample](http://en.wikipedia.org/wiki/Simple_random_sample)
+    // from a given array of `n` elements.
+    function sample(array, n, randomSource) {
+        // shuffle the original array using a fisher-yates shuffle
+        var shuffled = shuffle(array, randomSource);
+
+        // and then return a subset of it - the first `n` elements.
+        return shuffled.slice(0, n);
+    }
+
     // # quantile
     //
     // This is a population quantile, since we assume to know the entire
@@ -1464,6 +1476,8 @@
     ss.chunk = chunk;
     ss.shuffle = shuffle;
     ss.shuffle_in_place = shuffle_in_place;
+
+    ss.sample = sample;
 
     ss.sample_covariance = sample_covariance;
     ss.sample_correlation = sample_correlation;

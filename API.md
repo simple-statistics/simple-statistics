@@ -36,6 +36,12 @@ is returned.
 
 [Standard Deviation](http://en.wikipedia.org/wiki/Standard_deviation) of a single-dimensional Array of numbers.
 
+### .sample(array, n)
+
+Return a [simple random sample](http://en.wikipedia.org/wiki/Simple_random_sample)
+of the given array. The sampling is _without replacement_, and uses a Fisher-Yates
+sample to randomize.
+
 ### .median_absolute_deviation(x)
 
 The Median Absolute Deviation (MAD) is a robust measure of statistical
