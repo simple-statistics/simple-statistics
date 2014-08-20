@@ -325,7 +325,7 @@
         return x.length / reciprocal_sum;
     }
 
-    // root mean square (RMS) / quadratic mean
+    // root mean square (RMS)
     //
     // a mean function used as a measure of the magnitude of a set
     // of numbers, regardless of their sign
