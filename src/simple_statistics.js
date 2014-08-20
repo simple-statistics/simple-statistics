@@ -325,6 +325,25 @@
         return x.length / reciprocal_sum;
     }
 
+    // root mean square (RMS)
+    //
+    // a mean function used as a measure of the magnitude of a set
+    // of numbers, regardless of their sign
+    //
+    // this is the square root of the mean of the squares of the 
+    // input numbers
+    //
+    // This runs on `O(n)`, linear time in respect to the array
+    function root_mean_square(x) {
+        if (x.length === 0) return null;
+
+        var sum_of_squares = 0;
+        for (var i = 0; i < x.length; i++) {
+            sum_of_squares += Math.pow(x[i], 2);
+        }
+
+        return Math.sqrt(sum_of_squares / x.length);
+    }
 
     // # min
     //
@@ -1415,7 +1434,7 @@
         var arrayMethods = ['median', 'standard_deviation', 'sum',
             'sample_skewness',
             'mean', 'min', 'max', 'quantile', 'geometric_mean',
-            'harmonic_mean'];
+            'harmonic_mean', 'root_mean_square'];
 
         // create a closure with a method name so that a reference
         // like `arrayMethods[i]` doesn't follow the loop increment
@@ -1487,6 +1506,7 @@
 
     ss.geometric_mean = geometric_mean;
     ss.harmonic_mean = harmonic_mean;
+    ss.root_mean_square = root_mean_square;
     ss.variance = variance;
     ss.t_test = t_test;
     ss.t_test_two_sample = t_test_two_sample;
@@ -1516,5 +1536,6 @@
     ss.interquartile_range = iqr;
     ss.mixin = mixin;
     ss.median_absolute_deviation = mad;
+    ss.rms = root_mean_square;
 
 })(this);
