@@ -1107,23 +1107,50 @@
         0.9987, 0.9987, 0.9987, 0.9988, 0.9988, 0.9989, 0.9989, 0.9989, 0.9990, 0.9990
     ];
 
+    // # [Gaussian error function](http://en.wikipedia.org/wiki/Error_function)
+    //
+    // The error_function(x/(sd * Math.sqrt(2))) is the probability that a value in a
+    // normal distribution with standard deviation sd is within x of the mean.
+    //
+    // This function returns a numerical approximation to the exact value.
+    function error_function(x) {
+        var t = 1 / (1 + 0.5 * Math.abs(x));
+        var tau = t * Math.exp(-Math.pow(x, 2) -
+            1.26551223 +
+            1.00002368 * t +
+            0.37409196 * Math.pow(t, 2) +
+            0.09678418 * Math.pow(t, 3) -
+            0.18628806 * Math.pow(t, 4) +
+            0.27886807 * Math.pow(t, 5) -
+            1.13520398 * Math.pow(t, 6) +
+            1.48851587 * Math.pow(t, 7) -
+            0.82215223 * Math.pow(t, 8) +
+            0.17087277 * Math.pow(t, 9));
+        if (x >= 0) {
+            return 1 - tau;
+        } else {
+            return tau - 1;
+        }
+    }
+
     // # [Cumulative Standard Normal Probability](http://en.wikipedia.org/wiki/Standard_normal_table)
     //
     // Since probability tables cannot be
     // printed for every normal distribution, as there are an infinite variety
     // of normal distributions, it is common practice to convert a normal to a
-    // standard normal and then use the standard normal table to find probabilities
+    // standard normal and then use the standard normal table to find probabilities.
+    //
+    // You can use error_function(x / Math.sqrt(2)) to calculate the probability
+    // instead of looking it up in a table.
     function cumulative_std_normal_probability(z) {
 
         // Calculate the position of this value.
         var absZ = Math.abs(z),
             // Each row begins with a different
-            // significant digit: 0.5, 0.6, 0.7, and so on. So the row is simply
-            // this value's significant digit: 0.567 will be in row 0, so row=0,
-            // 0.643 will be in row 1, so row=10.
-            row = Math.floor(absZ * 10),
-            column = 10 * (Math.floor(absZ * 100) / 10 - Math.floor(absZ * 100 / 10)),
-            index = Math.min((row * 10) + column, standard_normal_table.length - 1);
+            // significant digit: 0.5, 0.6, 0.7, and so on. Each value in the table
+            // corresponds to a range of 0.01 in the input values, so the value is
+            // multiplied by 100.
+            index = Math.min(Math.round(absZ * 100), standard_normal_table.length - 1);
 
         // The index we calculate must be in the table as a positive value,
         // but we still pay attention to whether the input is positive
@@ -1530,6 +1557,7 @@
     ss.z_score = z_score;
     ss.cumulative_std_normal_probability = cumulative_std_normal_probability;
     ss.standard_normal_table = standard_normal_table;
+    ss.error_function = error_function;
 
     // Alias this into its common name
     ss.average = mean;
@@ -1537,5 +1565,6 @@
     ss.mixin = mixin;
     ss.median_absolute_deviation = mad;
     ss.rms = root_mean_square;
+    ss.erf = error_function;
 
 })(this);
