@@ -21,5 +21,9 @@ test('cumulative_std_normal_probability', function(t) {
         }
         t.end();
     });
+    test('symmetry', function(t) {
+        t.equal(Math.abs(ss.cumulative_std_normal_probability(-1) - (1 - ss.cumulative_std_normal_probability(1))) < ss.epsilon, true);
+        t.end();
+    });
     t.end();
 });
