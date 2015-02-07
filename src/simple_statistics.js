@@ -1140,7 +1140,7 @@
     // of normal distributions, it is common practice to convert a normal to a
     // standard normal and then use the standard normal table to find probabilities.
     //
-    // You can use error_function(x / Math.sqrt(2)) to calculate the probability
+    // You can use .5 + .5 * error_function(x / Math.sqrt(2)) to calculate the probability
     // instead of looking it up in a table.
     function cumulative_std_normal_probability(z) {
 
