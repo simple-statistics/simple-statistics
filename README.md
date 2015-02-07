@@ -177,6 +177,11 @@ or datum is above or below the mean.
 A [standard normal table](http://en.wikipedia.org/wiki/Standard_normal_table) from
 which to pull values of Φ (phi).
 
+### .error_function(x)
+
+Calculate a numerical approximation to the Gaussian error function instead of
+looking up values in a table.
+
 ## Regression
 
 ### .linear_regression()
