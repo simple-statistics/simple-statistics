@@ -7,4 +7,10 @@ test('error_function', function(t) {
         t.end();
     });
     t.end();
+    test('inverse', function(t) {
+        for (var i = -1; i <= 1; i += .01) {
+            t.equal(Math.abs(ss.error_function(ss.inverse_error_function(i)) - i) < 4 * ss.epsilon, true);
+        }
+        t.end();
+    });
 });

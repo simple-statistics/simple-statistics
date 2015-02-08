@@ -1133,6 +1133,41 @@
         }
     }
 
+    // # Inverse [Gaussian error function](http://en.wikipedia.org/wiki/Error_function)
+    //
+    // Returns a numerical approximation to the value that would have caused
+    // error_function() to return x.
+    function inverse_error_function(x) {
+        var a = (8 * (Math.PI - 3)) / (3 * Math.PI * (4 - Math.PI));
+
+        var inv = Math.sqrt(Math.sqrt(
+                Math.pow(2 / (Math.PI * a) + Math.log(1 - x * x) / 2, 2) -
+                Math.log(1 - x * x) / a) -
+                (2 / (Math.PI * a) + Math.log(1 - x * x) / 2));
+
+        if (x >= 0) {
+            return inv;
+        } else {
+            return -inv;
+        }
+    }
+
+    // # [Probit](http://en.wikipedia.org/wiki/Probit)
+    //
+    // This is the inverse of cumulative_std_normal_probability(),
+    // and is also known as the normal quantile function.
+    //
+    // It returns the number of standard deviations from the mean
+    // where the p'th quantile of values can be found in a normal distribution.
+    // So, for example, probit(0.5 + 0.6827/2) ≈ 1 because 68.27% of values are
+    // normally found within 1 standard deviation above or below the mean.
+    function probit(p) {
+        if (p == 0) {
+            p = epsilon;
+        }
+        return Math.sqrt(2) * inverse_error_function(2 * p - 1);
+    }
+
     // # [Cumulative Standard Normal Probability](http://en.wikipedia.org/wiki/Standard_normal_table)
     //
     // Since probability tables cannot be
@@ -1558,6 +1593,8 @@
     ss.cumulative_std_normal_probability = cumulative_std_normal_probability;
     ss.standard_normal_table = standard_normal_table;
     ss.error_function = error_function;
+    ss.inverse_error_function = inverse_error_function;
+    ss.probit = probit;
 
     // Alias this into its common name
     ss.average = mean;
