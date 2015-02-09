@@ -26,7 +26,7 @@ test('cumulative_std_normal_probability', function(t) {
         t.end();
     });
     test('inverse', function(t) {
-        for (var i = 0; i <= 1; i += .01) {
+        for (var i = 0; i <= 1 + ss.epsilon; i += .01) {
             t.equal(Math.abs(ss.cumulative_std_normal_probability(ss.probit(i)) - i) < 21 * ss.epsilon, true);
         }
         t.end();
