@@ -1164,6 +1164,8 @@
     function probit(p) {
         if (p == 0) {
             p = epsilon;
+        } else if (p >= 1) {
+            p = 1 - epsilon;
         }
         return Math.sqrt(2) * inverse_error_function(2 * p - 1);
     }
