@@ -393,7 +393,7 @@
         }
 
         // Find the mean value of that list
-        return sum(deviations) / (x.length - 1);
+        return mean(deviations);
     }
 
     // # [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)

@@ -1,9 +1,5 @@
 # CHANGELOG
 
-## 0.9.1
-
-* Fixed `.variance` calculation
-
 ## 0.9.0
 
 * Adds `.sample` for simple random sampling
