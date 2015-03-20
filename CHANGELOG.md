@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.9.1
+
+* Fixes `.jenks` corner cases.
+
 ## 0.9.0
 
 * Adds `.sample` for simple random sampling
