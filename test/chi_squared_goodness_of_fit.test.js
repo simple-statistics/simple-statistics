@@ -19,5 +19,9 @@ test('chi_squared_goodness_of_fit', function(t) {
         t.equal(true, ss.chi_squared_goodness_of_fit(data_10_19, ss.poisson_distribution, 0.10));
         t.end();
     });
+    test('can tolerate gaps in distribution', function(t) {
+        t.equal(true, ss.chi_squared_goodness_of_fit([0, 2, 3, 7, 7, 7, 7, 7, 7, 9, 10], ss.poisson_distribution, 0.10));
+        t.end();
+    });
     t.end();
 });

@@ -22,3 +22,10 @@ test('shuffle_in_place', function(t) {
     t.deepEqual(input, [6, 1, 5, 2, 4, 3], 'changes original array');
     t.end();
 });
+
+test('shuffle_in_place truly random', function(t) {
+    var input = [1, 2, 3, 4, 5, 6];
+    t.deepEqual(ss.shuffle_in_place([]), []);
+    t.deepEqual(ss.shuffle_in_place(input).sort(), [1, 2, 3, 4, 5, 6]);
+    t.end();
+});

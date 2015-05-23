@@ -8,6 +8,7 @@
 (function() {
     var ss = {};
 
+    /* istanbul ignore else */
     if (typeof module !== 'undefined') {
         // Assign the `ss` object to exports, so that you can require
         // it in [node.js](http://nodejs.org/)
@@ -15,6 +16,8 @@
     } else {
         // Otherwise, in a browser, we assign `ss` to the window object,
         // so you can simply refer to it as `ss`.
+        // Coverage testing will always skip this line, so we exclude
+        // it from istanbul's vision.
         this.ss = ss;
     }
 
@@ -1453,6 +1456,8 @@
     // of Javascript.
     function mixin(array) {
         var support = !!(Object.defineProperty && Object.defineProperties);
+        // Coverage testing will never test this error.
+        /* istanbul ignore next */
         if (!support) throw new Error('without defineProperty, simple-statistics cannot be mixed in');
 
         // only methods which work on basic arrays in a single step
