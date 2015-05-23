@@ -1,0 +1,13 @@
+{
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "no-shadow": [0],
+    "quotes": [2, "single"],
+    "key-spacing": [0],
+    "curly": [0],
+    "camelcase": [0]
+  }
+}

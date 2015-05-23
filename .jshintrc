@@ -1,8 +1,0 @@
-{
-    "indent": 4,
-    "undef": true,
-    "unused": true,
-    "globals": {
-        "require": true
-    }
-}

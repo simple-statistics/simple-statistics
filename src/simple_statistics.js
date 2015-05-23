@@ -1,4 +1,4 @@
-/* global module */
+'use strict';
 // # simple-statistics
 //
 // A simple, literate statistics system. The code below uses the
@@ -330,7 +330,7 @@
     // a mean function used as a measure of the magnitude of a set
     // of numbers, regardless of their sign
     //
-    // this is the square root of the mean of the squares of the 
+    // this is the square root of the mean of the squares of the
     // input numbers
     //
     // This runs on `O(n)`, linear time in respect to the array
@@ -461,7 +461,7 @@
     function sample_covariance(x, y) {
 
         // The two datasets must have the same length which must be more than 1
-        if (x.length <= 1 || x.length != y.length){
+        if (x.length <= 1 || x.length !== y.length) {
             return null;
         }
 
@@ -477,7 +477,7 @@
         // difference from the mean is associated - if both are well above
         // or if both are well below
         // the mean, the covariance increases significantly.
-        for (var i = 0; i < x.length; i++){
+        for (var i = 0; i < x.length; i++) {
             sum += (x[i] - xmean) * (y[i] - ymean);
         }
 
@@ -636,7 +636,7 @@
 
         // If either sample doesn't actually have any values, we can't
         // compute this at all, so we return `null`.
-        if (!n || !m) return null ;
+        if (!n || !m) return null;
 
         // default difference (mu) is zero
         if (!difference) difference = 0;
@@ -751,6 +751,35 @@
 
     // # quantile
     //
+    // This is the internal implementation of quantiles: when you know
+    // that the order is sorted, you don't need to re-sort it, and the computations
+    // are much faster.
+    function quantile_sorted(sample, p) {
+        var idx = (sample.length) * p;
+        if (p < 0 || p > 1) {
+            return null;
+        } else if (p === 1) {
+            // If p is 1, directly return the last element
+            return sample[sample.length - 1];
+        } else if (p === 0) {
+            // If p is 0, directly return the first element
+            return sample[0];
+        } else if (idx % 1 !== 0) {
+            // If p is not integer, return the next element in array
+            return sample[Math.ceil(idx) - 1];
+        } else if (sample.length % 2 === 0) {
+            // If the list has even-length, we'll take the average of this number
+            // and the next value, if there is one
+            return (sample[idx - 1] + sample[idx]) / 2;
+        } else {
+            // Finally, in the simple case of an integer value
+            // with an odd-length list, return the sample value at the index.
+            return sample[idx];
+        }
+    }
+
+    // # quantile
+    //
     // This is a population quantile, since we assume to know the entire
     // dataset in this library. Thus I'm trying to follow the
     // [Quantiles of a Population](http://en.wikipedia.org/wiki/Quantile#Quantiles_of_a_population)
@@ -782,35 +811,6 @@
             return results;
         } else {
             return quantile_sorted(sorted, p);
-        }
-    }
-
-    // # quantile
-    //
-    // This is the internal implementation of quantiles: when you know
-    // that the order is sorted, you don't need to re-sort it, and the computations
-    // are much faster.
-    function quantile_sorted(sample, p) {
-        var idx = (sample.length) * p;
-        if (p < 0 || p > 1) {
-            return null;
-        } else if (p === 1) {
-            // If p is 1, directly return the last element
-            return sample[sample.length - 1];
-        } else if (p === 0) {
-            // If p is 0, directly return the first element
-            return sample[0];
-        } else if (idx % 1 !== 0) {
-            // If p is not integer, return the next element in array
-            return sample[Math.ceil(idx) - 1];
-        } else if (sample.length % 2 === 0) {
-            // If the list has even-length, we'll take the average of this number
-            // and the next value, if there is one
-            return (sample[idx - 1] + sample[idx]) / 2;
-        } else {
-            // Finally, in the simple case of an integer value
-            // with an odd-length list, return the sample value at the index.
-            return sample[idx];
         }
     }
 
@@ -1210,24 +1210,6 @@
         return accumulator;
     }
 
-    // # Bernoulli Distribution
-    //
-    // The [Bernoulli distribution](http://en.wikipedia.org/wiki/Bernoulli_distribution)
-    // is the probability discrete
-    // distribution of a random variable which takes value 1 with success
-    // probability `p` and value 0 with failure
-    // probability `q` = 1 - `p`. It can be used, for example, to represent the
-    // toss of a coin, where "1" is defined to mean "heads" and "0" is defined
-    // to mean "tails" (or vice versa). It is
-    // a special case of a Binomial Distribution
-    // where `n` = 1.
-    function bernoulli_distribution(p) {
-        // Check that `p` is a valid probability (0 ≤ p ≤ 1)
-        if (p < 0 || p > 1 ) { return null; }
-
-        return binomial_distribution(1, p);
-    }
-
     // # Binomial Distribution
     //
     // The [Binomial Distribution](http://en.wikipedia.org/wiki/Binomial_distribution) is the discrete probability
@@ -1271,6 +1253,24 @@
         } while (cumulative_probability < 1 - epsilon);
 
         return cells;
+    }
+
+    // # Bernoulli Distribution
+    //
+    // The [Bernoulli distribution](http://en.wikipedia.org/wiki/Bernoulli_distribution)
+    // is the probability discrete
+    // distribution of a random variable which takes value 1 with success
+    // probability `p` and value 0 with failure
+    // probability `q` = 1 - `p`. It can be used, for example, to represent the
+    // toss of a coin, where "1" is defined to mean "heads" and "0" is defined
+    // to mean "tails" (or vice versa). It is
+    // a special case of a Binomial Distribution
+    // where `n` = 1.
+    function bernoulli_distribution(p) {
+        // Check that `p` is a valid probability (0 ≤ p ≤ 1)
+        if (p < 0 || p > 1 ) { return null; }
+
+        return binomial_distribution(1, p);
     }
 
     // # Poisson Distribution
