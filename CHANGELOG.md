@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.9.2
+
+* Improved test coverage
+* Switched linting from JSHint to [eslint](http://eslint.org/) and fixed
+  style issues this uncovered.
+
 ## 0.9.1
 
 * Fixes `.jenks` corner cases.
