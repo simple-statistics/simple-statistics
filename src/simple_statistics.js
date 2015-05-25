@@ -1,10 +1,13 @@
 'use strict';
-// # simple-statistics
-//
-// A simple, literate statistics system. The code below uses the
-// [Javascript module pattern](http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth),
-// eventually assigning `simple-statistics` to `ss` in browsers or the
-// `exports` object for node.js
+
+/**
+ * # simple-statistics
+ *
+ * A simple, literate statistics system. The code below uses the
+ * [Javascript module pattern](http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth),
+ * eventually assigning `simple-statistics` to `ss` in browsers or the
+ * `exports` object for node.js
+ */
 (function() {
     var ss = {};
 
@@ -21,24 +24,45 @@
         this.ss = ss;
     }
 
-    // # [Linear Regression](http://en.wikipedia.org/wiki/Linear_regression)
-    //
-    // [Simple linear regression](http://en.wikipedia.org/wiki/Simple_linear_regression)
-    // is a simple way to find a fitted line
-    // between a set of coordinates.
+    /**
+     * ## [Linear Regression](http://en.wikipedia.org/wiki/Linear_regression)
+     *
+     * [Simple linear regression](http://en.wikipedia.org/wiki/Simple_linear_regression)
+     * is a simple way to find a fitted line
+     * between a set of coordinates.
+     *
+     * @returns {linreg} linear regressor
+     * @example
+     * var l = ss.linear_regression().data([[0, 0], [1, 1]]);
+     * l.line()(0) === 0;
+     * l.line()(0.5) === 0.5;
+     * l.line()(1) === 1;
+     */
     function linear_regression() {
+        /**
+         * The linear regression object
+         */
         var linreg = {},
             data = [];
 
-        // Assign data to the model. Data is assumed to be an array.
+        /**
+         * Assign data to the model. Data is assumed to be an array.
+         *
+         * @param {Array<data>} data
+         * @returns {linreg} self
+         */
         linreg.data = function(x) {
             if (!arguments.length) return data;
             data = x.slice();
             return linreg;
         };
 
-        // Calculate the slope and y-intercept of the regression line
-        // by calculating the least sum of squares
+        /**
+         * Calculate the slope and y-intercept of the regression line
+         * by calculating the least sum of squares
+         *
+         * @returns {Object} object with m & b attributes
+         */
         linreg.mb = function() {
             var m, b;
 
@@ -101,11 +125,15 @@
             return linreg.mb().b;
         };
 
-        // ## Fitting The Regression Line
-        //
-        // This is called after `.data()` and returns the
-        // equation `y = f(x)` which gives the position
-        // of the regression line at each point in `x`.
+        /**
+         * ## Fitting The Regression Line
+         *
+         * This is called after `.data()` and returns the
+         * equation `y = f(x)` which gives the position
+         * of the regression line at each point in `x`.
+         *
+         * @returns {Function}
+         */
         linreg.line = function() {
 
             // Get the slope, `m`, and y-intercept, `b`, of the line.
@@ -124,11 +152,15 @@
         return linreg;
     }
 
-    // # [R Squared](http://en.wikipedia.org/wiki/Coefficient_of_determination)
-    //
-    // The r-squared value of data compared with a function `f`
-    // is the sum of the squared differences between the prediction
-    // and the actual value.
+    /**
+     * # [R Squared](http://en.wikipedia.org/wiki/Coefficient_of_determination)
+     *
+     * The r-squared value of data compared with a function `f`
+     * is the sum of the squared differences between the prediction
+     * and the actual value.
+     * @param {Array<number>} data array of input data
+     * @param {Function} f function for comparison
+     */
     function r_squared(data, f) {
         if (data.length < 2) return 1;
 
@@ -164,14 +196,18 @@
     }
 
 
-    // # [Bayesian Classifier](http://en.wikipedia.org/wiki/Naive_Bayes_classifier)
-    //
-    // This is a naïve bayesian classifier that takes
-    // singly-nested objects.
+    /**
+     * # [Bayesian Classifier](http://en.wikipedia.org/wiki/Naive_Bayes_classifier)
+     *
+     * This is a naïve bayesian classifier that takes
+     * singly-nested objects.
+     */
     function bayesian() {
-        // The `bayes_model` object is what will be exposed
-        // by this closure, with all of its extended methods, and will
-        // have access to all scope variables, like `total_count`.
+        /**
+         * The `bayes_model` object is what will be exposed
+         * by this closure, with all of its extended methods, and will
+         * have access to all scope variables, like `total_count`.
+         */
         var bayes_model = {},
             // The number of items that are currently
             // classified in the model
@@ -179,9 +215,15 @@
             // Every item classified in the model
             data = {};
 
-        // ## Train
-        // Train the classifier with a new item, which has a single
-        // dimension of Javascript literal keys and values.
+        /**
+         * ## Train
+         *
+         * Train the classifier with a new item, which has a single
+         * dimension of Javascript literal keys and values.
+         *
+         * @param {Object} item
+         * @param {string} category
+         */
         bayes_model.train = function(item, category) {
             // If the data object doesn't have any values
             // for this category, create a new object for it.
@@ -202,9 +244,13 @@
             total_count++;
         };
 
-        // ## Score
-        // Generate a score of how well this item matches all
-        // possible categories based on its attributes
+        /**
+         * ## Score
+         * Generate a score of how well this item matches all
+         * possible categories based on its attributes
+         *
+         * @param {Object} item
+         */
         bayes_model.score = function(item) {
             // Initialize an empty array of odds per category.
             var odds = {}, category;
@@ -250,12 +296,17 @@
         return bayes_model;
     }
 
-    // # sum
-    //
-    // is simply the result of adding all numbers
-    // together, starting from zero.
-    //
-    // This runs on `O(n)`, linear time in respect to the array
+    /**
+     * # sum
+     *
+     * is simply the result of adding all numbers
+     * together, starting from zero.
+     *
+     * This runs on `O(n)`, linear time in respect to the array
+     *
+     * @param {Array<number>} x
+     * @returns {number} sum
+     */
     function sum(x) {
         var value = 0;
         for (var i = 0; i < x.length; i++) {
@@ -264,11 +315,16 @@
         return value;
     }
 
-    // # mean
-    //
-    // is the sum over the number of values
-    //
-    // This runs on `O(n)`, linear time in respect to the array
+    /**
+     * # mean
+     *
+     * is the sum over the number of values
+     *
+     * This runs on `O(n)`, linear time in respect to the array
+     *
+     * @param {Array<number>} x
+     * @returns {number} mean
+     */
     function mean(x) {
         // The mean of no numbers is null
         if (x.length === 0) return null;
@@ -276,14 +332,19 @@
         return sum(x) / x.length;
     }
 
-    // # geometric mean
-    //
-    // a mean function that is more useful for numbers in different
-    // ranges.
-    //
-    // this is the nth root of the input numbers multiplied by each other
-    //
-    // This runs on `O(n)`, linear time in respect to the array
+    /**
+     * # geometric mean
+     *
+     * a mean function that is more useful for numbers in different
+     * ranges.
+     *
+     * this is the nth root of the input numbers multiplied by each other
+     *
+     * This runs on `O(n)`, linear time in respect to the array
+     *
+     * @param {Array<number>} x
+     * @returns {number} geometric mean
+     */
     function geometric_mean(x) {
         // The mean of no numbers is null
         if (x.length === 0) return null;
@@ -303,14 +364,19 @@
     }
 
 
-    // # harmonic mean
-    //
-    // a mean function typically used to find the average of rates
-    //
-    // this is the reciprocal of the arithmetic mean of the reciprocals
-    // of the input numbers
-    //
-    // This runs on `O(n)`, linear time in respect to the array
+    /**
+     * # harmonic mean
+     *
+     * a mean function typically used to find the average of rates
+     *
+     * this is the reciprocal of the arithmetic mean of the reciprocals
+     * of the input numbers
+     *
+     * This runs on `O(n)`, linear time in respect to the array
+     *
+     * @param {Array<number>} x
+     * @returns {number} harmonic mean
+     */
     function harmonic_mean(x) {
         // The mean of no numbers is null
         if (x.length === 0) return null;
@@ -328,15 +394,20 @@
         return x.length / reciprocal_sum;
     }
 
-    // root mean square (RMS)
-    //
-    // a mean function used as a measure of the magnitude of a set
-    // of numbers, regardless of their sign
-    //
-    // this is the square root of the mean of the squares of the
-    // input numbers
-    //
-    // This runs on `O(n)`, linear time in respect to the array
+    /**
+     * root mean square (RMS)
+     *
+     * a mean function used as a measure of the magnitude of a set
+     * of numbers, regardless of their sign
+     *
+     * this is the square root of the mean of the squares of the
+     * input numbers
+     *
+     * This runs on `O(n)`, linear time in respect to the array
+     *
+     * @param {Array<number>} x
+     * @returns {number} root mean square
+     */
     function root_mean_square(x) {
         if (x.length === 0) return null;
 
@@ -348,11 +419,17 @@
         return Math.sqrt(sum_of_squares / x.length);
     }
 
-    // # min
-    //
-    // This is simply the minimum number in the set.
-    //
-    // This runs on `O(n)`, linear time in respect to the array
+    /**
+     * # min
+     *
+     * This is simply the minimum number in the set.
+     *
+     * This runs on `O(n)`, linear time in respect to the array
+     * @param {Array<number>} x
+     * @returns {number} max
+     * @example
+     * min([0, 10, 20]) === 0
+     */
     function min(x) {
         var value;
         for (var i = 0; i < x.length; i++) {
@@ -363,11 +440,17 @@
         return value;
     }
 
-    // # max
-    //
-    // This is simply the maximum number in the set.
-    //
-    // This runs on `O(n)`, linear time in respect to the array
+    /**
+     * # max
+     *
+     * This is simply the maximum number in the set.
+     *
+     * This runs on `O(n)`, linear time in respect to the array
+     * @param {Array<number>} x
+     * @returns {number} max
+     * @example
+     * min([0, 10, 20]) === 20
+     */
     function max(x) {
         var value;
         for (var i = 0; i < x.length; i++) {
@@ -378,11 +461,16 @@
         return value;
     }
 
-    // # [variance](http://en.wikipedia.org/wiki/Variance)
-    //
-    // is the sum of squared deviations from the mean
-    //
-    // depends on `mean()`
+    /**
+     * # [variance](http://en.wikipedia.org/wiki/Variance)
+     *
+     * is the sum of squared deviations from the mean
+     *
+     * depends on `mean()`
+     *
+     * @param {Array<number>} x
+     * @returns {number} standard deviation
+     */
     function variance(x) {
         // The variance of no numbers is null
         if (x.length === 0) return null;
@@ -399,11 +487,16 @@
         return mean(deviations);
     }
 
-    // # [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
-    //
-    // is just the square root of the variance.
-    //
-    // depends on `variance()`
+    /**
+     * # [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
+     *
+     * is just the square root of the variance.
+     *
+     * depends on `variance()`
+     *
+     * @param {Array<number>} x
+     * @returns {number} standard deviation
+     */
     function standard_deviation(x) {
         // The standard deviation of no numbers is null
         if (x.length === 0) return null;
@@ -427,11 +520,16 @@
         return sum;
     }
 
-    // # [variance](http://en.wikipedia.org/wiki/Variance)
-    //
-    // is the sum of squared deviations from the mean
-    //
-    // depends on `sum_nth_power_deviations`
+    /**
+     * # [variance](http://en.wikipedia.org/wiki/Variance)
+     *
+     * is the sum of squared deviations from the mean
+     *
+     * depends on `sum_nth_power_deviations`
+     *
+     * @param {Array<number>} x
+     * @returns {number} sample variance
+     */
     function sample_variance(x) {
         // The variance of no numbers is null
         if (x.length <= 1) return null;
@@ -442,11 +540,16 @@
         return sum_squared_deviations_value / (x.length - 1);
     }
 
-    // # [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
-    //
-    // is just the square root of the variance.
-    //
-    // depends on `sample_variance()`
+    /**
+     * # [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
+     *
+     * is just the square root of the variance.
+     *
+     * depends on `sample_variance()`
+     *
+     * @param {Array<number>} x
+     * @returns {number} standard deviation
+     */
     function sample_standard_deviation(x) {
         // The standard deviation of no numbers is null
         if (x.length <= 1) return null;
@@ -454,13 +557,19 @@
         return Math.sqrt(sample_variance(x));
     }
 
-    // # [covariance](http://en.wikipedia.org/wiki/Covariance)
-    //
-    // sample covariance of two datasets:
-    // how much do the two datasets move together?
-    // x and y are two datasets, represented as arrays of numbers.
-    //
-    // depends on `mean()`
+    /**
+     * # [covariance](http://en.wikipedia.org/wiki/Covariance)
+     *
+     * sample covariance of two datasets:
+     * how much do the two datasets move together?
+     * x and y are two datasets, represented as arrays of numbers.
+     *
+     * depends on `mean()`
+     *
+     * @param {Array<number>} x
+     * @param {Array<number>} y
+     * @returns {number} sample covariance
+     */
     function sample_covariance(x, y) {
 
         // The two datasets must have the same length which must be more than 1
@@ -505,10 +614,15 @@
         return cov / xstd / ystd;
     }
 
-    // # [median](http://en.wikipedia.org/wiki/Median)
-    //
-    // The middle number of a list. This is often a good indicator of 'the middle'
-    // when there are outliers that skew the `mean()` value.
+    /**
+     * # [median](http://en.wikipedia.org/wiki/Median)
+     *
+     * The middle number of a list. This is often a good indicator of 'the middle'
+     * when there are outliers that skew the `mean()` value.
+     *
+     * @param {Array<number>} x
+     * @returns {number} median
+     */
     function median(x) {
         // The median of an empty list is null
         if (x.length === 0) return null;
@@ -529,15 +643,22 @@
         }
     }
 
-    // # [mode](http://bit.ly/W5K4Yt)
-    //
-    // The mode is the number that appears in a list the highest number of times.
-    // There can be multiple modes in a list: in the event of a tie, this
-    // algorithm will return the most recently seen mode.
-    //
-    // This implementation is inspired by [science.js](https://github.com/jasondavies/science.js/blob/master/src/stats/mode.js)
-    //
-    // This runs on `O(n)`, linear time in respect to the array
+    /**
+     * # [mode](http://bit.ly/W5K4Yt)
+     *
+     * The mode is the number that appears in a list the highest number of times.
+     * There can be multiple modes in a list: in the event of a tie, this
+     * algorithm will return the most recently seen mode.
+     *
+     * This implementation is inspired by [science.js](https://github.com/jasondavies/science.js/blob/master/src/stats/mode.js)
+     *
+     * This runs on `O(n)`, linear time in respect to the array
+     *
+     * @param {Array<number>} x
+     * @returns {number} mode
+     * @example
+     * mode([0, 1, 2, 3, 3, 4, 5]) === 3
+     */
     function mode(x) {
 
         // Handle edge cases:
@@ -584,19 +705,24 @@
         return value;
     }
 
-    // # [t-test](http://en.wikipedia.org/wiki/Student's_t-test)
-    //
-    // This is to compute a one-sample t-test, comparing the mean
-    // of a sample to a known value, x.
-    //
-    // in this case, we're trying to determine whether the
-    // population mean is equal to the value that we know, which is `x`
-    // here. usually the results here are used to look up a
-    // [p-value](http://en.wikipedia.org/wiki/P-value), which, for
-    // a certain level of significance, will let you determine that the
-    // null hypothesis can or cannot be rejected.
-    //
-    // Depends on `standard_deviation()` and `mean()`
+    /**
+     * # [t-test](http://en.wikipedia.org/wiki/Student's_t-test)
+     *
+     * This is to compute a one-sample t-test, comparing the mean
+     * of a sample to a known value, x.
+     *
+     * in this case, we're trying to determine whether the
+     * population mean is equal to the value that we know, which is `x`
+     * here. usually the results here are used to look up a
+     * [p-value](http://en.wikipedia.org/wiki/P-value), which, for
+     * a certain level of significance, will let you determine that the
+     * null hypothesis can or cannot be rejected.
+     *
+     * Depends on `standard_deviation()` and `mean()`
+     *
+     * @param {Array<number>} sample
+     * @param {number} x
+     */
     function t_test(sample, x) {
         // The mean of the sample
         var sample_mean = mean(sample);
@@ -612,27 +738,33 @@
         return (sample_mean - x) / (sd / rootN);
     }
 
-    // # [2-sample t-test](http://en.wikipedia.org/wiki/Student's_t-test)
-    //
-    // This is to compute two sample t-test.
-    // Tests whether "mean(X)-mean(Y) = difference", (
-    // in the most common case, we often have `difference == 0` to test if two samples
-    // are likely to be taken from populations with the same mean value) with
-    // no prior knowledge on standard deviations of both samples
-    // other than the fact that they have the same standard deviation.
-    //
-    // Usually the results here are used to look up a
-    // [p-value](http://en.wikipedia.org/wiki/P-value), which, for
-    // a certain level of significance, will let you determine that the
-    // null hypothesis can or cannot be rejected.
-    //
-    // `diff` can be omitted if it equals 0.
-    //
-    // [This is used to confirm or deny](http://www.monarchlab.org/Lab/Research/Stats/2SampleT.aspx)
-    // a null hypothesis that the two populations that have been sampled into
-    // `sample_x` and `sample_y` are equal to each other.
-    //
-    // Depends on `sample_variance()` and `mean()`
+    /**
+     * # [2-sample t-test](http://en.wikipedia.org/wiki/Student's_t-test)
+     *
+     * This is to compute two sample t-test.
+     * Tests whether "mean(X)-mean(Y) = difference", (
+     * in the most common case, we often have `difference == 0` to test if two samples
+     * are likely to be taken from populations with the same mean value) with
+     * no prior knowledge on standard deviations of both samples
+     * other than the fact that they have the same standard deviation.
+     *
+     * Usually the results here are used to look up a
+     * [p-value](http://en.wikipedia.org/wiki/P-value), which, for
+     * a certain level of significance, will let you determine that the
+     * null hypothesis can or cannot be rejected.
+     *
+     * `diff` can be omitted if it equals 0.
+     *
+     * [This is used to confirm or deny](http://www.monarchlab.org/Lab/Research/Stats/2SampleT.aspx)
+     * a null hypothesis that the two populations that have been sampled into
+     * `sample_x` and `sample_y` are equal to each other.
+     *
+     * Depends on `sample_variance()` and `mean()`
+     *
+     * @param {Array} sample_x
+     * @param {Array} sample_y
+     * @param {number} difference
+     */
     function t_test_two_sample(sample_x, sample_y, difference) {
         var n = sample_x.length,
             m = sample_y.length;
@@ -654,15 +786,23 @@
             Math.sqrt(weightedVariance * (1 / n + 1 / m));
     }
 
-    // # chunk
-    //
-    // Split an array into chunks of a specified size. This function
-    // has the same behavior as [PHP's array_chunk](http://php.net/manual/en/function.array-chunk.php)
-    // function, and thus will insert smaller-sized chunks at the end if
-    // the input size is not divisible by the chunk size.
-    //
-    // `sample` is expected to be an array, and `chunkSize` a number.
-    // The `sample` array can contain any kind of data.
+    /**
+     * # chunk
+     *
+     * Split an array into chunks of a specified size. This function
+     * has the same behavior as [PHP's array_chunk](http://php.net/manual/en/function.array-chunk.php)
+     * function, and thus will insert smaller-sized chunks at the end if
+     * the input size is not divisible by the chunk size.
+     *
+     * `sample` is expected to be an array, and `chunkSize` a number.
+     * The `sample` array can contain any kind of data.
+     *
+     * @param {Array} sample
+     * @param {Number} chunkSize
+     * @example
+     * chunk([0, 1, 2, 3, 4, 5, 6], 2) ===
+     * [ [0, 1] [2, 3] [4, 5] [6] ];
+     */
     function chunk(sample, chunkSize) {
 
         // a list of result chunks, as arrays in an array
@@ -688,11 +828,16 @@
         return output;
     }
 
-    // # shuffle_in_place
-    //
-    // A [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
-    // in-place - which means that it will change the order of the original
-    // array by reference.
+    /**
+     * # shuffle_in_place
+     *
+     * A [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
+     * in-place - which means that it will change the order of the original
+     * array by reference.
+     *
+     * @param {Array} sample
+     * @param {Function} randomSource random number generator
+     */
     function shuffle_in_place(sample, randomSource) {
 
         // a custom random number source can be provided if you want to use
@@ -728,10 +873,15 @@
         return sample;
     }
 
-    // # shuffle
-    //
-    // A [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
-    // is a fast way to create a random permutation of a finite set.
+    /**
+     * # shuffle
+     *
+     * A [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
+     * is a fast way to create a random permutation of a finite set.
+     *
+     * @param {Array} sample
+     * @param {Function} randomSource random number generator
+     */
     function shuffle(sample, randomSource) {
         // slice the original array so that it is not modified
         sample = sample.slice();
@@ -740,10 +890,16 @@
         return shuffle_in_place(sample.slice(), randomSource);
     }
 
-    // # sample
-    //
-    // Create a [simple random sample](http://en.wikipedia.org/wiki/Simple_random_sample)
-    // from a given array of `n` elements.
+    /**
+     * # sample
+     *
+     * Create a [simple random sample](http://en.wikipedia.org/wiki/Simple_random_sample)
+     * from a given array of `n` elements.
+     *
+     * @param {Array} array
+     * @param {number} n number of elements to take
+     * @param {Function} randomSource a random number generator
+     */
     function sample(array, n, randomSource) {
         // shuffle the original array using a fisher-yates shuffle
         var shuffled = shuffle(array, randomSource);
@@ -752,11 +908,17 @@
         return shuffled.slice(0, n);
     }
 
-    // # quantile
-    //
-    // This is the internal implementation of quantiles: when you know
-    // that the order is sorted, you don't need to re-sort it, and the computations
-    // are much faster.
+    /**
+     * # quantile
+     *
+     * This is the internal implementation of quantiles: when you know
+     * that the order is sorted, you don't need to re-sort it, and the computations
+     * are much faster.
+     *
+     * @param {Array<number>} sample input data
+     * @param {number} p the desired quantile: must be >= 0 and <= 1
+     * @returns {number} quantile
+     */
     function quantile_sorted(sample, p) {
         var idx = (sample.length) * p;
         if (p < 0 || p > 1) {
@@ -781,20 +943,25 @@
         }
     }
 
-    // # quantile
-    //
-    // This is a population quantile, since we assume to know the entire
-    // dataset in this library. Thus I'm trying to follow the
-    // [Quantiles of a Population](http://en.wikipedia.org/wiki/Quantile#Quantiles_of_a_population)
-    // algorithm from wikipedia.
-    //
-    // Sample is a one-dimensional array of numbers,
-    // and p is either a decimal number from 0 to 1 or an array of decimal
-    // numbers from 0 to 1.
-    // In terms of a k/q quantile, p = k/q - it's just dealing with fractions or dealing
-    // with decimal values.
-    // When p is an array, the result of the function is also an array containing the appropriate
-    // quantiles in input order
+    /**
+     * # quantile
+     *
+     * This is a population quantile, since we assume to know the entire
+     * dataset in this library. Thus I'm trying to follow the
+     * [Quantiles of a Population](http://en.wikipedia.org/wiki/Quantile#Quantiles_of_a_population)
+     * algorithm from wikipedia.
+     *
+     * Sample is a one-dimensional array of numbers,
+     * and p is either a decimal number from 0 to 1 or an array of decimal
+     * numbers from 0 to 1.
+     * In terms of a k/q quantile, p = k/q - it's just dealing with fractions or dealing
+     * with decimal values.
+     * When p is an array, the result of the function is also an array containing the appropriate
+     * quantiles in input order
+     *
+     * @param {Array<number>} sample
+     * @returns {number} p-value
+     */
     function quantile(sample, p) {
 
         // We can't derive quantiles from an empty list
@@ -817,11 +984,16 @@
         }
     }
 
-    // # [Interquartile range](http://en.wikipedia.org/wiki/Interquartile_range)
-    //
-    // A measure of statistical dispersion, or how scattered, spread, or
-    // concentrated a distribution is. It's computed as the difference between
-    // the third quartile and first quartile.
+    /**
+     * # [Interquartile range](http://en.wikipedia.org/wiki/Interquartile_range)
+     *
+     * A measure of statistical dispersion, or how scattered, spread, or
+     * concentrated a distribution is. It's computed as the difference between
+     * the third quartile and first quartile.
+     *
+     * @param {Array<number>} sample
+     * @return {number} interquartile range
+     */
     function iqr(sample) {
         // We can't derive quantiles from an empty list
         if (sample.length === 0) return null;
@@ -831,10 +1003,14 @@
         return quantile(sample, 0.75) - quantile(sample, 0.25);
     }
 
-    // # [Median Absolute Deviation](http://en.wikipedia.org/wiki/Median_absolute_deviation)
-    //
-    // The Median Absolute Deviation (MAD) is a robust measure of statistical
-    // dispersion. It is more resilient to outliers than the standard deviation.
+    /**
+     * # [Median Absolute Deviation](http://en.wikipedia.org/wiki/Median_absolute_deviation)
+     *
+     * The Median Absolute Deviation (MAD) is a robust measure of statistical
+     * dispersion. It is more resilient to outliers than the standard deviation.
+     * @param {Array<number>} x input data
+     * @returns {number} median absolute deviation
+     */
     function mad(x) {
         // The mad of nothing is null
         if (!x || x.length === 0) return null;
@@ -851,10 +1027,12 @@
         return median(median_absolute_deviations);
     }
 
-    // ## Compute Matrices for Jenks
-    //
-    // Compute the matrices required for Jenks breaks. These matrices
-    // can be used for any classing of data with `classes <= n_classes`
+    /**
+     * ## Compute Matrices for Jenks
+     *
+     * Compute the matrices required for Jenks breaks. These matrices
+     * can be used for any classing of data with `classes <= n_classes`
+     */
     function jenksMatrices(data, n_classes) {
 
         // in the original implementation, these matrices are referred to
@@ -960,10 +1138,12 @@
         };
     }
 
-    // ## Pull Breaks Values for Jenks
-    //
-    // the second part of the jenks recipe: take the calculated matrices
-    // and derive an array of n breaks.
+    /**
+     * ## Pull Breaks Values for Jenks
+     *
+     * the second part of the jenks recipe: take the calculated matrices
+     * and derive an array of n breaks.
+     */
     function jenksBreaks(data, lower_class_limits, n_classes) {
 
         var k = data.length,
@@ -985,13 +1165,15 @@
         return kclass;
     }
 
-    // # [Jenks natural breaks optimization](http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization)
-    //
-    // Implementations: [1](http://danieljlewis.org/files/2010/06/Jenks.pdf) (python),
-    // [2](https://github.com/vvoovv/djeo-jenks/blob/master/main.js) (buggy),
-    // [3](https://github.com/simogeo/geostats/blob/master/lib/geostats.js#L407) (works)
-    //
-    // Depends on `jenksBreaks()` and `jenksMatrices()`
+    /**
+     * # [Jenks natural breaks optimization](http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization)
+     *
+     * Implementations: [1](http://danieljlewis.org/files/2010/06/Jenks.pdf) (python),
+     * [2](https://github.com/vvoovv/djeo-jenks/blob/master/main.js) (buggy),
+     * [3](https://github.com/simogeo/geostats/blob/master/lib/geostats.js#L407) (works)
+     *
+     * Depends on `jenksBreaks()` and `jenksMatrices()`
+     */
     function jenks(data, n_classes) {
 
         if (n_classes > data.length) return null;
@@ -1109,12 +1291,17 @@
         0.9987, 0.9987, 0.9987, 0.9988, 0.9988, 0.9989, 0.9989, 0.9989, 0.9990, 0.9990
     ];
 
-    // # [Gaussian error function](http://en.wikipedia.org/wiki/Error_function)
-    //
-    // The error_function(x/(sd * Math.sqrt(2))) is the probability that a value in a
-    // normal distribution with standard deviation sd is within x of the mean.
-    //
-    // This function returns a numerical approximation to the exact value.
+    /**
+     * # [Gaussian error function](http://en.wikipedia.org/wiki/Error_function)
+     *
+     * The error_function(x/(sd * Math.sqrt(2))) is the probability that a value in a
+     * normal distribution with standard deviation sd is within x of the mean.
+     *
+     * This function returns a numerical approximation to the exact value.
+     *
+     * @param {number} x
+     * @returns {number} probability
+     */
     function error_function(x) {
         var t = 1 / (1 + 0.5 * Math.abs(x));
         var tau = t * Math.exp(-Math.pow(x, 2) -
@@ -1135,15 +1322,20 @@
         }
     }
 
-    // # [Cumulative Standard Normal Probability](http://en.wikipedia.org/wiki/Standard_normal_table)
-    //
-    // Since probability tables cannot be
-    // printed for every normal distribution, as there are an infinite variety
-    // of normal distributions, it is common practice to convert a normal to a
-    // standard normal and then use the standard normal table to find probabilities.
-    //
-    // You can use .5 + .5 * error_function(x / Math.sqrt(2)) to calculate the probability
-    // instead of looking it up in a table.
+    /**
+     * # [Cumulative Standard Normal Probability](http://en.wikipedia.org/wiki/Standard_normal_table)
+     *
+     * Since probability tables cannot be
+     * printed for every normal distribution, as there are an infinite variety
+     * of normal distributions, it is common practice to convert a normal to a
+     * standard normal and then use the standard normal table to find probabilities.
+     *
+     * You can use .5 + .5 * error_function(x / Math.sqrt(2)) to calculate the probability
+     * instead of looking it up in a table.
+     *
+     * @param {number} z value
+     * @returns {number} probability
+     */
     function cumulative_std_normal_probability(z) {
 
         // Calculate the position of this value.
@@ -1167,20 +1359,26 @@
         }
     }
 
-    // # [Z-Score, or Standard Score](http://en.wikipedia.org/wiki/Standard_score)
-    //
-    // The standard score is the number of standard deviations an observation
-    // or datum is above or below the mean. Thus, a positive standard score
-    // represents a datum above the mean, while a negative standard score
-    // represents a datum below the mean. It is a dimensionless quantity
-    // obtained by subtracting the population mean from an individual raw
-    // score and then dividing the difference by the population standard
-    // deviation.
-    //
-    // The z-score is only defined if one knows the population parameters;
-    // if one only has a sample set, then the analogous computation with
-    // sample mean and sample standard deviation yields the
-    // Student's t-statistic.
+    /**
+     * # [Z-Score, or Standard Score](http://en.wikipedia.org/wiki/Standard_score)
+     *
+     * The standard score is the number of standard deviations an observation
+     * or datum is above or below the mean. Thus, a positive standard score
+     * represents a datum above the mean, while a negative standard score
+     * represents a datum below the mean. It is a dimensionless quantity
+     * obtained by subtracting the population mean from an individual raw
+     * score and then dividing the difference by the population standard
+     * deviation.
+     *
+     * The z-score is only defined if one knows the population parameters;
+     * if one only has a sample set, then the analogous computation with
+     * sample mean and sample standard deviation yields the
+     * Student's t-statistic.
+     *
+     * @param {number} x
+     * @param {number} mean
+     * @param {number} standard_deviation
+     */
     function z_score(x, mean, standard_deviation) {
         return (x - mean) / standard_deviation;
     }
@@ -1189,12 +1387,18 @@
     // until we're "close enough".
     var epsilon = 0.0001;
 
-    // # [Factorial](https://en.wikipedia.org/wiki/Factorial)
-    //
-    // A factorial, usually written n!, is the product of all positive
-    // integers less than or equal to n. Often factorial is implemented
-    // recursively, but this iterative approach is significantly faster
-    // and simpler.
+    /**
+     * # [Factorial](https://en.wikipedia.org/wiki/Factorial)
+     * A factorial, usually written n!, is the product of all positive
+     * integers less than or equal to n. Often factorial is implemented
+     * recursively, but this iterative approach is significantly faster
+     * and simpler.
+     *
+     * @param {number} n
+     * @returns {number} factorial
+     * @example
+     * factorial(5) === 5 * 4 * 3 * 2 * 1
+     */
     function factorial(n) {
 
         // factorial is mathematically undefined for negative numbers
@@ -1213,12 +1417,14 @@
         return accumulator;
     }
 
-    // # Binomial Distribution
-    //
-    // The [Binomial Distribution](http://en.wikipedia.org/wiki/Binomial_distribution) is the discrete probability
-    // distribution of the number of successes in a sequence of n independent yes/no experiments, each of which yields
-    // success with probability `probability`. Such a success/failure experiment is also called a Bernoulli experiment or
-    // Bernoulli trial; when trials = 1, the Binomial Distribution is a Bernoulli Distribution.
+    /**
+     * ## Binomial Distribution
+     *
+     * The [Binomial Distribution](http://en.wikipedia.org/wiki/Binomial_distribution) is the discrete probability
+     * distribution of the number of successes in a sequence of n independent yes/no experiments, each of which yields
+     * success with probability `probability`. Such a success/failure experiment is also called a Bernoulli experiment or
+     * Bernoulli trial; when trials = 1, the Binomial Distribution is a Bernoulli Distribution.
+     */
     function binomial_distribution(trials, probability) {
         // Check that `p` is a valid probability (0 ≤ p ≤ 1),
         // that `n` is an integer, strictly positive.
@@ -1258,17 +1464,19 @@
         return cells;
     }
 
-    // # Bernoulli Distribution
-    //
-    // The [Bernoulli distribution](http://en.wikipedia.org/wiki/Bernoulli_distribution)
-    // is the probability discrete
-    // distribution of a random variable which takes value 1 with success
-    // probability `p` and value 0 with failure
-    // probability `q` = 1 - `p`. It can be used, for example, to represent the
-    // toss of a coin, where "1" is defined to mean "heads" and "0" is defined
-    // to mean "tails" (or vice versa). It is
-    // a special case of a Binomial Distribution
-    // where `n` = 1.
+    /**
+     * ## Bernoulli Distribution
+     *
+     * The [Bernoulli distribution](http://en.wikipedia.org/wiki/Bernoulli_distribution)
+     * is the probability discrete
+     * distribution of a random variable which takes value 1 with success
+     * probability `p` and value 0 with failure
+     * probability `q` = 1 - `p`. It can be used, for example, to represent the
+     * toss of a coin, where "1" is defined to mean "heads" and "0" is defined
+     * to mean "tails" (or vice versa). It is
+     * a special case of a Binomial Distribution
+     * where `n` = 1.
+     */
     function bernoulli_distribution(p) {
         // Check that `p` is a valid probability (0 ≤ p ≤ 1)
         if (p < 0 || p > 1 ) { return null; }
@@ -1276,16 +1484,19 @@
         return binomial_distribution(1, p);
     }
 
-    // # Poisson Distribution
-    //
-    // The [Poisson Distribution](http://en.wikipedia.org/wiki/Poisson_distribution)
-    // is a discrete probability distribution that expresses the probability
-    // of a given number of events occurring in a fixed interval of time
-    // and/or space if these events occur with a known average rate and
-    // independently of the time since the last event.
-    //
-    // The Poisson Distribution is characterized by the strictly positive
-    // mean arrival or occurrence rate, `λ`.
+    /**
+     * ## Poisson Distribution
+     *
+     * The [Poisson Distribution](http://en.wikipedia.org/wiki/Poisson_distribution)
+     * is a discrete probability distribution that expresses the probability
+     * of a given number of events occurring in a fixed interval of time
+     * and/or space if these events occur with a known average rate and
+     * independently of the time since the last event.
+     *
+     * The Poisson Distribution is characterized by the strictly positive
+     * mean arrival or occurrence rate, `λ`.
+     * @param {Number} lambda
+     */
     function poisson_distribution(lambda) {
         // Check that lambda is strictly positive
         if (lambda <= 0) { return null; }
@@ -1366,16 +1577,18 @@
         100: { 0.995: 67.33, 0.99: 70.06, 0.975: 74.22, 0.95: 77.93, 0.9: 82.36, 0.5: 99.33, 0.1: 118.50, 0.05: 124.34, 0.025: 129.56, 0.01: 135.81, 0.005: 140.17 }
     };
 
-    // # χ2 (Chi-Squared) Goodness-of-Fit Test
-    //
-    // The [χ2 (Chi-Squared) Goodness-of-Fit Test](http://en.wikipedia.org/wiki/Goodness_of_fit#Pearson.27s_chi-squared_test)
-    // uses a measure of goodness of fit which is the sum of differences between observed and expected outcome frequencies
-    // (that is, counts of observations), each squared and divided by the number of observations expected given the
-    // hypothesized distribution. The resulting χ2 statistic, `chi_squared`, can be compared to the chi-squared distribution
-    // to determine the goodness of fit. In order to determine the degrees of freedom of the chi-squared distribution, one
-    // takes the total number of observed frequencies and subtracts the number of estimated parameters. The test statistic
-    // follows, approximately, a chi-square distribution with (k − c) degrees of freedom where `k` is the number of non-empty
-    // cells and `c` is the number of estimated parameters for the distribution.
+    /**
+     * # χ2 (Chi-Squared) Goodness-of-Fit Test
+     *
+     * The [χ2 (Chi-Squared) Goodness-of-Fit Test](http://en.wikipedia.org/wiki/Goodness_of_fit#Pearson.27s_chi-squared_test)
+     * uses a measure of goodness of fit which is the sum of differences between observed and expected outcome frequencies
+     * (that is, counts of observations), each squared and divided by the number of observations expected given the
+     * hypothesized distribution. The resulting χ2 statistic, `chi_squared`, can be compared to the chi-squared distribution
+     * to determine the goodness of fit. In order to determine the degrees of freedom of the chi-squared distribution, one
+     * takes the total number of observed frequencies and subtracts the number of estimated parameters. The test statistic
+     * follows, approximately, a chi-square distribution with (k − c) degrees of freedom where `k` is the number of non-empty
+     * cells and `c` is the number of estimated parameters for the distribution.
+     */
     function chi_squared_goodness_of_fit(data, distribution_type, significance) {
         // Estimate from the sample data, a weighted mean.
         var input_mean = mean(data),
@@ -1448,12 +1661,18 @@
         return chi_squared_distribution_table[degrees_of_freedom][significance] < chi_squared;
     }
 
-    // # Mixin
-    //
-    // Mixin simple_statistics to a single Array instance if provided
-    // or the Array native object if not. This is an optional
-    // feature that lets you treat simple_statistics as a native feature
-    // of Javascript.
+    /**
+     * Mixin simple_statistics to a single Array instance if provided
+     * or the Array native object if not. This is an optional
+     * feature that lets you treat `simple_statistics` as a native feature
+     * of Javascript.
+     *
+     * @param {Array} array
+     * @returns {Array} extended array with statistical methods
+     * @example
+     * var arr = mixin([1, 2, 3]);
+     * var sum = arr.sum();
+     */
     function mixin(array) {
         var support = !!(Object.defineProperty && Object.defineProperties);
         // Coverage testing will never test this error.
