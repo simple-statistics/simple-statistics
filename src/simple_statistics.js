@@ -1,25 +1,29 @@
 'use strict';
-// # simple-statistics
-//
-// A simple, literate statistics system. The code below uses the
-// [Javascript module pattern](http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth),
-// eventually assigning `simple-statistics` to `ss` in browsers or the
-// `exports` object for node.js
-(function() {
-    var ss = {};
 
-    /* istanbul ignore else */
-    if (typeof module !== 'undefined') {
-        // Assign the `ss` object to exports, so that you can require
-        // it in [node.js](http://nodejs.org/)
-        module.exports = ss;
+(function(f) {
+    if (typeof exports === 'object' && typeof module !== 'undefined'){
+        module.exports = f();
+    } else if (typeof define === 'function' && define.amd) {
+        define([], f);
     } else {
-        // Otherwise, in a browser, we assign `ss` to the window object,
-        // so you can simply refer to it as `ss`.
-        // Coverage testing will always skip this line, so we exclude
-        // it from istanbul's vision.
-        this.ss = ss;
+        var g;
+        if (typeof window !== 'undefined') {
+            g = window;
+        } else if (typeof global !== 'undefined') {
+            g = global;
+        } else if (typeof self !== 'undefined'){
+            g = self;
+        } else {
+            g = this;
+        }
+        g.ss = f();
     }
+}(function() {
+    // # simple-statistics
+    //
+    // A simple, literate statistics system.
+
+    var ss = {};
 
     // # [Linear Regression](http://en.wikipedia.org/wiki/Linear_regression)
     //
@@ -1571,4 +1575,5 @@
     ss.rms = root_mean_square;
     ss.erf = error_function;
 
-})(this);
+    return ss;
+}));
