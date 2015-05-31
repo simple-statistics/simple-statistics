@@ -49,9 +49,7 @@ is returned.
 
 ### .median_absolute_deviation(x)
 
-The Median Absolute Deviation (MAD) is a robust measure of statistical
-dispersion. It is more resilient to outliers than the standard deviation.
-Accepts a single-dimensional array of numbers and returns a dispersion value.
+[Median Absolute Deviation (MAD)](http://en.wikipedia.org/wiki/Median_absolute_deviation) is a robust measure of statistical dispersion. It is more resilient to outliers than the standard deviation. Accepts a single-dimensional array of numbers and returns a dispersion value.
 
 Also aliased to `.mad(x)` for brevity.
 
