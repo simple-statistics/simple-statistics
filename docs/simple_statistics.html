@@ -3183,6 +3183,62 @@ normal distribution with standard deviation sd is within x of the mean.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-171">&#182;</a>
               </div>
+              <h1 id="inverse-gaussian-error-function-http-en-wikipedia-org-wiki-error_function-">Inverse <a href="http://en.wikipedia.org/wiki/Error_function">Gaussian error function</a></h1>
+<p>Returns a numerical approximation to the value that would have caused
+error_function() to return x.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">inverse_error_function</span><span class="hljs-params">(x)</span> </span>{
+        <span class="hljs-keyword">var</span> a = (<span class="hljs-number">8</span> * (<span class="hljs-built_in">Math</span>.PI - <span class="hljs-number">3</span>)) / (<span class="hljs-number">3</span> * <span class="hljs-built_in">Math</span>.PI * (<span class="hljs-number">4</span> - <span class="hljs-built_in">Math</span>.PI));
+
+        <span class="hljs-keyword">var</span> inv = <span class="hljs-built_in">Math</span>.sqrt(<span class="hljs-built_in">Math</span>.sqrt(
+                <span class="hljs-built_in">Math</span>.pow(<span class="hljs-number">2</span> / (<span class="hljs-built_in">Math</span>.PI * a) + <span class="hljs-built_in">Math</span>.log(<span class="hljs-number">1</span> - x * x) / <span class="hljs-number">2</span>, <span class="hljs-number">2</span>) -
+                <span class="hljs-built_in">Math</span>.log(<span class="hljs-number">1</span> - x * x) / a) -
+                (<span class="hljs-number">2</span> / (<span class="hljs-built_in">Math</span>.PI * a) + <span class="hljs-built_in">Math</span>.log(<span class="hljs-number">1</span> - x * x) / <span class="hljs-number">2</span>));
+
+        <span class="hljs-keyword">if</span> (x &gt;= <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">return</span> inv;
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> -inv;
+        }
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-172">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-172">&#182;</a>
+              </div>
+              <h1 id="-probit-http-en-wikipedia-org-wiki-probit-"><a href="http://en.wikipedia.org/wiki/Probit">Probit</a></h1>
+<p>This is the inverse of cumulative_std_normal_probability(),
+and is also known as the normal quantile function.</p>
+<p>It returns the number of standard deviations from the mean
+where the p’th quantile of values can be found in a normal distribution.
+So, for example, probit(0.5 + 0.6827/2) ≈ 1 because 68.27% of values are
+normally found within 1 standard deviation above or below the mean.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">probit</span><span class="hljs-params">(p)</span> </span>{
+        <span class="hljs-keyword">if</span> (p == <span class="hljs-number">0</span>) {
+            p = epsilon;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.sqrt(<span class="hljs-number">2</span>) * inverse_error_function(<span class="hljs-number">2</span> * p - <span class="hljs-number">1</span>);
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-173">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-173">&#182;</a>
+              </div>
               <h1 id="-cumulative-standard-normal-probability-http-en-wikipedia-org-wiki-standard_normal_table-"><a href="http://en.wikipedia.org/wiki/Standard_normal_table">Cumulative Standard Normal Probability</a></h1>
 <p>Since probability tables cannot be
 printed for every normal distribution, as there are an infinite variety
@@ -3198,11 +3254,11 @@ instead of looking it up in a table.</p>
         </li>
         
         
-        <li id="section-172">
+        <li id="section-174">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-172">&#182;</a>
+                <a class="pilcrow" href="#section-174">&#182;</a>
               </div>
               <p>Calculate the position of this value.</p>
 
@@ -3213,11 +3269,11 @@ instead of looking it up in a table.</p>
         </li>
         
         
-        <li id="section-173">
+        <li id="section-175">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-173">&#182;</a>
+                <a class="pilcrow" href="#section-175">&#182;</a>
               </div>
               <p>Each row begins with a different
 significant digit: 0.5, 0.6, 0.7, and so on. Each value in the table
@@ -3231,11 +3287,11 @@ multiplied by 100.</p>
         </li>
         
         
-        <li id="section-174">
+        <li id="section-176">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-174">&#182;</a>
+                <a class="pilcrow" href="#section-176">&#182;</a>
               </div>
               <p>The index we calculate must be in the table as a positive value,
 but we still pay attention to whether the input is positive
@@ -3250,11 +3306,11 @@ or negative, and flip the output value as a last step.</p>
         </li>
         
         
-        <li id="section-175">
+        <li id="section-177">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-175">&#182;</a>
+                <a class="pilcrow" href="#section-177">&#182;</a>
               </div>
               <p>due to floating-point arithmetic, values in the table with
 4 significant figures can nevertheless end up as repeating
@@ -3269,11 +3325,11 @@ fractions when they’re computed here.</p>
         </li>
         
         
-        <li id="section-176">
+        <li id="section-178">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-176">&#182;</a>
+                <a class="pilcrow" href="#section-178">&#182;</a>
               </div>
               <h1 id="-z-score-or-standard-score-http-en-wikipedia-org-wiki-standard_score-"><a href="http://en.wikipedia.org/wiki/Standard_score">Z-Score, or Standard Score</a></h1>
 <p>The standard score is the number of standard deviations an observation
@@ -3297,11 +3353,11 @@ Student’s t-statistic.</p>
         </li>
         
         
-        <li id="section-177">
+        <li id="section-179">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-177">&#182;</a>
+                <a class="pilcrow" href="#section-179">&#182;</a>
               </div>
               <p>We use <code>ε</code>, epsilon, as a stopping criterion when we want to iterate
 until we’re “close enough”.</p>
@@ -3313,11 +3369,11 @@ until we’re “close enough”.</p>
         </li>
         
         
-        <li id="section-178">
+        <li id="section-180">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-178">&#182;</a>
+                <a class="pilcrow" href="#section-180">&#182;</a>
               </div>
               <h1 id="-factorial-https-en-wikipedia-org-wiki-factorial-"><a href="https://en.wikipedia.org/wiki/Factorial">Factorial</a></h1>
 <p>A factorial, usually written n!, is the product of all positive
@@ -3332,11 +3388,11 @@ and simpler.</p>
         </li>
         
         
-        <li id="section-179">
+        <li id="section-181">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-179">&#182;</a>
+                <a class="pilcrow" href="#section-181">&#182;</a>
               </div>
               <p>factorial is mathematically undefined for negative numbers</p>
 
@@ -3347,11 +3403,11 @@ and simpler.</p>
         </li>
         
         
-        <li id="section-180">
+        <li id="section-182">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-180">&#182;</a>
+                <a class="pilcrow" href="#section-182">&#182;</a>
               </div>
               <p>typically you’ll expand the factorial function going down, like
 5! = 5 <em> 4 </em> 3 <em> 2 </em> 1. This is going in the opposite direction,
@@ -3366,11 +3422,11 @@ multiplied by 1 is itself, the loop only needs to start at 2.</p>
         </li>
         
         
-        <li id="section-181">
+        <li id="section-183">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-181">&#182;</a>
+                <a class="pilcrow" href="#section-183">&#182;</a>
               </div>
               <p>for each number up to and including the number <code>n</code>, multiply
 the accumulator my that number.</p>
@@ -3385,11 +3441,11 @@ the accumulator my that number.</p>
         </li>
         
         
-        <li id="section-182">
+        <li id="section-184">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-182">&#182;</a>
+                <a class="pilcrow" href="#section-184">&#182;</a>
               </div>
               <h1 id="bernoulli-distribution">Bernoulli Distribution</h1>
 <p>The <a href="http://en.wikipedia.org/wiki/Bernoulli_distribution">Bernoulli distribution</a>
@@ -3409,11 +3465,11 @@ where <code>n</code> = 1.</p>
         </li>
         
         
-        <li id="section-183">
+        <li id="section-185">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-183">&#182;</a>
+                <a class="pilcrow" href="#section-185">&#182;</a>
               </div>
               <p>Check that <code>p</code> is a valid probability (0 ≤ p ≤ 1)</p>
 
@@ -3427,11 +3483,11 @@ where <code>n</code> = 1.</p>
         </li>
         
         
-        <li id="section-184">
+        <li id="section-186">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-184">&#182;</a>
+                <a class="pilcrow" href="#section-186">&#182;</a>
               </div>
               <h1 id="binomial-distribution">Binomial Distribution</h1>
 <p>The <a href="http://en.wikipedia.org/wiki/Binomial_distribution">Binomial Distribution</a> is the discrete probability
@@ -3446,11 +3502,11 @@ Bernoulli trial; when trials = 1, the Binomial Distribution is a Bernoulli Distr
         </li>
         
         
-        <li id="section-185">
+        <li id="section-187">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-185">&#182;</a>
+                <a class="pilcrow" href="#section-187">&#182;</a>
               </div>
               <p>Check that <code>p</code> is a valid probability (0 ≤ p ≤ 1),
 that <code>n</code> is an integer, strictly positive.</p>
@@ -3465,11 +3521,11 @@ that <code>n</code> is an integer, strictly positive.</p>
         </li>
         
         
-        <li id="section-186">
+        <li id="section-188">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-186">&#182;</a>
+                <a class="pilcrow" href="#section-188">&#182;</a>
               </div>
               <p>a <a href="https://en.wikipedia.org/wiki/Probability_mass_function">probability mass function</a></p>
 
@@ -3484,11 +3540,11 @@ that <code>n</code> is an integer, strictly positive.</p>
         </li>
         
         
-        <li id="section-187">
+        <li id="section-189">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-187">&#182;</a>
+                <a class="pilcrow" href="#section-189">&#182;</a>
               </div>
               <p>We initialize <code>x</code>, the random variable, and <code>accumulator</code>, an accumulator
 for the cumulative distribution function to 0. <code>distribution_functions</code>
@@ -3506,11 +3562,11 @@ within <code>epsilon</code> of 1.0.</p>
         </li>
         
         
-        <li id="section-188">
+        <li id="section-190">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-188">&#182;</a>
+                <a class="pilcrow" href="#section-190">&#182;</a>
               </div>
               <p>This algorithm iterates through each potential outcome,
 until the <code>cumulative_probability</code> is very close to 1, at
@@ -3526,11 +3582,11 @@ which point we’ve defined the vast majority of outcomes</p>
         </li>
         
         
-        <li id="section-189">
+        <li id="section-191">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-189">&#182;</a>
+                <a class="pilcrow" href="#section-191">&#182;</a>
               </div>
               <p>when the cumulative_probability is nearly 1, we’ve calculated
 the useful range of this distribution</p>
@@ -3545,11 +3601,11 @@ the useful range of this distribution</p>
         </li>
         
         
-        <li id="section-190">
+        <li id="section-192">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-190">&#182;</a>
+                <a class="pilcrow" href="#section-192">&#182;</a>
               </div>
               <h1 id="poisson-distribution">Poisson Distribution</h1>
 <p>The <a href="http://en.wikipedia.org/wiki/Poisson_distribution">Poisson Distribution</a>
@@ -3567,11 +3623,11 @@ mean arrival or occurrence rate, <code>λ</code>.</p>
         </li>
         
         
-        <li id="section-191">
+        <li id="section-193">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-191">&#182;</a>
+                <a class="pilcrow" href="#section-193">&#182;</a>
               </div>
               <p>Check that lambda is strictly positive</p>
 
@@ -3582,11 +3638,11 @@ mean arrival or occurrence rate, <code>λ</code>.</p>
         </li>
         
         
-        <li id="section-192">
+        <li id="section-194">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-192">&#182;</a>
+                <a class="pilcrow" href="#section-194">&#182;</a>
               </div>
               <p>our current place in the distribution</p>
 
@@ -3597,11 +3653,11 @@ mean arrival or occurrence rate, <code>λ</code>.</p>
         </li>
         
         
-        <li id="section-193">
+        <li id="section-195">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-193">&#182;</a>
+                <a class="pilcrow" href="#section-195">&#182;</a>
               </div>
               <p>and we keep track of the current cumulative probability, in
 order to know when to stop calculating chances.</p>
@@ -3613,11 +3669,11 @@ order to know when to stop calculating chances.</p>
         </li>
         
         
-        <li id="section-194">
+        <li id="section-196">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-194">&#182;</a>
+                <a class="pilcrow" href="#section-196">&#182;</a>
               </div>
               <p>the calculated cells to be returned</p>
 
@@ -3628,11 +3684,11 @@ order to know when to stop calculating chances.</p>
         </li>
         
         
-        <li id="section-195">
+        <li id="section-197">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-195">&#182;</a>
+                <a class="pilcrow" href="#section-197">&#182;</a>
               </div>
               <p>a <a href="https://en.wikipedia.org/wiki/Probability_mass_function">probability mass function</a></p>
 
@@ -3646,11 +3702,11 @@ order to know when to stop calculating chances.</p>
         </li>
         
         
-        <li id="section-196">
+        <li id="section-198">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-196">&#182;</a>
+                <a class="pilcrow" href="#section-198">&#182;</a>
               </div>
               <p>This algorithm iterates through each potential outcome,
 until the <code>cumulative_probability</code> is very close to 1, at
@@ -3666,11 +3722,11 @@ which point we’ve defined the vast majority of outcomes</p>
         </li>
         
         
-        <li id="section-197">
+        <li id="section-199">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-197">&#182;</a>
+                <a class="pilcrow" href="#section-199">&#182;</a>
               </div>
               <p>when the cumulative_probability is nearly 1, we’ve calculated
 the useful range of this distribution</p>
@@ -3685,11 +3741,11 @@ the useful range of this distribution</p>
         </li>
         
         
-        <li id="section-198">
+        <li id="section-200">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-198">&#182;</a>
+                <a class="pilcrow" href="#section-200">&#182;</a>
               </div>
               <h1 id="percentage-points-of-the-2-chi-squared-distribution">Percentage Points of the χ2 (Chi-Squared) Distribution</h1>
 <p>The <a href="http://en.wikipedia.org/wiki/Chi-squared_distribution">χ2 (Chi-Squared) Distribution</a> is used in the common
@@ -3744,11 +3800,11 @@ Engineering and Management Science”, Wiley (1980).</p>
         </li>
         
         
-        <li id="section-199">
+        <li id="section-201">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-199">&#182;</a>
+                <a class="pilcrow" href="#section-201">&#182;</a>
               </div>
               <h1 id="-2-chi-squared-goodness-of-fit-test">χ2 (Chi-Squared) Goodness-of-Fit Test</h1>
 <p>The <a href="http://en.wikipedia.org/wiki/Goodness_of_fit#Pearson.27s_chi-squared_test">χ2 (Chi-Squared) Goodness-of-Fit Test</a>
@@ -3767,11 +3823,11 @@ cells and <code>c</code> is the number of estimated parameters for the distribut
         </li>
         
         
-        <li id="section-200">
+        <li id="section-202">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-200">&#182;</a>
+                <a class="pilcrow" href="#section-202">&#182;</a>
               </div>
               <p>Estimate from the sample data, a weighted mean.</p>
 
@@ -3782,11 +3838,11 @@ cells and <code>c</code> is the number of estimated parameters for the distribut
         </li>
         
         
-        <li id="section-201">
+        <li id="section-203">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-201">&#182;</a>
+                <a class="pilcrow" href="#section-203">&#182;</a>
               </div>
               <p>Calculated value of the χ2 statistic.</p>
 
@@ -3797,11 +3853,11 @@ cells and <code>c</code> is the number of estimated parameters for the distribut
         </li>
         
         
-        <li id="section-202">
+        <li id="section-204">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-202">&#182;</a>
+                <a class="pilcrow" href="#section-204">&#182;</a>
               </div>
               <p>Degrees of freedom, calculated as (number of class intervals -
 number of hypothesized distribution parameters estimated - 1)</p>
@@ -3813,11 +3869,11 @@ number of hypothesized distribution parameters estimated - 1)</p>
         </li>
         
         
-        <li id="section-203">
+        <li id="section-205">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-203">&#182;</a>
+                <a class="pilcrow" href="#section-205">&#182;</a>
               </div>
               <p>Number of hypothesized distribution parameters estimated, expected to be supplied in the distribution test.
 Lose one degree of freedom for estimating <code>lambda</code> from the sample data.</p>
@@ -3829,11 +3885,11 @@ Lose one degree of freedom for estimating <code>lambda</code> from the sample da
         </li>
         
         
-        <li id="section-204">
+        <li id="section-206">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-204">&#182;</a>
+                <a class="pilcrow" href="#section-206">&#182;</a>
               </div>
               <p>The hypothesized distribution.
 Generate the hypothesized distribution.</p>
@@ -3848,11 +3904,11 @@ Generate the hypothesized distribution.</p>
         </li>
         
         
-        <li id="section-205">
+        <li id="section-207">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-205">&#182;</a>
+                <a class="pilcrow" href="#section-207">&#182;</a>
               </div>
               <p>Create an array holding a histogram from the sample data, of
 the form <code>{ value: numberOfOcurrences }</code></p>
@@ -3869,11 +3925,11 @@ the form <code>{ value: numberOfOcurrences }</code></p>
         </li>
         
         
-        <li id="section-206">
+        <li id="section-208">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-206">&#182;</a>
+                <a class="pilcrow" href="#section-208">&#182;</a>
               </div>
               <p>The histogram we created might be sparse - there might be gaps
 between values. So we iterate through the histogram, making
@@ -3890,11 +3946,11 @@ sure that instead of undefined, gaps have 0 values.</p>
         </li>
         
         
-        <li id="section-207">
+        <li id="section-209">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-207">&#182;</a>
+                <a class="pilcrow" href="#section-209">&#182;</a>
               </div>
               <p>Create an array holding a histogram of expected data given the
 sample size and hypothesized distribution.</p>
@@ -3910,11 +3966,11 @@ sample size and hypothesized distribution.</p>
         </li>
         
         
-        <li id="section-208">
+        <li id="section-210">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-208">&#182;</a>
+                <a class="pilcrow" href="#section-210">&#182;</a>
               </div>
               <p>Working backward through the expected frequencies, collapse classes
 if less than three observations are expected for a class.
@@ -3935,11 +3991,11 @@ This transformation is applied to the observed frequencies as well.</p>
         </li>
         
         
-        <li id="section-209">
+        <li id="section-211">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-209">&#182;</a>
+                <a class="pilcrow" href="#section-211">&#182;</a>
               </div>
               <p>Iterate through the squared differences between observed &amp; expected
 frequencies, accumulating the <code>chi_squared</code> statistic.</p>
@@ -3955,11 +4011,11 @@ frequencies, accumulating the <code>chi_squared</code> statistic.</p>
         </li>
         
         
-        <li id="section-210">
+        <li id="section-212">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-210">&#182;</a>
+                <a class="pilcrow" href="#section-212">&#182;</a>
               </div>
               <p>Calculate degrees of freedom for this test and look it up in the
 <code>chi_squared_distribution_table</code> in order to
@@ -3974,11 +4030,11 @@ accept or reject the goodness-of-fit of the hypothesized distribution.</p>
         </li>
         
         
-        <li id="section-211">
+        <li id="section-213">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-211">&#182;</a>
+                <a class="pilcrow" href="#section-213">&#182;</a>
               </div>
               <h1 id="mixin">Mixin</h1>
 <p>Mixin simple_statistics to a single Array instance if provided
@@ -3995,11 +4051,11 @@ of Javascript.</p>
         </li>
         
         
-        <li id="section-212">
+        <li id="section-214">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-212">&#182;</a>
+                <a class="pilcrow" href="#section-214">&#182;</a>
               </div>
               <p>only methods which work on basic arrays in a single step
 are supported</p>
@@ -4014,11 +4070,11 @@ are supported</p>
         </li>
         
         
-        <li id="section-213">
+        <li id="section-215">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-213">&#182;</a>
+                <a class="pilcrow" href="#section-215">&#182;</a>
               </div>
               <p>create a closure with a method name so that a reference
 like <code>arrayMethods[i]</code> doesn’t follow the loop increment</p>
@@ -4031,11 +4087,11 @@ like <code>arrayMethods[i]</code> doesn’t follow the loop increment</p>
         </li>
         
         
-        <li id="section-214">
+        <li id="section-216">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-214">&#182;</a>
+                <a class="pilcrow" href="#section-216">&#182;</a>
               </div>
               <p>cast any arguments into an array, since they’re
 natively objects</p>
@@ -4047,11 +4103,11 @@ natively objects</p>
         </li>
         
         
-        <li id="section-215">
+        <li id="section-217">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-215">&#182;</a>
+                <a class="pilcrow" href="#section-217">&#182;</a>
               </div>
               <p>make the first argument the array itself</p>
 
@@ -4062,11 +4118,11 @@ natively objects</p>
         </li>
         
         
-        <li id="section-216">
+        <li id="section-218">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-216">&#182;</a>
+                <a class="pilcrow" href="#section-218">&#182;</a>
               </div>
               <p>return the result of the ss method</p>
 
@@ -4079,11 +4135,11 @@ natively objects</p>
         </li>
         
         
-        <li id="section-217">
+        <li id="section-219">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-217">&#182;</a>
+                <a class="pilcrow" href="#section-219">&#182;</a>
               </div>
               <p>select object to extend</p>
 
@@ -4095,11 +4151,11 @@ natively objects</p>
         </li>
         
         
-        <li id="section-218">
+        <li id="section-220">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-218">&#182;</a>
+                <a class="pilcrow" href="#section-220">&#182;</a>
               </div>
               <p>create a shallow copy of the array so that our internal
 operations do not change it by reference</p>
@@ -4114,11 +4170,11 @@ operations do not change it by reference</p>
         </li>
         
         
-        <li id="section-219">
+        <li id="section-221">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-219">&#182;</a>
+                <a class="pilcrow" href="#section-221">&#182;</a>
               </div>
               <p>for each array function, define a function that gets
 the array as the first argument.
@@ -4177,11 +4233,11 @@ implementation.</p>
         </li>
         
         
-        <li id="section-220">
+        <li id="section-222">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-220">&#182;</a>
+                <a class="pilcrow" href="#section-222">&#182;</a>
               </div>
               <p>jenks</p>
 
@@ -4196,11 +4252,11 @@ implementation.</p>
         </li>
         
         
-        <li id="section-221">
+        <li id="section-223">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-221">&#182;</a>
+                <a class="pilcrow" href="#section-223">&#182;</a>
               </div>
               <p>Distribution-related methods</p>
 
@@ -4216,11 +4272,11 @@ implementation.</p>
         </li>
         
         
-        <li id="section-222">
+        <li id="section-224">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-222">&#182;</a>
+                <a class="pilcrow" href="#section-224">&#182;</a>
               </div>
               <p>Normal distribution</p>
 
@@ -4229,16 +4285,18 @@ implementation.</p>
             <div class="content"><div class='highlight'><pre>    ss.z_score = z_score;
     ss.cumulative_std_normal_probability = cumulative_std_normal_probability;
     ss.standard_normal_table = standard_normal_table;
-    ss.error_function = error_function;</pre></div></div>
+    ss.error_function = error_function;
+    ss.inverse_error_function = inverse_error_function;
+    ss.probit = probit;</pre></div></div>
             
         </li>
         
         
-        <li id="section-223">
+        <li id="section-225">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-223">&#182;</a>
+                <a class="pilcrow" href="#section-225">&#182;</a>
               </div>
               <p>Alias this into its common name</p>
 
