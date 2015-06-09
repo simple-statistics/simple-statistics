@@ -5,16 +5,16 @@ test('perceptron', function(t) {
     test('initializes to zeros if label is zero', function(t) {
         var p = ss.perceptron();
         p.train([1, 2, 3], 0);
-        t.deepEqual(p.w(), [0, 0, 0]);
-        t.equal(p.b(), 0);
+        t.deepEqual(p.weights(), [0, 0, 0]);
+        t.equal(p.bias(), 0);
         t.end();
     });
 
     test('initializes to values if label is one', function(t) {
         var p = ss.perceptron();
         p.train([1, 2, 3], 1);
-        t.deepEqual(p.w(), [1, 2, 3]);
-        t.equal(p.b(), 1);
+        t.deepEqual(p.weights(), [1, 2, 3]);
+        t.equal(p.bias(), 1);
         t.end();
     });
 

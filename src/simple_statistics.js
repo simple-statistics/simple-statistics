@@ -264,11 +264,11 @@
         var perceptron_model = {},
             // The weights, or coefficients of the model;
             // weights are only populated when training with data.
-            w = [],
+            weights = [],
             // The bias term, or intercept; it is also a weight but
             // it's stored separately for convenience as it is always
             // multiplied by one.
-            b = 0;
+            bias = 0;
 
         // ## Predict
         // Use an array of features with the weight array and bias
@@ -276,14 +276,14 @@
         perceptron_model.predict = function(features) {
             // Only predict if previously trained
             // on the same size feature array(s).
-            if (features.length !== w.length) return null;
+            if (features.length !== weights.length) return null;
             // Calculate the sum of features times weights,
             // with the bias added (implicitly times one).
             var score = 0;
-            for (var i = 0; i < w.length; i++) {
-                score += w[i] * features[i];
+            for (var i = 0; i < weights.length; i++) {
+                score += weights[i] * features[i];
             }
-            score += b;
+            score += bias;
             // Classify as 1 if the score is over 0, otherwise 0.
             return score > 0 ? 1 : 0;
         };
@@ -299,31 +299,31 @@
             // The perceptron will continue learning as long as
             // it keeps seeing feature arrays of the same length.
             // When it sees a new data shape, it initializes.
-            if (features.length !== w.length) {
-                w = features;
-                b = 1;
+            if (features.length !== weights.length) {
+                weights = features;
+                bias = 1;
             }
             // Make a prediction based on current weights.
             var prediction = perceptron_model.predict(features);
             // Update the weights if the prediction is wrong.
             if (prediction !== label) {
                 var gradient = label - prediction;
-                for (var i = 0; i < w.length; i++) {
-                    w[i] += gradient * features[i];
+                for (var i = 0; i < weights.length; i++) {
+                    weights[i] += gradient * features[i];
                 }
-                b += gradient;
+                bias += gradient;
             }
             return perceptron_model;
         };
 
-        // Conveniently access the weight array.
-        perceptron_model.w = function() {
-            return w;
+        // Conveniently access the weights array.
+        perceptron_model.weights = function() {
+            return weights;
         };
 
         // Conveniently access the bias.
-        perceptron_model.b = function() {
-            return b;
+        perceptron_model.bias = function() {
+            return bias;
         };
 
         // Return the completed model.
