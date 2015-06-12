@@ -17,7 +17,7 @@
   },
   "scripts": {
     "test": "eslint --no-eslintrc -c .eslintrc src/simple_statistics.js && tape test/*.js",
-    "cov": "istanbul cover ./node_modules/.bin/tape test/*.js && coveralls < ./coverage/lcov.info",
+    "cov": "istanbul cover ./node_modules/.bin/tape test/*.js && coveralls < ./coverage/lcov.info || true",
     "api": "node api.js"
   },
   "main": "src/simple_statistics.js",
