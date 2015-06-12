@@ -25,6 +25,10 @@
 
     var ss = {};
 
+    // We use `ε`, epsilon, as a stopping criterion when we want to iterate
+    // until we're "close enough".
+    var epsilon = 0.0001;
+
     // # [Linear Regression](http://en.wikipedia.org/wiki/Linear_regression)
     //
     // [Simple linear regression](http://en.wikipedia.org/wiki/Simple_linear_regression)
@@ -1168,7 +1172,7 @@
     // So, for example, probit(0.5 + 0.6827/2) ≈ 1 because 68.27% of values are
     // normally found within 1 standard deviation above or below the mean.
     function probit(p) {
-        if (p == 0) {
+        if (p === 0) {
             p = epsilon;
         } else if (p >= 1) {
             p = 1 - epsilon;
@@ -1225,10 +1229,6 @@
     function z_score(x, mean, standard_deviation) {
         return (x - mean) / standard_deviation;
     }
-
-    // We use `ε`, epsilon, as a stopping criterion when we want to iterate
-    // until we're "close enough".
-    var epsilon = 0.0001;
 
     // # [Factorial](https://en.wikipedia.org/wiki/Factorial)
     //
