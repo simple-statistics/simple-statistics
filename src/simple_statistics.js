@@ -25,10 +25,6 @@
 
     var ss = {};
 
-    // We use `ε`, epsilon, as a stopping criterion when we want to iterate
-    // until we're "close enough".
-    var epsilon = 0.0001;
-
     // # [Linear Regression](http://en.wikipedia.org/wiki/Linear_regression)
     //
     // [Simple linear regression](http://en.wikipedia.org/wiki/Simple_linear_regression)
@@ -1220,6 +1216,10 @@
         }
     }
 
+    // We use `ε`, epsilon, as a stopping criterion when we want to iterate
+    // until we're "close enough".
+    var epsilon = 0.0001;
+
     // # Inverse [Gaussian error function](http://en.wikipedia.org/wiki/Error_function)
     //
     // Returns a numerical approximation to the value that would have caused
@@ -1238,10 +1238,6 @@
             return -inv;
         }
     }
-
-    // We use `ε`, epsilon, as a stopping criterion when we want to iterate
-    // until we're "close enough".
-    var epsilon = 0.0001;
 
     // # [Probit](http://en.wikipedia.org/wiki/Probit)
     //
