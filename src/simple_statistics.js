@@ -1,11 +1,21 @@
 'use strict';
 
 (function(f) {
+    // This code uses a [Universal Module Definition](https://github.com/umdjs/umd) (UMD).
+    // The function below, called `f` here, builds `simple-statistics`.
+    // The UMD makes `simple-statistics` available under a variety of
+    // circumstances.
     if (typeof exports === 'object' && typeof module !== 'undefined'){
+        // Assign the `ss` object to exports, so that you can require
+        // it in [node.js](http://nodejs.org/).
         module.exports = f();
     } else if (typeof define === 'function' && define.amd) {
+        // Work with the [Asynchronous Module Definition](https://github.com/amdjs/amdjs-api) API.
         define([], f);
     } else {
+        // Otherwise, assign `ss` to an appropriate object, such as
+        // the window object (for browsers), so you can simply refer
+        // to `simple-statistics` as `ss`.
         var g;
         if (typeof window !== 'undefined') {
             g = window;
