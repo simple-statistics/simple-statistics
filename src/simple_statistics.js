@@ -1,11 +1,21 @@
 'use strict';
 
 (function(f) {
+    // This code uses a [Universal Module Definition](https://github.com/umdjs/umd) (UMD).
+    // The function below, called `f` here, builds `simple-statistics`.
+    // The UMD makes `simple-statistics` available under a variety of
+    // circumstances.
     if (typeof exports === 'object' && typeof module !== 'undefined'){
+        // Assign the `ss` object to exports, so that you can require
+        // it in [node.js](http://nodejs.org/).
         module.exports = f();
     } else if (typeof define === 'function' && define.amd) {
+        // Work with the [Asynchronous Module Definition](https://github.com/amdjs/amdjs-api) API.
         define([], f);
     } else {
+        // Otherwise, assign `ss` to an appropriate object, such as
+        // the window object (for browsers), so you can simply refer
+        // to `simple-statistics` as `ss`.
         var g;
         if (typeof window !== 'undefined') {
             g = window;
@@ -24,10 +34,6 @@
     // A simple, literate statistics system.
 
     var ss = {};
-
-    // We use `ε`, epsilon, as a stopping criterion when we want to iterate
-    // until we're "close enough".
-    var epsilon = 0.0001;
 
     // # [Linear Regression](http://en.wikipedia.org/wiki/Linear_regression)
     //
@@ -1220,6 +1226,10 @@
         }
     }
 
+    // We use `ε`, epsilon, as a stopping criterion when we want to iterate
+    // until we're "close enough".
+    var epsilon = 0.0001;
+
     // # Inverse [Gaussian error function](http://en.wikipedia.org/wiki/Error_function)
     //
     // Returns a numerical approximation to the value that would have caused
@@ -1238,10 +1248,6 @@
             return -inv;
         }
     }
-
-    // We use `ε`, epsilon, as a stopping criterion when we want to iterate
-    // until we're "close enough".
-    var epsilon = 0.0001;
 
     // # [Probit](http://en.wikipedia.org/wiki/Probit)
     //

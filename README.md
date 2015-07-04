@@ -214,14 +214,14 @@ of the line equation. Returns a number.
 
 ### .bayesian()
 
-Create a naïve bayesian classifier.
+Create a naïve Bayesian classifier.
 
-### .train(item, category)
+#### .train(item, category)
 
 Train the classifier to classify a certain item, given as an object with keys,
 to be in a certain category, given as a string.
 
-### .score(item)
+#### .score(item)
 
 Get the classifications of a certain item, given as an object of
 `category -> score` mappings.
@@ -231,6 +231,30 @@ Get the classifications of a certain item, given as an object of
     bayes.score({ species: 'Cat' });
     // { animal: 1 }
 
+### .perceptron()
+
+Create a single-layer perceptron classifier.
+
+#### .train(features, label)
+
+Train the classifier to classify a certain item, given as an array of
+numeric features, to be in a certain category, either 0 or 1.
+
+The model resets when a feature array of a new length is trained.
+
+#### .predict(features)
+
+Predict either 0 or 1 based on an array of numeric features and the
+model's current weights and bias.
+
+#### .weights()
+
+Just get the current model weights for features. Returns an array of
+numbers of length equal to those used in training.
+
+#### .bias()
+
+Just get the bias term of the model. Returns a number.
 
 
 ---
@@ -298,6 +322,29 @@ var bayes = ss.bayesian();
 bayes.train({ species: 'Cat' }, 'animal');
 bayes.score({ species: 'Cat' });
 // { animal: 1 }
+```
+
+### Perceptron Classifier
+
+```javascript
+var perceptron = ss.perceptron();
+
+// Learn a diagonal boundary
+for (var i = 0; i < 5; i++) {
+    perceptron.train([1, 1], 1);
+    perceptron.train([0, 1], 0);
+    perceptron.train([1, 0], 0);
+    perceptron.train([0, 0], 0);
+}
+
+perceptron.predict([0, 0])
+// 0
+perceptron.predict([0, 1])
+// 0
+perceptron.predict([1, 0])
+// 0
+perceptron.predict([1, 1])
+// 1
 ```
 
 ### Mixin Style
