@@ -30,7 +30,9 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/* global module */</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-pi">'use strict'</span>;
+
+(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f</span>) </span>{</pre></div></div>
             
         </li>
         
@@ -41,18 +43,14 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <h1 id="simple-statistics">simple-statistics</h1>
-<p>A simple, literate statistics system. The code below uses the
-<a href="http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth">Javascript module pattern</a>,
-eventually assigning <code>simple-statistics</code> to <code>ss</code> in browsers or the
-<code>exports</code> object for node.js</p>
+              <p>This code uses a <a href="https://github.com/umdjs/umd">Universal Module Definition</a> (UMD).
+The function below, called <code>f</code> here, builds <code>simple-statistics</code>.
+The UMD makes <code>simple-statistics</code> available under a variety of
+circumstances.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-    <span class="hljs-keyword">var</span> ss = {};
-
-    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> module !== <span class="hljs-string">'undefined'</span>) {</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> exports === <span class="hljs-string">'object'</span> &amp;&amp; <span class="hljs-keyword">typeof</span> <span class="hljs-built_in">module</span> !== <span class="hljs-string">'undefined'</span>){</pre></div></div>
             
         </li>
         
@@ -64,12 +62,12 @@ eventually assigning <code>simple-statistics</code> to <code>ss</code> in browse
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
               <p>Assign the <code>ss</code> object to exports, so that you can require
-it in <a href="http://nodejs.org/">node.js</a></p>
+it in <a href="http://nodejs.org/">node.js</a>.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        module.exports = ss;
-    } <span class="hljs-keyword">else</span> {</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-built_in">module</span>.exports = f();
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> define === <span class="hljs-string">'function'</span> &amp;&amp; define.amd) {</pre></div></div>
             
         </li>
         
@@ -80,13 +78,12 @@ it in <a href="http://nodejs.org/">node.js</a></p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>Otherwise, in a browser, we assign <code>ss</code> to the window object,
-so you can simply refer to it as <code>ss</code>.</p>
+              <p>Work with the <a href="https://github.com/amdjs/amdjs-api">Asynchronous Module Definition</a> API.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">this</span>.ss = ss;
-    }</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        define([], f);
+    } <span class="hljs-keyword">else</span> {</pre></div></div>
             
         </li>
         
@@ -97,16 +94,25 @@ so you can simply refer to it as <code>ss</code>.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <h1 id="-linear-regression-http-en-wikipedia-org-wiki-linear_regression-"><a href="http://en.wikipedia.org/wiki/Linear_regression">Linear Regression</a></h1>
-<p><a href="http://en.wikipedia.org/wiki/Simple_linear_regression">Simple linear regression</a>
-is a simple way to find a fitted line
-between a set of coordinates.</p>
+              <p>Otherwise, assign <code>ss</code> to an appropriate object, such as
+the window object (for browsers), so you can simply refer
+to <code>simple-statistics</code> as <code>ss</code>.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">linear_regression</span><span class="hljs-params">()</span> {</span>
-        <span class="hljs-keyword">var</span> linreg = {},
-            data = [];</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">var</span> g;
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">window</span> !== <span class="hljs-string">'undefined'</span>) {
+            g = <span class="hljs-built_in">window</span>;
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> global !== <span class="hljs-string">'undefined'</span>) {
+            g = global;
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> self !== <span class="hljs-string">'undefined'</span>){
+            g = self;
+        } <span class="hljs-keyword">else</span> {
+            g = <span class="hljs-keyword">this</span>;
+        }
+        g.ss = f();
+    }
+}(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
@@ -117,15 +123,13 @@ between a set of coordinates.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
-              <p>Assign data to the model. Data is assumed to be an array.</p>
+              <h1 id="simple-statistics">simple-statistics</h1>
+<p>A simple, literate statistics system.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        linreg.data = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span>
-            <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">arguments</span>.length) <span class="hljs-keyword">return</span> data;
-            data = x.slice();
-            <span class="hljs-keyword">return</span> linreg;
-        };</pre></div></div>
+            <div class="content"><div class='highlight'><pre>
+    <span class="hljs-keyword">var</span> ss = {};</pre></div></div>
             
         </li>
         
@@ -136,13 +140,16 @@ between a set of coordinates.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
-              <p>Calculate the slope and y-intercept of the regression line
-by calculating the least sum of squares</p>
+              <h1 id="-linear-regression-http-en-wikipedia-org-wiki-linear_regression-"><a href="http://en.wikipedia.org/wiki/Linear_regression">Linear Regression</a></h1>
+<p><a href="http://en.wikipedia.org/wiki/Simple_linear_regression">Simple linear regression</a>
+is a simple way to find a fitted line
+between a set of coordinates.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        linreg.mb = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-            <span class="hljs-keyword">var</span> m, b;</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">linear_regression</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">var</span> linreg = {},
+            data = [];</pre></div></div>
             
         </li>
         
@@ -152,6 +159,42 @@ by calculating the least sum of squares</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Assign data to the model. Data is assumed to be an array.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        linreg.data = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
+            <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">arguments</span>.length) <span class="hljs-keyword">return</span> data;
+            data = x.slice();
+            <span class="hljs-keyword">return</span> linreg;
+        };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Calculate the slope and y-intercept of the regression line
+by calculating the least sum of squares</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        linreg.mb = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">var</span> m, b;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
               <p>Store data length in a local variable to reduce
 repeated object property lookups</p>
@@ -163,11 +206,11 @@ repeated object property lookups</p>
         </li>
         
         
-        <li id="section-9">
+        <li id="section-11">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
+                <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <p>if there’s only one point, arbitrarily choose a slope of 0
 and a y-intercept of whatever the y of the initial point is</p>
@@ -182,11 +225,11 @@ and a y-intercept of whatever the y of the initial point is</p>
         </li>
         
         
-        <li id="section-10">
+        <li id="section-12">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
+                <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
               <p>Initialize our sums and scope the <code>m</code> and <code>b</code>
 variables that define the line.</p>
@@ -199,11 +242,11 @@ variables that define the line.</p>
         </li>
         
         
-        <li id="section-11">
+        <li id="section-13">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
+                <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
               <p>Use local variables to grab point values
 with minimal object property lookups</p>
@@ -215,11 +258,11 @@ with minimal object property lookups</p>
         </li>
         
         
-        <li id="section-12">
+        <li id="section-14">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-12">&#182;</a>
+                <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
               <p>Gather the sum of all x values, the sum of all
 y values, and the sum of x^2 and (x*y) for each
@@ -243,11 +286,11 @@ value.</p>
         </li>
         
         
-        <li id="section-13">
+        <li id="section-15">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-13">&#182;</a>
+                <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
               <p><code>m</code> is the slope of the regression line</p>
 
@@ -259,11 +302,11 @@ value.</p>
         </li>
         
         
-        <li id="section-14">
+        <li id="section-16">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-14">&#182;</a>
+                <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
               <p><code>b</code> is the y-intercept of the line.</p>
 
@@ -275,11 +318,11 @@ value.</p>
         </li>
         
         
-        <li id="section-15">
+        <li id="section-17">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-15">&#182;</a>
+                <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
               <p>Return both values as an object.</p>
 
@@ -291,55 +334,19 @@ value.</p>
         </li>
         
         
-        <li id="section-16">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-16">&#182;</a>
-              </div>
-              <p>a shortcut for simply getting the slope of the regression line</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>        linreg.m = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-            <span class="hljs-keyword">return</span> linreg.mb().m;
-        };</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-17">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
-              </div>
-              <p>a shortcut for simply getting the y-intercept of the regression
-line.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>        linreg.b = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
-            <span class="hljs-keyword">return</span> linreg.mb().b;
-        };</pre></div></div>
-            
-        </li>
-        
-        
         <li id="section-18">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
-              <h2 id="fitting-the-regression-line">Fitting The Regression Line</h2>
-<p>This is called after <code>.data()</code> and returns the
-equation <code>y = f(x)</code> which gives the position
-of the regression line at each point in <code>x</code>.</p>
+              <p>a shortcut for simply getting the slope of the regression line</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        linreg.line = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>        linreg.m = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">return</span> linreg.mb().m;
+        };</pre></div></div>
             
         </li>
         
@@ -349,6 +356,42 @@ of the regression line at each point in <code>x</code>.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>a shortcut for simply getting the y-intercept of the regression
+line.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        linreg.b = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">return</span> linreg.mb().b;
+        };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <h2 id="fitting-the-regression-line">Fitting The Regression Line</h2>
+<p>This is called after <code>.data()</code> and returns the
+equation <code>y = f(x)</code> which gives the position
+of the regression line at each point in <code>x</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        linreg.line = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
               <p>Get the slope, <code>m</code>, and y-intercept, <code>b</code>, of the line.</p>
 
@@ -361,11 +404,11 @@ of the regression line at each point in <code>x</code>.</p>
         </li>
         
         
-        <li id="section-20">
+        <li id="section-22">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
+                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               <p>Return a function that computes a <code>y</code> value for each
 x value it is given, based on the values of <code>b</code> and <code>a</code>
@@ -373,7 +416,7 @@ that we just computed.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> {</span>
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
                 <span class="hljs-keyword">return</span> b + (m * x);
             };
         };
@@ -384,11 +427,11 @@ that we just computed.</p>
         </li>
         
         
-        <li id="section-21">
+        <li id="section-23">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
+                <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               <h1 id="-r-squared-http-en-wikipedia-org-wiki-coefficient_of_determination-"><a href="http://en.wikipedia.org/wiki/Coefficient_of_determination">R Squared</a></h1>
 <p>The r-squared value of data compared with a function <code>f</code>
@@ -397,17 +440,17 @@ and the actual value.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">r_squared</span><span class="hljs-params">(data, f)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">r_squared</span>(<span class="hljs-params">data, f</span>) </span>{
         <span class="hljs-keyword">if</span> (data.length &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;</pre></div></div>
             
         </li>
         
         
-        <li id="section-22">
+        <li id="section-24">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
+                <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
               <p>Compute the average y value for the actual
 data set in order to compute the
@@ -424,11 +467,11 @@ data set in order to compute the
         </li>
         
         
-        <li id="section-23">
+        <li id="section-25">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+                <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
               <p>Compute the total sum of squares - the
 squared difference between each point
@@ -444,11 +487,11 @@ and the average of all points.</p>
         </li>
         
         
-        <li id="section-24">
+        <li id="section-26">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-26">&#182;</a>
               </div>
               <p>Finally estimate the error: the squared
 difference between the estimate and the actual data
@@ -464,11 +507,11 @@ value at each point.</p>
         </li>
         
         
-        <li id="section-25">
+        <li id="section-27">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+                <a class="pilcrow" href="#section-27">&#182;</a>
               </div>
               <p>As the error grows larger, its ratio to the
 sum of squares increases and the r squared
@@ -482,11 +525,11 @@ value grows lower.</p>
         </li>
         
         
-        <li id="section-26">
+        <li id="section-28">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
+                <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
               <h1 id="-bayesian-classifier-http-en-wikipedia-org-wiki-naive_bayes_classifier-"><a href="http://en.wikipedia.org/wiki/Naive_Bayes_classifier">Bayesian Classifier</a></h1>
 <p>This is a naïve bayesian classifier that takes
@@ -494,16 +537,16 @@ singly-nested objects.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bayesian</span><span class="hljs-params">()</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bayesian</span>(<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-27">
+        <li id="section-29">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-27">&#182;</a>
+                <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
               <p>The <code>bayes_model</code> object is what will be exposed
 by this closure, with all of its extended methods, and will
@@ -516,11 +559,11 @@ have access to all scope variables, like <code>total_count</code>.</p>
         </li>
         
         
-        <li id="section-28">
+        <li id="section-30">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-28">&#182;</a>
+                <a class="pilcrow" href="#section-30">&#182;</a>
               </div>
               <p>The number of items that are currently
 classified in the model</p>
@@ -532,11 +575,11 @@ classified in the model</p>
         </li>
         
         
-        <li id="section-29">
+        <li id="section-31">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-29">&#182;</a>
+                <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
               <p>Every item classified in the model</p>
 
@@ -547,11 +590,11 @@ classified in the model</p>
         </li>
         
         
-        <li id="section-30">
+        <li id="section-32">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-30">&#182;</a>
+                <a class="pilcrow" href="#section-32">&#182;</a>
               </div>
               <h2 id="train">Train</h2>
 <p>Train the classifier with a new item, which has a single
@@ -559,16 +602,16 @@ dimension of Javascript literal keys and values.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        bayes_model.train = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(item, category)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>        bayes_model.train = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">item, category</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-31">
+        <li id="section-33">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-31">&#182;</a>
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <p>If the data object doesn’t have any values
 for this category, create a new object for it.</p>
@@ -580,11 +623,11 @@ for this category, create a new object for it.</p>
         </li>
         
         
-        <li id="section-32">
+        <li id="section-34">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-32">&#182;</a>
+                <a class="pilcrow" href="#section-34">&#182;</a>
               </div>
               <p>Iterate through each key in the item.</p>
 
@@ -596,11 +639,11 @@ for this category, create a new object for it.</p>
         </li>
         
         
-        <li id="section-33">
+        <li id="section-35">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-33">&#182;</a>
+                <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
               <p>Initialize the nested object <code>data[category][k][item[k]]</code>
 with an object of keys that equal 0.</p>
@@ -613,11 +656,11 @@ with an object of keys that equal 0.</p>
         </li>
         
         
-        <li id="section-34">
+        <li id="section-36">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-34">&#182;</a>
+                <a class="pilcrow" href="#section-36">&#182;</a>
               </div>
               <p>And increment the key for this key/value combination.</p>
 
@@ -629,11 +672,11 @@ with an object of keys that equal 0.</p>
         </li>
         
         
-        <li id="section-35">
+        <li id="section-37">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-35">&#182;</a>
+                <a class="pilcrow" href="#section-37">&#182;</a>
               </div>
               <p>Increment the number of items classified</p>
 
@@ -645,11 +688,11 @@ with an object of keys that equal 0.</p>
         </li>
         
         
-        <li id="section-36">
+        <li id="section-38">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-36">&#182;</a>
+                <a class="pilcrow" href="#section-38">&#182;</a>
               </div>
               <h2 id="score">Score</h2>
 <p>Generate a score of how well this item matches all
@@ -657,16 +700,16 @@ possible categories based on its attributes</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        bayes_model.score = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(item)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>        bayes_model.score = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">item</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-37">
+        <li id="section-39">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-37">&#182;</a>
+                <a class="pilcrow" href="#section-39">&#182;</a>
               </div>
               <p>Initialize an empty array of odds per category.</p>
 
@@ -677,11 +720,11 @@ possible categories based on its attributes</p>
         </li>
         
         
-        <li id="section-38">
+        <li id="section-40">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-38">&#182;</a>
+                <a class="pilcrow" href="#section-40">&#182;</a>
               </div>
               <p>Iterate through each key in the item,
 then iterate through each category that has been used
@@ -696,11 +739,11 @@ in previous calls to <code>.train()</code></p>
         </li>
         
         
-        <li id="section-39">
+        <li id="section-41">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-39">&#182;</a>
+                <a class="pilcrow" href="#section-41">&#182;</a>
               </div>
               <p>Create an empty object for storing key - value combinations
 for this category.</p>
@@ -712,11 +755,11 @@ for this category.</p>
         </li>
         
         
-        <li id="section-40">
+        <li id="section-42">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-40">&#182;</a>
+                <a class="pilcrow" href="#section-42">&#182;</a>
               </div>
               <p>If this item doesn’t even have a property, it counts for nothing,
 but if it does have the property that we’re looking for from
@@ -736,11 +779,11 @@ versus the whole population.</p>
         </li>
         
         
-        <li id="section-41">
+        <li id="section-43">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-41">&#182;</a>
+                <a class="pilcrow" href="#section-43">&#182;</a>
               </div>
               <p>Set up a new object that will contain sums of these odds by category</p>
 
@@ -753,11 +796,11 @@ versus the whole population.</p>
         </li>
         
         
-        <li id="section-42">
+        <li id="section-44">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-42">&#182;</a>
+                <a class="pilcrow" href="#section-44">&#182;</a>
               </div>
               <p>Tally all of the odds for each category-combination pair -
 the non-existence of a category does not add anything to the
@@ -777,11 +820,11 @@ score.</p>
         </li>
         
         
-        <li id="section-43">
+        <li id="section-45">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-43">&#182;</a>
+                <a class="pilcrow" href="#section-45">&#182;</a>
               </div>
               <p>Return the completed model.</p>
 
@@ -793,11 +836,274 @@ score.</p>
         </li>
         
         
-        <li id="section-44">
+        <li id="section-46">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-44">&#182;</a>
+                <a class="pilcrow" href="#section-46">&#182;</a>
+              </div>
+              <h1 id="-perceptron-classifier-http-en-wikipedia-org-wiki-perceptron-"><a href="http://en.wikipedia.org/wiki/Perceptron">Perceptron Classifier</a></h1>
+<p>This is a single-layer perceptron classifier that takes
+arrays of numbers and predicts whether they should be classified
+as either 0 or 1 (negative or positive examples).</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">perceptron</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">var</span> perceptron_model = {},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-47">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-47">&#182;</a>
+              </div>
+              <p>The weights, or coefficients of the model;
+weights are only populated when training with data.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            weights = [],</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-48">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-48">&#182;</a>
+              </div>
+              <p>The bias term, or intercept; it is also a weight but
+it’s stored separately for convenience as it is always
+multiplied by one.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            bias = <span class="hljs-number">0</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-49">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-49">&#182;</a>
+              </div>
+              <h2 id="predict">Predict</h2>
+<p>Use an array of features with the weight array and bias
+to predict whether an example is labeled 0 or 1.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        perceptron_model.predict = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">features</span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-50">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-50">&#182;</a>
+              </div>
+              <p>Only predict if previously trained
+on the same size feature array(s).</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (features.length !== weights.length) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-51">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-51">&#182;</a>
+              </div>
+              <p>Calculate the sum of features times weights,
+with the bias added (implicitly times one).</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">var</span> score = <span class="hljs-number">0</span>;
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; weights.length; i++) {
+                score += weights[i] * features[i];
+            }
+            score += bias;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-52">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-52">&#182;</a>
+              </div>
+              <p>Classify as 1 if the score is over 0, otherwise 0.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">return</span> score &gt; <span class="hljs-number">0</span> ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>;
+        };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-53">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-53">&#182;</a>
+              </div>
+              <h2 id="train">Train</h2>
+<p>Train the classifier with a new example, which is
+a numeric array of features and a 0 or 1 label.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        perceptron_model.train = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">features, label</span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-54">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-54">&#182;</a>
+              </div>
+              <p>Require that only labels of 0 or 1 are considered.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (label !== <span class="hljs-number">0</span> &amp;&amp; label !== <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-55">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-55">&#182;</a>
+              </div>
+              <p>The length of the feature array determines
+the length of the weight array.
+The perceptron will continue learning as long as
+it keeps seeing feature arrays of the same length.
+When it sees a new data shape, it initializes.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (features.length !== weights.length) {
+                weights = features;
+                bias = <span class="hljs-number">1</span>;
+            }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-56">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-56">&#182;</a>
+              </div>
+              <p>Make a prediction based on current weights.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">var</span> prediction = perceptron_model.predict(features);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-57">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-57">&#182;</a>
+              </div>
+              <p>Update the weights if the prediction is wrong.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (prediction !== label) {
+                <span class="hljs-keyword">var</span> gradient = label - prediction;
+                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; weights.length; i++) {
+                    weights[i] += gradient * features[i];
+                }
+                bias += gradient;
+            }
+            <span class="hljs-keyword">return</span> perceptron_model;
+        };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-58">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-58">&#182;</a>
+              </div>
+              <p>Conveniently access the weights array.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        perceptron_model.weights = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">return</span> weights;
+        };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-59">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-59">&#182;</a>
+              </div>
+              <p>Conveniently access the bias.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        perceptron_model.bias = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">return</span> bias;
+        };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-60">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-60">&#182;</a>
+              </div>
+              <p>Return the completed model.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">return</span> perceptron_model;
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-61">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-61">&#182;</a>
               </div>
               <h1 id="sum">sum</h1>
 <p>is simply the result of adding all numbers
@@ -806,7 +1112,7 @@ together, starting from zero.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span><span class="hljs-params">(x)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">x</span>) </span>{
         <span class="hljs-keyword">var</span> value = <span class="hljs-number">0</span>;
         <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; x.length; i++) {
             value += x[i];
@@ -817,11 +1123,11 @@ together, starting from zero.</p>
         </li>
         
         
-        <li id="section-45">
+        <li id="section-62">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-45">&#182;</a>
+                <a class="pilcrow" href="#section-62">&#182;</a>
               </div>
               <h1 id="mean">mean</h1>
 <p>is the sum over the number of values</p>
@@ -829,16 +1135,16 @@ together, starting from zero.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mean</span><span class="hljs-params">(x)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mean</span>(<span class="hljs-params">x</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-46">
+        <li id="section-63">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-46">&#182;</a>
+                <a class="pilcrow" href="#section-63">&#182;</a>
               </div>
               <p>The mean of no numbers is null</p>
 
@@ -852,11 +1158,11 @@ together, starting from zero.</p>
         </li>
         
         
-        <li id="section-47">
+        <li id="section-64">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-47">&#182;</a>
+                <a class="pilcrow" href="#section-64">&#182;</a>
               </div>
               <h1 id="geometric-mean">geometric mean</h1>
 <p>a mean function that is more useful for numbers in different
@@ -866,16 +1172,16 @@ ranges.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">geometric_mean</span><span class="hljs-params">(x)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">geometric_mean</span>(<span class="hljs-params">x</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-48">
+        <li id="section-65">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-48">&#182;</a>
+                <a class="pilcrow" href="#section-65">&#182;</a>
               </div>
               <p>The mean of no numbers is null</p>
 
@@ -886,11 +1192,11 @@ ranges.</p>
         </li>
         
         
-        <li id="section-49">
+        <li id="section-66">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-49">&#182;</a>
+                <a class="pilcrow" href="#section-66">&#182;</a>
               </div>
               <p>the starting value.</p>
 
@@ -903,11 +1209,11 @@ ranges.</p>
         </li>
         
         
-        <li id="section-50">
+        <li id="section-67">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-50">&#182;</a>
+                <a class="pilcrow" href="#section-67">&#182;</a>
               </div>
               <p>the geometric mean is only valid for positive numbers</p>
 
@@ -918,11 +1224,11 @@ ranges.</p>
         </li>
         
         
-        <li id="section-51">
+        <li id="section-68">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-51">&#182;</a>
+                <a class="pilcrow" href="#section-68">&#182;</a>
               </div>
               <p>repeatedly multiply the value by each number</p>
 
@@ -937,11 +1243,11 @@ ranges.</p>
         </li>
         
         
-        <li id="section-52">
+        <li id="section-69">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-52">&#182;</a>
+                <a class="pilcrow" href="#section-69">&#182;</a>
               </div>
               <h1 id="harmonic-mean">harmonic mean</h1>
 <p>a mean function typically used to find the average of rates</p>
@@ -951,16 +1257,16 @@ of the input numbers</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">harmonic_mean</span><span class="hljs-params">(x)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">harmonic_mean</span>(<span class="hljs-params">x</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-53">
+        <li id="section-70">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-53">&#182;</a>
+                <a class="pilcrow" href="#section-70">&#182;</a>
               </div>
               <p>The mean of no numbers is null</p>
 
@@ -975,11 +1281,11 @@ of the input numbers</p>
         </li>
         
         
-        <li id="section-54">
+        <li id="section-71">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-54">&#182;</a>
+                <a class="pilcrow" href="#section-71">&#182;</a>
               </div>
               <p>the harmonic mean is only valid for positive numbers</p>
 
@@ -993,11 +1299,11 @@ of the input numbers</p>
         </li>
         
         
-        <li id="section-55">
+        <li id="section-72">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-55">&#182;</a>
+                <a class="pilcrow" href="#section-72">&#182;</a>
               </div>
               <p>divide n by the the reciprocal sum</p>
 
@@ -1009,11 +1315,40 @@ of the input numbers</p>
         </li>
         
         
-        <li id="section-56">
+        <li id="section-73">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-56">&#182;</a>
+                <a class="pilcrow" href="#section-73">&#182;</a>
+              </div>
+              <p>root mean square (RMS)</p>
+<p>a mean function used as a measure of the magnitude of a set
+of numbers, regardless of their sign</p>
+<p>this is the square root of the mean of the squares of the
+input numbers</p>
+<p>This runs on <code>O(n)</code>, linear time in respect to the array</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">root_mean_square</span>(<span class="hljs-params">x</span>) </span>{
+        <span class="hljs-keyword">if</span> (x.length === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+
+        <span class="hljs-keyword">var</span> sum_of_squares = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; x.length; i++) {
+            sum_of_squares += <span class="hljs-built_in">Math</span>.pow(x[i], <span class="hljs-number">2</span>);
+        }
+
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.sqrt(sum_of_squares / x.length);
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-74">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-74">&#182;</a>
               </div>
               <h1 id="min">min</h1>
 <p>This is simply the minimum number in the set.</p>
@@ -1021,18 +1356,18 @@ of the input numbers</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">min</span><span class="hljs-params">(x)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">min</span>(<span class="hljs-params">x</span>) </span>{
         <span class="hljs-keyword">var</span> value;
         <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; x.length; i++) {</pre></div></div>
             
         </li>
         
         
-        <li id="section-57">
+        <li id="section-75">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-57">&#182;</a>
+                <a class="pilcrow" href="#section-75">&#182;</a>
               </div>
               <p>On the first iteration of this loop, min is
 undefined and is thus made the minimum element in the array</p>
@@ -1047,11 +1382,11 @@ undefined and is thus made the minimum element in the array</p>
         </li>
         
         
-        <li id="section-58">
+        <li id="section-76">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-58">&#182;</a>
+                <a class="pilcrow" href="#section-76">&#182;</a>
               </div>
               <h1 id="max">max</h1>
 <p>This is simply the maximum number in the set.</p>
@@ -1059,18 +1394,18 @@ undefined and is thus made the minimum element in the array</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">max</span><span class="hljs-params">(x)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">max</span>(<span class="hljs-params">x</span>) </span>{
         <span class="hljs-keyword">var</span> value;
         <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; x.length; i++) {</pre></div></div>
             
         </li>
         
         
-        <li id="section-59">
+        <li id="section-77">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-59">&#182;</a>
+                <a class="pilcrow" href="#section-77">&#182;</a>
               </div>
               <p>On the first iteration of this loop, max is
 undefined and is thus made the maximum element in the array</p>
@@ -1085,11 +1420,11 @@ undefined and is thus made the maximum element in the array</p>
         </li>
         
         
-        <li id="section-60">
+        <li id="section-78">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-60">&#182;</a>
+                <a class="pilcrow" href="#section-78">&#182;</a>
               </div>
               <h1 id="-variance-http-en-wikipedia-org-wiki-variance-"><a href="http://en.wikipedia.org/wiki/Variance">variance</a></h1>
 <p>is the sum of squared deviations from the mean</p>
@@ -1097,16 +1432,16 @@ undefined and is thus made the maximum element in the array</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">variance</span><span class="hljs-params">(x)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">variance</span>(<span class="hljs-params">x</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-61">
+        <li id="section-79">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-61">&#182;</a>
+                <a class="pilcrow" href="#section-79">&#182;</a>
               </div>
               <p>The variance of no numbers is null</p>
 
@@ -1120,11 +1455,11 @@ undefined and is thus made the maximum element in the array</p>
         </li>
         
         
-        <li id="section-62">
+        <li id="section-80">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-62">&#182;</a>
+                <a class="pilcrow" href="#section-80">&#182;</a>
               </div>
               <p>Make a list of squared deviations from the mean.</p>
 
@@ -1137,11 +1472,11 @@ undefined and is thus made the maximum element in the array</p>
         </li>
         
         
-        <li id="section-63">
+        <li id="section-81">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-63">&#182;</a>
+                <a class="pilcrow" href="#section-81">&#182;</a>
               </div>
               <p>Find the mean value of that list</p>
 
@@ -1153,11 +1488,11 @@ undefined and is thus made the maximum element in the array</p>
         </li>
         
         
-        <li id="section-64">
+        <li id="section-82">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-64">&#182;</a>
+                <a class="pilcrow" href="#section-82">&#182;</a>
               </div>
               <h1 id="-standard-deviation-http-en-wikipedia-org-wiki-standard_deviation-"><a href="http://en.wikipedia.org/wiki/Standard_deviation">standard deviation</a></h1>
 <p>is just the square root of the variance.</p>
@@ -1165,16 +1500,16 @@ undefined and is thus made the maximum element in the array</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">standard_deviation</span><span class="hljs-params">(x)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">standard_deviation</span>(<span class="hljs-params">x</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-65">
+        <li id="section-83">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-65">&#182;</a>
+                <a class="pilcrow" href="#section-83">&#182;</a>
               </div>
               <p>The standard deviation of no numbers is null</p>
 
@@ -1188,11 +1523,11 @@ undefined and is thus made the maximum element in the array</p>
         </li>
         
         
-        <li id="section-66">
+        <li id="section-84">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-66">&#182;</a>
+                <a class="pilcrow" href="#section-84">&#182;</a>
               </div>
               <p>The sum of deviations to the Nth power.
 When n=2 it’s the sum of squared deviations.
@@ -1201,7 +1536,7 @@ When n=3 it’s the sum of cubed deviations.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum_nth_power_deviations</span><span class="hljs-params">(x, n)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum_nth_power_deviations</span>(<span class="hljs-params">x, n</span>) </span>{
         <span class="hljs-keyword">var</span> mean_value = mean(x),
             sum = <span class="hljs-number">0</span>;
 
@@ -1215,11 +1550,11 @@ When n=3 it’s the sum of cubed deviations.</p>
         </li>
         
         
-        <li id="section-67">
+        <li id="section-85">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-67">&#182;</a>
+                <a class="pilcrow" href="#section-85">&#182;</a>
               </div>
               <h1 id="-variance-http-en-wikipedia-org-wiki-variance-"><a href="http://en.wikipedia.org/wiki/Variance">variance</a></h1>
 <p>is the sum of squared deviations from the mean</p>
@@ -1227,16 +1562,16 @@ When n=3 it’s the sum of cubed deviations.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sample_variance</span><span class="hljs-params">(x)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sample_variance</span>(<span class="hljs-params">x</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-68">
+        <li id="section-86">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-68">&#182;</a>
+                <a class="pilcrow" href="#section-86">&#182;</a>
               </div>
               <p>The variance of no numbers is null</p>
 
@@ -1249,11 +1584,11 @@ When n=3 it’s the sum of cubed deviations.</p>
         </li>
         
         
-        <li id="section-69">
+        <li id="section-87">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-69">&#182;</a>
+                <a class="pilcrow" href="#section-87">&#182;</a>
               </div>
               <p>Find the mean value of that list</p>
 
@@ -1265,11 +1600,11 @@ When n=3 it’s the sum of cubed deviations.</p>
         </li>
         
         
-        <li id="section-70">
+        <li id="section-88">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-70">&#182;</a>
+                <a class="pilcrow" href="#section-88">&#182;</a>
               </div>
               <h1 id="-standard-deviation-http-en-wikipedia-org-wiki-standard_deviation-"><a href="http://en.wikipedia.org/wiki/Standard_deviation">standard deviation</a></h1>
 <p>is just the square root of the variance.</p>
@@ -1277,16 +1612,16 @@ When n=3 it’s the sum of cubed deviations.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sample_standard_deviation</span><span class="hljs-params">(x)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sample_standard_deviation</span>(<span class="hljs-params">x</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-71">
+        <li id="section-89">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-71">&#182;</a>
+                <a class="pilcrow" href="#section-89">&#182;</a>
               </div>
               <p>The standard deviation of no numbers is null</p>
 
@@ -1300,11 +1635,11 @@ When n=3 it’s the sum of cubed deviations.</p>
         </li>
         
         
-        <li id="section-72">
+        <li id="section-90">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-72">&#182;</a>
+                <a class="pilcrow" href="#section-90">&#182;</a>
               </div>
               <h1 id="-covariance-http-en-wikipedia-org-wiki-covariance-"><a href="http://en.wikipedia.org/wiki/Covariance">covariance</a></h1>
 <p>sample covariance of two datasets:
@@ -1314,33 +1649,33 @@ x and y are two datasets, represented as arrays of numbers.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sample_covariance</span><span class="hljs-params">(x, y)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sample_covariance</span>(<span class="hljs-params">x, y</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-73">
+        <li id="section-91">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-73">&#182;</a>
+                <a class="pilcrow" href="#section-91">&#182;</a>
               </div>
               <p>The two datasets must have the same length which must be more than 1</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (x.length &lt;= <span class="hljs-number">1</span> || x.length != y.length){
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (x.length &lt;= <span class="hljs-number">1</span> || x.length !== y.length) {
             <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
         }</pre></div></div>
             
         </li>
         
         
-        <li id="section-74">
+        <li id="section-92">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-74">&#182;</a>
+                <a class="pilcrow" href="#section-92">&#182;</a>
               </div>
               <p>determine the mean of each dataset so that we can judge each
 value of the dataset fairly as the difference from the mean. this
@@ -1356,11 +1691,11 @@ does not suffer because of the difference in absolute values</p>
         </li>
         
         
-        <li id="section-75">
+        <li id="section-93">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-75">&#182;</a>
+                <a class="pilcrow" href="#section-93">&#182;</a>
               </div>
               <p>for each pair of values, the covariance increases when their
 difference from the mean is associated - if both are well above
@@ -1369,18 +1704,18 @@ the mean, the covariance increases significantly.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; x.length; i++){
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; x.length; i++) {
             sum += (x[i] - xmean) * (y[i] - ymean);
         }</pre></div></div>
             
         </li>
         
         
-        <li id="section-76">
+        <li id="section-94">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-76">&#182;</a>
+                <a class="pilcrow" href="#section-94">&#182;</a>
               </div>
               <p>the covariance is weighted by the length of the datasets.</p>
 
@@ -1392,11 +1727,11 @@ the mean, the covariance increases significantly.</p>
         </li>
         
         
-        <li id="section-77">
+        <li id="section-95">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-77">&#182;</a>
+                <a class="pilcrow" href="#section-95">&#182;</a>
               </div>
               <h1 id="-correlation-http-en-wikipedia-org-wiki-correlation_and_dependence-"><a href="http://en.wikipedia.org/wiki/Correlation_and_dependence">correlation</a></h1>
 <p>Gets a measure of how correlated two datasets are, between -1 and 1</p>
@@ -1404,7 +1739,7 @@ the mean, the covariance increases significantly.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sample_correlation</span><span class="hljs-params">(x, y)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sample_correlation</span>(<span class="hljs-params">x, y</span>) </span>{
         <span class="hljs-keyword">var</span> cov = sample_covariance(x, y),
             xstd = sample_standard_deviation(x),
             ystd = sample_standard_deviation(y);
@@ -1419,11 +1754,11 @@ the mean, the covariance increases significantly.</p>
         </li>
         
         
-        <li id="section-78">
+        <li id="section-96">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-78">&#182;</a>
+                <a class="pilcrow" href="#section-96">&#182;</a>
               </div>
               <h1 id="-median-http-en-wikipedia-org-wiki-median-"><a href="http://en.wikipedia.org/wiki/Median">median</a></h1>
 <p>The middle number of a list. This is often a good indicator of ‘the middle’
@@ -1431,16 +1766,16 @@ when there are outliers that skew the <code>mean()</code> value.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">median</span><span class="hljs-params">(x)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">median</span>(<span class="hljs-params">x</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-79">
+        <li id="section-97">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-79">&#182;</a>
+                <a class="pilcrow" href="#section-97">&#182;</a>
               </div>
               <p>The median of an empty list is null</p>
 
@@ -1451,27 +1786,27 @@ when there are outliers that skew the <code>mean()</code> value.</p>
         </li>
         
         
-        <li id="section-80">
+        <li id="section-98">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-80">&#182;</a>
+                <a class="pilcrow" href="#section-98">&#182;</a>
               </div>
               <p>Sorting the array makes it easy to find the center, but
 use <code>.slice()</code> to ensure the original array <code>x</code> is not modified</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">var</span> sorted = x.slice().sort(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(a, b)</span> {</span> <span class="hljs-keyword">return</span> a - b; });</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">var</span> sorted = x.slice().sort(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a - b; });</pre></div></div>
             
         </li>
         
         
-        <li id="section-81">
+        <li id="section-99">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-81">&#182;</a>
+                <a class="pilcrow" href="#section-99">&#182;</a>
               </div>
               <p>If the length of the list is odd, it’s the central number</p>
 
@@ -1483,11 +1818,11 @@ use <code>.slice()</code> to ensure the original array <code>x</code> is not mod
         </li>
         
         
-        <li id="section-82">
+        <li id="section-100">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-82">&#182;</a>
+                <a class="pilcrow" href="#section-100">&#182;</a>
               </div>
               <p>Otherwise, the median is the average of the two numbers
 at the center of the list</p>
@@ -1504,11 +1839,11 @@ at the center of the list</p>
         </li>
         
         
-        <li id="section-83">
+        <li id="section-101">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-83">&#182;</a>
+                <a class="pilcrow" href="#section-101">&#182;</a>
               </div>
               <h1 id="-mode-http-bit-ly-w5k4yt-"><a href="http://bit.ly/W5K4Yt">mode</a></h1>
 <p>The mode is the number that appears in a list the highest number of times.
@@ -1519,16 +1854,16 @@ algorithm will return the most recently seen mode.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mode</span><span class="hljs-params">(x)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mode</span>(<span class="hljs-params">x</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-84">
+        <li id="section-102">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-84">&#182;</a>
+                <a class="pilcrow" href="#section-102">&#182;</a>
               </div>
               <p>Handle edge cases:
 The median of an empty list is null</p>
@@ -1541,11 +1876,11 @@ The median of an empty list is null</p>
         </li>
         
         
-        <li id="section-85">
+        <li id="section-103">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-85">&#182;</a>
+                <a class="pilcrow" href="#section-103">&#182;</a>
               </div>
               <p>Sorting the array lets us iterate through it below and be sure
 that every time we see a new number it’s new and we’ll never
@@ -1553,16 +1888,16 @@ see the same number twice</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">var</span> sorted = x.slice().sort(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(a, b)</span> {</span> <span class="hljs-keyword">return</span> a - b; });</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">var</span> sorted = x.slice().sort(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a - b; });</pre></div></div>
             
         </li>
         
         
-        <li id="section-86">
+        <li id="section-104">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-86">&#182;</a>
+                <a class="pilcrow" href="#section-104">&#182;</a>
               </div>
               <p>This assumes it is dealing with an array of size &gt; 1, since size
 0 and 1 are handled immediately. Hence it starts at index 1 in the
@@ -1575,11 +1910,11 @@ array.</p>
         </li>
         
         
-        <li id="section-87">
+        <li id="section-105">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-87">&#182;</a>
+                <a class="pilcrow" href="#section-105">&#182;</a>
               </div>
               <p>store the mode as we find new modes</p>
 
@@ -1590,11 +1925,11 @@ array.</p>
         </li>
         
         
-        <li id="section-88">
+        <li id="section-106">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-88">&#182;</a>
+                <a class="pilcrow" href="#section-106">&#182;</a>
               </div>
               <p>store how many times we’ve seen the mode</p>
 
@@ -1605,11 +1940,11 @@ array.</p>
         </li>
         
         
-        <li id="section-89">
+        <li id="section-107">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-89">&#182;</a>
+                <a class="pilcrow" href="#section-107">&#182;</a>
               </div>
               <p>how many times the current candidate for the mode
 has been seen</p>
@@ -1621,11 +1956,11 @@ has been seen</p>
         </li>
         
         
-        <li id="section-90">
+        <li id="section-108">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-90">&#182;</a>
+                <a class="pilcrow" href="#section-108">&#182;</a>
               </div>
               <p>end at sorted.length + 1 to fix the case in which the mode is
 the highest number that occurs in the sequence. the last iteration
@@ -1639,11 +1974,11 @@ in the series</p>
         </li>
         
         
-        <li id="section-91">
+        <li id="section-109">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-91">&#182;</a>
+                <a class="pilcrow" href="#section-109">&#182;</a>
               </div>
               <p>we’re seeing a new number pass by</p>
 
@@ -1654,11 +1989,11 @@ in the series</p>
         </li>
         
         
-        <li id="section-92">
+        <li id="section-110">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-92">&#182;</a>
+                <a class="pilcrow" href="#section-110">&#182;</a>
               </div>
               <p>the last number is the new mode since we saw it more
 often than the old one</p>
@@ -1675,11 +2010,11 @@ often than the old one</p>
         </li>
         
         
-        <li id="section-93">
+        <li id="section-111">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-93">&#182;</a>
+                <a class="pilcrow" href="#section-111">&#182;</a>
               </div>
               <p>if this isn’t a new number, it’s one more occurrence of
 the potential mode</p>
@@ -1694,11 +2029,11 @@ the potential mode</p>
         </li>
         
         
-        <li id="section-94">
+        <li id="section-112">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-94">&#182;</a>
+                <a class="pilcrow" href="#section-112">&#182;</a>
               </div>
               <h1 id="-t-test-http-en-wikipedia-org-wiki-student-s_t-test-"><a href="http://en.wikipedia.org/wiki/Student&#39;s_t-test">t-test</a></h1>
 <p>This is to compute a one-sample t-test, comparing the mean
@@ -1713,16 +2048,16 @@ null hypothesis can or cannot be rejected.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">t_test</span><span class="hljs-params">(sample, x)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">t_test</span>(<span class="hljs-params">sample, x</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-95">
+        <li id="section-113">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-95">&#182;</a>
+                <a class="pilcrow" href="#section-113">&#182;</a>
               </div>
               <p>The mean of the sample</p>
 
@@ -1733,11 +2068,11 @@ null hypothesis can or cannot be rejected.</p>
         </li>
         
         
-        <li id="section-96">
+        <li id="section-114">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-96">&#182;</a>
+                <a class="pilcrow" href="#section-114">&#182;</a>
               </div>
               <p>The standard deviation of the sample</p>
 
@@ -1748,11 +2083,11 @@ null hypothesis can or cannot be rejected.</p>
         </li>
         
         
-        <li id="section-97">
+        <li id="section-115">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-97">&#182;</a>
+                <a class="pilcrow" href="#section-115">&#182;</a>
               </div>
               <p>Square root the length of the sample</p>
 
@@ -1763,11 +2098,11 @@ null hypothesis can or cannot be rejected.</p>
         </li>
         
         
-        <li id="section-98">
+        <li id="section-116">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-98">&#182;</a>
+                <a class="pilcrow" href="#section-116">&#182;</a>
               </div>
               <p>Compute the known value against the sample,
 returning the t value</p>
@@ -1780,11 +2115,11 @@ returning the t value</p>
         </li>
         
         
-        <li id="section-99">
+        <li id="section-117">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-99">&#182;</a>
+                <a class="pilcrow" href="#section-117">&#182;</a>
               </div>
               <h1 id="-2-sample-t-test-http-en-wikipedia-org-wiki-student-s_t-test-"><a href="http://en.wikipedia.org/wiki/Student&#39;s_t-test">2-sample t-test</a></h1>
 <p>This is to compute two sample t-test.
@@ -1805,34 +2140,34 @@ a null hypothesis that the two populations that have been sampled into
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">t_test_two_sample</span><span class="hljs-params">(sample_x, sample_y, difference)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">t_test_two_sample</span>(<span class="hljs-params">sample_x, sample_y, difference</span>) </span>{
         <span class="hljs-keyword">var</span> n = sample_x.length,
             m = sample_y.length;</pre></div></div>
             
         </li>
         
         
-        <li id="section-100">
+        <li id="section-118">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-100">&#182;</a>
+                <a class="pilcrow" href="#section-118">&#182;</a>
               </div>
               <p>If either sample doesn’t actually have any values, we can’t
 compute this at all, so we return <code>null</code>.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (!n || !m) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span> ;</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (!n || !m) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;</pre></div></div>
             
         </li>
         
         
-        <li id="section-101">
+        <li id="section-119">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-101">&#182;</a>
+                <a class="pilcrow" href="#section-119">&#182;</a>
               </div>
               <p>default difference (mu) is zero</p>
 
@@ -1853,11 +2188,11 @@ compute this at all, so we return <code>null</code>.</p>
         </li>
         
         
-        <li id="section-102">
+        <li id="section-120">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-102">&#182;</a>
+                <a class="pilcrow" href="#section-120">&#182;</a>
               </div>
               <h1 id="chunk">chunk</h1>
 <p>Split an array into chunks of a specified size. This function
@@ -1869,16 +2204,16 @@ The <code>sample</code> array can contain any kind of data.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">chunk</span><span class="hljs-params">(sample, chunkSize)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">chunk</span>(<span class="hljs-params">sample, chunkSize</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-103">
+        <li id="section-121">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-103">&#182;</a>
+                <a class="pilcrow" href="#section-121">&#182;</a>
               </div>
               <p>a list of result chunks, as arrays in an array</p>
 
@@ -1889,11 +2224,11 @@ The <code>sample</code> array can contain any kind of data.</p>
         </li>
         
         
-        <li id="section-104">
+        <li id="section-122">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-104">&#182;</a>
+                <a class="pilcrow" href="#section-122">&#182;</a>
               </div>
               <p><code>chunkSize</code> must be zero or higher - otherwise the loop below,
 in which we call <code>start += chunkSize</code>, will loop infinitely.
@@ -1909,11 +2244,11 @@ invalid input.</p>
         </li>
         
         
-        <li id="section-105">
+        <li id="section-123">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-105">&#182;</a>
+                <a class="pilcrow" href="#section-123">&#182;</a>
               </div>
               <p><code>start</code> is the index at which <code>.slice</code> will start selecting
 new array elements</p>
@@ -1925,11 +2260,11 @@ new array elements</p>
         </li>
         
         
-        <li id="section-106">
+        <li id="section-124">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-106">&#182;</a>
+                <a class="pilcrow" href="#section-124">&#182;</a>
               </div>
               <p>for each chunk, slice that part of the array and add it
 to the output. The <code>.slice</code> function does not change
@@ -1945,11 +2280,11 @@ the original array.</p>
         </li>
         
         
-        <li id="section-107">
+        <li id="section-125">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-107">&#182;</a>
+                <a class="pilcrow" href="#section-125">&#182;</a>
               </div>
               <h1 id="shuffle_in_place">shuffle_in_place</h1>
 <p>A <a href="http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle">Fisher-Yates shuffle</a>
@@ -1958,16 +2293,16 @@ array by reference.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">shuffle_in_place</span><span class="hljs-params">(sample, randomSource)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">shuffle_in_place</span>(<span class="hljs-params">sample, randomSource</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-108">
+        <li id="section-126">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-108">&#182;</a>
+                <a class="pilcrow" href="#section-126">&#182;</a>
               </div>
               <p>a custom random number source can be provided if you want to use
 a fixed seed or another random number generator, like
@@ -1980,11 +2315,11 @@ a fixed seed or another random number generator, like
         </li>
         
         
-        <li id="section-109">
+        <li id="section-127">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-109">&#182;</a>
+                <a class="pilcrow" href="#section-127">&#182;</a>
               </div>
               <p>store the current length of the sample to determine
 when no elements remain to shuffle.</p>
@@ -1996,11 +2331,11 @@ when no elements remain to shuffle.</p>
         </li>
         
         
-        <li id="section-110">
+        <li id="section-128">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-110">&#182;</a>
+                <a class="pilcrow" href="#section-128">&#182;</a>
               </div>
               <p>temporary is used to hold an item when it is being
 swapped between indices.</p>
@@ -2012,11 +2347,11 @@ swapped between indices.</p>
         </li>
         
         
-        <li id="section-111">
+        <li id="section-129">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-111">&#182;</a>
+                <a class="pilcrow" href="#section-129">&#182;</a>
               </div>
               <p>The index to swap at each stage.</p>
 
@@ -2027,11 +2362,11 @@ swapped between indices.</p>
         </li>
         
         
-        <li id="section-112">
+        <li id="section-130">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-112">&#182;</a>
+                <a class="pilcrow" href="#section-130">&#182;</a>
               </div>
               <p>While there are still items to shuffle</p>
 
@@ -2042,11 +2377,11 @@ swapped between indices.</p>
         </li>
         
         
-        <li id="section-113">
+        <li id="section-131">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-113">&#182;</a>
+                <a class="pilcrow" href="#section-131">&#182;</a>
               </div>
               <p>chose a random index within the subset of the array
 that is not yet shuffled</p>
@@ -2058,11 +2393,11 @@ that is not yet shuffled</p>
         </li>
         
         
-        <li id="section-114">
+        <li id="section-132">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-114">&#182;</a>
+                <a class="pilcrow" href="#section-132">&#182;</a>
               </div>
               <p>store the value that we’ll move temporarily</p>
 
@@ -2073,11 +2408,11 @@ that is not yet shuffled</p>
         </li>
         
         
-        <li id="section-115">
+        <li id="section-133">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-115">&#182;</a>
+                <a class="pilcrow" href="#section-133">&#182;</a>
               </div>
               <p>swap the value at <code>sample[length]</code> with <code>sample[index]</code></p>
 
@@ -2093,11 +2428,11 @@ that is not yet shuffled</p>
         </li>
         
         
-        <li id="section-116">
+        <li id="section-134">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-116">&#182;</a>
+                <a class="pilcrow" href="#section-134">&#182;</a>
               </div>
               <h1 id="shuffle">shuffle</h1>
 <p>A <a href="http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle">Fisher-Yates shuffle</a>
@@ -2105,16 +2440,16 @@ is a fast way to create a random permutation of a finite set.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">shuffle</span><span class="hljs-params">(sample, randomSource)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">shuffle</span>(<span class="hljs-params">sample, randomSource</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-117">
+        <li id="section-135">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-117">&#182;</a>
+                <a class="pilcrow" href="#section-135">&#182;</a>
               </div>
               <p>slice the original array so that it is not modified</p>
 
@@ -2125,11 +2460,11 @@ is a fast way to create a random permutation of a finite set.</p>
         </li>
         
         
-        <li id="section-118">
+        <li id="section-136">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-118">&#182;</a>
+                <a class="pilcrow" href="#section-136">&#182;</a>
               </div>
               <p>and then shuffle that shallow-copied array, in place</p>
 
@@ -2141,11 +2476,11 @@ is a fast way to create a random permutation of a finite set.</p>
         </li>
         
         
-        <li id="section-119">
+        <li id="section-137">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-119">&#182;</a>
+                <a class="pilcrow" href="#section-137">&#182;</a>
               </div>
               <h1 id="sample">sample</h1>
 <p>Create a <a href="http://en.wikipedia.org/wiki/Simple_random_sample">simple random sample</a>
@@ -2153,16 +2488,16 @@ from a given array of <code>n</code> elements.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sample</span><span class="hljs-params">(array, n, randomSource)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sample</span>(<span class="hljs-params">array, n, randomSource</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-120">
+        <li id="section-138">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-120">&#182;</a>
+                <a class="pilcrow" href="#section-138">&#182;</a>
               </div>
               <p>shuffle the original array using a fisher-yates shuffle</p>
 
@@ -2173,11 +2508,11 @@ from a given array of <code>n</code> elements.</p>
         </li>
         
         
-        <li id="section-121">
+        <li id="section-139">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-121">&#182;</a>
+                <a class="pilcrow" href="#section-139">&#182;</a>
               </div>
               <p>and then return a subset of it - the first <code>n</code> elements.</p>
 
@@ -2189,11 +2524,116 @@ from a given array of <code>n</code> elements.</p>
         </li>
         
         
-        <li id="section-122">
+        <li id="section-140">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-122">&#182;</a>
+                <a class="pilcrow" href="#section-140">&#182;</a>
+              </div>
+              <h1 id="quantile">quantile</h1>
+<p>This is the internal implementation of quantiles: when you know
+that the order is sorted, you don’t need to re-sort it, and the computations
+are much faster.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">quantile_sorted</span>(<span class="hljs-params">sample, p</span>) </span>{
+        <span class="hljs-keyword">var</span> idx = (sample.length) * p;
+        <span class="hljs-keyword">if</span> (p &lt; <span class="hljs-number">0</span> || p &gt; <span class="hljs-number">1</span>) {
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (p === <span class="hljs-number">1</span>) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-141">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-141">&#182;</a>
+              </div>
+              <p>If p is 1, directly return the last element</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">return</span> sample[sample.length - <span class="hljs-number">1</span>];
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (p === <span class="hljs-number">0</span>) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-142">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-142">&#182;</a>
+              </div>
+              <p>If p is 0, directly return the first element</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">return</span> sample[<span class="hljs-number">0</span>];
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (idx % <span class="hljs-number">1</span> !== <span class="hljs-number">0</span>) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-143">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-143">&#182;</a>
+              </div>
+              <p>If p is not integer, return the next element in array</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">return</span> sample[<span class="hljs-built_in">Math</span>.ceil(idx) - <span class="hljs-number">1</span>];
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (sample.length % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-144">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-144">&#182;</a>
+              </div>
+              <p>If the list has even-length, we’ll take the average of this number
+and the next value, if there is one</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">return</span> (sample[idx - <span class="hljs-number">1</span>] + sample[idx]) / <span class="hljs-number">2</span>;
+        } <span class="hljs-keyword">else</span> {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-145">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-145">&#182;</a>
+              </div>
+              <p>Finally, in the simple case of an integer value
+with an odd-length list, return the sample value at the index.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">return</span> sample[idx];
+        }
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-146">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-146">&#182;</a>
               </div>
               <h1 id="quantile">quantile</h1>
 <p>This is a population quantile, since we assume to know the entire
@@ -2210,16 +2650,16 @@ quantiles in input order</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">quantile</span><span class="hljs-params">(sample, p)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">quantile</span>(<span class="hljs-params">sample, p</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-123">
+        <li id="section-147">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-123">&#182;</a>
+                <a class="pilcrow" href="#section-147">&#182;</a>
               </div>
               <p>We can’t derive quantiles from an empty list</p>
 
@@ -2230,29 +2670,29 @@ quantiles in input order</p>
         </li>
         
         
-        <li id="section-124">
+        <li id="section-148">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-124">&#182;</a>
+                <a class="pilcrow" href="#section-148">&#182;</a>
               </div>
               <p>Sort a copy of the array. We’ll need a sorted array to index
 the values in sorted order.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">var</span> sorted = sample.slice().sort(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(a, b)</span> {</span> <span class="hljs-keyword">return</span> a - b; });
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">var</span> sorted = sample.slice().sort(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a - b; });
 
         <span class="hljs-keyword">if</span> (p.length) {</pre></div></div>
             
         </li>
         
         
-        <li id="section-125">
+        <li id="section-149">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-125">&#182;</a>
+                <a class="pilcrow" href="#section-149">&#182;</a>
               </div>
               <p>Initialize the result array</p>
 
@@ -2263,11 +2703,11 @@ the values in sorted order.</p>
         </li>
         
         
-        <li id="section-126">
+        <li id="section-150">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-126">&#182;</a>
+                <a class="pilcrow" href="#section-150">&#182;</a>
               </div>
               <p>For each requested quantile</p>
 
@@ -2285,116 +2725,11 @@ the values in sorted order.</p>
         </li>
         
         
-        <li id="section-127">
+        <li id="section-151">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-127">&#182;</a>
-              </div>
-              <h1 id="quantile">quantile</h1>
-<p>This is the internal implementation of quantiles: when you know
-that the order is sorted, you don’t need to re-sort it, and the computations
-are much faster.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">quantile_sorted</span><span class="hljs-params">(sample, p)</span> {</span>
-        <span class="hljs-keyword">var</span> idx = (sample.length) * p;
-        <span class="hljs-keyword">if</span> (p &lt; <span class="hljs-number">0</span> || p &gt; <span class="hljs-number">1</span>) {
-            <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
-        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (p === <span class="hljs-number">1</span>) {</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-128">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-128">&#182;</a>
-              </div>
-              <p>If p is 1, directly return the last element</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">return</span> sample[sample.length - <span class="hljs-number">1</span>];
-        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (p === <span class="hljs-number">0</span>) {</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-129">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-129">&#182;</a>
-              </div>
-              <p>If p is 0, directly return the first element</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">return</span> sample[<span class="hljs-number">0</span>];
-        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (idx % <span class="hljs-number">1</span> !== <span class="hljs-number">0</span>) {</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-130">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-130">&#182;</a>
-              </div>
-              <p>If p is not integer, return the next element in array</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">return</span> sample[<span class="hljs-built_in">Math</span>.ceil(idx) - <span class="hljs-number">1</span>];
-        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (sample.length % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>) {</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-131">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-131">&#182;</a>
-              </div>
-              <p>If the list has even-length, we’ll take the average of this number
-and the next value, if there is one</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">return</span> (sample[idx - <span class="hljs-number">1</span>] + sample[idx]) / <span class="hljs-number">2</span>;
-        } <span class="hljs-keyword">else</span> {</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-132">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-132">&#182;</a>
-              </div>
-              <p>Finally, in the simple case of an integer value
-with an odd-length list, return the sample value at the index.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">return</span> sample[idx];
-        }
-    }</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-133">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-133">&#182;</a>
+                <a class="pilcrow" href="#section-151">&#182;</a>
               </div>
               <h1 id="-interquartile-range-http-en-wikipedia-org-wiki-interquartile_range-"><a href="http://en.wikipedia.org/wiki/Interquartile_range">Interquartile range</a></h1>
 <p>A measure of statistical dispersion, or how scattered, spread, or
@@ -2403,16 +2738,16 @@ the third quartile and first quartile.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">iqr</span><span class="hljs-params">(sample)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">iqr</span>(<span class="hljs-params">sample</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-134">
+        <li id="section-152">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-134">&#182;</a>
+                <a class="pilcrow" href="#section-152">&#182;</a>
               </div>
               <p>We can’t derive quantiles from an empty list</p>
 
@@ -2423,11 +2758,11 @@ the third quartile and first quartile.</p>
         </li>
         
         
-        <li id="section-135">
+        <li id="section-153">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-135">&#182;</a>
+                <a class="pilcrow" href="#section-153">&#182;</a>
               </div>
               <p>Interquartile range is the span between the upper quartile,
 at <code>0.75</code>, and lower quartile, <code>0.25</code></p>
@@ -2440,11 +2775,11 @@ at <code>0.75</code>, and lower quartile, <code>0.25</code></p>
         </li>
         
         
-        <li id="section-136">
+        <li id="section-154">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-136">&#182;</a>
+                <a class="pilcrow" href="#section-154">&#182;</a>
               </div>
               <h1 id="-median-absolute-deviation-http-en-wikipedia-org-wiki-median_absolute_deviation-"><a href="http://en.wikipedia.org/wiki/Median_absolute_deviation">Median Absolute Deviation</a></h1>
 <p>The Median Absolute Deviation (MAD) is a robust measure of statistical
@@ -2452,16 +2787,16 @@ dispersion. It is more resilient to outliers than the standard deviation.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mad</span><span class="hljs-params">(x)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mad</span>(<span class="hljs-params">x</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-137">
+        <li id="section-155">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-137">&#182;</a>
+                <a class="pilcrow" href="#section-155">&#182;</a>
               </div>
               <p>The mad of nothing is null</p>
 
@@ -2475,11 +2810,11 @@ dispersion. It is more resilient to outliers than the standard deviation.</p>
         </li>
         
         
-        <li id="section-138">
+        <li id="section-156">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-138">&#182;</a>
+                <a class="pilcrow" href="#section-156">&#182;</a>
               </div>
               <p>Make a list of absolute deviations from the median</p>
 
@@ -2492,11 +2827,11 @@ dispersion. It is more resilient to outliers than the standard deviation.</p>
         </li>
         
         
-        <li id="section-139">
+        <li id="section-157">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-139">&#182;</a>
+                <a class="pilcrow" href="#section-157">&#182;</a>
               </div>
               <p>Find the median value of that list</p>
 
@@ -2508,11 +2843,11 @@ dispersion. It is more resilient to outliers than the standard deviation.</p>
         </li>
         
         
-        <li id="section-140">
+        <li id="section-158">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-140">&#182;</a>
+                <a class="pilcrow" href="#section-158">&#182;</a>
               </div>
               <h2 id="compute-matrices-for-jenks">Compute Matrices for Jenks</h2>
 <p>Compute the matrices required for Jenks breaks. These matrices
@@ -2520,16 +2855,16 @@ can be used for any classing of data with <code>classes &lt;= n_classes</code></
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">jenksMatrices</span><span class="hljs-params">(data, n_classes)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">jenksMatrices</span>(<span class="hljs-params">data, n_classes</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-141">
+        <li id="section-159">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-141">&#182;</a>
+                <a class="pilcrow" href="#section-159">&#182;</a>
               </div>
               <p>in the original implementation, these matrices are referred to
 as <code>LC</code> and <code>OP</code></p>
@@ -2546,11 +2881,11 @@ as <code>LC</code> and <code>OP</code></p>
         </li>
         
         
-        <li id="section-142">
+        <li id="section-160">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-142">&#182;</a>
+                <a class="pilcrow" href="#section-160">&#182;</a>
               </div>
               <p>loop counters</p>
 
@@ -2561,11 +2896,11 @@ as <code>LC</code> and <code>OP</code></p>
         </li>
         
         
-        <li id="section-143">
+        <li id="section-161">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-143">&#182;</a>
+                <a class="pilcrow" href="#section-161">&#182;</a>
               </div>
               <p>the variance, as computed at each step in the calculation</p>
 
@@ -2576,11 +2911,11 @@ as <code>LC</code> and <code>OP</code></p>
         </li>
         
         
-        <li id="section-144">
+        <li id="section-162">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-144">&#182;</a>
+                <a class="pilcrow" href="#section-162">&#182;</a>
               </div>
               <p>Initialize and fill each matrix with zeroes</p>
 
@@ -2592,11 +2927,11 @@ as <code>LC</code> and <code>OP</code></p>
         </li>
         
         
-        <li id="section-145">
+        <li id="section-163">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-145">&#182;</a>
+                <a class="pilcrow" href="#section-163">&#182;</a>
               </div>
               <p>despite these arrays having the same values, we need
 to keep them separate so that changing one does not change
@@ -2619,11 +2954,11 @@ the other</p>
         </li>
         
         
-        <li id="section-146">
+        <li id="section-164">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-146">&#182;</a>
+                <a class="pilcrow" href="#section-164">&#182;</a>
               </div>
               <p>in the original implementation, 9999999 is used but
 since Javascript has <code>Infinity</code>, we use that.</p>
@@ -2640,11 +2975,11 @@ since Javascript has <code>Infinity</code>, we use that.</p>
         </li>
         
         
-        <li id="section-147">
+        <li id="section-165">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-147">&#182;</a>
+                <a class="pilcrow" href="#section-165">&#182;</a>
               </div>
               <p><code>SZ</code> originally. this is the sum of the values seen thus
 far when calculating variance.</p>
@@ -2656,11 +2991,11 @@ far when calculating variance.</p>
         </li>
         
         
-        <li id="section-148">
+        <li id="section-166">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-148">&#182;</a>
+                <a class="pilcrow" href="#section-166">&#182;</a>
               </div>
               <p><code>ZSQ</code> originally. the sum of squares of values seen
 thus far</p>
@@ -2672,11 +3007,11 @@ thus far</p>
         </li>
         
         
-        <li id="section-149">
+        <li id="section-167">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-149">&#182;</a>
+                <a class="pilcrow" href="#section-167">&#182;</a>
               </div>
               <p><code>WT</code> originally. This is the number of</p>
 
@@ -2687,11 +3022,11 @@ thus far</p>
         </li>
         
         
-        <li id="section-150">
+        <li id="section-168">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-150">&#182;</a>
+                <a class="pilcrow" href="#section-168">&#182;</a>
               </div>
               <p><code>IV</code> originally</p>
 
@@ -2702,11 +3037,11 @@ thus far</p>
         </li>
         
         
-        <li id="section-151">
+        <li id="section-169">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-151">&#182;</a>
+                <a class="pilcrow" href="#section-169">&#182;</a>
               </div>
               <p>in several instances, you could say <code>Math.pow(x, 2)</code>
 instead of <code>x * x</code>, but this is slower in some browsers
@@ -2719,11 +3054,11 @@ introduces an unnecessary concept.</p>
         </li>
         
         
-        <li id="section-152">
+        <li id="section-170">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-152">&#182;</a>
+                <a class="pilcrow" href="#section-170">&#182;</a>
               </div>
               <p><code>III</code> originally</p>
 
@@ -2735,11 +3070,11 @@ introduces an unnecessary concept.</p>
         </li>
         
         
-        <li id="section-153">
+        <li id="section-171">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-153">&#182;</a>
+                <a class="pilcrow" href="#section-171">&#182;</a>
               </div>
               <p>here we’re estimating variance for each potential classing
 of the data, for each potential number of classes. <code>w</code>
@@ -2752,11 +3087,11 @@ is the number of data points considered so far.</p>
         </li>
         
         
-        <li id="section-154">
+        <li id="section-172">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-154">&#182;</a>
+                <a class="pilcrow" href="#section-172">&#182;</a>
               </div>
               <p>increase the current sum and sum-of-squares</p>
 
@@ -2768,11 +3103,11 @@ is the number of data points considered so far.</p>
         </li>
         
         
-        <li id="section-155">
+        <li id="section-173">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-155">&#182;</a>
+                <a class="pilcrow" href="#section-173">&#182;</a>
               </div>
               <p>the variance at this point in the sequence is the difference
 between the sum of squares and the total x 2, over the number
@@ -2790,11 +3125,11 @@ of samples.</p>
         </li>
         
         
-        <li id="section-156">
+        <li id="section-174">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-156">&#182;</a>
+                <a class="pilcrow" href="#section-174">&#182;</a>
               </div>
               <p>if adding this element to an existing class
 will increase its variance beyond the limit, break
@@ -2820,11 +3155,11 @@ at this point.</p>
         </li>
         
         
-        <li id="section-157">
+        <li id="section-175">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-157">&#182;</a>
+                <a class="pilcrow" href="#section-175">&#182;</a>
               </div>
               <p>return the two matrices. for just providing breaks, only
 <code>lower_class_limits</code> is needed, but variances can be useful to
@@ -2841,11 +3176,11 @@ evaluate goodness of fit.</p>
         </li>
         
         
-        <li id="section-158">
+        <li id="section-176">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-158">&#182;</a>
+                <a class="pilcrow" href="#section-176">&#182;</a>
               </div>
               <h2 id="pull-breaks-values-for-jenks">Pull Breaks Values for Jenks</h2>
 <p>the second part of the jenks recipe: take the calculated matrices
@@ -2853,45 +3188,44 @@ and derive an array of n breaks.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">jenksBreaks</span><span class="hljs-params">(data, lower_class_limits, n_classes)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">jenksBreaks</span>(<span class="hljs-params">data, lower_class_limits, n_classes</span>) </span>{
 
-        <span class="hljs-keyword">var</span> k = data.length - <span class="hljs-number">1</span>,
+        <span class="hljs-keyword">var</span> k = data.length,
             kclass = [],
             countNum = n_classes;</pre></div></div>
             
         </li>
         
         
-        <li id="section-159">
+        <li id="section-177">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-159">&#182;</a>
+                <a class="pilcrow" href="#section-177">&#182;</a>
               </div>
-              <p>the calculation of classes will never include the upper and
-lower bounds, so we need to explicitly set them</p>
+              <p>the calculation of classes will never include the upper
+bound, so we need to explicitly set it</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        kclass[n_classes] = data[data.length - <span class="hljs-number">1</span>];
-        kclass[<span class="hljs-number">0</span>] = data[<span class="hljs-number">0</span>];</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        kclass[n_classes] = data[data.length - <span class="hljs-number">1</span>];</pre></div></div>
             
         </li>
         
         
-        <li id="section-160">
+        <li id="section-178">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-160">&#182;</a>
+                <a class="pilcrow" href="#section-178">&#182;</a>
               </div>
               <p>the lower_class_limits matrix is used as indices into itself
 here: the <code>k</code> variable is reused in each iteration.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">while</span> (countNum &gt; <span class="hljs-number">1</span>) {
-            kclass[countNum - <span class="hljs-number">1</span>] = data[lower_class_limits[k][countNum] - <span class="hljs-number">2</span>];
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">while</span> (countNum &gt; <span class="hljs-number">0</span>) {
+            kclass[countNum - <span class="hljs-number">1</span>] = data[lower_class_limits[k][countNum] - <span class="hljs-number">1</span>];
             k = lower_class_limits[k][countNum] - <span class="hljs-number">1</span>;
             countNum--;
         }
@@ -2902,11 +3236,11 @@ here: the <code>k</code> variable is reused in each iteration.</p>
         </li>
         
         
-        <li id="section-161">
+        <li id="section-179">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-161">&#182;</a>
+                <a class="pilcrow" href="#section-179">&#182;</a>
               </div>
               <h1 id="-jenks-natural-breaks-optimization-http-en-wikipedia-org-wiki-jenks_natural_breaks_optimization-"><a href="http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization">Jenks natural breaks optimization</a></h1>
 <p>Implementations: <a href="http://danieljlewis.org/files/2010/06/Jenks.pdf">1</a> (python),
@@ -2916,34 +3250,34 @@ here: the <code>k</code> variable is reused in each iteration.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">jenks</span><span class="hljs-params">(data, n_classes)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">jenks</span>(<span class="hljs-params">data, n_classes</span>) </span>{
 
         <span class="hljs-keyword">if</span> (n_classes &gt; data.length) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;</pre></div></div>
             
         </li>
         
         
-        <li id="section-162">
+        <li id="section-180">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-162">&#182;</a>
+                <a class="pilcrow" href="#section-180">&#182;</a>
               </div>
               <p>sort data in numerical order, since this is expected
 by the matrices function</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        data = data.slice().sort(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(a, b)</span> {</span> <span class="hljs-keyword">return</span> a - b; });</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        data = data.slice().sort(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>{ <span class="hljs-keyword">return</span> a - b; });</pre></div></div>
             
         </li>
         
         
-        <li id="section-163">
+        <li id="section-181">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-163">&#182;</a>
+                <a class="pilcrow" href="#section-181">&#182;</a>
               </div>
               <p>get our basic matrices</p>
 
@@ -2954,11 +3288,11 @@ by the matrices function</p>
         </li>
         
         
-        <li id="section-164">
+        <li id="section-182">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-164">&#182;</a>
+                <a class="pilcrow" href="#section-182">&#182;</a>
               </div>
               <p>we only need lower class limits here</p>
 
@@ -2969,11 +3303,11 @@ by the matrices function</p>
         </li>
         
         
-        <li id="section-165">
+        <li id="section-183">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-165">&#182;</a>
+                <a class="pilcrow" href="#section-183">&#182;</a>
               </div>
               <p>extract n_classes out of the computed matrices</p>
 
@@ -2986,11 +3320,11 @@ by the matrices function</p>
         </li>
         
         
-        <li id="section-166">
+        <li id="section-184">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-166">&#182;</a>
+                <a class="pilcrow" href="#section-184">&#182;</a>
               </div>
               <h1 id="-skewness-http-en-wikipedia-org-wiki-skewness-"><a href="http://en.wikipedia.org/wiki/Skewness">Skewness</a></h1>
 <p>A measure of the extent to which a probability distribution of a
@@ -3003,16 +3337,16 @@ statistical packages including Minitab, SAS and SPSS.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sample_skewness</span><span class="hljs-params">(x)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sample_skewness</span>(<span class="hljs-params">x</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-167">
+        <li id="section-185">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-167">&#182;</a>
+                <a class="pilcrow" href="#section-185">&#182;</a>
               </div>
               <p>The skewness of less than three arguments is null</p>
 
@@ -3030,11 +3364,11 @@ statistical packages including Minitab, SAS and SPSS.</p>
         </li>
         
         
-        <li id="section-168">
+        <li id="section-186">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-168">&#182;</a>
+                <a class="pilcrow" href="#section-186">&#182;</a>
               </div>
               <h1 id="standard-normal-table">Standard Normal Table</h1>
 <p>A standard normal table, also called the unit normal table or Z table,
@@ -3118,30 +3452,142 @@ The table used is the cumulative, and not cumulative from 0 to mean
         </li>
         
         
-        <li id="section-169">
+        <li id="section-187">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-169">&#182;</a>
+                <a class="pilcrow" href="#section-187">&#182;</a>
+              </div>
+              <h1 id="-gaussian-error-function-http-en-wikipedia-org-wiki-error_function-"><a href="http://en.wikipedia.org/wiki/Error_function">Gaussian error function</a></h1>
+<p>The error_function(x/(sd * Math.sqrt(2))) is the probability that a value in a
+normal distribution with standard deviation sd is within x of the mean.</p>
+<p>This function returns a numerical approximation to the exact value.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">error_function</span>(<span class="hljs-params">x</span>) </span>{
+        <span class="hljs-keyword">var</span> t = <span class="hljs-number">1</span> / (<span class="hljs-number">1</span> + <span class="hljs-number">0.5</span> * <span class="hljs-built_in">Math</span>.abs(x));
+        <span class="hljs-keyword">var</span> tau = t * <span class="hljs-built_in">Math</span>.exp(-<span class="hljs-built_in">Math</span>.pow(x, <span class="hljs-number">2</span>) -
+            <span class="hljs-number">1.26551223</span> +
+            <span class="hljs-number">1.00002368</span> * t +
+            <span class="hljs-number">0.37409196</span> * <span class="hljs-built_in">Math</span>.pow(t, <span class="hljs-number">2</span>) +
+            <span class="hljs-number">0.09678418</span> * <span class="hljs-built_in">Math</span>.pow(t, <span class="hljs-number">3</span>) -
+            <span class="hljs-number">0.18628806</span> * <span class="hljs-built_in">Math</span>.pow(t, <span class="hljs-number">4</span>) +
+            <span class="hljs-number">0.27886807</span> * <span class="hljs-built_in">Math</span>.pow(t, <span class="hljs-number">5</span>) -
+            <span class="hljs-number">1.13520398</span> * <span class="hljs-built_in">Math</span>.pow(t, <span class="hljs-number">6</span>) +
+            <span class="hljs-number">1.48851587</span> * <span class="hljs-built_in">Math</span>.pow(t, <span class="hljs-number">7</span>) -
+            <span class="hljs-number">0.82215223</span> * <span class="hljs-built_in">Math</span>.pow(t, <span class="hljs-number">8</span>) +
+            <span class="hljs-number">0.17087277</span> * <span class="hljs-built_in">Math</span>.pow(t, <span class="hljs-number">9</span>));
+        <span class="hljs-keyword">if</span> (x &gt;= <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> - tau;
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> tau - <span class="hljs-number">1</span>;
+        }
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-188">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-188">&#182;</a>
+              </div>
+              <p>We use <code>ε</code>, epsilon, as a stopping criterion when we want to iterate
+until we’re “close enough”.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> epsilon = <span class="hljs-number">0.0001</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-189">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-189">&#182;</a>
+              </div>
+              <h1 id="inverse-gaussian-error-function-http-en-wikipedia-org-wiki-error_function-">Inverse <a href="http://en.wikipedia.org/wiki/Error_function">Gaussian error function</a></h1>
+<p>Returns a numerical approximation to the value that would have caused
+error_function() to return x.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">inverse_error_function</span>(<span class="hljs-params">x</span>) </span>{
+        <span class="hljs-keyword">var</span> a = (<span class="hljs-number">8</span> * (<span class="hljs-built_in">Math</span>.PI - <span class="hljs-number">3</span>)) / (<span class="hljs-number">3</span> * <span class="hljs-built_in">Math</span>.PI * (<span class="hljs-number">4</span> - <span class="hljs-built_in">Math</span>.PI));
+
+        <span class="hljs-keyword">var</span> inv = <span class="hljs-built_in">Math</span>.sqrt(<span class="hljs-built_in">Math</span>.sqrt(
+                <span class="hljs-built_in">Math</span>.pow(<span class="hljs-number">2</span> / (<span class="hljs-built_in">Math</span>.PI * a) + <span class="hljs-built_in">Math</span>.log(<span class="hljs-number">1</span> - x * x) / <span class="hljs-number">2</span>, <span class="hljs-number">2</span>) -
+                <span class="hljs-built_in">Math</span>.log(<span class="hljs-number">1</span> - x * x) / a) -
+                (<span class="hljs-number">2</span> / (<span class="hljs-built_in">Math</span>.PI * a) + <span class="hljs-built_in">Math</span>.log(<span class="hljs-number">1</span> - x * x) / <span class="hljs-number">2</span>));
+
+        <span class="hljs-keyword">if</span> (x &gt;= <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">return</span> inv;
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> -inv;
+        }
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-190">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-190">&#182;</a>
+              </div>
+              <h1 id="-probit-http-en-wikipedia-org-wiki-probit-"><a href="http://en.wikipedia.org/wiki/Probit">Probit</a></h1>
+<p>This is the inverse of cumulative_std_normal_probability(),
+and is also known as the normal quantile function.</p>
+<p>It returns the number of standard deviations from the mean
+where the p’th quantile of values can be found in a normal distribution.
+So, for example, probit(0.5 + 0.6827/2) ≈ 1 because 68.27% of values are
+normally found within 1 standard deviation above or below the mean.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">probit</span>(<span class="hljs-params">p</span>) </span>{
+        <span class="hljs-keyword">if</span> (p === <span class="hljs-number">0</span>) {
+            p = epsilon;
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (p &gt;= <span class="hljs-number">1</span>) {
+            p = <span class="hljs-number">1</span> - epsilon;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.sqrt(<span class="hljs-number">2</span>) * inverse_error_function(<span class="hljs-number">2</span> * p - <span class="hljs-number">1</span>);
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-191">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-191">&#182;</a>
               </div>
               <h1 id="-cumulative-standard-normal-probability-http-en-wikipedia-org-wiki-standard_normal_table-"><a href="http://en.wikipedia.org/wiki/Standard_normal_table">Cumulative Standard Normal Probability</a></h1>
 <p>Since probability tables cannot be
 printed for every normal distribution, as there are an infinite variety
 of normal distributions, it is common practice to convert a normal to a
-standard normal and then use the standard normal table to find probabilities</p>
+standard normal and then use the standard normal table to find probabilities.</p>
+<p>You can use .5 + .5 * error_function(x / Math.sqrt(2)) to calculate the probability
+instead of looking it up in a table.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">cumulative_std_normal_probability</span><span class="hljs-params">(z)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">cumulative_std_normal_probability</span>(<span class="hljs-params">z</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-170">
+        <li id="section-192">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-170">&#182;</a>
+                <a class="pilcrow" href="#section-192">&#182;</a>
               </div>
               <p>Calculate the position of this value.</p>
 
@@ -3152,31 +3598,29 @@ standard normal and then use the standard normal table to find probabilities</p>
         </li>
         
         
-        <li id="section-171">
+        <li id="section-193">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-171">&#182;</a>
+                <a class="pilcrow" href="#section-193">&#182;</a>
               </div>
               <p>Each row begins with a different
-significant digit: 0.5, 0.6, 0.7, and so on. So the row is simply
-this value’s significant digit: 0.567 will be in row 0, so row=0,
-0.643 will be in row 1, so row=10.</p>
+significant digit: 0.5, 0.6, 0.7, and so on. Each value in the table
+corresponds to a range of 0.01 in the input values, so the value is
+multiplied by 100.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>            row = <span class="hljs-built_in">Math</span>.floor(absZ * <span class="hljs-number">10</span>),
-            column = <span class="hljs-number">10</span> * (<span class="hljs-built_in">Math</span>.floor(absZ * <span class="hljs-number">100</span>) / <span class="hljs-number">10</span> - <span class="hljs-built_in">Math</span>.floor(absZ * <span class="hljs-number">100</span> / <span class="hljs-number">10</span>)),
-            index = <span class="hljs-built_in">Math</span>.min((row * <span class="hljs-number">10</span>) + column, standard_normal_table.length - <span class="hljs-number">1</span>);</pre></div></div>
+            <div class="content"><div class='highlight'><pre>            index = <span class="hljs-built_in">Math</span>.min(<span class="hljs-built_in">Math</span>.round(absZ * <span class="hljs-number">100</span>), standard_normal_table.length - <span class="hljs-number">1</span>);</pre></div></div>
             
         </li>
         
         
-        <li id="section-172">
+        <li id="section-194">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-172">&#182;</a>
+                <a class="pilcrow" href="#section-194">&#182;</a>
               </div>
               <p>The index we calculate must be in the table as a positive value,
 but we still pay attention to whether the input is positive
@@ -3191,11 +3635,11 @@ or negative, and flip the output value as a last step.</p>
         </li>
         
         
-        <li id="section-173">
+        <li id="section-195">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-173">&#182;</a>
+                <a class="pilcrow" href="#section-195">&#182;</a>
               </div>
               <p>due to floating-point arithmetic, values in the table with
 4 significant figures can nevertheless end up as repeating
@@ -3210,11 +3654,11 @@ fractions when they’re computed here.</p>
         </li>
         
         
-        <li id="section-174">
+        <li id="section-196">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-174">&#182;</a>
+                <a class="pilcrow" href="#section-196">&#182;</a>
               </div>
               <h1 id="-z-score-or-standard-score-http-en-wikipedia-org-wiki-standard_score-"><a href="http://en.wikipedia.org/wiki/Standard_score">Z-Score, or Standard Score</a></h1>
 <p>The standard score is the number of standard deviations an observation
@@ -3231,34 +3675,18 @@ Student’s t-statistic.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">z_score</span><span class="hljs-params">(x, mean, standard_deviation)</span> {</span>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">z_score</span>(<span class="hljs-params">x, mean, standard_deviation</span>) </span>{
         <span class="hljs-keyword">return</span> (x - mean) / standard_deviation;
     }</pre></div></div>
             
         </li>
         
         
-        <li id="section-175">
+        <li id="section-197">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-175">&#182;</a>
-              </div>
-              <p>We use <code>ε</code>, epsilon, as a stopping criterion when we want to iterate
-until we’re “close enough”.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> epsilon = <span class="hljs-number">0.0001</span>;</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-176">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-176">&#182;</a>
+                <a class="pilcrow" href="#section-197">&#182;</a>
               </div>
               <h1 id="-factorial-https-en-wikipedia-org-wiki-factorial-"><a href="https://en.wikipedia.org/wiki/Factorial">Factorial</a></h1>
 <p>A factorial, usually written n!, is the product of all positive
@@ -3268,16 +3696,16 @@ and simpler.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">factorial</span><span class="hljs-params">(n)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">factorial</span>(<span class="hljs-params">n</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-177">
+        <li id="section-198">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-177">&#182;</a>
+                <a class="pilcrow" href="#section-198">&#182;</a>
               </div>
               <p>factorial is mathematically undefined for negative numbers</p>
 
@@ -3288,11 +3716,11 @@ and simpler.</p>
         </li>
         
         
-        <li id="section-178">
+        <li id="section-199">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-178">&#182;</a>
+                <a class="pilcrow" href="#section-199">&#182;</a>
               </div>
               <p>typically you’ll expand the factorial function going down, like
 5! = 5 <em> 4 </em> 3 <em> 2 </em> 1. This is going in the opposite direction,
@@ -3307,11 +3735,11 @@ multiplied by 1 is itself, the loop only needs to start at 2.</p>
         </li>
         
         
-        <li id="section-179">
+        <li id="section-200">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-179">&#182;</a>
+                <a class="pilcrow" href="#section-200">&#182;</a>
               </div>
               <p>for each number up to and including the number <code>n</code>, multiply
 the accumulator my that number.</p>
@@ -3326,53 +3754,11 @@ the accumulator my that number.</p>
         </li>
         
         
-        <li id="section-180">
+        <li id="section-201">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-180">&#182;</a>
-              </div>
-              <h1 id="bernoulli-distribution">Bernoulli Distribution</h1>
-<p>The <a href="http://en.wikipedia.org/wiki/Bernoulli_distribution">Bernoulli distribution</a>
-is the probability discrete
-distribution of a random variable which takes value 1 with success
-probability <code>p</code> and value 0 with failure
-probability <code>q</code> = 1 - <code>p</code>. It can be used, for example, to represent the
-toss of a coin, where “1” is defined to mean “heads” and “0” is defined
-to mean “tails” (or vice versa). It is
-a special case of a Binomial Distribution
-where <code>n</code> = 1.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bernoulli_distribution</span><span class="hljs-params">(p)</span> {</span></pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-181">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-181">&#182;</a>
-              </div>
-              <p>Check that <code>p</code> is a valid probability (0 ≤ p ≤ 1)</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (p &lt; <span class="hljs-number">0</span> || p &gt; <span class="hljs-number">1</span> ) { <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>; }
-
-        <span class="hljs-keyword">return</span> binomial_distribution(<span class="hljs-number">1</span>, p);
-    }</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-182">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-182">&#182;</a>
+                <a class="pilcrow" href="#section-201">&#182;</a>
               </div>
               <h1 id="binomial-distribution">Binomial Distribution</h1>
 <p>The <a href="http://en.wikipedia.org/wiki/Binomial_distribution">Binomial Distribution</a> is the discrete probability
@@ -3382,16 +3768,16 @@ Bernoulli trial; when trials = 1, the Binomial Distribution is a Bernoulli Distr
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">binomial_distribution</span><span class="hljs-params">(trials, probability)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">binomial_distribution</span>(<span class="hljs-params">trials, probability</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-183">
+        <li id="section-202">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-183">&#182;</a>
+                <a class="pilcrow" href="#section-202">&#182;</a>
               </div>
               <p>Check that <code>p</code> is a valid probability (0 ≤ p ≤ 1),
 that <code>n</code> is an integer, strictly positive.</p>
@@ -3406,17 +3792,17 @@ that <code>n</code> is an integer, strictly positive.</p>
         </li>
         
         
-        <li id="section-184">
+        <li id="section-203">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-184">&#182;</a>
+                <a class="pilcrow" href="#section-203">&#182;</a>
               </div>
               <p>a <a href="https://en.wikipedia.org/wiki/Probability_mass_function">probability mass function</a></p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">probability_mass</span><span class="hljs-params">(x, trials, probability)</span> {</span>
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">probability_mass</span>(<span class="hljs-params">x, trials, probability</span>) </span>{
             <span class="hljs-keyword">return</span> factorial(trials) /
                 (factorial(x) * factorial(trials - x)) *
                 (<span class="hljs-built_in">Math</span>.pow(probability, x) * <span class="hljs-built_in">Math</span>.pow(<span class="hljs-number">1</span> - probability, trials - x));
@@ -3425,11 +3811,11 @@ that <code>n</code> is an integer, strictly positive.</p>
         </li>
         
         
-        <li id="section-185">
+        <li id="section-204">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-185">&#182;</a>
+                <a class="pilcrow" href="#section-204">&#182;</a>
               </div>
               <p>We initialize <code>x</code>, the random variable, and <code>accumulator</code>, an accumulator
 for the cumulative distribution function to 0. <code>distribution_functions</code>
@@ -3447,11 +3833,11 @@ within <code>epsilon</code> of 1.0.</p>
         </li>
         
         
-        <li id="section-186">
+        <li id="section-205">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-186">&#182;</a>
+                <a class="pilcrow" href="#section-205">&#182;</a>
               </div>
               <p>This algorithm iterates through each potential outcome,
 until the <code>cumulative_probability</code> is very close to 1, at
@@ -3467,11 +3853,11 @@ which point we’ve defined the vast majority of outcomes</p>
         </li>
         
         
-        <li id="section-187">
+        <li id="section-206">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-187">&#182;</a>
+                <a class="pilcrow" href="#section-206">&#182;</a>
               </div>
               <p>when the cumulative_probability is nearly 1, we’ve calculated
 the useful range of this distribution</p>
@@ -3486,11 +3872,53 @@ the useful range of this distribution</p>
         </li>
         
         
-        <li id="section-188">
+        <li id="section-207">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-188">&#182;</a>
+                <a class="pilcrow" href="#section-207">&#182;</a>
+              </div>
+              <h1 id="bernoulli-distribution">Bernoulli Distribution</h1>
+<p>The <a href="http://en.wikipedia.org/wiki/Bernoulli_distribution">Bernoulli distribution</a>
+is the probability discrete
+distribution of a random variable which takes value 1 with success
+probability <code>p</code> and value 0 with failure
+probability <code>q</code> = 1 - <code>p</code>. It can be used, for example, to represent the
+toss of a coin, where “1” is defined to mean “heads” and “0” is defined
+to mean “tails” (or vice versa). It is
+a special case of a Binomial Distribution
+where <code>n</code> = 1.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bernoulli_distribution</span>(<span class="hljs-params">p</span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-208">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-208">&#182;</a>
+              </div>
+              <p>Check that <code>p</code> is a valid probability (0 ≤ p ≤ 1)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (p &lt; <span class="hljs-number">0</span> || p &gt; <span class="hljs-number">1</span> ) { <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>; }
+
+        <span class="hljs-keyword">return</span> binomial_distribution(<span class="hljs-number">1</span>, p);
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-209">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-209">&#182;</a>
               </div>
               <h1 id="poisson-distribution">Poisson Distribution</h1>
 <p>The <a href="http://en.wikipedia.org/wiki/Poisson_distribution">Poisson Distribution</a>
@@ -3503,16 +3931,16 @@ mean arrival or occurrence rate, <code>λ</code>.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">poisson_distribution</span><span class="hljs-params">(lambda)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">poisson_distribution</span>(<span class="hljs-params">lambda</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-189">
+        <li id="section-210">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-189">&#182;</a>
+                <a class="pilcrow" href="#section-210">&#182;</a>
               </div>
               <p>Check that lambda is strictly positive</p>
 
@@ -3523,11 +3951,11 @@ mean arrival or occurrence rate, <code>λ</code>.</p>
         </li>
         
         
-        <li id="section-190">
+        <li id="section-211">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-190">&#182;</a>
+                <a class="pilcrow" href="#section-211">&#182;</a>
               </div>
               <p>our current place in the distribution</p>
 
@@ -3538,11 +3966,11 @@ mean arrival or occurrence rate, <code>λ</code>.</p>
         </li>
         
         
-        <li id="section-191">
+        <li id="section-212">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-191">&#182;</a>
+                <a class="pilcrow" href="#section-212">&#182;</a>
               </div>
               <p>and we keep track of the current cumulative probability, in
 order to know when to stop calculating chances.</p>
@@ -3554,11 +3982,11 @@ order to know when to stop calculating chances.</p>
         </li>
         
         
-        <li id="section-192">
+        <li id="section-213">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-192">&#182;</a>
+                <a class="pilcrow" href="#section-213">&#182;</a>
               </div>
               <p>the calculated cells to be returned</p>
 
@@ -3569,17 +3997,17 @@ order to know when to stop calculating chances.</p>
         </li>
         
         
-        <li id="section-193">
+        <li id="section-214">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-193">&#182;</a>
+                <a class="pilcrow" href="#section-214">&#182;</a>
               </div>
               <p>a <a href="https://en.wikipedia.org/wiki/Probability_mass_function">probability mass function</a></p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">probability_mass</span><span class="hljs-params">(x, lambda)</span> {</span>
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">probability_mass</span>(<span class="hljs-params">x, lambda</span>) </span>{
             <span class="hljs-keyword">return</span> (<span class="hljs-built_in">Math</span>.pow(<span class="hljs-built_in">Math</span>.E, -lambda) * <span class="hljs-built_in">Math</span>.pow(lambda, x)) /
                 factorial(x);
         }</pre></div></div>
@@ -3587,11 +4015,11 @@ order to know when to stop calculating chances.</p>
         </li>
         
         
-        <li id="section-194">
+        <li id="section-215">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-194">&#182;</a>
+                <a class="pilcrow" href="#section-215">&#182;</a>
               </div>
               <p>This algorithm iterates through each potential outcome,
 until the <code>cumulative_probability</code> is very close to 1, at
@@ -3607,11 +4035,11 @@ which point we’ve defined the vast majority of outcomes</p>
         </li>
         
         
-        <li id="section-195">
+        <li id="section-216">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-195">&#182;</a>
+                <a class="pilcrow" href="#section-216">&#182;</a>
               </div>
               <p>when the cumulative_probability is nearly 1, we’ve calculated
 the useful range of this distribution</p>
@@ -3626,11 +4054,11 @@ the useful range of this distribution</p>
         </li>
         
         
-        <li id="section-196">
+        <li id="section-217">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-196">&#182;</a>
+                <a class="pilcrow" href="#section-217">&#182;</a>
               </div>
               <h1 id="percentage-points-of-the-2-chi-squared-distribution">Percentage Points of the χ2 (Chi-Squared) Distribution</h1>
 <p>The <a href="http://en.wikipedia.org/wiki/Chi-squared_distribution">χ2 (Chi-Squared) Distribution</a> is used in the common
@@ -3685,11 +4113,11 @@ Engineering and Management Science”, Wiley (1980).</p>
         </li>
         
         
-        <li id="section-197">
+        <li id="section-218">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-197">&#182;</a>
+                <a class="pilcrow" href="#section-218">&#182;</a>
               </div>
               <h1 id="-2-chi-squared-goodness-of-fit-test">χ2 (Chi-Squared) Goodness-of-Fit Test</h1>
 <p>The <a href="http://en.wikipedia.org/wiki/Goodness_of_fit#Pearson.27s_chi-squared_test">χ2 (Chi-Squared) Goodness-of-Fit Test</a>
@@ -3703,16 +4131,16 @@ cells and <code>c</code> is the number of estimated parameters for the distribut
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">chi_squared_goodness_of_fit</span><span class="hljs-params">(data, distribution_type, significance)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">chi_squared_goodness_of_fit</span>(<span class="hljs-params">data, distribution_type, significance</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-198">
+        <li id="section-219">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-198">&#182;</a>
+                <a class="pilcrow" href="#section-219">&#182;</a>
               </div>
               <p>Estimate from the sample data, a weighted mean.</p>
 
@@ -3723,11 +4151,11 @@ cells and <code>c</code> is the number of estimated parameters for the distribut
         </li>
         
         
-        <li id="section-199">
+        <li id="section-220">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-199">&#182;</a>
+                <a class="pilcrow" href="#section-220">&#182;</a>
               </div>
               <p>Calculated value of the χ2 statistic.</p>
 
@@ -3738,11 +4166,11 @@ cells and <code>c</code> is the number of estimated parameters for the distribut
         </li>
         
         
-        <li id="section-200">
+        <li id="section-221">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-200">&#182;</a>
+                <a class="pilcrow" href="#section-221">&#182;</a>
               </div>
               <p>Degrees of freedom, calculated as (number of class intervals -
 number of hypothesized distribution parameters estimated - 1)</p>
@@ -3754,11 +4182,11 @@ number of hypothesized distribution parameters estimated - 1)</p>
         </li>
         
         
-        <li id="section-201">
+        <li id="section-222">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-201">&#182;</a>
+                <a class="pilcrow" href="#section-222">&#182;</a>
               </div>
               <p>Number of hypothesized distribution parameters estimated, expected to be supplied in the distribution test.
 Lose one degree of freedom for estimating <code>lambda</code> from the sample data.</p>
@@ -3770,11 +4198,11 @@ Lose one degree of freedom for estimating <code>lambda</code> from the sample da
         </li>
         
         
-        <li id="section-202">
+        <li id="section-223">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-202">&#182;</a>
+                <a class="pilcrow" href="#section-223">&#182;</a>
               </div>
               <p>The hypothesized distribution.
 Generate the hypothesized distribution.</p>
@@ -3789,11 +4217,11 @@ Generate the hypothesized distribution.</p>
         </li>
         
         
-        <li id="section-203">
+        <li id="section-224">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-203">&#182;</a>
+                <a class="pilcrow" href="#section-224">&#182;</a>
               </div>
               <p>Create an array holding a histogram from the sample data, of
 the form <code>{ value: numberOfOcurrences }</code></p>
@@ -3810,11 +4238,11 @@ the form <code>{ value: numberOfOcurrences }</code></p>
         </li>
         
         
-        <li id="section-204">
+        <li id="section-225">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-204">&#182;</a>
+                <a class="pilcrow" href="#section-225">&#182;</a>
               </div>
               <p>The histogram we created might be sparse - there might be gaps
 between values. So we iterate through the histogram, making
@@ -3831,11 +4259,11 @@ sure that instead of undefined, gaps have 0 values.</p>
         </li>
         
         
-        <li id="section-205">
+        <li id="section-226">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-205">&#182;</a>
+                <a class="pilcrow" href="#section-226">&#182;</a>
               </div>
               <p>Create an array holding a histogram of expected data given the
 sample size and hypothesized distribution.</p>
@@ -3851,11 +4279,11 @@ sample size and hypothesized distribution.</p>
         </li>
         
         
-        <li id="section-206">
+        <li id="section-227">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-206">&#182;</a>
+                <a class="pilcrow" href="#section-227">&#182;</a>
               </div>
               <p>Working backward through the expected frequencies, collapse classes
 if less than three observations are expected for a class.
@@ -3876,11 +4304,11 @@ This transformation is applied to the observed frequencies as well.</p>
         </li>
         
         
-        <li id="section-207">
+        <li id="section-228">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-207">&#182;</a>
+                <a class="pilcrow" href="#section-228">&#182;</a>
               </div>
               <p>Iterate through the squared differences between observed &amp; expected
 frequencies, accumulating the <code>chi_squared</code> statistic.</p>
@@ -3896,11 +4324,11 @@ frequencies, accumulating the <code>chi_squared</code> statistic.</p>
         </li>
         
         
-        <li id="section-208">
+        <li id="section-229">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-208">&#182;</a>
+                <a class="pilcrow" href="#section-229">&#182;</a>
               </div>
               <p>Calculate degrees of freedom for this test and look it up in the
 <code>chi_squared_distribution_table</code> in order to
@@ -3915,11 +4343,11 @@ accept or reject the goodness-of-fit of the hypothesized distribution.</p>
         </li>
         
         
-        <li id="section-209">
+        <li id="section-230">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-209">&#182;</a>
+                <a class="pilcrow" href="#section-230">&#182;</a>
               </div>
               <h1 id="mixin">Mixin</h1>
 <p>Mixin simple_statistics to a single Array instance if provided
@@ -3929,18 +4357,33 @@ of Javascript.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mixin</span><span class="hljs-params">(array)</span> {</span>
-        <span class="hljs-keyword">var</span> support = !!(<span class="hljs-built_in">Object</span>.defineProperty &amp;&amp; <span class="hljs-built_in">Object</span>.defineProperties);
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mixin</span>(<span class="hljs-params">array</span>) </span>{
+        <span class="hljs-keyword">var</span> support = !!(<span class="hljs-built_in">Object</span>.defineProperty &amp;&amp; <span class="hljs-built_in">Object</span>.defineProperties);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-231">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-231">&#182;</a>
+              </div>
+              <p>Coverage testing will never test this error.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-comment">/* istanbul ignore next */</span>
         <span class="hljs-keyword">if</span> (!support) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'without defineProperty, simple-statistics cannot be mixed in'</span>);</pre></div></div>
             
         </li>
         
         
-        <li id="section-210">
+        <li id="section-232">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-210">&#182;</a>
+                <a class="pilcrow" href="#section-232">&#182;</a>
               </div>
               <p>only methods which work on basic arrays in a single step
 are supported</p>
@@ -3950,33 +4393,33 @@ are supported</p>
             <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">var</span> arrayMethods = [<span class="hljs-string">'median'</span>, <span class="hljs-string">'standard_deviation'</span>, <span class="hljs-string">'sum'</span>,
             <span class="hljs-string">'sample_skewness'</span>,
             <span class="hljs-string">'mean'</span>, <span class="hljs-string">'min'</span>, <span class="hljs-string">'max'</span>, <span class="hljs-string">'quantile'</span>, <span class="hljs-string">'geometric_mean'</span>,
-            <span class="hljs-string">'harmonic_mean'</span>];</pre></div></div>
+            <span class="hljs-string">'harmonic_mean'</span>, <span class="hljs-string">'root_mean_square'</span>];</pre></div></div>
             
         </li>
         
         
-        <li id="section-211">
+        <li id="section-233">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-211">&#182;</a>
+                <a class="pilcrow" href="#section-233">&#182;</a>
               </div>
               <p>create a closure with a method name so that a reference
 like <code>arrayMethods[i]</code> doesn’t follow the loop increment</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">wrap</span><span class="hljs-params">(method)</span> {</span>
-            <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">wrap</span>(<span class="hljs-params">method</span>) </span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-212">
+        <li id="section-234">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-212">&#182;</a>
+                <a class="pilcrow" href="#section-234">&#182;</a>
               </div>
               <p>cast any arguments into an array, since they’re
 natively objects</p>
@@ -3988,11 +4431,11 @@ natively objects</p>
         </li>
         
         
-        <li id="section-213">
+        <li id="section-235">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-213">&#182;</a>
+                <a class="pilcrow" href="#section-235">&#182;</a>
               </div>
               <p>make the first argument the array itself</p>
 
@@ -4003,11 +4446,11 @@ natively objects</p>
         </li>
         
         
-        <li id="section-214">
+        <li id="section-236">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-214">&#182;</a>
+                <a class="pilcrow" href="#section-236">&#182;</a>
               </div>
               <p>return the result of the ss method</p>
 
@@ -4020,11 +4463,11 @@ natively objects</p>
         </li>
         
         
-        <li id="section-215">
+        <li id="section-237">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-215">&#182;</a>
+                <a class="pilcrow" href="#section-237">&#182;</a>
               </div>
               <p>select object to extend</p>
 
@@ -4036,11 +4479,11 @@ natively objects</p>
         </li>
         
         
-        <li id="section-216">
+        <li id="section-238">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-216">&#182;</a>
+                <a class="pilcrow" href="#section-238">&#182;</a>
               </div>
               <p>create a shallow copy of the array so that our internal
 operations do not change it by reference</p>
@@ -4055,11 +4498,11 @@ operations do not change it by reference</p>
         </li>
         
         
-        <li id="section-217">
+        <li id="section-239">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-217">&#182;</a>
+                <a class="pilcrow" href="#section-239">&#182;</a>
               </div>
               <p>for each array function, define a function that gets
 the array as the first argument.
@@ -4110,6 +4553,7 @@ implementation.</p>
 
     ss.geometric_mean = geometric_mean;
     ss.harmonic_mean = harmonic_mean;
+    ss.root_mean_square = root_mean_square;
     ss.variance = variance;
     ss.t_test = t_test;
     ss.t_test_two_sample = t_test_two_sample;</pre></div></div>
@@ -4117,11 +4561,11 @@ implementation.</p>
         </li>
         
         
-        <li id="section-218">
+        <li id="section-240">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-218">&#182;</a>
+                <a class="pilcrow" href="#section-240">&#182;</a>
               </div>
               <p>jenks</p>
 
@@ -4131,16 +4575,18 @@ implementation.</p>
     ss.jenksBreaks = jenksBreaks;
     ss.jenks = jenks;
 
-    ss.bayesian = bayesian;</pre></div></div>
+    ss.bayesian = bayesian;
+
+    ss.perceptron = perceptron;</pre></div></div>
             
         </li>
         
         
-        <li id="section-219">
+        <li id="section-241">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-219">&#182;</a>
+                <a class="pilcrow" href="#section-241">&#182;</a>
               </div>
               <p>Distribution-related methods</p>
 
@@ -4156,11 +4602,11 @@ implementation.</p>
         </li>
         
         
-        <li id="section-220">
+        <li id="section-242">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-220">&#182;</a>
+                <a class="pilcrow" href="#section-242">&#182;</a>
               </div>
               <p>Normal distribution</p>
 
@@ -4168,16 +4614,19 @@ implementation.</p>
             
             <div class="content"><div class='highlight'><pre>    ss.z_score = z_score;
     ss.cumulative_std_normal_probability = cumulative_std_normal_probability;
-    ss.standard_normal_table = standard_normal_table;</pre></div></div>
+    ss.standard_normal_table = standard_normal_table;
+    ss.error_function = error_function;
+    ss.inverse_error_function = inverse_error_function;
+    ss.probit = probit;</pre></div></div>
             
         </li>
         
         
-        <li id="section-221">
+        <li id="section-243">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-221">&#182;</a>
+                <a class="pilcrow" href="#section-243">&#182;</a>
               </div>
               <p>Alias this into its common name</p>
 
@@ -4187,8 +4636,11 @@ implementation.</p>
     ss.interquartile_range = iqr;
     ss.mixin = mixin;
     ss.median_absolute_deviation = mad;
+    ss.rms = root_mean_square;
+    ss.erf = error_function;
 
-})(<span class="hljs-keyword">this</span>);</pre></div></div>
+    <span class="hljs-keyword">return</span> ss;
+}));</pre></div></div>
             
         </li>
         
