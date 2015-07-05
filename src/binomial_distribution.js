@@ -21,13 +21,6 @@ function binomialDistribution(trials, probability) {
         return null;
     }
 
-    // a [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function)
-    function probabilityMass(x, trials, probability) {
-        return factorial(trials) /
-            (factorial(x) * factorial(trials - x)) *
-            (Math.pow(probability, x) * Math.pow(1 - probability, trials - x));
-    }
-
     // We initialize `x`, the random variable, and `accumulator`, an accumulator
     // for the cumulative distribution function to 0. `distribution_functions`
     // is the object we'll return with the `probability_of_x` and the
@@ -42,7 +35,10 @@ function binomialDistribution(trials, probability) {
     // until the `cumulativeProbability` is very close to 1, at
     // which point we've defined the vast majority of outcomes
     do {
-        cells[x] = probabilityMass(x, trials, probability);
+        // a [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function)
+        cells[x] = factorial(trials) /
+            (factorial(x) * factorial(trials - x)) *
+            (Math.pow(probability, x) * Math.pow(1 - probability, trials - x));
         cumulativeProbability += cells[x];
         x++;
     // when the cumulativeProbability is nearly 1, we've calculated

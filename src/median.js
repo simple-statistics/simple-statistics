@@ -14,7 +14,7 @@ function median(x) {
 
     // Sorting the array makes it easy to find the center, but
     // use `.slice()` to ensure the original array `x` is not modified
-    var sorted = x.slice().sort(function (a, b) { return a - b; });
+    var sorted = x.slice().sort(function (i, j) { return i - j; });
 
     // If the length of the list is odd, it's the central number
     if (sorted.length % 2 === 1) {

@@ -1,3 +1,4 @@
+/* eslint no-shadow: 0 */
 'use strict';
 
 var BayesianClassifier = require('../src/bayesian_classifier');

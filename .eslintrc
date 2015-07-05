@@ -4,7 +4,6 @@
     "node": true
   },
   "rules": {
-    "no-shadow": [0],
     "quotes": [2, "single"],
     "key-spacing": [0]
   }

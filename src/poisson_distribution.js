@@ -28,17 +28,12 @@ function poissonDistribution(lambda) {
         // the calculated cells to be returned
         cells = {};
 
-    // a [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function)
-    function probabilityMass(x, lambda) {
-        return (Math.pow(Math.E, -lambda) * Math.pow(lambda, x)) /
-            factorial(x);
-    }
-
     // This algorithm iterates through each potential outcome,
     // until the `cumulativeProbability` is very close to 1, at
     // which point we've defined the vast majority of outcomes
     do {
-        cells[x] = probabilityMass(x, lambda);
+        // a [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function)
+        cells[x] = (Math.pow(Math.E, -lambda) * Math.pow(lambda, x)) / factorial(x);
         cumulativeProbability += cells[x];
         x++;
     // when the cumulativeProbability is nearly 1, we've calculated
