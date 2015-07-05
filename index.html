@@ -27,7 +27,7 @@
                 <h2 class='title'>Play!</h2>
                 <div class='col6'>edit the left</div>
                 <div class='col6'>to change the right</div>
-                <iframe src='http://mistakes.io/#7c150b7dbfe67c0b7648' class='play-frame col12'></iframe>
+                <iframe src='http://mistakes.io/#5789934' class='play-frame col12'></iframe>
             </div>
             <div class='pad2'>
                 <h2 class='title'>Use Simple Statistics</h2>
@@ -99,6 +99,9 @@ Accepts a single-dimensional array of numbers and returns a dispersion value.</p
 <p><a href="http://en.wikipedia.org/wiki/Geometric_mean">Geometric mean</a> of a single-dimensional array of <strong>positive</strong> numbers.</p>
 <h3 id="-harmonic_mean-x-">.harmonic_mean(x)</h3>
 <p><a href="http://en.wikipedia.org/wiki/Harmonic_mean">Harmonic mean</a> of a single-dimensional array of <strong>positive</strong> numbers.</p>
+<h3 id="-root_mean_square-x-">.root_mean_square(x)</h3>
+<p><a href="http://en.wikipedia.org/wiki/Root_mean_square">Root mean square (RMS)</a> of a single-dimensional array of numbers.</p>
+<p>Also aliased to <code>.rms(x)</code> for brevity.</p>
 <h3 id="-min-x-">.min(x)</h3>
 <p>Finds the minimum of a single-dimensional array of numbers. This runs in linear <code>O(n)</code> time.</p>
 <h3 id="-max-x-">.max(x)</h3>
@@ -196,19 +199,33 @@ line equation. Returns a number.</p>
 <p>Just get the y-intercept of the fitted regression line, the <code>b</code> component
 of the line equation. Returns a number.</p>
 <h2 id="classification">Classification</h2>
-<h3 id="-bayesian-">.bayesian()</h3>
-<p>Create a naïve bayesian classifier.</p>
-<h3 id="-train-item-category-">.train(item, category)</h3>
+<h4 id="-bayesian-">.bayesian()</h4>
+<p>Create a naïve Bayesian classifier.</p>
+<h4 id="-train-item-category-">.train(item, category)</h4>
 <p>Train the classifier to classify a certain item, given as an object with keys,
 to be in a certain category, given as a string.</p>
-<h3 id="-score-item-">.score(item)</h3>
+<h4 id="-score-item-">.score(item)</h4>
 <p>Get the classifications of a certain item, given as an object of
 <code>category -&gt; score</code> mappings.</p>
 <pre><code>var bayes = ss.bayesian();
 bayes.train({ species: &#39;Cat&#39; }, &#39;animal&#39;);
 bayes.score({ species: &#39;Cat&#39; });
 // { animal: 1 }
-</code></pre>
+</code></pre><h3 id="-perceptron-">.perceptron()</h3>
+<p>Create a single-layer perceptron classifier.</p>
+<h4 id="-train-features-label-">.train(features, label)</h4>
+<p>Train the classifier to classify a certain item, given as an array of
+numeric features, to be in a certain category, either 0 or 1.</p>
+<p>The model resets when a feature array of a new length is trained.</p>
+<h4 id="-predict-features-">.predict(features)</h4>
+<p>Predict either 0 or 1 based on an array of numeric features and the
+model&#39;s current weights and bias.</p>
+<h4 id="-weights-">.weights()</h4>
+<p>Just get the current model weights for features. Returns an array of
+numbers of length equal to those used in training.</p>
+<h4 id="-bias-">.bias()</h4>
+<p>Just get the bias term of the model. Returns a number.</p>
+
                 </div>
             </div>
         </div>
