@@ -16,11 +16,11 @@
     "tape": "~2.14.0"
   },
   "scripts": {
-    "test": "eslint --no-eslintrc -c .eslintrc src/simple_statistics.js && tape test/*.js",
+    "test": "eslint --no-eslintrc -c .eslintrc src/*.js && tape test/*.js",
     "cov": "istanbul cover ./node_modules/.bin/tape test/*.js && coveralls < ./coverage/lcov.info || true",
     "api": "node api.js"
   },
-  "main": "src/simple_statistics.js",
+  "main": "index.js",
   "engines": {
     "node": "*"
   },
