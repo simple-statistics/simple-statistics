@@ -1,10 +1,15 @@
 'use strict';
 
-// # min
-//
-// This is simply the minimum number in the set.
-//
-// This runs on `O(n)`, linear time in respect to the array
+/**
+ * # min
+ *
+ * This is simply the minimum number in the set.
+ *
+ * This runs on `O(n)`, linear time in respect to the array
+ *
+ * @param {Array<number>} x input
+ * @returns {number} minimum value
+ */
 function min(x) {
     var value;
     for (var i = 0; i < x.length; i++) {

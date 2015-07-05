@@ -1,11 +1,13 @@
 'use strict';
 
-// # Mixin
-//
-// Mixin simple_statistics to a single Array instance if provided
-// or the Array native object if not. This is an optional
-// feature that lets you treat simple_statistics as a native feature
-// of Javascript.
+/**
+ * # Mixin
+ *
+ * Mixin simple_statistics to a single Array instance if provided
+ * or the Array native object if not. This is an optional
+ * feature that lets you treat simple_statistics as a native feature
+ * of Javascript.
+ */
 function mixin(ss, array) {
     var support = !!(Object.defineProperty && Object.defineProperties);
     // Coverage testing will never test this error.

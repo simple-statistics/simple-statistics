@@ -1,13 +1,15 @@
 'use strict';
 
-// # Percentage Points of the χ2 (Chi-Squared) Distribution
-// The [χ2 (Chi-Squared) Distribution](http://en.wikipedia.org/wiki/Chi-squared_distribution) is used in the common
-// chi-squared tests for goodness of fit of an observed distribution to a theoretical one, the independence of two
-// criteria of classification of qualitative data, and in confidence interval estimation for a population standard
-// deviation of a normal distribution from a sample standard deviation.
-//
-// Values from Appendix 1, Table III of William W. Hines & Douglas C. Montgomery, "Probability and Statistics in
-// Engineering and Management Science", Wiley (1980).
+/**
+ * # Percentage Points of the χ2 (Chi-Squared) Distribution
+ * The [χ2 (Chi-Squared) Distribution](http://en.wikipedia.org/wiki/Chi-squared_distribution) is used in the common
+ * chi-squared tests for goodness of fit of an observed distribution to a theoretical one, the independence of two
+ * criteria of classification of qualitative data, and in confidence interval estimation for a population standard
+ * deviation of a normal distribution from a sample standard deviation.
+ *
+ * Values from Appendix 1, Table III of William W. Hines & Douglas C. Montgomery, "Probability and Statistics in
+ * Engineering and Management Science", Wiley (1980).
+ */
 var chi_squared_distribution_table = {
     1: { 0.995:  0.00, 0.99:  0.00, 0.975:  0.00, 0.95:  0.00, 0.9:  0.02, 0.5:  0.45, 0.1:  2.71, 0.05:  3.84, 0.025:  5.02, 0.01:  6.63, 0.005:  7.88 },
     2: { 0.995:  0.01, 0.99:  0.02, 0.975:  0.05, 0.95:  0.10, 0.9:  0.21, 0.5:  1.39, 0.1:  4.61, 0.05:  5.99, 0.025:  7.38, 0.01:  9.21, 0.005: 10.60 },

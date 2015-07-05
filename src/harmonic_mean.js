@@ -1,13 +1,15 @@
 'use strict';
 
-// # harmonic mean
-//
-// a mean function typically used to find the average of rates
-//
-// this is the reciprocal of the arithmetic mean of the reciprocals
-// of the input numbers
-//
-// This runs on `O(n)`, linear time in respect to the array
+/**
+ * # harmonic mean
+ *
+ * a mean function typically used to find the average of rates
+ *
+ * this is the reciprocal of the arithmetic mean of the reciprocals
+ * of the input numbers
+ *
+ * This runs on `O(n)`, linear time in respect to the array
+ */
 function harmonic_mean(x) {
     // The mean of no numbers is null
     if (x.length === 0) return null;

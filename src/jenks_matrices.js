@@ -1,9 +1,11 @@
 'use strict';
 
-// ## Compute Matrices for Jenks
-//
-// Compute the matrices required for Jenks breaks. These matrices
-// can be used for any classing of data with `classes <= n_classes`
+/**
+ * ## Compute Matrices for Jenks
+ *
+ * Compute the matrices required for Jenks breaks. These matrices
+ * can be used for any classing of data with `classes <= n_classes`
+ */
 function jenksMatrices(data, n_classes) {
 
     // in the original implementation, these matrices are referred to

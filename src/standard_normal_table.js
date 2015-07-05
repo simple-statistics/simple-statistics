@@ -1,16 +1,18 @@
 'use strict';
 
-// # Standard Normal Table
-// A standard normal table, also called the unit normal table or Z table,
-// is a mathematical table for the values of Φ (phi), which are the values of
-// the cumulative distribution function of the normal distribution.
-// It is used to find the probability that a statistic is observed below,
-// above, or between values on the standard normal distribution, and by
-// extension, any normal distribution.
-//
-// The probabilities are taken from http://en.wikipedia.org/wiki/Standard_normal_table
-// The table used is the cumulative, and not cumulative from 0 to mean
-// (even though the latter has 5 digits precision, instead of 4).
+/**
+ * # Standard Normal Table
+ * A standard normal table, also called the unit normal table or Z table,
+ * is a mathematical table for the values of Φ (phi), which are the values of
+ * the cumulative distribution function of the normal distribution.
+ * It is used to find the probability that a statistic is observed below,
+ * above, or between values on the standard normal distribution, and by
+ * extension, any normal distribution.
+ *
+ * The probabilities are taken from http://en.wikipedia.org/wiki/Standard_normal_table
+ * The table used is the cumulative, and not cumulative from 0 to mean
+ * (even though the latter has 5 digits precision, instead of 4).
+ */
 var standard_normal_table = [
     /*  z      0.00    0.01    0.02    0.03    0.04    0.05    0.06    0.07    0.08    0.09 */
     /* 0.0 */

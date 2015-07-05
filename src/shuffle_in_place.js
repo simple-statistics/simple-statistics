@@ -1,10 +1,16 @@
 'use strict';
 
-// # shuffle_in_place
-//
-// A [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
-// in-place - which means that it will change the order of the original
-// array by reference.
+/*
+ * # shuffle_in_place
+ *
+ * A [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
+ * in-place - which means that it **will change the order of the original
+ * array by reference**.
+ *
+ * @param {Array} sample input array
+ * @param {Function} [randomSource=Math.random] an optional source of entropy
+ * @returns {Array} sample
+ */
 function shuffle_in_place(sample, randomSource) {
 
     // a custom random number source can be provided if you want to use

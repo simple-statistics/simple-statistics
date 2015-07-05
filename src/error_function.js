@@ -1,12 +1,17 @@
 'use strict';
 
-// # [Gaussian error function](http://en.wikipedia.org/wiki/Error_function)
-//
-// The error_function(x/(sd * Math.sqrt(2))) is the probability that a value in a
-// normal distribution with standard deviation sd is within x of the mean.
-//
-// This function returns a numerical approximation to the exact value.
-function error_function(x) {
+/**
+ * # [Gaussian error function](http://en.wikipedia.org/wiki/Error_function)
+ *
+ * The `error_function(x/(sd * Math.sqrt(2)))` is the probability that a value in a
+ * normal distribution with standard deviation sd is within x of the mean.
+ *
+ * This function returns a numerical approximation to the exact value.
+ *
+ * @param {number} x input
+ * @return {number}
+ */
+function errorFunction(x) {
     var t = 1 / (1 + 0.5 * Math.abs(x));
     var tau = t * Math.exp(-Math.pow(x, 2) -
         1.26551223 +
@@ -26,4 +31,4 @@ function error_function(x) {
     }
 }
 
-module.exports = error_function;
+module.exports = errorFunction;

@@ -1,14 +1,21 @@
 'use strict';
 
-// # chunk
-//
-// Split an array into chunks of a specified size. This function
-// has the same behavior as [PHP's array_chunk](http://php.net/manual/en/function.array-chunk.php)
-// function, and thus will insert smaller-sized chunks at the end if
-// the input size is not divisible by the chunk size.
-//
-// `sample` is expected to be an array, and `chunkSize` a number.
-// The `sample` array can contain any kind of data.
+/**
+ * # chunk
+ *
+ * Split an array into chunks of a specified size. This function
+ * has the same behavior as [PHP's array_chunk](http://php.net/manual/en/function.array-chunk.php)
+ * function, and thus will insert smaller-sized chunks at the end if
+ * the input size is not divisible by the chunk size.
+ *
+ * `sample` is expected to be an array, and `chunkSize` a number.
+ * The `sample` array can contain any kind of data.
+ *
+ * @param {Array} sample
+ * @param {number} chunkSize size of each output array
+ * @example
+ * console.log(chunk([1, 2, 3, 4], 2)); // [[1, 2], [3, 4]]
+ */
 function chunk(sample, chunkSize) {
 
     // a list of result chunks, as arrays in an array

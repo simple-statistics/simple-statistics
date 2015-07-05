@@ -1,11 +1,18 @@
 'use strict';
 
-// # [Factorial](https://en.wikipedia.org/wiki/Factorial)
-//
-// A factorial, usually written n!, is the product of all positive
-// integers less than or equal to n. Often factorial is implemented
-// recursively, but this iterative approach is significantly faster
-// and simpler.
+/**
+ * # [Factorial](https://en.wikipedia.org/wiki/Factorial)
+ *
+ * A factorial, usually written n!, is the product of all positive
+ * integers less than or equal to n. Often factorial is implemented
+ * recursively, but this iterative approach is significantly faster
+ * and simpler.
+ *
+ * @param {number} n input
+ * @returns {number} factorial: n!
+ * @example
+ * console.log(factorial(5)); // 120
+ */
 function factorial(n) {
 
     // factorial is mathematically undefined for negative numbers

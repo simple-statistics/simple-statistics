@@ -1,10 +1,12 @@
 'use strict';
 
-// # [R Squared](http://en.wikipedia.org/wiki/Coefficient_of_determination)
-//
-// The r-squared value of data compared with a function `f`
-// is the sum of the squared differences between the prediction
-// and the actual value.
+/**
+ * # [R Squared](http://en.wikipedia.org/wiki/Coefficient_of_determination)
+ *
+ * The r-squared value of data compared with a function `f`
+ * is the sum of the squared differences between the prediction
+ * and the actual value.
+ */
 function r_squared(data, f) {
     if (data.length < 2) return 1;
 

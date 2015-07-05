@@ -1,9 +1,14 @@
 'use strict';
 
-// # [median](http://en.wikipedia.org/wiki/Median)
-//
-// The middle number of a list. This is often a good indicator of 'the middle'
-// when there are outliers that skew the `mean()` value.
+/**
+ * # [median](http://en.wikipedia.org/wiki/Median)
+ *
+ * The middle number of a list. This is often a good indicator of 'the middle'
+ * when there are outliers that skew the `mean()` value.
+ *
+ * @param {Array<number>} x input
+ * @returns {number} median value
+ */
 function median(x) {
     // The median of an empty list is null
     if (x.length === 0) return null;

@@ -1,10 +1,12 @@
 'use strict';
 
-// # quantile
-//
-// This is the internal implementation of quantiles: when you know
-// that the order is sorted, you don't need to re-sort it, and the computations
-// are much faster.
+/**
+ * # quantile
+ *
+ * This is the internal implementation of quantiles: when you know
+ * that the order is sorted, you don't need to re-sort it, and the computations
+ * are much faster.
+ */
 function quantile_sorted(sample, p) {
     var idx = (sample.length) * p;
     if (p < 0 || p > 1) {

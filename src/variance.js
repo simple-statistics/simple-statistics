@@ -2,11 +2,16 @@
 
 var mean = require('./mean');
 
-// # [variance](http://en.wikipedia.org/wiki/Variance)
-//
-// is the sum of squared deviations from the mean
-//
-// depends on `mean()`
+/**
+ * # [variance](http://en.wikipedia.org/wiki/Variance)
+ *
+ * is the sum of squared deviations from the mean
+ *
+ * depends on `mean()`
+ *
+ * @param {Array<number>} input
+ * @returns {number} variance
+ */
 function variance(x) {
     // The variance of no numbers is null
     if (x.length === 0) return null;

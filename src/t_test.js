@@ -3,19 +3,19 @@
 var standard_deviation = require('./standard_deviation');
 var mean = require('./mean');
 
-// # [t-test](http://en.wikipedia.org/wiki/Student's_t-test)
-//
-// This is to compute a one-sample t-test, comparing the mean
-// of a sample to a known value, x.
-//
-// in this case, we're trying to determine whether the
-// population mean is equal to the value that we know, which is `x`
-// here. usually the results here are used to look up a
-// [p-value](http://en.wikipedia.org/wiki/P-value), which, for
-// a certain level of significance, will let you determine that the
-// null hypothesis can or cannot be rejected.
-//
-// Depends on `standard_deviation()` and `mean()`
+/**
+ * # [t-test](http://en.wikipedia.org/wiki/Student's_t-test)
+ *
+ * This is to compute a one-sample t-test, comparing the mean
+ * of a sample to a known value, x.
+ *
+ * in this case, we're trying to determine whether the
+ * population mean is equal to the value that we know, which is `x`
+ * here. usually the results here are used to look up a
+ * [p-value](http://en.wikipedia.org/wiki/P-value), which, for
+ * a certain level of significance, will let you determine that the
+ * null hypothesis can or cannot be rejected.
+ */
 function t_test(sample, x) {
     // The mean of the sample
     var sample_mean = mean(sample);

@@ -2,11 +2,13 @@
 
 var quantile = require('./quantile');
 
-// # [Interquartile range](http://en.wikipedia.org/wiki/Interquartile_range)
-//
-// A measure of statistical dispersion, or how scattered, spread, or
-// concentrated a distribution is. It's computed as the difference between
-// the third quartile and first quartile.
+/**
+ * # [Interquartile range](http://en.wikipedia.org/wiki/Interquartile_range)
+ *
+ * A measure of statistical dispersion, or how scattered, spread, or
+ * concentrated a distribution is. It's computed as the difference between
+ * the third quartile and first quartile.
+ */
 function interquartile_range(sample) {
     // We can't derive quantiles from an empty list
     if (sample.length === 0) return null;

@@ -3,16 +3,18 @@
 var mean = require('./mean');
 var chi_squared_distribution_table = require('./chi_squared_distribution_table');
 
-// # χ2 (Chi-Squared) Goodness-of-Fit Test
-//
-// The [χ2 (Chi-Squared) Goodness-of-Fit Test](http://en.wikipedia.org/wiki/Goodness_of_fit#Pearson.27s_chi-squared_test)
-// uses a measure of goodness of fit which is the sum of differences between observed and expected outcome frequencies
-// (that is, counts of observations), each squared and divided by the number of observations expected given the
-// hypothesized distribution. The resulting χ2 statistic, `chi_squared`, can be compared to the chi-squared distribution
-// to determine the goodness of fit. In order to determine the degrees of freedom of the chi-squared distribution, one
-// takes the total number of observed frequencies and subtracts the number of estimated parameters. The test statistic
-// follows, approximately, a chi-square distribution with (k − c) degrees of freedom where `k` is the number of non-empty
-// cells and `c` is the number of estimated parameters for the distribution.
+/**
+ * # χ2 (Chi-Squared) Goodness-of-Fit Test
+ *
+ * The [χ2 (Chi-Squared) Goodness-of-Fit Test](http://en.wikipedia.org/wiki/Goodness_of_fit#Pearson.27s_chi-squared_test)
+ * uses a measure of goodness of fit which is the sum of differences between observed and expected outcome frequencies
+ * (that is, counts of observations), each squared and divided by the number of observations expected given the
+ * hypothesized distribution. The resulting χ2 statistic, `chi_squared`, can be compared to the chi-squared distribution
+ * to determine the goodness of fit. In order to determine the degrees of freedom of the chi-squared distribution, one
+ * takes the total number of observed frequencies and subtracts the number of estimated parameters. The test statistic
+ * follows, approximately, a chi-square distribution with (k − c) degrees of freedom where `k` is the number of non-empty
+ * cells and `c` is the number of estimated parameters for the distribution.
+ */
 function chi_squared_goodness_of_fit(data, distribution_type, significance) {
     // Estimate from the sample data, a weighted mean.
     var input_mean = mean(data),

@@ -1,10 +1,12 @@
 'use strict';
 
-// # [Linear Regression](http://en.wikipedia.org/wiki/Linear_regression)
-//
-// [Simple linear regression](http://en.wikipedia.org/wiki/Simple_linear_regression)
-// is a simple way to find a fitted line
-// between a set of coordinates.
+/**
+ * # [Linear Regression](http://en.wikipedia.org/wiki/Linear_regression)
+ *
+ * [Simple linear regression](http://en.wikipedia.org/wiki/Simple_linear_regression)
+ * is a simple way to find a fitted line
+ * between a set of coordinates.
+ */
 function linear_regression() {
     var linreg = {},
         data = [];

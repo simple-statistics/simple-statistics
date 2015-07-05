@@ -1,10 +1,12 @@
 'use strict';
 
-// # [Perceptron Classifier](http://en.wikipedia.org/wiki/Perceptron)
-//
-// This is a single-layer perceptron classifier that takes
-// arrays of numbers and predicts whether they should be classified
-// as either 0 or 1 (negative or positive examples).
+/**
+ * # [Perceptron Classifier](http://en.wikipedia.org/wiki/Perceptron)
+ *
+ * This is a single-layer perceptron classifier that takes
+ * arrays of numbers and predicts whether they should be classified
+ * as either 0 or 1 (negative or positive examples).
+ */
 function perceptron() {
     var perceptron_model = {},
         // The weights, or coefficients of the model;

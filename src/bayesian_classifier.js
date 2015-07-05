@@ -1,9 +1,11 @@
 'use strict';
 
-// # [Bayesian Classifier](http://en.wikipedia.org/wiki/Naive_Bayes_classifier)
-//
-// This is a naïve bayesian classifier that takes
-// singly-nested objects.
+/**
+ * # [Bayesian Classifier](http://en.wikipedia.org/wiki/Naive_Bayes_classifier)
+ *
+ * This is a naïve bayesian classifier that takes
+ * singly-nested objects.
+ */
 function bayesian() {
     // The `bayes_model` object is what will be exposed
     // by this closure, with all of its extended methods, and will

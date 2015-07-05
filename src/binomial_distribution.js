@@ -3,13 +3,15 @@
 var epsilon = require('./epsilon');
 var factorial = require('./factorial');
 
-// # Binomial Distribution
-//
-// The [Binomial Distribution](http://en.wikipedia.org/wiki/Binomial_distribution) is the discrete probability
-// distribution of the number of successes in a sequence of n independent yes/no experiments, each of which yields
-// success with probability `probability`. Such a success/failure experiment is also called a Bernoulli experiment or
-// Bernoulli trial; when trials = 1, the Binomial Distribution is a Bernoulli Distribution.
-function binomial_distribution(trials, probability) {
+/**
+ * # Binomial Distribution
+ *
+ * The [Binomial Distribution](http://en.wikipedia.org/wiki/Binomial_distribution) is the discrete probability
+ * distribution of the number of successes in a sequence of n independent yes/no experiments, each of which yields
+ * success with probability `probability`. Such a success/failure experiment is also called a Bernoulli experiment or
+ * Bernoulli trial; when trials = 1, the Binomial Distribution is a Bernoulli Distribution.
+ */
+function binomialDistribution(trials, probability) {
     // Check that `p` is a valid probability (0 ≤ p ≤ 1),
     // that `n` is an integer, strictly positive.
     if (probability < 0 || probability > 1 ||
@@ -48,4 +50,4 @@ function binomial_distribution(trials, probability) {
     return cells;
 }
 
-module.exports = binomial_distribution;
+module.exports = binomialDistribution;
