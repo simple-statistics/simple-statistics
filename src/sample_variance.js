@@ -3,9 +3,8 @@
 var sum_nth_power_deviations = require('./sum_nth_power_deviations');
 
 /*
- * # [variance](http://en.wikipedia.org/wiki/Variance)
- *
- * is the sum of squared deviations from the mean
+ * The [variance](http://en.wikipedia.org/wiki/Variance)
+ * is the sum of squared deviations from the mean.
  *
  * depends on `sum_nth_power_deviations`
  *

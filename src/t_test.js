@@ -4,8 +4,6 @@ var standard_deviation = require('./standard_deviation');
 var mean = require('./mean');
 
 /**
- * # [t-test](http://en.wikipedia.org/wiki/Student's_t-test)
- *
  * This is to compute a one-sample t-test, comparing the mean
  * of a sample to a known value, x.
  *
@@ -15,6 +13,9 @@ var mean = require('./mean');
  * [p-value](http://en.wikipedia.org/wiki/P-value), which, for
  * a certain level of significance, will let you determine that the
  * null hypothesis can or cannot be rejected.
+ *
+ * @param {Array<number>} sample
+ * @returns {number} value
  */
 function t_test(sample, x) {
     // The mean of the sample

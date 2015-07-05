@@ -1,9 +1,7 @@
 'use strict';
 
 /**
- * # max
- *
- * This is simply the maximum number in the set.
+ * This computes the maximum number in an array.
  *
  * This runs on `O(n)`, linear time in respect to the array
  *

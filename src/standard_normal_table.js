@@ -1,7 +1,6 @@
 'use strict';
 
 /**
- * # Standard Normal Table
  * A standard normal table, also called the unit normal table or Z table,
  * is a mathematical table for the values of Φ (phi), which are the values of
  * the cumulative distribution function of the normal distribution.

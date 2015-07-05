@@ -4,9 +4,8 @@ var epsilon = require('./epsilon');
 var inverse_error_function = require('./inverse_error_function');
 
 /**
- * # [Probit](http://en.wikipedia.org/wiki/Probit)
- *
- * This is the inverse of cumulative_std_normal_probability(),
+ * The [Probit](http://en.wikipedia.org/wiki/Probit)
+ * is the inverse of cumulative_std_normal_probability(),
  * and is also known as the normal quantile function.
  *
  * It returns the number of standard deviations from the mean

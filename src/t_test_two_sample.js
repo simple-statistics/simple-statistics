@@ -4,9 +4,7 @@ var mean = require('./mean');
 var sample_variance = require('./sample_variance');
 
 /**
- * # [2-sample t-test](http://en.wikipedia.org/wiki/Student's_t-test)
- *
- * This is to compute two sample t-test.
+ * This is to compute [two sample t-test](http://en.wikipedia.org/wiki/Student's_t-test).
  * Tests whether "mean(X)-mean(Y) = difference", (
  * in the most common case, we often have `difference == 0` to test if two samples
  * are likely to be taken from populations with the same mean value) with

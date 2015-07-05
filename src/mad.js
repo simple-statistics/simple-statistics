@@ -3,9 +3,8 @@
 var median = require('./median');
 
 /**
- * # [Median Absolute Deviation](http://en.wikipedia.org/wiki/Median_absolute_deviation)
- *
- * The Median Absolute Deviation (MAD) is a robust measure of statistical
+ * The [Median Absolute Deviation](http://en.wikipedia.org/wiki/Median_absolute_deviation) is
+ * a robust measure of statistical
  * dispersion. It is more resilient to outliers than the standard deviation.
  *
  * @param {Array<number>} x input array

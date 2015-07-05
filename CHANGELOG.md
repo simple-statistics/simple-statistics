@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 1.0.0
+
+* JSDoc documentation throughout
+* Each function is now its own file, and simple-statistics
+  is assembled with CommonJS-style require() statements. It can
+  still be used in a browser with browserify.
+* Removed the .m() and .b() shortcuts from the linear regression
+  class. Use `.mb().b` and `.mb().m` instead.
+* linearRegression is now a function, and linearRegressionLine is a separate
+  function.
+* `BayesModel` is now a class
+* `PerceptronModel` is now a class, and the `weights` and `bias` members
+  are accessable as properties rather than methods.
+
 ## 0.9.2
 
 * Improved test coverage

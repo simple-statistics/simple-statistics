@@ -1,8 +1,7 @@
 'use strict';
 
 /**
- * # geometric mean
- *
+ * The [Geometric Mean](https://en.wikipedia.org/wiki/Geometric_mean) is
  * a mean function that is more useful for numbers in different
  * ranges.
  *

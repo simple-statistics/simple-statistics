@@ -3,9 +3,8 @@
 var sample_variance = require('./sample_variance');
 
 /**
- * # [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
- *
- * is just the square root of the variance.
+ * The [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
+ * is the square root of the variance.
  *
  * depends on `sample_variance()`
  *

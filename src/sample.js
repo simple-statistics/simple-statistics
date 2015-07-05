@@ -3,8 +3,6 @@
 var shuffle = require('./shuffle');
 
 /**
- * # sample
- *
  * Create a [simple random sample](http://en.wikipedia.org/wiki/Simple_random_sample)
  * from a given array of `n` elements.
  *

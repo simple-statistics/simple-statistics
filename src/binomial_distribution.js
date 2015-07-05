@@ -4,8 +4,6 @@ var epsilon = require('./epsilon');
 var factorial = require('./factorial');
 
 /**
- * # Binomial Distribution
- *
  * The [Binomial Distribution](http://en.wikipedia.org/wiki/Binomial_distribution) is the discrete probability
  * distribution of the number of successes in a sequence of n independent yes/no experiments, each of which yields
  * success with probability `probability`. Such a success/failure experiment is also called a Bernoulli experiment or

@@ -3,9 +3,7 @@
 var mean = require('./mean');
 
 /**
- * # [covariance](http://en.wikipedia.org/wiki/Covariance)
- *
- * sample covariance of two datasets:
+ * [sample covariance](https://en.wikipedia.org/wiki/Sample_mean_and_sample_covariance) of two datasets:
  * how much do the two datasets move together?
  * x and y are two datasets, represented as arrays of numbers.
  *

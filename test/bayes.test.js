@@ -1,9 +1,11 @@
-var ss = require('../');
+'use strict';
+
+var BayesianClassifier = require('../src/bayesian_classifier');
 var test = require('tape');
 
-test('bayes', function(t) {
+test('BayesianClassifier', function(t) {
     test('makes an easy call with one training round', function(t) {
-        var bayes = ss.bayesian();
+        var bayes = new BayesianClassifier();
         bayes.train({
             species: 'Cat'
         }, 'animal');
@@ -16,7 +18,7 @@ test('bayes', function(t) {
     });
 
     test('makes fify-fifty call', function(t) {
-        var bayes = ss.bayesian();
+        var bayes = new BayesianClassifier();
         bayes.train({
             species: 'Cat'
         }, 'animal');
@@ -33,7 +35,7 @@ test('bayes', function(t) {
     });
 
     test('makes seventy-five/twenty-five call', function(t) {
-        var bayes = ss.bayesian();
+        var bayes = new BayesianClassifier();
         bayes.train({
             species: 'Cat'
         }, 'animal');
@@ -56,7 +58,7 @@ test('bayes', function(t) {
     });
 
     test('tests multiple properties', function(t) {
-        var bayes = ss.bayesian();
+        var bayes = new BayesianClassifier();
         bayes.train({
             species: 'Cat'
         }, 'animal');
@@ -83,7 +85,7 @@ test('bayes', function(t) {
     });
 
     test('classifies multiple things', function(t) {
-        var bayes = ss.bayesian();
+        var bayes = new BayesianClassifier();
         bayes.train({
             species: 'Cat'
         }, 'animal');

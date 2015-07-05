@@ -1,9 +1,8 @@
 'use strict';
 
 /**
- * # Inverse [Gaussian error function](http://en.wikipedia.org/wiki/Error_function)
- *
- * Returns a numerical approximation to the value that would have caused
+ * The Inverse [Gaussian error function](http://en.wikipedia.org/wiki/Error_function)
+ * returns a numerical approximation to the value that would have caused
  * `error_function()` to return x.
  *
  * @param {number} x value of error function

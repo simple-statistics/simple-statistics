@@ -6,6 +6,10 @@ var mean = require('./mean');
  * The sum of deviations to the Nth power.
  * When n=2 it's the sum of squared deviations.
  * When n=3 it's the sum of cubed deviations.
+ *
+ * @param {Array<number>} input
+ * @param {number} n power
+ * @returns {number} sum of nth power deviations
  */
 function sum_nth_power_deviations(x, n) {
     var mean_value = mean(x),

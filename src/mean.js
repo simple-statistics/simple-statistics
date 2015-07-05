@@ -3,11 +3,8 @@
 var sum = require('./sum');
 
 /**
- * # mean
- *
- * _also known as average_
- *
- * is the sum over the number of values
+ * The mean, _also known as average_,
+ * is the sum over the number of values.
  *
  * This runs on `O(n)`, linear time in respect to the array
  *

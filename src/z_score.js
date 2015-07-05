@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * # [Z-Score, or Standard Score](http://en.wikipedia.org/wiki/Standard_score)
+ * The [Z-Score, or Standard Score](http://en.wikipedia.org/wiki/Standard_score).
  *
  * The standard score is the number of standard deviations an observation
  * or datum is above or below the mean. Thus, a positive standard score

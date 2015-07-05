@@ -3,9 +3,8 @@
 var quantile_sorted = require('./quantile_sorted');
 
 /**
- * # quantile
- *
- * This is a population quantile, since we assume to know the entire
+ * The [quantile](https://en.wikipedia.org/wiki/Quantile):
+ * this is a population quantile, since we assume to know the entire
  * dataset in this library. Thus I'm trying to follow the
  * [Quantiles of a Population](http://en.wikipedia.org/wiki/Quantile#Quantiles_of_a_population)
  * algorithm from wikipedia.

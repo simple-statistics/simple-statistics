@@ -3,7 +3,7 @@
 var standard_normal_table = require('./standard_normal_table');
 
 /**
- * # [Cumulative Standard Normal Probability](http://en.wikipedia.org/wiki/Standard_normal_table)
+ * ## [Cumulative Standard Normal Probability](http://en.wikipedia.org/wiki/Standard_normal_table)
  *
  * Since probability tables cannot be
  * printed for every normal distribution, as there are an infinite variety

@@ -1,9 +1,8 @@
 'use strict';
 
 /**
- * # [median](http://en.wikipedia.org/wiki/Median)
- *
- * The middle number of a list. This is often a good indicator of 'the middle'
+ * The [median](http://en.wikipedia.org/wiki/Median) is
+ * the middle number of a list. This is often a good indicator of 'the middle'
  * when there are outliers that skew the `mean()` value.
  *
  * @param {Array<number>} x input

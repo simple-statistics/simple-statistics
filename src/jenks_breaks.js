@@ -5,6 +5,8 @@
  *
  * the second part of the jenks recipe: take the calculated matrices
  * and derive an array of n breaks.
+ *
+ * @private
  */
 function jenksBreaks(data, lower_class_limits, n_classes) {
 

@@ -1,9 +1,7 @@
 'use strict';
 
 /**
- * # sum
- *
- * is simply the result of adding all numbers
+ * The sum of an array is the result of adding all numbers
  * together, starting from zero.
  *
  * This runs on `O(n)`, linear time in respect to the array

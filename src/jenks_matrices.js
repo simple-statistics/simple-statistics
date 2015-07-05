@@ -5,6 +5,8 @@
  *
  * Compute the matrices required for Jenks breaks. These matrices
  * can be used for any classing of data with `classes <= n_classes`
+ *
+ * @private
  */
 function jenksMatrices(data, n_classes) {
 

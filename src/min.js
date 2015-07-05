@@ -1,9 +1,7 @@
 'use strict';
 
 /**
- * # min
- *
- * This is simply the minimum number in the set.
+ * The min is the lowest number in the array.
  *
  * This runs on `O(n)`, linear time in respect to the array
  *

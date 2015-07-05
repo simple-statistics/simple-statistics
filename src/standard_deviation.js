@@ -3,9 +3,8 @@
 var variance = require('./variance');
 
 /**
- * # [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
- *
- * is just the square root of the variance.
+ * The [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
+ * is the square root of the variance.
  *
  * @param {Array<number>} x input
  * @returns {number} standard deviation

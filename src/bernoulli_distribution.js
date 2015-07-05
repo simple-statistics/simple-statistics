@@ -3,8 +3,6 @@
 var binomial_distribution = require('./binomial_distribution');
 
 /**
- * # Bernoulli Distribution
- *
  * The [Bernoulli distribution](http://en.wikipedia.org/wiki/Bernoulli_distribution)
  * is the probability discrete
  * distribution of a random variable which takes value 1 with success

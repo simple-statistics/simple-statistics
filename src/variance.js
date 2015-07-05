@@ -3,9 +3,8 @@
 var mean = require('./mean');
 
 /**
- * # [variance](http://en.wikipedia.org/wiki/Variance)
- *
- * is the sum of squared deviations from the mean
+ * The [variance](http://en.wikipedia.org/wiki/Variance)
+ * is the sum of squared deviations from the mean.
  *
  * depends on `mean()`
  *

@@ -4,9 +4,8 @@ var sum_nth_power_deviations = require('./sum_nth_power_deviations');
 var sample_standard_deviation = require('./sample_standard_deviation');
 
 /**
- * # [Skewness](http://en.wikipedia.org/wiki/Skewness)
- *
- * A measure of the extent to which a probability distribution of a
+ * [Skewness](http://en.wikipedia.org/wiki/Skewness) is
+ * a measure of the extent to which a probability distribution of a
  * real-valued random variable "leans" to one side of the mean.
  * The skewness value can be positive or negative, or even undefined.
  *

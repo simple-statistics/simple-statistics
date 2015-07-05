@@ -1,8 +1,7 @@
 'use strict';
 
 /**
- * # harmonic mean
- *
+ * The [Harmonic Mean](https://en.wikipedia.org/wiki/Harmonic_mean) is
  * a mean function typically used to find the average of rates
  *
  * this is the reciprocal of the arithmetic mean of the reciprocals
