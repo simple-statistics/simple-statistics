@@ -75,7 +75,7 @@ While the code is meant to readable, it is not documentation. We maintain
 documentation in `API.md`, which has the simple form:
 
 ```md
-### .geometric_mean(x)
+### .geometricMean(x)
 
 [Geometric mean](http://en.wikipedia.org/wiki/Geometric_mean) of a single-dimensional array of **positive** numbers.
 ```

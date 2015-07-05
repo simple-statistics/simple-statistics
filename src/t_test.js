@@ -1,6 +1,6 @@
 'use strict';
 
-var standard_deviation = require('./standard_deviation');
+var standardDeviation = require('./standard_deviation');
 var mean = require('./mean');
 
 /**
@@ -17,19 +17,19 @@ var mean = require('./mean');
  * @param {Array<number>} sample
  * @returns {number} value
  */
-function t_test(sample, x) {
+function tTest(sample, x) {
     // The mean of the sample
-    var sample_mean = mean(sample);
+    var sampleMean = mean(sample);
 
     // The standard deviation of the sample
-    var sd = standard_deviation(sample);
+    var sd = standardDeviation(sample);
 
     // Square root the length of the sample
     var rootN = Math.sqrt(sample.length);
 
     // Compute the known value against the sample,
     // returning the t value
-    return (sample_mean - x) / (sd / rootN);
+    return (sampleMean - x) / (sd / rootN);
 }
 
-module.exports = t_test;
+module.exports = tTest;

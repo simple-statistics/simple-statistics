@@ -9,7 +9,7 @@
  * @param {number} p desired quantile: a number between 0 to 1, inclusive
  * @returns {number} quantile value
  */
-function quantile_sorted(sample, p) {
+function quantileSorted(sample, p) {
     var idx = (sample.length) * p;
     if (p < 0 || p > 1) {
         return null;
@@ -33,4 +33,4 @@ function quantile_sorted(sample, p) {
     }
 }
 
-module.exports = quantile_sorted;
+module.exports = quantileSorted;

@@ -17,27 +17,27 @@ in all modern browsers (including IE) as well as in node.js.
     .mean(x)
     .sum(x)
     .variance(x)
-    .standard_deviation(x)
+    .standardDeviation(x)
     .median_absolute_deviation(x)
     .median(x)
-    .geometric_mean(x)
-    .harmonic_mean(x)
+    .geometricMean(x)
+    .harmonicMean(x)
     .root_mean_square(x)
     .min(x)
     .max(x)
-    .t_test(sample, x)
-    .t_test_two_sample(sample_x, sample_y, difference)
-    .sample_variance(x)
-    .sample_covariance(x)
-    .sample_correlation(x)
+    .tTest(sample, x)
+    .tTestTwoSample(sampleX, sampleY, difference)
+    .sampleVariance(x)
+    .sampleCovariance(x)
+    .sampleCorrelation(x)
     .quantile(sample, p)
     .iqr(sample)
-    .sample_skewness(sample)
+    .sampleSkewness(sample)
     .jenks(data, number_of_classes)
     .r_squared(data, function)
-    .cumulative_std_normal_probability(z)
-    .z_score(x, mean, standard_deviation)
-    .standard_normal_table
+    .cumulativeStdNormalProbability(z)
+    .zScore(x, mean, standardDeviation)
+    .standardNormalTable
   Regression
     .linear_regression()
       .data([[1, 1], [2, 2]])
@@ -82,7 +82,7 @@ var list = [1, 2, 3];
 var sum = ss.sum(list),
     mean = ss.mean(list),
     min = ss.min(list),
-    geometric_mean = ss.geometric_mean(list),
+    geometricMean = ss.geometricMean(list),
     max = ss.max(list),
     quantile = ss.quantile(0.25);
 ```

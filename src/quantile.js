@@ -1,6 +1,6 @@
 'use strict';
 
-var quantile_sorted = require('./quantile_sorted');
+var quantileSorted = require('./quantile_sorted');
 
 /**
  * The [quantile](https://en.wikipedia.org/wiki/Quantile):
@@ -24,7 +24,7 @@ var quantile_sorted = require('./quantile_sorted');
 function quantile(sample, p) {
 
     // We can't derive quantiles from an empty list
-    if (sample.length === 0) return null;
+    if (sample.length === 0) { return null; }
 
     // Sort a copy of the array. We'll need a sorted array to index
     // the values in sorted order.
@@ -35,11 +35,11 @@ function quantile(sample, p) {
         var results = [];
         // For each requested quantile
         for (var i = 0; i < p.length; i++) {
-            results[i] = quantile_sorted(sorted, p[i]);
+            results[i] = quantileSorted(sorted, p[i]);
         }
         return results;
     } else {
-        return quantile_sorted(sorted, p);
+        return quantileSorted(sorted, p);
     }
 }
 

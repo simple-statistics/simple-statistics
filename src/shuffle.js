@@ -1,6 +1,6 @@
 'use strict';
 
-var shuffle_in_place = require('./shuffle_in_place');
+var shuffleInPlace = require('./shuffle_in_place');
 
 /*
  * A [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
@@ -15,7 +15,7 @@ function shuffle(sample, randomSource) {
     sample = sample.slice();
 
     // and then shuffle that shallow-copied array, in place
-    return shuffle_in_place(sample.slice(), randomSource);
+    return shuffleInPlace(sample.slice(), randomSource);
 }
 
 module.exports = shuffle;

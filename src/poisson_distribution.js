@@ -16,7 +16,7 @@ var factorial = require('./factorial');
  * @param {number} position location poisson distribution
  * @returns {number} value of poisson distribution at that point
  */
-function poisson_distribution(lambda) {
+function poissonDistribution(lambda) {
     // Check that lambda is strictly positive
     if (lambda <= 0) { return null; }
 
@@ -24,28 +24,28 @@ function poisson_distribution(lambda) {
     var x = 0,
         // and we keep track of the current cumulative probability, in
         // order to know when to stop calculating chances.
-        cumulative_probability = 0,
+        cumulativeProbability = 0,
         // the calculated cells to be returned
         cells = {};
 
     // a [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function)
-    function probability_mass(x, lambda) {
+    function probabilityMass(x, lambda) {
         return (Math.pow(Math.E, -lambda) * Math.pow(lambda, x)) /
             factorial(x);
     }
 
     // This algorithm iterates through each potential outcome,
-    // until the `cumulative_probability` is very close to 1, at
+    // until the `cumulativeProbability` is very close to 1, at
     // which point we've defined the vast majority of outcomes
     do {
-        cells[x] = probability_mass(x, lambda);
-        cumulative_probability += cells[x];
+        cells[x] = probabilityMass(x, lambda);
+        cumulativeProbability += cells[x];
         x++;
-    // when the cumulative_probability is nearly 1, we've calculated
+    // when the cumulativeProbability is nearly 1, we've calculated
     // the useful range of this distribution
-    } while (cumulative_probability < 1 - epsilon);
+    } while (cumulativeProbability < 1 - epsilon);
 
     return cells;
 }
 
-module.exports = poisson_distribution;
+module.exports = poissonDistribution;

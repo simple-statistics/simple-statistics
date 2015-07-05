@@ -1,11 +1,11 @@
 'use strict';
 
 var epsilon = require('./epsilon');
-var inverse_error_function = require('./inverse_error_function');
+var inverseErrorFunction = require('./inverse_error_function');
 
 /**
  * The [Probit](http://en.wikipedia.org/wiki/Probit)
- * is the inverse of cumulative_std_normal_probability(),
+ * is the inverse of cumulativeStdNormalProbability(),
  * and is also known as the normal quantile function.
  *
  * It returns the number of standard deviations from the mean
@@ -22,7 +22,7 @@ function probit(p) {
     } else if (p >= 1) {
         p = 1 - epsilon;
     }
-    return Math.sqrt(2) * inverse_error_function(2 * p - 1);
+    return Math.sqrt(2) * inverseErrorFunction(2 * p - 1);
 }
 
 module.exports = probit;

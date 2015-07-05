@@ -18,11 +18,11 @@
  *
  * @param {number} x
  * @param {number} mean
- * @param {number} standard_deviation
+ * @param {number} standardDeviation
  * @return {number} z score
  */
-function z_score(x, mean, standard_deviation) {
-    return (x - mean) / standard_deviation;
+function zScore(x, mean, standardDeviation) {
+    return (x - mean) / standardDeviation;
 }
 
-module.exports = z_score;
+module.exports = zScore;

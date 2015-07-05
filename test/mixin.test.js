@@ -10,7 +10,7 @@ test('mixin', function(t) {
         t.equal(even.mean(), 5);
         t.equal(even.max(), 8);
         t.equal(even.min(), 2);
-        t.equal(even.sample_skewness(), 0);
+        t.equal(even.sampleSkewness(), 0);
         t.end();
     });
 
@@ -21,7 +21,7 @@ test('mixin', function(t) {
         t.equal(even.mean(), 5);
         t.equal(even.max(), 8);
         t.equal(even.min(), 2);
-        t.equal(even.sample_skewness(), 0);
+        t.equal(even.sampleSkewness(), 0);
         t.end();
     });
 

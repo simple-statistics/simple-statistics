@@ -1,6 +1,6 @@
 'use strict';
 
-var binomial_distribution = require('./binomial_distribution');
+var binomialDistribution = require('./binomial_distribution');
 
 /**
  * The [Bernoulli distribution](http://en.wikipedia.org/wiki/Bernoulli_distribution)
@@ -20,7 +20,7 @@ function bernoulliDistribution(p) {
     // Check that `p` is a valid probability (0 ≤ p ≤ 1)
     if (p < 0 || p > 1 ) { return null; }
 
-    return binomial_distribution(1, p);
+    return binomialDistribution(1, p);
 }
 
 module.exports = bernoulliDistribution;

@@ -20,18 +20,18 @@ function linearRegression(data) {
 
     // Store data length in a local variable to reduce
     // repeated object property lookups
-    var data_length = data.length;
+    var dataLength = data.length;
 
     //if there's only one point, arbitrarily choose a slope of 0
     //and a y-intercept of whatever the y of the initial point is
-    if (data_length === 1) {
+    if (dataLength === 1) {
         m = 0;
         b = data[0][1];
     } else {
         // Initialize our sums and scope the `m` and `b`
         // variables that define the line.
-        var sum_x = 0, sum_y = 0,
-            sum_xx = 0, sum_xy = 0;
+        var sumX = 0, sumY = 0,
+            sumXX = 0, sumXY = 0;
 
         // Use local variables to grab point values
         // with minimal object property lookups
@@ -42,24 +42,24 @@ function linearRegression(data) {
         // value.
         //
         // In math notation, these would be SS_x, SS_y, SS_xx, and SS_xy
-        for (var i = 0; i < data_length; i++) {
+        for (var i = 0; i < dataLength; i++) {
             point = data[i];
             x = point[0];
             y = point[1];
 
-            sum_x += x;
-            sum_y += y;
+            sumX += x;
+            sumY += y;
 
-            sum_xx += x * x;
-            sum_xy += x * y;
+            sumXX += x * x;
+            sumXY += x * y;
         }
 
         // `m` is the slope of the regression line
-        m = ((data_length * sum_xy) - (sum_x * sum_y)) /
-            ((data_length * sum_xx) - (sum_x * sum_x));
+        m = ((dataLength * sumXY) - (sumX * sumY)) /
+            ((dataLength * sumXX) - (sumX * sumX));
 
         // `b` is the y-intercept of the line.
-        b = (sum_y / data_length) - ((m * sum_x) / data_length);
+        b = (sumY / dataLength) - ((m * sumX) / dataLength);
     }
 
     // Return both values as an object.

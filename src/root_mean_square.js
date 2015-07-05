@@ -15,14 +15,14 @@
  * @returns {number} root mean square
  */
 function rootMeanSquare(x) {
-    if (x.length === 0) return null;
+    if (x.length === 0) { return null; }
 
-    var sum_of_squares = 0;
+    var sumOfSquares = 0;
     for (var i = 0; i < x.length; i++) {
-        sum_of_squares += Math.pow(x[i], 2);
+        sumOfSquares += Math.pow(x[i], 2);
     }
 
-    return Math.sqrt(sum_of_squares / x.length);
+    return Math.sqrt(sumOfSquares / x.length);
 }
 
 module.exports = rootMeanSquare;

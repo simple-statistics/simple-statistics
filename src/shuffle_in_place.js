@@ -9,7 +9,7 @@
  * @param {Function} [randomSource=Math.random] an optional source of entropy
  * @returns {Array} sample
  */
-function shuffle_in_place(sample, randomSource) {
+function shuffleInPlace(sample, randomSource) {
 
     // a custom random number source can be provided if you want to use
     // a fixed seed or another random number generator, like
@@ -44,4 +44,4 @@ function shuffle_in_place(sample, randomSource) {
     return sample;
 }
 
-module.exports = shuffle_in_place;
+module.exports = shuffleInPlace;

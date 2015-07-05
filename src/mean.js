@@ -15,7 +15,7 @@ var sum = require('./sum');
  */
 function mean(x) {
     // The mean of no numbers is null
-    if (x.length === 0) return null;
+    if (x.length === 0) { return null; }
 
     return sum(x) / x.length;
 }

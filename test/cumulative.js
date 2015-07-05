@@ -3,35 +3,35 @@
 var test = require('tape');
 var ss = require('../');
 
-test('cumulative_std_normal_probability', function(t) {
+test('cumulativeStdNormalProbability', function(t) {
     // https://en.wikipedia.org/wiki/Standard_normal_table#Examples_of_use
     test('wikipedia test example works', function(t) {
-        t.equal(ss.cumulative_std_normal_probability(0.4), 0.6554);
+        t.equal(ss.cumulativeStdNormalProbability(0.4), 0.6554);
         t.end();
     });
     test('nondecreasing', function(t) {
-        for (var i = 0; i < ss.standard_normal_table.length; i++) {
-            if (!ss.cumulative_std_normal_probability(i / 100) >= ss.cumulative_std_normal_probability((i - 1) / 100)) {
+        for (var i = 0; i < ss.standardNormalTable.length; i++) {
+            if (!ss.cumulativeStdNormalProbability(i / 100) >= ss.cumulativeStdNormalProbability((i - 1) / 100)) {
                 t.fail('non-decreasing failure on ' + i);
             }
         }
         t.end();
     });
-    test('matches error_function', function(t) {
-        for (var i = 0; i < ss.standard_normal_table.length; i++) {
-            if (!(Math.abs(ss.cumulative_std_normal_probability(i / 100) - (.5 + .5 * ss.error_function(i / 100 / Math.sqrt(2)))) < ss.epsilon)) {
+    test('matches errorFunction', function(t) {
+        for (var i = 0; i < ss.standardNormalTable.length; i++) {
+            if (!(Math.abs(ss.cumulativeStdNormalProbability(i / 100) - (.5 + .5 * ss.errorFunction(i / 100 / Math.sqrt(2)))) < ss.epsilon)) {
                 t.fail('error-fn failure on ' + i);
             }
         }
         t.end();
     });
     test('symmetry', function(t) {
-        t.equal(Math.abs(ss.cumulative_std_normal_probability(-1) - (1 - ss.cumulative_std_normal_probability(1))) < ss.epsilon, true);
+        t.equal(Math.abs(ss.cumulativeStdNormalProbability(-1) - (1 - ss.cumulativeStdNormalProbability(1))) < ss.epsilon, true);
         t.end();
     });
     test('inverse', function(t) {
         for (var i = 0; i <= 1 + ss.epsilon; i += .01) {
-            t.equal(Math.abs(ss.cumulative_std_normal_probability(ss.probit(i)) - i) < 21 * ss.epsilon, true);
+            t.equal(Math.abs(ss.cumulativeStdNormalProbability(ss.probit(i)) - i) < 21 * ss.epsilon, true);
         }
         t.end();
     });

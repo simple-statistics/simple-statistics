@@ -12,14 +12,16 @@ function mixin(ss, array) {
     var support = !!(Object.defineProperty && Object.defineProperties);
     // Coverage testing will never test this error.
     /* istanbul ignore next */
-    if (!support) throw new Error('without defineProperty, simple-statistics cannot be mixed in');
+    if (!support) {
+        throw new Error('without defineProperty, simple-statistics cannot be mixed in');
+    }
 
     // only methods which work on basic arrays in a single step
     // are supported
-    var arrayMethods = ['median', 'standard_deviation', 'sum',
-        'sample_skewness',
-        'mean', 'min', 'max', 'quantile', 'geometric_mean',
-        'harmonic_mean', 'root_mean_square'];
+    var arrayMethods = ['median', 'standardDeviation', 'sum',
+        'sampleSkewness',
+        'mean', 'min', 'max', 'quantile', 'geometricMean',
+        'harmonicMean', 'root_mean_square'];
 
     // create a closure with a method name so that a reference
     // like `arrayMethods[i]` doesn't follow the loop increment

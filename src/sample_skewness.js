@@ -1,7 +1,7 @@
 'use strict';
 
-var sum_nth_power_deviations = require('./sum_nth_power_deviations');
-var sample_standard_deviation = require('./sample_standard_deviation');
+var sumNthPowerDeviations = require('./sum_nth_power_deviations');
+var sampleStandardDeviation = require('./sample_standard_deviation');
 
 /**
  * [Skewness](http://en.wikipedia.org/wiki/Skewness) is
@@ -13,20 +13,20 @@ var sample_standard_deviation = require('./sample_standard_deviation');
  * moment coefficient, which is the version found in Excel and several
  * statistical packages including Minitab, SAS and SPSS.
  *
- * Depends on `sum_nth_power_deviations()` and `sample_standard_deviation`
+ * Depends on `sumNthPowerDeviations()` and `sampleStandardDeviation`
  *
  * @param {Array<number>} x input
  * @returns {number} sample skewness
  */
-function sample_skewness(x) {
+function sampleSkewness(x) {
     // The skewness of less than three arguments is null
-    if (x.length < 3) return null;
+    if (x.length < 3) { return null; }
 
     var n = x.length,
-        cubed_s = Math.pow(sample_standard_deviation(x), 3),
-        sum_cubed_deviations = sum_nth_power_deviations(x, 3);
+        cubedS = Math.pow(sampleStandardDeviation(x), 3),
+        sumCubedDeviations = sumNthPowerDeviations(x, 3);
 
-    return n * sum_cubed_deviations / ((n - 1) * (n - 2) * cubed_s);
+    return n * sumCubedDeviations / ((n - 1) * (n - 2) * cubedS);
 }
 
-module.exports = sample_skewness;
+module.exports = sampleSkewness;

@@ -1,21 +1,21 @@
 'use strict';
 
-var sample_variance = require('./sample_variance');
+var sampleVariance = require('./sample_variance');
 
 /**
  * The [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
  * is the square root of the variance.
  *
- * depends on `sample_variance()`
+ * depends on `sampleVariance()`
  *
  * @param {Array<number>} x input array
  * @returns {number} sample standard deviation
  */
-function sample_standard_deviation(x) {
+function sampleStandardDeviation(x) {
     // The standard deviation of no numbers is null
-    if (x.length <= 1) return null;
+    if (x.length <= 1) { return null; }
 
-    return Math.sqrt(sample_variance(x));
+    return Math.sqrt(sampleVariance(x));
 }
 
-module.exports = sample_standard_deviation;
+module.exports = sampleStandardDeviation;

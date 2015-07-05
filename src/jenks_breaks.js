@@ -8,21 +8,21 @@
  *
  * @private
  */
-function jenksBreaks(data, lower_class_limits, n_classes) {
+function jenksBreaks(data, lowerClassLimits, nClasses) {
 
     var k = data.length,
         kclass = [],
-        countNum = n_classes;
+        countNum = nClasses;
 
     // the calculation of classes will never include the upper
     // bound, so we need to explicitly set it
-    kclass[n_classes] = data[data.length - 1];
+    kclass[nClasses] = data[data.length - 1];
 
-    // the lower_class_limits matrix is used as indices into itself
+    // the lowerClassLimits matrix is used as indices into itself
     // here: the `k` variable is reused in each iteration.
     while (countNum > 0) {
-        kclass[countNum - 1] = data[lower_class_limits[k][countNum] - 1];
-        k = lower_class_limits[k][countNum] - 1;
+        kclass[countNum - 1] = data[lowerClassLimits[k][countNum] - 1];
+        k = lowerClassLimits[k][countNum] - 1;
         countNum--;
     }
 

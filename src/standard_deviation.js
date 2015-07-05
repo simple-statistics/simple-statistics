@@ -9,11 +9,11 @@ var variance = require('./variance');
  * @param {Array<number>} x input
  * @returns {number} standard deviation
  */
-function standard_deviation(x) {
+function standardDeviation(x) {
     // The standard deviation of no numbers is null
-    if (x.length === 0) return null;
+    if (x.length === 0) { return null; }
 
     return Math.sqrt(variance(x));
 }
 
-module.exports = standard_deviation;
+module.exports = standardDeviation;

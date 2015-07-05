@@ -12,7 +12,7 @@
  * The table used is the cumulative, and not cumulative from 0 to mean
  * (even though the latter has 5 digits precision, instead of 4).
  */
-var standard_normal_table = [
+var standardNormalTable = [
     /*  z      0.00    0.01    0.02    0.03    0.04    0.05    0.06    0.07    0.08    0.09 */
     /* 0.0 */
     0.5000, 0.5040, 0.5080, 0.5120, 0.5160, 0.5199, 0.5239, 0.5279, 0.5319, 0.5359,
@@ -78,4 +78,4 @@ var standard_normal_table = [
     0.9987, 0.9987, 0.9987, 0.9988, 0.9988, 0.9989, 0.9989, 0.9989, 0.9990, 0.9990
 ];
 
-module.exports = standard_normal_table;
+module.exports = standardNormalTable;

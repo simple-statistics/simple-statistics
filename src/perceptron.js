@@ -30,7 +30,7 @@ PerceptronModel.prototype.predict = function(features) {
 
     // Only predict if previously trained
     // on the same size feature array(s).
-    if (features.length !== this.weights.length) return null;
+    if (features.length !== this.weights.length) { return null; }
 
     // Calculate the sum of features times weights,
     // with the bias added (implicitly times one).
@@ -50,12 +50,12 @@ PerceptronModel.prototype.predict = function(features) {
  * a numeric array of features and a 0 or 1 label.
  *
  * @param {Array} features
- * @param {string} label
+ * @param {number} label either 0 or 1
  * @returns {PerceptronModel} this
  */
 PerceptronModel.prototype.train = function(features, label) {
     // Require that only labels of 0 or 1 are considered.
-    if (label !== 0 && label !== 1) return null;
+    if (label !== 0 && label !== 1) { return null; }
     // The length of the feature array determines
     // the length of the weight array.
     // The perceptron will continue learning as long as

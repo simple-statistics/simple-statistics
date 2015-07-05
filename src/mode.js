@@ -16,8 +16,8 @@ function mode(x) {
 
     // Handle edge cases:
     // The median of an empty list is null
-    if (x.length === 0) return null;
-    else if (x.length === 1) return x[0];
+    if (x.length === 0) { return null; }
+    else if (x.length === 1) { return x[0]; }
 
     // Sorting the array lets us iterate through it below and be sure
     // that every time we see a new number it's new and we'll never
@@ -31,10 +31,10 @@ function mode(x) {
         // store the mode as we find new modes
         value,
         // store how many times we've seen the mode
-        max_seen = 0,
+        maxSeen = 0,
         // how many times the current candidate for the mode
         // has been seen
-        seen_this = 1;
+        seenThis = 1;
 
     // end at sorted.length + 1 to fix the case in which the mode is
     // the highest number that occurs in the sequence. the last iteration
@@ -45,15 +45,15 @@ function mode(x) {
         if (sorted[i] !== last) {
             // the last number is the new mode since we saw it more
             // often than the old one
-            if (seen_this > max_seen) {
-                max_seen = seen_this;
+            if (seenThis > maxSeen) {
+                maxSeen = seenThis;
                 value = last;
             }
-            seen_this = 1;
+            seenThis = 1;
             last = sorted[i];
         // if this isn't a new number, it's one more occurrence of
         // the potential mode
-        } else { seen_this++; }
+        } else { seenThis++; }
     }
     return value;
 }

@@ -1,7 +1,7 @@
 'use strict';
 
-var sample_covariance = require('./sample_covariance');
-var sample_standard_deviation = require('./sample_standard_deviation');
+var sampleCovariance = require('./sample_covariance');
+var sampleStandardDeviation = require('./sample_standard_deviation');
 
 /**
  * The [correlation](http://en.wikipedia.org/wiki/Correlation_and_dependence) is
@@ -11,10 +11,10 @@ var sample_standard_deviation = require('./sample_standard_deviation');
  * @param {Array<number>} y second input
  * @returns {number} sample correlation
  */
-function sample_correlation(x, y) {
-    var cov = sample_covariance(x, y),
-        xstd = sample_standard_deviation(x),
-        ystd = sample_standard_deviation(y);
+function sampleCorrelation(x, y) {
+    var cov = sampleCovariance(x, y),
+        xstd = sampleStandardDeviation(x),
+        ystd = sampleStandardDeviation(y);
 
     if (cov === null || xstd === null || ystd === null) {
         return null;
@@ -23,4 +23,4 @@ function sample_correlation(x, y) {
     return cov / xstd / ystd;
 }
 
-module.exports = sample_correlation;
+module.exports = sampleCorrelation;

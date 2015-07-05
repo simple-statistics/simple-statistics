@@ -10,7 +10,7 @@
  */
 function median(x) {
     // The median of an empty list is null
-    if (x.length === 0) return null;
+    if (x.length === 0) { return null; }
 
     // Sorting the array makes it easy to find the center, but
     // use `.slice()` to ensure the original array `x` is not modified

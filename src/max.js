@@ -15,7 +15,9 @@ function max(x) {
     for (var i = 0; i < x.length; i++) {
         // On the first iteration of this loop, max is
         // undefined and is thus made the maximum element in the array
-        if (x[i] > value || value === undefined) value = x[i];
+        if (x[i] > value || value === undefined) {
+            value = x[i];
+        }
     }
     return value;
 }

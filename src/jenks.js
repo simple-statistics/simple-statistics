@@ -7,24 +7,24 @@ var jenksMatrices = require('./jenks_matrices');
  * ## [Jenks natural breaks optimization](http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization)
  *
  * @param {Array<number>} data input data, as an array of number values
- * @param {number} n_classes number of desired classes
+ * @param {number} nClasses number of desired classes
  * @returns {Array<number>} array of class break positions
  */
-function jenks(data, n_classes) {
+function jenks(data, nClasses) {
 
-    if (n_classes > data.length) return null;
+    if (nClasses > data.length) { return null; }
 
     // sort data in numerical order, since this is expected
     // by the matrices function
     data = data.slice().sort(function (a, b) { return a - b; });
 
     // get our basic matrices
-    var matrices = jenksMatrices(data, n_classes),
+    var matrices = jenksMatrices(data, nClasses),
         // we only need lower class limits here
-        lower_class_limits = matrices.lower_class_limits;
+        lowerClassLimits = matrices.lowerClassLimits;
 
-    // extract n_classes out of the computed matrices
-    return jenksBreaks(data, lower_class_limits, n_classes);
+    // extract nClasses out of the computed matrices
+    return jenksBreaks(data, lowerClassLimits, nClasses);
 }
 
 module.exports = jenks;

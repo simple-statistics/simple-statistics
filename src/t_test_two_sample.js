@@ -1,7 +1,7 @@
 'use strict';
 
 var mean = require('./mean');
-var sample_variance = require('./sample_variance');
+var sampleVariance = require('./sample_variance');
 
 /**
  * This is to compute [two sample t-test](http://en.wikipedia.org/wiki/Student's_t-test).
@@ -20,29 +20,31 @@ var sample_variance = require('./sample_variance');
  *
  * [This is used to confirm or deny](http://www.monarchlab.org/Lab/Research/Stats/2SampleT.aspx)
  * a null hypothesis that the two populations that have been sampled into
- * `sample_x` and `sample_y` are equal to each other.
+ * `sampleX` and `sampleY` are equal to each other.
  *
- * Depends on `sample_variance()` and `mean()`
+ * Depends on `sampleVariance()` and `mean()`
  */
-function t_test_two_sample(sample_x, sample_y, difference) {
-    var n = sample_x.length,
-        m = sample_y.length;
+function tTestTwoSample(sampleX, sampleY, difference) {
+    var n = sampleX.length,
+        m = sampleY.length;
 
     // If either sample doesn't actually have any values, we can't
     // compute this at all, so we return `null`.
-    if (!n || !m) return null;
+    if (!n || !m) { return null; }
 
     // default difference (mu) is zero
-    if (!difference) difference = 0;
+    if (!difference) {
+        difference = 0;
+    }
 
-    var meanX = mean(sample_x),
-        meanY = mean(sample_y);
+    var meanX = mean(sampleX),
+        meanY = mean(sampleY);
 
-    var weightedVariance = ((n - 1) * sample_variance(sample_x) +
-        (m - 1) * sample_variance(sample_y)) / (n + m - 2);
+    var weightedVariance = ((n - 1) * sampleVariance(sampleX) +
+        (m - 1) * sampleVariance(sampleY)) / (n + m - 2);
 
     return (meanX - meanY - difference) /
         Math.sqrt(weightedVariance * (1 / n + 1 / m));
 }
 
-module.exports = t_test_two_sample;
+module.exports = tTestTwoSample;

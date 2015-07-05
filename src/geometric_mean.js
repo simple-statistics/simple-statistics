@@ -12,16 +12,16 @@
  * @param {Array<number>} x input array
  * @returns {number} geometric mean
  */
-function geometric_mean(x) {
+function geometricMean(x) {
     // The mean of no numbers is null
-    if (x.length === 0) return null;
+    if (x.length === 0) { return null; }
 
     // the starting value.
     var value = 1;
 
     for (var i = 0; i < x.length; i++) {
         // the geometric mean is only valid for positive numbers
-        if (x[i] <= 0) return null;
+        if (x[i] <= 0) { return null; }
 
         // repeatedly multiply the value by each number
         value *= x[i];
@@ -30,4 +30,4 @@ function geometric_mean(x) {
     return Math.pow(value, 1 / x.length);
 }
 
-module.exports = geometric_mean;
+module.exports = geometricMean;

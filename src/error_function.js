@@ -3,7 +3,7 @@
 /**
  * ## [Gaussian error function](http://en.wikipedia.org/wiki/Error_function)
  *
- * The `error_function(x/(sd * Math.sqrt(2)))` is the probability that a value in a
+ * The `errorFunction(x/(sd * Math.sqrt(2)))` is the probability that a value in a
  * normal distribution with standard deviation sd is within x of the mean.
  *
  * This function returns a numerical approximation to the exact value.

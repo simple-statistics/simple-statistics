@@ -13,7 +13,9 @@ function min(x) {
     for (var i = 0; i < x.length; i++) {
         // On the first iteration of this loop, min is
         // undefined and is thus made the minimum element in the array
-        if (x[i] < value || value === undefined) value = x[i];
+        if (x[i] < value || value === undefined) {
+            value = x[i];
+        }
     }
     return value;
 }

@@ -11,15 +11,15 @@ var mean = require('./mean');
  * @param {number} n power
  * @returns {number} sum of nth power deviations
  */
-function sum_nth_power_deviations(x, n) {
-    var mean_value = mean(x),
+function sumNthPowerDeviations(x, n) {
+    var meanValue = mean(x),
         sum = 0;
 
     for (var i = 0; i < x.length; i++) {
-        sum += Math.pow(x[i] - mean_value, n);
+        sum += Math.pow(x[i] - meanValue, n);
     }
 
     return sum;
 }
 
-module.exports = sum_nth_power_deviations;
+module.exports = sumNthPowerDeviations;

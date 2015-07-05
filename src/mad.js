@@ -12,18 +12,18 @@ var median = require('./median');
  */
 function mad(x) {
     // The mad of nothing is null
-    if (!x || x.length === 0) return null;
+    if (!x || x.length === 0) { return null; }
 
-    var median_value = median(x),
-        median_absolute_deviations = [];
+    var medianValue = median(x),
+        medianAbsoluteDeviations = [];
 
     // Make a list of absolute deviations from the median
     for (var i = 0; i < x.length; i++) {
-        median_absolute_deviations.push(Math.abs(x[i] - median_value));
+        medianAbsoluteDeviations.push(Math.abs(x[i] - medianValue));
     }
 
     // Find the median value of that list
-    return median(median_absolute_deviations);
+    return median(medianAbsoluteDeviations);
 }
 
 module.exports = mad;

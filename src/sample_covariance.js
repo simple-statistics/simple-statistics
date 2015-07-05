@@ -3,7 +3,7 @@
 var mean = require('./mean');
 
 /**
- * [sample covariance](https://en.wikipedia.org/wiki/Sample_mean_and_sample_covariance) of two datasets:
+ * [sample covariance](https://en.wikipedia.org/wiki/Sample_mean_and_sampleCovariance) of two datasets:
  * how much do the two datasets move together?
  * x and y are two datasets, represented as arrays of numbers.
  *
@@ -11,7 +11,7 @@ var mean = require('./mean');
  * @param {Array<number>} y second input
  * @returns {number} sample covariance
  */
-function sample_covariance(x, y) {
+function sampleCovariance(x, y) {
 
     // The two datasets must have the same length which must be more than 1
     if (x.length <= 1 || x.length !== y.length) {
@@ -38,4 +38,4 @@ function sample_covariance(x, y) {
     return sum / (x.length - 1);
 }
 
-module.exports = sample_covariance;
+module.exports = sampleCovariance;

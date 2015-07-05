@@ -11,7 +11,7 @@
  * @returns {number} r-squared value
  */
 function rSquared(data, f) {
-    if (data.length < 2) return 1;
+    if (data.length < 2) { return 1; }
 
     // Compute the average y value for the actual
     // data set in order to compute the
@@ -25,9 +25,9 @@ function rSquared(data, f) {
     // Compute the total sum of squares - the
     // squared difference between each point
     // and the average of all points.
-    var sum_of_squares = 0;
+    var sumOfSquares = 0;
     for (var j = 0; j < data.length; j++) {
-        sum_of_squares += Math.pow(average - data[j][1], 2);
+        sumOfSquares += Math.pow(average - data[j][1], 2);
     }
 
     // Finally estimate the error: the squared
@@ -41,7 +41,7 @@ function rSquared(data, f) {
     // As the error grows larger, its ratio to the
     // sum of squares increases and the r squared
     // value grows lower.
-    return 1 - (err / sum_of_squares);
+    return 1 - (err / sumOfSquares);
 }
 
 module.exports = rSquared;
