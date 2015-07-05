@@ -14,6 +14,9 @@ var binomial_distribution = require('./binomial_distribution');
  * to mean "tails" (or vice versa). It is
  * a special case of a Binomial Distribution
  * where `n` = 1.
+ *
+ * @param {number} p input value, between 0 and 1 inclusive
+ * @returns {number} value of bernoulli distribution at this point
  */
 function bernoulliDistribution(p) {
     // Check that `p` is a valid probability (0 ≤ p ≤ 1)

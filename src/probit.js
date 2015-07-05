@@ -13,6 +13,9 @@ var inverse_error_function = require('./inverse_error_function');
  * where the p'th quantile of values can be found in a normal distribution.
  * So, for example, probit(0.5 + 0.6827/2) ≈ 1 because 68.27% of values are
  * normally found within 1 standard deviation above or below the mean.
+ *
+ * @param {number} p
+ * @returns {number} probit
  */
 function probit(p) {
     if (p === 0) {

@@ -7,6 +7,9 @@ var median = require('./median');
  *
  * The Median Absolute Deviation (MAD) is a robust measure of statistical
  * dispersion. It is more resilient to outliers than the standard deviation.
+ *
+ * @param {Array<number>} x input array
+ * @returns {number} median absolute deviation
  */
 function mad(x) {
     // The mad of nothing is null

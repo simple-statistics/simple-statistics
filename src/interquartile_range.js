@@ -8,6 +8,10 @@ var quantile = require('./quantile');
  * A measure of statistical dispersion, or how scattered, spread, or
  * concentrated a distribution is. It's computed as the difference between
  * the third quartile and first quartile.
+ *
+ * @param {Array<number>} sample
+ * @returns {number} interquartile range: the span between lower and upper quartile,
+ * 0.25 and 0.75
  */
 function interquartile_range(sample) {
     // We can't derive quantiles from an empty list

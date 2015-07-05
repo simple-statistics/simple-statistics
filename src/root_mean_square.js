@@ -1,17 +1,20 @@
 'use strict';
 
 /**
- * root mean square (RMS)
+ * Root Mean Square (RMS)
  *
- * a mean function used as a measure of the magnitude of a set
- * of numbers, regardless of their sign
+ * A mean function used as a measure of the magnitude of a set
+ * of numbers, regardless of their sign.
  *
- * this is the square root of the mean of the squares of the
- * input numbers
+ * This is the square root of the mean of the squares of the
+ * input numbers.
  *
  * This runs on `O(n)`, linear time in respect to the array
+ *
+ * @param {Array<number>} x input
+ * @returns {number} root mean square
  */
-function root_mean_square(x) {
+function rootMeanSquare(x) {
     if (x.length === 0) return null;
 
     var sum_of_squares = 0;
@@ -22,4 +25,4 @@ function root_mean_square(x) {
     return Math.sqrt(sum_of_squares / x.length);
 }
 
-module.exports = root_mean_square;
+module.exports = rootMeanSquare;

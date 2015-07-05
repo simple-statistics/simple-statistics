@@ -12,6 +12,9 @@ var standard_normal_table = require('./standard_normal_table');
  *
  * You can use `.5 + .5 * error_function(x / Math.sqrt(2))` to calculate the probability
  * instead of looking it up in a table.
+ *
+ * @param {number} z
+ * @returns {number} cumulative standard normal probability
  */
 function cumulative_std_normal_probability(z) {
 

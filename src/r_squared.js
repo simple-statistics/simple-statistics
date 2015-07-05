@@ -6,8 +6,12 @@
  * The r-squared value of data compared with a function `f`
  * is the sum of the squared differences between the prediction
  * and the actual value.
+ *
+ * @param {Array<Array<number>>} data input data: this should be doubly-nested
+ * @param {Function} f function called on `[i][0]` values within the dataset
+ * @returns {number} r-squared value
  */
-function r_squared(data, f) {
+function rSquared(data, f) {
     if (data.length < 2) return 1;
 
     // Compute the average y value for the actual
@@ -41,4 +45,4 @@ function r_squared(data, f) {
     return 1 - (err / sum_of_squares);
 }
 
-module.exports = r_squared;
+module.exports = rSquared;

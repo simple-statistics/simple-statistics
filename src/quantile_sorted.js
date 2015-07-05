@@ -6,6 +6,10 @@
  * This is the internal implementation of quantiles: when you know
  * that the order is sorted, you don't need to re-sort it, and the computations
  * are much faster.
+ *
+ * @param {Array<number>} sample input data
+ * @param {number} p desired quantile: a number between 0 to 1, inclusive
+ * @returns {number} quantile value
  */
 function quantile_sorted(sample, p) {
     var idx = (sample.length) * p;

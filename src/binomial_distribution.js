@@ -10,6 +10,10 @@ var factorial = require('./factorial');
  * distribution of the number of successes in a sequence of n independent yes/no experiments, each of which yields
  * success with probability `probability`. Such a success/failure experiment is also called a Bernoulli experiment or
  * Bernoulli trial; when trials = 1, the Binomial Distribution is a Bernoulli Distribution.
+ *
+ * @param {number} trials number of trials to simulate
+ * @param {number} probability
+ * @returns {number} output
  */
 function binomialDistribution(trials, probability) {
     // Check that `p` is a valid probability (0 ≤ p ≤ 1),

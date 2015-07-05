@@ -14,6 +14,12 @@ var chi_squared_distribution_table = require('./chi_squared_distribution_table')
  * takes the total number of observed frequencies and subtracts the number of estimated parameters. The test statistic
  * follows, approximately, a chi-square distribution with (k − c) degrees of freedom where `k` is the number of non-empty
  * cells and `c` is the number of estimated parameters for the distribution.
+ *
+ * @param {Array<number>} data
+ * @param {Function} distribution_type a function that returns a point in a distribution:
+ * for instance, binomial, bernoulli, or poisson
+ * @param {number} significance
+ * @returns {number} chi squared goodness of fit
  */
 function chi_squared_goodness_of_fit(data, distribution_type, significance) {
     // Estimate from the sample data, a weighted mean.

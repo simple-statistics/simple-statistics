@@ -4,7 +4,10 @@
  * # Inverse [Gaussian error function](http://en.wikipedia.org/wiki/Error_function)
  *
  * Returns a numerical approximation to the value that would have caused
- * error_function() to return x.
+ * `error_function()` to return x.
+ *
+ * @param {number} x value of error function
+ * @returns {number} estimated inverted value
  */
 function inverse_error_function(x) {
     var a = (8 * (Math.PI - 3)) / (3 * Math.PI * (4 - Math.PI));

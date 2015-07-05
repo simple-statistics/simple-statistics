@@ -9,6 +9,9 @@
  * this is the nth root of the input numbers multiplied by each other
  *
  * This runs on `O(n)`, linear time in respect to the array
+ *
+ * @param {Array<number>} x input array
+ * @returns {number} geometric mean
  */
 function geometric_mean(x) {
     // The mean of no numbers is null

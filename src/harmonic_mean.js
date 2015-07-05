@@ -9,6 +9,9 @@
  * of the input numbers
  *
  * This runs on `O(n)`, linear time in respect to the array
+ *
+ * @param {Array<number>} x input
+ * @returns {number} harmonic mean
  */
 function harmonic_mean(x) {
     // The mean of no numbers is null
