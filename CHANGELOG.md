@@ -8,6 +8,23 @@
   still be used in a browser with browserify.
 * Removed the .m() and .b() shortcuts from the linear regression
   class. Use `.mb().b` and `.mb().m` instead.
+
+**UPGRADING**
+
+Before:
+
+```js
+var l = ss.linear_regression().data([[0, 0], [1, 1]]);
+l.line()(0); // 0
+```
+
+After:
+
+```js
+var line = ss.linearRegressionLine(ss.linearRegression([[0, 0], [1, 1]]));
+line(0); // 0
+```
+
 * linearRegression is now a function, and linearRegressionLine is a separate
   function.
 * `BayesModel` is now a class
