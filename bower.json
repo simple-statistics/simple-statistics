@@ -1,11 +1,11 @@
 {
   "name": "simple-statistics",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "description": "Simple Statistics",
   "repo": "tmcw/simple-statistics",
   "keywords": [],
   "license": "ISC",
   "dependencies": {},
   "development": {},
-  "main": "src/simple_statistics.js"
+  "main": "dist/simple_statistics.min.js"
 }
