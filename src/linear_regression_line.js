@@ -1,11 +1,10 @@
 'use strict';
 
 /**
- * ## Fitting The Regression Line
- *
- * This is called after `.data()` and returns the
- * equation `y = f(x)` which gives the position
- * of the regression line at each point in `x`.
+ * Given the output of `linearRegression`: an object
+ * with `m` and `b` values indicating slope and intercept,
+ * respectively, generate a line function that translates
+ * x values into y values.
  *
  * @param {Object} mb object with `m` and `b` members, representing
  * slope and intersect of desired line
@@ -13,15 +12,11 @@
  * x-value on the line.
  */
 function linearRegressionLine(mb) {
-    // Get the slope, `m`, and y-intercept, `b`, of the line.
-    var m = mb.m,
-        b = mb.b;
-
     // Return a function that computes a `y` value for each
     // x value it is given, based on the values of `b` and `a`
     // that we just computed.
     return function(x) {
-        return b + (m * x);
+        return mb.b + (mb.m * x);
     };
 }
 

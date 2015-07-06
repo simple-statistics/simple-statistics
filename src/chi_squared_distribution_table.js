@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * ## Percentage Points of the χ2 (Chi-Squared) Distribution
+ * **Percentage Points of the χ2 (Chi-Squared) Distribution**
  *
  * The [χ2 (Chi-Squared) Distribution](http://en.wikipedia.org/wiki/Chi-squared_distribution) is used in the common
  * chi-squared tests for goodness of fit of an observed distribution to a theoretical one, the independence of two

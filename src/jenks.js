@@ -4,7 +4,14 @@ var jenksBreaks = require('./jenks_breaks');
 var jenksMatrices = require('./jenks_matrices');
 
 /**
- * ## [Jenks natural breaks optimization](http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization)
+ * The **[jenks natural breaks optimization](http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization)**
+ * is an algorithm commonly used in cartography and visualization to decide
+ * upon groupings of data values that minimize variance within themselves
+ * and maximize variation between themselves.
+ *
+ * For instance, cartographers often use jenks in order to choose which
+ * values are assigned to which colors in a [choropleth](https://en.wikipedia.org/wiki/Choropleth_map)
+ * map.
  *
  * @param {Array<number>} data input data, as an array of number values
  * @param {number} nClasses number of desired classes

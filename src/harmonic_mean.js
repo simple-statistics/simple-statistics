@@ -3,10 +3,8 @@
 /**
  * The [Harmonic Mean](https://en.wikipedia.org/wiki/Harmonic_mean) is
  * a mean function typically used to find the average of rates
- *
  * this is the reciprocal of the arithmetic mean of the reciprocals
- * of the input numbers
- *
+ * of the input numbers.
  * This runs on `O(n)`, linear time in respect to the array
  *
  * @param {Array<number>} x input

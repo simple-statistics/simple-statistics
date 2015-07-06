@@ -1,9 +1,7 @@
 'use strict';
 
 /**
- * The min is the lowest number in the array.
- *
- * This runs on `O(n)`, linear time in respect to the array
+ * The min is the lowest number in the array. This runs on `O(n)`, linear time in respect to the array
  *
  * @param {Array<number>} x input
  * @returns {number} minimum value

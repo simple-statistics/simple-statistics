@@ -1,9 +1,7 @@
 'use strict';
 
 /**
- * ## [Perceptron Classifier](http://en.wikipedia.org/wiki/Perceptron)
- *
- * This is a single-layer perceptron classifier that takes
+ * This is a single-layer [Perceptron Classifier](http://en.wikipedia.org/wiki/Perceptron) that takes
  * arrays of numbers and predicts whether they should be classified
  * as either 0 or 1 (negative or positive examples).
  */
@@ -18,9 +16,7 @@ function PerceptronModel() {
 }
 
 /**
- * ## Predict
- *
- * Use an array of features with the weight array and bias
+ * **Predict**: Use an array of features with the weight array and bias
  * to predict whether an example is labeled 0 or 1.
  *
  * @param {Array} features
@@ -45,8 +41,7 @@ PerceptronModel.prototype.predict = function(features) {
 };
 
 /**
- * ## Train
- * Train the classifier with a new example, which is
+ * **Train** the classifier with a new example, which is
  * a numeric array of features and a 0 or 1 label.
  *
  * @param {Array} features

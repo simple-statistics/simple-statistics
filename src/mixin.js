@@ -1,12 +1,20 @@
 'use strict';
 
 /**
- * # Mixin
- *
- * Mixin simple_statistics to a single Array instance if provided
+ * **Mixin** simple_statistics to a single Array instance if provided
  * or the Array native object if not. This is an optional
  * feature that lets you treat simple_statistics as a native feature
  * of Javascript.
+ *
+ * @param {Object} ss simple statistics
+ * @param {Array} [array=] a single array instance which will be augmented
+ * with the extra methods. If omitted, mixin will apply to all arrays
+ * by changing the global `Array.prototype`.
+ *
+ * @example
+ * var myNumbers = [1, 2, 3];
+ * mixin(ss, myNumbers);
+ * console.log(myNumbers.sum()); // 6
  */
 function mixin(ss, array) {
     var support = !!(Object.defineProperty && Object.defineProperties);

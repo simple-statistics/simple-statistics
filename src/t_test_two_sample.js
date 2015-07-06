@@ -23,6 +23,11 @@ var sampleVariance = require('./sample_variance');
  * `sampleX` and `sampleY` are equal to each other.
  *
  * Depends on `sampleVariance()` and `mean()`
+ *
+ * @param {Array<number>} sampleX
+ * @param {Array<number>} sampleY
+ * @param {number} [difference=0]
+ * @returns {number}
  */
 function tTestTwoSample(sampleX, sampleY, difference) {
     var n = sampleX.length,
