@@ -2,8 +2,8 @@
 
 A JavaScript implementation of descriptive, regression, and inference statistics.
 
-[![Build Status](https://secure.travis-ci.org/tmcw/simple-statistics.png?branch=master)](http://travis-ci.org/tmcw/simple-statistics)
-[![Coverage Status](https://coveralls.io/repos/tmcw/simple-statistics/badge.png)](https://coveralls.io/r/tmcw/simple-statistics)
+[![Build Status](https://secure.travis-ci.org/tmcw/simple-statistics.svg?branch=master)](http://travis-ci.org/tmcw/simple-statistics)
+[![Coverage Status](https://coveralls.io/repos/tmcw/simple-statistics/badge.svg)](https://coveralls.io/r/tmcw/simple-statistics)
 [![npm version](https://badge.fury.io/js/simple-statistics.svg)](http://badge.fury.io/js/simple-statistics)
 
 Implemented in literate JavaScript with no dependencies, designed to work
