@@ -2,12 +2,12 @@
 
 ## 1.0.0
 
-* JSDoc documentation throughout
-* Each function is now its own file, and simple-statistics
-  is assembled with CommonJS-style require() statements. It can
-  still be used in a browser with browserify.
+### Breaking Changes
+
 * Removed the .m() and .b() shortcuts from the linear regression
   class. Use `.mb().b` and `.mb().m` instead.
+* linearRegression is now a function, and linearRegressionLine is a separate
+  function.
 
 **UPGRADING**
 
@@ -25,11 +25,18 @@ var line = ss.linearRegressionLine(ss.linearRegression([[0, 0], [1, 1]]));
 line(0); // 0
 ```
 
-* linearRegression is now a function, and linearRegressionLine is a separate
-  function.
 * `BayesModel` is now a class
 * `PerceptronModel` is now a class, and the `weights` and `bias` members
   are accessable as properties rather than methods.
+* All multi-word method names are now camelCase rather than underscore_cased:
+  this means that a method like `ss.r_squared` is now accessible as `ss.rSquared`
+
+### Non-Breaking Changes
+
+* JSDoc documentation throughout
+* Each function is now its own file, and simple-statistics
+  is assembled with CommonJS-style require() statements. It can
+  still be used in a browser with browserify.
 
 ## 0.9.2
 

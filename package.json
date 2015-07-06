@@ -9,16 +9,15 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "coveralls": "~2.11.1",
-    "eslint": "^0.21.2",
-    "istanbul": "~0.3.0",
-    "random-js": "~1.0.4",
-    "tape": "~2.14.0"
+    "coveralls": "^2.11.1",
+    "eslint": "^0.24.0",
+    "istanbul": "^0.3.0",
+    "random-js": "^1.0.4",
+    "tape": "^4.0.0"
   },
   "scripts": {
     "test": "eslint --no-eslintrc -c .eslintrc index.js src/*.js test/*.js && tape test/*.js",
-    "cov": "istanbul cover ./node_modules/.bin/tape test/*.js && coveralls < ./coverage/lcov.info || true",
-    "api": "node api.js"
+    "cov": "istanbul cover ./node_modules/.bin/tape test/*.js && coveralls < ./coverage/lcov.info || true"
   },
   "main": "index.js",
   "engines": {
