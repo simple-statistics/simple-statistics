@@ -5,6 +5,9 @@
  * in-place - which means that it **will change the order of the original
  * array by reference**.
  *
+ * This is an algorithm that generates a random [permutation](https://en.wikipedia.org/wiki/Permutation)
+ * of a set.
+ *
  * @param {Array} sample input array
  * @param {Function} [randomSource=Math.random] an optional source of entropy
  * @returns {Array} sample

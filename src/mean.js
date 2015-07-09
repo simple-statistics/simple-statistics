@@ -4,7 +4,9 @@ var sum = require('./sum');
 
 /**
  * The mean, _also known as average_,
- * is the sum over the number of values.
+ * is the sum of all values over the number of values.
+ * This is a [measure of central tendency](https://en.wikipedia.org/wiki/Central_tendency):
+ * a method of finding a typical or central value of a set of numbers.
  *
  * This runs on `O(n)`, linear time in respect to the array
  *

@@ -22,8 +22,6 @@ var sampleVariance = require('./sample_variance');
  * a null hypothesis that the two populations that have been sampled into
  * `sampleX` and `sampleY` are equal to each other.
  *
- * Depends on `sampleVariance()` and `mean()`
- *
  * @param {Array<number>} sampleX
  * @param {Array<number>} sampleY
  * @param {number} [difference=0]

@@ -6,8 +6,10 @@
 
 var ss = module.exports = {};
 
+// Linear Regression
 ss.linearRegression = require('./src/linear_regression');
 ss.linearRegressionLine = require('./src/linear_regression_line');
+
 ss.standardDeviation = require('./src/standard_deviation');
 ss.rSquared = require('./src/r_squared');
 ss.median = require('./src/median');

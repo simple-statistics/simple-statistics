@@ -1,8 +1,8 @@
 'use strict';
 
 /**
- * The sum of an array is the result of adding all numbers
- * together, starting from zero.
+ * The [sum](https://en.wikipedia.org/wiki/Summation) of an array
+ * is the result of adding all numbers together, starting from zero.
  *
  * This runs on `O(n)`, linear time in respect to the array
  *

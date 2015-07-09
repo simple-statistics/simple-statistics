@@ -3,10 +3,12 @@
 var sumNthPowerDeviations = require('./sum_nth_power_deviations');
 
 /*
- * The [variance](http://en.wikipedia.org/wiki/Variance)
- * is the sum of squared deviations from the mean.
- *
- * depends on `sumNthPowerDeviations`
+ * The [sample variance](https://en.wikipedia.org/wiki/Variance#Sample_variance)
+ * is the sum of squared deviations from the mean. The sample variance
+ * is distinguished from the variance by the usage of [Bessel's Correction](https://en.wikipedia.org/wiki/Bessel's_correction):
+ * instead of dividing the sum of squared deviations by the length of the input,
+ * it is divided by the length minus one. This corrects the bias in estimating
+ * a value from a set that you don't know if full.
  *
  * @param {Array<number>} x input array
  * @return {number} sample variance
@@ -17,8 +19,13 @@ function sampleVariance(x) {
 
     var sumSquaredDeviationsValue = sumNthPowerDeviations(x, 2);
 
+    // this is Bessels' Correction: an adjustment made to sample statistics
+    // that allows for the reduced degree of freedom entailed in calculating
+    // values from samples rather than complete populations.
+    var besselsCorrection = x.length - 1;
+
     // Find the mean value of that list
-    return sumSquaredDeviationsValue / (x.length - 1);
+    return sumSquaredDeviationsValue / besselsCorrection;
 }
 
 module.exports = sampleVariance;

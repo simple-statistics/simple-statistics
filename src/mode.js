@@ -3,8 +3,12 @@
 /**
  * The [mode](http://bit.ly/W5K4Yt) is the number that appears in a list the highest number of times.
  * There can be multiple modes in a list: in the event of a tie, this
- * algorithm will return the most recently seen mode. This runs on
- * `O(n)`, linear time in respect to the array
+ * algorithm will return the most recently seen mode.
+ *
+ * This is a [measure of central tendency](https://en.wikipedia.org/wiki/Central_tendency):
+ * a method of finding a typical or central value of a set of numbers.
+ *
+ * This runs on `O(n)`, linear time in respect to the array.
  *
  * @param {Array<number>} x input
  * @returns {number} mode

@@ -13,8 +13,6 @@ var sampleStandardDeviation = require('./sample_standard_deviation');
  * moment coefficient, which is the version found in Excel and several
  * statistical packages including Minitab, SAS and SPSS.
  *
- * Depends on `sumNthPowerDeviations()` and `sampleStandardDeviation`
- *
  * @param {Array<number>} x input
  * @returns {number} sample skewness
  */

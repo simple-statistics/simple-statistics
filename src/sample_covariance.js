@@ -34,8 +34,13 @@ function sampleCovariance(x, y) {
         sum += (x[i] - xmean) * (y[i] - ymean);
     }
 
+    // this is Bessels' Correction: an adjustment made to sample statistics
+    // that allows for the reduced degree of freedom entailed in calculating
+    // values from samples rather than complete populations.
+    var besselsCorrection = x.length - 1;
+
     // the covariance is weighted by the length of the datasets.
-    return sum / (x.length - 1);
+    return sum / besselsCorrection;
 }
 
 module.exports = sampleCovariance;
