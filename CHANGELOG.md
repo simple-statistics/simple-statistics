@@ -37,6 +37,8 @@ line(0); // 0
 * Each function is now its own file, and simple-statistics
   is assembled with CommonJS-style require() statements. It can
   still be used in a browser with browserify.
+* The standard normal table is now calculated using the cumulative distribution
+  function, rather than hardcoded.
 
 ## 0.9.2
 
