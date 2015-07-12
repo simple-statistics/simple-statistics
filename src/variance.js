@@ -6,6 +6,9 @@ var mean = require('./mean');
  * The [variance](http://en.wikipedia.org/wiki/Variance)
  * is the sum of squared deviations from the mean.
  *
+ * This is an implementation of variance, not sample variance:
+ * see the `sampleVariance` method if you want a sample measure.
+ *
  * @param {Array<number>} input
  * @returns {number} variance: a value greater than or equal to zero.
  * zero indicates that all values are identical.
