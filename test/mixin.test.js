@@ -5,7 +5,7 @@ var test = require('tape');
 var ss = require('../');
 
 test('mixin', function(t) {
-    test('can mix into a single array', function(t) {
+    t.test('can mix into a single array', function(t) {
         var even = ss.mixin(ss, [2, 4, 6, 8]);
         t.equal(even.sum(), 20);
         t.equal(even.mean(), 5);
@@ -15,7 +15,7 @@ test('mixin', function(t) {
         t.end();
     });
 
-    test('can mix into Array.prototype', function(t) {
+    t.test('can mix into Array.prototype', function(t) {
         ss.mixin(ss);
         var even = [2, 4, 6, 8];
         t.equal(even.sum(), 20);
@@ -26,7 +26,7 @@ test('mixin', function(t) {
         t.end();
     });
 
-    test('mixins can take arguments', function(t) {
+    t.test('mixins can take arguments', function(t) {
         ss.mixin(ss);
         var even = [2, 4, 6, 8];
         t.equal(even.quantile(0.2), 2);

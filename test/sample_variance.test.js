@@ -9,7 +9,7 @@ function rnd(x) {
 }
 
 test('sample variance', function(t) {
-    test('can get the sample variance of a six-sided die', function(t) {
+    t.test('can get the sample variance of a six-sided die', function(t) {
         t.equal(rnd(ss.sampleVariance([1, 2, 3, 4, 5, 6])), 3.5);
         t.end();
     });
@@ -18,22 +18,22 @@ test('sample variance', function(t) {
     //
     // > var(1:10)
     // [1] 9.166667
-    test('can get the sample variance of numbers 1-10', function(t) {
+    t.test('can get the sample variance of numbers 1-10', function(t) {
         t.equal(rnd(ss.sampleVariance([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])), 9.167);
         t.end();
     });
 
-    test('the sample variance of two numbers that are the same is 0', function(t) {
+    t.test('the sample variance of two numbers that are the same is 0', function(t) {
         t.equal(rnd(ss.sampleVariance([1, 1])), 0);
         t.end();
     });
 
-    test('the sample variance of one number is null', function(t) {
+    t.test('the sample variance of one number is null', function(t) {
         t.equal(ss.sampleVariance([1]), null);
         t.end();
     });
 
-    test('the sample variance of no numbers is null', function(t) {
+    t.test('the sample variance of no numbers is null', function(t) {
         t.equal(ss.sampleVariance([]), null);
         t.end();
     });

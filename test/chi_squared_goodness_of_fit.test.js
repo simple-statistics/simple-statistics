@@ -14,15 +14,15 @@ var data1019 = [
 ];
 
 test('chiSquaredGoodnessOfFit', function(t) {
-    test('can reject the null hypothesis with level of confidence specified at 0.05', function(t) {
+    t.test('can reject the null hypothesis with level of confidence specified at 0.05', function(t) {
         t.equal(false, ss.chiSquaredGoodnessOfFit(data1019, ss.poissonDistribution, 0.05));
         t.end();
     });
-    test('can accept the null hypothesis with level of confidence specified at 0.10', function(t) {
+    t.test('can accept the null hypothesis with level of confidence specified at 0.10', function(t) {
         t.equal(true, ss.chiSquaredGoodnessOfFit(data1019, ss.poissonDistribution, 0.10));
         t.end();
     });
-    test('can tolerate gaps in distribution', function(t) {
+    t.test('can tolerate gaps in distribution', function(t) {
         t.equal(true, ss.chiSquaredGoodnessOfFit([0, 2, 3, 7, 7, 7, 7, 7, 7, 9, 10], ss.poissonDistribution, 0.10));
         t.end();
     });

@@ -9,12 +9,12 @@ function rnd(x) {
 }
 
 test('sampleStandardDeviation', function(t) {
-    test('can get the standard deviation of an example on wikipedia', function(t) {
+    t.test('can get the standard deviation of an example on wikipedia', function(t) {
         t.equal(rnd(ss.sampleStandardDeviation([2, 4, 4, 4, 5, 5, 7, 9])), 2.138);
         t.end();
     });
 
-    test('zero-length corner case', function(t) {
+    t.test('zero-length corner case', function(t) {
         t.equal(rnd(ss.sampleStandardDeviation([])), 0);
         t.end();
     });
