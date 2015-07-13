@@ -17,8 +17,8 @@ var quantileSorted = require('./quantile_sorted');
  * When p is an array, the result of the function is also an array containing the appropriate
  * quantiles in input order
  *
- * @param {Array<number>} sample
- * @param {number} p
+ * @param {Array<number>} sample a sample from the population
+ * @param {number} p the desired quantile, as a number between 0 and 1
  * @returns {number} quantile
  */
 function quantile(sample, p) {

@@ -9,7 +9,7 @@
  * This function returns a numerical approximation to the exact value.
  *
  * @param {number} x input
- * @return {number}
+ * @return {number} error estimation
  */
 function errorFunction(x) {
     var t = 1 / (1 + 0.5 * Math.abs(x));

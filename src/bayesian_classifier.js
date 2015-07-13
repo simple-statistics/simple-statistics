@@ -15,7 +15,6 @@ function BayesianClassifier() {
 }
 
 /**
- * ## Train
  * Train the classifier with a new item, which has a single
  * dimension of Javascript literal keys and values.
  *
