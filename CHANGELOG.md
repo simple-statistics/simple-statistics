@@ -1,5 +1,45 @@
 # CHANGELOG
 
+## 1.0.0
+
+### Breaking Changes
+
+* Removed the .m() and .b() shortcuts from the linear regression
+  class. Use `.mb().b` and `.mb().m` instead.
+* linearRegression is now a function, and linearRegressionLine is a separate
+  function.
+
+**UPGRADING**
+
+Before:
+
+```js
+var l = ss.linear_regression().data([[0, 0], [1, 1]]);
+l.line()(0); // 0
+```
+
+After:
+
+```js
+var line = ss.linearRegressionLine(ss.linearRegression([[0, 0], [1, 1]]));
+line(0); // 0
+```
+
+* `BayesModel` is now a class
+* `PerceptronModel` is now a class, and the `weights` and `bias` members
+  are accessable as properties rather than methods.
+* All multi-word method names are now camelCase rather than underscore_cased:
+  this means that a method like `ss.r_squared` is now accessible as `ss.rSquared`
+
+### Non-Breaking Changes
+
+* JSDoc documentation throughout
+* Each function is now its own file, and simple-statistics
+  is assembled with CommonJS-style require() statements. It can
+  still be used in a browser with browserify.
+* The standard normal table is now calculated using the cumulative distribution
+  function, rather than hardcoded.
+
 ## 0.9.2
 
 * Improved test coverage
@@ -13,7 +53,7 @@
 ## 0.9.0
 
 * Adds `.sample` for simple random sampling
-* Adds `.shuffle` and `.shuffle_in_place` for random permutations
+* Adds `.shuffle` and `.shuffleInPlace` for random permutations
 * Adds `.chunk` for splitting arrays into chunked subsets
 
 ## 0.8.1
@@ -27,19 +67,19 @@
 
 ## 0.7.0
 
-* Adds `simple_statistics.harmonic_mean` thanks to [jseppi](https://github.com/jseppi)
+* Adds `simple_statistics.harmonicMean` thanks to [jseppi](https://github.com/jseppi)
 
 ## 0.6.0
 
-* Adds `simple_statistics.quantile_sorted` thanks to [rluta](http://github.com/rluta)
+* Adds `simple_statistics.quantileSorted` thanks to [rluta](http://github.com/rluta)
 * `simple_statistics.quantile` now accepts a sorted list of quantiles as a second argument
 * Improved test coverage
 
 ## 0.5.0
 
-* Adds `simple_statistics.cumulative_std_normal_probability` by [doronlinder](https://github.com/doronlinder)
-* Adds `simple_statistics.z_score` by doronlinder
-* Adds `simple_statistics.standard_normal_table`
+* Adds `simple_statistics.cumulativeStdNormalProbability` by [doronlinder](https://github.com/doronlinder)
+* Adds `simple_statistics.zScore` by doronlinder
+* Adds `simple_statistics.standardNormalTable`
 
 ## 0.4.0
 
@@ -59,12 +99,12 @@
 
 * Adds `simple_statistics.quantile()`
 * Adds `simple_statistics.mixin()`
-* Adds `simple_statistics.geometric_mean()`
-* Adds `simple_statistics.sample_variance()`
-* Adds `simple_statistics.sample_covariance()`
+* Adds `simple_statistics.geometricMean()`
+* Adds `simple_statistics.sampleVariance()`
+* Adds `simple_statistics.sampleCovariance()`
 
 ## 0.1.0
 
-* Adds `simple_statistics.t_test()`
+* Adds `simple_statistics.tTest()`
 * Adds `simple_statistics.min()`
 * Adds `simple_statistics.max()`

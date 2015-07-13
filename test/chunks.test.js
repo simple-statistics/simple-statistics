@@ -1,8 +1,11 @@
+/* eslint no-shadow: 0 */
+'use strict';
+
 var test = require('tape');
 var ss = require('../');
 
 test('chunks', function(t) {
-    test('can get chunks of an array', function(t) {
+    t.test('can get chunks of an array', function(t) {
         t.deepEqual(ss.chunk([1, 2], 1), [[1], [2]]);
         t.deepEqual(ss.chunk([1, 2], 2), [[1, 2]]);
         t.deepEqual(ss.chunk([1, 2, 3, 4], 4), [[1, 2, 3, 4]]);

@@ -9,18 +9,22 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "coveralls": "~2.11.1",
-    "eslint": "^0.21.2",
-    "istanbul": "~0.3.0",
-    "random-js": "~1.0.4",
-    "tape": "~2.14.0"
+    "browserify": "^10.2.4",
+    "coveralls": "^2.11.1",
+    "eslint": "^0.24.0",
+    "faucet": "0.0.1",
+    "istanbul": "^0.3.0",
+    "random-js": "^1.0.4",
+    "science": "^1.9.2",
+    "tape": "^4.0.0",
+    "uglify-js": "^2.4.23"
   },
   "scripts": {
-    "test": "eslint --no-eslintrc -c .eslintrc src/simple_statistics.js && tape test/*.js",
+    "test": "eslint --no-eslintrc -c .eslintrc index.js src/*.js test/*.js && tape test/*.js | faucet",
     "cov": "istanbul cover ./node_modules/.bin/tape test/*.js && coveralls < ./coverage/lcov.info || true",
-    "api": "node api.js"
+    "build": "browserify -s ss index.js | tee dist/simple_statistics.js | uglifyjs -c -m > dist/simple_statistics.min.js"
   },
-  "main": "src/simple_statistics.js",
+  "main": "index.js",
   "engines": {
     "node": "*"
   },

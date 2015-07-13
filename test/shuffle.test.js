@@ -1,3 +1,6 @@
+/* eslint no-shadow: 0 */
+'use strict';
+
 var test = require('tape');
 var Random = require('random-js');
 var random = new Random(Random.engines.mt19937().seed(0));
@@ -15,17 +18,17 @@ test('shuffle', function(t) {
     t.end();
 });
 
-test('shuffle_in_place', function(t) {
+test('shuffleInPlace', function(t) {
     var input = [1, 2, 3, 4, 5, 6];
-    t.deepEqual(ss.shuffle_in_place([], rng), []);
-    t.deepEqual(ss.shuffle_in_place(input, rng), [6, 1, 5, 2, 4, 3]);
+    t.deepEqual(ss.shuffleInPlace([], rng), []);
+    t.deepEqual(ss.shuffleInPlace(input, rng), [6, 1, 5, 2, 4, 3]);
     t.deepEqual(input, [6, 1, 5, 2, 4, 3], 'changes original array');
     t.end();
 });
 
-test('shuffle_in_place truly random', function(t) {
+test('shuffleInPlace truly random', function(t) {
     var input = [1, 2, 3, 4, 5, 6];
-    t.deepEqual(ss.shuffle_in_place([]), []);
-    t.deepEqual(ss.shuffle_in_place(input).sort(), [1, 2, 3, 4, 5, 6]);
+    t.deepEqual(ss.shuffleInPlace([]), []);
+    t.deepEqual(ss.shuffleInPlace(input).sort(), [1, 2, 3, 4, 5, 6]);
     t.end();
 });

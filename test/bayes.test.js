@@ -1,9 +1,12 @@
-var ss = require('../');
+/* eslint no-shadow: 0 */
+'use strict';
+
+var BayesianClassifier = require('../src/bayesian_classifier');
 var test = require('tape');
 
-test('bayes', function(t) {
-    test('makes an easy call with one training round', function(t) {
-        var bayes = ss.bayesian();
+test('BayesianClassifier', function(t) {
+    t.test('makes an easy call with one training round', function(t) {
+        var bayes = new BayesianClassifier();
         bayes.train({
             species: 'Cat'
         }, 'animal');
@@ -15,8 +18,8 @@ test('bayes', function(t) {
         t.end();
     });
 
-    test('makes fify-fifty call', function(t) {
-        var bayes = ss.bayesian();
+    t.test('makes fify-fifty call', function(t) {
+        var bayes = new BayesianClassifier();
         bayes.train({
             species: 'Cat'
         }, 'animal');
@@ -32,8 +35,8 @@ test('bayes', function(t) {
         t.end();
     });
 
-    test('makes seventy-five/twenty-five call', function(t) {
-        var bayes = ss.bayesian();
+    t.test('makes seventy-five/twenty-five call', function(t) {
+        var bayes = new BayesianClassifier();
         bayes.train({
             species: 'Cat'
         }, 'animal');
@@ -55,8 +58,8 @@ test('bayes', function(t) {
         t.end();
     });
 
-    test('tests multiple properties', function(t) {
-        var bayes = ss.bayesian();
+    t.test('tests multiple properties', function(t) {
+        var bayes = new BayesianClassifier();
         bayes.train({
             species: 'Cat'
         }, 'animal');
@@ -82,8 +85,8 @@ test('bayes', function(t) {
         t.end();
     });
 
-    test('classifies multiple things', function(t) {
-        var bayes = ss.bayesian();
+    t.test('classifies multiple things', function(t) {
+        var bayes = new BayesianClassifier();
         bayes.train({
             species: 'Cat'
         }, 'animal');
