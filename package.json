@@ -5,7 +5,7 @@
   "author": "Tom MacWright <tom@macwright.org> (http://macwright.org/)",
   "repository": {
     "type": "git",
-    "url": "git://github.com/tmcw/simple-statistics.git"
+    "url": "git://github.com/simple-statistics/simple-statistics.git"
   },
   "dependencies": {},
   "devDependencies": {
