@@ -20,14 +20,16 @@ include:
 Example:
 
 ```js
-// # harmonic mean
-//
-// a mean function typically used to find the average of rates
-//
-// this is the reciprocal of the arithmetic mean of the reciprocals
-// of the input numbers
-//
-// This runs on `O(n)`, linear time in respect to the array
+/**
+ * harmonic mean
+ *
+ * a mean function typically used to find the average of rates
+ *
+ * this is the reciprocal of the arithmetic mean of the reciprocals
+ * of the input numbers
+ *
+ * This runs on `O(n)`, linear time in respect to the array
+ */
 ```
 
 `simple-statistics` tries to stay away from speaking only in the language of math:
@@ -38,7 +40,7 @@ in the source:
 * UTF8 can be hard to type, since users need to memorize key combinations or code points
 * Mathematical symbols have meanings that are often better communicated by words:
   in the form of code, we do not run out of space on the paper, and can afford
-  to call a variable `reciprocal_sum` instead of `r`.
+  to call a variable `reciprocalSum` instead of `r`.
 
 Every function has a comment that ideally includes:
 
@@ -48,12 +50,10 @@ Every function has a comment that ideally includes:
 * A link to a longer description on Wikipedia, Mathematica, or another
   web-accessible, non-paywalled source
 * The efficiency of the function in terms of Big-O notation, if appropriate
-* If the function depends on another function in the library, a note of this, like
-  `depends on mean()`
 
 ## Tests
 
-`simple-statistics` has a testsuite located in `test/spec/`. Each test file
+`simple-statistics` has a testsuite located in `test/`. Each test file
 covers a specific topic and tries to test against known values:
 
 * Values produced by trusted statistics software like R or scipy
@@ -71,18 +71,11 @@ npm test
 
 ## Documentation
 
-While the code is meant to readable, it is not documentation. We maintain
-documentation in `API.md`, which has the simple form:
-
-```md
-### .geometricMean(x)
-
-[Geometric mean](http://en.wikipedia.org/wiki/Geometric_mean) of a single-dimensional array of **positive** numbers.
-```
-
-This file is written in [Markdown](https://daringfireball.net/projects/markdown/) and
-specifies which functions are available, what type of arguments they receive,
-what they compute, and what type of answer they return.
+Simple statistics maintains API documentation with [JSDoc](http://usejsdoc.org/) syntax
+and the [documentation.js](https://github.com/documentationjs/documentation) generator.
+Consult the JSDoc and [gettings started docs](https://github.com/documentationjs/documentation/blob/master/docs/GETTTING_STARTED.md) for
+hints for how to document each function, or read other documentation comments
+in `src` for inspiration.
 
 ## Code Style
 
