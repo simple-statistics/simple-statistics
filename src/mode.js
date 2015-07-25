@@ -12,6 +12,8 @@
  *
  * @param {Array<number>} x input
  * @returns {number} mode
+ * @example
+ * mode([0, 0, 1]); //= 0
  */
 function mode(x) {
 

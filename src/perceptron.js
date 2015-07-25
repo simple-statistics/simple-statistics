@@ -4,6 +4,7 @@
  * This is a single-layer [Perceptron Classifier](http://en.wikipedia.org/wiki/Perceptron) that takes
  * arrays of numbers and predicts whether they should be classified
  * as either 0 or 1 (negative or positive examples).
+ * @class
  */
 function PerceptronModel() {
     // The weights, or coefficients of the model;
@@ -19,7 +20,7 @@ function PerceptronModel() {
  * **Predict**: Use an array of features with the weight array and bias
  * to predict whether an example is labeled 0 or 1.
  *
- * @param {Array} features
+ * @param {Array<number>} features an array of features as numbers
  * @returns {number} 1 if the score is over 0, otherwise 0
  */
 PerceptronModel.prototype.predict = function(features) {
@@ -48,7 +49,7 @@ PerceptronModel.prototype.predict = function(features) {
  * **Train** the classifier with a new example, which is
  * a numeric array of features and a 0 or 1 label.
  *
- * @param {Array} features
+ * @param {Array<number>} features an array of features as numbers
  * @param {number} label either 0 or 1
  * @returns {PerceptronModel} this
  */

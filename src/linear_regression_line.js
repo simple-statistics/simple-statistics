@@ -10,6 +10,10 @@
  * slope and intersect of desired line
  * @returns {Function} method that computes y-value at any given
  * x-value on the line.
+ * @example
+ * var l = linearRegressionLine(linearRegression([[0, 0], [1, 1]]));
+ * l(0) //= 0
+ * l(2) //= 2
  */
 function linearRegressionLine(mb) {
     // Return a function that computes a `y` value for each

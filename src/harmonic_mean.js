@@ -13,6 +13,8 @@
  *
  * @param {Array<number>} x input
  * @returns {number} harmonic mean
+ * @example
+ * ss.harmonicMean([2, 3]) //= 2.4
  */
 function harmonicMean(x) {
     // The mean of no numbers is null
