@@ -7,6 +7,8 @@
     "quotes": [2, "single"],
     "key-spacing": [0],
     "no-ternary": [2],
-    "valid-jsdoc": [2]
+    "valid-jsdoc": [2, {
+        "requireParamDescription": false
+    }]
   }
 }

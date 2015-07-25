@@ -1,7 +1,7 @@
 'use strict';
 
-/**
- * ## Pull Breaks Values for Jenks
+/*
+ * Pull Breaks Values for Jenks
  *
  * the second part of the jenks recipe: take the calculated matrices
  * and derive an array of n breaks.

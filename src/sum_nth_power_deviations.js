@@ -7,7 +7,7 @@ var mean = require('./mean');
  * When n=2 it's the sum of squared deviations.
  * When n=3 it's the sum of cubed deviations.
  *
- * @param {Array<number>} input
+ * @param {Array<number>} x
  * @param {number} n power
  * @returns {number} sum of nth power deviations
  */
