@@ -5,6 +5,8 @@
  *
  * @param {Array<number>} x input
  * @returns {number} minimum value
+ * @example
+ * min([1, 5, -10, 100, 2]); // -100
  */
 function min(x) {
     var value;
