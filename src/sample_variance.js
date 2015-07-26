@@ -10,6 +10,9 @@ var sumNthPowerDeviations = require('./sum_nth_power_deviations');
  * it is divided by the length minus one. This corrects the bias in estimating
  * a value from a set that you don't know if full.
  *
+ * References:
+ * * [Wolfram MathWorld on Sample Variance](http://mathworld.wolfram.com/SampleVariance.html)
+ *
  * @param {Array<number>} x input array
  * @return {number} sample variance
  * @example
