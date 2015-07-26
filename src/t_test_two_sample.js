@@ -26,6 +26,8 @@ var sampleVariance = require('./sample_variance');
  * @param {Array<number>} sampleY a sample as an array of numbers
  * @param {number} [difference=0]
  * @returns {number} test result
+ * @example
+ * ss.tTestTwoSample([1, 2, 3, 4], [3, 4, 5, 6], 0); //= -2.1908902300206643
  */
 function tTestTwoSample(sampleX, sampleY, difference) {
     var n = sampleX.length,
