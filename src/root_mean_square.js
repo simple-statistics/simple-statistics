@@ -10,6 +10,8 @@
  *
  * @param {Array<number>} x input
  * @returns {number} root mean square
+ * @example
+ * rootMeanSquare([-1, 1, -1, 1]); //= 1
  */
 function rootMeanSquare(x) {
     if (x.length === 0) { return null; }

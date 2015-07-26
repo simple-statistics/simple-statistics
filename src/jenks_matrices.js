@@ -1,7 +1,7 @@
 'use strict';
 
-/**
- * ## Compute Matrices for Jenks
+/*
+ * Compute Matrices for Jenks
  *
  * Compute the matrices required for Jenks breaks. These matrices
  * can be used for any classing of data with `classes <= nClasses`

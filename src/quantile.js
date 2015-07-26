@@ -5,7 +5,7 @@ var quantileSorted = require('./quantile_sorted');
 /**
  * The [quantile](https://en.wikipedia.org/wiki/Quantile):
  * this is a population quantile, since we assume to know the entire
- * dataset in this library. Thus I'm trying to follow the
+ * dataset in this library. This is an implementation of the
  * [Quantiles of a Population](http://en.wikipedia.org/wiki/Quantile#Quantiles_of_a_population)
  * algorithm from wikipedia.
  *
@@ -17,9 +17,14 @@ var quantileSorted = require('./quantile_sorted');
  * When p is an array, the result of the function is also an array containing the appropriate
  * quantiles in input order
  *
- * @param {Array<number>} sample
- * @param {number} p
+ * @param {Array<number>} sample a sample from the population
+ * @param {number} p the desired quantile, as a number between 0 and 1
  * @returns {number} quantile
+ * @example
+ * var data = [3, 6, 7, 8, 8, 9, 10, 13, 15, 16, 20];
+ * quantile(data, 1); //= max(data);
+ * quantile(data, 0); //= min(data);
+ * quantile(data, 0.5); //= 9
  */
 function quantile(sample, p) {
 

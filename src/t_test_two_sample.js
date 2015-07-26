@@ -22,10 +22,10 @@ var sampleVariance = require('./sample_variance');
  * a null hypothesis that the two populations that have been sampled into
  * `sampleX` and `sampleY` are equal to each other.
  *
- * @param {Array<number>} sampleX
- * @param {Array<number>} sampleY
+ * @param {Array<number>} sampleX a sample as an array of numbers
+ * @param {Array<number>} sampleY a sample as an array of numbers
  * @param {number} [difference=0]
- * @returns {number}
+ * @returns {number} test result
  */
 function tTestTwoSample(sampleX, sampleY, difference) {
     var n = sampleX.length,

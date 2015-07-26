@@ -13,7 +13,7 @@ var factorial = require('./factorial');
  * The Poisson Distribution is characterized by the strictly positive
  * mean arrival or occurrence rate, `λ`.
  *
- * @param {number} position location poisson distribution
+ * @param {number} lambda location poisson distribution
  * @returns {number} value of poisson distribution at that point
  */
 function poissonDistribution(lambda) {

@@ -11,6 +11,9 @@ var shuffleInPlace = require('./shuffle_in_place');
  * @param {Array} sample an array of any kind of element
  * @param {Function} [randomSource=Math.random] an optional entropy source
  * @return {Array} shuffled version of input
+ * @example
+ * var shuffled = shuffle([1, 2, 3, 4]);
+ * shuffled; // = [2, 3, 1, 4] or any other random permutation
  */
 function shuffle(sample, randomSource) {
     // slice the original array so that it is not modified

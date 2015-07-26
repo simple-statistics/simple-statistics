@@ -11,6 +11,10 @@
  * @param {Array} sample input array
  * @param {Function} [randomSource=Math.random] an optional source of entropy
  * @returns {Array} sample
+ * @example
+ * var sample = [1, 2, 3, 4];
+ * shuffleInPlace(sample);
+ * // sample is shuffled to a value like [2, 1, 4, 3]
  */
 function shuffleInPlace(sample, randomSource) {
 

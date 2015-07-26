@@ -11,6 +11,8 @@ var quantile = require('./quantile');
  * @param {Array<number>} sample
  * @returns {number} interquartile range: the span between lower and upper quartile,
  * 0.25 and 0.75
+ * @example
+ * interquartileRange([0, 1, 2, 3]); //= 2
  */
 function interquartileRange(sample) {
     // We can't derive quantiles from an empty list

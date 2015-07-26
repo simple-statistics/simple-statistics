@@ -5,6 +5,20 @@
  *
  * This is a naïve bayesian classifier that takes
  * singly-nested objects.
+ *
+ * @class
+ * @example
+ * var bayes = new BayesianClassifier();
+ * bayes.train({
+ *   species: 'Cat'
+ * }, 'animal');
+ * var result = bayes.score({
+ *   species: 'Cat'
+ * })
+ * // result
+ * // {
+ * //   animal: 1
+ * // }
  */
 function BayesianClassifier() {
     // The number of items that are currently
@@ -15,12 +29,12 @@ function BayesianClassifier() {
 }
 
 /**
- * ## Train
  * Train the classifier with a new item, which has a single
  * dimension of Javascript literal keys and values.
  *
- * @param {Object} item
- * @param {string} category
+ * @param {Object} item an object with singly-deep properties
+ * @param {string} category the category this item belongs to
+ * @return {undefined} adds the item to the classifier
  */
 BayesianClassifier.prototype.train = function(item, category) {
     // If the data object doesn't have any values
@@ -53,7 +67,7 @@ BayesianClassifier.prototype.train = function(item, category) {
  * Generate a score of how well this item matches all
  * possible categories based on its attributes
  *
- * @param {Object} item
+ * @param {Object} item an item in the same format as with train
  * @returns {Object} of probabilities that this item belongs to a
  * given category.
  */

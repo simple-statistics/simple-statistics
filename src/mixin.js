@@ -10,6 +10,8 @@
  * @param {Array} [array=] a single array instance which will be augmented
  * with the extra methods. If omitted, mixin will apply to all arrays
  * by changing the global `Array.prototype`.
+ * @returns {*} the extended Array, or Array.prototype if no object
+ * is given.
  *
  * @example
  * var myNumbers = [1, 2, 3];

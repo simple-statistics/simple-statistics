@@ -9,8 +9,9 @@
  * `sample` is expected to be an array, and `chunkSize` a number.
  * The `sample` array can contain any kind of data.
  *
- * @param {Array} sample
+ * @param {Array} sample any array of values
  * @param {number} chunkSize size of each output array
+ * @returns {Array<Array>} a chunked array
  * @example
  * console.log(chunk([1, 2, 3, 4], 2)); // [[1, 2], [3, 4]]
  */
