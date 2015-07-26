@@ -3,11 +3,16 @@
 /**
  * This is the internal implementation of quantiles: when you know
  * that the order is sorted, you don't need to re-sort it, and the computations
- * are much faster.
+ * are faster.
  *
  * @param {Array<number>} sample input data
  * @param {number} p desired quantile: a number between 0 to 1, inclusive
  * @returns {number} quantile value
+ * @example
+ * var data = [3, 6, 7, 8, 8, 9, 10, 13, 15, 16, 20];
+ * quantileSorted(data, 1); //= max(data);
+ * quantileSorted(data, 0); //= min(data);
+ * quantileSorted(data, 0.5); //= 9
  */
 function quantileSorted(sample, p) {
     var idx = (sample.length) * p;

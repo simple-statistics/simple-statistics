@@ -7,10 +7,14 @@
  * and the actual value.
  *
  * @param {Array<Array<number>>} data input data: this should be doubly-nested
- * @param {Function} f function called on `[i][0]` values within the dataset
+ * @param {Function} func function called on `[i][0]` values within the dataset
  * @returns {number} r-squared value
+ * @example
+ * var samples = [[0, 0], [1, 1]];
+ * var regressionLine = linearRegressionLine(linearRegression(samples));
+ * rSquared(samples, regressionLine); //= 1 this line is a perfect fit
  */
-function rSquared(data, f) {
+function rSquared(data, func) {
     if (data.length < 2) { return 1; }
 
     // Compute the average y value for the actual
@@ -35,7 +39,7 @@ function rSquared(data, f) {
     // value at each point.
     var err = 0;
     for (var k = 0; k < data.length; k++) {
-        err += Math.pow(data[k][1] - f(data[k][0]), 2);
+        err += Math.pow(data[k][1] - func(data[k][0]), 2);
     }
 
     // As the error grows larger, its ratio to the

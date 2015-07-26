@@ -12,6 +12,8 @@ var sumNthPowerDeviations = require('./sum_nth_power_deviations');
  *
  * @param {Array<number>} x input array
  * @return {number} sample variance
+ * @example
+ * sampleVariance([1, 2, 3, 4, 5]); //= 2.5
  */
 function sampleVariance(x) {
     // The variance of no numbers is null
