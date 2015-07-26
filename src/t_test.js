@@ -17,6 +17,8 @@ var mean = require('./mean');
  * @param {Array<number>} sample an array of numbers as input
  * @param {number} x expected vale of the population mean
  * @returns {number} value
+ * @example
+ * tTest([1, 2, 3, 4, 5, 6], 3.385); //= 0.16494154
  */
 function tTest(sample, x) {
     // The mean of the sample
