@@ -7,6 +7,18 @@
  * singly-nested objects.
  *
  * @class
+ * @example
+ * var bayes = new BayesianClassifier();
+ * bayes.train({
+ *   species: 'Cat'
+ * }, 'animal');
+ * var result = bayes.score({
+ *   species: 'Cat'
+ * })
+ * // result
+ * // {
+ * //   animal: 1
+ * // }
  */
 function BayesianClassifier() {
     // The number of items that are currently
