@@ -15,6 +15,9 @@ var sampleStandardDeviation = require('./sample_standard_deviation');
  *
  * @param {Array<number>} x input
  * @returns {number} sample skewness
+ * @example
+ * var data = [2, 4, 6, 3, 1];
+ * sampleSkewness(data); //= 0.5901286564
  */
 function sampleSkewness(x) {
     // The skewness of less than three arguments is null

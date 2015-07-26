@@ -10,6 +10,10 @@ var sampleStandardDeviation = require('./sample_standard_deviation');
  * @param {Array<number>} x first input
  * @param {Array<number>} y second input
  * @returns {number} sample correlation
+ * @example
+ * var a = [1, 2, 3, 4, 5, 6];
+ * var b = [2, 2, 3, 4, 5, 60];
+ * sampleCorrelation(a, b); //= 0.691
  */
 function sampleCorrelation(x, y) {
     var cov = sampleCovariance(x, y),
