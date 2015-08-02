@@ -7,6 +7,10 @@ var cK = require('../src/ckmeans.js');
 test('C k-means', function(t) {
     t.ok(cK, 'exports fn');
 
+    t.throws(function() {
+        cK([], 10);
+    }, 'Cannot generate more values than input');
+
     t.deepEqual(cK([1]), {
         clusters: [0],
         centers: [1],

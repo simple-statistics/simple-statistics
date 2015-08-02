@@ -22,7 +22,9 @@ var sortedUniqueCount = require('./sorted_unique_count');
  */
 function cKmeans(data, nClasses) {
 
-    if (nClasses > data.length) { return null; }
+    if (nClasses > data.length) {
+        throw new Error('Cannot generate more classes than there are data values');
+    }
 
     // .slice() to avoid changing the input data in-place
     var sorted = data.slice().sort(function(a, b) {
@@ -32,13 +34,13 @@ function cKmeans(data, nClasses) {
     // we'll use this as the maximum number of clusters
     var uniqueCount = sortedUniqueCount(sorted);
 
+    // if all of the input values are identical, there's one cluster
+    // with all of the input in it.
     if (uniqueCount === 1) {
         var clusters = [];
         for (var j = 0; j < data.length; j++) {
             clusters.push(j);
         }
-        // all of the input values are identical, so there's one cluster
-        // with all of the input in it.
         return {
             clusters: clusters,
             centers: [data[0]],
@@ -121,6 +123,46 @@ function cKmeans(data, nClasses) {
     }
 
     return matrix;
+}
+
+function backtrack(input, backtrackMatrix) {
+    var K = B.size() - 1;
+    var N = B[0].size() - 1;
+    var cluster_right = N;
+    var cluster_left;
+
+    var result = {
+        nClusters: K,
+        cluster: [],
+        centers: [],
+        withinss: [],
+        size: []
+    };
+
+    // Backtrack the clusters from the dynamic programming matrix
+    for (var k = K; k >= 0; --k) {
+        var sum = 0;
+
+        cluster_left = B[k][cluster_right];
+
+        for (var i = cluster_left; i <= cluster_right; ++i) {
+            result.cluster[i] = k;
+            sum += x[i];
+        }
+
+        result.centers[k] = sum / (cluster_right - cluster_left + 1);
+
+        for (var i = cluster_left; i <= cluster_right; ++i) {
+            result.withinss[k] += (x[i] - result.centers[k]) *
+                (x[i] - result.centers[k]);
+        }
+
+        result.size[k] = cluster_right - cluster_left + 1;
+
+        if (k > 1) {
+            cluster_right = cluster_left - 1;
+        }
+    }
 }
 
 module.exports = cKmeans;
