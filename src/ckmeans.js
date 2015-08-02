@@ -125,11 +125,20 @@ function cKmeans(data, nClasses) {
     return matrix;
 }
 
+/**
+ * The real work of Ckmeans clustering happens in the matrix generation:
+ * the generated matrices encode all possible clustering combinations, and
+ * once they're generated we can solve for the best clustering groups
+ * very quickly.
+ * @param {Array} input
+ * @param {Array<Array<number>>} backtrackMatrix
+ * @returns {Object} clustering result
+ */
 function backtrack(input, backtrackMatrix) {
-    var K = B.size() - 1;
-    var N = B[0].size() - 1;
-    var cluster_right = N;
-    var cluster_left;
+    var K = backtrackMatrix.length;
+    var N = backtrackMatrix[0].length;
+    var clusterRight = N;
+    var clusterLeft;
 
     var result = {
         nClusters: K,
@@ -143,26 +152,30 @@ function backtrack(input, backtrackMatrix) {
     for (var k = K; k >= 0; --k) {
         var sum = 0;
 
-        cluster_left = B[k][cluster_right];
+        clusterLeft = backtrackMatrix[k][clusterRight];
 
-        for (var i = cluster_left; i <= cluster_right; ++i) {
+        for (var i = clusterLeft; i <= clusterRight; ++i) {
             result.cluster[i] = k;
-            sum += x[i];
+            sum += input[i];
         }
 
-        result.centers[k] = sum / (cluster_right - cluster_left + 1);
+        result.centers[k] = sum / (clusterRight - clusterLeft + 1);
 
-        for (var i = cluster_left; i <= cluster_right; ++i) {
-            result.withinss[k] += (x[i] - result.centers[k]) *
-                (x[i] - result.centers[k]);
+        for (var j = clusterLeft; j <= clusterRight; ++j) {
+            result.withinss[k] += (input[j] - result.centers[j]) *
+                (input[j] - result.centers[k]);
         }
 
-        result.size[k] = cluster_right - cluster_left + 1;
+        result.size[k] = clusterRight - clusterLeft + 1;
 
         if (k > 1) {
-            cluster_right = cluster_left - 1;
+            clusterRight = clusterLeft - 1;
         }
     }
+
+    return result;
 }
 
 module.exports = cKmeans;
+
+module.exports.backtrack = backtrack;
