@@ -1,6 +1,6 @@
 'use strict';
 
-var uniq = require('uniq');
+var sortedUniqueCount = require('./sorted_unique_count');
 
 /**
  * The **[jenks natural breaks optimization](http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization)**
@@ -29,7 +29,7 @@ function cKmeans(data, nClasses) {
     });
 
     // we'll use this as the maximum number of clusters
-    var uniqueCount = uniq(sorted.slice()).length;
+    var uniqueCount = sortedUniqueCount(sorted);
 
     // named 'D' originally
     var matrix = [];
