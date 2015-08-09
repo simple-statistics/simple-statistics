@@ -46,7 +46,7 @@ function backtrack(sorted, backtrackMatrix) {
 
         result.size[k] = clusterRight - clusterLeft + 1;
 
-        if (k > 1) {
+        if (k > 0) {
             clusterRight = clusterLeft;
         }
     }
@@ -66,15 +66,15 @@ function backtrack(sorted, backtrackMatrix) {
  * map.
  *
  * @param {Array<number>} data input data, as an array of number values
- * @param {number} nClasses number of desired classes
+ * @param {number} nClusters number of desired classes
  * @returns {Array<number>} array of class break positions
  * @examples
  * // split data into 3 break points
  * jenks([1, 2, 4, 5, 7, 9, 10, 20], 3) // = [1, 7, 20, 20]
  */
-function cKmeans(data, nClasses) {
+function cKmeans(data, nClusters) {
 
-    if (nClasses > data.length) {
+    if (nClusters > data.length) {
         throw new Error('Cannot generate more classes than there are data values');
     }
 
@@ -94,9 +94,9 @@ function cKmeans(data, nClasses) {
     }
 
     // named 'D' originally
-    var matrix = makeMatrix(sorted.length, uniqueCount),
+    var matrix = makeMatrix(nClusters, sorted.length),
         // named 'B' originally
-        backtrackMatrix = makeMatrix(sorted.length, uniqueCount),
+        backtrackMatrix = makeMatrix(nClusters, sorted.length),
         meanX1 = 0,
         meanXJ = 0,
         sumSquaredDistances = 0;
@@ -105,7 +105,7 @@ function cKmeans(data, nClasses) {
     // within-cluster sum of squares. It's similar to linear regression
     // in this way, and this calculation incrementally computes the
     // sum of squares that are later read.
-    for (var k = 0; k < nClasses; k++) {
+    for (var k = 0; k < nClusters; k++) {
         meanX1 = sorted[0];
         for (var i = Math.max(k, 1); i < sorted.length; i++) {
             if (k === 0) {
