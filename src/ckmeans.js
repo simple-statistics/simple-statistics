@@ -1,6 +1,7 @@
 'use strict';
 
 var sortedUniqueCount = require('./sorted_unique_count');
+var numericSort = require('./numeric_sort');
 
 /**
  * The **[jenks natural breaks optimization](http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization)**
@@ -26,10 +27,7 @@ function cKmeans(data, nClasses) {
         throw new Error('Cannot generate more classes than there are data values');
     }
 
-    // .slice() to avoid changing the input data in-place
-    var sorted = data.slice().sort(function(a, b) {
-        return a - b;
-    });
+    var sorted = numericSort(data);
 
     // we'll use this as the maximum number of clusters
     var uniqueCount = sortedUniqueCount(sorted);
@@ -135,8 +133,8 @@ function cKmeans(data, nClasses) {
  * @returns {Object} clustering result
  */
 function backtrack(input, backtrackMatrix) {
-    var K = backtrackMatrix.length;
-    var N = backtrackMatrix[0].length;
+    var K = backtrackMatrix.length - 1;
+    var N = backtrackMatrix[0].length - 1;
     var clusterRight = N;
     var clusterLeft;
 

@@ -1,5 +1,7 @@
 'use strict';
 
+var numericSort = require('./numeric_sort');
+
 /**
  * The [median](http://en.wikipedia.org/wiki/Median) is
  * the middle number of a list. This is often a good indicator of 'the middle'
@@ -23,7 +25,7 @@ function median(x) {
 
     // Sorting the array makes it easy to find the center, but
     // use `.slice()` to ensure the original array `x` is not modified
-    var sorted = x.slice().sort(function (i, j) { return i - j; });
+    var sorted = numericSort(x);
 
     // If the length of the list is odd, it's the central number
     if (sorted.length % 2 === 1) {

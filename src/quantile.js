@@ -1,6 +1,7 @@
 'use strict';
 
 var quantileSorted = require('./quantile_sorted');
+var numericSort = require('./numeric_sort');
 
 /**
  * The [quantile](https://en.wikipedia.org/wiki/Quantile):
@@ -33,7 +34,7 @@ function quantile(sample, p) {
 
     // Sort a copy of the array. We'll need a sorted array to index
     // the values in sorted order.
-    var sorted = sample.slice().sort(function (a, b) { return a - b; });
+    var sorted = numericSort(sample);
 
     if (p.length) {
         // Initialize the result array
