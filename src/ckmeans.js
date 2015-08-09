@@ -4,6 +4,43 @@ var sortedUniqueCount = require('./sorted_unique_count');
 var numericSort = require('./numeric_sort');
 
 /**
+ * Create a new column x row matrix.
+ *
+ * @param {number} columns
+ * @param {number} rows
+ * @return {Array<Array<number>>} matrix
+ * @example
+ * makeMatrix(10, 10);
+ */
+function makeMatrix(columns, rows) {
+    var matrix = [];
+    for (var i = 0; i < columns; i++) {
+        var column = [];
+        for (var j = 0; j < rows; j++) {
+            column.push(0);
+        }
+        matrix.push(column);
+    }
+    return matrix;
+}
+
+/**
+ * Create a range of increasing numbers from 0 to high, not including high.
+ *
+ * @param {number} high
+ * @returns {Array<number>} range
+ * @example
+ * makeRange(5); // [0, 1, 2, 3, 4]
+ */
+function makeRange(high) {
+    var range = [];
+    for (var i = 0; i < high; i++) {
+        range.push(i);
+    }
+    return range;
+}
+
+/**
  * The **[jenks natural breaks optimization](http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization)**
  * is an algorithm commonly used in cartography and visualization to decide
  * upon groupings of data values that minimize variance within themselves
@@ -27,93 +64,61 @@ function cKmeans(data, nClasses) {
         throw new Error('Cannot generate more classes than there are data values');
     }
 
-    var sorted = numericSort(data);
-
-    // we'll use this as the maximum number of clusters
-    var uniqueCount = sortedUniqueCount(sorted);
+    var sorted = numericSort(data),
+        // we'll use this as the maximum number of clusters
+        uniqueCount = sortedUniqueCount(sorted);
 
     // if all of the input values are identical, there's one cluster
     // with all of the input in it.
     if (uniqueCount === 1) {
-        var clusters = [];
-        for (var j = 0; j < data.length; j++) {
-            clusters.push(j);
-        }
         return {
-            clusters: clusters,
-            centers: [data[0]],
+            clusters: makeRange(sorted.length),
+            centers: [sorted[0]],
             withinss: [0],
-            size: [data.length]
+            size: [sorted.length]
         };
     }
 
     // named 'D' originally
-    var matrix = [];
-
-    // named 'B' originally
-    var backtrackMatrix = [];
-
-    var meanX1 = 0,
+    var matrix = makeMatrix(sorted.length, uniqueCount),
+        // named 'B' originally
+        backtrackMatrix = makeMatrix(sorted.length, uniqueCount),
+        meanX1 = 0,
         meanXJ = 0,
-        d = 0;
+        sumSquaredDistances = 0;
 
-    // Initialize dynamic programming matrices
-    for (var n = 0; n < sorted.length; n++) {
-        matrix[n] = [];
-        backtrackMatrix[n] = [];
-        for (var k = 0; k < uniqueCount; k++) {
-            // in the original implementation, this initialization to
-            // 1 is deferred
-            // to `fill_dp_matrix`, but JavaScript arrays don't have the
-            // same initialization style: `(new Array(2))[0] == undefined`,
-            // not 0. so we do it in one step.
+    // This is a dynamic programming way to solve the problem of minimizing
+    // within-cluster sum of squares. It's similar to linear regression
+    // in this way, and this calculation incrementally computes the
+    // sum of squares that are later read.
+    for (var k = 0; k < nClasses; k++) {
+        meanX1 = sorted[0];
+        for (var i = Math.max(k, 1); i < sorted.length; i++) {
             if (k === 0) {
-                matrix[n][k] = 1;
-                backtrackMatrix[n][k] = 1;
-            } else {
-                matrix[n][k] = 0;
-                backtrackMatrix[n][k] = 0;
-            }
-        }
-    }
-
-    for (var k = 1; k <= nClasses; ++k) {
-        meanX1 = data[0];
-
-        for (var i = Math.max(2, k); i <= data.length; ++i) {
-            if (k === 1) {
-                matrix[0][i] = matrix[0][i - 1] + (i - 1) / i *
-                    (data[i] - meanX1) * (data[i] - meanX1);
-                meanX1 = ((i - 1) * meanX1 + data[i]) / i;
-                backtrackMatrix[0][i] = 1;
+                matrix[0][i] += i / i * Math.pow(sorted[i] - meanX1, 2);
+                meanX1 = (i * meanX1 + sorted[i]) / i;
             } else {
                 matrix[k][i] = -1;
-                d = 0;
+                sumSquaredDistances = 0;
                 meanXJ = 0;
-
-                for (var j = i; j >= k; --j) {
-                    d = d + (i - j) / (i - j + 1) *
-                        (data[j] - meanXJ) * (data[j] - meanXJ);
-                    meanXJ = (data[j] + (i - j) * meanXJ) / (i - j + 1);
-
+                for (var j = i; j >= k; j--) {
+                    sumSquaredDistances += (i - j) / (i - j + 1) * Math.pow(sorted[j] - meanXJ, 2);
+                    meanXJ = (sorted[j] + (i - j) * meanXJ) / (i - j + 1);
                     if (matrix[k][i] === -1) {
-                        if (j === 1) {
-                            matrix[k][i] = d;
-                            backtrackMatrix[k][i] = j;
+                        if (j === 0) {
+                            matrix[k][i] = sumSquaredDistances;
                         } else {
-                            matrix[k][i] = d + matrix[k - 1][j - 1];
+                            matrix[k][i] = sumSquaredDistances + matrix[k - 1][j - 1];
+                        }
+                        backtrackMatrix[k][i] = j;
+                    } else if (j === 0) {
+                        if (sumSquaredDistances <= matrix[k][i]) {
+                            matrix[k][i] = sumSquaredDistances;
                             backtrackMatrix[k][i] = j;
                         }
-                    } else {
-                        if (j === 1) {
-                            if (d <= matrix[k][i]) {
-                                matrix[k][i] = d;
-                                backtrackMatrix[k][i] = j;
-                            }
-                        } else if (d + matrix[k - 1][j - 1] < matrix[k][i]) {
-                            matrix[k][i] = d + matrix[k - 1][j - 1];
-                            backtrackMatrix[k][i] = j;
-                        }
+                    } else if (sumSquaredDistances + matrix[k - 1][j - 1] < matrix[k][i]) {
+                        matrix[k][i] = sumSquaredDistances + matrix[k - 1][j - 1];
+                        backtrackMatrix[k][i] = j;
                     }
                 }
             }
@@ -133,13 +138,11 @@ function cKmeans(data, nClasses) {
  * @returns {Object} clustering result
  */
 function backtrack(input, backtrackMatrix) {
-    var K = backtrackMatrix.length - 1;
-    var N = backtrackMatrix[0].length - 1;
-    var clusterRight = N;
+    var clusterRight = backtrackMatrix[0].length - 1;
     var clusterLeft;
 
     var result = {
-        nClusters: K,
+        nClusters: backtrackMatrix.length,
         cluster: [],
         centers: [],
         withinss: [],
@@ -147,21 +150,20 @@ function backtrack(input, backtrackMatrix) {
     };
 
     // Backtrack the clusters from the dynamic programming matrix
-    for (var k = K; k >= 0; --k) {
+    for (var k = backtrackMatrix.length; k >= 0; --k) {
         var sum = 0;
 
         clusterLeft = backtrackMatrix[k][clusterRight];
 
-        for (var i = clusterLeft; i <= clusterRight; ++i) {
+        for (var i = clusterLeft; i <= clusterRight; i++) {
             result.cluster[i] = k;
             sum += input[i];
         }
 
         result.centers[k] = sum / (clusterRight - clusterLeft + 1);
 
-        for (var j = clusterLeft; j <= clusterRight; ++j) {
-            result.withinss[k] += (input[j] - result.centers[j]) *
-                (input[j] - result.centers[k]);
+        for (var j = clusterLeft; j <= clusterRight; j++) {
+            result.withinss[k] += Math.pow(input[j] - result.centers[j], 2);
         }
 
         result.size[k] = clusterRight - clusterLeft + 1;
