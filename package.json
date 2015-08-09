@@ -7,7 +7,7 @@
     "type": "git",
     "url": "git://github.com/simple-statistics/simple-statistics.git"
   },
-  "dependencies": { },
+  "dependencies": {},
   "devDependencies": {
     "browserify": "^10.2.4",
     "coveralls": "^2.11.1",
