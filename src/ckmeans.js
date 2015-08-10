@@ -5,15 +5,40 @@ var sortedUniqueCount = require('./sorted_unique_count'),
     makeMatrix = require('./make_matrix');
 
 /**
+ * Ckmeans clustering is an improvement on heuristic-based clustering
+ * approaches like Jenks. The algorithm was developed in
+ * [Haizhou Wang and Mingzhou Song](http://journal.r-project.org/archive/2011-2/RJournal_2011-2_Wang+Song.pdf)
+ * as a [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming) approach
+ * to the problem of clustering numeric data into groups with the least
+ * within-group sum-of-squared-deviations.
  *
+ * Minimizing the difference within groups - what Wang & Song refer to as
+ * `withinss`, or within sum-of-squares, means that groups are optimally
+ * homogenous within and the data is split into representative groups.
+ *
+ * Being a dynamic approach, this algorithm is based on two matrices that
+ * store incrementally-computed values for squared deviations and backtracking
+ * indexes.
+ *
+ * Unlike the [original implementation](https://cran.r-project.org/web/packages/Ckmeans.1d.dp/index.html),
+ * this implementation does not include any code to automatically determine
+ * the optimal number of clusters: this information needs to be explicitly
+ * provided.
+ *
+ * ### References
+ * _Ckmeans.1d.dp: Optimal k-means Clustering in One Dimension by Dynamic
+ * Programming_ Haizhou Wang and Mingzhou Song ISSN 2073-4859
+ *
+ * from The R Journal Vol. 3/2, December 2011
  * @param {Array<number>} data input data, as an array of number values
- * @param {number} nClusters number of desired classes
+ * @param {number} nClusters number of desired classes. This cannot be
+ * greater than the number of values in the data array.
  * @returns {Array<Array<number>>} clustered input
  * @examples
  * // split data into 3 break points
  * jenks([1, 2, 4, 5, 7, 9, 10, 20], 3) // = [1, 7, 20, 20]
  */
-function cKmeans(data, nClusters) {
+function ckmeans(data, nClusters) {
 
     if (nClusters > data.length) {
         throw new Error('Cannot generate more classes than there are data values');
@@ -45,13 +70,16 @@ function cKmeans(data, nClusters) {
         // At the start of each loop, the mean starts as the first element
         var firstClusterMean = sorted[0];
 
-        for (var sortedIdx = Math.max(cluster, 1); sortedIdx < sorted.length; sortedIdx++) {
+        for (var sortedIdx = Math.max(cluster, 1);
+             sortedIdx < sorted.length;
+             sortedIdx++) {
 
             if (cluster === 0) {
 
                 // Increase the running sum of squares calculation by this
                 // new value
-                var squaredDifference = Math.pow(sorted[sortedIdx] - firstClusterMean, 2);
+                var squaredDifference = Math.pow(
+                    sorted[sortedIdx] - firstClusterMean, 2);
                 matrix[cluster][sortedIdx] = matrix[cluster][sortedIdx - 1] +
                     ((sortedIdx - 1) / sortedIdx) * squaredDifference;
 
@@ -103,15 +131,14 @@ function cKmeans(data, nClusters) {
     // once they're generated we can solve for the best clustering groups
     // very quickly.
     var clusters = [],
-        clusterRight = backtrackMatrix[0].length - 1,
-        clusterLeft;
+        clusterRight = backtrackMatrix[0].length - 1;
 
     // Backtrack the clusters from the dynamic programming matrix. This
     // starts at the bottom-right corner of the matrix (if the top-left is 0, 0),
     // and moves the cluster target with the loop.
     for (cluster = backtrackMatrix.length - 1; cluster >= 0; cluster--) {
 
-        clusterLeft = backtrackMatrix[cluster][clusterRight];
+        var clusterLeft = backtrackMatrix[cluster][clusterRight];
 
         // fill the cluster from the sorted input by taking a slice of the
         // array. the backtrack matrix makes this easy - it stores the
@@ -126,4 +153,4 @@ function cKmeans(data, nClusters) {
     return clusters;
 }
 
-module.exports = cKmeans;
+module.exports = ckmeans;
