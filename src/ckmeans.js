@@ -1,8 +1,29 @@
 'use strict';
 
 var sortedUniqueCount = require('./sorted_unique_count'),
-    numericSort = require('./numeric_sort'),
-    makeMatrix = require('./make_matrix');
+    numericSort = require('./numeric_sort');
+
+/**
+ * Create a new column x row matrix.
+ *
+ * @private
+ * @param {number} columns
+ * @param {number} rows
+ * @return {Array<Array<number>>} matrix
+ * @example
+ * makeMatrix(10, 10);
+ */
+function makeMatrix(columns, rows) {
+    var matrix = [];
+    for (var i = 0; i < columns; i++) {
+        var column = [];
+        for (var j = 0; j < rows; j++) {
+            column.push(0);
+        }
+        matrix.push(column);
+    }
+    return matrix;
+}
 
 /**
  * Ckmeans clustering is an improvement on heuristic-based clustering
