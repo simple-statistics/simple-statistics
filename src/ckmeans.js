@@ -1,9 +1,9 @@
 'use strict';
 
-var sortedUniqueCount = require('./sorted_unique_count');
-var numericSort = require('./numeric_sort');
-var makeMatrix = require('./make_matrix');
-var makeRange = require('./make_range');
+var sortedUniqueCount = require('./sorted_unique_count'),
+    numericSort = require('./numeric_sort'),
+    makeMatrix = require('./make_matrix'),
+    makeRange = require('./make_range');
 
 /**
  * The real work of Ckmeans clustering happens in the matrix generation:
@@ -27,8 +27,9 @@ function backtrack(sorted, backtrackMatrix) {
     };
 
     // Backtrack the clusters from the dynamic programming matrix
-    for (var k = backtrackMatrix.length - 1; k >= 0; --k) {
+    for (var k = backtrackMatrix.length - 1; k >= 0; k--) {
         var sum = 0;
+        result.withinss[k] = 0;
 
         clusterLeft = backtrackMatrix[k][clusterRight];
 
@@ -39,7 +40,6 @@ function backtrack(sorted, backtrackMatrix) {
 
         result.centers[k] = sum / (clusterRight - clusterLeft + 1);
 
-        result.withinss[k] = 0;
         for (var j = clusterLeft; j <= clusterRight; j++) {
             result.withinss[k] += Math.pow(sorted[j] - result.centers[k], 2);
         }
@@ -47,7 +47,7 @@ function backtrack(sorted, backtrackMatrix) {
         result.size[k] = clusterRight - clusterLeft + 1;
 
         if (k > 0) {
-            clusterRight = clusterLeft;
+            clusterRight = clusterLeft - 1;
         }
     }
 
@@ -55,15 +55,6 @@ function backtrack(sorted, backtrackMatrix) {
 }
 
 /**
- * The **[jenks natural breaks optimization](http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization)**
- * is an algorithm commonly used in cartography and visualization to decide
- * upon groupings of data values that minimize variance within themselves
- * and maximize variation between themselves.
- *
- * For instance, cartographers often use jenks in order to choose which
- * values are assigned to which colors in
- * a [choropleth](https://en.wikipedia.org/wiki/Choropleth_map)
- * map.
  *
  * @param {Array<number>} data input data, as an array of number values
  * @param {number} nClusters number of desired classes
@@ -86,6 +77,7 @@ function cKmeans(data, nClusters) {
     // with all of the input in it.
     if (uniqueCount === 1) {
         return {
+            nClusters: 1,
             clusters: makeRange(sorted.length),
             centers: [sorted[0]],
             withinss: [0],
@@ -96,43 +88,66 @@ function cKmeans(data, nClusters) {
     // named 'D' originally
     var matrix = makeMatrix(nClusters, sorted.length),
         // named 'B' originally
-        backtrackMatrix = makeMatrix(nClusters, sorted.length),
-        meanX1 = 0,
-        meanXJ = 0,
-        sumSquaredDistances = 0;
+        backtrackMatrix = makeMatrix(nClusters, sorted.length);
 
     // This is a dynamic programming way to solve the problem of minimizing
     // within-cluster sum of squares. It's similar to linear regression
     // in this way, and this calculation incrementally computes the
     // sum of squares that are later read.
-    for (var k = 0; k < nClusters; k++) {
-        meanX1 = sorted[0];
-        for (var i = Math.max(k, 1); i < sorted.length; i++) {
-            if (k === 0) {
-                matrix[0][i] += i / i * Math.pow(sorted[i] - meanX1, 2);
-                meanX1 = (i * meanX1 + sorted[i]) / i;
+
+    // The outer loop iterates through clusters, from 0 to nClusters.
+    for (var cluster = 0; cluster < nClusters; cluster++) {
+
+        // At the start of each loop, the mean starts as the first element
+        var firstClusterMean = sorted[0];
+
+        for (var sortedIdx = Math.max(cluster, 1); sortedIdx < sorted.length; sortedIdx++) {
+
+            if (cluster === 0) {
+
+                // Increase the running sum of squares calculation by this
+                // new value
+                var squaredDifference = Math.pow(sorted[sortedIdx] - firstClusterMean, 2);
+                matrix[cluster][sortedIdx] = matrix[cluster][sortedIdx - 1] +
+                    ((sortedIdx - 1) / sortedIdx) * squaredDifference;
+
+                // We're computing a running mean by taking the previous
+                // mean value, multiplying it by the number of elements
+                // seen so far, and then dividing it by the number of
+                // elements total.
+                var newSum = sortedIdx * firstClusterMean + sorted[sortedIdx];
+                firstClusterMean = newSum / sortedIdx;
+
             } else {
-                matrix[k][i] = -1;
-                sumSquaredDistances = 0;
-                meanXJ = 0;
-                for (var j = i; j >= k; j--) {
-                    sumSquaredDistances += (i - j) / (i - j + 1) * Math.pow(sorted[j] - meanXJ, 2);
-                    meanXJ = (sorted[j] + (i - j) * meanXJ) / (i - j + 1);
-                    if (matrix[k][i] === -1) {
+
+                var sumSquaredDistances = 0,
+                    meanXJ = 0;
+
+                for (var j = sortedIdx; j >= cluster; j--) {
+
+                    sumSquaredDistances += (sortedIdx - j) /
+                        (sortedIdx - j + 1) *
+                        Math.pow(sorted[j] - meanXJ, 2);
+
+                    meanXJ = (sorted[j] + ((sortedIdx - j) * meanXJ)) /
+                        (sortedIdx - j + 1);
+
+                    if (j === sortedIdx) {
+                        matrix[cluster][sortedIdx] = sumSquaredDistances;
+                        backtrackMatrix[cluster][sortedIdx] = j;
+                        if (j > 0) {
+                            matrix[cluster][sortedIdx] += matrix[cluster - 1][j - 1];
+                        }
+                    } else {
                         if (j === 0) {
-                            matrix[k][i] = sumSquaredDistances;
-                        } else {
-                            matrix[k][i] = sumSquaredDistances + matrix[k - 1][j - 1];
+                            if (sumSquaredDistances <= matrix[cluster][sortedIdx]) {
+                                matrix[cluster][sortedIdx] = sumSquaredDistances;
+                                backtrackMatrix[cluster][sortedIdx] = j;
+                            }
+                        } else if (sumSquaredDistances + matrix[cluster - 1][j - 1] < matrix[cluster][sortedIdx]) {
+                            matrix[cluster][sortedIdx] = sumSquaredDistances + matrix[cluster - 1][j - 1];
+                            backtrackMatrix[cluster][sortedIdx] = j;
                         }
-                        backtrackMatrix[k][i] = j;
-                    } else if (j === 0) {
-                        if (sumSquaredDistances <= matrix[k][i]) {
-                            matrix[k][i] = sumSquaredDistances;
-                            backtrackMatrix[k][i] = j;
-                        }
-                    } else if (sumSquaredDistances + matrix[k - 1][j - 1] < matrix[k][i]) {
-                        matrix[k][i] = sumSquaredDistances + matrix[k - 1][j - 1];
-                        backtrackMatrix[k][i] = j;
                     }
                 }
             }
