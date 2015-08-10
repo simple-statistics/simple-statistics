@@ -69,6 +69,12 @@ var breaks = ss.ckmeans([1, 2, 4, 5, 7, 9, 10, 20], 3)).map(function(cluster) {
 * All multi-word method names are now camelCase rather than underscore_cased:
   this means that a method like `ss.r_squared` is now accessible as `ss.rSquared`
 
+### New Features
+
+* Ckmeans replaces Jenks
+* `sortedUniqueCount` provides an extremely fast method for counting
+  unique values of sorted arrays.
+
 ### Non-Breaking Changes
 
 * JSDoc documentation throughout
