@@ -2,57 +2,8 @@
 
 var sortedUniqueCount = require('./sorted_unique_count'),
     numericSort = require('./numeric_sort'),
-    makeMatrix = require('./make_matrix'),
-    makeRange = require('./make_range');
-
-/**
- * The real work of Ckmeans clustering happens in the matrix generation:
- * the generated matrices encode all possible clustering combinations, and
- * once they're generated we can solve for the best clustering groups
- * very quickly.
- * @param {Array} sorted
- * @param {Array<Array<number>>} backtrackMatrix
- * @returns {Object} clustering result
- */
-function backtrack(sorted, backtrackMatrix) {
-    var clusterRight = backtrackMatrix[0].length - 1;
-    var clusterLeft;
-
-    var result = {
-        nClusters: backtrackMatrix.length,
-        cluster: [],
-        centers: [],
-        withinss: [],
-        size: []
-    };
-
-    // Backtrack the clusters from the dynamic programming matrix
-    for (var k = backtrackMatrix.length - 1; k >= 0; k--) {
-        var sum = 0;
-        result.withinss[k] = 0;
-
-        clusterLeft = backtrackMatrix[k][clusterRight];
-
-        for (var i = clusterLeft; i <= clusterRight; i++) {
-            result.cluster[i] = k;
-            sum += sorted[i];
-        }
-
-        result.centers[k] = sum / (clusterRight - clusterLeft + 1);
-
-        for (var j = clusterLeft; j <= clusterRight; j++) {
-            result.withinss[k] += Math.pow(sorted[j] - result.centers[k], 2);
-        }
-
-        result.size[k] = clusterRight - clusterLeft + 1;
-
-        if (k > 0) {
-            clusterRight = clusterLeft - 1;
-        }
-    }
-
-    return result;
-}
+    sum = require('./sum'),
+    makeMatrix = require('./make_matrix');
 
 /**
  *
@@ -78,7 +29,7 @@ function cKmeans(data, nClusters) {
     if (uniqueCount === 1) {
         return {
             nClusters: 1,
-            clusters: makeRange(sorted.length),
+            clusters: [sorted],
             centers: [sorted[0]],
             withinss: [0],
             size: [sorted.length]
@@ -154,7 +105,46 @@ function cKmeans(data, nClusters) {
         }
     }
 
-    return backtrack(sorted, backtrackMatrix);
+    // The real work of Ckmeans clustering happens in the matrix generation:
+    // the generated matrices encode all possible clustering combinations, and
+    // once they're generated we can solve for the best clustering groups
+    // very quickly.
+    var clusterRight = backtrackMatrix[0].length - 1,
+        clusterLeft,
+        result = {
+            nClusters: backtrackMatrix.length,
+            clusters: [],
+            centers: [],
+            withinss: [],
+            size: []
+        };
+
+    // Backtrack the clusters from the dynamic programming matrix
+    for (var k = backtrackMatrix.length - 1; k >= 0; k--) {
+        result.withinss[k] = 0;
+
+        clusterLeft = backtrackMatrix[k][clusterRight];
+
+        result.clusters[k] = [];
+        for (var i = clusterLeft; i <= clusterRight; i++) {
+            result.clusters[k].push(sorted[i]);
+        }
+
+        result.centers[k] = sum(sorted.slice(clusterLeft, clusterRight + 1)) /
+            (clusterRight - clusterLeft + 1);
+
+        for (j = clusterLeft; j <= clusterRight; j++) {
+            result.withinss[k] += Math.pow(sorted[j] - result.centers[k], 2);
+        }
+
+        result.size[k] = clusterRight - clusterLeft + 1;
+
+        if (k > 0) {
+            clusterRight = clusterLeft - 1;
+        }
+    }
+
+    return result;
 }
 
 module.exports = cKmeans;
