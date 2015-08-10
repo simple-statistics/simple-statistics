@@ -15,15 +15,15 @@
  * sortedUniqueCount([1, 1, 1]); // 1
  */
 function sortedUniqueCount(input) {
-  var uniqueValueCount = 0,
-    lastSeenValue;
-  for (var i = 0; i < input.length; i++) {
-    if (i === 0 || input[i] !== lastSeenValue) {
-      lastSeenValue = input[i];
-      uniqueValueCount++;
+    var uniqueValueCount = 0,
+        lastSeenValue;
+    for (var i = 0; i < input.length; i++) {
+        if (i === 0 || input[i] !== lastSeenValue) {
+            lastSeenValue = input[i];
+            uniqueValueCount++;
+        }
     }
-  }
-  return uniqueValueCount;
+    return uniqueValueCount;
 }
 
 module.exports = sortedUniqueCount;
