@@ -2,6 +2,7 @@
 
 var sortedUniqueCount = require('./sorted_unique_count'),
     numericSort = require('./numeric_sort'),
+    sumNthPowerDeviations = require('./sum_nth_power_deviations'),
     sum = require('./sum'),
     makeMatrix = require('./make_matrix');
 
@@ -119,27 +120,20 @@ function cKmeans(data, nClusters) {
             size: []
         };
 
-    // Backtrack the clusters from the dynamic programming matrix
-    for (var k = backtrackMatrix.length - 1; k >= 0; k--) {
-        result.withinss[k] = 0;
-
-        clusterLeft = backtrackMatrix[k][clusterRight];
-
-        result.clusters[k] = [];
+    // Backtrack the clusters from the dynamic programming matrix. This
+    // starts at the bottom-right corner of the matrix (if the top-left is 0, 0),
+    // and moves the cluster target with the loop.
+    for (cluster = backtrackMatrix.length - 1; cluster >= 0; cluster--) {
+        clusterLeft = backtrackMatrix[cluster][clusterRight];
+        result.clusters[cluster] = [];
         for (var i = clusterLeft; i <= clusterRight; i++) {
-            result.clusters[k].push(sorted[i]);
+            result.clusters[cluster].push(sorted[i]);
         }
-
-        result.centers[k] = sum(sorted.slice(clusterLeft, clusterRight + 1)) /
+        result.centers[cluster] = sum(sorted.slice(clusterLeft, clusterRight + 1)) /
             (clusterRight - clusterLeft + 1);
-
-        for (j = clusterLeft; j <= clusterRight; j++) {
-            result.withinss[k] += Math.pow(sorted[j] - result.centers[k], 2);
-        }
-
-        result.size[k] = clusterRight - clusterLeft + 1;
-
-        if (k > 0) {
+        result.withinss[cluster] = sumNthPowerDeviations(result.clusters[cluster], 2);
+        result.size[cluster] = clusterRight - clusterLeft + 1;
+        if (cluster > 0) {
             clusterRight = clusterLeft - 1;
         }
     }
