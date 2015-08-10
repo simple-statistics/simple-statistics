@@ -10,6 +10,11 @@ var mean = require('./mean');
  * @param {Array<number>} x
  * @param {number} n power
  * @returns {number} sum of nth power deviations
+ * @example
+ * var input = [1, 2, 3];
+ * // since the variance of a set is the mean squared
+ * // deviations, we can calculate that with sumNthPowerDeviations:
+ * var variance = sumNthPowerDeviations(input) / input.length;
  */
 function sumNthPowerDeviations(x, n) {
     var meanValue = mean(x),

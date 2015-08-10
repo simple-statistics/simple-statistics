@@ -74,6 +74,8 @@ var breaks = ss.ckmeans([1, 2, 4, 5, 7, 9, 10, 20], 3)).map(function(cluster) {
 * Ckmeans replaces Jenks
 * `sortedUniqueCount` provides an extremely fast method for counting
   unique values of sorted arrays.
+* `sumNthPowerDeviations` is now exposed, providing a simple way to calculate
+  the fundamental aspect of measures like variance and skewness.
 
 ### Non-Breaking Changes
 

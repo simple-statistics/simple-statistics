@@ -5,6 +5,20 @@
  * arrays of numbers and predicts whether they should be classified
  * as either 0 or 1 (negative or positive examples).
  * @class
+ * @example
+ * // Create the model
+ * var p = new PerceptronModel();
+ * // Train the model with input with a diagonal boundary.
+ * for (var i = 0; i < 5; i++) {
+ *     p.train([1, 1], 1);
+ *     p.train([0, 1], 0);
+ *     p.train([1, 0], 0);
+ *     p.train([0, 0], 0);
+ * }
+ * p.predict([0, 0]); // 0
+ * p.predict([0, 1]); // 0
+ * p.predict([1, 0]); // 0
+ * p.predict([1, 1]); // 1
  */
 function PerceptronModel() {
     // The weights, or coefficients of the model;

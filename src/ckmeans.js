@@ -36,6 +36,9 @@ function makeMatrix(columns, rows) {
  * Minimizing the difference within groups - what Wang & Song refer to as
  * `withinss`, or within sum-of-squares, means that groups are optimally
  * homogenous within and the data is split into representative groups.
+ * This is very useful for visualization, where you may want to represent
+ * a continuous variable in discrete color or style groups. This function
+ * can provide groups that emphasize differences between data.
  *
  * Being a dynamic approach, this algorithm is based on two matrices that
  * store incrementally-computed values for squared deviations and backtracking
@@ -55,9 +58,10 @@ function makeMatrix(columns, rows) {
  * @param {number} nClusters number of desired classes. This cannot be
  * greater than the number of values in the data array.
  * @returns {Array<Array<number>>} clustered input
- * @examples
- * // split data into 3 break points
- * jenks([1, 2, 4, 5, 7, 9, 10, 20], 3) // = [1, 7, 20, 20]
+ * @example
+ * ckmeans([-1, 2, -1, 2, 4, 5, 6, -1, 2, -1], 3);
+ * // The input, clustered into groups of similar numbers.
+ * //= [[-1, -1, -1, -1], [2, 2, 2], [4, 5, 6]]);
  */
 function ckmeans(data, nClusters) {
 

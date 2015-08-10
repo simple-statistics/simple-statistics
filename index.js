@@ -25,6 +25,7 @@ ss.shuffleInPlace = require('./src/shuffle_in_place');
 ss.sample = require('./src/sample');
 ss.ckmeans = require('./src/ckmeans');
 ss.sortedUniqueCount = require('./src/sorted_unique_count');
+ss.sumNthPowerDeviations = require('./src/sum_nth_power_deviations');
 
 // sample statistics
 ss.sampleCovariance = require('./src/sample_covariance');

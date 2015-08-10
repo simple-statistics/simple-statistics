@@ -1,6 +1,6 @@
 'use strict';
 
-var mean = require('./mean');
+var sumNthPowerDeviations = require('./sum_nth_power_deviations');
 
 /**
  * The [variance](http://en.wikipedia.org/wiki/Variance)
@@ -19,16 +19,9 @@ function variance(x) {
     // The variance of no numbers is null
     if (x.length === 0) { return null; }
 
-    var meanValue = mean(x),
-        deviations = [];
-
-    // Make a list of squared deviations from the mean.
-    for (var i = 0; i < x.length; i++) {
-        deviations.push(Math.pow(x[i] - meanValue, 2));
-    }
-
-    // Find the mean value of that list
-    return mean(deviations);
+    // Find the mean of squared deviations between the
+    // mean value and each value.
+    return sumNthPowerDeviations(x, 2) / x.length;
 }
 
 module.exports = variance;

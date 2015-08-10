@@ -8,6 +8,9 @@ var sampleVariance = require('./sample_variance');
  *
  * @param {Array<number>} x input array
  * @returns {number} sample standard deviation
+ * @example
+ * ss.sampleStandardDeviation([2, 4, 4, 4, 5, 5, 7, 9]);
+ * //= 2.138
  */
 function sampleStandardDeviation(x) {
     // The standard deviation of no numbers is null
