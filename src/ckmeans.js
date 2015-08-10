@@ -2,15 +2,13 @@
 
 var sortedUniqueCount = require('./sorted_unique_count'),
     numericSort = require('./numeric_sort'),
-    sumNthPowerDeviations = require('./sum_nth_power_deviations'),
-    sum = require('./sum'),
     makeMatrix = require('./make_matrix');
 
 /**
  *
  * @param {Array<number>} data input data, as an array of number values
  * @param {number} nClusters number of desired classes
- * @returns {Array<number>} array of class break positions
+ * @returns {Array<Array<number>>} clustered input
  * @examples
  * // split data into 3 break points
  * jenks([1, 2, 4, 5, 7, 9, 10, 20], 3) // = [1, 7, 20, 20]
@@ -28,13 +26,7 @@ function cKmeans(data, nClusters) {
     // if all of the input values are identical, there's one cluster
     // with all of the input in it.
     if (uniqueCount === 1) {
-        return {
-            nClusters: 1,
-            clusters: [sorted],
-            centers: [sorted[0]],
-            withinss: [0],
-            size: [sorted.length]
-        };
+        return [sorted];
     }
 
     // named 'D' originally
@@ -110,35 +102,28 @@ function cKmeans(data, nClusters) {
     // the generated matrices encode all possible clustering combinations, and
     // once they're generated we can solve for the best clustering groups
     // very quickly.
-    var clusterRight = backtrackMatrix[0].length - 1,
-        clusterLeft,
-        result = {
-            nClusters: backtrackMatrix.length,
-            clusters: [],
-            centers: [],
-            withinss: [],
-            size: []
-        };
+    var clusters = [],
+        clusterRight = backtrackMatrix[0].length - 1,
+        clusterLeft;
 
     // Backtrack the clusters from the dynamic programming matrix. This
     // starts at the bottom-right corner of the matrix (if the top-left is 0, 0),
     // and moves the cluster target with the loop.
     for (cluster = backtrackMatrix.length - 1; cluster >= 0; cluster--) {
+
         clusterLeft = backtrackMatrix[cluster][clusterRight];
-        result.clusters[cluster] = [];
-        for (var i = clusterLeft; i <= clusterRight; i++) {
-            result.clusters[cluster].push(sorted[i]);
-        }
-        result.centers[cluster] = sum(sorted.slice(clusterLeft, clusterRight + 1)) /
-            (clusterRight - clusterLeft + 1);
-        result.withinss[cluster] = sumNthPowerDeviations(result.clusters[cluster], 2);
-        result.size[cluster] = clusterRight - clusterLeft + 1;
+
+        // fill the cluster from the sorted input by taking a slice of the
+        // array. the backtrack matrix makes this easy - it stores the
+        // indexes where the cluster should start and end.
+        clusters[cluster] = sorted.slice(clusterLeft, clusterRight + 1);
+
         if (cluster > 0) {
             clusterRight = clusterLeft - 1;
         }
     }
 
-    return result;
+    return clusters;
 }
 
 module.exports = cKmeans;
