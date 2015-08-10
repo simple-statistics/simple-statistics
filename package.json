@@ -9,9 +9,9 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "browserify": "^10.2.4",
+    "browserify": "^11.0.1",
     "coveralls": "^2.11.1",
-    "eslint": "^0.24.0",
+    "eslint": "^1.1.0",
     "faucet": "0.0.1",
     "istanbul": "^0.3.0",
     "random-js": "^1.0.4",

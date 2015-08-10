@@ -7,12 +7,11 @@
 
 var ss = module.exports = {};
 
+// Linear Regression
 ss.linearRegression = require('./src/linear_regression');
 ss.linearRegressionLine = require('./src/linear_regression_line');
 ss.standardDeviation = require('./src/standard_deviation');
 ss.rSquared = require('./src/r_squared');
-ss.median = require('./src/median');
-ss.mean = ss.average = require('./src/mean');
 ss.mode = require('./src/mode');
 ss.min = require('./src/min');
 ss.max = require('./src/max');
@@ -21,26 +20,34 @@ ss.quantile = require('./src/quantile');
 ss.quantileSorted = require('./src/quantile_sorted');
 ss.iqr = ss.interquartileRange = require('./src/interquartile_range');
 ss.medianAbsoluteDeviation = ss.mad = require('./src/mad');
-
 ss.chunk = require('./src/chunk');
 ss.shuffle = require('./src/shuffle');
 ss.shuffleInPlace = require('./src/shuffle_in_place');
-
 ss.sample = require('./src/sample');
+ss.ckmeans = require('./src/ckmeans');
+ss.sortedUniqueCount = require('./src/sorted_unique_count');
+ss.sumNthPowerDeviations = require('./src/sum_nth_power_deviations');
 
+// sample statistics
 ss.sampleCovariance = require('./src/sample_covariance');
 ss.sampleCorrelation = require('./src/sample_correlation');
 ss.sampleVariance = require('./src/sample_variance');
 ss.sampleStandardDeviation = require('./src/sample_standard_deviation');
 ss.sampleSkewness = require('./src/sample_skewness');
 
+// measures of centrality
 ss.geometricMean = require('./src/geometric_mean');
 ss.harmonicMean = require('./src/harmonic_mean');
+ss.mean = ss.average = require('./src/mean');
+ss.median = require('./src/median');
+
 ss.rootMeanSquare = ss.rms = require('./src/root_mean_square');
 ss.variance = require('./src/variance');
 ss.tTest = require('./src/t_test');
 ss.tTestTwoSample = require('./src/t_test_two_sample');
-ss.jenks = require('./src/jenks');
+// ss.jenks = require('./src/jenks');
+
+// Classifiers
 ss.bayesian = require('./src/bayesian_classifier');
 ss.perceptron = require('./src/perceptron');
 
@@ -59,10 +66,9 @@ ss.standardNormalTable = require('./src/standard_normal_table');
 ss.errorFunction = ss.erf = require('./src/error_function');
 ss.inverseErrorFunction = require('./src/inverse_error_function');
 ss.probit = require('./src/probit');
-
 ss.mixin = require('./src/mixin');
 
-},{"./src/bayesian_classifier":2,"./src/bernoulli_distribution":3,"./src/binomial_distribution":4,"./src/chi_squared_goodness_of_fit":6,"./src/chunk":7,"./src/cumulative_std_normal_probability":8,"./src/epsilon":9,"./src/error_function":10,"./src/factorial":11,"./src/geometric_mean":12,"./src/harmonic_mean":13,"./src/interquartile_range":14,"./src/inverse_error_function":15,"./src/jenks":16,"./src/linear_regression":19,"./src/linear_regression_line":20,"./src/mad":21,"./src/max":22,"./src/mean":23,"./src/median":24,"./src/min":25,"./src/mixin":26,"./src/mode":27,"./src/perceptron":28,"./src/poisson_distribution":29,"./src/probit":30,"./src/quantile":31,"./src/quantile_sorted":32,"./src/r_squared":33,"./src/root_mean_square":34,"./src/sample":35,"./src/sample_correlation":36,"./src/sample_covariance":37,"./src/sample_skewness":38,"./src/sample_standard_deviation":39,"./src/sample_variance":40,"./src/shuffle":41,"./src/shuffle_in_place":42,"./src/standard_deviation":43,"./src/standard_normal_table":44,"./src/sum":45,"./src/t_test":47,"./src/t_test_two_sample":48,"./src/variance":49,"./src/z_score":50}],2:[function(require,module,exports){
+},{"./src/bayesian_classifier":2,"./src/bernoulli_distribution":3,"./src/binomial_distribution":4,"./src/chi_squared_goodness_of_fit":6,"./src/chunk":7,"./src/ckmeans":8,"./src/cumulative_std_normal_probability":9,"./src/epsilon":10,"./src/error_function":11,"./src/factorial":12,"./src/geometric_mean":13,"./src/harmonic_mean":14,"./src/interquartile_range":15,"./src/inverse_error_function":16,"./src/linear_regression":17,"./src/linear_regression_line":18,"./src/mad":19,"./src/max":20,"./src/mean":21,"./src/median":22,"./src/min":23,"./src/mixin":24,"./src/mode":25,"./src/perceptron":27,"./src/poisson_distribution":28,"./src/probit":29,"./src/quantile":30,"./src/quantile_sorted":31,"./src/r_squared":32,"./src/root_mean_square":33,"./src/sample":34,"./src/sample_correlation":35,"./src/sample_covariance":36,"./src/sample_skewness":37,"./src/sample_standard_deviation":38,"./src/sample_variance":39,"./src/shuffle":40,"./src/shuffle_in_place":41,"./src/sorted_unique_count":42,"./src/standard_deviation":43,"./src/standard_normal_table":44,"./src/sum":45,"./src/sum_nth_power_deviations":46,"./src/t_test":47,"./src/t_test_two_sample":48,"./src/variance":49,"./src/z_score":50}],2:[function(require,module,exports){
 'use strict';
 
 /**
@@ -70,6 +76,20 @@ ss.mixin = require('./src/mixin');
  *
  * This is a naïve bayesian classifier that takes
  * singly-nested objects.
+ *
+ * @class
+ * @example
+ * var bayes = new BayesianClassifier();
+ * bayes.train({
+ *   species: 'Cat'
+ * }, 'animal');
+ * var result = bayes.score({
+ *   species: 'Cat'
+ * })
+ * // result
+ * // {
+ * //   animal: 1
+ * // }
  */
 function BayesianClassifier() {
     // The number of items that are currently
@@ -80,12 +100,12 @@ function BayesianClassifier() {
 }
 
 /**
- * ## Train
  * Train the classifier with a new item, which has a single
  * dimension of Javascript literal keys and values.
  *
- * @param {Object} item
- * @param {string} category
+ * @param {Object} item an object with singly-deep properties
+ * @param {string} category the category this item belongs to
+ * @return {undefined} adds the item to the classifier
  */
 BayesianClassifier.prototype.train = function(item, category) {
     // If the data object doesn't have any values
@@ -118,7 +138,7 @@ BayesianClassifier.prototype.train = function(item, category) {
  * Generate a score of how well this item matches all
  * possible categories based on its attributes
  *
- * @param {Object} item
+ * @param {Object} item an item in the same format as with train
  * @returns {Object} of probabilities that this item belongs to a
  * given category.
  */
@@ -248,11 +268,11 @@ function binomialDistribution(trials, probability) {
 
 module.exports = binomialDistribution;
 
-},{"./epsilon":9,"./factorial":11}],5:[function(require,module,exports){
+},{"./epsilon":10,"./factorial":12}],5:[function(require,module,exports){
 'use strict';
 
 /**
- * ## Percentage Points of the χ2 (Chi-Squared) Distribution
+ * **Percentage Points of the χ2 (Chi-Squared) Distribution**
  *
  * The [χ2 (Chi-Squared) Distribution](http://en.wikipedia.org/wiki/Chi-squared_distribution) is used in the common
  * chi-squared tests for goodness of fit of an observed distribution to a theoretical one, the independence of two
@@ -325,6 +345,17 @@ var chiSquaredDistributionTable = require('./chi_squared_distribution_table');
  * for instance, binomial, bernoulli, or poisson
  * @param {number} significance
  * @returns {number} chi squared goodness of fit
+ * @example
+ * // Data from Poisson goodness-of-fit example 10-19 in William W. Hines & Douglas C. Montgomery,
+ * // "Probability and Statistics in Engineering and Management Science", Wiley (1980).
+ * var data1019 = [
+ *     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+ *     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+ *     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+ *     2, 2, 2, 2, 2, 2, 2, 2, 2,
+ *     3, 3, 3, 3
+ * ];
+ * ss.chiSquaredGoodnessOfFit(data1019, ss.poissonDistribution, 0.05)); //= false
  */
 function chiSquaredGoodnessOfFit(data, distributionType, significance) {
     // Estimate from the sample data, a weighted mean.
@@ -400,7 +431,7 @@ function chiSquaredGoodnessOfFit(data, distributionType, significance) {
 
 module.exports = chiSquaredGoodnessOfFit;
 
-},{"./chi_squared_distribution_table":5,"./mean":23}],7:[function(require,module,exports){
+},{"./chi_squared_distribution_table":5,"./mean":21}],7:[function(require,module,exports){
 'use strict';
 
 /**
@@ -412,8 +443,9 @@ module.exports = chiSquaredGoodnessOfFit;
  * `sample` is expected to be an array, and `chunkSize` a number.
  * The `sample` array can contain any kind of data.
  *
- * @param {Array} sample
+ * @param {Array} sample any array of values
  * @param {number} chunkSize size of each output array
+ * @returns {Array<Array>} a chunked array
  * @example
  * console.log(chunk([1, 2, 3, 4], 2)); // [[1, 2], [3, 4]]
  */
@@ -447,10 +479,193 @@ module.exports = chunk;
 },{}],8:[function(require,module,exports){
 'use strict';
 
+var sortedUniqueCount = require('./sorted_unique_count'),
+    numericSort = require('./numeric_sort');
+
+/**
+ * Create a new column x row matrix.
+ *
+ * @private
+ * @param {number} columns
+ * @param {number} rows
+ * @return {Array<Array<number>>} matrix
+ * @example
+ * makeMatrix(10, 10);
+ */
+function makeMatrix(columns, rows) {
+    var matrix = [];
+    for (var i = 0; i < columns; i++) {
+        var column = [];
+        for (var j = 0; j < rows; j++) {
+            column.push(0);
+        }
+        matrix.push(column);
+    }
+    return matrix;
+}
+
+/**
+ * Ckmeans clustering is an improvement on heuristic-based clustering
+ * approaches like Jenks. The algorithm was developed in
+ * [Haizhou Wang and Mingzhou Song](http://journal.r-project.org/archive/2011-2/RJournal_2011-2_Wang+Song.pdf)
+ * as a [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming) approach
+ * to the problem of clustering numeric data into groups with the least
+ * within-group sum-of-squared-deviations.
+ *
+ * Minimizing the difference within groups - what Wang & Song refer to as
+ * `withinss`, or within sum-of-squares, means that groups are optimally
+ * homogenous within and the data is split into representative groups.
+ * This is very useful for visualization, where you may want to represent
+ * a continuous variable in discrete color or style groups. This function
+ * can provide groups that emphasize differences between data.
+ *
+ * Being a dynamic approach, this algorithm is based on two matrices that
+ * store incrementally-computed values for squared deviations and backtracking
+ * indexes.
+ *
+ * Unlike the [original implementation](https://cran.r-project.org/web/packages/Ckmeans.1d.dp/index.html),
+ * this implementation does not include any code to automatically determine
+ * the optimal number of clusters: this information needs to be explicitly
+ * provided.
+ *
+ * ### References
+ * _Ckmeans.1d.dp: Optimal k-means Clustering in One Dimension by Dynamic
+ * Programming_ Haizhou Wang and Mingzhou Song ISSN 2073-4859
+ *
+ * from The R Journal Vol. 3/2, December 2011
+ * @param {Array<number>} data input data, as an array of number values
+ * @param {number} nClusters number of desired classes. This cannot be
+ * greater than the number of values in the data array.
+ * @returns {Array<Array<number>>} clustered input
+ * @example
+ * ckmeans([-1, 2, -1, 2, 4, 5, 6, -1, 2, -1], 3);
+ * // The input, clustered into groups of similar numbers.
+ * //= [[-1, -1, -1, -1], [2, 2, 2], [4, 5, 6]]);
+ */
+function ckmeans(data, nClusters) {
+
+    if (nClusters > data.length) {
+        throw new Error('Cannot generate more classes than there are data values');
+    }
+
+    var sorted = numericSort(data),
+        // we'll use this as the maximum number of clusters
+        uniqueCount = sortedUniqueCount(sorted);
+
+    // if all of the input values are identical, there's one cluster
+    // with all of the input in it.
+    if (uniqueCount === 1) {
+        return [sorted];
+    }
+
+    // named 'D' originally
+    var matrix = makeMatrix(nClusters, sorted.length),
+        // named 'B' originally
+        backtrackMatrix = makeMatrix(nClusters, sorted.length);
+
+    // This is a dynamic programming way to solve the problem of minimizing
+    // within-cluster sum of squares. It's similar to linear regression
+    // in this way, and this calculation incrementally computes the
+    // sum of squares that are later read.
+
+    // The outer loop iterates through clusters, from 0 to nClusters.
+    for (var cluster = 0; cluster < nClusters; cluster++) {
+
+        // At the start of each loop, the mean starts as the first element
+        var firstClusterMean = sorted[0];
+
+        for (var sortedIdx = Math.max(cluster, 1);
+             sortedIdx < sorted.length;
+             sortedIdx++) {
+
+            if (cluster === 0) {
+
+                // Increase the running sum of squares calculation by this
+                // new value
+                var squaredDifference = Math.pow(
+                    sorted[sortedIdx] - firstClusterMean, 2);
+                matrix[cluster][sortedIdx] = matrix[cluster][sortedIdx - 1] +
+                    ((sortedIdx - 1) / sortedIdx) * squaredDifference;
+
+                // We're computing a running mean by taking the previous
+                // mean value, multiplying it by the number of elements
+                // seen so far, and then dividing it by the number of
+                // elements total.
+                var newSum = sortedIdx * firstClusterMean + sorted[sortedIdx];
+                firstClusterMean = newSum / sortedIdx;
+
+            } else {
+
+                var sumSquaredDistances = 0,
+                    meanXJ = 0;
+
+                for (var j = sortedIdx; j >= cluster; j--) {
+
+                    sumSquaredDistances += (sortedIdx - j) /
+                        (sortedIdx - j + 1) *
+                        Math.pow(sorted[j] - meanXJ, 2);
+
+                    meanXJ = (sorted[j] + ((sortedIdx - j) * meanXJ)) /
+                        (sortedIdx - j + 1);
+
+                    if (j === sortedIdx) {
+                        matrix[cluster][sortedIdx] = sumSquaredDistances;
+                        backtrackMatrix[cluster][sortedIdx] = j;
+                        if (j > 0) {
+                            matrix[cluster][sortedIdx] += matrix[cluster - 1][j - 1];
+                        }
+                    } else {
+                        if (j === 0) {
+                            if (sumSquaredDistances <= matrix[cluster][sortedIdx]) {
+                                matrix[cluster][sortedIdx] = sumSquaredDistances;
+                                backtrackMatrix[cluster][sortedIdx] = j;
+                            }
+                        } else if (sumSquaredDistances + matrix[cluster - 1][j - 1] < matrix[cluster][sortedIdx]) {
+                            matrix[cluster][sortedIdx] = sumSquaredDistances + matrix[cluster - 1][j - 1];
+                            backtrackMatrix[cluster][sortedIdx] = j;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // The real work of Ckmeans clustering happens in the matrix generation:
+    // the generated matrices encode all possible clustering combinations, and
+    // once they're generated we can solve for the best clustering groups
+    // very quickly.
+    var clusters = [],
+        clusterRight = backtrackMatrix[0].length - 1;
+
+    // Backtrack the clusters from the dynamic programming matrix. This
+    // starts at the bottom-right corner of the matrix (if the top-left is 0, 0),
+    // and moves the cluster target with the loop.
+    for (cluster = backtrackMatrix.length - 1; cluster >= 0; cluster--) {
+
+        var clusterLeft = backtrackMatrix[cluster][clusterRight];
+
+        // fill the cluster from the sorted input by taking a slice of the
+        // array. the backtrack matrix makes this easy - it stores the
+        // indexes where the cluster should start and end.
+        clusters[cluster] = sorted.slice(clusterLeft, clusterRight + 1);
+
+        if (cluster > 0) {
+            clusterRight = clusterLeft - 1;
+        }
+    }
+
+    return clusters;
+}
+
+module.exports = ckmeans;
+
+},{"./numeric_sort":26,"./sorted_unique_count":42}],9:[function(require,module,exports){
+'use strict';
+
 var standardNormalTable = require('./standard_normal_table');
 
 /**
- * ## [Cumulative Standard Normal Probability](http://en.wikipedia.org/wiki/Standard_normal_table)
+ * **[Cumulative Standard Normal Probability](http://en.wikipedia.org/wiki/Standard_normal_table)**
  *
  * Since probability tables cannot be
  * printed for every normal distribution, as there are an infinite variety
@@ -488,22 +703,26 @@ function cumulativeStdNormalProbability(z) {
 
 module.exports = cumulativeStdNormalProbability;
 
-},{"./standard_normal_table":44}],9:[function(require,module,exports){
+},{"./standard_normal_table":44}],10:[function(require,module,exports){
 'use strict';
 
 /**
  * We use `ε`, epsilon, as a stopping criterion when we want to iterate
  * until we're "close enough".
+ *
+ * This is used in calculations like the binomialDistribution, in which
+ * the process of finding a value is [iterative](https://en.wikipedia.org/wiki/Iterative_method):
+ * it progresses until it is close enough.
  */
 var epsilon = 0.0001;
 
 module.exports = epsilon;
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 /**
- * ## [Gaussian error function](http://en.wikipedia.org/wiki/Error_function)
+ * **[Gaussian error function](http://en.wikipedia.org/wiki/Error_function)**
  *
  * The `errorFunction(x/(sd * Math.sqrt(2)))` is the probability that a value in a
  * normal distribution with standard deviation sd is within x of the mean.
@@ -511,7 +730,9 @@ module.exports = epsilon;
  * This function returns a numerical approximation to the exact value.
  *
  * @param {number} x input
- * @return {number}
+ * @return {number} error estimation
+ * @example
+ * errorFunction(1); //= 0.8427
  */
 function errorFunction(x) {
     var t = 1 / (1 + 0.5 * Math.abs(x));
@@ -535,13 +756,11 @@ function errorFunction(x) {
 
 module.exports = errorFunction;
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 'use strict';
 
 /**
- * ## [Factorial](https://en.wikipedia.org/wiki/Factorial)
- *
- * A factorial, usually written n!, is the product of all positive
+ * A [Factorial](https://en.wikipedia.org/wiki/Factorial), usually written n!, is the product of all positive
  * integers less than or equal to n. Often factorial is implemented
  * recursively, but this iterative approach is significantly faster
  * and simpler.
@@ -571,7 +790,7 @@ function factorial(n) {
 
 module.exports = factorial;
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 'use strict';
 
 /**
@@ -579,12 +798,32 @@ module.exports = factorial;
  * a mean function that is more useful for numbers in different
  * ranges.
  *
- * this is the nth root of the input numbers multiplied by each other
+ * This is the nth root of the input numbers multiplied by each other.
+ *
+ * The geometric mean is often useful for
+ * **[proportional growth](https://en.wikipedia.org/wiki/Geometric_mean#Proportional_growth)**: given
+ * growth rates for multiple years, like _80%, 16.66% and 42.85%_, a simple
+ * mean will incorrectly estimate an average growth rate, whereas a geometric
+ * mean will correctly estimate a growth rate that, over those years,
+ * will yield the same end value.
  *
  * This runs on `O(n)`, linear time in respect to the array
  *
  * @param {Array<number>} x input array
  * @returns {number} geometric mean
+ * @example
+ * var growthRates = [1.80, 1.166666, 1.428571];
+ * var averageGrowth = geometricMean(growthRates);
+ * var averageGrowthRates = [averageGrowth, averageGrowth, averageGrowth];
+ * var startingValue = 10;
+ * var startingValueMean = 10;
+ * growthRates.forEach(function(rate) {
+ *   startingValue *= rate;
+ * });
+ * averageGrowthRates.forEach(function(rate) {
+ *   startingValueMean *= rate;
+ * });
+ * startingValueMean === startingValue;
  */
 function geometricMean(x) {
     // The mean of no numbers is null
@@ -606,20 +845,24 @@ function geometricMean(x) {
 
 module.exports = geometricMean;
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 'use strict';
 
 /**
  * The [Harmonic Mean](https://en.wikipedia.org/wiki/Harmonic_mean) is
- * a mean function typically used to find the average of rates
+ * a mean function typically used to find the average of rates.
+ * This mean is calculated by taking the reciprocal of the arithmetic mean
+ * of the reciprocals of the input numbers.
  *
- * this is the reciprocal of the arithmetic mean of the reciprocals
- * of the input numbers
+ * This is a [measure of central tendency](https://en.wikipedia.org/wiki/Central_tendency):
+ * a method of finding a typical or central value of a set of numbers.
  *
- * This runs on `O(n)`, linear time in respect to the array
+ * This runs on `O(n)`, linear time in respect to the array.
  *
  * @param {Array<number>} x input
  * @returns {number} harmonic mean
+ * @example
+ * ss.harmonicMean([2, 3]) //= 2.4
  */
 function harmonicMean(x) {
     // The mean of no numbers is null
@@ -640,7 +883,7 @@ function harmonicMean(x) {
 
 module.exports = harmonicMean;
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 'use strict';
 
 var quantile = require('./quantile');
@@ -654,6 +897,8 @@ var quantile = require('./quantile');
  * @param {Array<number>} sample
  * @returns {number} interquartile range: the span between lower and upper quartile,
  * 0.25 and 0.75
+ * @example
+ * interquartileRange([0, 1, 2, 3]); //= 2
  */
 function interquartileRange(sample) {
     // We can't derive quantiles from an empty list
@@ -666,7 +911,7 @@ function interquartileRange(sample) {
 
 module.exports = interquartileRange;
 
-},{"./quantile":31}],15:[function(require,module,exports){
+},{"./quantile":30}],16:[function(require,module,exports){
 'use strict';
 
 /**
@@ -694,206 +939,20 @@ function inverseErrorFunction(x) {
 
 module.exports = inverseErrorFunction;
 
-},{}],16:[function(require,module,exports){
-'use strict';
-
-var jenksBreaks = require('./jenks_breaks');
-var jenksMatrices = require('./jenks_matrices');
-
-/**
- * ## [Jenks natural breaks optimization](http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization)
- *
- * @param {Array<number>} data input data, as an array of number values
- * @param {number} nClasses number of desired classes
- * @returns {Array<number>} array of class break positions
- */
-function jenks(data, nClasses) {
-
-    if (nClasses > data.length) { return null; }
-
-    // sort data in numerical order, since this is expected
-    // by the matrices function
-    data = data.slice().sort(function (a, b) { return a - b; });
-
-    // get our basic matrices
-    var matrices = jenksMatrices(data, nClasses),
-        // we only need lower class limits here
-        lowerClassLimits = matrices.lowerClassLimits;
-
-    // extract nClasses out of the computed matrices
-    return jenksBreaks(data, lowerClassLimits, nClasses);
-}
-
-module.exports = jenks;
-
-},{"./jenks_breaks":17,"./jenks_matrices":18}],17:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 'use strict';
 
 /**
- * ## Pull Breaks Values for Jenks
- *
- * the second part of the jenks recipe: take the calculated matrices
- * and derive an array of n breaks.
- *
- * @private
- */
-function jenksBreaks(data, lowerClassLimits, nClasses) {
-
-    var k = data.length,
-        kclass = [],
-        countNum = nClasses;
-
-    // the calculation of classes will never include the upper
-    // bound, so we need to explicitly set it
-    kclass[nClasses] = data[data.length - 1];
-
-    // the lowerClassLimits matrix is used as indices into itself
-    // here: the `k` variable is reused in each iteration.
-    while (countNum > 0) {
-        kclass[countNum - 1] = data[lowerClassLimits[k][countNum] - 1];
-        k = lowerClassLimits[k][countNum] - 1;
-        countNum--;
-    }
-
-    return kclass;
-}
-
-module.exports = jenksBreaks;
-
-},{}],18:[function(require,module,exports){
-'use strict';
-
-/**
- * ## Compute Matrices for Jenks
- *
- * Compute the matrices required for Jenks breaks. These matrices
- * can be used for any classing of data with `classes <= nClasses`
- *
- * @private
- */
-function jenksMatrices(data, nClasses) {
-
-    // in the original implementation, these matrices are referred to
-    // as `LC` and `OP`
-    //
-    // * lowerClassLimits (LC): optimal lower class limits
-    // * varianceCombinations (OP): optimal variance combinations for all classes
-    var lowerClassLimits = [],
-        varianceCombinations = [],
-        // loop counters
-        i, j,
-        // the variance, as computed at each step in the calculation
-        variance = 0;
-
-    // Initialize and fill each matrix with zeroes
-    for (i = 0; i < data.length + 1; i++) {
-        var tmp1 = [], tmp2 = [];
-        // despite these arrays having the same values, we need
-        // to keep them separate so that changing one does not change
-        // the other
-        for (j = 0; j < nClasses + 1; j++) {
-            tmp1.push(0);
-            tmp2.push(0);
-        }
-        lowerClassLimits.push(tmp1);
-        varianceCombinations.push(tmp2);
-    }
-
-    for (i = 1; i < nClasses + 1; i++) {
-        lowerClassLimits[1][i] = 1;
-        varianceCombinations[1][i] = 0;
-        // in the original implementation, 9999999 is used but
-        // since Javascript has `Infinity`, we use that.
-        for (j = 2; j < data.length + 1; j++) {
-            varianceCombinations[j][i] = Infinity;
-        }
-    }
-
-    for (var l = 2; l < data.length + 1; l++) {
-
-        // `SZ` originally. this is the sum of the values seen thus
-        // far when calculating variance.
-        var sum = 0,
-            // `ZSQ` originally. the sum of squares of values seen
-            // thus far
-            sumSquares = 0,
-            // `WT` originally. This is the number of
-            w = 0,
-            // `IV` originally
-            i4 = 0;
-
-        // in several instances, you could say `Math.pow(x, 2)`
-        // instead of `x * x`, but this is slower in some browsers
-        // introduces an unnecessary concept.
-        for (var m = 1; m < l + 1; m++) {
-
-            // `III` originally
-            var lowerClassLimit = l - m + 1,
-                val = data[lowerClassLimit - 1];
-
-            // here we're estimating variance for each potential classing
-            // of the data, for each potential number of classes. `w`
-            // is the number of data points considered so far.
-            w++;
-
-            // increase the current sum and sum-of-squares
-            sum += val;
-            sumSquares += val * val;
-
-            // the variance at this point in the sequence is the difference
-            // between the sum of squares and the total x 2, over the number
-            // of samples.
-            variance = sumSquares - (sum * sum) / w;
-
-            i4 = lowerClassLimit - 1;
-
-            if (i4 !== 0) {
-                for (j = 2; j < nClasses + 1; j++) {
-                    // if adding this element to an existing class
-                    // will increase its variance beyond the limit, break
-                    // the class at this point, setting the `lowerClassLimit`
-                    // at this point.
-                    if (varianceCombinations[l][j] >=
-                        (variance + varianceCombinations[i4][j - 1])) {
-                        lowerClassLimits[l][j] = lowerClassLimit;
-                        varianceCombinations[l][j] = variance +
-                            varianceCombinations[i4][j - 1];
-                    }
-                }
-            }
-        }
-
-        lowerClassLimits[l][1] = 1;
-        varianceCombinations[l][1] = variance;
-    }
-
-    // return the two matrices. for just providing breaks, only
-    // `lowerClassLimits` is needed, but variances can be useful to
-    // evaluate goodness of fit.
-    return {
-        lowerClassLimits: lowerClassLimits,
-        varianceCombinations: varianceCombinations
-    };
-}
-
-module.exports = jenksMatrices;
-
-},{}],19:[function(require,module,exports){
-'use strict';
-
-/**
- * [Linear Regression](http://en.wikipedia.org/wiki/Linear_regression)
- *
  * [Simple linear regression](http://en.wikipedia.org/wiki/Simple_linear_regression)
  * is a simple way to find a fitted line
- * between a set of coordinates.
- *
- * Calculate the slope and y-intercept of the regression line
- * by calculating the least sum of squares
+ * between a set of coordinates. This algorithm finds the slope and y-intercept of a regression line
+ * using the least sum of squares.
  *
  * @param {Array<Array<number>>} data an array of two-element of arrays,
  * like `[[0, 1], [2, 3]]`
  * @returns {Object} object containing slope and intersect of regression line
+ * @example
+ * linearRegression([[0, 0], [1, 1]]); // { m: 1, b: 0 }
  */
 function linearRegression(data) {
 
@@ -953,37 +1012,36 @@ function linearRegression(data) {
 
 module.exports = linearRegression;
 
-},{}],20:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 'use strict';
 
 /**
- * ## Fitting The Regression Line
- *
- * This is called after `.data()` and returns the
- * equation `y = f(x)` which gives the position
- * of the regression line at each point in `x`.
+ * Given the output of `linearRegression`: an object
+ * with `m` and `b` values indicating slope and intercept,
+ * respectively, generate a line function that translates
+ * x values into y values.
  *
  * @param {Object} mb object with `m` and `b` members, representing
  * slope and intersect of desired line
  * @returns {Function} method that computes y-value at any given
  * x-value on the line.
+ * @example
+ * var l = linearRegressionLine(linearRegression([[0, 0], [1, 1]]));
+ * l(0) //= 0
+ * l(2) //= 2
  */
 function linearRegressionLine(mb) {
-    // Get the slope, `m`, and y-intercept, `b`, of the line.
-    var m = mb.m,
-        b = mb.b;
-
     // Return a function that computes a `y` value for each
     // x value it is given, based on the values of `b` and `a`
     // that we just computed.
     return function(x) {
-        return b + (m * x);
+        return mb.b + (mb.m * x);
     };
 }
 
 module.exports = linearRegressionLine;
 
-},{}],21:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 'use strict';
 
 var median = require('./median');
@@ -995,6 +1053,8 @@ var median = require('./median');
  *
  * @param {Array<number>} x input array
  * @returns {number} median absolute deviation
+ * @example
+ * mad([1, 1, 2, 2, 4, 6, 9]); //= 1
  */
 function mad(x) {
     // The mad of nothing is null
@@ -1014,7 +1074,7 @@ function mad(x) {
 
 module.exports = mad;
 
-},{"./median":24}],22:[function(require,module,exports){
+},{"./median":22}],20:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1041,14 +1101,16 @@ function max(x) {
 
 module.exports = max;
 
-},{}],23:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 'use strict';
 
 var sum = require('./sum');
 
 /**
  * The mean, _also known as average_,
- * is the sum over the number of values.
+ * is the sum of all values over the number of values.
+ * This is a [measure of central tendency](https://en.wikipedia.org/wiki/Central_tendency):
+ * a method of finding a typical or central value of a set of numbers.
  *
  * This runs on `O(n)`, linear time in respect to the array
  *
@@ -1066,16 +1128,27 @@ function mean(x) {
 
 module.exports = mean;
 
-},{"./sum":45}],24:[function(require,module,exports){
+},{"./sum":45}],22:[function(require,module,exports){
 'use strict';
+
+var numericSort = require('./numeric_sort');
 
 /**
  * The [median](http://en.wikipedia.org/wiki/Median) is
  * the middle number of a list. This is often a good indicator of 'the middle'
  * when there are outliers that skew the `mean()` value.
+ * This is a [measure of central tendency](https://en.wikipedia.org/wiki/Central_tendency):
+ * a method of finding a typical or central value of a set of numbers.
+ *
+ * The median isn't necessarily one of the elements in the list: the value
+ * can be the average of two elements if the list has an even length
+ * and the two central values are different.
  *
  * @param {Array<number>} x input
  * @returns {number} median value
+ * @example
+ * var incomes = [10, 2, 5, 100, 2, 1];
+ * median(incomes); //= 3.5
  */
 function median(x) {
     // The median of an empty list is null
@@ -1083,7 +1156,7 @@ function median(x) {
 
     // Sorting the array makes it easy to find the center, but
     // use `.slice()` to ensure the original array `x` is not modified
-    var sorted = x.slice().sort(function (i, j) { return i - j; });
+    var sorted = numericSort(x);
 
     // If the length of the list is odd, it's the central number
     if (sorted.length % 2 === 1) {
@@ -1099,16 +1172,16 @@ function median(x) {
 
 module.exports = median;
 
-},{}],25:[function(require,module,exports){
+},{"./numeric_sort":26}],23:[function(require,module,exports){
 'use strict';
 
 /**
- * The min is the lowest number in the array.
- *
- * This runs on `O(n)`, linear time in respect to the array
+ * The min is the lowest number in the array. This runs on `O(n)`, linear time in respect to the array
  *
  * @param {Array<number>} x input
  * @returns {number} minimum value
+ * @example
+ * min([1, 5, -10, 100, 2]); // -100
  */
 function min(x) {
     var value;
@@ -1124,16 +1197,26 @@ function min(x) {
 
 module.exports = min;
 
-},{}],26:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 'use strict';
 
 /**
- * # Mixin
- *
- * Mixin simple_statistics to a single Array instance if provided
+ * **Mixin** simple_statistics to a single Array instance if provided
  * or the Array native object if not. This is an optional
  * feature that lets you treat simple_statistics as a native feature
  * of Javascript.
+ *
+ * @param {Object} ss simple statistics
+ * @param {Array} [array=] a single array instance which will be augmented
+ * with the extra methods. If omitted, mixin will apply to all arrays
+ * by changing the global `Array.prototype`.
+ * @returns {*} the extended Array, or Array.prototype if no object
+ * is given.
+ *
+ * @example
+ * var myNumbers = [1, 2, 3];
+ * mixin(ss, myNumbers);
+ * console.log(myNumbers.sum()); // 6
  */
 function mixin(ss, array) {
     var support = !!(Object.defineProperty && Object.defineProperties);
@@ -1194,20 +1277,25 @@ function mixin(ss, array) {
 
 module.exports = mixin;
 
-},{}],27:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 'use strict';
+
+var numericSort = require('./numeric_sort');
 
 /**
  * The [mode](http://bit.ly/W5K4Yt) is the number that appears in a list the highest number of times.
  * There can be multiple modes in a list: in the event of a tie, this
  * algorithm will return the most recently seen mode.
  *
- * This implementation is inspired by [science.js](https://github.com/jasondavies/science.js/blob/master/src/stats/mode.js)
+ * This is a [measure of central tendency](https://en.wikipedia.org/wiki/Central_tendency):
+ * a method of finding a typical or central value of a set of numbers.
  *
- * This runs on `O(n)`, linear time in respect to the array
+ * This runs on `O(n)`, linear time in respect to the array.
  *
  * @param {Array<number>} x input
  * @returns {number} mode
+ * @example
+ * mode([0, 0, 1]); //= 0
  */
 function mode(x) {
 
@@ -1219,7 +1307,7 @@ function mode(x) {
     // Sorting the array lets us iterate through it below and be sure
     // that every time we see a new number it's new and we'll never
     // see the same number twice
-    var sorted = x.slice().sort(function (a, b) { return a - b; });
+    var sorted = numericSort(x);
 
     // This assumes it is dealing with an array of size > 1, since size
     // 0 and 1 are handled immediately. Hence it starts at index 1 in the
@@ -1257,15 +1345,59 @@ function mode(x) {
 
 module.exports = mode;
 
-},{}],28:[function(require,module,exports){
+},{"./numeric_sort":26}],26:[function(require,module,exports){
 'use strict';
 
 /**
- * ## [Perceptron Classifier](http://en.wikipedia.org/wiki/Perceptron)
+ * Sort an array of numbers by their numeric value, ensuring that the
+ * array is not changed in place.
  *
- * This is a single-layer perceptron classifier that takes
+ * This is necessary because the default behavior of .sort
+ * in JavaScript is to sort arrays as string values
+ *
+ *     [1, 10, 12, 102, 20].sort()
+ *     // output
+ *     [1, 10, 102, 12, 20]
+ *
+ * @param {Array<number>} array input array
+ * @return {Array<number>} sorted array
+ * @example
+ * numericSort([3, 2, 1]) // [1, 2, 3]
+ */
+function numericSort(array) {
+    return array
+        // ensure the array is changed in-place
+        .slice()
+        // comparator function that treats input as numeric
+        .sort(function(a, b) {
+            return a - b;
+        });
+}
+
+module.exports = numericSort;
+
+},{}],27:[function(require,module,exports){
+'use strict';
+
+/**
+ * This is a single-layer [Perceptron Classifier](http://en.wikipedia.org/wiki/Perceptron) that takes
  * arrays of numbers and predicts whether they should be classified
  * as either 0 or 1 (negative or positive examples).
+ * @class
+ * @example
+ * // Create the model
+ * var p = new PerceptronModel();
+ * // Train the model with input with a diagonal boundary.
+ * for (var i = 0; i < 5; i++) {
+ *     p.train([1, 1], 1);
+ *     p.train([0, 1], 0);
+ *     p.train([1, 0], 0);
+ *     p.train([0, 0], 0);
+ * }
+ * p.predict([0, 0]); // 0
+ * p.predict([0, 1]); // 0
+ * p.predict([1, 0]); // 0
+ * p.predict([1, 1]); // 1
  */
 function PerceptronModel() {
     // The weights, or coefficients of the model;
@@ -1278,12 +1410,10 @@ function PerceptronModel() {
 }
 
 /**
- * ## Predict
- *
- * Use an array of features with the weight array and bias
+ * **Predict**: Use an array of features with the weight array and bias
  * to predict whether an example is labeled 0 or 1.
  *
- * @param {Array} features
+ * @param {Array<number>} features an array of features as numbers
  * @returns {number} 1 if the score is over 0, otherwise 0
  */
 PerceptronModel.prototype.predict = function(features) {
@@ -1301,15 +1431,18 @@ PerceptronModel.prototype.predict = function(features) {
     score += this.bias;
 
     // Classify as 1 if the score is over 0, otherwise 0.
-    return score > 0 ? 1 : 0;
+    if (score > 0) {
+      return 1;
+    } else {
+      return 0;
+    }
 };
 
 /**
- * ## Train
- * Train the classifier with a new example, which is
+ * **Train** the classifier with a new example, which is
  * a numeric array of features and a 0 or 1 label.
  *
- * @param {Array} features
+ * @param {Array<number>} features an array of features as numbers
  * @param {number} label either 0 or 1
  * @returns {PerceptronModel} this
  */
@@ -1340,7 +1473,7 @@ PerceptronModel.prototype.train = function(features, label) {
 
 module.exports = PerceptronModel;
 
-},{}],29:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 'use strict';
 
 var epsilon = require('./epsilon');
@@ -1356,7 +1489,7 @@ var factorial = require('./factorial');
  * The Poisson Distribution is characterized by the strictly positive
  * mean arrival or occurrence rate, `λ`.
  *
- * @param {number} position location poisson distribution
+ * @param {number} lambda location poisson distribution
  * @returns {number} value of poisson distribution at that point
  */
 function poissonDistribution(lambda) {
@@ -1388,7 +1521,7 @@ function poissonDistribution(lambda) {
 
 module.exports = poissonDistribution;
 
-},{"./epsilon":9,"./factorial":11}],30:[function(require,module,exports){
+},{"./epsilon":10,"./factorial":12}],29:[function(require,module,exports){
 'use strict';
 
 var epsilon = require('./epsilon');
@@ -1418,15 +1551,16 @@ function probit(p) {
 
 module.exports = probit;
 
-},{"./epsilon":9,"./inverse_error_function":15}],31:[function(require,module,exports){
+},{"./epsilon":10,"./inverse_error_function":16}],30:[function(require,module,exports){
 'use strict';
 
 var quantileSorted = require('./quantile_sorted');
+var numericSort = require('./numeric_sort');
 
 /**
  * The [quantile](https://en.wikipedia.org/wiki/Quantile):
  * this is a population quantile, since we assume to know the entire
- * dataset in this library. Thus I'm trying to follow the
+ * dataset in this library. This is an implementation of the
  * [Quantiles of a Population](http://en.wikipedia.org/wiki/Quantile#Quantiles_of_a_population)
  * algorithm from wikipedia.
  *
@@ -1438,9 +1572,14 @@ var quantileSorted = require('./quantile_sorted');
  * When p is an array, the result of the function is also an array containing the appropriate
  * quantiles in input order
  *
- * @param {Array<number>} sample
- * @param {number} p
+ * @param {Array<number>} sample a sample from the population
+ * @param {number} p the desired quantile, as a number between 0 and 1
  * @returns {number} quantile
+ * @example
+ * var data = [3, 6, 7, 8, 8, 9, 10, 13, 15, 16, 20];
+ * quantile(data, 1); //= max(data);
+ * quantile(data, 0); //= min(data);
+ * quantile(data, 0.5); //= 9
  */
 function quantile(sample, p) {
 
@@ -1449,7 +1588,7 @@ function quantile(sample, p) {
 
     // Sort a copy of the array. We'll need a sorted array to index
     // the values in sorted order.
-    var sorted = sample.slice().sort(function (a, b) { return a - b; });
+    var sorted = numericSort(sample);
 
     if (p.length) {
         // Initialize the result array
@@ -1466,17 +1605,22 @@ function quantile(sample, p) {
 
 module.exports = quantile;
 
-},{"./quantile_sorted":32}],32:[function(require,module,exports){
+},{"./numeric_sort":26,"./quantile_sorted":31}],31:[function(require,module,exports){
 'use strict';
 
 /**
  * This is the internal implementation of quantiles: when you know
  * that the order is sorted, you don't need to re-sort it, and the computations
- * are much faster.
+ * are faster.
  *
  * @param {Array<number>} sample input data
  * @param {number} p desired quantile: a number between 0 to 1, inclusive
  * @returns {number} quantile value
+ * @example
+ * var data = [3, 6, 7, 8, 8, 9, 10, 13, 15, 16, 20];
+ * quantileSorted(data, 1); //= max(data);
+ * quantileSorted(data, 0); //= min(data);
+ * quantileSorted(data, 0.5); //= 9
  */
 function quantileSorted(sample, p) {
     var idx = (sample.length) * p;
@@ -1504,7 +1648,7 @@ function quantileSorted(sample, p) {
 
 module.exports = quantileSorted;
 
-},{}],33:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1514,10 +1658,14 @@ module.exports = quantileSorted;
  * and the actual value.
  *
  * @param {Array<Array<number>>} data input data: this should be doubly-nested
- * @param {Function} f function called on `[i][0]` values within the dataset
+ * @param {Function} func function called on `[i][0]` values within the dataset
  * @returns {number} r-squared value
+ * @example
+ * var samples = [[0, 0], [1, 1]];
+ * var regressionLine = linearRegressionLine(linearRegression(samples));
+ * rSquared(samples, regressionLine); //= 1 this line is a perfect fit
  */
-function rSquared(data, f) {
+function rSquared(data, func) {
     if (data.length < 2) { return 1; }
 
     // Compute the average y value for the actual
@@ -1542,7 +1690,7 @@ function rSquared(data, f) {
     // value at each point.
     var err = 0;
     for (var k = 0; k < data.length; k++) {
-        err += Math.pow(data[k][1] - f(data[k][0]), 2);
+        err += Math.pow(data[k][1] - func(data[k][0]), 2);
     }
 
     // As the error grows larger, its ratio to the
@@ -1553,22 +1701,21 @@ function rSquared(data, f) {
 
 module.exports = rSquared;
 
-},{}],34:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 'use strict';
 
 /**
- * Root Mean Square (RMS)
- *
- * A mean function used as a measure of the magnitude of a set
+ * The Root Mean Square (RMS) is
+ * a mean function used as a measure of the magnitude of a set
  * of numbers, regardless of their sign.
- *
  * This is the square root of the mean of the squares of the
  * input numbers.
- *
  * This runs on `O(n)`, linear time in respect to the array
  *
  * @param {Array<number>} x input
  * @returns {number} root mean square
+ * @example
+ * rootMeanSquare([-1, 1, -1, 1]); //= 1
  */
 function rootMeanSquare(x) {
     if (x.length === 0) { return null; }
@@ -1583,7 +1730,7 @@ function rootMeanSquare(x) {
 
 module.exports = rootMeanSquare;
 
-},{}],35:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 'use strict';
 
 var shuffle = require('./shuffle');
@@ -1592,11 +1739,17 @@ var shuffle = require('./shuffle');
  * Create a [simple random sample](http://en.wikipedia.org/wiki/Simple_random_sample)
  * from a given array of `n` elements.
  *
+ * The sampled values will be in any order, not necessarily the order
+ * they appear in the input.
+ *
  * @param {Array} array input array. can contain any type
  * @param {number} n count of how many elements to take
  * @param {Function} [randomSource=Math.random] an optional source of entropy
  * instead of Math.random
  * @return {Array} subset of n elements in original array
+ * @example
+ * var values = [1, 2, 4, 5, 6, 7, 8, 9];
+ * sample(values, 3); // returns 3 random values, like [2, 5, 8];
  */
 function sample(array, n, randomSource) {
     // shuffle the original array using a fisher-yates shuffle
@@ -1608,7 +1761,7 @@ function sample(array, n, randomSource) {
 
 module.exports = sample;
 
-},{"./shuffle":41}],36:[function(require,module,exports){
+},{"./shuffle":40}],35:[function(require,module,exports){
 'use strict';
 
 var sampleCovariance = require('./sample_covariance');
@@ -1621,6 +1774,10 @@ var sampleStandardDeviation = require('./sample_standard_deviation');
  * @param {Array<number>} x first input
  * @param {Array<number>} y second input
  * @returns {number} sample correlation
+ * @example
+ * var a = [1, 2, 3, 4, 5, 6];
+ * var b = [2, 2, 3, 4, 5, 60];
+ * sampleCorrelation(a, b); //= 0.691
  */
 function sampleCorrelation(x, y) {
     var cov = sampleCovariance(x, y),
@@ -1636,19 +1793,23 @@ function sampleCorrelation(x, y) {
 
 module.exports = sampleCorrelation;
 
-},{"./sample_covariance":37,"./sample_standard_deviation":39}],37:[function(require,module,exports){
+},{"./sample_covariance":36,"./sample_standard_deviation":38}],36:[function(require,module,exports){
 'use strict';
 
 var mean = require('./mean');
 
 /**
- * [sample covariance](https://en.wikipedia.org/wiki/Sample_mean_and_sampleCovariance) of two datasets:
+ * [Sample covariance](https://en.wikipedia.org/wiki/Sample_mean_and_sampleCovariance) of two datasets:
  * how much do the two datasets move together?
  * x and y are two datasets, represented as arrays of numbers.
  *
  * @param {Array<number>} x first input
  * @param {Array<number>} y second input
  * @returns {number} sample covariance
+ * @example
+ * var x = [1, 2, 3, 4, 5, 6];
+ * var y = [6, 5, 4, 3, 2, 1];
+ * sampleCovariance(x, y); //= -3.5
  */
 function sampleCovariance(x, y) {
 
@@ -1673,13 +1834,18 @@ function sampleCovariance(x, y) {
         sum += (x[i] - xmean) * (y[i] - ymean);
     }
 
+    // this is Bessels' Correction: an adjustment made to sample statistics
+    // that allows for the reduced degree of freedom entailed in calculating
+    // values from samples rather than complete populations.
+    var besselsCorrection = x.length - 1;
+
     // the covariance is weighted by the length of the datasets.
-    return sum / (x.length - 1);
+    return sum / besselsCorrection;
 }
 
 module.exports = sampleCovariance;
 
-},{"./mean":23}],38:[function(require,module,exports){
+},{"./mean":21}],37:[function(require,module,exports){
 'use strict';
 
 var sumNthPowerDeviations = require('./sum_nth_power_deviations');
@@ -1695,10 +1861,11 @@ var sampleStandardDeviation = require('./sample_standard_deviation');
  * moment coefficient, which is the version found in Excel and several
  * statistical packages including Minitab, SAS and SPSS.
  *
- * Depends on `sumNthPowerDeviations()` and `sampleStandardDeviation`
- *
  * @param {Array<number>} x input
  * @returns {number} sample skewness
+ * @example
+ * var data = [2, 4, 6, 3, 1];
+ * sampleSkewness(data); //= 0.5901286564
  */
 function sampleSkewness(x) {
     // The skewness of less than three arguments is null
@@ -1713,7 +1880,7 @@ function sampleSkewness(x) {
 
 module.exports = sampleSkewness;
 
-},{"./sample_standard_deviation":39,"./sum_nth_power_deviations":46}],39:[function(require,module,exports){
+},{"./sample_standard_deviation":38,"./sum_nth_power_deviations":46}],38:[function(require,module,exports){
 'use strict';
 
 var sampleVariance = require('./sample_variance');
@@ -1722,10 +1889,11 @@ var sampleVariance = require('./sample_variance');
  * The [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
  * is the square root of the variance.
  *
- * depends on `sampleVariance()`
- *
  * @param {Array<number>} x input array
  * @returns {number} sample standard deviation
+ * @example
+ * ss.sampleStandardDeviation([2, 4, 4, 4, 5, 5, 7, 9]);
+ * //= 2.138
  */
 function sampleStandardDeviation(x) {
     // The standard deviation of no numbers is null
@@ -1736,19 +1904,26 @@ function sampleStandardDeviation(x) {
 
 module.exports = sampleStandardDeviation;
 
-},{"./sample_variance":40}],40:[function(require,module,exports){
+},{"./sample_variance":39}],39:[function(require,module,exports){
 'use strict';
 
 var sumNthPowerDeviations = require('./sum_nth_power_deviations');
 
 /*
- * The [variance](http://en.wikipedia.org/wiki/Variance)
- * is the sum of squared deviations from the mean.
+ * The [sample variance](https://en.wikipedia.org/wiki/Variance#Sample_variance)
+ * is the sum of squared deviations from the mean. The sample variance
+ * is distinguished from the variance by the usage of [Bessel's Correction](https://en.wikipedia.org/wiki/Bessel's_correction):
+ * instead of dividing the sum of squared deviations by the length of the input,
+ * it is divided by the length minus one. This corrects the bias in estimating
+ * a value from a set that you don't know if full.
  *
- * depends on `sumNthPowerDeviations`
+ * References:
+ * * [Wolfram MathWorld on Sample Variance](http://mathworld.wolfram.com/SampleVariance.html)
  *
  * @param {Array<number>} x input array
  * @return {number} sample variance
+ * @example
+ * sampleVariance([1, 2, 3, 4, 5]); //= 2.5
  */
 function sampleVariance(x) {
     // The variance of no numbers is null
@@ -1756,24 +1931,34 @@ function sampleVariance(x) {
 
     var sumSquaredDeviationsValue = sumNthPowerDeviations(x, 2);
 
+    // this is Bessels' Correction: an adjustment made to sample statistics
+    // that allows for the reduced degree of freedom entailed in calculating
+    // values from samples rather than complete populations.
+    var besselsCorrection = x.length - 1;
+
     // Find the mean value of that list
-    return sumSquaredDeviationsValue / (x.length - 1);
+    return sumSquaredDeviationsValue / besselsCorrection;
 }
 
 module.exports = sampleVariance;
 
-},{"./sum_nth_power_deviations":46}],41:[function(require,module,exports){
+},{"./sum_nth_power_deviations":46}],40:[function(require,module,exports){
 'use strict';
 
 var shuffleInPlace = require('./shuffle_in_place');
 
 /*
  * A [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
- * is a fast way to create a random permutation of a finite set.
+ * is a fast way to create a random permutation of a finite set. This is
+ * a function around `shuffle_in_place` that adds the guarantee that
+ * it will not modify its input.
  *
  * @param {Array} sample an array of any kind of element
  * @param {Function} [randomSource=Math.random] an optional entropy source
  * @return {Array} shuffled version of input
+ * @example
+ * var shuffled = shuffle([1, 2, 3, 4]);
+ * shuffled; // = [2, 3, 1, 4] or any other random permutation
  */
 function shuffle(sample, randomSource) {
     // slice the original array so that it is not modified
@@ -1785,7 +1970,7 @@ function shuffle(sample, randomSource) {
 
 module.exports = shuffle;
 
-},{"./shuffle_in_place":42}],42:[function(require,module,exports){
+},{"./shuffle_in_place":41}],41:[function(require,module,exports){
 'use strict';
 
 /*
@@ -1793,9 +1978,16 @@ module.exports = shuffle;
  * in-place - which means that it **will change the order of the original
  * array by reference**.
  *
+ * This is an algorithm that generates a random [permutation](https://en.wikipedia.org/wiki/Permutation)
+ * of a set.
+ *
  * @param {Array} sample input array
  * @param {Function} [randomSource=Math.random] an optional source of entropy
  * @returns {Array} sample
+ * @example
+ * var sample = [1, 2, 3, 4];
+ * shuffleInPlace(sample);
+ * // sample is shuffled to a value like [2, 1, 4, 3]
  */
 function shuffleInPlace(sample, randomSource) {
 
@@ -1834,6 +2026,37 @@ function shuffleInPlace(sample, randomSource) {
 
 module.exports = shuffleInPlace;
 
+},{}],42:[function(require,module,exports){
+'use strict';
+
+/**
+ * For a sorted input, counting the number of unique values
+ * is possible in constant time and constant memory. This is
+ * a simple implementation of the algorithm.
+ *
+ * Values are compared with `===`, so objects and non-primitive objects
+ * are not handled in any special way.
+ *
+ * @param {Array} input an array of primitive values.
+ * @returns {number} count of unique values
+ * @example
+ * sortedUniqueCount([1, 2, 3]); // 3
+ * sortedUniqueCount([1, 1, 1]); // 1
+ */
+function sortedUniqueCount(input) {
+    var uniqueValueCount = 0,
+        lastSeenValue;
+    for (var i = 0; i < input.length; i++) {
+        if (i === 0 || input[i] !== lastSeenValue) {
+            lastSeenValue = input[i];
+            uniqueValueCount++;
+        }
+    }
+    return uniqueValueCount;
+}
+
+module.exports = sortedUniqueCount;
+
 },{}],43:[function(require,module,exports){
 'use strict';
 
@@ -1841,10 +2064,19 @@ var variance = require('./variance');
 
 /**
  * The [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
- * is the square root of the variance.
+ * is the square root of the variance. It's useful for measuring the amount
+ * of variation or dispersion in a set of values.
+ *
+ * Standard deviation is only appropriate for full-population knowledge: for
+ * samples of a population, {@link sampleStandardDeviation} is
+ * more appropriate.
  *
  * @param {Array<number>} x input
  * @returns {number} standard deviation
+ * @example
+ * var scores = [2, 4, 4, 4, 5, 5, 7, 9];
+ * variance(scores); //= 4
+ * standardDeviation(scores); //= 2
  */
 function standardDeviation(x) {
     // The standard deviation of no numbers is null
@@ -1858,6 +2090,20 @@ module.exports = standardDeviation;
 },{"./variance":49}],44:[function(require,module,exports){
 'use strict';
 
+var SQRT_2PI = Math.sqrt(2 * Math.PI);
+
+function cumulativeDistribution(z) {
+    var sum = z,
+        tmp = z;
+
+    // 15 iterations are enough for 4-digit precision
+    for (var i = 1; i < 15; i++) {
+        tmp *= z * z / (2 * i + 1);
+        sum += tmp;
+    }
+    return Math.round((0.5 + (sum / SQRT_2PI) * Math.exp(-z * z / 2)) * 1e4) / 1e4;
+}
+
 /**
  * A standard normal table, also called the unit normal table or Z table,
  * is a mathematical table for the values of Φ (phi), which are the values of
@@ -1866,75 +2112,16 @@ module.exports = standardDeviation;
  * above, or between values on the standard normal distribution, and by
  * extension, any normal distribution.
  *
- * The probabilities are taken from http://en.wikipedia.org/wiki/Standard_normal_table
+ * The probabilities are calculated using the
+ * [Cumulative distribution function](https://en.wikipedia.org/wiki/Normal_distribution#Cumulative_distribution_function).
  * The table used is the cumulative, and not cumulative from 0 to mean
  * (even though the latter has 5 digits precision, instead of 4).
  */
-var standardNormalTable = [
-    /*  z      0.00    0.01    0.02    0.03    0.04    0.05    0.06    0.07    0.08    0.09 */
-    /* 0.0 */
-    0.5000, 0.5040, 0.5080, 0.5120, 0.5160, 0.5199, 0.5239, 0.5279, 0.5319, 0.5359,
-    /* 0.1 */
-    0.5398, 0.5438, 0.5478, 0.5517, 0.5557, 0.5596, 0.5636, 0.5675, 0.5714, 0.5753,
-    /* 0.2 */
-    0.5793, 0.5832, 0.5871, 0.5910, 0.5948, 0.5987, 0.6026, 0.6064, 0.6103, 0.6141,
-    /* 0.3 */
-    0.6179, 0.6217, 0.6255, 0.6293, 0.6331, 0.6368, 0.6406, 0.6443, 0.6480, 0.6517,
-    /* 0.4 */
-    0.6554, 0.6591, 0.6628, 0.6664, 0.6700, 0.6736, 0.6772, 0.6808, 0.6844, 0.6879,
-    /* 0.5 */
-    0.6915, 0.6950, 0.6985, 0.7019, 0.7054, 0.7088, 0.7123, 0.7157, 0.7190, 0.7224,
-    /* 0.6 */
-    0.7257, 0.7291, 0.7324, 0.7357, 0.7389, 0.7422, 0.7454, 0.7486, 0.7517, 0.7549,
-    /* 0.7 */
-    0.7580, 0.7611, 0.7642, 0.7673, 0.7704, 0.7734, 0.7764, 0.7794, 0.7823, 0.7852,
-    /* 0.8 */
-    0.7881, 0.7910, 0.7939, 0.7967, 0.7995, 0.8023, 0.8051, 0.8078, 0.8106, 0.8133,
-    /* 0.9 */
-    0.8159, 0.8186, 0.8212, 0.8238, 0.8264, 0.8289, 0.8315, 0.8340, 0.8365, 0.8389,
-    /* 1.0 */
-    0.8413, 0.8438, 0.8461, 0.8485, 0.8508, 0.8531, 0.8554, 0.8577, 0.8599, 0.8621,
-    /* 1.1 */
-    0.8643, 0.8665, 0.8686, 0.8708, 0.8729, 0.8749, 0.8770, 0.8790, 0.8810, 0.8830,
-    /* 1.2 */
-    0.8849, 0.8869, 0.8888, 0.8907, 0.8925, 0.8944, 0.8962, 0.8980, 0.8997, 0.9015,
-    /* 1.3 */
-    0.9032, 0.9049, 0.9066, 0.9082, 0.9099, 0.9115, 0.9131, 0.9147, 0.9162, 0.9177,
-    /* 1.4 */
-    0.9192, 0.9207, 0.9222, 0.9236, 0.9251, 0.9265, 0.9279, 0.9292, 0.9306, 0.9319,
-    /* 1.5 */
-    0.9332, 0.9345, 0.9357, 0.9370, 0.9382, 0.9394, 0.9406, 0.9418, 0.9429, 0.9441,
-    /* 1.6 */
-    0.9452, 0.9463, 0.9474, 0.9484, 0.9495, 0.9505, 0.9515, 0.9525, 0.9535, 0.9545,
-    /* 1.7 */
-    0.9554, 0.9564, 0.9573, 0.9582, 0.9591, 0.9599, 0.9608, 0.9616, 0.9625, 0.9633,
-    /* 1.8 */
-    0.9641, 0.9649, 0.9656, 0.9664, 0.9671, 0.9678, 0.9686, 0.9693, 0.9699, 0.9706,
-    /* 1.9 */
-    0.9713, 0.9719, 0.9726, 0.9732, 0.9738, 0.9744, 0.9750, 0.9756, 0.9761, 0.9767,
-    /* 2.0 */
-    0.9772, 0.9778, 0.9783, 0.9788, 0.9793, 0.9798, 0.9803, 0.9808, 0.9812, 0.9817,
-    /* 2.1 */
-    0.9821, 0.9826, 0.9830, 0.9834, 0.9838, 0.9842, 0.9846, 0.9850, 0.9854, 0.9857,
-    /* 2.2 */
-    0.9861, 0.9864, 0.9868, 0.9871, 0.9875, 0.9878, 0.9881, 0.9884, 0.9887, 0.9890,
-    /* 2.3 */
-    0.9893, 0.9896, 0.9898, 0.9901, 0.9904, 0.9906, 0.9909, 0.9911, 0.9913, 0.9916,
-    /* 2.4 */
-    0.9918, 0.9920, 0.9922, 0.9925, 0.9927, 0.9929, 0.9931, 0.9932, 0.9934, 0.9936,
-    /* 2.5 */
-    0.9938, 0.9940, 0.9941, 0.9943, 0.9945, 0.9946, 0.9948, 0.9949, 0.9951, 0.9952,
-    /* 2.6 */
-    0.9953, 0.9955, 0.9956, 0.9957, 0.9959, 0.9960, 0.9961, 0.9962, 0.9963, 0.9964,
-    /* 2.7 */
-    0.9965, 0.9966, 0.9967, 0.9968, 0.9969, 0.9970, 0.9971, 0.9972, 0.9973, 0.9974,
-    /* 2.8 */
-    0.9974, 0.9975, 0.9976, 0.9977, 0.9977, 0.9978, 0.9979, 0.9979, 0.9980, 0.9981,
-    /* 2.9 */
-    0.9981, 0.9982, 0.9982, 0.9983, 0.9984, 0.9984, 0.9985, 0.9985, 0.9986, 0.9986,
-    /* 3.0 */
-    0.9987, 0.9987, 0.9987, 0.9988, 0.9988, 0.9989, 0.9989, 0.9989, 0.9990, 0.9990
-];
+var standardNormalTable = [];
+
+for (var z = 0; z <= 3.09; z += 0.01) {
+    standardNormalTable.push(cumulativeDistribution(z));
+}
 
 module.exports = standardNormalTable;
 
@@ -1942,8 +2129,8 @@ module.exports = standardNormalTable;
 'use strict';
 
 /**
- * The sum of an array is the result of adding all numbers
- * together, starting from zero.
+ * The [sum](https://en.wikipedia.org/wiki/Summation) of an array
+ * is the result of adding all numbers together, starting from zero.
  *
  * This runs on `O(n)`, linear time in respect to the array
  *
@@ -1972,9 +2159,14 @@ var mean = require('./mean');
  * When n=2 it's the sum of squared deviations.
  * When n=3 it's the sum of cubed deviations.
  *
- * @param {Array<number>} input
+ * @param {Array<number>} x
  * @param {number} n power
  * @returns {number} sum of nth power deviations
+ * @example
+ * var input = [1, 2, 3];
+ * // since the variance of a set is the mean squared
+ * // deviations, we can calculate that with sumNthPowerDeviations:
+ * var variance = sumNthPowerDeviations(input) / input.length;
  */
 function sumNthPowerDeviations(x, n) {
     var meanValue = mean(x),
@@ -1989,14 +2181,14 @@ function sumNthPowerDeviations(x, n) {
 
 module.exports = sumNthPowerDeviations;
 
-},{"./mean":23}],47:[function(require,module,exports){
+},{"./mean":21}],47:[function(require,module,exports){
 'use strict';
 
 var standardDeviation = require('./standard_deviation');
 var mean = require('./mean');
 
 /**
- * This is to compute a one-sample t-test, comparing the mean
+ * This is to compute [a one-sample t-test](https://en.wikipedia.org/wiki/Student%27s_t-test#One-sample_t-test), comparing the mean
  * of a sample to a known value, x.
  *
  * in this case, we're trying to determine whether the
@@ -2006,8 +2198,11 @@ var mean = require('./mean');
  * a certain level of significance, will let you determine that the
  * null hypothesis can or cannot be rejected.
  *
- * @param {Array<number>} sample
+ * @param {Array<number>} sample an array of numbers as input
+ * @param {number} x expected vale of the population mean
  * @returns {number} value
+ * @example
+ * tTest([1, 2, 3, 4, 5, 6], 3.385); //= 0.16494154
  */
 function tTest(sample, x) {
     // The mean of the sample
@@ -2026,7 +2221,7 @@ function tTest(sample, x) {
 
 module.exports = tTest;
 
-},{"./mean":23,"./standard_deviation":43}],48:[function(require,module,exports){
+},{"./mean":21,"./standard_deviation":43}],48:[function(require,module,exports){
 'use strict';
 
 var mean = require('./mean');
@@ -2051,7 +2246,12 @@ var sampleVariance = require('./sample_variance');
  * a null hypothesis that the two populations that have been sampled into
  * `sampleX` and `sampleY` are equal to each other.
  *
- * Depends on `sampleVariance()` and `mean()`
+ * @param {Array<number>} sampleX a sample as an array of numbers
+ * @param {Array<number>} sampleY a sample as an array of numbers
+ * @param {number} [difference=0]
+ * @returns {number} test result
+ * @example
+ * ss.tTestTwoSample([1, 2, 3, 4], [3, 4, 5, 6], 0); //= -2.1908902300206643
  */
 function tTestTwoSample(sampleX, sampleY, difference) {
     var n = sampleX.length,
@@ -2078,39 +2278,36 @@ function tTestTwoSample(sampleX, sampleY, difference) {
 
 module.exports = tTestTwoSample;
 
-},{"./mean":23,"./sample_variance":40}],49:[function(require,module,exports){
+},{"./mean":21,"./sample_variance":39}],49:[function(require,module,exports){
 'use strict';
 
-var mean = require('./mean');
+var sumNthPowerDeviations = require('./sum_nth_power_deviations');
 
 /**
  * The [variance](http://en.wikipedia.org/wiki/Variance)
  * is the sum of squared deviations from the mean.
  *
- * depends on `mean()`
+ * This is an implementation of variance, not sample variance:
+ * see the `sampleVariance` method if you want a sample measure.
  *
- * @param {Array<number>} input
- * @returns {number} variance
+ * @param {Array<number>} x a population
+ * @returns {number} variance: a value greater than or equal to zero.
+ * zero indicates that all values are identical.
+ * @example
+ * ss.variance([1, 2, 3, 4, 5, 6]); //= 2.917
  */
 function variance(x) {
     // The variance of no numbers is null
     if (x.length === 0) { return null; }
 
-    var meanValue = mean(x),
-        deviations = [];
-
-    // Make a list of squared deviations from the mean.
-    for (var i = 0; i < x.length; i++) {
-        deviations.push(Math.pow(x[i] - meanValue, 2));
-    }
-
-    // Find the mean value of that list
-    return mean(deviations);
+    // Find the mean of squared deviations between the
+    // mean value and each value.
+    return sumNthPowerDeviations(x, 2) / x.length;
 }
 
 module.exports = variance;
 
-},{"./mean":23}],50:[function(require,module,exports){
+},{"./sum_nth_power_deviations":46}],50:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2133,6 +2330,8 @@ module.exports = variance;
  * @param {number} mean
  * @param {number} standardDeviation
  * @return {number} z score
+ * @example
+ * ss.zScore(78, 80, 5); //= -0.4
  */
 function zScore(x, mean, standardDeviation) {
     return (x - mean) / standardDeviation;

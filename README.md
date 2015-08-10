@@ -9,6 +9,18 @@ A JavaScript implementation of descriptive, regression, and inference statistics
 Implemented in literate JavaScript with no dependencies, designed to work
 in all modern browsers (including IE) as well as in [node.js](https://nodejs.org/).
 
+## Installation
+
+For [node.js](https://nodejs.org/), [browserify](http://browserify.org/),
+and/or [webpack](http://webpack.github.io/) users, install from npm:
+
+    npm install simple-statistics
+
+Available on [bower](http://bower.io/) as `simple-statistics`.
+
+For script-tag inclusion, distributions are available under the `dist/`
+directory.
+
 ## Examples
 
 * [Linear regression with simple-statistics and d3js](http://bl.ocks.org/3931800)
