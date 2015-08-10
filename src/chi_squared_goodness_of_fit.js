@@ -18,6 +18,17 @@ var chiSquaredDistributionTable = require('./chi_squared_distribution_table');
  * for instance, binomial, bernoulli, or poisson
  * @param {number} significance
  * @returns {number} chi squared goodness of fit
+ * @example
+ * // Data from Poisson goodness-of-fit example 10-19 in William W. Hines & Douglas C. Montgomery,
+ * // "Probability and Statistics in Engineering and Management Science", Wiley (1980).
+ * var data1019 = [
+ *     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+ *     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+ *     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+ *     2, 2, 2, 2, 2, 2, 2, 2, 2,
+ *     3, 3, 3, 3
+ * ];
+ * ss.chiSquaredGoodnessOfFit(data1019, ss.poissonDistribution, 0.05)); //= false
  */
 function chiSquaredGoodnessOfFit(data, distributionType, significance) {
     // Estimate from the sample data, a weighted mean.
