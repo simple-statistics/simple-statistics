@@ -11,6 +11,8 @@
 
 **UPGRADING**
 
+#### Linear Regression
+
 Before:
 
 ```js
@@ -25,6 +27,42 @@ var line = ss.linearRegressionLine(ss.linearRegression([[0, 0], [1, 1]]));
 line(0); // 0
 ```
 
+#### Jenks -> ckmeans
+
+The implementation of Jenks natural breaks was removed: an implementation
+of Ckmeans, an improvement on its technique, is added. Ckmeans should
+work better for nearly all Jenks usecases.
+
+Before:
+
+```js
+ss.jenks([1, 2, 4, 5, 7, 9, 10, 20], 3) //= [1, 7, 20, 20]
+```
+
+After:
+
+```js
+ss.ckmeans([1, 2, 4, 5, 7, 9, 10, 20], 3))
+
+[ [ 1,
+    2,
+    4,
+    5,
+    7,
+    9 ],
+  [ 10 ],
+  [ 20 ] ]
+```
+
+Instead of class breaks, ckmeans returns clustered data. Class breaks
+can be derived by taking the first value from each cluster:
+
+```js
+var breaks = ss.ckmeans([1, 2, 4, 5, 7, 9, 10, 20], 3)).map(function(cluster) {
+  return cluster[0];
+});
+```
+
 * `BayesModel` is now a class
 * `PerceptronModel` is now a class, and the `weights` and `bias` members
   are accessable as properties rather than methods.
@@ -35,7 +73,7 @@ line(0); // 0
 
 * JSDoc documentation throughout
 * Each function is now its own file, and simple-statistics
-  is assembled with CommonJS-style require() statements. It can
+  is assembled with CommonJS-style require() statements. simple-statistics can
   still be used in a browser with browserify.
 * The standard normal table is now calculated using the cumulative distribution
   function, rather than hardcoded.

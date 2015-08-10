@@ -23,6 +23,7 @@ ss.chunk = require('./src/chunk');
 ss.shuffle = require('./src/shuffle');
 ss.shuffleInPlace = require('./src/shuffle_in_place');
 ss.sample = require('./src/sample');
+ss.ckmeans = require('./src/ckmeans');
 
 // sample statistics
 ss.sampleCovariance = require('./src/sample_covariance');
