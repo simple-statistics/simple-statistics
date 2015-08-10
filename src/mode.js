@@ -1,5 +1,7 @@
 'use strict';
 
+var numericSort = require('./numeric_sort');
+
 /**
  * The [mode](http://bit.ly/W5K4Yt) is the number that appears in a list the highest number of times.
  * There can be multiple modes in a list: in the event of a tie, this
@@ -25,7 +27,7 @@ function mode(x) {
     // Sorting the array lets us iterate through it below and be sure
     // that every time we see a new number it's new and we'll never
     // see the same number twice
-    var sorted = x.slice().sort(function (a, b) { return a - b; });
+    var sorted = numericSort(x);
 
     // This assumes it is dealing with an array of size > 1, since size
     // 0 and 1 are handled immediately. Hence it starts at index 1 in the
