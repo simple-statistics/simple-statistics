@@ -2341,3 +2341,4 @@ module.exports = zScore;
 
 },{}]},{},[1])(1)
 });
+//# sourceMappingURL=simple_statistics.js.map
