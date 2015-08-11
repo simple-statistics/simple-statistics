@@ -21,6 +21,8 @@ Available on [bower](http://bower.io/) as `simple-statistics`.
 For script-tag inclusion, distributions are available under the `dist/`
 directory.
 
+[Also available on cdnjs](https://cdnjs.com/libraries/simple-statistics).
+
 ## Examples
 
 * [Linear regression with simple-statistics and d3js](http://bl.ocks.org/3931800)
