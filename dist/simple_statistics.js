@@ -1361,6 +1361,7 @@ module.exports = mode;
  *
  * @param {Array<number>} array input array
  * @return {Array<number>} sorted array
+ * @private
  * @example
  * numericSort([3, 2, 1]) // [1, 2, 3]
  */
