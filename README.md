@@ -21,7 +21,8 @@ Available on [bower](http://bower.io/) as `simple-statistics`.
 For script-tag inclusion, distributions are available under the `dist/`
 directory.
 
-[Also available on cdnjs](https://cdnjs.com/libraries/simple-statistics).
+[Also available on cdnjs](https://cdnjs.com/libraries/simple-statistics)
+and [jsdelivr](http://www.jsdelivr.com/#!simple-statistics).
 
 ## Examples
 
