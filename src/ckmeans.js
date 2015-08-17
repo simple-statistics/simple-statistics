@@ -106,14 +106,14 @@ function ckmeans(data, nClusters) {
                 var squaredDifference = Math.pow(
                     sorted[sortedIdx] - firstClusterMean, 2);
                 matrix[cluster][sortedIdx] = matrix[cluster][sortedIdx - 1] +
-                    ((sortedIdx - 1) / sortedIdx) * squaredDifference;
+                    (sortedIdx / (sortedIdx + 1)) * squaredDifference;
 
                 // We're computing a running mean by taking the previous
                 // mean value, multiplying it by the number of elements
                 // seen so far, and then dividing it by the number of
                 // elements total.
                 var newSum = sortedIdx * firstClusterMean + sorted[sortedIdx];
-                firstClusterMean = newSum / sortedIdx;
+                firstClusterMean = newSum / (sortedIdx + 1);
 
             } else {
 
