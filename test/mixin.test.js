@@ -5,6 +5,16 @@ var test = require('tape');
 var ss = require('../');
 
 test('mixin', function(t) {
+    var mixinSupported = !!(Object.defineProperty && Object.defineProperties);
+
+    // Early versions of internet explorer don't support the defineProperty
+    // method, so mixin will simply throw for them. Thus we skip the tests.
+    if (!mixinSupported) {
+        t.pass('Skipping mixin tests, no support found');
+        t.end();
+        return;
+    }
+
     t.test('can mix into a single array', function(t) {
         var even = ss.mixin(ss, [2, 4, 6, 8]);
         t.equal(even.sum(), 20);
