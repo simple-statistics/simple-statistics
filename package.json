@@ -28,8 +28,7 @@
     "cov": "istanbul cover ./node_modules/.bin/tape test/*.js && coveralls < ./coverage/lcov.info || true",
     "build": "npm run bundle && npm run minify",
     "bundle": "browserify -p bundle-collapser/plugin -s ss index.js --debug | exorcist dist/simple_statistics.js.map > dist/simple_statistics.js",
-    "minify": "uglifyjs dist/simple_statistics.js -c -m --in-source-map=dist/simple_statistics.js.map --source-map=dist/simple_statistics.min.js.map -o dist/simple_statistics.min.js",
-    "prepublish": "npm test && npm run build"
+    "minify": "uglifyjs dist/simple_statistics.js -c -m --in-source-map=dist/simple_statistics.js.map --source-map=dist/simple_statistics.min.js.map -o dist/simple_statistics.min.js"
   },
   "main": "index.js",
   "engines": {
