@@ -19,9 +19,3 @@ test('mean', function(t) {
     });
     t.end();
 });
-
-test('mean - parity', function(t) {
-    var science = require('science');
-    t.equal(ss.mean([1, 2, 3]), science.stats.mean([1, 2, 3]), 'same result as science.js');
-    t.end();
-});

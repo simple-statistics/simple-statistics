@@ -2,13 +2,11 @@
 'use strict';
 
 var test = require('tape');
-var science = require('science');
 var ss = require('../');
 
 test('median', function(t) {
     t.test('can get the median of three numbers', function(t) {
         t.equal(ss.median([1, 2, 3]), 2);
-        t.equal(ss.median([1, 2, 3]), science.stats.median([1, 2, 3]));
         t.end();
     });
 

@@ -10,6 +10,7 @@
   "dependencies": {},
   "devDependencies": {
     "browserify": "^11.0.1",
+    "brtapsauce": "^1.0.0",
     "bundle-collapser": "^1.2.1",
     "coveralls": "^2.11.1",
     "eslint": "^1.1.0",
@@ -17,12 +18,13 @@
     "faucet": "0.0.1",
     "istanbul": "^0.3.0",
     "random-js": "^1.0.4",
-    "science": "^1.9.2",
     "tape": "^4.0.0",
     "uglify-js": "^2.4.23"
   },
   "scripts": {
     "test": "eslint --no-eslintrc -c .eslintrc index.js src/*.js test/*.js && tape test/*.js | faucet",
+    "test-local": "brtapsauce-local scripts/required_test.js",
+    "test-sauce": "node scripts/browser_test.js",
     "cov": "istanbul cover ./node_modules/.bin/tape test/*.js && coveralls < ./coverage/lcov.info || true",
     "build": "npm run bundle && npm run minify",
     "bundle": "browserify -p bundle-collapser/plugin -s ss index.js --debug | exorcist dist/simple_statistics.js.map > dist/simple_statistics.js",
