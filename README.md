@@ -6,7 +6,7 @@ A JavaScript implementation of descriptive, regression, and inference statistics
 [![Coverage Status](https://coveralls.io/repos/simple-statistics/simple-statistics/badge.svg)](https://coveralls.io/r/simple-statistics/simple-statistics)
 [![npm version](https://badge.fury.io/js/simple-statistics.svg)](http://badge.fury.io/js/simple-statistics)
 
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/tmcw.svg)](https://saucelabs.com/u/tmcw)
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/ss-sauce.svg)](https://saucelabs.com/u/ss-sauce)
 
 Implemented in literate JavaScript with no dependencies, designed to work
 in all modern browsers (including IE) as well as in [node.js](https://nodejs.org/).
