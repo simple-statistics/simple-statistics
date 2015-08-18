@@ -3,9 +3,8 @@ sudo: false
 node_js:
 - 0.10
 script:
-- npm test
-- npm run test-sauce
 - npm run cov
+- npm run test-sauce
 env:
   global:
   - secure: lv6FSiwx0h8xFR3uQ/6yNHrCOjwlh3xSWt8ZcG3DyqbQxr/MXzSW8lMhDvkuNIFegzMEOCuay6WExgVUy3u1X0+B0A3/+skFg+YycgYwucJR4EG/wOcgQ+jC2Tb2FVgO20iuYklpdVNYk4sptIPhmCo1VvAgUWKWu8NssUS9wM4=
