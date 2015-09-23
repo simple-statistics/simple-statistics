@@ -11,6 +11,8 @@ A JavaScript implementation of descriptive, regression, and inference statistics
 Implemented in literate JavaScript with no dependencies, designed to work
 in all modern browsers (including IE) as well as in [node.js](https://nodejs.org/).
 
+## 📖 [API Documentation](http://simplestatistics.org/docs/)
+
 ## Installation
 
 For [node.js](https://nodejs.org/), [browserify](http://browserify.org/),
