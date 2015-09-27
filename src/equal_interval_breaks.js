@@ -1,7 +1,7 @@
 'use strict';
 
 var max = require('./max'),
-  min = require('./min');
+    min = require('./min');
 
 /**
  * Given an array of data, this will find the extent of the
@@ -20,23 +20,23 @@ function equalIntervalBreaks(data, nClasses) {
 
   // the first break will always be the minimum value
   // in the dataset
-  var breaks = [min(data)];
+    var breaks = [min(data)];
 
   // The size of each break is the full range of the data
   // divided by the number of classes requested
-  var breakSize = (max(data) - min(data)) / nClasses;
+    var breakSize = (max(data) - min(data)) / nClasses;
 
   // In the case of nClasses = 1, this loop won't run
   // and the returned breaks will be [min, max]
-  for (var i = 1; i < nClasses; i++) {
-    breaks.push(breaks[0] + breakSize * i);
-  }
+    for (var i = 1; i < nClasses; i++) {
+        breaks.push(breaks[0] + breakSize * i);
+    }
 
   // the last break will always be the
   // maximum.
-  breaks.push(max(data));
+    breaks.push(max(data));
 
-  return breaks;
+    return breaks;
 }
 
 module.exports = equalIntervalBreaks;

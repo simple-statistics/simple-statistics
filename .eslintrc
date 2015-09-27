@@ -5,6 +5,7 @@
   },
   "rules": {
     "quotes": [2, "single"],
+    "indent": [2, 4],
     "key-spacing": [0],
     "no-ternary": [2],
     "valid-jsdoc": [2, {

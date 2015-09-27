@@ -13,8 +13,8 @@ test('BayesianClassifier', function(t) {
         t.deepEqual(bayes.score({
             species: 'Cat'
         }), {
-                animal: 1
-            });
+            animal: 1
+        });
         t.end();
     });
 
@@ -29,9 +29,9 @@ test('BayesianClassifier', function(t) {
         t.deepEqual(bayes.score({
             species: 'Cat'
         }), {
-                animal: 0.5,
-                chair: 0.5
-            });
+            animal: 0.5,
+            chair: 0.5
+        });
         t.end();
     });
 
@@ -52,9 +52,9 @@ test('BayesianClassifier', function(t) {
         t.deepEqual(bayes.score({
             species: 'Cat'
         }), {
-                animal: 0.75,
-                chair: 0.25
-            });
+            animal: 0.75,
+            chair: 0.25
+        });
         t.end();
     });
 
@@ -79,9 +79,9 @@ test('BayesianClassifier', function(t) {
         t.deepEqual(bayes.score({
             color: 'white'
         }), {
-                animal: 0,
-                chair: 0.2
-            });
+            animal: 0,
+            chair: 0.2
+        });
         t.end();
     });
 
@@ -102,15 +102,15 @@ test('BayesianClassifier', function(t) {
         t.deepEqual(bayes.score({
             species: 'Cat'
         }), {
-                animal: 0.25,
-                chair: 0.25
-            });
+            animal: 0.25,
+            chair: 0.25
+        });
         t.deepEqual(bayes.score({
             species: 'Dog'
         }), {
-                animal: 0.5,
-                chair: 0
-            });
+            animal: 0.5,
+            chair: 0
+        });
         t.end();
     });
     t.end();

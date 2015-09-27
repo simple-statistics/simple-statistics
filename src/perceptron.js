@@ -53,9 +53,9 @@ PerceptronModel.prototype.predict = function(features) {
 
     // Classify as 1 if the score is over 0, otherwise 0.
     if (score > 0) {
-      return 1;
+        return 1;
     } else {
-      return 0;
+        return 0;
     }
 };
 
