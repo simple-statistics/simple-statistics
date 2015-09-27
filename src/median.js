@@ -33,8 +33,8 @@ function median(x) {
     // Otherwise, the median is the average of the two numbers
     // at the center of the list
     } else {
-        var a = sorted[(sorted.length / 2) - 1];
-        var b = sorted[(sorted.length / 2)];
+        var a = sorted[sorted.length / 2 - 1];
+        var b = sorted[sorted.length / 2];
         return (a + b) / 2;
     }
 }

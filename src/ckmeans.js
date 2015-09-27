@@ -126,7 +126,7 @@ function ckmeans(data, nClusters) {
                         (sortedIdx - j + 1) *
                         Math.pow(sorted[j] - meanXJ, 2);
 
-                    meanXJ = (sorted[j] + ((sortedIdx - j) * meanXJ)) /
+                    meanXJ = (sorted[j] + (sortedIdx - j) * meanXJ) /
                         (sortedIdx - j + 1);
 
                     if (j === sortedIdx) {

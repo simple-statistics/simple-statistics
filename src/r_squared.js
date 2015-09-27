@@ -45,7 +45,7 @@ function rSquared(data, func) {
     // As the error grows larger, its ratio to the
     // sum of squares increases and the r squared
     // value grows lower.
-    return 1 - (err / sumOfSquares);
+    return 1 - err / sumOfSquares;
 }
 
 module.exports = rSquared;

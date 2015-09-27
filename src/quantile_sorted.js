@@ -15,7 +15,7 @@
  * quantileSorted(data, 0.5); //= 9
  */
 function quantileSorted(sample, p) {
-    var idx = (sample.length) * p;
+    var idx = sample.length * p;
     if (p < 0 || p > 1) {
         return null;
     } else if (p === 1) {
