@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 1.0.1
+
+Fixes:
+
+* Fixes to ckmeans algorithm (thanks to @llimllib) (#125)
+
+Housekeeping:
+
+* Add keywords to package. Fixes #120
+* Standardize indentation, add example for epsilon
+* Browser testing with Sauce Labs
+
+Bundle size optimizations:
+
+* Add external sourcemaps for minified and unminified standalone bundles
+* Use bundle-collapser for smaller bundles
+* Indicate numericSort as an internal method.
+
 ## 1.0.0
 
 ### Breaking Changes
