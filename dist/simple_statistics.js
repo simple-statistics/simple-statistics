@@ -585,14 +585,14 @@ function ckmeans(data, nClusters) {
                 var squaredDifference = Math.pow(
                     sorted[sortedIdx] - firstClusterMean, 2);
                 matrix[cluster][sortedIdx] = matrix[cluster][sortedIdx - 1] +
-                    ((sortedIdx - 1) / sortedIdx) * squaredDifference;
+                    (sortedIdx / (sortedIdx + 1)) * squaredDifference;
 
                 // We're computing a running mean by taking the previous
                 // mean value, multiplying it by the number of elements
                 // seen so far, and then dividing it by the number of
                 // elements total.
                 var newSum = sortedIdx * firstClusterMean + sorted[sortedIdx];
-                firstClusterMean = newSum / sortedIdx;
+                firstClusterMean = newSum / (sortedIdx + 1);
 
             } else {
 
@@ -605,7 +605,7 @@ function ckmeans(data, nClusters) {
                         (sortedIdx - j + 1) *
                         Math.pow(sorted[j] - meanXJ, 2);
 
-                    meanXJ = (sorted[j] + ((sortedIdx - j) * meanXJ)) /
+                    meanXJ = (sorted[j] + (sortedIdx - j) * meanXJ) /
                         (sortedIdx - j + 1);
 
                     if (j === sortedIdx) {
@@ -708,11 +708,37 @@ module.exports = cumulativeStdNormalProbability;
 
 /**
  * We use `ε`, epsilon, as a stopping criterion when we want to iterate
- * until we're "close enough".
+ * until we're "close enough". Epsilon is a very small number: for
+ * simple statistics, that number is **0.0001**
  *
  * This is used in calculations like the binomialDistribution, in which
  * the process of finding a value is [iterative](https://en.wikipedia.org/wiki/Iterative_method):
  * it progresses until it is close enough.
+ *
+ * Below is an example of using epsilon in [gradient descent](https://en.wikipedia.org/wiki/Gradient_descent),
+ * where we're trying to find a local minimum of a function's derivative,
+ * given by the `fDerivative` method.
+ *
+ * @example
+ * // From calculation, we expect that the local minimum occurs at x=9/4
+ * var x_old = 0;
+ * // The algorithm starts at x=6
+ * var x_new = 6;
+ * var stepSize = 0.01;
+ *
+ * function fDerivative(x) {
+ *   return 4 * Math.pow(x, 3) - 9 * Math.pow(x, 2);
+ * }
+ *
+ * // The loop runs until the difference between the previous
+ * // value and the current value is smaller than epsilon - a rough
+ * // meaure of 'close enough'
+ * while (Math.abs(x_new - x_old) > ss.epsilon) {
+ *   x_old = x_new;
+ *   x_new = x_old - stepSize * fDerivative(x_old);
+ * }
+ *
+ * console.log('Local minimum occurs at', x_new);
  */
 var epsilon = 0.0001;
 
@@ -926,9 +952,9 @@ function inverseErrorFunction(x) {
     var a = (8 * (Math.PI - 3)) / (3 * Math.PI * (4 - Math.PI));
 
     var inv = Math.sqrt(Math.sqrt(
-            Math.pow(2 / (Math.PI * a) + Math.log(1 - x * x) / 2, 2) -
-            Math.log(1 - x * x) / a) -
-            (2 / (Math.PI * a) + Math.log(1 - x * x) / 2));
+        Math.pow(2 / (Math.PI * a) + Math.log(1 - x * x) / 2, 2) -
+        Math.log(1 - x * x) / a) -
+        (2 / (Math.PI * a) + Math.log(1 - x * x) / 2));
 
     if (x >= 0) {
         return inv;
@@ -1164,8 +1190,8 @@ function median(x) {
     // Otherwise, the median is the average of the two numbers
     // at the center of the list
     } else {
-        var a = sorted[(sorted.length / 2) - 1];
-        var b = sorted[(sorted.length / 2)];
+        var a = sorted[sorted.length / 2 - 1];
+        var b = sorted[sorted.length / 2];
         return (a + b) / 2;
     }
 }
@@ -1433,9 +1459,9 @@ PerceptronModel.prototype.predict = function(features) {
 
     // Classify as 1 if the score is over 0, otherwise 0.
     if (score > 0) {
-      return 1;
+        return 1;
     } else {
-      return 0;
+        return 0;
     }
 };
 
@@ -1624,7 +1650,7 @@ module.exports = quantile;
  * quantileSorted(data, 0.5); //= 9
  */
 function quantileSorted(sample, p) {
-    var idx = (sample.length) * p;
+    var idx = sample.length * p;
     if (p < 0 || p > 1) {
         return null;
     } else if (p === 1) {
@@ -1697,7 +1723,7 @@ function rSquared(data, func) {
     // As the error grows larger, its ratio to the
     // sum of squares increases and the r squared
     // value grows lower.
-    return 1 - (err / sumOfSquares);
+    return 1 - err / sumOfSquares;
 }
 
 module.exports = rSquared;
