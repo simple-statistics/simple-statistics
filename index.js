@@ -26,6 +26,7 @@ ss.sample = require('./src/sample');
 ss.ckmeans = require('./src/ckmeans');
 ss.sortedUniqueCount = require('./src/sorted_unique_count');
 ss.sumNthPowerDeviations = require('./src/sum_nth_power_deviations');
+ss.equalIntervalBreaks = require('./src/equal_interval_breaks');
 
 // sample statistics
 ss.sampleCovariance = require('./src/sample_covariance');
