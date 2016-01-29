@@ -8,67 +8,68 @@
 var ss = module.exports = {};
 
 // Linear Regression
-ss.linearRegression = require(17);
-ss.linearRegressionLine = require(18);
-ss.standardDeviation = require(43);
-ss.rSquared = require(32);
-ss.mode = require(25);
-ss.min = require(23);
-ss.max = require(20);
-ss.sum = require(45);
-ss.quantile = require(30);
-ss.quantileSorted = require(31);
-ss.iqr = ss.interquartileRange = require(15);
-ss.medianAbsoluteDeviation = ss.mad = require(19);
+ss.linearRegression = require(18);
+ss.linearRegressionLine = require(19);
+ss.standardDeviation = require(44);
+ss.rSquared = require(33);
+ss.mode = require(26);
+ss.min = require(24);
+ss.max = require(21);
+ss.sum = require(46);
+ss.quantile = require(31);
+ss.quantileSorted = require(32);
+ss.iqr = ss.interquartileRange = require(16);
+ss.medianAbsoluteDeviation = ss.mad = require(20);
 ss.chunk = require(7);
-ss.shuffle = require(40);
-ss.shuffleInPlace = require(41);
-ss.sample = require(34);
+ss.shuffle = require(41);
+ss.shuffleInPlace = require(42);
+ss.sample = require(35);
 ss.ckmeans = require(8);
-ss.sortedUniqueCount = require(42);
-ss.sumNthPowerDeviations = require(46);
+ss.sortedUniqueCount = require(43);
+ss.sumNthPowerDeviations = require(47);
+ss.equalIntervalBreaks = require(11);
 
 // sample statistics
-ss.sampleCovariance = require(36);
-ss.sampleCorrelation = require(35);
-ss.sampleVariance = require(39);
-ss.sampleStandardDeviation = require(38);
-ss.sampleSkewness = require(37);
+ss.sampleCovariance = require(37);
+ss.sampleCorrelation = require(36);
+ss.sampleVariance = require(40);
+ss.sampleStandardDeviation = require(39);
+ss.sampleSkewness = require(38);
 
 // measures of centrality
-ss.geometricMean = require(13);
-ss.harmonicMean = require(14);
-ss.mean = ss.average = require(21);
-ss.median = require(22);
+ss.geometricMean = require(14);
+ss.harmonicMean = require(15);
+ss.mean = ss.average = require(22);
+ss.median = require(23);
 
-ss.rootMeanSquare = ss.rms = require(33);
-ss.variance = require(49);
-ss.tTest = require(47);
-ss.tTestTwoSample = require(48);
+ss.rootMeanSquare = ss.rms = require(34);
+ss.variance = require(50);
+ss.tTest = require(48);
+ss.tTestTwoSample = require(49);
 // ss.jenks = require('./src/jenks');
 
 // Classifiers
 ss.bayesian = require(2);
-ss.perceptron = require(27);
+ss.perceptron = require(28);
 
 // Distribution-related methods
 ss.epsilon = require(10); // We make ε available to the test suite.
-ss.factorial = require(12);
+ss.factorial = require(13);
 ss.bernoulliDistribution = require(3);
 ss.binomialDistribution = require(4);
-ss.poissonDistribution = require(28);
+ss.poissonDistribution = require(29);
 ss.chiSquaredGoodnessOfFit = require(6);
 
 // Normal distribution
-ss.zScore = require(50);
+ss.zScore = require(51);
 ss.cumulativeStdNormalProbability = require(9);
-ss.standardNormalTable = require(44);
-ss.errorFunction = ss.erf = require(11);
-ss.inverseErrorFunction = require(16);
-ss.probit = require(29);
-ss.mixin = require(24);
+ss.standardNormalTable = require(45);
+ss.errorFunction = ss.erf = require(12);
+ss.inverseErrorFunction = require(17);
+ss.probit = require(30);
+ss.mixin = require(25);
 
-},{"10":10,"11":11,"12":12,"13":13,"14":14,"15":15,"16":16,"17":17,"18":18,"19":19,"2":2,"20":20,"21":21,"22":22,"23":23,"24":24,"25":25,"27":27,"28":28,"29":29,"3":3,"30":30,"31":31,"32":32,"33":33,"34":34,"35":35,"36":36,"37":37,"38":38,"39":39,"4":4,"40":40,"41":41,"42":42,"43":43,"44":44,"45":45,"46":46,"47":47,"48":48,"49":49,"50":50,"6":6,"7":7,"8":8,"9":9}],2:[function(require,module,exports){
+},{"10":10,"11":11,"12":12,"13":13,"14":14,"15":15,"16":16,"17":17,"18":18,"19":19,"2":2,"20":20,"21":21,"22":22,"23":23,"24":24,"25":25,"26":26,"28":28,"29":29,"3":3,"30":30,"31":31,"32":32,"33":33,"34":34,"35":35,"36":36,"37":37,"38":38,"39":39,"4":4,"40":40,"41":41,"42":42,"43":43,"44":44,"45":45,"46":46,"47":47,"48":48,"49":49,"50":50,"51":51,"6":6,"7":7,"8":8,"9":9}],2:[function(require,module,exports){
 'use strict';
 
 /**
@@ -219,7 +220,7 @@ module.exports = bernoulliDistribution;
 'use strict';
 
 var epsilon = require(10);
-var factorial = require(12);
+var factorial = require(13);
 
 /**
  * The [Binomial Distribution](http://en.wikipedia.org/wiki/Binomial_distribution) is the discrete probability
@@ -268,7 +269,7 @@ function binomialDistribution(trials, probability) {
 
 module.exports = binomialDistribution;
 
-},{"10":10,"12":12}],5:[function(require,module,exports){
+},{"10":10,"13":13}],5:[function(require,module,exports){
 'use strict';
 
 /**
@@ -327,7 +328,7 @@ module.exports = chiSquaredDistributionTable;
 },{}],6:[function(require,module,exports){
 'use strict';
 
-var mean = require(21);
+var mean = require(22);
 var chiSquaredDistributionTable = require(5);
 
 /**
@@ -431,7 +432,7 @@ function chiSquaredGoodnessOfFit(data, distributionType, significance) {
 
 module.exports = chiSquaredGoodnessOfFit;
 
-},{"21":21,"5":5}],7:[function(require,module,exports){
+},{"22":22,"5":5}],7:[function(require,module,exports){
 'use strict';
 
 /**
@@ -479,8 +480,8 @@ module.exports = chunk;
 },{}],8:[function(require,module,exports){
 'use strict';
 
-var sortedUniqueCount = require(42),
-    numericSort = require(26);
+var sortedUniqueCount = require(43),
+    numericSort = require(27);
 
 /**
  * Create a new column x row matrix.
@@ -659,10 +660,10 @@ function ckmeans(data, nClusters) {
 
 module.exports = ckmeans;
 
-},{"26":26,"42":42}],9:[function(require,module,exports){
+},{"27":27,"43":43}],9:[function(require,module,exports){
 'use strict';
 
-var standardNormalTable = require(44);
+var standardNormalTable = require(45);
 
 /**
  * **[Cumulative Standard Normal Probability](http://en.wikipedia.org/wiki/Standard_normal_table)**
@@ -703,7 +704,7 @@ function cumulativeStdNormalProbability(z) {
 
 module.exports = cumulativeStdNormalProbability;
 
-},{"44":44}],10:[function(require,module,exports){
+},{"45":45}],10:[function(require,module,exports){
 'use strict';
 
 /**
@@ -747,6 +748,50 @@ module.exports = epsilon;
 },{}],11:[function(require,module,exports){
 'use strict';
 
+var max = require(21),
+    min = require(24);
+
+/**
+ * Given an array of data, this will find the extent of the
+ * data and return an array of breaks that can be used
+ * to categorize the data into a number of classes. The
+ * returned array will always be 1 longer than the number of
+ * classes because it includes the minimum value.
+ *
+ * @param {Array<number>} data input data, as an array of number values
+ * @param {number} nClasses number of desired classes
+ * @returns {Array<number>} array of class break positions
+ * @example
+ * equalIntervalBreaks([1, 2, 3, 4, 5, 6], 4); //= [1, 2.25, 3.5, 4.75, 6]
+ */
+function equalIntervalBreaks(data, nClasses) {
+
+  // the first break will always be the minimum value
+  // in the dataset
+    var breaks = [min(data)];
+
+  // The size of each break is the full range of the data
+  // divided by the number of classes requested
+    var breakSize = (max(data) - min(data)) / nClasses;
+
+  // In the case of nClasses = 1, this loop won't run
+  // and the returned breaks will be [min, max]
+    for (var i = 1; i < nClasses; i++) {
+        breaks.push(breaks[0] + breakSize * i);
+    }
+
+  // the last break will always be the
+  // maximum.
+    breaks.push(max(data));
+
+    return breaks;
+}
+
+module.exports = equalIntervalBreaks;
+
+},{"21":21,"24":24}],12:[function(require,module,exports){
+'use strict';
+
 /**
  * **[Gaussian error function](http://en.wikipedia.org/wiki/Error_function)**
  *
@@ -782,7 +827,7 @@ function errorFunction(x) {
 
 module.exports = errorFunction;
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 'use strict';
 
 /**
@@ -816,7 +861,7 @@ function factorial(n) {
 
 module.exports = factorial;
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 'use strict';
 
 /**
@@ -871,7 +916,7 @@ function geometricMean(x) {
 
 module.exports = geometricMean;
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 'use strict';
 
 /**
@@ -909,10 +954,10 @@ function harmonicMean(x) {
 
 module.exports = harmonicMean;
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 'use strict';
 
-var quantile = require(30);
+var quantile = require(31);
 
 /**
  * The [Interquartile range](http://en.wikipedia.org/wiki/Interquartile_range) is
@@ -937,7 +982,7 @@ function interquartileRange(sample) {
 
 module.exports = interquartileRange;
 
-},{"30":30}],16:[function(require,module,exports){
+},{"31":31}],17:[function(require,module,exports){
 'use strict';
 
 /**
@@ -965,7 +1010,7 @@ function inverseErrorFunction(x) {
 
 module.exports = inverseErrorFunction;
 
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1038,7 +1083,7 @@ function linearRegression(data) {
 
 module.exports = linearRegression;
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1067,10 +1112,10 @@ function linearRegressionLine(mb) {
 
 module.exports = linearRegressionLine;
 
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 'use strict';
 
-var median = require(22);
+var median = require(23);
 
 /**
  * The [Median Absolute Deviation](http://en.wikipedia.org/wiki/Median_absolute_deviation) is
@@ -1100,7 +1145,7 @@ function mad(x) {
 
 module.exports = mad;
 
-},{"22":22}],20:[function(require,module,exports){
+},{"23":23}],21:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1127,10 +1172,10 @@ function max(x) {
 
 module.exports = max;
 
-},{}],21:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 'use strict';
 
-var sum = require(45);
+var sum = require(46);
 
 /**
  * The mean, _also known as average_,
@@ -1154,10 +1199,10 @@ function mean(x) {
 
 module.exports = mean;
 
-},{"45":45}],22:[function(require,module,exports){
+},{"46":46}],23:[function(require,module,exports){
 'use strict';
 
-var numericSort = require(26);
+var numericSort = require(27);
 
 /**
  * The [median](http://en.wikipedia.org/wiki/Median) is
@@ -1198,7 +1243,7 @@ function median(x) {
 
 module.exports = median;
 
-},{"26":26}],23:[function(require,module,exports){
+},{"27":27}],24:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1223,7 +1268,7 @@ function min(x) {
 
 module.exports = min;
 
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1303,10 +1348,10 @@ function mixin(ss, array) {
 
 module.exports = mixin;
 
-},{}],25:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 'use strict';
 
-var numericSort = require(26);
+var numericSort = require(27);
 
 /**
  * The [mode](http://bit.ly/W5K4Yt) is the number that appears in a list the highest number of times.
@@ -1371,7 +1416,7 @@ function mode(x) {
 
 module.exports = mode;
 
-},{"26":26}],26:[function(require,module,exports){
+},{"27":27}],27:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1403,7 +1448,7 @@ function numericSort(array) {
 
 module.exports = numericSort;
 
-},{}],27:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1500,11 +1545,11 @@ PerceptronModel.prototype.train = function(features, label) {
 
 module.exports = PerceptronModel;
 
-},{}],28:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 'use strict';
 
 var epsilon = require(10);
-var factorial = require(12);
+var factorial = require(13);
 
 /**
  * The [Poisson Distribution](http://en.wikipedia.org/wiki/Poisson_distribution)
@@ -1548,11 +1593,11 @@ function poissonDistribution(lambda) {
 
 module.exports = poissonDistribution;
 
-},{"10":10,"12":12}],29:[function(require,module,exports){
+},{"10":10,"13":13}],30:[function(require,module,exports){
 'use strict';
 
 var epsilon = require(10);
-var inverseErrorFunction = require(16);
+var inverseErrorFunction = require(17);
 
 /**
  * The [Probit](http://en.wikipedia.org/wiki/Probit)
@@ -1578,11 +1623,11 @@ function probit(p) {
 
 module.exports = probit;
 
-},{"10":10,"16":16}],30:[function(require,module,exports){
+},{"10":10,"17":17}],31:[function(require,module,exports){
 'use strict';
 
-var quantileSorted = require(31);
-var numericSort = require(26);
+var quantileSorted = require(32);
+var numericSort = require(27);
 
 /**
  * The [quantile](https://en.wikipedia.org/wiki/Quantile):
@@ -1632,7 +1677,7 @@ function quantile(sample, p) {
 
 module.exports = quantile;
 
-},{"26":26,"31":31}],31:[function(require,module,exports){
+},{"27":27,"32":32}],32:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1675,7 +1720,7 @@ function quantileSorted(sample, p) {
 
 module.exports = quantileSorted;
 
-},{}],32:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1728,7 +1773,7 @@ function rSquared(data, func) {
 
 module.exports = rSquared;
 
-},{}],33:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1757,10 +1802,10 @@ function rootMeanSquare(x) {
 
 module.exports = rootMeanSquare;
 
-},{}],34:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 'use strict';
 
-var shuffle = require(40);
+var shuffle = require(41);
 
 /**
  * Create a [simple random sample](http://en.wikipedia.org/wiki/Simple_random_sample)
@@ -1788,11 +1833,11 @@ function sample(array, n, randomSource) {
 
 module.exports = sample;
 
-},{"40":40}],35:[function(require,module,exports){
+},{"41":41}],36:[function(require,module,exports){
 'use strict';
 
-var sampleCovariance = require(36);
-var sampleStandardDeviation = require(38);
+var sampleCovariance = require(37);
+var sampleStandardDeviation = require(39);
 
 /**
  * The [correlation](http://en.wikipedia.org/wiki/Correlation_and_dependence) is
@@ -1820,10 +1865,10 @@ function sampleCorrelation(x, y) {
 
 module.exports = sampleCorrelation;
 
-},{"36":36,"38":38}],36:[function(require,module,exports){
+},{"37":37,"39":39}],37:[function(require,module,exports){
 'use strict';
 
-var mean = require(21);
+var mean = require(22);
 
 /**
  * [Sample covariance](https://en.wikipedia.org/wiki/Sample_mean_and_sampleCovariance) of two datasets:
@@ -1872,11 +1917,11 @@ function sampleCovariance(x, y) {
 
 module.exports = sampleCovariance;
 
-},{"21":21}],37:[function(require,module,exports){
+},{"22":22}],38:[function(require,module,exports){
 'use strict';
 
-var sumNthPowerDeviations = require(46);
-var sampleStandardDeviation = require(38);
+var sumNthPowerDeviations = require(47);
+var sampleStandardDeviation = require(39);
 
 /**
  * [Skewness](http://en.wikipedia.org/wiki/Skewness) is
@@ -1907,10 +1952,10 @@ function sampleSkewness(x) {
 
 module.exports = sampleSkewness;
 
-},{"38":38,"46":46}],38:[function(require,module,exports){
+},{"39":39,"47":47}],39:[function(require,module,exports){
 'use strict';
 
-var sampleVariance = require(39);
+var sampleVariance = require(40);
 
 /**
  * The [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
@@ -1931,10 +1976,10 @@ function sampleStandardDeviation(x) {
 
 module.exports = sampleStandardDeviation;
 
-},{"39":39}],39:[function(require,module,exports){
+},{"40":40}],40:[function(require,module,exports){
 'use strict';
 
-var sumNthPowerDeviations = require(46);
+var sumNthPowerDeviations = require(47);
 
 /*
  * The [sample variance](https://en.wikipedia.org/wiki/Variance#Sample_variance)
@@ -1969,10 +2014,10 @@ function sampleVariance(x) {
 
 module.exports = sampleVariance;
 
-},{"46":46}],40:[function(require,module,exports){
+},{"47":47}],41:[function(require,module,exports){
 'use strict';
 
-var shuffleInPlace = require(41);
+var shuffleInPlace = require(42);
 
 /*
  * A [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
@@ -1997,7 +2042,7 @@ function shuffle(sample, randomSource) {
 
 module.exports = shuffle;
 
-},{"41":41}],41:[function(require,module,exports){
+},{"42":42}],42:[function(require,module,exports){
 'use strict';
 
 /*
@@ -2053,7 +2098,7 @@ function shuffleInPlace(sample, randomSource) {
 
 module.exports = shuffleInPlace;
 
-},{}],42:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2084,10 +2129,10 @@ function sortedUniqueCount(input) {
 
 module.exports = sortedUniqueCount;
 
-},{}],43:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 'use strict';
 
-var variance = require(49);
+var variance = require(50);
 
 /**
  * The [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
@@ -2114,7 +2159,7 @@ function standardDeviation(x) {
 
 module.exports = standardDeviation;
 
-},{"49":49}],44:[function(require,module,exports){
+},{"50":50}],45:[function(require,module,exports){
 'use strict';
 
 var SQRT_2PI = Math.sqrt(2 * Math.PI);
@@ -2152,7 +2197,7 @@ for (var z = 0; z <= 3.09; z += 0.01) {
 
 module.exports = standardNormalTable;
 
-},{}],45:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 'use strict';
 
 /**
@@ -2176,10 +2221,10 @@ function sum(x) {
 
 module.exports = sum;
 
-},{}],46:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 'use strict';
 
-var mean = require(21);
+var mean = require(22);
 
 /**
  * The sum of deviations to the Nth power.
@@ -2208,11 +2253,11 @@ function sumNthPowerDeviations(x, n) {
 
 module.exports = sumNthPowerDeviations;
 
-},{"21":21}],47:[function(require,module,exports){
+},{"22":22}],48:[function(require,module,exports){
 'use strict';
 
-var standardDeviation = require(43);
-var mean = require(21);
+var standardDeviation = require(44);
+var mean = require(22);
 
 /**
  * This is to compute [a one-sample t-test](https://en.wikipedia.org/wiki/Student%27s_t-test#One-sample_t-test), comparing the mean
@@ -2248,11 +2293,11 @@ function tTest(sample, x) {
 
 module.exports = tTest;
 
-},{"21":21,"43":43}],48:[function(require,module,exports){
+},{"22":22,"44":44}],49:[function(require,module,exports){
 'use strict';
 
-var mean = require(21);
-var sampleVariance = require(39);
+var mean = require(22);
+var sampleVariance = require(40);
 
 /**
  * This is to compute [two sample t-test](http://en.wikipedia.org/wiki/Student's_t-test).
@@ -2305,10 +2350,10 @@ function tTestTwoSample(sampleX, sampleY, difference) {
 
 module.exports = tTestTwoSample;
 
-},{"21":21,"39":39}],49:[function(require,module,exports){
+},{"22":22,"40":40}],50:[function(require,module,exports){
 'use strict';
 
-var sumNthPowerDeviations = require(46);
+var sumNthPowerDeviations = require(47);
 
 /**
  * The [variance](http://en.wikipedia.org/wiki/Variance)
@@ -2334,7 +2379,7 @@ function variance(x) {
 
 module.exports = variance;
 
-},{"46":46}],50:[function(require,module,exports){
+},{"47":47}],51:[function(require,module,exports){
 'use strict';
 
 /**
