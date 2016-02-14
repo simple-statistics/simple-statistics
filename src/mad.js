@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 var median = require('./median');
 
@@ -12,12 +13,14 @@ var median = require('./median');
  * @example
  * mad([1, 1, 2, 2, 4, 6, 9]); //= 1
  */
-function mad(x) {
+function mad(x /*: Array<number> */) {
     // The mad of nothing is null
-    if (!x || x.length === 0) { return null; }
-
     var medianValue = median(x),
         medianAbsoluteDeviations = [];
+
+    if (medianValue === undefined) {
+        return medianValue;
+    }
 
     // Make a list of absolute deviations from the median
     for (var i = 0; i < x.length; i++) {

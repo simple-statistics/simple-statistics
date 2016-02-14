@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 var binomialDistribution = require('./binomial_distribution');
 
@@ -16,9 +17,9 @@ var binomialDistribution = require('./binomial_distribution');
  * @param {number} p input value, between 0 and 1 inclusive
  * @returns {number} value of bernoulli distribution at this point
  */
-function bernoulliDistribution(p) {
+function bernoulliDistribution(p/*: number */) {
     // Check that `p` is a valid probability (0 ≤ p ≤ 1)
-    if (p < 0 || p > 1 ) { return null; }
+    if (p < 0 || p > 1 ) { return undefined; }
 
     return binomialDistribution(1, p);
 }

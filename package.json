@@ -16,13 +16,14 @@
     "eslint": "^1.5.1",
     "exorcist": "^0.4.0",
     "faucet": "0.0.1",
+    "flow-bin": "^0.21.0",
     "istanbul": "^0.3.0",
     "random-js": "^1.0.4",
     "tape": "^4.0.0",
     "uglify-js": "^2.4.23"
   },
   "scripts": {
-    "test": "eslint --no-eslintrc -c .eslintrc index.js src/*.js test/*.js && tape test/*.js | faucet",
+    "test": "flow check src && eslint --no-eslintrc -c .eslintrc index.js src/*.js test/*.js && tape test/*.js | faucet",
     "test-local": "brtapsauce-local scripts/required_test.js",
     "test-sauce": "node scripts/browser_test.js",
     "cov": "istanbul cover ./node_modules/.bin/tape test/*.js && coveralls < ./coverage/lcov.info || true",

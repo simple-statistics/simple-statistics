@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 /**
  * The Root Mean Square (RMS) is
@@ -13,8 +14,8 @@
  * @example
  * rootMeanSquare([-1, 1, -1, 1]); //= 1
  */
-function rootMeanSquare(x) {
-    if (x.length === 0) { return null; }
+function rootMeanSquare(x /*: Array<number> */) {
+    if (x.length === 0) { return undefined; }
 
     var sumOfSquares = 0;
     for (var i = 0; i < x.length; i++) {

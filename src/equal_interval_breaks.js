@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 var max = require('./max'),
     min = require('./min');
@@ -16,25 +17,32 @@ var max = require('./max'),
  * @example
  * equalIntervalBreaks([1, 2, 3, 4, 5, 6], 4); //= [1, 2.25, 3.5, 4.75, 6]
  */
-function equalIntervalBreaks(data, nClasses) {
+function equalIntervalBreaks(data/*: Array<number> */, nClasses/*:number*/)/*: Array<number> */ {
 
-  // the first break will always be the minimum value
-  // in the dataset
-    var breaks = [min(data)];
+    var theMin = min(data),
+        theMax = max(data); 
 
-  // The size of each break is the full range of the data
-  // divided by the number of classes requested
-    var breakSize = (max(data) - min(data)) / nClasses;
+    if (typeof theMin !== 'number' || typeof theMax !== 'number') {
+        return [];
+    }
 
-  // In the case of nClasses = 1, this loop won't run
-  // and the returned breaks will be [min, max]
+    // the first break will always be the minimum value
+    // in the dataset
+    var breaks = [theMin];
+
+    // The size of each break is the full range of the data
+    // divided by the number of classes requested
+    var breakSize = (theMax - theMin) / nClasses;
+
+    // In the case of nClasses = 1, this loop won't run
+    // and the returned breaks will be [min, max]
     for (var i = 1; i < nClasses; i++) {
         breaks.push(breaks[0] + breakSize * i);
     }
 
-  // the last break will always be the
-  // maximum.
-    breaks.push(max(data));
+    // the last break will always be the
+    // maximum.
+    breaks.push(theMax);
 
     return breaks;
 }

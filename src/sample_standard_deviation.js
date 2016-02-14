@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 var sampleVariance = require('./sample_variance');
 
@@ -12,11 +13,11 @@ var sampleVariance = require('./sample_variance');
  * ss.sampleStandardDeviation([2, 4, 4, 4, 5, 5, 7, 9]);
  * //= 2.138
  */
-function sampleStandardDeviation(x) {
+function sampleStandardDeviation(x /*: Array<number> */) {
     // The standard deviation of no numbers is null
-    if (x.length <= 1) { return null; }
-
-    return Math.sqrt(sampleVariance(x));
+    var sampleVarianceX = sampleVariance(x);
+    if (sampleVarianceX === undefined) { return undefined; }
+    return Math.sqrt(sampleVarianceX);
 }
 
 module.exports = sampleStandardDeviation;

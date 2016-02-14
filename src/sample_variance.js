@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 var sumNthPowerDeviations = require('./sum_nth_power_deviations');
 
@@ -18,9 +19,9 @@ var sumNthPowerDeviations = require('./sum_nth_power_deviations');
  * @example
  * sampleVariance([1, 2, 3, 4, 5]); //= 2.5
  */
-function sampleVariance(x) {
+function sampleVariance(x /*: Array<number> */) {
     // The variance of no numbers is null
-    if (x.length <= 1) { return null; }
+    if (x.length <= 1) { return undefined; }
 
     var sumSquaredDeviationsValue = sumNthPowerDeviations(x, 2);
 

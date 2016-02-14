@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 var epsilon = require('./epsilon');
 var factorial = require('./factorial');
@@ -16,9 +17,9 @@ var factorial = require('./factorial');
  * @param {number} lambda location poisson distribution
  * @returns {number} value of poisson distribution at that point
  */
-function poissonDistribution(lambda) {
+function poissonDistribution(lambda/*: number */) {
     // Check that lambda is strictly positive
-    if (lambda <= 0) { return null; }
+    if (lambda <= 0) { return undefined; }
 
     // our current place in the distribution
     var x = 0,
@@ -33,7 +34,11 @@ function poissonDistribution(lambda) {
     // which point we've defined the vast majority of outcomes
     do {
         // a [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function)
-        cells[x] = (Math.pow(Math.E, -lambda) * Math.pow(lambda, x)) / factorial(x);
+        var fx = factorial(x)
+        if (fx === undefined) {
+            return undefined;
+        }
+        cells[x] = (Math.pow(Math.E, -lambda) * Math.pow(lambda, x)) / fx;
         cumulativeProbability += cells[x];
         x++;
     // when the cumulativeProbability is nearly 1, we've calculated

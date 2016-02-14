@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 /*
  * A [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
@@ -16,7 +17,8 @@
  * shuffleInPlace(sample);
  * // sample is shuffled to a value like [2, 1, 4, 3]
  */
-function shuffleInPlace(sample, randomSource) {
+function shuffleInPlace(sample/*:Array<any>*/, randomSource/*:Function*/)/*:Array<any>*/ {
+
 
     // a custom random number source can be provided if you want to use
     // a fixed seed or another random number generator, like

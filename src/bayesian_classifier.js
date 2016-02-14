@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 /**
  * [Bayesian Classifier](http://en.wikipedia.org/wiki/Naive_Bayes_classifier)

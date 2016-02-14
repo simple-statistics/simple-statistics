@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 /**
  * [Simple linear regression](http://en.wikipedia.org/wiki/Simple_linear_regression)
@@ -12,7 +13,7 @@
  * @example
  * linearRegression([[0, 0], [1, 1]]); // { m: 1, b: 0 }
  */
-function linearRegression(data) {
+function linearRegression(data/*: Array<Array<number>> */)/*: { m: number, b: number } */ {
 
     var m, b;
 

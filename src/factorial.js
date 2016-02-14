@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 /**
  * A [Factorial](https://en.wikipedia.org/wiki/Factorial), usually written n!, is the product of all positive
@@ -11,10 +12,10 @@
  * @example
  * console.log(factorial(5)); // 120
  */
-function factorial(n) {
+function factorial(n /*: number */)/*: number */ {
 
     // factorial is mathematically undefined for negative numbers
-    if (n < 0 ) { return null; }
+    if (n < 0) { throw new TypeError('Factorial is undefined for negative numbers'); }
 
     // typically you'll expand the factorial function going down, like
     // 5! = 5 * 4 * 3 * 2 * 1. This is going in the opposite direction,

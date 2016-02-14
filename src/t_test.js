@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 var standardDeviation = require('./standard_deviation');
 var mean = require('./mean');
@@ -20,7 +21,7 @@ var mean = require('./mean');
  * @example
  * tTest([1, 2, 3, 4, 5, 6], 3.385); //= 0.16494154
  */
-function tTest(sample, x) {
+function tTest(sample/*: Array<number> */, x/*: number */)/*: ?number */ {
     // The mean of the sample
     var sampleMean = mean(sample);
 
@@ -30,9 +31,13 @@ function tTest(sample, x) {
     // Square root the length of the sample
     var rootN = Math.sqrt(sample.length);
 
-    // Compute the known value against the sample,
-    // returning the t value
-    return (sampleMean - x) / (sd / rootN);
+    if (typeof sampleMean === 'number' &&
+        typeof sd === 'number' &&
+        typeof rootN === 'number') {
+        // Compute the known value against the sample,
+        // returning the t value
+        return (sampleMean - x) / (sd / rootN);
+    }
 }
 
 module.exports = tTest;

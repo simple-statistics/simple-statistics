@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 var shuffle = require('./shuffle');
 
@@ -18,7 +19,10 @@ var shuffle = require('./shuffle');
  * var values = [1, 2, 4, 5, 6, 7, 8, 9];
  * sample(values, 3); // returns 3 random values, like [2, 5, 8];
  */
-function sample(array, n, randomSource) {
+function sample/*:: <T> */(
+    array /*: Array<T> */,
+    n /*: number */,
+    randomSource /*: Function */) /*: Array<T> */ {
     // shuffle the original array using a fisher-yates shuffle
     var shuffled = shuffle(array, randomSource);
 

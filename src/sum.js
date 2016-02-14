@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 /**
  * The [sum](https://en.wikipedia.org/wiki/Summation) of an array
@@ -11,7 +12,7 @@
  * @example
  * console.log(sum([1, 2, 3])); // 6
  */
-function sum(x) {
+function sum(x/*: Array<number> */)/*: number */ {
     var value = 0;
     for (var i = 0; i < x.length; i++) {
         value += x[i];

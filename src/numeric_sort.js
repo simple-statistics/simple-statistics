@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 /**
  * Sort an array of numbers by their numeric value, ensuring that the
@@ -17,7 +18,7 @@
  * @example
  * numericSort([3, 2, 1]) // [1, 2, 3]
  */
-function numericSort(array) {
+function numericSort(array /*: Array<number> */) /*: Array<number> */ {
     return array
         // ensure the array is changed in-place
         .slice()

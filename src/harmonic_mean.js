@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 /**
  * The [Harmonic Mean](https://en.wikipedia.org/wiki/Harmonic_mean) is
@@ -16,15 +17,15 @@
  * @example
  * ss.harmonicMean([2, 3]) //= 2.4
  */
-function harmonicMean(x) {
+function harmonicMean(x /*: Array<number> */) {
     // The mean of no numbers is null
-    if (x.length === 0) { return null; }
+    if (x.length === 0) { return undefined; }
 
     var reciprocalSum = 0;
 
     for (var i = 0; i < x.length; i++) {
         // the harmonic mean is only valid for positive numbers
-        if (x[i] <= 0) { return null; }
+        if (x[i] <= 0) { return undefined; }
 
         reciprocalSum += 1 / x[i];
     }

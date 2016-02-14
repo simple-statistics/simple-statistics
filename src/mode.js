@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 var numericSort = require('./numeric_sort');
 
@@ -17,7 +18,7 @@ var numericSort = require('./numeric_sort');
  * @example
  * mode([0, 0, 1]); //= 0
  */
-function mode(x) {
+function mode(x /*: Array<number> */) {
 
     // Handle edge cases:
     // The median of an empty list is null

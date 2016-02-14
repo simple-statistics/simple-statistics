@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 /**
  * This is the internal implementation of quantiles: when you know
@@ -14,10 +15,10 @@
  * quantileSorted(data, 0); //= min(data);
  * quantileSorted(data, 0.5); //= 9
  */
-function quantileSorted(sample, p) {
+function quantileSorted(sample /*: Array<number> */, p /*: number */) {
     var idx = sample.length * p;
     if (p < 0 || p > 1) {
-        return null;
+        return undefined;
     } else if (p === 1) {
         // If p is 1, directly return the last element
         return sample[sample.length - 1];

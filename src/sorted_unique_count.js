@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 /**
  * For a sorted input, counting the number of unique values
@@ -14,7 +15,7 @@
  * sortedUniqueCount([1, 2, 3]); // 3
  * sortedUniqueCount([1, 1, 1]); // 1
  */
-function sortedUniqueCount(input) {
+function sortedUniqueCount(input/*: Array<any>*/)/*: number */ {
     var uniqueValueCount = 0,
         lastSeenValue;
     for (var i = 0; i < input.length; i++) {
