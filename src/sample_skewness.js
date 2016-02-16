@@ -32,10 +32,6 @@ function sampleSkewness(x /*: Array<number> */)/*:number*/ {
         cubedS = Math.pow(theSampleStandardDeviation, 3),
         sumCubedDeviations = sumNthPowerDeviations(x, 3);
 
-    if (isNaN(sumCubedDeviations)) {
-        return NaN;
-    }
-
     return n * sumCubedDeviations / ((n - 1) * (n - 2) * cubedS);
 }
 

@@ -19,12 +19,12 @@ var max = require('./max'),
  */
 function equalIntervalBreaks(data/*: Array<number> */, nClasses/*:number*/)/*: Array<number> */ {
 
+    if (data.length <= 1) {
+        return data;
+    }
+
     var theMin = min(data),
         theMax = max(data); 
-
-    if (typeof theMin !== 'number' || typeof theMax !== 'number') {
-        return [];
-    }
 
     // the first break will always be the minimum value
     // in the dataset
