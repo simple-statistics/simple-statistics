@@ -10,7 +10,6 @@
   "dependencies": {},
   "devDependencies": {
     "browserify": "^11.0.1",
-    "brtapsauce": "^1.0.0",
     "bundle-collapser": "^1.2.1",
     "eslint": "^1.5.1",
     "exorcist": "^0.4.0",
@@ -22,7 +21,6 @@
   },
   "scripts": {
     "test": "flow check src && eslint --no-eslintrc -c .eslintrc index.js src/*.js test/*.js && tap --coverage test/*.js",
-    "test-local": "brtapsauce-local scripts/required_test.js",
     "test-sauce": "node scripts/browser_test.js",
     "build": "npm run bundle && npm run minify",
     "bundle": "browserify -p bundle-collapser/plugin -s ss index.js --debug | exorcist dist/simple_statistics.js.map > dist/simple_statistics.js",
