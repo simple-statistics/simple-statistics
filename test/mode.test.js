@@ -36,5 +36,11 @@ test('mode', function(t) {
         t.equal(ss.mode([1, 2, 2]), 2);
         t.end();
     });
+
+    t.test('mode sorted', function(t) {
+        t.equal(ss.modeSorted([1, 2, 2]), 2);
+        t.end();
+    });
+
     t.end();
 });

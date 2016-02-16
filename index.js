@@ -12,6 +12,7 @@ ss.linearRegressionLine = require('./src/linear_regression_line');
 ss.standardDeviation = require('./src/standard_deviation');
 ss.rSquared = require('./src/r_squared');
 ss.mode = require('./src/mode');
+ss.modeSorted = require('./src/mode_sorted');
 ss.min = require('./src/min');
 ss.max = require('./src/max');
 ss.sum = require('./src/sum');
@@ -40,6 +41,7 @@ ss.geometricMean = require('./src/geometric_mean');
 ss.harmonicMean = require('./src/harmonic_mean');
 ss.mean = ss.average = require('./src/mean');
 ss.median = require('./src/median');
+ss.medianSorted = require('./src/median_sorted');
 
 ss.rootMeanSquare = ss.rms = require('./src/root_mean_square');
 ss.variance = require('./src/variance');
