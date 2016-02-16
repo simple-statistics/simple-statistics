@@ -19,7 +19,7 @@ var binomialDistribution = require('./binomial_distribution');
  */
 function bernoulliDistribution(p/*: number */) {
     // Check that `p` is a valid probability (0 ≤ p ≤ 1)
-    if (p < 0 || p > 1 ) { return undefined; }
+    if (p < 0 || p > 1 ) { return NaN; }
 
     return binomialDistribution(1, p);
 }

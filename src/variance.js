@@ -16,9 +16,9 @@ var sumNthPowerDeviations = require('./sum_nth_power_deviations');
  * @example
  * ss.variance([1, 2, 3, 4, 5, 6]); //= 2.917
  */
-function variance(x/*: Array<number> */) {
+function variance(x/*: Array<number> */)/*:number*/ {
     // The variance of no numbers is null
-    if (x.length === 0) { return undefined; }
+    if (x.length === 0) { return NaN; }
 
     // Find the mean of squared deviations between the
     // mean value and each value.

@@ -29,12 +29,12 @@ test('sample variance', function(t) {
     });
 
     t.test('the sample variance of one number is null', function(t) {
-        t.equal(ss.sampleVariance([1]), null);
+        t.ok(isNaN(ss.sampleVariance([1])));
         t.end();
     });
 
     t.test('the sample variance of no numbers is null', function(t) {
-        t.equal(ss.sampleVariance([]), null);
+        t.ok(isNaN(ss.sampleVariance([])));
         t.end();
     });
     t.end();

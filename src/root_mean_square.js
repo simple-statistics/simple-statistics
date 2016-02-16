@@ -14,8 +14,8 @@
  * @example
  * rootMeanSquare([-1, 1, -1, 1]); //= 1
  */
-function rootMeanSquare(x /*: Array<number> */) {
-    if (x.length === 0) { return undefined; }
+function rootMeanSquare(x /*: Array<number> */)/*:number*/ {
+    if (x.length === 0) { return NaN; }
 
     var sumOfSquares = 0;
     for (var i = 0; i < x.length; i++) {

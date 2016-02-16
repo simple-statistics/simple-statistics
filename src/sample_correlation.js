@@ -16,14 +16,10 @@ var sampleStandardDeviation = require('./sample_standard_deviation');
  * var b = [2, 2, 3, 4, 5, 60];
  * sampleCorrelation(a, b); //= 0.691
  */
-function sampleCorrelation(x/*: Array<number> */, y/*: Array<number> */) {
+function sampleCorrelation(x/*: Array<number> */, y/*: Array<number> */)/*:number*/ {
     var cov = sampleCovariance(x, y),
         xstd = sampleStandardDeviation(x),
         ystd = sampleStandardDeviation(y);
-
-    if (cov === undefined || xstd === undefined || ystd === undefined) {
-        return undefined;
-    }
 
     return cov / xstd / ystd;
 }

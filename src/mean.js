@@ -16,9 +16,9 @@ var sum = require('./sum');
  * @example
  * console.log(mean([0, 10])); // 5
  */
-function mean(x /*: Array<number> */) {
+function mean(x /*: Array<number> */)/*:number*/ {
     // The mean of no numbers is null
-    if (x.length === 0) { return undefined; }
+    if (x.length === 0) { return NaN; }
 
     return sum(x) / x.length;
 }

@@ -15,7 +15,7 @@
 function factorial(n /*: number */)/*: number */ {
 
     // factorial is mathematically undefined for negative numbers
-    if (n < 0) { throw new TypeError('Factorial is undefined for negative numbers'); }
+    if (n < 0) { return NaN; }
 
     // typically you'll expand the factorial function going down, like
     // 5! = 5 * 4 * 3 * 2 * 1. This is going in the opposite direction,

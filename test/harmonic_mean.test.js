@@ -17,13 +17,13 @@ test('harmonicMean', function(t) {
         t.end();
     });
 
-    t.test('returns null for empty lists', function(t) {
-        t.equal(ss.harmonicMean([]), null);
+    t.test('returns NaN for empty lists', function(t) {
+        t.ok(isNaN(ss.harmonicMean([])));
         t.end();
     });
 
-    t.test('returns null for lists with negative numbers', function(t) {
-        t.equal(ss.harmonicMean([-1]), null);
+    t.test('returns NaN for lists with negative numbers', function(t) {
+        t.ok(isNaN(ss.harmonicMean([-1])));
         t.end();
     });
     t.end();

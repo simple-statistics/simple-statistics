@@ -30,7 +30,7 @@ test('sample covariance', function(t) {
     });
 
     t.test('zero-length corner case', function(t) {
-        t.equal(rnd(ss.sampleCovariance([], [])), 0);
+        t.ok(isNaN(ss.sampleCovariance([], [])));
         t.end();
     });
     t.end();

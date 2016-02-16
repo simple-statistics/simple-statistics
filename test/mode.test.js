@@ -28,7 +28,7 @@ test('mode', function(t) {
     });
 
     t.test('the mode of an empty array is null', function(t) {
-        t.equal(ss.mode([]), null);
+        t.ok(isNaN(ss.mode([])));
         t.end();
     });
 

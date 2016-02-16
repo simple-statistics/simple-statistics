@@ -23,10 +23,10 @@ function chunk(sample/*:Array<any>*/, chunkSize/*:number*/)/*:?Array<Array<any>>
 
     // `chunkSize` must be zero or higher - otherwise the loop below,
     // in which we call `start += chunkSize`, will loop infinitely.
-    // So, we'll detect and return null in that case to indicate
+    // So, we'll detect and throw in that case to indicate
     // invalid input.
     if (chunkSize <= 0) {
-        return undefined;
+        throw new Error('chunk size must be a positive integer');
     }
 
     // `start` is the index at which `.slice` will start selecting

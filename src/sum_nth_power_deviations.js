@@ -17,13 +17,9 @@ var mean = require('./mean');
  * // deviations, we can calculate that with sumNthPowerDeviations:
  * var variance = sumNthPowerDeviations(input) / input.length;
  */
-function sumNthPowerDeviations(x/*: Array<number> */, n/*: number */)/*: number */ {
+function sumNthPowerDeviations(x/*: Array<number> */, n/*: number */)/*:number*/ {
     var meanValue = mean(x),
         sum = 0;
-
-    if (meanValue === undefined) {
-        return 0;
-    }
 
     for (var i = 0; i < x.length; i++) {
         sum += Math.pow(x[i] - meanValue, n);

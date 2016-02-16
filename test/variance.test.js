@@ -19,8 +19,8 @@ test('variance', function(t) {
         t.end();
     });
 
-    t.test('the variance of no numbers is null', function(t) {
-        t.equal(ss.variance([]), null);
+    t.test('the variance of no numbers is NaN', function(t) {
+        t.ok(isNaN(ss.variance([])));
         t.end();
     });
     t.end();

@@ -15,10 +15,10 @@
  * quantileSorted(data, 0); //= min(data);
  * quantileSorted(data, 0.5); //= 9
  */
-function quantileSorted(sample /*: Array<number> */, p /*: number */) {
+function quantileSorted(sample /*: Array<number> */, p /*: number */)/*:number*/ {
     var idx = sample.length * p;
     if (p < 0 || p > 1) {
-        return undefined;
+        return NaN;
     } else if (p === 1) {
         // If p is 1, directly return the last element
         return sample[sample.length - 1];

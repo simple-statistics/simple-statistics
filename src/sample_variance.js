@@ -19,9 +19,9 @@ var sumNthPowerDeviations = require('./sum_nth_power_deviations');
  * @example
  * sampleVariance([1, 2, 3, 4, 5]); //= 2.5
  */
-function sampleVariance(x /*: Array<number> */) {
+function sampleVariance(x /*: Array<number> */)/*:number*/ {
     // The variance of no numbers is null
-    if (x.length <= 1) { return undefined; }
+    if (x.length <= 1) { return NaN; }
 
     var sumSquaredDeviationsValue = sumNthPowerDeviations(x, 2);
 

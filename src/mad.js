@@ -18,10 +18,6 @@ function mad(x /*: Array<number> */) {
     var medianValue = median(x),
         medianAbsoluteDeviations = [];
 
-    if (medianValue === undefined) {
-        return medianValue;
-    }
-
     // Make a list of absolute deviations from the median
     for (var i = 0; i < x.length; i++) {
         medianAbsoluteDeviations.push(Math.abs(x[i] - medianValue));

@@ -13,10 +13,10 @@ var sampleVariance = require('./sample_variance');
  * ss.sampleStandardDeviation([2, 4, 4, 4, 5, 5, 7, 9]);
  * //= 2.138
  */
-function sampleStandardDeviation(x /*: Array<number> */) {
+function sampleStandardDeviation(x/*:Array<number>*/)/*:number*/ {
     // The standard deviation of no numbers is null
     var sampleVarianceX = sampleVariance(x);
-    if (sampleVarianceX === undefined) { return undefined; }
+    if (isNaN(sampleVarianceX)) { return NaN; }
     return Math.sqrt(sampleVarianceX);
 }
 

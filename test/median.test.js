@@ -21,7 +21,7 @@ test('median', function(t) {
     });
 
     t.test('gives null for the median of an empty list', function(t) {
-        t.equal(ss.median([]), null);
+        t.ok(isNaN(ss.median([])));
         t.end();
     });
 

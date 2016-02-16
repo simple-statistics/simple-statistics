@@ -9,14 +9,17 @@
  * @example
  * min([1, 5, -10, 100, 2]); // -100
  */
-function min(x /*: Array<number> */) {
+function min(x /*: Array<number> */)/*:number*/ {
     var value;
     for (var i = 0; i < x.length; i++) {
         // On the first iteration of this loop, min is
-        // undefined and is thus made the minimum element in the array
+        // NaN and is thus made the minimum element in the array
         if (value === undefined || x[i] < value) {
             value = x[i];
         }
+    }
+    if (value === undefined) {
+        return NaN;
     }
     return value;
 }

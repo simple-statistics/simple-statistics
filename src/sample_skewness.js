@@ -20,20 +20,20 @@ var sampleStandardDeviation = require('./sample_standard_deviation');
  * var data = [2, 4, 6, 3, 1];
  * sampleSkewness(data); //= 0.5901286564
  */
-function sampleSkewness(x /*: Array<number> */) {
+function sampleSkewness(x /*: Array<number> */)/*:number*/ {
     // The skewness of less than three arguments is null
     var theSampleStandardDeviation = sampleStandardDeviation(x);
 
-    if (theSampleStandardDeviation === undefined || x.length < 3) {
-        return undefined;
+    if (isNaN(theSampleStandardDeviation) || x.length < 3) {
+        return NaN;
     }
 
     var n = x.length,
         cubedS = Math.pow(theSampleStandardDeviation, 3),
         sumCubedDeviations = sumNthPowerDeviations(x, 3);
 
-    if (typeof sumCubedDeviations !== 'number') {
-        return undefined;
+    if (isNaN(sumCubedDeviations)) {
+        return NaN;
     }
 
     return n * sumCubedDeviations / ((n - 1) * (n - 2) * cubedS);

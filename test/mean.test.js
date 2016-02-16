@@ -14,7 +14,7 @@ test('mean', function(t) {
         t.end();
     });
     t.test('an empty list has no average', function(t) {
-        t.equal(ss.mean([]), null);
+        t.ok(isNaN(ss.mean([])));
         t.end();
     });
     t.end();
