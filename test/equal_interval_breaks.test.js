@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 'use strict';
 
-var test = require('tape');
+var test = require('tap').test;
 var equalIntervalBreaks = require('../src/equal_interval_breaks');
 
 test('equalIntervalBreaks', function(t) {

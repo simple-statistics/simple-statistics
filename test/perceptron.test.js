@@ -2,7 +2,7 @@
 'use strict';
 
 var PerceptronModel = require('../src/perceptron');
-var test = require('tape');
+var test = require('tap').test;
 
 test('perceptron', function(t) {
     t.test('initializes to zeros if label is zero', function(t) {

@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 'use strict';
 
-var test = require('tape');
+var test = require('tap').test;
 var sortedUniqueCount = require('../src/sorted_unique_count');
 
 test('sortedUniqueCount', function(t) {

@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 'use strict';
 
-var test = require('tape');
+var test = require('tap').test;
 var ss = require('../');
 
 // Data from Poisson goodness-of-fit example 10-19 in William W. Hines & Douglas C. Montgomery,

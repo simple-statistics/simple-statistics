@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 'use strict';
 
-var test = require('tape');
+var test = require('tap').test;
 var Random = require('random-js');
 var random = new Random(Random.engines.mt19937().seed(0));
 var ss = require('../');
