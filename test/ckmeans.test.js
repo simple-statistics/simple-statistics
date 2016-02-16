@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 'use strict';
 
-var test = require('tape');
+var test = require('tap').test;
 var cK = require('../src/ckmeans');
 
 test('C k-means', function(t) {

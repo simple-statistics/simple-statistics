@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 var sum = require('./sum');
 
@@ -15,9 +16,9 @@ var sum = require('./sum');
  * @example
  * console.log(mean([0, 10])); // 5
  */
-function mean(x) {
+function mean(x /*: Array<number> */)/*:number*/ {
     // The mean of no numbers is null
-    if (x.length === 0) { return null; }
+    if (x.length === 0) { return NaN; }
 
     return sum(x) / x.length;
 }

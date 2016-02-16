@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 var sumNthPowerDeviations = require('./sum_nth_power_deviations');
 var sampleStandardDeviation = require('./sample_standard_deviation');
@@ -19,12 +20,16 @@ var sampleStandardDeviation = require('./sample_standard_deviation');
  * var data = [2, 4, 6, 3, 1];
  * sampleSkewness(data); //= 0.5901286564
  */
-function sampleSkewness(x) {
+function sampleSkewness(x /*: Array<number> */)/*:number*/ {
     // The skewness of less than three arguments is null
-    if (x.length < 3) { return null; }
+    var theSampleStandardDeviation = sampleStandardDeviation(x);
+
+    if (isNaN(theSampleStandardDeviation) || x.length < 3) {
+        return NaN;
+    }
 
     var n = x.length,
-        cubedS = Math.pow(sampleStandardDeviation(x), 3),
+        cubedS = Math.pow(theSampleStandardDeviation, 3),
         sumCubedDeviations = sumNthPowerDeviations(x, 3);
 
     return n * sumCubedDeviations / ((n - 1) * (n - 2) * cubedS);

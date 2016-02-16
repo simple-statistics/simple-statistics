@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 'use strict';
 
-var test = require('tape');
+var test = require('tap').test;
 var ss = require('../');
 
 test('chunks', function(t) {
@@ -13,8 +13,9 @@ test('chunks', function(t) {
         t.deepEqual(ss.chunk([1, 2, 3, 4], 3), [[1, 2, 3], [4]]);
         t.deepEqual(ss.chunk([1, 2, 3, 4, 5, 6, 7], 2), [[1, 2], [3, 4], [5, 6], [7]]);
         t.deepEqual(ss.chunk([], 2), []);
-        t.deepEqual(ss.chunk([], 0), null);
-        t.deepEqual(ss.chunk([1, 2], 0), null);
+        t.throws(function() {
+            ss.chunk([1, 2], 0);
+        }, 'Throws with zero chunk size');
         t.end();
     });
     t.end();

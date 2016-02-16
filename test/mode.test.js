@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 'use strict';
 
-var test = require('tape');
+var test = require('tap').test;
 var ss = require('../');
 
 test('mode', function(t) {
@@ -28,7 +28,7 @@ test('mode', function(t) {
     });
 
     t.test('the mode of an empty array is null', function(t) {
-        t.equal(ss.mode([]), null);
+        t.ok(isNaN(ss.mode([])));
         t.end();
     });
 

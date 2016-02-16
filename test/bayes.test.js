@@ -2,7 +2,7 @@
 'use strict';
 
 var BayesianClassifier = require('../src/bayesian_classifier');
-var test = require('tape');
+var test = require('tap').test;
 
 test('BayesianClassifier', function(t) {
     t.test('makes an easy call with one training round', function(t) {

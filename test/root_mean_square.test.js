@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 'use strict';
 
-var test = require('tape');
+var test = require('tap').test;
 var ss = require('../');
 
 function rnd(x) {
@@ -18,7 +18,7 @@ test('root_mean_square', function(t) {
     });
 
     t.test('returns null for empty lists', function(t) {
-        t.equal(ss.rootMeanSquare([]), null);
+        t.ok(isNaN(ss.rootMeanSquare([])));
         t.end();
     });
 

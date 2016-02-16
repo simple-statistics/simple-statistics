@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 var numericSort = require('./numeric_sort');
 
@@ -19,9 +20,9 @@ var numericSort = require('./numeric_sort');
  * var incomes = [10, 2, 5, 100, 2, 1];
  * median(incomes); //= 3.5
  */
-function median(x) {
-    // The median of an empty list is null
-    if (x.length === 0) { return null; }
+function median(x /*: Array<number> */)/*:number*/ {
+    // The median of an empty list is NaN
+    if (x.length === 0) { return NaN; }
 
     // Sorting the array makes it easy to find the center, but
     // use `.slice()` to ensure the original array `x` is not modified

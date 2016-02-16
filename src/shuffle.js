@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 var shuffleInPlace = require('./shuffle_in_place');
 
@@ -15,7 +16,7 @@ var shuffleInPlace = require('./shuffle_in_place');
  * var shuffled = shuffle([1, 2, 3, 4]);
  * shuffled; // = [2, 3, 1, 4] or any other random permutation
  */
-function shuffle(sample, randomSource) {
+function shuffle/*::<T>*/(sample/*:Array<T>*/, randomSource/*:Function*/) {
     // slice the original array so that it is not modified
     sample = sample.slice();
 

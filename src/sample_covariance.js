@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 var mean = require('./mean');
 
@@ -15,11 +16,11 @@ var mean = require('./mean');
  * var y = [6, 5, 4, 3, 2, 1];
  * sampleCovariance(x, y); //= -3.5
  */
-function sampleCovariance(x, y) {
+function sampleCovariance(x /*:Array<number>*/, y /*:Array<number>*/)/*:number*/ {
 
     // The two datasets must have the same length which must be more than 1
     if (x.length <= 1 || x.length !== y.length) {
-        return null;
+        return NaN;
     }
 
     // determine the mean of each dataset so that we can judge each

@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 var quantile = require('./quantile');
 
@@ -14,13 +15,15 @@ var quantile = require('./quantile');
  * @example
  * interquartileRange([0, 1, 2, 3]); //= 2
  */
-function interquartileRange(sample) {
-    // We can't derive quantiles from an empty list
-    if (sample.length === 0) { return null; }
-
+function interquartileRange(sample/*: Array<number> */) {
     // Interquartile range is the span between the upper quartile,
     // at `0.75`, and lower quartile, `0.25`
-    return quantile(sample, 0.75) - quantile(sample, 0.25);
+    var q1 = quantile(sample, 0.75),
+        q2 = quantile(sample, 0.25);
+
+    if (typeof q1 === 'number' && typeof q2 === 'number') {
+        return q1 - q2;
+    }
 }
 
 module.exports = interquartileRange;

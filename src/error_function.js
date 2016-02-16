@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 /**
  * **[Gaussian error function](http://en.wikipedia.org/wiki/Error_function)**
@@ -13,7 +14,7 @@
  * @example
  * errorFunction(1); //= 0.8427
  */
-function errorFunction(x) {
+function errorFunction(x/*: number */)/*: number */ {
     var t = 1 / (1 + 0.5 * Math.abs(x));
     var tau = t * Math.exp(-Math.pow(x, 2) -
         1.26551223 +

@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 'use strict';
 
-var test = require('tape');
+var test = require('tap').test;
 var ss = require('../');
 
 function rnd(x) {
@@ -24,7 +24,7 @@ test('sample correlation', function(t) {
     });
 
     t.test('zero-length corner case', function(t) {
-        t.equal(rnd(ss.sampleCorrelation([], [])), 0);
+        t.ok(isNaN(ss.sampleCorrelation([], [])));
         t.end();
     });
 

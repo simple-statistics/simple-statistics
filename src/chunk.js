@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 /**
  * Split an array into chunks of a specified size. This function
@@ -15,17 +16,17 @@
  * @example
  * console.log(chunk([1, 2, 3, 4], 2)); // [[1, 2], [3, 4]]
  */
-function chunk(sample, chunkSize) {
+function chunk(sample/*:Array<any>*/, chunkSize/*:number*/)/*:?Array<Array<any>>*/ {
 
     // a list of result chunks, as arrays in an array
     var output = [];
 
     // `chunkSize` must be zero or higher - otherwise the loop below,
     // in which we call `start += chunkSize`, will loop infinitely.
-    // So, we'll detect and return null in that case to indicate
+    // So, we'll detect and throw in that case to indicate
     // invalid input.
     if (chunkSize <= 0) {
-        return null;
+        throw new Error('chunk size must be a positive integer');
     }
 
     // `start` is the index at which `.slice` will start selecting

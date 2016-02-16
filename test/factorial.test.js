@@ -1,12 +1,12 @@
 /* eslint no-shadow: 0 */
 'use strict';
 
-var test = require('tape');
+var test = require('tap').test;
 var ss = require('../');
 
 test('factorial', function(t) {
-    t.test('can return null given a negative number', function(t) {
-        t.equal(null, ss.factorial(-1));
+    t.test('can return NaN given a negative number', function(t) {
+        t.ok(isNaN(ss.factorial(-1)));
         t.end();
     });
     t.test('can calculate 0! = 1', function(t) {

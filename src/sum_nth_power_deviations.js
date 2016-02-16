@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 var mean = require('./mean');
 
@@ -16,7 +17,7 @@ var mean = require('./mean');
  * // deviations, we can calculate that with sumNthPowerDeviations:
  * var variance = sumNthPowerDeviations(input) / input.length;
  */
-function sumNthPowerDeviations(x, n) {
+function sumNthPowerDeviations(x/*: Array<number> */, n/*: number */)/*:number*/ {
     var meanValue = mean(x),
         sum = 0;
 

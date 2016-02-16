@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 var epsilon = require('./epsilon');
 var factorial = require('./factorial');
@@ -16,9 +17,9 @@ var factorial = require('./factorial');
  * @param {number} lambda location poisson distribution
  * @returns {number} value of poisson distribution at that point
  */
-function poissonDistribution(lambda) {
+function poissonDistribution(lambda/*: number */) {
     // Check that lambda is strictly positive
-    if (lambda <= 0) { return null; }
+    if (lambda <= 0) { return undefined; }
 
     // our current place in the distribution
     var x = 0,

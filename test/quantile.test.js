@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 'use strict';
 
-var test = require('tape');
+var test = require('tap').test;
 var ss = require('../');
 
 test('quantile', function(t) {
@@ -31,8 +31,8 @@ test('quantile', function(t) {
         t.end();
     });
 
-    t.test('a zero-length list produces null', function(t) {
-        t.equal(ss.quantile([], 0.5), null);
+    t.test('a zero-length list produces NaN', function(t) {
+        t.ok(isNaN(ss.quantile([], 0.5)));
         t.end();
     });
 
@@ -41,9 +41,9 @@ test('quantile', function(t) {
         t.end();
     });
 
-    t.test('bad bounds produce null', function(t) {
-        t.equal(ss.quantile([1, 2, 3], 1.1), null);
-        t.equal(ss.quantile([1, 2, 3], -0.5), null);
+    t.test('bad bounds produce NaN', function(t) {
+        t.ok(isNaN(ss.quantile([1, 2, 3], 1.1)));
+        t.ok(isNaN(ss.quantile([1, 2, 3], -0.5)));
         t.end();
     });
 

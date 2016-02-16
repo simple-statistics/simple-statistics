@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 'use strict';
 
-var test = require('tape');
+var test = require('tap').test;
 var ss = require('../');
 
 test('median absolute deviation (mad)', function(t) {
@@ -22,7 +22,7 @@ test('median absolute deviation (mad)', function(t) {
     });
 
     t.test('zero-length corner case', function(t) {
-        t.equal(ss.mad([]), null);
+        t.ok(isNaN(ss.mad([])));
         t.end();
     });
     t.end();

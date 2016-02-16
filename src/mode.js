@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 var numericSort = require('./numeric_sort');
 
@@ -17,11 +18,11 @@ var numericSort = require('./numeric_sort');
  * @example
  * mode([0, 0, 1]); //= 0
  */
-function mode(x) {
+function mode(x /*: Array<number> */)/*:number*/ {
 
     // Handle edge cases:
-    // The median of an empty list is null
-    if (x.length === 0) { return null; }
+    // The median of an empty list is NaN
+    if (x.length === 0) { return NaN; }
     else if (x.length === 1) { return x[0]; }
 
     // Sorting the array lets us iterate through it below and be sure
@@ -34,7 +35,7 @@ function mode(x) {
     // array.
     var last = sorted[0],
         // store the mode as we find new modes
-        value,
+        value = NaN,
         // store how many times we've seen the mode
         maxSeen = 0,
         // how many times the current candidate for the mode

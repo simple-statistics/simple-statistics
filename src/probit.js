@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 var epsilon = require('./epsilon');
 var inverseErrorFunction = require('./inverse_error_function');
@@ -16,7 +17,7 @@ var inverseErrorFunction = require('./inverse_error_function');
  * @param {number} p
  * @returns {number} probit
  */
-function probit(p) {
+function probit(p /*: number */)/*: number */ {
     if (p === 0) {
         p = epsilon;
     } else if (p >= 1) {

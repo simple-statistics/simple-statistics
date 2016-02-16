@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 'use strict';
 
-var test = require('tape');
+var test = require('tap').test;
 var ss = require('../');
 
 function rnd(n) {
@@ -31,9 +31,9 @@ test('poissonDistribution', function(t) {
         t.equal(rnd(ss.poissonDistribution(9.5)[17]), 0.0088, ss.epsilon);
         t.end();
     });
-    t.test('can return null when lambda <= 0', function(t) {
-        t.equal(null, ss.poissonDistribution(0));
-        t.equal(null, ss.poissonDistribution(-10));
+    t.test('can return undefined when lambda <= 0', function(t) {
+        t.equal(undefined, ss.poissonDistribution(0));
+        t.equal(undefined, ss.poissonDistribution(-10));
         t.end();
     });
     t.end();

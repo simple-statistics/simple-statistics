@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 var quantileSorted = require('./quantile_sorted');
 var numericSort = require('./numeric_sort');
@@ -27,16 +28,12 @@ var numericSort = require('./numeric_sort');
  * quantile(data, 0); //= min(data);
  * quantile(data, 0.5); //= 9
  */
-function quantile(sample, p) {
-
-    // We can't derive quantiles from an empty list
-    if (sample.length === 0) { return null; }
-
+function quantile(sample /*: Array<number> */, p /*: Array<number> | number */) {
     // Sort a copy of the array. We'll need a sorted array to index
     // the values in sorted order.
     var sorted = numericSort(sample);
 
-    if (p.length) {
+    if (Array.isArray(p)) {
         // Initialize the result array
         var results = [];
         // For each requested quantile

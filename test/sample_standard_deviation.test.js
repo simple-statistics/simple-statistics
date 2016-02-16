@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 'use strict';
 
-var test = require('tape');
+var test = require('tap').test;
 var ss = require('../');
 
 function rnd(x) {
@@ -15,7 +15,7 @@ test('sampleStandardDeviation', function(t) {
     });
 
     t.test('zero-length corner case', function(t) {
-        t.equal(rnd(ss.sampleStandardDeviation([])), 0);
+        t.ok(isNaN(ss.sampleStandardDeviation([])));
         t.end();
     });
     t.end();

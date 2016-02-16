@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 'use strict';
 
-var test = require('tape');
+var test = require('tap').test;
 var ss = require('../');
 
 function rnd(n) {
@@ -24,10 +24,10 @@ test('binomialDistribution', function(t) {
     });
 
     t.test('can return null when p or n are not valid parameters', function(t) {
-        t.equal(null, ss.binomialDistribution(0, 0.5), 'n should be strictly positive');
-        t.equal(null, ss.binomialDistribution(1.5, 0.5), 'n should be an integer');
-        t.equal(null, ss.binomialDistribution(2, -0.01), 'p should be greater than 0.0');
-        t.equal(null, ss.binomialDistribution(2, 1.5), 'p should be less than 1.0');
+        t.equal(ss.binomialDistribution(0, 0.5), undefined, 'n should be strictly positive');
+        t.equal(ss.binomialDistribution(1.5, 0.5), undefined, 'n should be an integer');
+        t.equal(ss.binomialDistribution(2, -0.01), undefined, 'p should be greater than 0.0');
+        t.equal(ss.binomialDistribution(2, 1.5), undefined, 'p should be less than 1.0');
         t.end();
     });
     t.end();

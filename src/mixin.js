@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 /**
  * **Mixin** simple_statistics to a single Array instance if provided
@@ -18,7 +19,7 @@
  * mixin(ss, myNumbers);
  * console.log(myNumbers.sum()); // 6
  */
-function mixin(ss, array) {
+function mixin(ss /*: Object */, array /*: ?Array<any> */)/*: any */ {
     var support = !!(Object.defineProperty && Object.defineProperties);
     // Coverage testing will never test this error.
     /* istanbul ignore next */

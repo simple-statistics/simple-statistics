@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 /**
  * This is a single-layer [Perceptron Classifier](http://en.wikipedia.org/wiki/Perceptron) that takes

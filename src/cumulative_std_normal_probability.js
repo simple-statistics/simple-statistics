@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 var standardNormalTable = require('./standard_normal_table');
 
@@ -16,7 +17,7 @@ var standardNormalTable = require('./standard_normal_table');
  * @param {number} z
  * @returns {number} cumulative standard normal probability
  */
-function cumulativeStdNormalProbability(z) {
+function cumulativeStdNormalProbability(z /*:number */)/*:number */ {
 
     // Calculate the position of this value.
     var absZ = Math.abs(z),

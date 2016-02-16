@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 var SQRT_2PI = Math.sqrt(2 * Math.PI);
 
@@ -27,7 +28,7 @@ function cumulativeDistribution(z) {
  * The table used is the cumulative, and not cumulative from 0 to mean
  * (even though the latter has 5 digits precision, instead of 4).
  */
-var standardNormalTable = [];
+var standardNormalTable/*: Array<number> */ = [];
 
 for (var z = 0; z <= 3.09; z += 0.01) {
     standardNormalTable.push(cumulativeDistribution(z));

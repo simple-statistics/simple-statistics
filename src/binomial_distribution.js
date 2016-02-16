@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 var epsilon = require('./epsilon');
 var factorial = require('./factorial');
@@ -11,14 +12,16 @@ var factorial = require('./factorial');
  *
  * @param {number} trials number of trials to simulate
  * @param {number} probability
- * @returns {number} output
+ * @returns {Object} output
  */
-function binomialDistribution(trials, probability) {
+function binomialDistribution(
+    trials/*: number */,
+    probability/*: number */)/*: ?Object */ {
     // Check that `p` is a valid probability (0 ≤ p ≤ 1),
     // that `n` is an integer, strictly positive.
     if (probability < 0 || probability > 1 ||
         trials <= 0 || trials % 1 !== 0) {
-        return null;
+        return undefined;
     }
 
     // We initialize `x`, the random variable, and `accumulator`, an accumulator

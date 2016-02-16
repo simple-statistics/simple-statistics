@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 var mean = require('./mean');
 var chiSquaredDistributionTable = require('./chi_squared_distribution_table');
@@ -30,7 +31,10 @@ var chiSquaredDistributionTable = require('./chi_squared_distribution_table');
  * ];
  * ss.chiSquaredGoodnessOfFit(data1019, ss.poissonDistribution, 0.05)); //= false
  */
-function chiSquaredGoodnessOfFit(data, distributionType, significance) {
+function chiSquaredGoodnessOfFit(
+    data/*: Array<number> */,
+    distributionType/*: Function */,
+    significance/*: number */)/*: boolean */ {
     // Estimate from the sample data, a weighted mean.
     var inputMean = mean(data),
         // Calculated value of the χ2 statistic.
@@ -70,7 +74,7 @@ function chiSquaredGoodnessOfFit(data, distributionType, significance) {
     // sample size and hypothesized distribution.
     for (k in hypothesizedDistribution) {
         if (k in observedFrequencies) {
-            expectedFrequencies[k] = hypothesizedDistribution[k] * data.length;
+            expectedFrequencies[+k] = hypothesizedDistribution[k] * data.length;
         }
     }
 

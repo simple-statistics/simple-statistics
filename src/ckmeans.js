@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 var sortedUniqueCount = require('./sorted_unique_count'),
     numericSort = require('./numeric_sort');
@@ -63,7 +64,7 @@ function makeMatrix(columns, rows) {
  * // The input, clustered into groups of similar numbers.
  * //= [[-1, -1, -1, -1], [2, 2, 2], [4, 5, 6]]);
  */
-function ckmeans(data, nClusters) {
+function ckmeans(data/*: Array<number> */, nClusters/*: number */)/*: Array<Array<number>> */ {
 
     if (nClusters > data.length) {
         throw new Error('Cannot generate more classes than there are data values');

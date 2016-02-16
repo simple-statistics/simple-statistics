@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 /**
  * The [R Squared](http://en.wikipedia.org/wiki/Coefficient_of_determination)
@@ -14,7 +15,7 @@
  * var regressionLine = linearRegressionLine(linearRegression(samples));
  * rSquared(samples, regressionLine); //= 1 this line is a perfect fit
  */
-function rSquared(data, func) {
+function rSquared(data /*: Array<Array<number>> */, func /*: Function */) /*: number */ {
     if (data.length < 2) { return 1; }
 
     // Compute the average y value for the actual

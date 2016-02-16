@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 /**
  * We use `ε`, epsilon, as a stopping criterion when we want to iterate

@@ -1,4 +1,5 @@
 'use strict';
+/* @flow */
 
 /**
  * The [Geometric Mean](https://en.wikipedia.org/wiki/Geometric_mean) is
@@ -32,16 +33,16 @@
  * });
  * startingValueMean === startingValue;
  */
-function geometricMean(x) {
+function geometricMean(x /*: Array<number> */) {
     // The mean of no numbers is null
-    if (x.length === 0) { return null; }
+    if (x.length === 0) { return undefined; }
 
     // the starting value.
     var value = 1;
 
     for (var i = 0; i < x.length; i++) {
         // the geometric mean is only valid for positive numbers
-        if (x[i] <= 0) { return null; }
+        if (x[i] <= 0) { return undefined; }
 
         // repeatedly multiply the value by each number
         value *= x[i];
