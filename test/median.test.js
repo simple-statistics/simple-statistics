@@ -12,6 +12,7 @@ test('median', function(t) {
 
     t.test('can get the median of two numbers', function(t) {
         t.equal(ss.median([1, 2]), 1.5);
+        t.equal(ss.medianSorted([1, 2]), 1.5);
         t.end();
     });
 
