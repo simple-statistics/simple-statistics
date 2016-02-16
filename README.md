@@ -2,11 +2,9 @@
 
 A JavaScript implementation of descriptive, regression, and inference statistics.
 
-[![Build Status](https://secure.travis-ci.org/simple-statistics/simple-statistics.svg?branch=master)](http://travis-ci.org/simple-statistics/simple-statistics)
-[![Coverage Status](https://coveralls.io/repos/simple-statistics/simple-statistics/badge.svg)](https://coveralls.io/r/simple-statistics/simple-statistics)
+[![Circle CI](https://circleci.com/gh/simple-statistics/simple-statistics/tree/master.svg?style=svg)](https://circleci.com/gh/simple-statistics/simple-statistics/tree/master)
+[![codecov.io](https://codecov.io/github/simple-statistics/simple-statistics/coverage.svg?branch=master)](https://codecov.io/github/simple-statistics/simple-statistics?branch=master)
 [![npm version](https://badge.fury.io/js/simple-statistics.svg)](http://badge.fury.io/js/simple-statistics)
-
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/ss-sauce.svg)](https://saucelabs.com/u/ss-sauce)
 
 Implemented in literate JavaScript with no dependencies, designed to work
 in all modern browsers (including IE) as well as in [node.js](https://nodejs.org/).
