@@ -29,7 +29,7 @@ function mixin(ss /*: Object */, array /*: ?Array<any> */)/*: any */ {
 
     // only methods which work on basic arrays in a single step
     // are supported
-    var arrayMethods = ['median', 'standardDeviation', 'sum',
+    var arrayMethods = ['median', 'standardDeviation', 'sum', 'product',
         'sampleSkewness',
         'mean', 'min', 'max', 'quantile', 'geometricMean',
         'harmonicMean', 'root_mean_square'];
