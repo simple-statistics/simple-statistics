@@ -17,6 +17,7 @@ ss.modeSorted = require('./src/mode_sorted');
 ss.min = require('./src/min');
 ss.max = require('./src/max');
 ss.sum = require('./src/sum');
+ss.product = require('./src/product');
 ss.quantile = require('./src/quantile');
 ss.quantileSorted = require('./src/quantile_sorted');
 ss.iqr = ss.interquartileRange = require('./src/interquartile_range');
