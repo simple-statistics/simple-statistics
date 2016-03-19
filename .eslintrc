@@ -3,6 +3,7 @@
     "browser": true,
     "node": true
   },
+  "extends": "eslint:recommended",
   "rules": {
     "quotes": [2, "single"],
     "indent": [2, 4],

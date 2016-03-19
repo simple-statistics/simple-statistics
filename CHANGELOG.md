@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## 2.0.0
+
+New features:
+
+* `product`: returns the product of a series of numbers
+* `medianSorted`: exposes the internal method of `median`
+  that only operates on sorted arrays and works in constant time
+* `modeSorted`: exposes the internal method of `mode` and works
+  in linear time.
+
+Specifications:
+
+* Adds [Flow](http://flowtype.org/) annotations to all methods, allowing
+  up-front typechecking if you use Flow in your application.
+
+Changes:
+
+* Invalid input now uniformly produces the value `NaN` instead
+  of previously a mix of `null` and `undefined`.
+* The method `sortedUniqueCount` is now called `uniqueCountSorted` to
+  match the other sorted methods, `medianSorted` and `modeSorted`
+
+Fixes:
+
+* `equalIntervalBreaks` was not exported by `index.js`, and now is.
+
 ## 1.0.1
 
 Fixes:
