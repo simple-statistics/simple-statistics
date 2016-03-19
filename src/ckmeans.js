@@ -1,7 +1,7 @@
 'use strict';
 /* @flow */
 
-var sortedUniqueCount = require('./sorted_unique_count'),
+var uniqueCountSorted = require('./unique_count_sorted'),
     numericSort = require('./numeric_sort');
 
 /**
@@ -72,7 +72,7 @@ function ckmeans(data/*: Array<number> */, nClusters/*: number */)/*: Array<Arra
 
     var sorted = numericSort(data),
         // we'll use this as the maximum number of clusters
-        uniqueCount = sortedUniqueCount(sorted);
+        uniqueCount = uniqueCountSorted(sorted);
 
     // if all of the input values are identical, there's one cluster
     // with all of the input in it.

@@ -27,7 +27,7 @@ ss.shuffle = require('./src/shuffle');
 ss.shuffleInPlace = require('./src/shuffle_in_place');
 ss.sample = require('./src/sample');
 ss.ckmeans = require('./src/ckmeans');
-ss.sortedUniqueCount = require('./src/sorted_unique_count');
+ss.uniqueCountSorted = require('./src/unique_count_sorted');
 ss.sumNthPowerDeviations = require('./src/sum_nth_power_deviations');
 ss.equalIntervalBreaks = require('./src/equal_interval_breaks');
 

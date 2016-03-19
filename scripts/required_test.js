@@ -33,7 +33,7 @@ require("../test/sample_skewness.test.js");
 require("../test/sample_standard_deviation.test.js");
 require("../test/sample_variance.test.js");
 require("../test/shuffle.test.js");
-require("../test/sorted_unique_count.test.js");
+require("../test/unique_count_sorted.test.js");
 require("../test/standard_deviation.test.js");
 require("../test/standard_normal_table.js");
 require("../test/sum.test.js");

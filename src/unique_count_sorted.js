@@ -12,10 +12,10 @@
  * @param {Array} input an array of primitive values.
  * @returns {number} count of unique values
  * @example
- * sortedUniqueCount([1, 2, 3]); // 3
- * sortedUniqueCount([1, 1, 1]); // 1
+ * uniqueCountSorted([1, 2, 3]); // 3
+ * uniqueCountSorted([1, 1, 1]); // 1
  */
-function sortedUniqueCount(input/*: Array<any>*/)/*: number */ {
+function uniqueCountSorted(input/*: Array<any>*/)/*: number */ {
     var uniqueValueCount = 0,
         lastSeenValue;
     for (var i = 0; i < input.length; i++) {
@@ -27,4 +27,4 @@ function sortedUniqueCount(input/*: Array<any>*/)/*: number */ {
     return uniqueValueCount;
 }
 
-module.exports = sortedUniqueCount;
+module.exports = uniqueCountSorted;
