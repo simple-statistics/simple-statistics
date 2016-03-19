@@ -10,15 +10,15 @@
   "dependencies": {},
   "devDependencies": {
     "are-we-flow-yet": "^1.0.0",
-    "browserify": "^11.0.1",
-    "bundle-collapser": "^1.2.1",
-    "eslint": "^1.5.1",
+    "browserify": "^13.0.0",
+    "bundle-collapser": "^1.0.0",
+    "eslint": "^2.4.0",
     "exorcist": "^0.4.0",
-    "flow-bin": "^0.21.0",
-    "istanbul": "^0.3.0",
+    "flow-bin": "^0.22.0",
+    "istanbul": "^0.4.0",
     "random-js": "^1.0.4",
-    "tap": "^5.4.5",
-    "uglify-js": "^2.4.23"
+    "tap": "^5.7.0",
+    "uglify-js": "^2.6.2"
   },
   "scripts": {
     "test": "are-we-flow-yet src && flow check src && eslint --no-eslintrc -c .eslintrc index.js src/*.js test/*.js && tap --coverage test/*.js",
