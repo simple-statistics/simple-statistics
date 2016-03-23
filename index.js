@@ -19,6 +19,7 @@ ss.max = require('./src/max');
 ss.minSorted = require('./src/min_sorted');
 ss.maxSorted = require('./src/max_sorted');
 ss.sum = require('./src/sum');
+ss.sumKahan = require('./src/sum_kahan');
 ss.product = require('./src/product');
 ss.quantile = require('./src/quantile');
 ss.quantileSorted = require('./src/quantile_sorted');
