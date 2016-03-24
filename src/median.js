@@ -1,8 +1,7 @@
 'use strict';
 /* @flow */
 
-var medianSorted = require('./median_sorted'),
-    numericSort = require('./numeric_sort');
+var quickselect = require('quickselect');
 
 /**
  * The [median](http://en.wikipedia.org/wiki/Median) is
@@ -22,9 +21,28 @@ var medianSorted = require('./median_sorted'),
  * median(incomes); //= 3.5
  */
 function median(x /*: Array<number> */)/*:number*/ {
-    // Sorting the array makes it easy to find the center, but
-    // use `.slice()` to ensure the original array `x` is not modified
-    return medianSorted(numericSort(x));
+    // The median of an empty list is NaN
+    if (x.length === 0) { return NaN; }
+
+    var copy = x.slice();
+    var k;
+
+    // If the length of the list is odd, it's the central number
+    if (x.length % 2 === 1) {
+        k = (x.length - 1) / 2;
+        // Rearrange so that k-th element is k-th smallest
+        quickselect(copy, k);
+        return copy[k];
+
+    // Otherwise, the median is the average of the two numbers at the center of the list
+    } else {
+        k = x.length / 2 - 1;
+        // Rearrange so that k-th element is k-th smallest
+        quickselect(copy, k);
+        // Rearrange the remaining half so that the first element is smallest
+        quickselect(copy, k + 1, k + 1);
+        return (copy[k] + copy[k + 1]) / 2;
+    }
 }
 
 module.exports = median;

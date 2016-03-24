@@ -7,7 +7,9 @@
     "type": "git",
     "url": "git://github.com/simple-statistics/simple-statistics.git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "quickselect": "^1.0.0"
+  },
   "devDependencies": {
     "are-we-flow-yet": "^1.0.0",
     "browserify": "^13.0.0",
