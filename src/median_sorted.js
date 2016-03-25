@@ -1,6 +1,8 @@
 'use strict';
 /* @flow */
 
+var quantileSorted = require('./quantile_sorted');
+
 /**
  * The [median](http://en.wikipedia.org/wiki/Median) is
  * the middle number of a list. This is often a good indicator of 'the middle'
@@ -19,19 +21,7 @@
  * median(incomes); //= 3.5
  */
 function medianSorted(sorted /*: Array<number> */)/*:number*/ {
-    // The median of an empty list is NaN
-    if (sorted.length === 0) { return NaN; }
-
-    // If the length of the list is odd, it's the central number
-    if (sorted.length % 2 === 1) {
-        return sorted[(sorted.length - 1) / 2];
-    // Otherwise, the median is the average of the two numbers
-    // at the center of the list
-    } else {
-        var a = sorted[sorted.length / 2 - 1];
-        var b = sorted[sorted.length / 2];
-        return (a + b) / 2;
-    }
+    return quantileSorted(sorted, 0.5);
 }
 
 module.exports = medianSorted;

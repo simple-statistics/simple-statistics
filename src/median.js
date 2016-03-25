@@ -1,7 +1,7 @@
 'use strict';
 /* @flow */
 
-var quickselect = require('quickselect');
+var quantile = require('./quantile');
 
 /**
  * The [median](http://en.wikipedia.org/wiki/Median) is
@@ -21,28 +21,7 @@ var quickselect = require('quickselect');
  * median(incomes); //= 3.5
  */
 function median(x /*: Array<number> */)/*:number*/ {
-    // The median of an empty list is NaN
-    if (x.length === 0) { return NaN; }
-
-    var copy = x.slice();
-    var k;
-
-    // If the length of the list is odd, it's the central number
-    if (x.length % 2 === 1) {
-        k = (x.length - 1) / 2;
-        // Rearrange so that k-th element is k-th smallest
-        quickselect(copy, k);
-        return copy[k];
-
-    // Otherwise, the median is the average of the two numbers at the center of the list
-    } else {
-        k = x.length / 2 - 1;
-        // Rearrange so that k-th element is k-th smallest
-        quickselect(copy, k);
-        // Rearrange the remaining half so that the first element is smallest
-        quickselect(copy, k + 1, k + 1);
-        return (copy[k] + copy[k + 1]) / 2;
-    }
+    return +quantile(x, 0.5);
 }
 
 module.exports = median;
