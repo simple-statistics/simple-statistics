@@ -32,46 +32,20 @@ function quantile(sample /*: Array<number> */, p /*: Array<number> | number */) 
     var copy = sample.slice();
 
     if (Array.isArray(p)) {
-        var indices = [];
-        for (var i = 0; i < p.length; i++) {
-            indices.push(quantileIndex(copy.length, p[i]));
-        }
-
-        multiQuantileSelect(copy, indices);
-
+        // rearrange elements so that each element corresponding to a requested
+        // quantile is on a place it would be if the array was fully sorted
+        multiQuantileSelect(copy, p);
         // Initialize the result array
         var results = [];
         // For each requested quantile
-        for (i = 0; i < p.length; i++) {
+        for (var i = 0; i < p.length; i++) {
             results[i] = quantileSorted(copy, p[i]);
         }
         return results;
     } else {
-        quantileSelect(copy, quantileIndex(copy.length, p), 0, copy.length - 1);
+        var idx = quantileIndex(copy.length, p);
+        quantileSelect(copy, idx, 0, copy.length - 1);
         return quantileSorted(copy, p);
-    }
-}
-
-function compare(a, b) {
-    return a - b;
-}
-
-function multiQuantileSelect(arr, indices) {
-    var steps = indices.sort(compare);
-    steps.unshift(0);
-    steps.push(arr.length - 1);
-
-    var stack = [0, steps.length - 1];
-
-    while (stack.length) {
-        var r = Math.ceil(stack.pop());
-        var l = Math.floor(stack.pop());
-        if (r - l <= 1) continue;
-
-        var m = Math.floor((l + r) / 2);
-        quantileSelect(arr, steps[m], steps[l], steps[r]);
-
-        stack.push(l, m, m, r);
     }
 }
 
@@ -85,24 +59,50 @@ function quantileSelect(arr, k, left, right) {
     }
 }
 
+function multiQuantileSelect(arr, p) {
+    var indices = [0];
+    for (var i = 0; i < p.length; i++) {
+        indices.push(quantileIndex(arr.length, p[i]));
+    }
+    indices.push(arr.length - 1);
+    indices.sort(compare);
+
+    var stack = [0, indices.length - 1];
+
+    while (stack.length) {
+        var r = Math.ceil(stack.pop());
+        var l = Math.floor(stack.pop());
+        if (r - l <= 1) continue;
+
+        var m = Math.floor((l + r) / 2);
+        quantileSelect(arr, indices[m], indices[l], indices[r]);
+
+        stack.push(l, m, m, r);
+    }
+}
+
+function compare(a, b) {
+    return a - b;
+}
+
 function quantileIndex(len /*: number */, p /*: number */)/*:number*/ {
     var idx = len * p;
     if (p === 1) {
-        // If p is 1, directly return the last element
+        // If p is 1, directly return the last index
         return len - 1;
     } else if (p === 0) {
-        // If p is 0, directly return the first element
+        // If p is 0, directly return the first index
         return 0;
     } else if (idx % 1 !== 0) {
-        // If index is not integer, return the next element in array
+        // If index is not integer, return the next index in array
         return Math.ceil(idx) - 1;
     } else if (len % 2 === 0) {
-        // If the list has even-length, we'll take the average of this number
-        // and the next value, if there is one
+        // If the list has even-length, we'll return the middle of two indices
+        // around quantile to indicate that we need an average value of the two
         return idx - 0.5;
     } else {
-        // Finally, in the simple case of an integer value
-        // with an odd-length list, return the sample value at the index.
+        // Finally, in the simple case of an integer index
+        // with an odd-length list, return the index
         return idx;
     }
 }
