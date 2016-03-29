@@ -2,7 +2,7 @@
 /* @flow */
 
 var quantileSorted = require('./quantile_sorted');
-var quickselect = require('quickselect');
+var quickselect = require('./quickselect');
 
 /**
  * The [quantile](https://en.wikipedia.org/wiki/Quantile):
