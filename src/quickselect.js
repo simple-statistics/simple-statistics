@@ -25,6 +25,7 @@ function quickselect(arr /*: Array<number> */, k /*: number */, left /*: number 
     right = right || (arr.length - 1);
 
     while (right > left) {
+        // 600 and 0.5 are arbitrary constants chosen in the original paper to minimize execution time
         if (right - left > 600) {
             var n = right - left + 1;
             var m = k - left + 1;
