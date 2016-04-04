@@ -1,8 +1,7 @@
 'use strict';
 /* @flow */
 
-var medianSorted = require('./median_sorted'),
-    numericSort = require('./numeric_sort');
+var quantile = require('./quantile');
 
 /**
  * The [median](http://en.wikipedia.org/wiki/Median) is
@@ -22,9 +21,7 @@ var medianSorted = require('./median_sorted'),
  * median(incomes); //= 3.5
  */
 function median(x /*: Array<number> */)/*:number*/ {
-    // Sorting the array makes it easy to find the center, but
-    // use `.slice()` to ensure the original array `x` is not modified
-    return medianSorted(numericSort(x));
+    return +quantile(x, 0.5);
 }
 
 module.exports = median;
