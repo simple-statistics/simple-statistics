@@ -30,3 +30,4 @@ and [jsdelivr](http://www.jsdelivr.com/#!simple-statistics).
 
 * [Linear regression with simple-statistics and d3js](http://bl.ocks.org/3931800)
 * [Jenks Natural Breaks with a choropleth map with d3js](http://bl.ocks.org/tmcw/4969184)
+* Embedded statistics in a spreadsheet with nxsheet: [regression](https://nxsheet.com/sheets/56d0a87264e47ee60a95f652) and [stddev](https://nxsheet.com/sheets/56d55ca7743aea68490764ba)
