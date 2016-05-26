@@ -28,7 +28,7 @@
     "test-sauce": "node scripts/browser_test.js",
     "build": "npm run bundle && npm run minify",
     "prepublish": "npm run build",
-    "bundle": "browserify -p bundle-collapser/plugin -s ss index.js --debug | exorcist dist/simple_statistics.js.map > dist/simple_statistics.js",
+    "bundle": "mkdir -p dist && browserify -p bundle-collapser/plugin -s ss index.js --debug | exorcist dist/simple_statistics.js.map > dist/simple_statistics.js",
     "minify": "uglifyjs dist/simple_statistics.js -c -m --in-source-map=dist/simple_statistics.js.map --source-map=dist/simple_statistics.min.js.map -o dist/simple_statistics.min.js"
   },
   "main": "index.js",
