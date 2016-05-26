@@ -13,7 +13,7 @@ var median = require('./median');
  * @example
  * mad([1, 1, 2, 2, 4, 6, 9]); //= 1
  */
-function mad(x /*: Array<number> */) {
+function medianAbsoluteDeviation(x /*: Array<number> */) {
     // The mad of nothing is null
     var medianValue = median(x),
         medianAbsoluteDeviations = [];
@@ -27,4 +27,4 @@ function mad(x /*: Array<number> */) {
     return median(medianAbsoluteDeviations);
 }
 
-module.exports = mad;
+module.exports = medianAbsoluteDeviation;
