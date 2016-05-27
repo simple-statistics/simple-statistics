@@ -14,7 +14,7 @@
  * @param {Array<number>} sorted input
  * @returns {number} mode
  * @example
- * mode([0, 0, 1]); //= 0
+ * modeSorted([0, 0, 1]); // => 0
  */
 function modeSorted(sorted /*: Array<number> */)/*:number*/ {
 

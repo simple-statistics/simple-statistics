@@ -12,9 +12,7 @@ var mean = require('./mean');
  * @param {Array<number>} y second input
  * @returns {number} sample covariance
  * @example
- * var x = [1, 2, 3, 4, 5, 6];
- * var y = [6, 5, 4, 3, 2, 1];
- * sampleCovariance(x, y); //= -3.5
+ * sampleCovariance([1, 2, 3, 4, 5, 6], [6, 5, 4, 3, 2, 1]); // => -3.5
  */
 function sampleCovariance(x /*:Array<number>*/, y /*:Array<number>*/)/*:number*/ {
 

@@ -16,6 +16,8 @@ var binomialDistribution = require('./binomial_distribution');
  *
  * @param {number} p input value, between 0 and 1 inclusive
  * @returns {number} value of bernoulli distribution at this point
+ * @example
+ * bernoulliDistribution(0.5); // => { '0': 0.5, '1': 0.5 }
  */
 function bernoulliDistribution(p/*: number */) {
     // Check that `p` is a valid probability (0 ≤ p ≤ 1)

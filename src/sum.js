@@ -15,7 +15,7 @@
  * @param {Array<number>} x input
  * @return {number} sum of all input numbers
  * @example
- * console.log(sum([1, 2, 3])); // 6
+ * sum([1, 2, 3]); // => 6
  */
 function sum(x/*: Array<number> */)/*: number */ {
 

@@ -15,7 +15,7 @@
  * @param {Array<number>} x input
  * @returns {number} harmonic mean
  * @example
- * ss.harmonicMean([2, 3]) //= 2.4
+ * harmonicMean([2, 3]).toFixed(2) // => '2.40'
  */
 function harmonicMean(x /*: Array<number> */) {
     // The mean of no numbers is null

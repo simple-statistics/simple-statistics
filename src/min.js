@@ -7,7 +7,7 @@
  * @param {Array<number>} x input
  * @returns {number} minimum value
  * @example
- * min([1, 5, -10, 100, 2]); // -100
+ * min([1, 5, -10, 100, 2]); // => -10
  */
 function min(x /*: Array<number> */)/*:number*/ {
     var value;

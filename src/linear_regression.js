@@ -11,7 +11,7 @@
  * like `[[0, 1], [2, 3]]`
  * @returns {Object} object containing slope and intersect of regression line
  * @example
- * linearRegression([[0, 0], [1, 1]]); // { m: 1, b: 0 }
+ * linearRegression([[0, 0], [1, 1]]); // => { m: 1, b: 0 }
  */
 function linearRegression(data/*: Array<Array<number>> */)/*: { m: number, b: number } */ {
 

@@ -16,7 +16,7 @@
  * @return {Array<number>} sorted array
  * @private
  * @example
- * numericSort([3, 2, 1]) // [1, 2, 3]
+ * numericSort([3, 2, 1]) // => [1, 2, 3]
  */
 function numericSort(array /*: Array<number> */) /*: Array<number> */ {
     return array

@@ -22,7 +22,7 @@
  * @param {number} standardDeviation
  * @return {number} z score
  * @example
- * ss.zScore(78, 80, 5); //= -0.4
+ * zScore(78, 80, 5); // => -0.4
  */
 function zScore(x/*:number*/, mean/*:number*/, standardDeviation/*:number*/)/*:number*/ {
     return (x - mean) / standardDeviation;

@@ -17,8 +17,7 @@ var quantileSorted = require('./quantile_sorted');
  * @param {Array<number>} sorted input
  * @returns {number} median value
  * @example
- * var incomes = [10, 2, 5, 100, 2, 1];
- * median(incomes); //= 3.5
+ * medianSorted([10, 2, 5, 100, 2, 1]); // => 52.5
  */
 function medianSorted(sorted /*: Array<number> */)/*:number*/ {
     return quantileSorted(sorted, 0.5);

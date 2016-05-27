@@ -14,7 +14,8 @@
  * @param {number} chunkSize size of each output array
  * @returns {Array<Array>} a chunked array
  * @example
- * console.log(chunk([1, 2, 3, 4], 2)); // [[1, 2], [3, 4]]
+ * chunk([1, 2, 3, 4], 2);
+ * // => [[1, 2], [3, 4]]
  */
 function chunk(sample/*:Array<any>*/, chunkSize/*:number*/)/*:?Array<Array<any>>*/ {
 

@@ -14,7 +14,7 @@ var sumNthPowerDeviations = require('./sum_nth_power_deviations');
  * @returns {number} variance: a value greater than or equal to zero.
  * zero indicates that all values are identical.
  * @example
- * ss.variance([1, 2, 3, 4, 5, 6]); //= 2.917
+ * variance([1, 2, 3, 4, 5, 6]); // => 2.9166666666666665
  */
 function variance(x/*: Array<number> */)/*:number*/ {
     // The variance of no numbers is null

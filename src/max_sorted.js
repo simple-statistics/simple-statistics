@@ -9,7 +9,7 @@
  * @param {Array<number>} x input
  * @returns {number} maximum value
  * @example
- * maxSorted([-100, -10, 1, 2, 5]); // 5
+ * maxSorted([-100, -10, 1, 2, 5]); // => 5
  */
 function maxSorted(x /*: Array<number> */)/*:number*/ {
     return x[x.length - 1];

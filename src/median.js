@@ -17,8 +17,7 @@ var quantile = require('./quantile');
  * @param {Array<number>} x input
  * @returns {number} median value
  * @example
- * var incomes = [10, 2, 5, 100, 2, 1];
- * median(incomes); //= 3.5
+ * median([10, 2, 5, 100, 2, 1]); // => 3.5
  */
 function median(x /*: Array<number> */)/*:number*/ {
     return +quantile(x, 0.5);

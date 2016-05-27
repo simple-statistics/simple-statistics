@@ -12,7 +12,7 @@
  * @param {number} x input
  * @return {number} error estimation
  * @example
- * errorFunction(1); //= 0.8427
+ * errorFunction(1).toFixed(2); // => '0.84'
  */
 function errorFunction(x/*: number */)/*: number */ {
     var t = 1 / (1 + 0.5 * Math.abs(x));

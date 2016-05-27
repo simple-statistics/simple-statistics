@@ -10,7 +10,7 @@
  * @param {number} n input
  * @returns {number} factorial: n!
  * @example
- * console.log(factorial(5)); // 120
+ * factorial(5); // => 120
  */
 function factorial(n /*: number */)/*: number */ {
 

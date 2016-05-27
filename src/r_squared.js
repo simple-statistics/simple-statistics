@@ -13,7 +13,7 @@
  * @example
  * var samples = [[0, 0], [1, 1]];
  * var regressionLine = linearRegressionLine(linearRegression(samples));
- * rSquared(samples, regressionLine); //= 1 this line is a perfect fit
+ * rSquared(samples, regressionLine); // = 1 this line is a perfect fit
  */
 function rSquared(data /*: Array<Array<number>> */, func /*: Function */) /*: number */ {
     if (data.length < 2) { return 1; }

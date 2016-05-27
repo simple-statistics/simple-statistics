@@ -13,7 +13,7 @@ var quantile = require('./quantile');
  * @returns {number} interquartile range: the span between lower and upper quartile,
  * 0.25 and 0.75
  * @example
- * interquartileRange([0, 1, 2, 3]); //= 2
+ * interquartileRange([0, 1, 2, 3]); // => 2
  */
 function interquartileRange(sample/*: Array<number> */) {
     // Interquartile range is the span between the upper quartile,

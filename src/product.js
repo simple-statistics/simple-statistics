@@ -10,7 +10,7 @@
  * @param {Array<number>} x input
  * @return {number} product of all input numbers
  * @example
- * console.log(product([1, 2, 3, 4])); // 24
+ * product([1, 2, 3, 4]); // => 24
  */
 function product(x/*: Array<number> */)/*: number */ {
     var value = 1;

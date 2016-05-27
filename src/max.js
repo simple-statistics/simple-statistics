@@ -9,7 +9,8 @@
  * @param {Array<number>} x input
  * @returns {number} maximum value
  * @example
- * console.log(max([1, 2, 3, 4])); // 4
+ * max([1, 2, 3, 4]);
+ * // => 4
  */
 function max(x /*: Array<number> */) /*:number*/ {
     var value;

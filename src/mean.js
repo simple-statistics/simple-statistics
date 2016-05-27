@@ -14,7 +14,7 @@ var sum = require('./sum');
  * @param {Array<number>} x input values
  * @returns {number} mean
  * @example
- * console.log(mean([0, 10])); // 5
+ * mean([0, 10]); // => 5
  */
 function mean(x /*: Array<number> */)/*:number*/ {
     // The mean of no numbers is null

@@ -10,10 +10,7 @@
  * @param {number} p desired quantile: a number between 0 to 1, inclusive
  * @returns {number} quantile value
  * @example
- * var data = [3, 6, 7, 8, 8, 9, 10, 13, 15, 16, 20];
- * quantileSorted(data, 1); //= max(data);
- * quantileSorted(data, 0); //= min(data);
- * quantileSorted(data, 0.5); //= 9
+ * quantileSorted([3, 6, 7, 8, 8, 9, 10, 13, 15, 16, 20], 0.5); // => 9
  */
 function quantileSorted(sample /*: Array<number> */, p /*: number */)/*:number*/ {
     var idx = sample.length * p;
