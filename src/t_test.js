@@ -19,7 +19,7 @@ var mean = require('./mean');
  * @param {number} x expected vale of the population mean
  * @returns {number} value
  * @example
- * tTest([1, 2, 3, 4, 5, 6], 3.385); //= 0.16494154
+ * tTest([1, 2, 3, 4, 5, 6], 3.385).toFixed(2); // => '0.16'
  */
 function tTest(sample/*: Array<number> */, x/*: number */)/*:number*/ {
     // The mean of the sample

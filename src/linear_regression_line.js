@@ -13,8 +13,10 @@
  * x-value on the line.
  * @example
  * var l = linearRegressionLine(linearRegression([[0, 0], [1, 1]]));
- * l(0) //= 0
- * l(2) //= 2
+ * l(0) // = 0
+ * l(2) // = 2
+ * linearRegressionLine({ b: 0, m: 1 })(1); // => 1
+ * linearRegressionLine({ b: 1, m: 1 })(1); // => 2
  */
 function linearRegressionLine(mb/*: { b: number, m: number }*/)/*: Function */ {
     // Return a function that computes a `y` value for each

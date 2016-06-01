@@ -10,7 +10,7 @@
  * @param {Array<number>} x input
  * @return {number} sum of all input numbers
  * @example
- * console.log(sum([1, 2, 3])); // 6
+ * sumSimple([1, 2, 3]); // => 6
  */
 function sumSimple(x/*: Array<number> */)/*: number */ {
     var value = 0;

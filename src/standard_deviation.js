@@ -15,9 +15,8 @@ var variance = require('./variance');
  * @param {Array<number>} x input
  * @returns {number} standard deviation
  * @example
- * var scores = [2, 4, 4, 4, 5, 5, 7, 9];
- * variance(scores); //= 4
- * standardDeviation(scores); //= 2
+ * variance([2, 4, 4, 4, 5, 5, 7, 9]); // => 4
+ * standardDeviation([2, 4, 4, 4, 5, 5, 7, 9]); // => 2
  */
 function standardDeviation(x /*: Array<number> */)/*:number*/ {
     // The standard deviation of no numbers is null
