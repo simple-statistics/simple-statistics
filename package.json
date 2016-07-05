@@ -8,6 +8,7 @@
     "url": "git://github.com/simple-statistics/simple-statistics.git"
   },
   "files": [
+    "bower.json",
     "src",
     "dist"
   ],
