@@ -16,7 +16,7 @@ test('product', function(t) {
     });
 
     t.test('can get the product of a negative number', function(t) {
-        t.equal(ss.product([-1,2,3,4]), -24);
+        t.equal(ss.product([-1, 2, 3, 4]), -24);
         t.end();
     });
 

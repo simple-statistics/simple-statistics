@@ -21,8 +21,8 @@ test('C k-means', function(t) {
     t.deepEqual(example, [[-1, -1, -1, -1], [2, 2, 2], [4, 5, 6]]);
     t.deepEqual(cK([1, 2, 3], 3), [[1], [2], [3]]);
 
-    t.deepEqual(cK([0, 3, 4], 2), [[0], [3, 4]]),
-    t.deepEqual(cK([-3, 0, 4], 2), [[-3, 0], [4]]),
+    t.deepEqual(cK([0, 3, 4], 2), [[0], [3, 4]]);
+    t.deepEqual(cK([-3, 0, 4], 2), [[-3, 0], [4]]);
 
     t.deepEqual(cK([1, 2, 2, 3], 3), [[1], [2, 2], [3]]);
     t.deepEqual(cK([1, 2, 2, 3, 3], 3), [[1], [2, 2], [3, 3]]);

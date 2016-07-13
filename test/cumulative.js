@@ -20,7 +20,7 @@ test('cumulativeStdNormalProbability', function(t) {
     });
     t.test('matches errorFunction', function(t) {
         for (var i = 0; i < ss.standardNormalTable.length; i++) {
-            if (!(Math.abs(ss.cumulativeStdNormalProbability(i / 100) - (.5 + .5 * ss.errorFunction(i / 100 / Math.sqrt(2)))) < ss.epsilon)) {
+            if (!(Math.abs(ss.cumulativeStdNormalProbability(i / 100) - (0.5 + 0.5 * ss.errorFunction(i / 100 / Math.sqrt(2)))) < ss.epsilon)) {
                 t.fail('error-fn failure on ' + i);
             }
         }
@@ -31,7 +31,7 @@ test('cumulativeStdNormalProbability', function(t) {
         t.end();
     });
     t.test('inverse', function(t) {
-        for (var i = 0; i <= 1 + ss.epsilon; i += .01) {
+        for (var i = 0; i <= 1 + ss.epsilon; i += 0.01) {
             t.equal(Math.abs(ss.cumulativeStdNormalProbability(ss.probit(i)) - i) < 21 * ss.epsilon, true);
         }
         t.end();

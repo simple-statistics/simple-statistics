@@ -7,6 +7,7 @@
  * 
  * @param {Number} x input value
  * @returns {Number} sign value either 1, 0 or -1
+ * @throws {TypeError} if the input argument x is not a number
  * 
  * @example
  * sign(2); // => 1
@@ -21,9 +22,8 @@ function sign(x/*: number */)/*: number */ {
             return 1;
         }
     } else {
-        throw new SyntaxError('not a number');
+        throw new TypeError('not a number');
     }
-
 }
 
 module.exports = sign;

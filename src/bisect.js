@@ -19,10 +19,16 @@ var sign = require('./sign');
  * @example
  * bisect(Math.cos,0,4,100,0.003); // => 1.572265625
  */
-function bisect(func/*: (x: any) => number */, start/*: number */, end/*: number */, maxIterations/*: number */, errorTolerance/*: number */)/*:number*/ {
+function bisect(
+    func/*: (x: any) => number */,
+    start/*: number */,
+    end/*: number */,
+    maxIterations/*: number */,
+    errorTolerance/*: number */)/*:number*/ {
+
     if (typeof func !== 'function') throw new TypeError('func must be a function');
     
-    for(var i = 0; i < maxIterations; i++) {
+    for (var i = 0; i < maxIterations; i++) {
         var output = (start + end) / 2;
 
         if (func(output) === 0 || Math.abs((end - start) / 2) < errorTolerance) {
@@ -31,7 +37,6 @@ function bisect(func/*: (x: any) => number */, start/*: number */, end/*: number
 
         if (sign(func(output)) === sign(func(start))) {
             start = output;
-
         } else {
             end = output;
         }
