@@ -1,9 +1,10 @@
 'use strict';
 /* @flow */
 
+var sign = require('./sign');
 /**
  * [Bisection method](https://en.wikipedia.org/wiki/Bisection_method) is a root-finding 
- * method that repeatedlt bisects an interval to find the root.
+ * method that repeatedly bisects an interval to find the root.
  * 
  * This function returns a numerical approximation to the exact value.
  * 
@@ -28,7 +29,7 @@ function bisect(f/*: (x: any) => number */, a/*: number */, b/*: number */, nMax
             return c;
         }
 
-        if (Math.sign(f(c)) === Math.sign(f(a))) {
+        if (sign(f(c)) === sign(f(a))) {
             a = c;
 
         } else {
