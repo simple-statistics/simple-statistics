@@ -20,12 +20,12 @@ and/or [webpack](http://webpack.github.io/) users, install from npm:
 
 Script tag usage:
 
-* `https://npmcdn.com/simple-statistics@2.0.1/dist/simple-statistics.js`
-* Minified: `https://npmcdn.com/simple-statistics@2.0.1/dist/simple-statistics.min.js`
+* `https://npmcdn.com/simple-statistics@2.1.0/dist/simple-statistics.js`
+* Minified: `https://npmcdn.com/simple-statistics@2.1.0/dist/simple-statistics.min.js`
 
 Bower:
 
-* Bower: `https://npmcdn.com/simple-statistics@2.0.1/bower.zip`
+* Bower: `https://npmcdn.com/simple-statistics@2.1.0/bower.zip`
 
 ## Examples
 
