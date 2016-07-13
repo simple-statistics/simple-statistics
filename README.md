@@ -13,18 +13,19 @@ in all modern browsers (including IE) as well as in [node.js](https://nodejs.org
 
 ## Installation
 
-For [node.js](https://nodejs.org/), [browserify](http://browserify.org/),
+**Recommended**: for [node.js](https://nodejs.org/), [browserify](http://browserify.org/),
 and/or [webpack](http://webpack.github.io/) users, install from npm:
 
     npm install simple-statistics
 
-Available on [bower](http://bower.io/) as `simple-statistics`.
+Script tag usage:
 
-For script-tag inclusion, distributions are available under the `dist/`
-directory.
+* `https://npmcdn.com/simple-statistics@2.0.1/dist/simple-statistics.js`
+* Minified: `https://npmcdn.com/simple-statistics@2.0.1/dist/simple-statistics.min.js`
 
-[Also available on cdnjs](https://cdnjs.com/libraries/simple-statistics)
-and [jsdelivr](http://www.jsdelivr.com/#!simple-statistics).
+Bower:
+
+* Bower: `https://npmcdn.com/simple-statistics@2.0.1/bower.zip`
 
 ## Examples
 
