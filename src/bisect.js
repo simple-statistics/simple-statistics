@@ -14,26 +14,27 @@ var sign = require('./sign');
  * @param {Number} nMax the maximum number of iterations
  * @param {Number} tol the error tolerance
  * @returns {Number} estimated root value
+ * @throws {TypeError} Argument func must be a function
  * 
  * @example
  * bisect(Math.cos,0,4,100,0.003); // => 1.572265625
  */
-function bisect(f/*: (x: any) => number */, a/*: number */, b/*: number */, nMax/*: number */, tol/*: number */)/*:number*/ {
-    if (typeof f !== 'function') throw new SyntaxError('f must be a function');
+function bisect(func/*: (x: any) => number */, start/*: number */, end/*: number */, maxIterations/*: number */, errorTolerance/*: number */)/*:number*/ {
+    if (typeof f !== 'function') throw new TypeError('func must be a function');
     
     var n = 1;
-    while (n <= nMax) {
-        var c = (a + b) / 2;
+    while (n <= maxIterations) {
+        var output = (start + end) / 2;
 
-        if (f(c) === 0 || Math.abs((b - a) / 2) < tol) {
-            return c;
+        if (func(output) === 0 || Math.abs((end - start) / 2) < errorTolerance) {
+            return output;
         }
 
-        if (sign(f(c)) === sign(f(a))) {
-            a = c;
+        if (sign(func(output)) === sign(func(start))) {
+            start = output;
 
         } else {
-            b = c;
+            end = output;
         }
         n = n + 1;
     }
