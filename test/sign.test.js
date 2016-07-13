@@ -13,7 +13,7 @@ test('bisect', function(t) {
         t.equal(sign(-0.000001), -1);
         t.equal(sign(0.000001), 1);
         t.throws(function() {
-            sign("hello world!");
+            sign('hello world!');
         }, 'Throws with syntax error x is not a number');
         t.end();
     });
