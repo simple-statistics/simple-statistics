@@ -8,6 +8,7 @@
  * @param {Number} x input value
  * @returns {Number} sign value either 1, 0 or -1
  * @throws {TypeError} if the input argument x is not a number
+ * @private
  * 
  * @example
  * sign(2); // => 1
