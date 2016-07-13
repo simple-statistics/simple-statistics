@@ -8,7 +8,7 @@ var sign = require('./sign');
  * 
  * This function returns a numerical approximation to the exact value.
  * 
- * @param {Function} f input function
+ * @param {Function} func input function
  * @param {Number} start - start of interval
  * @param {Number} end - end of interval
  * @param {Number} maxIterations - the maximum number of iterations
@@ -22,8 +22,7 @@ var sign = require('./sign');
 function bisect(func/*: (x: any) => number */, start/*: number */, end/*: number */, maxIterations/*: number */, errorTolerance/*: number */)/*:number*/ {
     if (typeof func !== 'function') throw new TypeError('func must be a function');
     
-    var n = 1;
-    while (n <= maxIterations) {
+    for(var i = 0; i < maxIterations; i++) {
         var output = (start + end) / 2;
 
         if (func(output) === 0 || Math.abs((end - start) / 2) < errorTolerance) {
@@ -36,7 +35,6 @@ function bisect(func/*: (x: any) => number */, start/*: number */, end/*: number
         } else {
             end = output;
         }
-        n = n + 1;
     }
     
     throw new Error('maximum number of iterations exceeded');
