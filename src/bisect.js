@@ -9,10 +9,10 @@ var sign = require('./sign');
  * This function returns a numerical approximation to the exact value.
  * 
  * @param {Function} f input function
- * @param {Number} a start of interval
- * @param {Number} b end of interval
- * @param {Number} nMax the maximum number of iterations
- * @param {Number} tol the error tolerance
+ * @param {Number} start - start of interval
+ * @param {Number} end - end of interval
+ * @param {Number} maxIterations - the maximum number of iterations
+ * @param {Number} errorTolerance - the error tolerance
  * @returns {Number} estimated root value
  * @throws {TypeError} Argument func must be a function
  * 
