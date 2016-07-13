@@ -17,7 +17,7 @@
  * @example
  * bisect(Math.cos,0,4,100,0.003); // => 1.572265625
  */
-function bisect(f/*: (x: any) => number */, a/*: number */, b/*: number */, nMax/*: number */, tol/*: number */) {
+function bisect(f/*: (x: any) => number */, a/*: number */, b/*: number */, nMax/*: number */, tol/*: number */)/*:number*/ {
     if (typeof f !== 'function') throw new SyntaxError('f must be a function');
     
     var n = 1;
