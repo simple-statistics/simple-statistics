@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2.1.0
+
+* Adds `bisect` method that implements the [bisection method](https://en.wikipedia.org/wiki/Bisection_method)
+  for root-finding. Thanks [Jamie Neubert Pedersen](https://github.com/eikooc)
+  for the contribution!
+
 ## 2.0.0
 
 New features:
