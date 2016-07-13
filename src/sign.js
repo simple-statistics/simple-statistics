@@ -21,7 +21,7 @@ function sign(x/*: number */)/*: number */ {
             return 1;
         }
     } else {
-        throw new SyntaxError("not a number");
+        throw new SyntaxError('not a number');
     }
 
 }
