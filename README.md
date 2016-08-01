@@ -27,6 +27,10 @@ Bower:
 
 * Bower: `https://npmcdn.com/simple-statistics@2.1.0/bower.zip`
 
+## Ports
+
+* Python: [simplestatistics](https://github.com/sheriferson/simplestatistics) is an idiomatic implementation of basic statistical algorithms.
+
 ## Examples
 
 * [Linear regression with simple-statistics and d3js](http://bl.ocks.org/3931800)
