@@ -1,3 +1,7 @@
+## simple-statistics in other languages
+
+* Python: [simplestatistics](https://github.com/sheriferson/simplestatistics)
+
 ## See Also
 
 * [stream-statistics](https://github.com/tmcw/stream-statistics), a sister project that implements
