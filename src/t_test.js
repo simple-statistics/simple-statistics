@@ -16,7 +16,7 @@ var mean = require('./mean');
  * null hypothesis can or cannot be rejected.
  *
  * @param {Array<number>} sample an array of numbers as input
- * @param {number} x expected vale of the population mean
+ * @param {number} x expected value of the population mean
  * @returns {number} value
  * @example
  * tTest([1, 2, 3, 4, 5, 6], 3.385).toFixed(2); // => '0.16'
