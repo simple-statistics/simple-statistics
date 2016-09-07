@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.2.0 (unreleased)
+
+* Adds `permutationHeap` method for computing all permutations of an array.
+
 ## 2.1.0
 
 * Adds `bisect` method that implements the [bisection method](https://en.wikipedia.org/wiki/Bisection_method)

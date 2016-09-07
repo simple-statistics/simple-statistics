@@ -41,6 +41,9 @@ ss.sampleVariance = require('./src/sample_variance');
 ss.sampleStandardDeviation = require('./src/sample_standard_deviation');
 ss.sampleSkewness = require('./src/sample_skewness');
 
+// combinatorics
+ss.permutationsHeap = require('./src/permutations_heap');
+
 // measures of centrality
 ss.geometricMean = require('./src/geometric_mean');
 ss.harmonicMean = require('./src/harmonic_mean');
