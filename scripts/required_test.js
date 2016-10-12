@@ -41,4 +41,5 @@ require("../test/sum_nth_power_deviations.test.js");
 require("../test/t_test.test.js");
 require("../test/t_test_two_sample.test.js");
 require("../test/variance.test.js");
+require("../test/combinations.test.js");
 require("../test/z_score.test.js");
