@@ -9,11 +9,12 @@
  */
 
 function combinations(elements: Array<any>, k: number){
-  var i,
-  subI,
-  ret = [],
-  sub,
-  next;
+  var i;
+  var subI;
+  var ret = [];
+  var sub;
+  var next;
+  
   for (i = 0; i < elements.length; i++){
     if (k === 1){
       ret.push([ elements[i] ])
