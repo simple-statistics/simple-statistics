@@ -29,5 +29,4 @@ function combinations(elements: Array<any>, k: number){
   return ret;
 }
 
-console.log(combinations([1,2,3],2));
 module.exports = combinations;
