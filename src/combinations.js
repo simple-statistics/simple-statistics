@@ -2,32 +2,35 @@
 'use strict';
 /**
  * Implementation of Combinations
+ * Combinations are unique subsets of a collection - in this case, k elements from a collection at a time.
  * https://en.wikipedia.org/wiki/Combination
  * @param {Array} elements any type of data
  * @param {int} k the number of objects in each group (without replacement)
  * @returns {Array<Array>} array of permutations
+ * @example
+ * combinations([1, 2, 3], 2); // => [[1,2], [1,3], [2,3]]
  */
 
-function combinations(elements: Array<any>, k: number){
+function combinations(elements /*: Array<any> */, k/*: number */){
   var i;
   var subI;
-  var ret = [];
-  var sub;
+  var combinationList = [];
+  var subsetCombinations;
   var next;
-  
+
   for (i = 0; i < elements.length; i++){
     if (k === 1){
-      ret.push([ elements[i] ])
+      combinationList.push([ elements[i] ])
     } else {
-      sub = combinations(elements.slice(i+1, elements.length), k-1);
-      for (subI = 0; subI < sub.length; subI++){
-        next = sub[subI];
+      subsetCombinations = combinations(elements.slice(i+1, elements.length), k-1);
+      for (subI = 0; subI < subsetCombinations.length; subI++){
+        next = subsetCombinations[subI];
         next.unshift(elements[i]);
-        ret.push(next);
+        combinationList.push(next);
       }
     }
   }
-  return ret;
+  return combinationList;
 }
 
 module.exports = combinations;

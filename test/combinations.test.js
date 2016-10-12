@@ -4,7 +4,7 @@
 var test = require('tap').test;
 var ss = require('../');
 
-test('stringHeap', function(t) {
+test('combinations', function(t) {
     t.test('generates 1 permutation', function(t) {
         t.deepEqual(ss.combinations([1], 1), [[1]]);
         t.end();
