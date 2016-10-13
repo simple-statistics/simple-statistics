@@ -43,6 +43,7 @@ ss.sampleSkewness = require('./src/sample_skewness');
 
 // combinatorics
 ss.permutationsHeap = require('./src/permutations_heap');
+ss.combinations = require('./src/combinations');
 
 // measures of centrality
 ss.geometricMean = require('./src/geometric_mean');
