@@ -11,26 +11,26 @@
  * combinations([1, 2, 3], 2); // => [[1,2], [1,3], [2,3]]
  */
 
-function combinations(elements /*: Array<any> */, k/*: number */){
-  var i;
-  var subI;
-  var combinationList = [];
-  var subsetCombinations;
-  var next;
+function combinations(elements /*: Array<any> */, k/*: number */) {
+    var i;
+    var subI;
+    var combinationList = [];
+    var subsetCombinations;
+    var next;
 
-  for (i = 0; i < elements.length; i++){
-    if (k === 1){
-      combinationList.push([ elements[i] ])
-    } else {
-      subsetCombinations = combinations(elements.slice(i+1, elements.length), k-1);
-      for (subI = 0; subI < subsetCombinations.length; subI++){
-        next = subsetCombinations[subI];
-        next.unshift(elements[i]);
-        combinationList.push(next);
-      }
+    for (i = 0; i < elements.length; i++) {
+        if (k === 1) {
+            combinationList.push([elements[i]])
+        } else {
+            subsetCombinations = combinations(elements.slice( i + 1, elements.length ), k - 1);
+            for (subI = 0; subI < subsetCombinations.length; subI++) {
+                next = subsetCombinations[subI];
+                next.unshift(elements[i]);
+                combinationList.push(next);
+            }
+        }
     }
-  }
-  return combinationList;
+    return combinationList;
 }
 
 module.exports = combinations;
