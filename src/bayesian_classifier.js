@@ -57,7 +57,7 @@ BayesianClassifier.prototype.train = function(item, category) {
         }
 
         // And increment the key for this key/value combination.
-        this.data[category][k][item[k]]++;
+        this.data[category][k][v]++;
     }
 
     // Increment the number of items classified
@@ -83,7 +83,7 @@ BayesianClassifier.prototype.score = function(item) {
         for (category in this.data) {
             // Create an empty object for storing key - value combinations
             // for this category.
-            if (odds[category] === undefined) { odds[category] = {}; }
+            odds[category] = {};
 
             // If this item doesn't even have a property, it counts for nothing,
             // but if it does have the property that we're looking for from
@@ -104,10 +104,8 @@ BayesianClassifier.prototype.score = function(item) {
         // Tally all of the odds for each category-combination pair -
         // the non-existence of a category does not add anything to the
         // score.
+        oddsSums[category] = 0;
         for (var combination in odds[category]) {
-            if (oddsSums[category] === undefined) {
-                oddsSums[category] = 0;
-            }
             oddsSums[category] += odds[category][combination];
         }
     }
