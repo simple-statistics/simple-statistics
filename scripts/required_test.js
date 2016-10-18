@@ -37,7 +37,7 @@ require("../test/unique_count_sorted.test.js");
 require("../test/standard_deviation.test.js");
 require("../test/standard_normal_table.js");
 require("../test/sum.test.js");
-require("../test/combinationsReplacement.js");
+require("../test/combinations_eplacement.js");
 require("../test/sum_nth_power_deviations.test.js");
 require("../test/t_test.test.js");
 require("../test/t_test_two_sample.test.js");

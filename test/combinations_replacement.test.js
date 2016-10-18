@@ -11,9 +11,9 @@ test('combinations', function(t) {
     });
     t.test('generates combinations of 1,2 choosing two at a time, with replacement', function(t) {
         t.deepEqual(ss.combinationsReplacement([1, 2], 2), [
-            [1,1],
-            [1,2],
-            [2,2]
+            [1, 1],
+            [1, 2],
+            [2, 2]
         ]);
         t.end();
     });
