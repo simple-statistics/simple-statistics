@@ -14,8 +14,8 @@
  * @param {number} chunkSize size of each output array
  * @returns {Array<Array>} a chunked array
  * @example
- * chunk([1, 2, 3, 4], 2);
- * // => [[1, 2], [3, 4]]
+ * chunk([1, 2, 3, 4, 5, 6], 2);
+ * // => [[1, 2], [3, 4], [5, 6]]
  */
 function chunk(sample/*:Array<any>*/, chunkSize/*:number*/)/*:?Array<Array<any>>*/ {
 
