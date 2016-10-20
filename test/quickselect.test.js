@@ -17,3 +17,11 @@ test('quickselect long arrays', function (t) {
     t.equal(arr[300], 300);
     t.end();
 });
+
+test('quickselect long arrays L35 coverage', function (t) {
+    var arr = [];
+    for (var i = 1000; i >= 0; i--) arr.push(i);
+    quickselect(arr, 500, 10, 620);
+    t.equal(arr[300], 700);
+    t.end();
+});
