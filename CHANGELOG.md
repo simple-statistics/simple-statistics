@@ -3,6 +3,8 @@
 ## 2.2.0 (unreleased)
 
 * Adds `permutationHeap` method for computing all permutations of an array.
+* Adds `combinations` for combinations without replacement
+* Adds `combinationsReplacement` for combinations with replacement
 
 ## 2.1.0
 
