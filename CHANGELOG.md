@@ -1,8 +1,13 @@
 # CHANGELOG
 
-## 2.2.0 (unreleased)
+## 2.2.0
 
+* Improved [Ckmeans](https://github.com/simple-statistics/simple-statistics/pull/163) algorithm
+  from the [updated R project](https://cran.r-project.org/web/packages/Ckmeans.1d.dp/NEWS)
+  that dramatically increases performance.
 * Adds `permutationHeap` method for computing all permutations of an array.
+* Adds `combinations` for combinations without replacement
+* Adds `combinationsReplacement` for combinations with replacement
 
 ## 2.1.0
 
