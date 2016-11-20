@@ -17,6 +17,10 @@
 * [underscore.math](https://github.com/syntagmatic/underscore.math/blob/master/underscore.math.js)
 * [regression-js](https://github.com/Tom-Alexander/regression-js) has many methods for linear regression
 
+### C
+
+* [apophenia](https://github.com/b-k/apophenia)
+
 ### Python
 
 * [Pandas](http://pandas.pydata.org/)
