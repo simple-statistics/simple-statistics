@@ -15,6 +15,11 @@
 * [jStat](http://www.jstat.org/)
 * [classifier](https://github.com/harthur/classifier) is a naive bayesian classifier (though specialized for the words-spam case)
 * [underscore.math](https://github.com/syntagmatic/underscore.math/blob/master/underscore.math.js)
+* [regression-js](https://github.com/Tom-Alexander/regression-js) has many methods for linear regression
+
+### C
+
+* [apophenia](https://github.com/b-k/apophenia)
 
 ### Python
 
