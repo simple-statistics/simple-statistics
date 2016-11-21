@@ -17,7 +17,7 @@
     "are-we-flow-yet": "^1.0.0",
     "browserify": "^13.0.0",
     "bundle-collapser": "^1.0.0",
-    "eslint": "^3.0.1",
+    "eslint": "^3.8.1",
     "exorcist": "^0.4.0",
     "flow-bin": "^0.28.0",
     "jsdoctest": "1.6.3",
