@@ -3,7 +3,7 @@
 
 var sumNthPowerDeviations = require('./sum_nth_power_deviations');
 
-/*
+/**
  * The [sample variance](https://en.wikipedia.org/wiki/Variance#Sample_variance)
  * is the sum of squared deviations from the mean. The sample variance
  * is distinguished from the variance by the usage of [Bessel's Correction](https://en.wikipedia.org/wiki/Bessel's_correction):

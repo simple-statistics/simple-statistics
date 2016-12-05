@@ -3,7 +3,7 @@
 
 var shuffleInPlace = require('./shuffle_in_place');
 
-/*
+/**
  * A [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
  * is a fast way to create a random permutation of a finite set. This is
  * a function around `shuffle_in_place` that adds the guarantee that

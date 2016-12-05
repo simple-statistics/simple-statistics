@@ -1,7 +1,7 @@
 'use strict';
 /* @flow */
 
-/*
+/**
  * A [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
  * in-place - which means that it **will change the order of the original
  * array by reference**.
