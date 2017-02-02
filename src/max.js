@@ -16,7 +16,7 @@ function max(x /*: Array<number> */) /*:number*/ {
     var value;
     for (var i = 0; i < x.length; i++) {
         // On the first iteration of this loop, max is
-        // NaN and is thus made the maximum element in the array
+        // undefined and is thus made the maximum element in the array
         if (value === undefined || x[i] > value) {
             value = x[i];
         }
