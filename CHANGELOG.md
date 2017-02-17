@@ -1,3 +1,13 @@
+<a name="2.3.0"></a>
+# [2.3.0](https://github.com/simple-statistics/simple-statistics/compare/v2.2.0...v2.3.0) (2017-02-17)
+
+
+### Features
+
+* **core:** sampleWithReplacement (#174) ([a8d05d1](https://github.com/simple-statistics/simple-statistics/commit/a8d05d1))
+
+
+
 # CHANGELOG
 
 ## 2.2.0
