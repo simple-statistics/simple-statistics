@@ -10,7 +10,8 @@
  * of a set.
  *
  * @param {Array} sample input array
- * @param {Function} [randomSource=Math.random] an optional source of entropy
+ * @param {Function} [randomSource=Math.random] an optional entropy source that
+ * returns numbers between 0 inclusive and 1 exclusive: the range [0, 1)
  * @returns {Array} sample
  * @example
  * var sample = [1, 2, 3, 4];

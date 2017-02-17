@@ -26,6 +26,7 @@ ss.quantileSorted = require('./src/quantile_sorted');
 ss.iqr = ss.interquartileRange = require('./src/interquartile_range');
 ss.medianAbsoluteDeviation = ss.mad = require('./src/median_absolute_deviation');
 ss.chunk = require('./src/chunk');
+ss.sampleWithReplacement = require('./src/sample_with_replacement');
 ss.shuffle = require('./src/shuffle');
 ss.shuffleInPlace = require('./src/shuffle_in_place');
 ss.sample = require('./src/sample');
