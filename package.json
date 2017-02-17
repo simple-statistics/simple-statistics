@@ -15,16 +15,16 @@
   "dependencies": {},
   "devDependencies": {
     "are-we-flow-yet": "^1.0.0",
-    "browserify": "^13.0.0",
+    "browserify": "^14.1.0",
     "bundle-collapser": "^1.0.0",
     "cz-conventional-changelog": "^1.2.0",
     "eslint": "^3.8.1",
     "exorcist": "^0.4.0",
-    "flow-bin": "^0.28.0",
-    "jsdoctest": "1.6.3",
-    "mocha": "2.5.3",
+    "flow-bin": "^0.39.0",
+    "jsdoctest": "1.7.0",
+    "mocha": "3.2.0",
     "random-js": "^1.0.4",
-    "tap": "^6.1.1",
+    "tap": "^10.1.1",
     "uglify-js": "^2.6.2"
   },
   "scripts": {
