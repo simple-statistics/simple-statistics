@@ -10,7 +10,8 @@ var shuffleInPlace = require('./shuffle_in_place');
  * it will not modify its input.
  *
  * @param {Array} sample an array of any kind of element
- * @param {Function} [randomSource=Math.random] an optional entropy source
+ * @param {Function} [randomSource=Math.random] an optional entropy source that
+ * returns numbers between 0 inclusive and 1 exclusive: the range [0, 1)
  * @return {Array} shuffled version of input
  * @example
  * var shuffled = shuffle([1, 2, 3, 4]);

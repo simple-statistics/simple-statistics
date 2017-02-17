@@ -12,8 +12,8 @@ var shuffle = require('./shuffle');
  *
  * @param {Array} array input array. can contain any type
  * @param {number} n count of how many elements to take
- * @param {Function} [randomSource=Math.random] an optional source of entropy
- * instead of Math.random
+ * @param {Function} [randomSource=Math.random] an optional entropy source that
+ * returns numbers between 0 inclusive and 1 exclusive: the range [0, 1)
  * @return {Array} subset of n elements in original array
  * @example
  * var values = [1, 2, 4, 5, 6, 7, 8, 9];
