@@ -1,5 +1,6 @@
 [ignore]
 .*/node_modules/config-chain/test/.*
+.*/node_modules/conventional-changelog-core/test/.*
 .*/node_modules/.cache.*
 
 [include]
