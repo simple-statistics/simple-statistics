@@ -1,3 +1,17 @@
+<a name="2.4.0"></a>
+# [2.4.0](https://github.com/simple-statistics/simple-statistics/compare/v2.3.0...v2.4.0) (2017-02-22)
+
+
+### Bug Fixes
+
+* **build:** Ignore conventional-changelog-core for Flow ([4874868](https://github.com/simple-statistics/simple-statistics/commit/4874868))
+
+### Features
+
+* **mode:** Implement modeFast, an indexed mode implementation (#183) ([59b7191](https://github.com/simple-statistics/simple-statistics/commit/59b7191))
+
+
+
 <a name="2.3.0"></a>
 # [2.3.0](https://github.com/simple-statistics/simple-statistics/compare/v2.2.0...v2.3.0) (2017-02-17)
 
