@@ -13,6 +13,7 @@ ss.linearRegressionLine = require('./src/linear_regression_line');
 ss.standardDeviation = require('./src/standard_deviation');
 ss.rSquared = require('./src/r_squared');
 ss.mode = require('./src/mode');
+ss.modeFast = require('./src/mode_fast');
 ss.modeSorted = require('./src/mode_sorted');
 ss.min = require('./src/min');
 ss.max = require('./src/max');
