@@ -20,12 +20,12 @@ and/or [webpack](http://webpack.github.io/) users, install from npm:
 
 Script tag usage:
 
-* `https://unpkg.com/simple-statistics@2.4.0/dist/simple-statistics.js`
-* Minified: `https://unpkg.com/simple-statistics@2.4.0/dist/simple-statistics.min.js`
+* `https://unpkg.com/simple-statistics@2.5.0/dist/simple-statistics.js`
+* Minified: `https://unpkg.com/simple-statistics@2.5.0/dist/simple-statistics.min.js`
 
 Bower:
 
-* Bower: `https://unpkg.com/simple-statistics@2.4.0/bower.zip`
+* Bower: `https://unpkg.com/simple-statistics@2.5.0/bower.zip`
 
 ## Ports
 
