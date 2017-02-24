@@ -8,10 +8,10 @@
  * the number of elements in the list that produced it and the new
  * value to add.
  *
- * @param {Number} mean current mean
- * @param {Number} n number of items in the list
- * @param {Number} newValue the added value
- * @returns {Number} the new mean
+ * @param {number} mean current mean
+ * @param {number} n number of items in the list
+ * @param {number} newValue the added value
+ * @returns {number} the new mean
  *
  * @example
  * addToMean(14, 5, 53); // => 20.5
