@@ -55,6 +55,7 @@ ss.harmonicMean = require('./src/harmonic_mean');
 ss.mean = ss.average = require('./src/mean');
 ss.median = require('./src/median');
 ss.medianSorted = require('./src/median_sorted');
+ss.subtractFromMean = require('./src/subtract_from_mean');
 
 ss.rootMeanSquare = ss.rms = require('./src/root_mean_square');
 ss.variance = require('./src/variance');
