@@ -6,7 +6,7 @@
  * one does not have to necessary recompute the mean of the combined lists in
  * linear time. They can instead use this function to compute the combined
  * mean by providing the mean & number of values of the first list and the mean
- * & number of values of the second list instead.
+ * & number of values of the second list.
  *
  * @param {number} mean1 mean of the first list
  * @param {number} n1 number of items in the first list
