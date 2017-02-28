@@ -9,7 +9,6 @@ test('addToMean', function(t) {
         var values = [13, 14, 15, 8, 20];
         t.equal(ss.addToMean(ss.mean(values), values.length, 53), 20.5);
         t.equal(ss.addToMean(ss.mean(values), values.length, 53), ss.mean(values.concat(53)));
-        t.equal(ss.mean([1, 2]), 1.5);
         t.end();
     });
     t.end();
