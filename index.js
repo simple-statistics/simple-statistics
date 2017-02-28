@@ -50,6 +50,7 @@ ss.combinationsReplacement = require('./src/combinations_replacement');
 
 // measures of centrality
 ss.addToMean = require('./src/add_to_mean');
+ss.combineMeans = require('./src/combine_means');
 ss.geometricMean = require('./src/geometric_mean');
 ss.harmonicMean = require('./src/harmonic_mean');
 ss.mean = ss.average = require('./src/mean');
