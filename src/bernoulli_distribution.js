@@ -22,7 +22,7 @@ var binomialDistribution = require('./binomial_distribution');
 function bernoulliDistribution(p/*: number */) {
     // Check that `p` is a valid probability (0 ≤ p ≤ 1)
     if (p < 0 || p > 1 ) {
-        throw new Error('bernoulliDistribution requires probalility to be between 0 and 1 inclusive');
+        throw new Error('bernoulliDistribution requires probability to be between 0 and 1 inclusive');
     }
 
     return binomialDistribution(1, p);

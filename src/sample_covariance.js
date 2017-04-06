@@ -18,11 +18,11 @@ function sampleCovariance(x /*:Array<number>*/, y /*:Array<number>*/)/*:number*/
 
     // The two datasets must have the same length which must be more than 1
     if (x.length !== y.length) {
-        throw new Error('sampleCovariance requires datasets with equal lengths');
+        throw new Error('sampleCovariance requires samples with equal lengths');
     }
 
     if (x.length <= 1) {
-        throw new Error('sampleCovariance requires datasets with at least one data point');
+        throw new Error('sampleCovariance requires at least one data point in each sample');
     }
 
     // determine the mean of each dataset so that we can judge each

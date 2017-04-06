@@ -16,7 +16,7 @@ function factorial(n /*: number */)/*: number */ {
 
     // factorial is mathematically undefined for negative numbers
     if (n < 0 || Math.floor(n) !== n) {
-        throw new Error('factorial requires an integer value 1 or greater');
+        throw new Error('factorial requires an integer value one or greater');
     }
 
     // typically you'll expand the factorial function going down, like
