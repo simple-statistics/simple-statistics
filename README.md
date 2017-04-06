@@ -9,7 +9,9 @@ A JavaScript implementation of descriptive, regression, and inference statistics
 Implemented in literate JavaScript with no dependencies, designed to work
 in all modern browsers (including IE) as well as in [node.js](https://nodejs.org/).
 
-## :green_book: [API Documentation](http://simplestatistics.org/docs/)
+* :green_book: [API Documentation](http://simplestatistics.org/docs/)
+* :chart_with_upwards_trend: [Benchmarks](./benchmarks/)
+* :kissing: [A list of other statistics libraries](./SEEALSO.md)
 
 ## Installation
 
@@ -26,13 +28,3 @@ Script tag usage:
 Bower:
 
 * Bower: `https://unpkg.com/simple-statistics@2.5.0/bower.zip`
-
-## Ports
-
-* Python: [simplestatistics](https://github.com/sheriferson/simplestatistics) is an idiomatic implementation of basic statistical algorithms.
-
-## Examples
-
-* [Linear regression with simple-statistics and d3js](http://bl.ocks.org/3931800)
-* [Jenks Natural Breaks with a choropleth map with d3js](http://bl.ocks.org/tmcw/4969184)
-* Embedded statistics in a spreadsheet with nxsheet: [regression](https://nxsheet.com/sheets/56d0a87264e47ee60a95f652) and [stddev](https://nxsheet.com/sheets/56d55ca7743aea68490764ba)
