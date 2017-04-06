@@ -20,7 +20,7 @@ var variance = require('./variance');
  * standardDeviation([2, 4, 4, 4, 5, 5, 7, 9]); // => 2
  */
 function standardDeviation(x /*: Array<number> */)/*:number*/ {
-    if (x.length === 0) {
+    if (x.length === 1) {
         return 0;
     }
     var v = variance(x);
