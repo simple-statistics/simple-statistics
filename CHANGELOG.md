@@ -1,3 +1,20 @@
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/simple-statistics/simple-statistics/compare/v2.5.0...v3.0.0) (2017-04-06)
+
+**Breaking change**: before this release, simple-statistics would return `NaN`
+when provided with invalid input. After 3.0.0, simple-statistics will throw
+exceptions when provided with invalid input. If you previously used `isNaN` to
+test for these error cases, switch to using `try` and `catch`, or make sure
+that valid input is given to simple-statistics.
+
+### Features
+
+* **mean:** combineMeans, a method for combining calculated means ([d9e3ebc](https://github.com/simple-statistics/simple-statistics/commit/d9e3ebc))
+* **mean:** subtractFromMean, a method to remove a value from the mean ([afe76e9](https://github.com/simple-statistics/simple-statistics/commit/afe76e9))
+* **variance:** combineVariances, a method for combining pre-calculated variances of two dataset ([68133f7](https://github.com/simple-statistics/simple-statistics/commit/68133f7))
+
+
+
 <a name="2.5.0"></a>
 # [2.5.0](https://github.com/simple-statistics/simple-statistics/compare/v2.4.0...v2.5.0) (2017-02-24)
 
