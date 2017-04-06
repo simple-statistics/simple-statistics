@@ -11,7 +11,6 @@
 
 * [science.js](https://github.com/jasondavies/science.js)
 * [atoll.js](https://github.com/nsfmc/atoll.js)
-* [descriptive_statistics](https://github.com/thirtysixthspan/descriptive_statistics)
 * [jStat](http://www.jstat.org/)
 * [classifier](https://github.com/harthur/classifier) is a naive bayesian classifier (though specialized for the words-spam case)
 * [underscore.math](https://github.com/syntagmatic/underscore.math/blob/master/underscore.math.js)
@@ -19,12 +18,17 @@
 * [math.js](https://github.com/josdejong/mathjs)
 * [Jerzy](https://github.com/pieterprovoost/jerzy)
 
+### Ruby
+
+* [descriptive_statistics](https://github.com/thirtysixthspan/descriptive_statistics)
+
 ### C
 
 * [apophenia](https://github.com/b-k/apophenia)
 
 ### Python
 
+* [Python 3's built-in statistics module](https://docs.python.org/3/library/statistics.html)
 * [Pandas](http://pandas.pydata.org/)
 * [SciPy](http://www.scipy.org/)
 
