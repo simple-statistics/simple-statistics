@@ -23,7 +23,9 @@ test('standardDeviation', function(t) {
     });
 
     t.test('zero-length array corner case', function(t) {
-        t.equal(rnd(ss.standardDeviation([])), 0);
+        t.throws(function() {
+            ss.standardDeviation([]);
+        });
         t.end();
     });
 

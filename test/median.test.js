@@ -21,8 +21,10 @@ test('median', function(t) {
         t.end();
     });
 
-    t.test('gives NaN for the median of an empty list', function(t) {
-        t.ok(isNaN(ss.median([])));
+    t.test('cannot calculate the median of an empty list', function(t) {
+        t.throws(function() {
+            ss.median([]);
+        });
         t.end();
     });
 

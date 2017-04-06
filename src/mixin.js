@@ -11,6 +11,7 @@
  * @param {Array} [array=] a single array instance which will be augmented
  * with the extra methods. If omitted, mixin will apply to all arrays
  * by changing the global `Array.prototype`.
+ * @throws {Error} if the JavaScript environment doesn't support Object.defineProperty
  * @returns {*} the extended Array, or Array.prototype if no object
  * is given.
  *

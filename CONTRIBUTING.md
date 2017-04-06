@@ -123,3 +123,19 @@ space between expressions. No hard tabs.
   `(!foo)`.
 * Straightforward code is more important than most optimizations.
 
+## Errors
+
+Simple statistics emits errors for incorrect input. Error messages are modeled
+after the Python `statistics` package. Many of the errors are related to the size
+of the input sample, and follow this format:
+
+    FUNCTION requires at least N data point(s)
+
+For example:
+
+    min requires at least one data point
+
+The following should be true of all errors:
+
+* Errors are not sentences, and they do not end in periods.
+* When referring to numbers, use APA style - words for numbers under 10

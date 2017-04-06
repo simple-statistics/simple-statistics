@@ -9,17 +9,17 @@ var quantile = require('./quantile');
  * concentrated a distribution is. It's computed as the difference between
  * the third quartile and first quartile.
  *
- * @param {Array<number>} sample
+ * @param {Array<number>} x sample of one or more numbers
  * @returns {number} interquartile range: the span between lower and upper quartile,
  * 0.25 and 0.75
  * @example
  * interquartileRange([0, 1, 2, 3]); // => 2
  */
-function interquartileRange(sample/*: Array<number> */) {
+function interquartileRange(x/*: Array<number> */) {
     // Interquartile range is the span between the upper quartile,
     // at `0.75`, and lower quartile, `0.25`
-    var q1 = quantile(sample, 0.75),
-        q2 = quantile(sample, 0.25);
+    var q1 = quantile(x, 0.75),
+        q2 = quantile(x, 0.25);
 
     if (typeof q1 === 'number' && typeof q2 === 'number') {
         return q1 - q2;

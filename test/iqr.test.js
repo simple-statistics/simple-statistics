@@ -19,8 +19,10 @@ test('interquartile range (iqr)', function(t) {
         t.end();
     });
 
-    t.test('an iqr of a zero-length list produces NaN', function(t) {
-        t.ok(isNaN(ss.iqr([])));
+    t.test('an iqr of a zero-length list cannot be calculated', function(t) {
+        t.throws(function () {
+            ss.iqr([]);
+        });
         t.end();
     });
     t.end();

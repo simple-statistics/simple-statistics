@@ -5,7 +5,8 @@ var variance = require('./variance');
 
 /**
  * The [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
- * is the square root of the variance. It's useful for measuring the amount
+ * is the square root of the variance. This is also known as the population
+ * standard deviation. It's useful for measuring the amount
  * of variation or dispersion in a set of values.
  *
  * Standard deviation is only appropriate for full-population knowledge: for
@@ -19,9 +20,10 @@ var variance = require('./variance');
  * standardDeviation([2, 4, 4, 4, 5, 5, 7, 9]); // => 2
  */
 function standardDeviation(x /*: Array<number> */)/*:number*/ {
-    // The standard deviation of no numbers is null
+    if (x.length === 1) {
+        return 0;
+    }
     var v = variance(x);
-    if (isNaN(v)) { return 0; }
     return Math.sqrt(v);
 }
 

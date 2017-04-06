@@ -12,14 +12,14 @@
  *     // output
  *     [1, 10, 102, 12, 20]
  *
- * @param {Array<number>} array input array
+ * @param {Array<number>} x input array
  * @return {Array<number>} sorted array
  * @private
  * @example
  * numericSort([3, 2, 1]) // => [1, 2, 3]
  */
-function numericSort(array /*: Array<number> */) /*: Array<number> */ {
-    return array
+function numericSort(x /*: Array<number> */) /*: Array<number> */ {
+    return x
         // ensure the array is not changed in-place
         .slice()
         // comparator function that treats input as numeric

@@ -24,7 +24,9 @@ test('sample correlation', function(t) {
     });
 
     t.test('zero-length corner case', function(t) {
-        t.ok(isNaN(ss.sampleCorrelation([], [])));
+        t.throws(function() {
+            ss.sampleCorrelation([], []);
+        });
         t.end();
     });
 

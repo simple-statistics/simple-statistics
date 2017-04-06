@@ -10,7 +10,7 @@ var shuffle = require('./shuffle');
  * The sampled values will be in any order, not necessarily the order
  * they appear in the input.
  *
- * @param {Array} array input array. can contain any type
+ * @param {Array<any>} x input array. can contain any type
  * @param {number} n count of how many elements to take
  * @param {Function} [randomSource=Math.random] an optional entropy source that
  * returns numbers between 0 inclusive and 1 exclusive: the range [0, 1)
@@ -20,11 +20,11 @@ var shuffle = require('./shuffle');
  * sample(values, 3); // returns 3 random values, like [2, 5, 8];
  */
 function sample/*:: <T> */(
-    array /*: Array<T> */,
+    x /*: Array<T> */,
     n /*: number */,
     randomSource /*: Function */) /*: Array<T> */ {
     // shuffle the original array using a fisher-yates shuffle
-    var shuffled = shuffle(array, randomSource);
+    var shuffled = shuffle(x, randomSource);
 
     // and then return a subset of it - the first `n` elements.
     return shuffled.slice(0, n);

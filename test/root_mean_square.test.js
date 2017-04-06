@@ -18,7 +18,9 @@ test('root_mean_square', function(t) {
     });
 
     t.test('returns null for empty lists', function(t) {
-        t.ok(isNaN(ss.rootMeanSquare([])));
+        t.throws(function() {
+            ss.rootMeanSquare([]);
+        });
         t.end();
     });
 

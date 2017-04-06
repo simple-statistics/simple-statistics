@@ -31,19 +31,22 @@ test('quantile', function(t) {
         t.end();
     });
 
-    t.test('a zero-length list produces NaN', function(t) {
-        t.ok(isNaN(ss.quantile([], 0.5)));
-        t.end();
-    });
+    t.throws(function() {
+        ss.quantile([], 0.5);
+    }, 'a zero-length list throws an error');
 
     t.test('test odd-value case', function(t) {
         t.equal(ss.quantile([0, 1, 2, 3, 4], 0.2), 1);
         t.end();
     });
 
-    t.test('bad bounds produce NaN', function(t) {
-        t.ok(isNaN(ss.quantile([1, 2, 3], 1.1)));
-        t.ok(isNaN(ss.quantile([1, 2, 3], -0.5)));
+    t.test('bad bounds throw an error', function(t) {
+        t.throws(function() {
+            ss.quantile([1, 2, 3], 1.1);
+        });
+        t.throws(function() {
+            ss.quantile([1, 2, 3], -0.5);
+        });
         t.end();
     });
 

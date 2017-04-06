@@ -9,13 +9,16 @@
  * input numbers.
  * This runs on `O(n)`, linear time in respect to the array
  *
- * @param {Array<number>} x input
+ * @param {Array<number>} x a sample of one or more data points
  * @returns {number} root mean square
+ * @throws {Error} if x is empty
  * @example
  * rootMeanSquare([-1, 1, -1, 1]); // => 1
  */
 function rootMeanSquare(x /*: Array<number> */)/*:number*/ {
-    if (x.length === 0) { return NaN; }
+    if (x.length === 0) {
+        throw new Error('rootMeanSquare requires at least one data point');
+    }
 
     var sumOfSquares = 0;
     for (var i = 0; i < x.length; i++) {

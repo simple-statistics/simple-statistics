@@ -22,7 +22,9 @@ test('median absolute deviation (mad)', function(t) {
     });
 
     t.test('zero-length corner case', function(t) {
-        t.ok(isNaN(ss.mad([])));
+        t.throws(function() {
+            ss.mad([]);
+        });
         t.end();
     });
     t.end();

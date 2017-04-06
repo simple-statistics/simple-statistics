@@ -13,13 +13,17 @@ test('geometric mean', function(t) {
         t.end();
     });
 
-    t.test('returns NaN for empty lists', function(t) {
-        t.ok(isNaN(ss.geometricMean([])));
+    t.test('cannot calculate for empty lists', function(t) {
+        t.throws(function() {
+            ss.geometricMean([]);
+        });
         t.end();
     });
 
-    t.test('returns NaN for lists with negative numbers', function(t) {
-        t.ok(isNaN(ss.geometricMean([-1])));
+    t.test('cannot calculate for lists with negative numbers', function(t) {
+        t.throws(function() {
+            ss.geometricMean([-1]);
+        });
         t.end();
     });
     t.end();

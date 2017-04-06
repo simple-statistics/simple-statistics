@@ -14,8 +14,9 @@ var sampleStandardDeviation = require('./sample_standard_deviation');
  * moment coefficient, which is the version found in Excel and several
  * statistical packages including Minitab, SAS and SPSS.
  *
- * @param {Array<number>} x input
+ * @param {Array<number>} x a sample of 3 or more data points
  * @returns {number} sample skewness
+ * @throws {Error} if x has length of 3 or less
  * @example
  * sampleSkewness([2, 4, 6, 3, 1]); // => 0.590128656384365
  */
@@ -23,8 +24,8 @@ function sampleSkewness(x /*: Array<number> */)/*:number*/ {
     // The skewness of less than three arguments is null
     var theSampleStandardDeviation = sampleStandardDeviation(x);
 
-    if (isNaN(theSampleStandardDeviation) || x.length < 3) {
-        return NaN;
+    if (x.length < 3) {
+        throw new Error('sampleSkewness requires at least three data points');
     }
 
     var n = x.length,

@@ -9,18 +9,18 @@
  * Values are compared with `===`, so objects and non-primitive objects
  * are not handled in any special way.
  *
- * @param {Array} input an array of primitive values.
+ * @param {Array<*>} x an array of any kind of value
  * @returns {number} count of unique values
  * @example
  * uniqueCountSorted([1, 2, 3]); // => 3
  * uniqueCountSorted([1, 1, 1]); // => 1
  */
-function uniqueCountSorted(input/*: Array<any>*/)/*: number */ {
+function uniqueCountSorted(x/*: Array<any>*/)/*: number */ {
     var uniqueValueCount = 0,
         lastSeenValue;
-    for (var i = 0; i < input.length; i++) {
-        if (i === 0 || input[i] !== lastSeenValue) {
-            lastSeenValue = input[i];
+    for (var i = 0; i < x.length; i++) {
+        if (i === 0 || x[i] !== lastSeenValue) {
+            lastSeenValue = x[i];
             uniqueValueCount++;
         }
     }

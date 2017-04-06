@@ -19,14 +19,14 @@ var quickselect = require('./quickselect');
  * When p is an array, the result of the function is also an array containing the appropriate
  * quantiles in input order
  *
- * @param {Array<number>} sample a sample from the population
+ * @param {Array<number>} x sample of one or more numbers
  * @param {number} p the desired quantile, as a number between 0 and 1
  * @returns {number} quantile
  * @example
  * quantile([3, 6, 7, 8, 8, 9, 10, 13, 15, 16, 20], 0.5); // => 9
  */
-function quantile(sample /*: Array<number> */, p /*: Array<number> | number */) {
-    var copy = sample.slice();
+function quantile(x /*: Array<number> */, p /*: Array<number> | number */) {
+    var copy = x.slice();
 
     if (Array.isArray(p)) {
         // rearrange elements so that each element corresponding to a requested

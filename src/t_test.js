@@ -15,24 +15,24 @@ var mean = require('./mean');
  * a certain level of significance, will let you determine that the
  * null hypothesis can or cannot be rejected.
  *
- * @param {Array<number>} sample an array of numbers as input
- * @param {number} x expected value of the population mean
+ * @param {Array<number>} x sample of one or more numbers
+ * @param {number} expectedValue expected value of the population mean
  * @returns {number} value
  * @example
  * tTest([1, 2, 3, 4, 5, 6], 3.385).toFixed(2); // => '0.16'
  */
-function tTest(sample/*: Array<number> */, x/*: number */)/*:number*/ {
+function tTest(x/*: Array<number> */, expectedValue/*: number */)/*:number*/ {
     // The mean of the sample
-    var sampleMean = mean(sample);
+    var sampleMean = mean(x);
 
     // The standard deviation of the sample
-    var sd = standardDeviation(sample);
+    var sd = standardDeviation(x);
 
     // Square root the length of the sample
-    var rootN = Math.sqrt(sample.length);
+    var rootN = Math.sqrt(x.length);
 
     // returning the t value
-    return (sampleMean - x) / (sd / rootN);
+    return (sampleMean - expectedValue) / (sd / rootN);
 }
 
 module.exports = tTest;

@@ -204,22 +204,23 @@ function fillMatrices(data, matrix, backtrackMatrix) {
  * Programming_ Haizhou Wang and Mingzhou Song ISSN 2073-4859
  *
  * from The R Journal Vol. 3/2, December 2011
- * @param {Array<number>} data input data, as an array of number values
+ * @param {Array<number>} x input data, as an array of number values
  * @param {number} nClusters number of desired classes. This cannot be
  * greater than the number of values in the data array.
  * @returns {Array<Array<number>>} clustered input
+ * @throws {Error} if the number of requested clusters is higher than the size of the data
  * @example
  * ckmeans([-1, 2, -1, 2, 4, 5, 6, -1, 2, -1], 3);
  * // The input, clustered into groups of similar numbers.
  * //= [[-1, -1, -1, -1], [2, 2, 2], [4, 5, 6]]);
  */
-function ckmeans(data/*: Array<number> */, nClusters/*: number */)/*: Array<Array<number>> */ {
+function ckmeans(x/*: Array<number> */, nClusters/*: number */)/*: Array<Array<number>> */ {
 
-    if (nClusters > data.length) {
-        throw new Error('Cannot generate more classes than there are data values');
+    if (nClusters > x.length) {
+        throw new Error('cannot generate more classes than there are data values');
     }
 
-    var sorted = numericSort(data),
+    var sorted = numericSort(x),
         // we'll use this as the maximum number of clusters
         uniqueCount = uniqueCountSorted(sorted);
 
