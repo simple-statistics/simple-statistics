@@ -17,7 +17,7 @@
  *
  * This runs on `O(n)`, linear time in respect to the array
  *
- * @param {Array<number>} x input array
+ * @param {Array<number>} x sample of 1 or more data points
  * @returns {number} geometric mean
  * @example
  * var growthRates = [1.80, 1.166666, 1.428571];
@@ -35,14 +35,18 @@
  */
 function geometricMean(x /*: Array<number> */) {
     // The mean of no numbers is null
-    if (x.length === 0) { return undefined; }
+    if (x.length === 0) {
+        throw new Error('geometricMean requires at least one data point');
+    }
 
     // the starting value.
     var value = 1;
 
     for (var i = 0; i < x.length; i++) {
         // the geometric mean is only valid for positive numbers
-        if (x[i] <= 0) { return undefined; }
+        if (x[i] <= 0) {
+            throw new Error('geometricMean requires only positive numbers as input');
+        }
 
         // repeatedly multiply the value by each number
         value *= x[i];

@@ -7,17 +7,17 @@
  * function, and thus will insert smaller-sized chunks at the end if
  * the input size is not divisible by the chunk size.
  *
- * `sample` is expected to be an array, and `chunkSize` a number.
- * The `sample` array can contain any kind of data.
+ * `x` is expected to be an array, and `chunkSize` a number.
+ * The `x` array can contain any kind of data.
  *
- * @param {Array} sample any array of values
- * @param {number} chunkSize size of each output array
+ * @param {Array} x a sample
+ * @param {number} chunkSize size of each output array. must be a positive integer
  * @returns {Array<Array>} a chunked array
  * @example
  * chunk([1, 2, 3, 4, 5, 6], 2);
  * // => [[1, 2], [3, 4], [5, 6]]
  */
-function chunk(sample/*:Array<any>*/, chunkSize/*:number*/)/*:?Array<Array<any>>*/ {
+function chunk(x/*:Array<any>*/, chunkSize/*:number*/)/*:?Array<Array<any>>*/ {
 
     // a list of result chunks, as arrays in an array
     var output = [];
@@ -32,12 +32,12 @@ function chunk(sample/*:Array<any>*/, chunkSize/*:number*/)/*:?Array<Array<any>>
 
     // `start` is the index at which `.slice` will start selecting
     // new array elements
-    for (var start = 0; start < sample.length; start += chunkSize) {
+    for (var start = 0; start < x.length; start += chunkSize) {
 
         // for each chunk, slice that part of the array and add it
         // to the output. The `.slice` function does not change
         // the original array.
-        output.push(sample.slice(start, start + chunkSize));
+        output.push(x.slice(start, start + chunkSize));
     }
     return output;
 }

@@ -14,9 +14,9 @@ test('sampleStandardDeviation', function(t) {
         t.end();
     });
 
-    t.test('zero-length corner case', function(t) {
-        t.ok(isNaN(ss.sampleStandardDeviation([])));
-        t.end();
-    });
+    t.throws(function() {
+        ss.sampleStandardDeviation([]);
+    }, 'zero-length corner case');
+
     t.end();
 });

@@ -8,19 +8,25 @@ test('sample skewness', function(t) {
 
     t.test('the skewness of an empty sample is null', function(t) {
         var data = [];
-        t.ok(isNaN(ss.sampleSkewness(data)));
+        t.throws(function() {
+            ss.sampleSkewness(data);
+        });
         t.end();
     });
 
     t.test('the skewness of an sample with one number is null', function(t) {
         var data = [1];
-        t.ok(isNaN(ss.sampleSkewness(data)));
+        t.throws(function() {
+            ss.sampleSkewness(data);
+        });
         t.end();
     });
 
     t.test('the skewness of an sample with two numbers is null', function(t) {
         var data = [1, 2];
-        t.ok(isNaN(ss.sampleSkewness(data)));
+        t.throws(function() {
+            ss.sampleSkewness(data);
+        });
         t.end();
     });
 

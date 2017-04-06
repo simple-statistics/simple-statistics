@@ -11,7 +11,7 @@
  *
  * This runs in `O(n)` because the input is sorted.
  *
- * @param {Array<number>} sorted input
+ * @param {Array<number>} sorted a sample of 1 or more data points
  * @returns {number} mode
  * @example
  * modeSorted([0, 0, 1]); // => 0
@@ -19,9 +19,12 @@
 function modeSorted(sorted /*: Array<number> */)/*:number*/ {
 
     // Handle edge cases:
-    // The mode of an empty list is NaN
-    if (sorted.length === 0) { return NaN; }
-    else if (sorted.length === 1) { return sorted[0]; }
+    // The mode of an empty list is undefined
+    if (sorted.length === 0) {
+        throw new Error('mode requires at least one data point');
+    } else if (sorted.length === 1) {
+        return sorted[0];
+    }
 
     // This assumes it is dealing with an array of size > 1, since size
     // 0 and 1 are handled immediately. Hence it starts at index 1 in the

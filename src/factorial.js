@@ -7,7 +7,7 @@
  * recursively, but this iterative approach is significantly faster
  * and simpler.
  *
- * @param {number} n input
+ * @param {number} n input, must be an integer number 1 or greater
  * @returns {number} factorial: n!
  * @example
  * factorial(5); // => 120
@@ -15,7 +15,9 @@
 function factorial(n /*: number */)/*: number */ {
 
     // factorial is mathematically undefined for negative numbers
-    if (n < 0) { return NaN; }
+    if (n < 0 || Math.floor(n) !== n) {
+        throw new Error('factorial requires an integer value 1 or greater');
+    }
 
     // typically you'll expand the factorial function going down, like
     // 5! = 5 * 4 * 3 * 2 * 1. This is going in the opposite direction,

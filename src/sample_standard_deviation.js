@@ -16,7 +16,6 @@ var sampleVariance = require('./sample_variance');
 function sampleStandardDeviation(x/*:Array<number>*/)/*:number*/ {
     // The standard deviation of no numbers is null
     var sampleVarianceX = sampleVariance(x);
-    if (isNaN(sampleVarianceX)) { return NaN; }
     return Math.sqrt(sampleVarianceX);
 }
 

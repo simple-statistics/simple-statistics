@@ -28,14 +28,13 @@ test('sample variance', function(t) {
         t.end();
     });
 
-    t.test('the sample variance of one number is null', function(t) {
-        t.ok(isNaN(ss.sampleVariance([1])));
-        t.end();
-    });
+    t.throws(function() {
+        ss.sampleVariance([1]);
+    }, 'the sample variance of one number cannot be calculated');
 
-    t.test('the sample variance of no numbers is null', function(t) {
-        t.ok(isNaN(ss.sampleVariance([])));
-        t.end();
-    });
+    t.throws(function() {
+        ss.sampleVariance([]);
+    }, 'the sample variance of no numbers cannot be calculated');
+
     t.end();
 });

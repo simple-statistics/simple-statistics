@@ -5,8 +5,16 @@ var test = require('tap').test;
 var ss = require('../');
 
 test('factorial', function(t) {
-    t.test('can return NaN given a negative number', function(t) {
-        t.ok(isNaN(ss.factorial(-1)));
+    t.test('cannot calculate the factorial of a number lower than zero', function(t) {
+        t.throws(function() {
+            ss.factorial(-1);
+        });
+        t.end();
+    });
+    t.test('rejects floating-point inputs', function(t) {
+        t.throws(function() {
+            ss.factorial(-1);
+        });
         t.end();
     });
     t.test('can calculate 0! = 1', function(t) {

@@ -216,7 +216,7 @@ function fillMatrices(data, matrix, backtrackMatrix) {
 function ckmeans(data/*: Array<number> */, nClusters/*: number */)/*: Array<Array<number>> */ {
 
     if (nClusters > data.length) {
-        throw new Error('Cannot generate more classes than there are data values');
+        throw new Error('cannot generate more classes than there are data values');
     }
 
     var sorted = numericSort(data),

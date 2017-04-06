@@ -9,26 +9,25 @@
  * This is an algorithm that generates a random [permutation](https://en.wikipedia.org/wiki/Permutation)
  * of a set.
  *
- * @param {Array} sample input array
+ * @param {Array} x x of 1 or more numbers
  * @param {Function} [randomSource=Math.random] an optional entropy source that
  * returns numbers between 0 inclusive and 1 exclusive: the range [0, 1)
- * @returns {Array} sample
+ * @returns {Array} x
  * @example
- * var sample = [1, 2, 3, 4];
- * shuffleInPlace(sample);
- * // sample is shuffled to a value like [2, 1, 4, 3]
+ * var x = [1, 2, 3, 4];
+ * shuffleInPlace(x);
+ * // x is shuffled to a value like [2, 1, 4, 3]
  */
-function shuffleInPlace(sample/*:Array<any>*/, randomSource/*:Function*/)/*:Array<any>*/ {
-
+function shuffleInPlace(x/*:Array<any>*/, randomSource/*:Function*/)/*:Array<any>*/ {
 
     // a custom random number source can be provided if you want to use
     // a fixed seed or another random number generator, like
     // [random-js](https://www.npmjs.org/package/random-js)
     randomSource = randomSource || Math.random;
 
-    // store the current length of the sample to determine
+    // store the current length of the x to determine
     // when no elements remain to shuffle.
-    var length = sample.length;
+    var length = x.length;
 
     // temporary is used to hold an item when it is being
     // swapped between indices.
@@ -44,14 +43,14 @@ function shuffleInPlace(sample/*:Array<any>*/, randomSource/*:Function*/)/*:Arra
         index = Math.floor(randomSource() * length--);
 
         // store the value that we'll move temporarily
-        temporary = sample[length];
+        temporary = x[length];
 
-        // swap the value at `sample[length]` with `sample[index]`
-        sample[length] = sample[index];
-        sample[index] = temporary;
+        // swap the value at `x[length]` with `x[index]`
+        x[length] = x[index];
+        x[index] = temporary;
     }
 
-    return sample;
+    return x;
 }
 
 module.exports = shuffleInPlace;

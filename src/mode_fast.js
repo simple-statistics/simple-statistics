@@ -17,7 +17,7 @@
  * This is a [measure of central tendency](https://en.wikipedia.org/wiki/Central_tendency):
  * a method of finding a typical or central value of a set of numbers.
  *
- * @param {Array<*>} x input
+ * @param {Array<*>} x a sample of one or more data points
  * @returns {?*} mode
  * @throws {ReferenceError} if the JavaScript environment doesn't support Map
  * @example
@@ -46,6 +46,10 @@ function modeFast/*::<T>*/(x /*: Array<T> */)/*: ?T */ {
             modeCount = newCount;
         }
         index.set(x[i], newCount);
+    }
+
+    if (modeCount === 0) {
+        throw new Error('mode requires at last one data point');
     }
 
     return mode;

@@ -19,9 +19,7 @@ var variance = require('./variance');
  * standardDeviation([2, 4, 4, 4, 5, 5, 7, 9]); // => 2
  */
 function standardDeviation(x /*: Array<number> */)/*:number*/ {
-    // The standard deviation of no numbers is null
     var v = variance(x);
-    if (isNaN(v)) { return 0; }
     return Math.sqrt(v);
 }
 

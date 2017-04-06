@@ -19,8 +19,10 @@ test('variance', function(t) {
         t.end();
     });
 
-    t.test('the variance of no numbers is NaN', function(t) {
-        t.ok(isNaN(ss.variance([])));
+    t.test('the variance of no numbers cannot be calculated', function(t) {
+        t.throws(function () {
+            ss.variance([]);
+        });
         t.end();
     });
     t.end();

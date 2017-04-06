@@ -34,7 +34,9 @@ test('mode', function(t) {
             });
 
             t.test('the mode of an empty array is null', function(t) {
-                t.ok(isNaN(modeFn([])));
+                t.throws(function() {
+                    modeFn([]);
+                });
                 t.end();
             });
 

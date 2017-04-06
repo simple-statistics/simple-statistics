@@ -9,7 +9,7 @@ var shuffleInPlace = require('./shuffle_in_place');
  * a function around `shuffle_in_place` that adds the guarantee that
  * it will not modify its input.
  *
- * @param {Array} sample an array of any kind of element
+ * @param {Array} x sample of 0 or more numbers
  * @param {Function} [randomSource=Math.random] an optional entropy source that
  * returns numbers between 0 inclusive and 1 exclusive: the range [0, 1)
  * @return {Array} shuffled version of input
@@ -17,9 +17,9 @@ var shuffleInPlace = require('./shuffle_in_place');
  * var shuffled = shuffle([1, 2, 3, 4]);
  * shuffled; // = [2, 3, 1, 4] or any other random permutation
  */
-function shuffle/*::<T>*/(sample/*:Array<T>*/, randomSource/*:Function*/) {
+function shuffle/*::<T>*/(x/*:Array<T>*/, randomSource/*:Function*/) {
     // slice the original array so that it is not modified
-    sample = sample.slice();
+    var sample = x.slice();
 
     // and then shuffle that shallow-copied array, in place
     return shuffleInPlace(sample.slice(), randomSource);

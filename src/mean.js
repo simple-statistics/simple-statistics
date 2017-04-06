@@ -11,14 +11,16 @@ var sum = require('./sum');
  *
  * This runs on `O(n)`, linear time in respect to the array
  *
- * @param {Array<number>} x input values
+ * @param {Array<number>} x sample of 1 or more data points
  * @returns {number} mean
  * @example
  * mean([0, 10]); // => 5
  */
 function mean(x /*: Array<number> */)/*:number*/ {
     // The mean of no numbers is null
-    if (x.length === 0) { return NaN; }
+    if (x.length === 0) {
+        throw new Error('mean requires at least one data point');
+    }
 
     return sum(x) / x.length;
 }

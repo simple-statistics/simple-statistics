@@ -5,7 +5,9 @@ var test = require('tap').test;
 var ss = require('../');
 
 test('min', function(t) {
-    t.ok(isNaN(ss.min([])), 'min zero array NaN');
+    t.throws(function() {
+        ss.min([]);
+    }, 'zero length array throws');
     t.test('can get the minimum of one number', function(t) {
         t.equal(ss.min([1]), 1);
         t.end();
@@ -19,7 +21,9 @@ test('min', function(t) {
 });
 
 test('max', function(t) {
-    t.ok(isNaN(ss.max([])), 'max zero array NaN');
+    t.throws(function() {
+        ss.max([]);
+    }, 'zero length array throws');
     t.test('can get the maximum of three numbers', function(t) {
         t.equal(ss.max([1, 7, -1000]), 7);
         t.end();
