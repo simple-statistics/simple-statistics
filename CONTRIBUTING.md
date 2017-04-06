@@ -139,3 +139,11 @@ The following should be true of all errors:
 
 * Errors are not sentences, and they do not end in periods.
 * When referring to numbers, use APA style - words for numbers under 10
+
+## Benchmarks
+
+simple-statistics contains a benchmark suite located in the `benchmarks/` directory.
+It's structured as a separate `package.json` file, so you'll need to `cd` into the
+directory and `npm install` its dependencies, which include a few of the JavaScript
+'competitor' libraries noted in SEEALSO.md. To run benchmarks, run `npm start`.
+To add more, edit `index.js`.
