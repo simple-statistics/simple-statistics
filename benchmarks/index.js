@@ -96,8 +96,8 @@ var tests = [
         'medianAbsoluteDeviation',
         [
             'global.ss.medianAbsoluteDeviation',
-            'global.mathjs.mad',
-            'global.jStat.meddev'
+            'global.mathjs.mad'
+            // 'global.jStat.meddev' https://github.com/jstat/jstat/issues/205
         ]
     ],
     [
