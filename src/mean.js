@@ -11,7 +11,8 @@ var sum = require('./sum');
  *
  * This runs on `O(n)`, linear time in respect to the array
  *
- * @param {Array<number>} x sample of 1 or more data points
+ * @param {Array<number>} x sample of one or more data points
+ * @throws {Error} if the the length of x is less than one
  * @returns {number} mean
  * @example
  * mean([0, 10]); // => 5

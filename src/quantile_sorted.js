@@ -9,6 +9,8 @@
  * @param {Array<number>} x sample of 1 or more data points
  * @param {number} p desired quantile: a number between 0 to 1, inclusive
  * @returns {number} quantile value
+ * @throws {Error} if p ix outside of the range from 0 to 1
+ * @throws {Error} if x is empty
  * @example
  * quantileSorted([3, 6, 7, 8, 8, 9, 10, 13, 15, 16, 20], 0.5); // => 9
  */

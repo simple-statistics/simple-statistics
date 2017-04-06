@@ -19,6 +19,8 @@
  *
  * @param {Array<number>} x sample of 1 or more data points
  * @returns {number} geometric mean
+ * @throws {Error} if x is empty
+ * @throws {Error} if x contains a negative number
  * @example
  * var growthRates = [1.80, 1.166666, 1.428571];
  * var averageGrowth = geometricMean(growthRates);

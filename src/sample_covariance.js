@@ -8,8 +8,10 @@ var mean = require('./mean');
  * how much do the two datasets move together?
  * x and y are two datasets, represented as arrays of numbers.
  *
- * @param {Array<number>} x a sample of 1 or more data points
- * @param {Array<number>} y a sample of 1 or more data points
+ * @param {Array<number>} x a sample of two or more data points
+ * @param {Array<number>} y a sample of two or more data points
+ * @throws {Error} if x and y do not have equal lengths
+ * @throws {Error} if x or y have length of one or less
  * @returns {number} sample covariance
  * @example
  * sampleCovariance([1, 2, 3, 4, 5, 6], [6, 5, 4, 3, 2, 1]); // => -3.5
@@ -21,8 +23,8 @@ function sampleCovariance(x /*:Array<number>*/, y /*:Array<number>*/)/*:number*/
         throw new Error('sampleCovariance requires samples with equal lengths');
     }
 
-    if (x.length <= 1) {
-        throw new Error('sampleCovariance requires at least one data point in each sample');
+    if (x.length < 2) {
+        throw new Error('sampleCovariance requires at least two data points in each sample');
     }
 
     // determine the mean of each dataset so that we can judge each

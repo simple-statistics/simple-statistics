@@ -14,6 +14,8 @@
  *
  * @param {Array<number>} x sample of 1 or more data points
  * @returns {number} harmonic mean
+ * @throws {Error} if x is empty
+ * @throws {Error} if x contains a negative number
  * @example
  * harmonicMean([2, 3]).toFixed(2) // => '2.40'
  */

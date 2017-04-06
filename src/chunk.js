@@ -13,6 +13,7 @@
  * @param {Array} x a sample
  * @param {number} chunkSize size of each output array. must be a positive integer
  * @returns {Array<Array>} a chunked array
+ * @throws {Error} if chunk size is less than 1 or not an integer
  * @example
  * chunk([1, 2, 3, 4, 5, 6], 2);
  * // => [[1, 2], [3, 4], [5, 6]]
@@ -26,8 +27,12 @@ function chunk(x/*:Array<any>*/, chunkSize/*:number*/)/*:?Array<Array<any>>*/ {
     // in which we call `start += chunkSize`, will loop infinitely.
     // So, we'll detect and throw in that case to indicate
     // invalid input.
-    if (chunkSize <= 0) {
-        throw new Error('chunk size must be a positive integer');
+    if (chunkSize < 1) {
+        throw new Error('chunk size must be a positive number');
+    }
+
+    if (Math.floor(chunkSize) !== chunkSize) {
+        throw new Error('chunk size must be an integer');
     }
 
     // `start` is the index at which `.slice` will start selecting

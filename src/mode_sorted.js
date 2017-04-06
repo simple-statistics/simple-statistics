@@ -13,6 +13,7 @@
  *
  * @param {Array<number>} sorted a sample of 1 or more data points
  * @returns {number} mode
+ * @throws {Error} if sorted is empty
  * @example
  * modeSorted([0, 0, 1]); // => 0
  */

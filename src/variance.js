@@ -13,6 +13,7 @@ var sumNthPowerDeviations = require('./sum_nth_power_deviations');
  * @param {Array<number>} x a population of 1 or more data points
  * @returns {number} variance: a value greater than or equal to zero.
  * zero indicates that all values are identical.
+ * @throws {Error} if x's length is 0
  * @example
  * variance([1, 2, 3, 4, 5, 6]); // => 2.9166666666666665
  */

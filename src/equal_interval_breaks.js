@@ -19,7 +19,7 @@ var max = require('./max'),
  */
 function equalIntervalBreaks(x/*: Array<number> */, nClasses/*:number*/)/*: Array<number> */ {
 
-    if (x.length <= 1) {
+    if (x.length < 2) {
         return x;
     }
 

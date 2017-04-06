@@ -11,6 +11,7 @@
  *
  * @param {Array<number>} x a sample of 1 or more data points
  * @returns {number} root mean square
+ * @throws {Error} if x is empty
  * @example
  * rootMeanSquare([-1, 1, -1, 1]); // => 1
  */

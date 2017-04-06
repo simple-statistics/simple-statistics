@@ -16,6 +16,7 @@ var sampleStandardDeviation = require('./sample_standard_deviation');
  *
  * @param {Array<number>} x a sample of 3 or more data points
  * @returns {number} sample skewness
+ * @throws {Error} if x has length of 3 or less
  * @example
  * sampleSkewness([2, 4, 6, 3, 1]); // => 0.590128656384365
  */

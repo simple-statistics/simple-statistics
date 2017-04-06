@@ -20,6 +20,7 @@
  * @param {Array<*>} x a sample of one or more data points
  * @returns {?*} mode
  * @throws {ReferenceError} if the JavaScript environment doesn't support Map
+ * @throws {Error} if x is empty
  * @example
  * modeFast(['rabbits', 'rabbits', 'squirrels']); // => 'rabbits'
  */

@@ -9,14 +9,19 @@
  *
  * @param {number} n input, must be an integer number 1 or greater
  * @returns {number} factorial: n!
+ * @throws {Error} if n is less than 0 or not an integer
  * @example
  * factorial(5); // => 120
  */
 function factorial(n /*: number */)/*: number */ {
 
     // factorial is mathematically undefined for negative numbers
-    if (n < 0 || Math.floor(n) !== n) {
-        throw new Error('factorial requires an integer value one or greater');
+    if (n < 0) {
+        throw new Error('factorial requires an integer input');
+    }
+
+    if (Math.floor(n) !== n) {
+        throw new Error('factorial requires a non-negative value');
     }
 
     // typically you'll expand the factorial function going down, like
