@@ -6,7 +6,7 @@
  * that the order is sorted, you don't need to re-sort it, and the computations
  * are faster.
  *
- * @param {Array<number>} x sample of 1 or more data points
+ * @param {Array<number>} x sample of one or more data points
  * @param {number} p desired quantile: a number between 0 to 1, inclusive
  * @returns {number} quantile value
  * @throws {Error} if p ix outside of the range from 0 to 1

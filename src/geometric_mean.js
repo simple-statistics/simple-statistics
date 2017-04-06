@@ -17,7 +17,7 @@
  *
  * This runs on `O(n)`, linear time in respect to the array
  *
- * @param {Array<number>} x sample of 1 or more data points
+ * @param {Array<number>} x sample of one or more data points
  * @returns {number} geometric mean
  * @throws {Error} if x is empty
  * @throws {Error} if x contains a negative number

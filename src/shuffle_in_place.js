@@ -9,7 +9,7 @@
  * This is an algorithm that generates a random [permutation](https://en.wikipedia.org/wiki/Permutation)
  * of a set.
  *
- * @param {Array} x x of 1 or more numbers
+ * @param {Array} x sample of one or more numbers
  * @param {Function} [randomSource=Math.random] an optional entropy source that
  * returns numbers between 0 inclusive and 1 exclusive: the range [0, 1)
  * @returns {Array} x

@@ -15,7 +15,7 @@ var mean = require('./mean');
  * a certain level of significance, will let you determine that the
  * null hypothesis can or cannot be rejected.
  *
- * @param {Array<number>} x sample of 1 or more numbers
+ * @param {Array<number>} x sample of one or more numbers
  * @param {number} expectedValue expected value of the population mean
  * @returns {number} value
  * @example

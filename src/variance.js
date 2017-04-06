@@ -10,7 +10,7 @@ var sumNthPowerDeviations = require('./sum_nth_power_deviations');
  * This is an implementation of variance, not sample variance:
  * see the `sampleVariance` method if you want a sample measure.
  *
- * @param {Array<number>} x a population of 1 or more data points
+ * @param {Array<number>} x a population of one or more data points
  * @returns {number} variance: a value greater than or equal to zero.
  * zero indicates that all values are identical.
  * @throws {Error} if x's length is 0

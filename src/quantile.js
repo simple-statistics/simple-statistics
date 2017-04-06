@@ -19,7 +19,7 @@ var quickselect = require('./quickselect');
  * When p is an array, the result of the function is also an array containing the appropriate
  * quantiles in input order
  *
- * @param {Array<number>} x sample of 1 or more numbers
+ * @param {Array<number>} x sample of one or more numbers
  * @param {number} p the desired quantile, as a number between 0 and 1
  * @returns {number} quantile
  * @example

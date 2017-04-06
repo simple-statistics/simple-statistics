@@ -9,7 +9,7 @@
  * input numbers.
  * This runs on `O(n)`, linear time in respect to the array
  *
- * @param {Array<number>} x a sample of 1 or more data points
+ * @param {Array<number>} x a sample of one or more data points
  * @returns {number} root mean square
  * @throws {Error} if x is empty
  * @example

@@ -14,7 +14,7 @@ var sumNthPowerDeviations = require('./sum_nth_power_deviations');
  * References:
  * * [Wolfram MathWorld on Sample Variance](http://mathworld.wolfram.com/SampleVariance.html)
  *
- * @param {Array<number>} x a sample of 2 or more data points
+ * @param {Array<number>} x a sample of two or more data points
  * @throws {Error} if the length of x is less than 2
  * @return {number} sample variance
  * @example
@@ -23,7 +23,7 @@ var sumNthPowerDeviations = require('./sum_nth_power_deviations');
 function sampleVariance(x /*: Array<number> */)/*:number*/ {
     // The variance of no numbers is null
     if (x.length < 2) {
-        throw new Error('sampleCorrelation requires at least two data points');
+        throw new Error('sampleVariance requires at least two data points');
     }
 
     var sumSquaredDeviationsValue = sumNthPowerDeviations(x, 2);

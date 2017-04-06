@@ -11,7 +11,7 @@
  *
  * This runs in `O(n)` because the input is sorted.
  *
- * @param {Array<number>} sorted a sample of 1 or more data points
+ * @param {Array<number>} sorted a sample of one or more data points
  * @returns {number} mode
  * @throws {Error} if sorted is empty
  * @example
