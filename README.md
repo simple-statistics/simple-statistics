@@ -3,7 +3,7 @@
 
 A JavaScript implementation of descriptive, regression, and inference statistics.
 
-[![Circle CI](https://circleci.com/gh/simple-statistics/simple-statistics/tree/master.svg?style=svg)](https://circleci.com/gh/simple-statistics/simple-statistics/tree/master)
+[![Circle CI](https://circleci.com/gh/simple-statistics/simple-statistics/tree/master.svg?style=shield)](https://circleci.com/gh/simple-statistics/simple-statistics/tree/master)
 [![codecov.io](https://codecov.io/github/simple-statistics/simple-statistics/coverage.svg?branch=master)](https://codecov.io/github/simple-statistics/simple-statistics?branch=master)
 [![npm version](https://badge.fury.io/js/simple-statistics.svg)](http://badge.fury.io/js/simple-statistics)
 [![Greenkeeper badge](https://badges.greenkeeper.io/simple-statistics/simple-statistics.svg)](https://greenkeeper.io/)
