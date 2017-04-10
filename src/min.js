@@ -11,16 +11,18 @@
  * min([1, 5, -10, 100, 2]); // => -10
  */
 function min(x /*: Array<number> */)/*:number*/ {
-    var value;
-    for (var i = 0; i < x.length; i++) {
+
+    if (x.length === 0) {
+        throw new Error('min requires at least one data point');
+    }
+
+    var value = x[0];
+    for (var i = 1; i < x.length; i++) {
         // On the first iteration of this loop, min is
         // undefined and is thus made the minimum element in the array
-        if (value === undefined || x[i] < value) {
+        if (x[i] < value) {
             value = x[i];
         }
-    }
-    if (value === undefined) {
-        throw new Error('min requires at least one data point');
     }
     return value;
 }
