@@ -14,6 +14,6 @@
     "markdown-table": "^1.1.0",
     "mathjs": "^3.11.4",
     "science": "^1.9.3",
-    "simple-statistics": "^2.5.0"
+    "simple-statistics": "^3.0.0"
   }
 }
