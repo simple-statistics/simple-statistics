@@ -1,5 +1,7 @@
 # Simple Statistics
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/simple-statistics/simple-statistics.svg)](https://greenkeeper.io/)
+
 A JavaScript implementation of descriptive, regression, and inference statistics.
 
 [![Circle CI](https://circleci.com/gh/simple-statistics/simple-statistics/tree/master.svg?style=svg)](https://circleci.com/gh/simple-statistics/simple-statistics/tree/master)
