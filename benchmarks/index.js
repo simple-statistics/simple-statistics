@@ -197,6 +197,15 @@ var tests = [
             'global.mathjs.max',
             'global.jStat.max'
         ]
+    ],
+    [
+        'sum',
+        [
+            'global.ss.sum',
+            'global.ssMaster.sum',
+            'global.mathjs.sum',
+            'global.jStat.sum'
+        ]
     ]
 ];
 
