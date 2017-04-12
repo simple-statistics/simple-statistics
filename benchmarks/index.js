@@ -17,7 +17,8 @@ global.jStat.sampleVariance = function(input) {
 };
 
 function setupInput() {
-    var i; var input10 = [];
+    var i;
+    var input10 = [];
     for (i = 0; i < 10; i++) {
         input10.push(Math.random());
     }
@@ -26,7 +27,21 @@ function setupInput() {
         input100.push(Math.random());
     }
     var input1000 = [];
-    for (i = 0; i < 1000; i++) { input1000.push(Math.random());
+    for (i = 0; i < 1000; i++) {
+        input1000.push(Math.random());
+    }
+
+    var input10a = [];
+    for (i = 0; i < 10; i++) {
+        input10a.push(Math.random());
+    }
+    var input100a = [];
+    for (i = 0; i < 100; i++) {
+        input100a.push(Math.random());
+    }
+    var input1000a = [];
+    for (i = 0; i < 1000; i++) {
+        input1000a.push(Math.random());
     }
 }
 
@@ -40,7 +55,7 @@ var results = [[
 // libraries doing the same work - it gets a name as a first argument, like
 // 'median', and the second argument is an array of strings that are the names
 // of the implementations of that function in different libraries.
-function suiteForMethods(name, methods) {
+function suiteForMethods(name, methods, type) {
 
     var suite = new Benchmark.Suite({
         name: name,
@@ -50,10 +65,11 @@ function suiteForMethods(name, methods) {
     });
 
     methods.forEach(function (method) {
-        if (process.env.QUICK) {
+        if (type === 'two-arrays') {
             suite.add(method, {
                 setup: setupInput,
-                fn: method + '(input10);'
+                fn: method + '(input10, input10a);' + method + '(input100, input100a);' +
+                    method + '(input1000, input1000a);'
             });
         } else {
             suite.add(method, {
@@ -101,11 +117,37 @@ var tests = [
         ]
     ],
     [
+        'covariance',
+        [
+            'global.ss.sampleCovariance',
+            'global.ssMaster.sampleCovariance',
+            'global.jStat.covariance'
+        ],
+        'two-arrays'
+    ],
+    [
         'skewness',
         [
             'global.ss.sampleSkewness',
             'global.ssMaster.sampleSkewness',
             'global.jStat.skewness'
+        ]
+    ],
+    [
+        'geometric mean',
+        [
+            'global.ss.geometricMean',
+            'global.ssMaster.geometricMean',
+            'global.jStat.geomean'
+        ]
+    ],
+    [
+        'medianAbsoluteDeviation',
+        [
+            'global.ss.medianAbsoluteDeviation',
+            'global.ssMaster.medianAbsoluteDeviation',
+            'global.mathjs.mad'
+            // 'global.jStat.meddev' https://github.com/jstat/jstat/issues/205
         ]
     ],
     [
@@ -129,12 +171,13 @@ var tests = [
         ]
     ],
     [
-        'medianAbsoluteDeviation',
+        'mean',
         [
-            'global.ss.medianAbsoluteDeviation',
-            'global.ssMaster.medianAbsoluteDeviation',
-            'global.mathjs.mad'
-            // 'global.jStat.meddev' https://github.com/jstat/jstat/issues/205
+            'global.ss.mean',
+            'global.ssMaster.mean',
+            'global.mathjs.mean',
+            'global.jStat.mean',
+            'global.science.stats.mode'
         ]
     ],
     [
@@ -145,11 +188,20 @@ var tests = [
             'global.mathjs.min',
             'global.jStat.min'
         ]
+    ],
+    [
+        'max',
+        [
+            'global.ss.max',
+            'global.ssMaster.max',
+            'global.mathjs.max',
+            'global.jStat.max'
+        ]
     ]
 ];
 
 tests.forEach(function (test) {
-    suiteForMethods(test[0], test[1]);
+    suiteForMethods(test[0], test[1], test[2]);
 });
 
 // Finally, console.log spits out the content of readme.md
