@@ -2,7 +2,6 @@
 /* @flow */
 
 var epsilon = require('./epsilon');
-var factorial = require('./factorial');
 
 /**
  * The [Poisson Distribution](http://en.wikipedia.org/wiki/Poisson_distribution)
@@ -27,16 +26,18 @@ function poissonDistribution(lambda/*: number */) {
         // order to know when to stop calculating chances.
         cumulativeProbability = 0,
         // the calculated cells to be returned
-        cells = {};
+        cells = {},
+        factorialX = 1;
 
     // This algorithm iterates through each potential outcome,
     // until the `cumulativeProbability` is very close to 1, at
     // which point we've defined the vast majority of outcomes
     do {
         // a [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function)
-        cells[x] = (Math.pow(Math.E, -lambda) * Math.pow(lambda, x)) / factorial(x);
+        cells[x] = (Math.pow(Math.E, -lambda) * Math.pow(lambda, x)) / factorialX;
         cumulativeProbability += cells[x];
         x++;
+        factorialX *= x;
     // when the cumulativeProbability is nearly 1, we've calculated
     // the useful range of this distribution
     } while (cumulativeProbability < 1 - epsilon);
