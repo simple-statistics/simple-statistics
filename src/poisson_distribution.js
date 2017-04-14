@@ -34,7 +34,7 @@ function poissonDistribution(lambda/*: number */) {
     // which point we've defined the vast majority of outcomes
     do {
         // a [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function)
-        cells[x] = (Math.pow(Math.E, -lambda) * Math.pow(lambda, x)) / factorialX;
+        cells[x] = (Math.exp(-lambda) * Math.pow(lambda, x)) / factorialX;
         cumulativeProbability += cells[x];
         x++;
         factorialX *= x;
