@@ -2,7 +2,6 @@
 /* @flow */
 
 var epsilon = require('./epsilon');
-var factorial = require('./factorial');
 
 /**
  * The [Binomial Distribution](http://en.wikipedia.org/wiki/Binomial_distribution) is the discrete probability
@@ -32,18 +31,19 @@ function binomialDistribution(
     // within `epsilon` of 1.0.
     var x = 0,
         cumulativeProbability = 0,
-        cells = {};
+        cells = {},
+        binomialCoefficient = 1;
 
     // This algorithm iterates through each potential outcome,
     // until the `cumulativeProbability` is very close to 1, at
     // which point we've defined the vast majority of outcomes
     do {
         // a [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function)
-        cells[x] = factorial(trials) /
-            (factorial(x) * factorial(trials - x)) *
-            (Math.pow(probability, x) * Math.pow(1 - probability, trials - x));
+        cells[x] = binomialCoefficient *
+            Math.pow(probability, x) * Math.pow(1 - probability, trials - x);
         cumulativeProbability += cells[x];
         x++;
+        binomialCoefficient = binomialCoefficient * (trials - x + 1) / x;
     // when the cumulativeProbability is nearly 1, we've calculated
     // the useful range of this distribution
     } while (cumulativeProbability < 1 - epsilon);
