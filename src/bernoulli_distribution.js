@@ -1,8 +1,6 @@
 'use strict';
 /* @flow */
 
-var binomialDistribution = require('./binomial_distribution');
-
 /**
  * The [Bernoulli distribution](http://en.wikipedia.org/wiki/Bernoulli_distribution)
  * is the probability discrete
@@ -26,7 +24,7 @@ function bernoulliDistribution(p/*: number */) {
         throw new Error('bernoulliDistribution requires probability to be between 0 and 1 inclusive');
     }
 
-    return binomialDistribution(1, p);
+    return { '0': 1 - p, '1': p };
 }
 
 module.exports = bernoulliDistribution;
