@@ -6,7 +6,7 @@ var ss = require('../');
 
 test('bernoulliDistribution', function(t) {
     t.test('can return generate probability and cumulative probability distributions for p = 0.3', function(t) {
-        t.equal('object', typeof ss.bernoulliDistribution(0.3));
+        t.ok(Array.isArray(ss.bernoulliDistribution(0.3)));
         t.equal(ss.bernoulliDistribution(0.3)[0], 0.7, ss.epsilon);
         t.equal(ss.bernoulliDistribution(0.3)[1], 0.3, ss.epsilon);
         t.end();

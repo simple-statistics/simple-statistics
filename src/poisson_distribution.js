@@ -14,9 +14,9 @@ var epsilon = require('./epsilon');
  * mean arrival or occurrence rate, `λ`.
  *
  * @param {number} lambda location poisson distribution
- * @returns {number} value of poisson distribution at that point
+ * @returns {number[]} values of poisson distribution at that point
  */
-function poissonDistribution(lambda/*: number */) {
+function poissonDistribution(lambda/*: number */) /*: ?number[] */ {
     // Check that lambda is strictly positive
     if (lambda <= 0) { return undefined; }
 
@@ -26,7 +26,7 @@ function poissonDistribution(lambda/*: number */) {
         // order to know when to stop calculating chances.
         cumulativeProbability = 0,
         // the calculated cells to be returned
-        cells = {},
+        cells = [],
         factorialX = 1;
 
     // This algorithm iterates through each potential outcome,
