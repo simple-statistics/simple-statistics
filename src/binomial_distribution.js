@@ -11,11 +11,11 @@ var epsilon = require('./epsilon');
  *
  * @param {number} trials number of trials to simulate
  * @param {number} probability
- * @returns {Object} output
+ * @returns {number[]} output
  */
 function binomialDistribution(
     trials/*: number */,
-    probability/*: number */)/*: ?Object */ {
+    probability/*: number */)/*: ?number[] */ {
     // Check that `p` is a valid probability (0 ≤ p ≤ 1),
     // that `n` is an integer, strictly positive.
     if (probability < 0 || probability > 1 ||
@@ -31,7 +31,7 @@ function binomialDistribution(
     // within `epsilon` of 1.0.
     var x = 0,
         cumulativeProbability = 0,
-        cells = {},
+        cells = [],
         binomialCoefficient = 1;
 
     // This algorithm iterates through each potential outcome,
