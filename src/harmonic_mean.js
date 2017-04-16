@@ -19,7 +19,7 @@
  * @example
  * harmonicMean([2, 3]).toFixed(2) // => '2.40'
  */
-function harmonicMean(x /*: Array<number> */) {
+export function harmonicMean(x /*: Array<number> */) {
     // The mean of no numbers is null
     if (x.length === 0) {
         throw new Error('harmonicMean requires at least one data point');
@@ -39,5 +39,3 @@ function harmonicMean(x /*: Array<number> */) {
     // divide n by the the reciprocal sum
     return x.length / reciprocalSum;
 }
-
-module.exports = harmonicMean;

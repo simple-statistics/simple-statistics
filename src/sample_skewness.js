@@ -1,7 +1,7 @@
 'use strict';
 /* @flow */
 
-var mean = require('./mean');
+import { mean } from './mean';
 
 /**
  * [Skewness](http://en.wikipedia.org/wiki/Skewness) is
@@ -19,7 +19,7 @@ var mean = require('./mean');
  * @example
  * sampleSkewness([2, 4, 6, 3, 1]); // => 0.590128656384365
  */
-function sampleSkewness(x /*: Array<number> */)/*:number*/ {
+export function sampleSkewness(x /*: Array<number> */)/*:number*/ {
 
     if (x.length < 3) {
         throw new Error('sampleSkewness requires at least three data points');
@@ -49,5 +49,3 @@ function sampleSkewness(x /*: Array<number> */)/*:number*/ {
 
     return n * sumCubedDeviations / ((n - 1) * (n - 2) * cubedS);
 }
-
-module.exports = sampleSkewness;

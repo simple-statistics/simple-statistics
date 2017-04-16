@@ -1,8 +1,8 @@
 'use strict';
 /* @flow */
 
-var mean = require('./mean');
-var sampleVariance = require('./sample_variance');
+import { mean } from './mean';
+import { sampleVariance } from './sample_variance';
 
 /**
  * This is to compute [two sample t-test](http://en.wikipedia.org/wiki/Student's_t-test).
@@ -30,7 +30,7 @@ var sampleVariance = require('./sample_variance');
  * @example
  * ss.tTestTwoSample([1, 2, 3, 4], [3, 4, 5, 6], 0); //= -2.1908902300206643
  */
-function tTestTwoSample(
+export function tTestTwoSample(
     sampleX/*: Array<number> */,
     sampleY/*: Array<number> */,
     difference/*: number */) {
@@ -62,5 +62,3 @@ function tTestTwoSample(
             Math.sqrt(weightedVariance * (1 / n + 1 / m));
     }
 }
-
-module.exports = tTestTwoSample;

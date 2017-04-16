@@ -14,7 +14,7 @@
  * var sample = sampleWithReplacement([1, 2, 3, 4], 2);
  * sampleWithReplacement; // = [2, 4] or any other random sample of 2 items
  */
-function sampleWithReplacement/*::<T>*/(x/*:Array<T>*/,
+export function sampleWithReplacement/*::<T>*/(x/*:Array<T>*/,
     n /*: number */,
     randomSource/*:Function*/) {
 
@@ -38,5 +38,3 @@ function sampleWithReplacement/*::<T>*/(x/*:Array<T>*/,
 
     return sample;
 }
-
-module.exports = sampleWithReplacement;

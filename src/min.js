@@ -10,7 +10,7 @@
  * @example
  * min([1, 5, -10, 100, 2]); // => -10
  */
-function min(x /*: Array<number> */)/*:number*/ {
+export function min(x /*: Array<number> */)/*:number*/ {
 
     if (x.length === 0) {
         throw new Error('min requires at least one data point');
@@ -26,5 +26,3 @@ function min(x /*: Array<number> */)/*:number*/ {
     }
     return value;
 }
-
-module.exports = min;

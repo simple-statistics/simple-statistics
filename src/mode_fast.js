@@ -24,7 +24,7 @@
  * @example
  * modeFast(['rabbits', 'rabbits', 'squirrels']); // => 'rabbits'
  */
-function modeFast/*::<T>*/(x /*: Array<T> */)/*: ?T */ {
+export function modeFast/*::<T>*/(x /*: Array<T> */)/*: ?T */ {
 
     // This index will reflect the incidence of different values, indexing
     // them like
@@ -55,5 +55,3 @@ function modeFast/*::<T>*/(x /*: Array<T> */)/*: ?T */ {
 
     return mode;
 }
-
-module.exports = modeFast;

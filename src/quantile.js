@@ -1,8 +1,8 @@
 'use strict';
 /* @flow */
 
-var quantileSorted = require('./quantile_sorted');
-var quickselect = require('./quickselect');
+import { quantileSorted } from './quantile_sorted';
+import { quickselect } from './quickselect';
 
 /**
  * The [quantile](https://en.wikipedia.org/wiki/Quantile):
@@ -25,7 +25,7 @@ var quickselect = require('./quickselect');
  * @example
  * quantile([3, 6, 7, 8, 8, 9, 10, 13, 15, 16, 20], 0.5); // => 9
  */
-function quantile(x /*: Array<number> */, p /*: Array<number> | number */) {
+export function quantile(x /*: Array<number> */, p /*: Array<number> | number */) {
     var copy = x.slice();
 
     if (Array.isArray(p)) {
@@ -103,5 +103,3 @@ function quantileIndex(len /*: number */, p /*: number */)/*:number*/ {
         return idx;
     }
 }
-
-module.exports = quantile;

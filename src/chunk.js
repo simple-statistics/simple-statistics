@@ -18,7 +18,7 @@
  * chunk([1, 2, 3, 4, 5, 6], 2);
  * // => [[1, 2], [3, 4], [5, 6]]
  */
-function chunk(x/*:Array<any>*/, chunkSize/*:number*/)/*:?Array<Array<any>>*/ {
+export function chunk(x/*:Array<any>*/, chunkSize/*:number*/)/*:?Array<Array<any>>*/ {
 
     // a list of result chunks, as arrays in an array
     var output = [];
@@ -46,5 +46,3 @@ function chunk(x/*:Array<any>*/, chunkSize/*:number*/)/*:?Array<Array<any>>*/ {
     }
     return output;
 }
-
-module.exports = chunk;

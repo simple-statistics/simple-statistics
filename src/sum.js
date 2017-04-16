@@ -19,7 +19,7 @@
  * @example
  * sum([1, 2, 3]); // => 6
  */
-function sum(x/*: Array<number> */)/*: number */ {
+export function sum(x/*: Array<number> */)/*: number */ {
 
     // If the array is empty, we needn't bother computing its sum
     if (x.length === 0) {
@@ -52,5 +52,3 @@ function sum(x/*: Array<number> */)/*: number */ {
     // Returning the corrected sum
     return sum + correction;
 }
-
-module.exports = sum;

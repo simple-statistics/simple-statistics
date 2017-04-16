@@ -13,7 +13,7 @@
  * @example
  * factorial(5); // => 120
  */
-function factorial(n /*: number */)/*: number */ {
+export function factorial(n /*: number */)/*: number */ {
 
     // factorial is mathematically undefined for negative numbers
     if (n < 0) {
@@ -36,5 +36,3 @@ function factorial(n /*: number */)/*: number */ {
     }
     return accumulator;
 }
-
-module.exports = factorial;

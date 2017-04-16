@@ -13,7 +13,7 @@
  * @example
  * combinationsReplacement([1, 2], 2); // => [[1, 1], [1, 2], [2, 2]]
  */
-function combinationsReplacement(
+export function combinationsReplacement(
     x /*: Array<any> */,
     k /*: number */) {
 
@@ -45,5 +45,3 @@ function combinationsReplacement(
 
     return combinationList;
 }
-
-module.exports = combinationsReplacement;

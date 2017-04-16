@@ -17,7 +17,7 @@
  * @example
  * modeSorted([0, 0, 1]); // => 0
  */
-function modeSorted(sorted /*: Array<number> */)/*:number*/ {
+export function modeSorted(sorted /*: Array<number> */)/*:number*/ {
 
     // Handle edge cases:
     // The mode of an empty list is undefined
@@ -60,5 +60,3 @@ function modeSorted(sorted /*: Array<number> */)/*:number*/ {
     }
     return value;
 }
-
-module.exports = modeSorted;

@@ -13,7 +13,7 @@
  * max([1, 2, 3, 4]);
  * // => 4
  */
-function max(x /*: Array<number> */) /*:number*/ {
+export function max(x /*: Array<number> */) /*:number*/ {
 
     if (x.length === 0) {
         throw new Error('max requires at least one data point');
@@ -29,5 +29,3 @@ function max(x /*: Array<number> */) /*:number*/ {
     }
     return value;
 }
-
-module.exports = max;

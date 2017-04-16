@@ -9,7 +9,7 @@
  * @param {Array} elements any type of data
  * @returns {Array<Array>} array of permutations
  */
-function permutationsHeap/*:: <T> */(elements /*: Array<T> */)/*: Array<Array<T>> */ {
+export function permutationsHeap/*:: <T> */(elements /*: Array<T> */)/*: Array<Array<T>> */ {
     var indexes = new Array(elements.length);
     var permutations = [elements.slice()];
 
@@ -45,5 +45,3 @@ function permutationsHeap/*:: <T> */(elements /*: Array<T> */)/*: Array<Array<T>
 
     return permutations;
 }
-
-module.exports = permutationsHeap;

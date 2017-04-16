@@ -1,8 +1,8 @@
 'use strict';
 /* @flow */
 
-var mean = require('./mean');
-var chiSquaredDistributionTable = require('./chi_squared_distribution_table');
+import { mean } from './mean';
+import { chiSquaredDistributionTable } from './chi_squared_distribution_table';
 
 /**
  * The [χ2 (Chi-Squared) Goodness-of-Fit Test](http://en.wikipedia.org/wiki/Goodness_of_fit#Pearson.27s_chi-squared_test)
@@ -31,7 +31,7 @@ var chiSquaredDistributionTable = require('./chi_squared_distribution_table');
  * ];
  * ss.chiSquaredGoodnessOfFit(data1019, ss.poissonDistribution, 0.05)); //= false
  */
-function chiSquaredGoodnessOfFit(
+export function chiSquaredGoodnessOfFit(
     data/*: Array<number> */,
     distributionType/*: Function */,
     significance/*: number */)/*: boolean */ {
@@ -105,5 +105,3 @@ function chiSquaredGoodnessOfFit(
     degreesOfFreedom = observedFrequencies.length - c - 1;
     return chiSquaredDistributionTable[degreesOfFreedom][significance] < chiSquared;
 }
-
-module.exports = chiSquaredGoodnessOfFit;

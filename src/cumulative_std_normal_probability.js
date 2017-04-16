@@ -1,7 +1,7 @@
 'use strict';
 /* @flow */
 
-var standardNormalTable = require('./standard_normal_table');
+import { standardNormalTable } from './standard_normal_table';
 
 /**
  * **[Cumulative Standard Normal Probability](http://en.wikipedia.org/wiki/Standard_normal_table)**
@@ -17,7 +17,7 @@ var standardNormalTable = require('./standard_normal_table');
  * @param {number} z
  * @returns {number} cumulative standard normal probability
  */
-function cumulativeStdNormalProbability(z /*:number */)/*:number */ {
+export function cumulativeStdNormalProbability(z /*:number */)/*:number */ {
 
     // Calculate the position of this value.
     var absZ = Math.abs(z),
@@ -39,5 +39,3 @@ function cumulativeStdNormalProbability(z /*:number */)/*:number */ {
         return +(1 - standardNormalTable[index]).toFixed(4);
     }
 }
-
-module.exports = cumulativeStdNormalProbability;

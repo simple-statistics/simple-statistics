@@ -21,7 +21,7 @@
  * p.predict([1, 0]); // 0
  * p.predict([1, 1]); // 1
  */
-function PerceptronModel() {
+export function PerceptronModel() {
     // The weights, or coefficients of the model;
     // weights are only populated when training with data.
     this.weights = [];
@@ -92,5 +92,3 @@ PerceptronModel.prototype.train = function(features, label) {
     }
     return this;
 };
-
-module.exports = PerceptronModel;

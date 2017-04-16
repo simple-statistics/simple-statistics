@@ -13,7 +13,7 @@
  * @example
  * linearRegression([[0, 0], [1, 1]]); // => { m: 1, b: 0 }
  */
-function linearRegression(data/*: Array<Array<number>> */)/*: { m: number, b: number } */ {
+export function linearRegression(data/*: Array<Array<number>> */)/*: { m: number, b: number } */ {
 
     var m, b;
 
@@ -67,6 +67,3 @@ function linearRegression(data/*: Array<Array<number>> */)/*: { m: number, b: nu
         b: b
     };
 }
-
-
-module.exports = linearRegression;

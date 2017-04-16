@@ -1,7 +1,7 @@
 'use strict';
 /* @flow */
 
-var median = require('./median');
+import { median } from './median';
 
 /**
  * The [Median Absolute Deviation](http://en.wikipedia.org/wiki/Median_absolute_deviation) is
@@ -13,7 +13,7 @@ var median = require('./median');
  * @example
  * medianAbsoluteDeviation([1, 1, 2, 2, 4, 6, 9]); // => 1
  */
-function medianAbsoluteDeviation(x /*: Array<number> */) {
+export function medianAbsoluteDeviation(x /*: Array<number> */) {
     // The mad of nothing is null
     var medianValue = median(x),
         medianAbsoluteDeviations = [];
@@ -26,5 +26,3 @@ function medianAbsoluteDeviation(x /*: Array<number> */) {
     // Find the median value of that list
     return median(medianAbsoluteDeviations);
 }
-
-module.exports = medianAbsoluteDeviation;

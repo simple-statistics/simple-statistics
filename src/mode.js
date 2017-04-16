@@ -1,8 +1,8 @@
 'use strict';
 /* @flow */
 
-var numericSort = require('./numeric_sort'),
-    modeSorted = require('./mode_sorted');
+import { numericSort } from './numeric_sort';
+import { modeSorted } from './mode_sorted';
 
 /**
  * The [mode](http://bit.ly/W5K4Yt) is the number that appears in a list the highest number of times.
@@ -20,11 +20,9 @@ var numericSort = require('./numeric_sort'),
  * @example
  * mode([0, 0, 1]); // => 0
  */
-function mode(x /*: Array<number> */)/*:number*/ {
+export function mode(x /*: Array<number> */)/*:number*/ {
     // Sorting the array lets us iterate through it below and be sure
     // that every time we see a new number it's new and we'll never
     // see the same number twice
     return modeSorted(numericSort(x));
 }
-
-module.exports = mode;

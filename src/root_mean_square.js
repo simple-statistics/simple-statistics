@@ -15,7 +15,7 @@
  * @example
  * rootMeanSquare([-1, 1, -1, 1]); // => 1
  */
-function rootMeanSquare(x /*: Array<number> */)/*:number*/ {
+export function rootMeanSquare(x /*: Array<number> */)/*:number*/ {
     if (x.length === 0) {
         throw new Error('rootMeanSquare requires at least one data point');
     }
@@ -27,5 +27,3 @@ function rootMeanSquare(x /*: Array<number> */)/*:number*/ {
 
     return Math.sqrt(sumOfSquares / x.length);
 }
-
-module.exports = rootMeanSquare;

@@ -14,7 +14,7 @@
  * @example
  * errorFunction(1).toFixed(2); // => '0.84'
  */
-function errorFunction(x/*: number */)/*: number */ {
+export function errorFunction(x/*: number */)/*: number */ {
     var t = 1 / (1 + 0.5 * Math.abs(x));
     var tau = t * Math.exp(-Math.pow(x, 2) -
         1.26551223 +
@@ -33,5 +33,3 @@ function errorFunction(x/*: number */)/*: number */ {
         return tau - 1;
     }
 }
-
-module.exports = errorFunction;

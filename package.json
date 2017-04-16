@@ -24,6 +24,8 @@
     "jsdoctest": "1.7.0",
     "mocha": "3.2.0",
     "random-js": "^1.0.4",
+    "rollup": "^0.41.6",
+    "rollup-plugin-flow": "^1.1.1",
     "standard-changelog": "^1.0.1",
     "tap": "^10.1.1",
     "uglify-js": "^2.6.2"
@@ -34,7 +36,7 @@
     "build": "npm run bundle && npm run minify",
     "changelog": "standard-changelog -i CHANGELOG.md --overwrite",
     "prepublish": "npm run build && ./scripts/update_readme.js",
-    "bundle": "mkdir -p dist && browserify -p bundle-collapser/plugin -s ss index.js --debug | exorcist dist/simple-statistics.js.map > dist/simple-statistics.js",
+    "bundle": "mkdir -p dist && rollup -c rollup.config.js",
     "minify": "uglifyjs dist/simple-statistics.js -c -m --in-source-map=dist/simple-statistics.js.map --source-map=dist/simple-statistics.min.js.map -o dist/simple-statistics.min.js",
     "jsdoctest": "mocha --require jsdoctest index.js"
   },

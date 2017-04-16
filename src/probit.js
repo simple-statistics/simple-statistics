@@ -1,8 +1,8 @@
 'use strict';
 /* @flow */
 
-var epsilon = require('./epsilon');
-var inverseErrorFunction = require('./inverse_error_function');
+import { epsilon } from './epsilon';
+import { inverseErrorFunction } from './inverse_error_function';
 
 /**
  * The [Probit](http://en.wikipedia.org/wiki/Probit)
@@ -17,7 +17,7 @@ var inverseErrorFunction = require('./inverse_error_function');
  * @param {number} p
  * @returns {number} probit
  */
-function probit(p /*: number */)/*: number */ {
+export function probit(p /*: number */)/*: number */ {
     if (p === 0) {
         p = epsilon;
     } else if (p >= 1) {
@@ -25,5 +25,3 @@ function probit(p /*: number */)/*: number */ {
     }
     return Math.sqrt(2) * inverseErrorFunction(2 * p - 1);
 }
-
-module.exports = probit;

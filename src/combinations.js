@@ -11,7 +11,7 @@
  * combinations([1, 2, 3], 2); // => [[1,2], [1,3], [2,3]]
  */
 
-function combinations(x /*: Array<any> */, k/*: number */) {
+export function combinations(x /*: Array<any> */, k/*: number */) {
     var i;
     var subI;
     var combinationList = [];
@@ -32,5 +32,3 @@ function combinations(x /*: Array<any> */, k/*: number */) {
     }
     return combinationList;
 }
-
-module.exports = combinations;

@@ -18,7 +18,7 @@
  * @example
  * numericSort([3, 2, 1]) // => [1, 2, 3]
  */
-function numericSort(x /*: Array<number> */) /*: Array<number> */ {
+export function numericSort(x /*: Array<number> */) /*: Array<number> */ {
     return x
         // ensure the array is not changed in-place
         .slice()
@@ -27,5 +27,3 @@ function numericSort(x /*: Array<number> */) /*: Array<number> */ {
             return a - b;
         });
 }
-
-module.exports = numericSort;

@@ -1,7 +1,7 @@
 'use strict';
 /* @flow */
 
-var epsilon = require('./epsilon');
+import { epsilon } from './epsilon';
 
 /**
  * The [Binomial Distribution](http://en.wikipedia.org/wiki/Binomial_distribution) is the discrete probability
@@ -13,7 +13,7 @@ var epsilon = require('./epsilon');
  * @param {number} probability
  * @returns {number[]} output
  */
-function binomialDistribution(
+export function binomialDistribution(
     trials/*: number */,
     probability/*: number */)/*: ?number[] */ {
     // Check that `p` is a valid probability (0 ≤ p ≤ 1),
@@ -50,5 +50,3 @@ function binomialDistribution(
 
     return cells;
 }
-
-module.exports = binomialDistribution;

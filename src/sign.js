@@ -13,7 +13,7 @@
  * @example
  * sign(2); // => 1
  */
-function sign(x/*: number */)/*: number */ {
+export function sign(x/*: number */)/*: number */ {
     if (typeof x === 'number') {
         if (x < 0) {
             return -1;
@@ -26,5 +26,3 @@ function sign(x/*: number */)/*: number */ {
         throw new TypeError('not a number');
     }
 }
-
-module.exports = sign;

@@ -15,7 +15,7 @@
  * var regressionLine = linearRegressionLine(linearRegression(samples));
  * rSquared(samples, regressionLine); // = 1 this line is a perfect fit
  */
-function rSquared(x /*: Array<Array<number>> */, func /*: Function */) /*: number */ {
+export function rSquared(x /*: Array<Array<number>> */, func /*: Function */) /*: number */ {
     if (x.length < 2) { return 1; }
 
     // Compute the average y value for the actual
@@ -48,5 +48,3 @@ function rSquared(x /*: Array<Array<number>> */, func /*: Function */) /*: numbe
     // value grows lower.
     return 1 - err / sumOfSquares;
 }
-
-module.exports = rSquared;
