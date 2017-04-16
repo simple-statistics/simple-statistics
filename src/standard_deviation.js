@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 import { variance } from './variance';
@@ -19,10 +18,10 @@ import { variance } from './variance';
  * variance([2, 4, 4, 4, 5, 5, 7, 9]); // => 4
  * standardDeviation([2, 4, 4, 4, 5, 5, 7, 9]); // => 2
  */
-export function standardDeviation(x /*: Array<number> */)/*:number*/ {
-    if (x.length === 1) {
-        return 0;
-    }
-    var v = variance(x);
-    return Math.sqrt(v);
+export function standardDeviation(x: Array<number>): number {
+  if (x.length === 1) {
+    return 0;
+  }
+  var v = variance(x);
+  return Math.sqrt(v);
 }

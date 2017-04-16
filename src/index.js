@@ -1,5 +1,4 @@
 /* @flow */
-'use strict';
 
 // # simple-statistics
 //
@@ -22,8 +21,14 @@ export { sumSimple } from './sum_simple';
 export { product } from './product';
 export { quantile } from './quantile';
 export { quantileSorted } from './quantile_sorted';
-export { interquartileRange, interquartileRange as iqr } from './interquartile_range';
-export { medianAbsoluteDeviation, medianAbsoluteDeviation as mad } from './median_absolute_deviation';
+export {
+  interquartileRange,
+  interquartileRange as iqr
+} from './interquartile_range';
+export {
+  medianAbsoluteDeviation,
+  medianAbsoluteDeviation as mad
+} from './median_absolute_deviation';
 export { chunk } from './chunk';
 export { sampleWithReplacement } from './sample_with_replacement';
 export { shuffle } from './shuffle';
@@ -64,7 +69,10 @@ export { tTestTwoSample } from './t_test_two_sample';
 // export { jenks } from './jenks';
 
 // Classifiers
-export { BayesianClassifier, BayesianClassifier as bayesian } from './bayesian_classifier';
+export {
+  BayesianClassifier,
+  BayesianClassifier as bayesian
+} from './bayesian_classifier';
 export { PerceptronModel, PerceptronModel as perceptron } from './perceptron';
 
 // Distribution-related methods
@@ -77,7 +85,9 @@ export { chiSquaredGoodnessOfFit } from './chi_squared_goodness_of_fit';
 
 // Normal distribution
 export { zScore } from './z_score';
-export { cumulativeStdNormalProbability } from './cumulative_std_normal_probability';
+export {
+  cumulativeStdNormalProbability
+} from './cumulative_std_normal_probability';
 export { standardNormalTable } from './standard_normal_table';
 export { errorFunction, errorFunction as erf } from './error_function';
 export { inverseErrorFunction } from './inverse_error_function';

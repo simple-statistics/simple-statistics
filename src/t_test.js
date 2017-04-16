@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 import { standardDeviation } from './standard_deviation';
@@ -21,16 +20,16 @@ import { mean } from './mean';
  * @example
  * tTest([1, 2, 3, 4, 5, 6], 3.385).toFixed(2); // => '0.16'
  */
-export function tTest(x/*: Array<number> */, expectedValue/*: number */)/*:number*/ {
-    // The mean of the sample
-    var sampleMean = mean(x);
+export function tTest(x: Array<number>, expectedValue: number): number {
+  // The mean of the sample
+  var sampleMean = mean(x);
 
-    // The standard deviation of the sample
-    var sd = standardDeviation(x);
+  // The standard deviation of the sample
+  var sd = standardDeviation(x);
 
-    // Square root the length of the sample
-    var rootN = Math.sqrt(x.length);
+  // Square root the length of the sample
+  var rootN = Math.sqrt(x.length);
 
-    // returning the t value
-    return (sampleMean - expectedValue) / (sd / rootN);
+  // returning the t value
+  return (sampleMean - expectedValue) / (sd / rootN);
 }

@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 import { quantile } from './quantile';
@@ -19,6 +18,6 @@ import { quantile } from './quantile';
  * @example
  * median([10, 2, 5, 100, 2, 1]); // => 3.5
  */
-export function median(x /*: Array<number> */)/*:number*/ {
-    return +quantile(x, 0.5);
+export function median(x: Array<number>): number {
+  return +quantile(x, 0.5);
 }

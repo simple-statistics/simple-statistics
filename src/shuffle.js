@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 import { shuffleInPlace } from './shuffle_in_place';
@@ -17,10 +16,10 @@ import { shuffleInPlace } from './shuffle_in_place';
  * var shuffled = shuffle([1, 2, 3, 4]);
  * shuffled; // = [2, 3, 1, 4] or any other random permutation
  */
-export function shuffle/*::<T>*/(x/*:Array<T>*/, randomSource/*:Function*/) {
-    // slice the original array so that it is not modified
-    var sample = x.slice();
+export function shuffle<T>(x: Array<T>, randomSource: Function) {
+  // slice the original array so that it is not modified
+  var sample = x.slice();
 
-    // and then shuffle that shallow-copied array, in place
-    return shuffleInPlace(sample.slice(), randomSource);
+  // and then shuffle that shallow-copied array, in place
+  return shuffleInPlace(sample.slice(), randomSource);
 }

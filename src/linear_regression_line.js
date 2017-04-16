@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -18,11 +17,11 @@
  * linearRegressionLine({ b: 0, m: 1 })(1); // => 1
  * linearRegressionLine({ b: 1, m: 1 })(1); // => 2
  */
-export function linearRegressionLine(mb/*: { b: number, m: number }*/)/*: Function */ {
-    // Return a function that computes a `y` value for each
-    // x value it is given, based on the values of `b` and `a`
-    // that we just computed.
-    return function(x) {
-        return mb.b + (mb.m * x);
-    };
+export function linearRegressionLine(mb: { b: number, m: number }): Function {
+  // Return a function that computes a `y` value for each
+  // x value it is given, based on the values of `b` and `a`
+  // that we just computed.
+  return function(x) {
+    return mb.b + mb.m * x;
+  };
 }

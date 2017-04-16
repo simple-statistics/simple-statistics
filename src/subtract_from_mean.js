@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -15,6 +14,10 @@
  * @example
  * subtractFromMean(20.5, 6, 53); // => 14
  */
-export function subtractFromMean(mean /*: number*/, n/*: number */, value/*: number */)/*: number */ {
-    return ((mean * n) - value) / (n - 1);
+export function subtractFromMean(
+  mean: number,
+  n: number,
+  value: number
+): number {
+  return (mean * n - value) / (n - 1);
 }

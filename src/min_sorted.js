@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -11,6 +10,6 @@
  * @example
  * minSorted([-100, -10, 1, 2, 5]); // => -100
  */
-export function minSorted(x /*: Array<number> */)/*:number*/ {
-    return x[0];
+export function minSorted(x: Array<number>): number {
+  return x[0];
 }

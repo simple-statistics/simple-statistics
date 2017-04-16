@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 import { mean } from './mean';
@@ -17,25 +16,22 @@ import { mean } from './mean';
  * // deviations, we can calculate that with sumNthPowerDeviations:
  * var variance = sumNthPowerDeviations(input) / input.length;
  */
-export function sumNthPowerDeviations(x/*: Array<number> */, n/*: number */)/*:number*/ {
-    var meanValue = mean(x),
-        sum = 0,
-        tempValue,
-        i;
+export function sumNthPowerDeviations(x: Array<number>, n: number): number {
+  var meanValue = mean(x), sum = 0, tempValue, i;
 
-    // This is an optimization: when n is 2 (we're computing a number squared),
-    // multiplying the number by itself is significantly faster than using
-    // the Math.pow method.
-    if (n === 2) {
-        for (i = 0; i < x.length; i++) {
-            tempValue = x[i] - meanValue;
-            sum += tempValue * tempValue;
-        }
-    } else {
-        for (i = 0; i < x.length; i++) {
-            sum += Math.pow(x[i] - meanValue, n);
-        }
+  // This is an optimization: when n is 2 (we're computing a number squared),
+  // multiplying the number by itself is significantly faster than using
+  // the Math.pow method.
+  if (n === 2) {
+    for (i = 0; i < x.length; i++) {
+      tempValue = x[i] - meanValue;
+      sum += tempValue * tempValue;
     }
+  } else {
+    for (i = 0; i < x.length; i++) {
+      sum += Math.pow(x[i] - meanValue, n);
+    }
+  }
 
-    return sum;
+  return sum;
 }

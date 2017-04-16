@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -12,10 +11,10 @@
  * @example
  * product([1, 2, 3, 4]); // => 24
  */
-export function product(x/*: Array<number> */)/*: number */ {
-    var value = 1;
-    for (var i = 0; i < x.length; i++) {
-        value *= x[i];
-    }
-    return value;
+export function product(x: Array<number>): number {
+  var value = 1;
+  for (var i = 0; i < x.length; i++) {
+    value *= x[i];
+  }
+  return value;
 }

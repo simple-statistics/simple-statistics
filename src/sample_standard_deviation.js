@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 import { sampleVariance } from './sample_variance';
@@ -13,8 +12,8 @@ import { sampleVariance } from './sample_variance';
  * sampleStandardDeviation([2, 4, 4, 4, 5, 5, 7, 9]).toFixed(2);
  * // => '2.14'
  */
-export function sampleStandardDeviation(x/*:Array<number>*/)/*:number*/ {
-    // The standard deviation of no numbers is null
-    var sampleVarianceX = sampleVariance(x);
-    return Math.sqrt(sampleVarianceX);
+export function sampleStandardDeviation(x: Array<number>): number {
+  // The standard deviation of no numbers is null
+  var sampleVarianceX = sampleVariance(x);
+  return Math.sqrt(sampleVarianceX);
 }

@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 import { numericSort } from './numeric_sort';
@@ -20,9 +19,9 @@ import { modeSorted } from './mode_sorted';
  * @example
  * mode([0, 0, 1]); // => 0
  */
-export function mode(x /*: Array<number> */)/*:number*/ {
-    // Sorting the array lets us iterate through it below and be sure
-    // that every time we see a new number it's new and we'll never
-    // see the same number twice
-    return modeSorted(numericSort(x));
+export function mode(x: Array<number>): number {
+  // Sorting the array lets us iterate through it below and be sure
+  // that every time we see a new number it's new and we'll never
+  // see the same number twice
+  return modeSorted(numericSort(x));
 }

@@ -1,5 +1,4 @@
 /* @flow */
-'use strict';
 
 /**
  * Implementation of [Combinations](https://en.wikipedia.org/wiki/Combination) with replacement
@@ -13,35 +12,32 @@
  * @example
  * combinationsReplacement([1, 2], 2); // => [[1, 1], [1, 2], [2, 2]]
  */
-export function combinationsReplacement(
-    x /*: Array<any> */,
-    k /*: number */) {
+export function combinationsReplacement(x: Array<any>, k: number) {
+  var combinationList = [];
 
-    var combinationList = [];
+  for (var i = 0; i < x.length; i++) {
+    if (k === 1) {
+      // If we're requested to find only one element, we don't need
+      // to recurse: just push `x[i]` onto the list of combinations.
+      combinationList.push([x[i]]);
+    } else {
+      // Otherwise, recursively find combinations, given `k - 1`. Note that
+      // we request `k - 1`, so if you were looking for k=3 combinations, we're
+      // requesting k=2. This -1 gets reversed in the for loop right after this
+      // code, since we concatenate `x[i]` onto the selected combinations,
+      // bringing `k` back up to your requested level.
+      // This recursion may go many levels deep, since it only stops once
+      // k=1.
+      var subsetCombinations = combinationsReplacement(
+        x.slice(i, x.length),
+        k - 1
+      );
 
-    for (var i = 0; i < x.length; i++) {
-        if (k === 1) {
-            // If we're requested to find only one element, we don't need
-            // to recurse: just push `x[i]` onto the list of combinations.
-            combinationList.push([x[i]])
-        } else {
-            // Otherwise, recursively find combinations, given `k - 1`. Note that
-            // we request `k - 1`, so if you were looking for k=3 combinations, we're
-            // requesting k=2. This -1 gets reversed in the for loop right after this
-            // code, since we concatenate `x[i]` onto the selected combinations,
-            // bringing `k` back up to your requested level.
-            // This recursion may go many levels deep, since it only stops once
-            // k=1.
-            var subsetCombinations = combinationsReplacement(
-                x.slice(i, x.length),
-                k - 1);
-
-            for (var j = 0; j < subsetCombinations.length; j++) {
-                combinationList.push([x[i]]
-                    .concat(subsetCombinations[j]));
-            }
-        }
+      for (var j = 0; j < subsetCombinations.length; j++) {
+        combinationList.push([x[i]].concat(subsetCombinations[j]));
+      }
     }
+  }
 
-    return combinationList;
+  return combinationList;
 }

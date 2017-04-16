@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 import { mean } from './mean';
@@ -19,33 +18,33 @@ import { mean } from './mean';
  * @example
  * sampleSkewness([2, 4, 6, 3, 1]); // => 0.590128656384365
  */
-export function sampleSkewness(x /*: Array<number> */)/*:number*/ {
+export function sampleSkewness(x: Array<number>): number {
+  if (x.length < 3) {
+    throw new Error('sampleSkewness requires at least three data points');
+  }
 
-    if (x.length < 3) {
-        throw new Error('sampleSkewness requires at least three data points');
-    }
+  var meanValue = mean(x);
+  var tempValue;
+  var sumSquaredDeviations = 0;
+  var sumCubedDeviations = 0;
 
-    var meanValue = mean(x);
-    var tempValue;
-    var sumSquaredDeviations = 0;
-    var sumCubedDeviations = 0;
+  for (var i = 0; i < x.length; i++) {
+    tempValue = x[i] - meanValue;
+    sumSquaredDeviations += tempValue * tempValue;
+    sumCubedDeviations += tempValue * tempValue * tempValue;
+  }
 
-    for (var i = 0; i < x.length; i++) {
-        tempValue = x[i] - meanValue;
-        sumSquaredDeviations += tempValue * tempValue;
-        sumCubedDeviations += tempValue * tempValue * tempValue;
-    }
+  // this is Bessels' Correction: an adjustment made to sample statistics
+  // that allows for the reduced degree of freedom entailed in calculating
+  // values from samples rather than complete populations.
+  var besselsCorrection = x.length - 1;
 
-    // this is Bessels' Correction: an adjustment made to sample statistics
-    // that allows for the reduced degree of freedom entailed in calculating
-    // values from samples rather than complete populations.
-    var besselsCorrection = x.length - 1;
+  // Find the mean value of that list
+  var theSampleStandardDeviation = Math.sqrt(
+    sumSquaredDeviations / besselsCorrection
+  );
 
-    // Find the mean value of that list
-    var theSampleStandardDeviation = Math.sqrt(sumSquaredDeviations / besselsCorrection);
+  var n = x.length, cubedS = Math.pow(theSampleStandardDeviation, 3);
 
-    var n = x.length,
-        cubedS = Math.pow(theSampleStandardDeviation, 3);
-
-    return n * sumCubedDeviations / ((n - 1) * (n - 2) * cubedS);
+  return n * sumCubedDeviations / ((n - 1) * (n - 2) * cubedS);
 }

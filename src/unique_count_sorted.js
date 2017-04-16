@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -15,14 +14,13 @@
  * uniqueCountSorted([1, 2, 3]); // => 3
  * uniqueCountSorted([1, 1, 1]); // => 1
  */
-export function uniqueCountSorted(x/*: Array<any>*/)/*: number */ {
-    var uniqueValueCount = 0,
-        lastSeenValue;
-    for (var i = 0; i < x.length; i++) {
-        if (i === 0 || x[i] !== lastSeenValue) {
-            lastSeenValue = x[i];
-            uniqueValueCount++;
-        }
+export function uniqueCountSorted(x: Array<any>): number {
+  var uniqueValueCount = 0, lastSeenValue;
+  for (var i = 0; i < x.length; i++) {
+    if (i === 0 || x[i] !== lastSeenValue) {
+      lastSeenValue = x[i];
+      uniqueValueCount++;
     }
-    return uniqueValueCount;
+  }
+  return uniqueValueCount;
 }

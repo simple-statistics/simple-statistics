@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -15,36 +14,38 @@
  * var regressionLine = linearRegressionLine(linearRegression(samples));
  * rSquared(samples, regressionLine); // = 1 this line is a perfect fit
  */
-export function rSquared(x /*: Array<Array<number>> */, func /*: Function */) /*: number */ {
-    if (x.length < 2) { return 1; }
+export function rSquared(x: Array<Array<number>>, func: Function): number {
+  if (x.length < 2) {
+    return 1;
+  }
 
-    // Compute the average y value for the actual
-    // data set in order to compute the
-    // _total sum of squares_
-    var sum = 0, average;
-    for (var i = 0; i < x.length; i++) {
-        sum += x[i][1];
-    }
-    average = sum / x.length;
+  // Compute the average y value for the actual
+  // data set in order to compute the
+  // _total sum of squares_
+  var sum = 0, average;
+  for (var i = 0; i < x.length; i++) {
+    sum += x[i][1];
+  }
+  average = sum / x.length;
 
-    // Compute the total sum of squares - the
-    // squared difference between each point
-    // and the average of all points.
-    var sumOfSquares = 0;
-    for (var j = 0; j < x.length; j++) {
-        sumOfSquares += Math.pow(average - x[j][1], 2);
-    }
+  // Compute the total sum of squares - the
+  // squared difference between each point
+  // and the average of all points.
+  var sumOfSquares = 0;
+  for (var j = 0; j < x.length; j++) {
+    sumOfSquares += Math.pow(average - x[j][1], 2);
+  }
 
-    // Finally estimate the error: the squared
-    // difference between the estimate and the actual data
-    // value at each point.
-    var err = 0;
-    for (var k = 0; k < x.length; k++) {
-        err += Math.pow(x[k][1] - func(x[k][0]), 2);
-    }
+  // Finally estimate the error: the squared
+  // difference between the estimate and the actual data
+  // value at each point.
+  var err = 0;
+  for (var k = 0; k < x.length; k++) {
+    err += Math.pow(x[k][1] - func(x[k][0]), 2);
+  }
 
-    // As the error grows larger, its ratio to the
-    // sum of squares increases and the r squared
-    // value grows lower.
-    return 1 - err / sumOfSquares;
+  // As the error grows larger, its ratio to the
+  // sum of squares increases and the r squared
+  // value grows lower.
+  return 1 - err / sumOfSquares;
 }

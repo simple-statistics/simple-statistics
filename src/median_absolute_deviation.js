@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 import { median } from './median';
@@ -13,16 +12,15 @@ import { median } from './median';
  * @example
  * medianAbsoluteDeviation([1, 1, 2, 2, 4, 6, 9]); // => 1
  */
-export function medianAbsoluteDeviation(x /*: Array<number> */) {
-    // The mad of nothing is null
-    var medianValue = median(x),
-        medianAbsoluteDeviations = [];
+export function medianAbsoluteDeviation(x: Array<number>) {
+  // The mad of nothing is null
+  var medianValue = median(x), medianAbsoluteDeviations = [];
 
-    // Make a list of absolute deviations from the median
-    for (var i = 0; i < x.length; i++) {
-        medianAbsoluteDeviations.push(Math.abs(x[i] - medianValue));
-    }
+  // Make a list of absolute deviations from the median
+  for (var i = 0; i < x.length; i++) {
+    medianAbsoluteDeviations.push(Math.abs(x[i] - medianValue));
+  }
 
-    // Find the median value of that list
-    return median(medianAbsoluteDeviations);
+  // Find the median value of that list
+  return median(medianAbsoluteDeviations);
 }

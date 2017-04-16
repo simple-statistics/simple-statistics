@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 import { sum } from './sum';
@@ -17,11 +16,11 @@ import { sum } from './sum';
  * @example
  * mean([0, 10]); // => 5
  */
-export function mean(x /*: Array<number> */)/*:number*/ {
-    // The mean of no numbers is null
-    if (x.length === 0) {
-        throw new Error('mean requires at least one data point');
-    }
+export function mean(x: Array<number>): number {
+  // The mean of no numbers is null
+  if (x.length === 0) {
+    throw new Error('mean requires at least one data point');
+  }
 
-    return sum(x) / x.length;
+  return sum(x) / x.length;
 }

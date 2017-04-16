@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 import { epsilon } from './epsilon';
@@ -17,11 +16,11 @@ import { inverseErrorFunction } from './inverse_error_function';
  * @param {number} p
  * @returns {number} probit
  */
-export function probit(p /*: number */)/*: number */ {
-    if (p === 0) {
-        p = epsilon;
-    } else if (p >= 1) {
-        p = 1 - epsilon;
-    }
-    return Math.sqrt(2) * inverseErrorFunction(2 * p - 1);
+export function probit(p: number): number {
+  if (p === 0) {
+    p = epsilon;
+  } else if (p >= 1) {
+    p = 1 - epsilon;
+  }
+  return Math.sqrt(2) * inverseErrorFunction(2 * p - 1);
 }

@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -14,9 +13,12 @@
  * @example
  * errorFunction(1).toFixed(2); // => '0.84'
  */
-export function errorFunction(x/*: number */)/*: number */ {
-    var t = 1 / (1 + 0.5 * Math.abs(x));
-    var tau = t * Math.exp(-Math.pow(x, 2) -
+export function errorFunction(x: number): number {
+  var t = 1 / (1 + 0.5 * Math.abs(x));
+  var tau =
+    t *
+    Math.exp(
+      -Math.pow(x, 2) -
         1.26551223 +
         1.00002368 * t +
         0.37409196 * Math.pow(t, 2) +
@@ -26,10 +28,11 @@ export function errorFunction(x/*: number */)/*: number */ {
         1.13520398 * Math.pow(t, 6) +
         1.48851587 * Math.pow(t, 7) -
         0.82215223 * Math.pow(t, 8) +
-        0.17087277 * Math.pow(t, 9));
-    if (x >= 0) {
-        return 1 - tau;
-    } else {
-        return tau - 1;
-    }
+        0.17087277 * Math.pow(t, 9)
+    );
+  if (x >= 0) {
+    return 1 - tau;
+  } else {
+    return tau - 1;
+  }
 }

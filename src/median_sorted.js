@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 import { quantileSorted } from './quantile_sorted';
@@ -19,6 +18,6 @@ import { quantileSorted } from './quantile_sorted';
  * @example
  * medianSorted([10, 2, 5, 100, 2, 1]); // => 52.5
  */
-export function medianSorted(sorted /*: Array<number> */)/*:number*/ {
-    return quantileSorted(sorted, 0.5);
+export function medianSorted(sorted: Array<number>): number {
+  return quantileSorted(sorted, 0.5);
 }

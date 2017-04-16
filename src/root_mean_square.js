@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -15,15 +14,15 @@
  * @example
  * rootMeanSquare([-1, 1, -1, 1]); // => 1
  */
-export function rootMeanSquare(x /*: Array<number> */)/*:number*/ {
-    if (x.length === 0) {
-        throw new Error('rootMeanSquare requires at least one data point');
-    }
+export function rootMeanSquare(x: Array<number>): number {
+  if (x.length === 0) {
+    throw new Error('rootMeanSquare requires at least one data point');
+  }
 
-    var sumOfSquares = 0;
-    for (var i = 0; i < x.length; i++) {
-        sumOfSquares += Math.pow(x[i], 2);
-    }
+  var sumOfSquares = 0;
+  for (var i = 0; i < x.length; i++) {
+    sumOfSquares += Math.pow(x[i], 2);
+  }
 
-    return Math.sqrt(sumOfSquares / x.length);
+  return Math.sqrt(sumOfSquares / x.length);
 }
