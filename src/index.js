@@ -94,5 +94,9 @@ export { inverseErrorFunction } from './inverse_error_function';
 export { probit } from './probit';
 export { mixin } from './mixin';
 
+export { quickselect } from './quickselect';
+export { numericSort } from './numeric_sort';
+export { sign } from './sign';
+
 // Root-finding methods
 export { bisect } from './bisect';

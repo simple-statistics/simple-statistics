@@ -15,9 +15,9 @@
   "dependencies": {},
   "devDependencies": {
     "are-we-flow-yet": "^1.0.0",
+    "babel-eslint": "^7.2.2",
     "cz-conventional-changelog": "^2.0.0",
     "eslint": "^3.8.1",
-    "exorcist": "^0.4.0",
     "flow-bin": "^0.44.0",
     "husky": "^0.13.3",
     "jsdoctest": "1.7.0",
@@ -32,7 +32,7 @@
     "uglify-js": "^2.6.2"
   },
   "scripts": {
-    "test": "are-we-flow-yet src && flow check src && eslint index.js src/*.js test/*.js && tap --coverage test/*.js && npm run jsdoctest",
+    "test": "are-we-flow-yet src && flow check src && eslint src/*.js test/*.js && npm run build && tap --coverage test/*.js && npm run jsdoctest",
     "test-sauce": "node scripts/browser_test.js",
     "build": "npm run bundle && npm run minify",
     "format": "prettier --write 'src/**/*.js' --single-quote",
@@ -43,7 +43,7 @@
     "precommit": "lint-staged --verbose",
     "prepublish": "npm run build && ./scripts/update_readme.js"
   },
-  "main": "index.js",
+  "main": "dist/simple-statistics.js",
   "engines": {
     "node": "*"
   },
