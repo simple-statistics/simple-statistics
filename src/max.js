@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -13,21 +12,18 @@
  * max([1, 2, 3, 4]);
  * // => 4
  */
-function max(x /*: Array<number> */) /*:number*/ {
+export function max(x: Array<number>): number {
+  if (x.length === 0) {
+    throw new Error('max requires at least one data point');
+  }
 
-    if (x.length === 0) {
-        throw new Error('max requires at least one data point');
+  var value = x[0];
+  for (var i = 1; i < x.length; i++) {
+    // On the first iteration of this loop, max is
+    // undefined and is thus made the maximum element in the array
+    if (x[i] > value) {
+      value = x[i];
     }
-
-    var value = x[0];
-    for (var i = 1; i < x.length; i++) {
-        // On the first iteration of this loop, max is
-        // undefined and is thus made the maximum element in the array
-        if (x[i] > value) {
-            value = x[i];
-        }
-    }
-    return value;
+  }
+  return value;
 }
-
-module.exports = max;

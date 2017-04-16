@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -11,8 +10,6 @@
  * @example
  * maxSorted([-100, -10, 1, 2, 5]); // => 5
  */
-function maxSorted(x /*: Array<number> */)/*:number*/ {
-    return x[x.length - 1];
+export function maxSorted(x: Array<number>): number {
+  return x[x.length - 1];
 }
-
-module.exports = maxSorted;

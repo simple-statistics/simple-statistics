@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -18,39 +17,39 @@
  * shuffleInPlace(x);
  * // x is shuffled to a value like [2, 1, 4, 3]
  */
-function shuffleInPlace(x/*:Array<any>*/, randomSource/*:Function*/)/*:Array<any>*/ {
+export function shuffleInPlace(
+  x: Array<any>,
+  randomSource: Function
+): Array<any> {
+  // a custom random number source can be provided if you want to use
+  // a fixed seed or another random number generator, like
+  // [random-js](https://www.npmjs.org/package/random-js)
+  randomSource = randomSource || Math.random;
 
-    // a custom random number source can be provided if you want to use
-    // a fixed seed or another random number generator, like
-    // [random-js](https://www.npmjs.org/package/random-js)
-    randomSource = randomSource || Math.random;
+  // store the current length of the x to determine
+  // when no elements remain to shuffle.
+  var length = x.length;
 
-    // store the current length of the x to determine
-    // when no elements remain to shuffle.
-    var length = x.length;
+  // temporary is used to hold an item when it is being
+  // swapped between indices.
+  var temporary;
 
-    // temporary is used to hold an item when it is being
-    // swapped between indices.
-    var temporary;
+  // The index to swap at each stage.
+  var index;
 
-    // The index to swap at each stage.
-    var index;
+  // While there are still items to shuffle
+  while (length > 0) {
+    // chose a random index within the subset of the array
+    // that is not yet shuffled
+    index = Math.floor(randomSource() * length--);
 
-    // While there are still items to shuffle
-    while (length > 0) {
-        // chose a random index within the subset of the array
-        // that is not yet shuffled
-        index = Math.floor(randomSource() * length--);
+    // store the value that we'll move temporarily
+    temporary = x[length];
 
-        // store the value that we'll move temporarily
-        temporary = x[length];
+    // swap the value at `x[length]` with `x[index]`
+    x[length] = x[index];
+    x[index] = temporary;
+  }
 
-        // swap the value at `x[length]` with `x[index]`
-        x[length] = x[index];
-        x[index] = temporary;
-    }
-
-    return x;
+  return x;
 }
-
-module.exports = shuffleInPlace;

@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -10,21 +9,18 @@
  * @example
  * min([1, 5, -10, 100, 2]); // => -10
  */
-function min(x /*: Array<number> */)/*:number*/ {
+export function min(x: Array<number>): number {
+  if (x.length === 0) {
+    throw new Error('min requires at least one data point');
+  }
 
-    if (x.length === 0) {
-        throw new Error('min requires at least one data point');
+  var value = x[0];
+  for (var i = 1; i < x.length; i++) {
+    // On the first iteration of this loop, min is
+    // undefined and is thus made the minimum element in the array
+    if (x[i] < value) {
+      value = x[i];
     }
-
-    var value = x[0];
-    for (var i = 1; i < x.length; i++) {
-        // On the first iteration of this loop, min is
-        // undefined and is thus made the minimum element in the array
-        if (x[i] < value) {
-            value = x[i];
-        }
-    }
-    return value;
+  }
+  return value;
 }
-
-module.exports = min;

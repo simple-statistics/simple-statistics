@@ -1,7 +1,6 @@
-'use strict';
 /* @flow */
 
-var sum = require('./sum');
+import { sum } from './sum';
 
 /**
  * The mean, _also known as average_,
@@ -17,13 +16,11 @@ var sum = require('./sum');
  * @example
  * mean([0, 10]); // => 5
  */
-function mean(x /*: Array<number> */)/*:number*/ {
-    // The mean of no numbers is null
-    if (x.length === 0) {
-        throw new Error('mean requires at least one data point');
-    }
+export function mean(x: Array<number>): number {
+  // The mean of no numbers is null
+  if (x.length === 0) {
+    throw new Error('mean requires at least one data point');
+  }
 
-    return sum(x) / x.length;
+  return sum(x) / x.length;
 }
-
-module.exports = mean;

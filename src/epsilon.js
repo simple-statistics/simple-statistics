@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -35,6 +34,4 @@
  *
  * console.log('Local minimum occurs at', x_new);
  */
-var epsilon = 0.0001;
-
-module.exports = epsilon;
+export var epsilon = 0.0001;

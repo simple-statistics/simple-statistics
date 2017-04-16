@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -35,26 +34,24 @@
  * });
  * startingValueMean === startingValue;
  */
-function geometricMean(x /*: Array<number> */) {
-    // The mean of no numbers is null
-    if (x.length === 0) {
-        throw new Error('geometricMean requires at least one data point');
+export function geometricMean(x: Array<number>) {
+  // The mean of no numbers is null
+  if (x.length === 0) {
+    throw new Error('geometricMean requires at least one data point');
+  }
+
+  // the starting value.
+  var value = 1;
+
+  for (var i = 0; i < x.length; i++) {
+    // the geometric mean is only valid for positive numbers
+    if (x[i] <= 0) {
+      throw new Error('geometricMean requires only positive numbers as input');
     }
 
-    // the starting value.
-    var value = 1;
+    // repeatedly multiply the value by each number
+    value *= x[i];
+  }
 
-    for (var i = 0; i < x.length; i++) {
-        // the geometric mean is only valid for positive numbers
-        if (x[i] <= 0) {
-            throw new Error('geometricMean requires only positive numbers as input');
-        }
-
-        // repeatedly multiply the value by each number
-        value *= x[i];
-    }
-
-    return Math.pow(value, 1 / x.length);
+  return Math.pow(value, 1 / x.length);
 }
-
-module.exports = geometricMean;

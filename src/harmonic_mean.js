@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -19,25 +18,23 @@
  * @example
  * harmonicMean([2, 3]).toFixed(2) // => '2.40'
  */
-function harmonicMean(x /*: Array<number> */) {
-    // The mean of no numbers is null
-    if (x.length === 0) {
-        throw new Error('harmonicMean requires at least one data point');
+export function harmonicMean(x: Array<number>) {
+  // The mean of no numbers is null
+  if (x.length === 0) {
+    throw new Error('harmonicMean requires at least one data point');
+  }
+
+  var reciprocalSum = 0;
+
+  for (var i = 0; i < x.length; i++) {
+    // the harmonic mean is only valid for positive numbers
+    if (x[i] <= 0) {
+      throw new Error('harmonicMean requires only positive numbers as input');
     }
 
-    var reciprocalSum = 0;
+    reciprocalSum += 1 / x[i];
+  }
 
-    for (var i = 0; i < x.length; i++) {
-        // the harmonic mean is only valid for positive numbers
-        if (x[i] <= 0) {
-            throw new Error('harmonicMean requires only positive numbers as input');
-        }
-
-        reciprocalSum += 1 / x[i];
-    }
-
-    // divide n by the the reciprocal sum
-    return x.length / reciprocalSum;
+  // divide n by the the reciprocal sum
+  return x.length / reciprocalSum;
 }
-
-module.exports = harmonicMean;

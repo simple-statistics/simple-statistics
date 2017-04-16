@@ -1,7 +1,6 @@
-'use strict';
 /* @flow */
 
-var quantile = require('./quantile');
+import { quantile } from './quantile';
 
 /**
  * The [Interquartile range](http://en.wikipedia.org/wiki/Interquartile_range) is
@@ -15,15 +14,12 @@ var quantile = require('./quantile');
  * @example
  * interquartileRange([0, 1, 2, 3]); // => 2
  */
-function interquartileRange(x/*: Array<number> */) {
-    // Interquartile range is the span between the upper quartile,
-    // at `0.75`, and lower quartile, `0.25`
-    var q1 = quantile(x, 0.75),
-        q2 = quantile(x, 0.25);
+export function interquartileRange(x: Array<number>) {
+  // Interquartile range is the span between the upper quartile,
+  // at `0.75`, and lower quartile, `0.25`
+  var q1 = quantile(x, 0.75), q2 = quantile(x, 0.25);
 
-    if (typeof q1 === 'number' && typeof q2 === 'number') {
-        return q1 - q2;
-    }
+  if (typeof q1 === 'number' && typeof q2 === 'number') {
+    return q1 - q2;
+  }
 }
-
-module.exports = interquartileRange;

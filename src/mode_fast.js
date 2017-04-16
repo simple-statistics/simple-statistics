@@ -1,6 +1,4 @@
-'use strict';
 /* @flow */
-/* globals Map: false */
 
 /**
  * The [mode](http://bit.ly/W5K4Yt) is the number that appears in a list the highest number of times.
@@ -24,36 +22,33 @@
  * @example
  * modeFast(['rabbits', 'rabbits', 'squirrels']); // => 'rabbits'
  */
-function modeFast/*::<T>*/(x /*: Array<T> */)/*: ?T */ {
+export function modeFast<T>(x: Array<T>): ?T {
+  // This index will reflect the incidence of different values, indexing
+  // them like
+  // { value: count }
+  var index = new Map();
 
-    // This index will reflect the incidence of different values, indexing
-    // them like
-    // { value: count }
-    var index = new Map();
+  // A running `mode` and the number of times it has been encountered.
+  var mode;
+  var modeCount = 0;
 
-    // A running `mode` and the number of times it has been encountered.
-    var mode;
-    var modeCount = 0;
-
-    for (var i = 0; i < x.length; i++) {
-        var newCount = index.get(x[i]);
-        if (newCount === undefined) {
-            newCount = 1;
-        } else {
-            newCount++;
-        }
-        if (newCount > modeCount) {
-            mode = x[i];
-            modeCount = newCount;
-        }
-        index.set(x[i], newCount);
+  for (var i = 0; i < x.length; i++) {
+    var newCount = index.get(x[i]);
+    if (newCount === undefined) {
+      newCount = 1;
+    } else {
+      newCount++;
     }
-
-    if (modeCount === 0) {
-        throw new Error('mode requires at last one data point');
+    if (newCount > modeCount) {
+      mode = x[i];
+      modeCount = newCount;
     }
+    index.set(x[i], newCount);
+  }
 
-    return mode;
+  if (modeCount === 0) {
+    throw new Error('mode requires at last one data point');
+  }
+
+  return mode;
 }
-
-module.exports = modeFast;

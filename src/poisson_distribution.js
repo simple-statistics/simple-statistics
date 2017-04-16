@@ -1,7 +1,6 @@
-'use strict';
 /* @flow */
 
-var epsilon = require('./epsilon');
+import { epsilon } from './epsilon';
 
 /**
  * The [Poisson Distribution](http://en.wikipedia.org/wiki/Poisson_distribution)
@@ -16,33 +15,33 @@ var epsilon = require('./epsilon');
  * @param {number} lambda location poisson distribution
  * @returns {number[]} values of poisson distribution at that point
  */
-function poissonDistribution(lambda/*: number */) /*: ?number[] */ {
-    // Check that lambda is strictly positive
-    if (lambda <= 0) { return undefined; }
+export function poissonDistribution(lambda: number): ?(number[]) {
+  // Check that lambda is strictly positive
+  if (lambda <= 0) {
+    return undefined;
+  }
 
-    // our current place in the distribution
-    var x = 0,
-        // and we keep track of the current cumulative probability, in
-        // order to know when to stop calculating chances.
-        cumulativeProbability = 0,
-        // the calculated cells to be returned
-        cells = [],
-        factorialX = 1;
+  // our current place in the distribution
+  var x = 0,
+    // and we keep track of the current cumulative probability, in
+    // order to know when to stop calculating chances.
+    cumulativeProbability = 0,
+    // the calculated cells to be returned
+    cells = [],
+    factorialX = 1;
 
-    // This algorithm iterates through each potential outcome,
-    // until the `cumulativeProbability` is very close to 1, at
-    // which point we've defined the vast majority of outcomes
-    do {
-        // a [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function)
-        cells[x] = (Math.exp(-lambda) * Math.pow(lambda, x)) / factorialX;
-        cumulativeProbability += cells[x];
-        x++;
-        factorialX *= x;
+  // This algorithm iterates through each potential outcome,
+  // until the `cumulativeProbability` is very close to 1, at
+  // which point we've defined the vast majority of outcomes
+  do {
+    // a [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function)
+    cells[x] = Math.exp(-lambda) * Math.pow(lambda, x) / factorialX;
+    cumulativeProbability += cells[x];
+    x++;
+    factorialX *= x;
     // when the cumulativeProbability is nearly 1, we've calculated
     // the useful range of this distribution
-    } while (cumulativeProbability < 1 - epsilon);
+  } while (cumulativeProbability < 1 - epsilon);
 
-    return cells;
+  return cells;
 }
-
-module.exports = poissonDistribution;

@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -24,8 +23,10 @@
  * @example
  * zScore(78, 80, 5); // => -0.4
  */
-function zScore(x/*:number*/, mean/*:number*/, standardDeviation/*:number*/)/*:number*/ {
-    return (x - mean) / standardDeviation;
+export function zScore(
+  x: number,
+  mean: number,
+  standardDeviation: number
+): number {
+  return (x - mean) / standardDeviation;
 }
-
-module.exports = zScore;

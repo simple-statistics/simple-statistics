@@ -1,7 +1,6 @@
-'use strict';
 /* @flow */
 
-var shuffle = require('./shuffle');
+import { shuffle } from './shuffle';
 
 /**
  * Create a [simple random sample](http://en.wikipedia.org/wiki/Simple_random_sample)
@@ -19,15 +18,14 @@ var shuffle = require('./shuffle');
  * var values = [1, 2, 4, 5, 6, 7, 8, 9];
  * sample(values, 3); // returns 3 random values, like [2, 5, 8];
  */
-function sample/*:: <T> */(
-    x /*: Array<T> */,
-    n /*: number */,
-    randomSource /*: Function */) /*: Array<T> */ {
-    // shuffle the original array using a fisher-yates shuffle
-    var shuffled = shuffle(x, randomSource);
+export function sample<T>(
+  x: Array<T>,
+  n: number,
+  randomSource: Function
+): Array<T> {
+  // shuffle the original array using a fisher-yates shuffle
+  var shuffled = shuffle(x, randomSource);
 
-    // and then return a subset of it - the first `n` elements.
-    return shuffled.slice(0, n);
+  // and then return a subset of it - the first `n` elements.
+  return shuffled.slice(0, n);
 }
-
-module.exports = sample;

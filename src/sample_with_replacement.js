@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -14,29 +13,28 @@
  * var sample = sampleWithReplacement([1, 2, 3, 4], 2);
  * sampleWithReplacement; // = [2, 4] or any other random sample of 2 items
  */
-function sampleWithReplacement/*::<T>*/(x/*:Array<T>*/,
-    n /*: number */,
-    randomSource/*:Function*/) {
+export function sampleWithReplacement<T>(
+  x: Array<T>,
+  n: number,
+  randomSource: Function
+) {
+  if (x.length === 0) {
+    return [];
+  }
 
-    if (x.length === 0) {
-        return [];
-    }
+  // a custom random number source can be provided if you want to use
+  // a fixed seed or another random number generator, like
+  // [random-js](https://www.npmjs.org/package/random-js)
+  randomSource = randomSource || Math.random;
 
-    // a custom random number source can be provided if you want to use
-    // a fixed seed or another random number generator, like
-    // [random-js](https://www.npmjs.org/package/random-js)
-    randomSource = randomSource || Math.random;
+  var length = x.length;
+  var sample = [];
 
-    var length = x.length;
-    var sample = [];
+  for (var i = 0; i < n; i++) {
+    var index = Math.floor(randomSource() * length);
 
-    for (var i = 0; i < n; i++) {
-        var index = Math.floor(randomSource() * length);
+    sample.push(x[index]);
+  }
 
-        sample.push(x[index]);
-    }
-
-    return sample;
+  return sample;
 }
-
-module.exports = sampleWithReplacement;

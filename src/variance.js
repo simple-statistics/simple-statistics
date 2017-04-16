@@ -1,7 +1,6 @@
-'use strict';
 /* @flow */
 
-var sumNthPowerDeviations = require('./sum_nth_power_deviations');
+import { sumNthPowerDeviations } from './sum_nth_power_deviations';
 
 /**
  * The [variance](http://en.wikipedia.org/wiki/Variance)
@@ -17,15 +16,13 @@ var sumNthPowerDeviations = require('./sum_nth_power_deviations');
  * @example
  * variance([1, 2, 3, 4, 5, 6]); // => 2.9166666666666665
  */
-function variance(x/*: Array<number> */)/*:number*/ {
-    // The variance of no numbers is null
-    if (x.length === 0) {
-        throw new Error('variance requires at least one data point');
-    }
+export function variance(x: Array<number>): number {
+  // The variance of no numbers is null
+  if (x.length === 0) {
+    throw new Error('variance requires at least one data point');
+  }
 
-    // Find the mean of squared deviations between the
-    // mean value and each value.
-    return sumNthPowerDeviations(x, 2) / x.length;
+  // Find the mean of squared deviations between the
+  // mean value and each value.
+  return sumNthPowerDeviations(x, 2) / x.length;
 }
-
-module.exports = variance;
