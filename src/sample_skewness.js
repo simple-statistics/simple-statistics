@@ -47,7 +47,7 @@ function sampleSkewness(x /*: Array<number> */)/*:number*/ {
     var n = x.length,
         cubedS = Math.pow(theSampleStandardDeviation, 3);
 
-    return n * sumCubedDeviations / ((n - 1) * (n - 2) * cubedS);
+    return n * n * sumCubedDeviations / ((n - 1) * (n - 2) * cubedS);
 }
 
 module.exports = sampleSkewness;
