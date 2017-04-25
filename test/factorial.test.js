@@ -13,7 +13,7 @@ test('factorial', function(t) {
     });
     t.test('rejects floating-point inputs', function(t) {
         t.throws(function() {
-            ss.factorial(-1);
+            ss.factorial(0.5);
         });
         t.end();
     });

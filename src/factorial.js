@@ -17,11 +17,11 @@ function factorial(n /*: number */)/*: number */ {
 
     // factorial is mathematically undefined for negative numbers
     if (n < 0) {
-        throw new Error('factorial requires an integer input');
+        throw new Error('factorial requires a non-negative value');
     }
 
     if (Math.floor(n) !== n) {
-        throw new Error('factorial requires a non-negative value');
+        throw new Error('factorial requires an integer input');
     }
 
     // typically you'll expand the factorial function going down, like
