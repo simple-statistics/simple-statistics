@@ -4,7 +4,7 @@
 var test = require('tap').test;
 var ss = require('../');
 
-test('chunks', function(t) {
+test('chunk', function(t) {
     t.test('can get chunks of an array', function(t) {
         t.deepEqual(ss.chunk([1, 2], 1), [[1], [2]]);
         t.deepEqual(ss.chunk([1, 2], 2), [[1, 2]]);
@@ -16,6 +16,10 @@ test('chunks', function(t) {
         t.throws(function() {
             ss.chunk([1, 2], 0);
         }, 'Throws with zero chunk size');
+
+        t.throws(function() {
+            ss.chunk([1, 2], 1.5);
+        }, 'Throws with non-integer chunk size');
         t.end();
     });
     t.end();
