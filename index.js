@@ -84,7 +84,6 @@ ss.standardNormalTable = require('./src/standard_normal_table');
 ss.errorFunction = ss.erf = require('./src/error_function');
 ss.inverseErrorFunction = require('./src/inverse_error_function');
 ss.probit = require('./src/probit');
-ss.mixin = require('./src/mixin');
 
 // Root-finding methods
 ss.bisect = require('./src/bisect');
