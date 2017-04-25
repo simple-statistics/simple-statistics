@@ -1,3 +1,34 @@
+# Change Log
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+<a name="4.0.0"></a>
+# [4.0.0](https://github.com/simple-statistics/simple-statistics/compare/v3.0.0...v4.0.0) (2017-04-25)
+
+
+### Bug Fixes
+
+* Remove mixin method ([#215](https://github.com/simple-statistics/simple-statistics/issues/215)) ([85036e2](https://github.com/simple-statistics/simple-statistics/commit/85036e2)), closes [#211](https://github.com/simple-statistics/simple-statistics/issues/211)
+
+
+### Performance Improvements
+
+* **binomialDistribution:** avoid expensive factorial calculations ([#205](https://github.com/simple-statistics/simple-statistics/issues/205)) ([525f9c0](https://github.com/simple-statistics/simple-statistics/commit/525f9c0))
+* **core:** Improve performance of min, max, sumNthPowerDeviations, variance, sampleVariance ([#195](https://github.com/simple-statistics/simple-statistics/issues/195)) ([9d2569a](https://github.com/simple-statistics/simple-statistics/commit/9d2569a))
+* **distributions:** return array instead of object ([#209](https://github.com/simple-statistics/simple-statistics/issues/209)) ([6c5df5f](https://github.com/simple-statistics/simple-statistics/commit/6c5df5f))
+* **poissonDistribution:** avoid expensive factorial calculation ([#206](https://github.com/simple-statistics/simple-statistics/issues/206)) ([b34aceb](https://github.com/simple-statistics/simple-statistics/commit/b34aceb))
+* **poissonDistribution:** use Math.exp instead of Math.pow ([#208](https://github.com/simple-statistics/simple-statistics/issues/208)) ([6491dfa](https://github.com/simple-statistics/simple-statistics/commit/6491dfa))
+* **sampleSkewness:** Improve sampleSkewness performance ([#197](https://github.com/simple-statistics/simple-statistics/issues/197)) ([03d37eb](https://github.com/simple-statistics/simple-statistics/commit/03d37eb))
+* **sum:** Switch from Kahan to Kahan-Babuska algorithm ([1b42d7f](https://github.com/simple-statistics/simple-statistics/commit/1b42d7f))
+
+
+### BREAKING CHANGES
+
+* Removes .mixin(). Instead use simple-statistics in a functional style.
+* **distributions:** The return value of bernoulliDistribution, binomialDistribution, and poissonDistribution is no longer an Object with number keys, it is now an Array of numbers.
+
+
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/simple-statistics/simple-statistics/compare/v2.5.0...v3.0.0) (2017-04-06)
 
