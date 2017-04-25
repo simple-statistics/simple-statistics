@@ -30,6 +30,7 @@
     "uglify-js": "^2.6.2"
   },
   "scripts": {
+    "release": "standard-version",
     "test": "are-we-flow-yet src && flow check src && eslint index.js src/*.js test/*.js && tap --coverage test/*.js && npm run jsdoctest",
     "test-sauce": "node scripts/browser_test.js",
     "build": "npm run bundle && npm run minify",
