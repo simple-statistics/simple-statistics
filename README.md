@@ -24,9 +24,9 @@ and/or [webpack](http://webpack.github.io/) users, install from npm:
 
 Script tag usage:
 
-* `https://unpkg.com/simple-statistics@3.0.0/dist/simple-statistics.js`
-* Minified: `https://unpkg.com/simple-statistics@3.0.0/dist/simple-statistics.min.js`
+* `https://unpkg.com/simple-statistics@4.0.0/dist/simple-statistics.js`
+* Minified: `https://unpkg.com/simple-statistics@4.0.0/dist/simple-statistics.min.js`
 
 Bower:
 
-* Bower: `https://unpkg.com/simple-statistics@3.0.0/bower.zip`
+* Bower: `https://unpkg.com/simple-statistics@4.0.0/bower.zip`
