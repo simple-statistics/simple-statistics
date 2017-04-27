@@ -8,6 +8,7 @@
  * mean by providing the mean & number of values of the first list and the mean
  * & number of values of the second list.
  *
+ * @since 3.0.0
  * @param {number} mean1 mean of the first list
  * @param {number} n1 number of items in the first list
  * @param {number} mean2 mean of the second list
