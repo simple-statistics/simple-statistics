@@ -15,7 +15,7 @@ var mean = require('./mean');
  *
  * @param {Array<number>} x a sample of 3 or more data points
  * @returns {number} sample skewness
- * @throws {Error} if x has length of 3 or less
+ * @throws {Error} if x has length less than 3
  * @example
  * sampleSkewness([2, 4, 6, 3, 1]); // => 0.590128656384365
  */
