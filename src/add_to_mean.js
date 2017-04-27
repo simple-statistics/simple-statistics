@@ -8,6 +8,7 @@
  * the number of elements in the list that produced it and the new
  * value to add.
  *
+ * @since 2.5.0
  * @param {number} mean current mean
  * @param {number} n number of items in the list
  * @param {number} newValue the added value

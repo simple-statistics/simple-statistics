@@ -13,6 +13,7 @@ var mean = require('./mean');
  * moment coefficient, which is the version found in Excel and several
  * statistical packages including Minitab, SAS and SPSS.
  *
+ * @since 4.1.0
  * @param {Array<number>} x a sample of 3 or more data points
  * @returns {number} sample skewness
  * @throws {Error} if x has length less than 3

@@ -10,6 +10,7 @@ var combineMeans = require('./combine_means')
  * variance by providing the variance, mean & number of values of the first list
  * and the variance, mean & number of values of the second list.
  *
+ * @since 3.0.0
  * @param {number} variance1 variance of the first list
  * @param {number} mean1 mean of the first list
  * @param {number} n1 number of items in the first list

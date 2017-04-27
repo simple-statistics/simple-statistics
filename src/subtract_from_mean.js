@@ -7,6 +7,7 @@
  * this function to compute the new mean by providing the current mean,
  * the number of elements in the list that produced it and the value to remove.
  *
+ * @since 3.0.0
  * @param {number} mean current mean
  * @param {number} n number of items in the list
  * @param {number} value the value to remove
