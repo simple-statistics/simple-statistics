@@ -61,7 +61,6 @@ test('sample kurtosis', function(t) {
         t.equal(+ss.sampleKurtosis(data).toPrecision(10), 1.5000000000);
         t.end();
     });
-    t.end();
 
     t.test('can calculate the kurtosis of SAS example 4', function(t) {
         // Data and answer taken from KURTOSIS function documentation at
