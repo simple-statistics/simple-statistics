@@ -7,6 +7,7 @@ global.ssMaster = require('../');
 global.science = require('science');
 global.jStat = require('jstat').jStat;
 global.mathjs = require('mathjs');
+global.d3 = require('d3-array');
 
 // We have a very simple way to benchmark single-array-input
 // methods, but jStat is a little more complicated - you specify
@@ -48,7 +49,7 @@ function setupInput() {
 // This is the start of what will eventually be a markdown table
 // included in the readme.
 var results = [[
-    '', 'ss', 'science', 'jStat', 'mathjs', 'ssMaster'
+    '', 'ss', 'science', 'jStat', 'mathjs', 'd3', 'ssMaster'
 ]];
 
 // This is a generic 'suite maker' method that we use to test different
@@ -113,7 +114,8 @@ var tests = [
             'global.ss.sampleVariance',
             'global.ssMaster.sampleVariance',
             'global.science.stats.variance',
-            'global.jStat.sampleVariance'
+            'global.jStat.sampleVariance',
+            'global.d3.variance'
         ]
     ],
     [
@@ -157,7 +159,8 @@ var tests = [
             'global.ssMaster.median',
             'global.mathjs.median',
             'global.jStat.median',
-            'global.science.stats.median'
+            'global.science.stats.median',
+            'global.d3.median'
         ]
     ],
     [
@@ -186,7 +189,8 @@ var tests = [
             'global.ss.min',
             'global.ssMaster.min',
             'global.mathjs.min',
-            'global.jStat.min'
+            'global.jStat.min',
+            'global.d3.min'
         ]
     ],
     [
@@ -195,7 +199,8 @@ var tests = [
             'global.ss.max',
             'global.ssMaster.max',
             'global.mathjs.max',
-            'global.jStat.max'
+            'global.jStat.max',
+            'global.d3.max'
         ]
     ],
     [
@@ -204,7 +209,8 @@ var tests = [
             'global.ss.sum',
             'global.ssMaster.sum',
             'global.mathjs.sum',
-            'global.jStat.sum'
+            'global.jStat.sum',
+            'global.d3.sum'
         ]
     ]
 ];
@@ -222,6 +228,6 @@ console.log('\n\nssMaster is simple-statistics master branch, used for testing a
 
 console.log('\n\n### Versions\n');
 
-['simple-statistics', 'science', 'jstat', 'mathjs'].forEach(function (p) {
+['simple-statistics', 'science', 'jstat', 'mathjs', 'd3-array'].forEach(function (p) {
     console.log('* ' + p + ': ' + require(p + '/package').version);
 });

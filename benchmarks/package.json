@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "benchmark": "^2.1.4",
+    "d3-array": "^1.2.0",
     "jstat": "^1.5.3",
     "markdown-table": "^1.1.0",
     "mathjs": "^3.11.4",
