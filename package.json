@@ -27,7 +27,7 @@
     "standard-changelog": "^1.0.1",
     "standard-version": "^4.0.0",
     "tap": "^10.1.1",
-    "uglify-js": "^2.6.2"
+    "uglify-js": "^3.0.0"
   },
   "scripts": {
     "release": "standard-version && sh ./scripts/update_website.sh",
