@@ -22,7 +22,7 @@
     "exorcist": "^0.4.0",
     "flow-bin": "^0.45.0",
     "jsdoctest": "1.7.0",
-    "mocha": "3.3.0",
+    "mocha": "3.4.0",
     "random-js": "^1.0.4",
     "standard-changelog": "^1.0.1",
     "standard-version": "^4.0.0",
