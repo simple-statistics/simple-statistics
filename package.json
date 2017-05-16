@@ -27,7 +27,7 @@
     "standard-changelog": "^1.0.1",
     "standard-version": "^4.0.0",
     "tap": "^10.1.1",
-    "uglify-js": "^2.6.2"
+    "uglify-js": "^3.0.0"
   },
   "scripts": {
     "release": "standard-version && sh ./scripts/update_website.sh",
@@ -37,7 +37,7 @@
     "changelog": "standard-changelog -i CHANGELOG.md --overwrite",
     "prepublish": "npm run build && ./scripts/update_readme.js",
     "bundle": "mkdir -p dist && browserify -p bundle-collapser/plugin -s ss index.js --debug | exorcist dist/simple-statistics.js.map > dist/simple-statistics.js",
-    "minify": "uglifyjs dist/simple-statistics.js -c -m --in-source-map=dist/simple-statistics.js.map --source-map=dist/simple-statistics.min.js.map -o dist/simple-statistics.min.js",
+    "minify": "uglifyjs dist/simple-statistics.js -c -m --source-map content=dist/simple-statistics.js.map -o dist/simple-statistics.min.js",
     "jsdoctest": "mocha --require jsdoctest index.js"
   },
   "main": "index.js",
