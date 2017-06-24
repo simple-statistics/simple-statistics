@@ -18,7 +18,7 @@
     "browserify": "^14.1.0",
     "bundle-collapser": "^1.0.0",
     "cz-conventional-changelog": "^2.0.0",
-    "eslint": "^3.8.1",
+    "eslint": "^4.1.0",
     "exorcist": "^0.4.0",
     "flow-bin": "^0.49.1",
     "jsdoctest": "https://github.com/yamadapc/jsdoctest/archive/2313d157117b31e1b862375c26445f3befcfab23.tar.gz",
