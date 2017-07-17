@@ -33,8 +33,8 @@ function combineVariances(
     var newMean = combineMeans(mean1, n1, mean2, n2);
 
     return (
-      n1 * (variance1 + Math.pow(mean1 - newMean, 2)) +
-      n2 * (variance2 + Math.pow(mean2 - newMean, 2))
+        n1 * (variance1 + Math.pow(mean1 - newMean, 2)) +
+        n2 * (variance2 + Math.pow(mean2 - newMean, 2))
     ) / (n1 + n2);
 }
 
