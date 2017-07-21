@@ -29,7 +29,7 @@ var chiSquaredDistributionTable = require('./chi_squared_distribution_table');
  *     2, 2, 2, 2, 2, 2, 2, 2, 2,
  *     3, 3, 3, 3
  * ];
- * ss.chiSquaredGoodnessOfFit(data1019, ss.poissonDistribution, 0.05)); //= false
+ * ss.chiSquaredGoodnessOfFit(data1019, ss.poissonDistribution, 0.05); //= false
  */
 function chiSquaredGoodnessOfFit(
     data/*: Array<number> */,
