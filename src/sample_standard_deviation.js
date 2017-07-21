@@ -4,8 +4,8 @@
 var sampleVariance = require('./sample_variance');
 
 /**
- * The [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
- * is the square root of the variance.
+ * The [sample standard deviation](http://en.wikipedia.org/wiki/Standard_deviation#Sample_standard_deviation)
+ * is the square root of the sample variance.
  *
  * @param {Array<number>} x input array
  * @returns {number} sample standard deviation
