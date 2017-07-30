@@ -17,6 +17,7 @@
 * [regression-js](https://github.com/Tom-Alexander/regression-js) has many methods for linear regression
 * [math.js](https://github.com/josdejong/mathjs)
 * [Jerzy](https://github.com/pieterprovoost/jerzy)
+* [vega-statistics](https://github.com/vega/vega-statistics)
 
 ### Ruby
 
