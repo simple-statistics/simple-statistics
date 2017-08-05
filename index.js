@@ -24,7 +24,7 @@ ss.sumSimple = require('./src/sum_simple');
 ss.product = require('./src/product');
 ss.quantile = require('./src/quantile');
 ss.quantileSorted = require('./src/quantile_sorted');
-ss.iqr = ss.interquartileRange = require('./src/interquartile_range');
+ss.interquartileRange = ss.iqr = require('./src/interquartile_range');
 ss.medianAbsoluteDeviation = ss.mad = require('./src/median_absolute_deviation');
 ss.chunk = require('./src/chunk');
 ss.sampleWithReplacement = require('./src/sample_with_replacement');
@@ -67,8 +67,8 @@ ss.tTestTwoSample = require('./src/t_test_two_sample');
 // ss.jenks = require('./src/jenks');
 
 // Classifiers
-ss.bayesian = require('./src/bayesian_classifier');
-ss.perceptron = require('./src/perceptron');
+ss.BayesianClassifier = ss.bayesian = require('./src/bayesian_classifier');
+ss.PerceptronModel = ss.perceptron = require('./src/perceptron');
 
 // Distribution-related methods
 ss.epsilon = require('./src/epsilon'); // We make ε available to the test suite.
