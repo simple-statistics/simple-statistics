@@ -24,7 +24,6 @@
     "jsdoctest": "https://github.com/yamadapc/jsdoctest/archive/2313d157117b31e1b862375c26445f3befcfab23.tar.gz",
     "mocha": "3.5.0",
     "random-js": "^1.0.4",
-    "standard-changelog": "^1.0.1",
     "standard-version": "^4.0.0",
     "tap": "^10.1.1",
     "uglify-js": "^3.0.0"
@@ -34,7 +33,6 @@
     "test": "are-we-flow-yet src && flow check src && eslint index.js src/*.js test/*.js && tap --coverage test/*.js && npm run jsdoctest",
     "test-sauce": "node scripts/browser_test.js",
     "build": "npm run bundle && npm run minify",
-    "changelog": "standard-changelog -i CHANGELOG.md --overwrite",
     "prepublish": "npm run build && ./scripts/update_readme.js",
     "bundle": "mkdir -p dist && browserify -p bundle-collapser/plugin -s ss index.js --debug | exorcist dist/simple-statistics.js.map > dist/simple-statistics.js",
     "minify": "uglifyjs dist/simple-statistics.js -c -m --source-map content=dist/simple-statistics.js.map -o dist/simple-statistics.min.js",
