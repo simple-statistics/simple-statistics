@@ -2,6 +2,7 @@
 /* @flow */
 
 var stddev = require('./sample_standard_deviation');
+var interquartileRange = require('./interquartile_range');
 
 var SQRT_2PI = Math.sqrt(2 * Math.PI);
 
@@ -25,12 +26,19 @@ var kernels /*: {[string]: (number) => number} */ = {
  */
 var bandwidthMethods /*: {[string]: (Array<number>) => number} */ = {
     /**
-     * The commonly used variation of [Silverman's
-     * rule-of-thumb](https://en.wikipedia.org/wiki/Kernel_density_estimation#A_rule-of-thumb_bandwidth_estimator) found in Scott, D. W. (1992) Multivariate Density Estimation: Theory, Practice, and Visualization.
+     * The ["normal reference distribution"
+     * rule-of-thumb](https://stat.ethz.ch/R-manual/R-devel/library/MASS/html/bandwidth.nrd.html),
+     * a commonly used version of [Silverman's
+     * rule-of-thumb](https://en.wikipedia.org/wiki/Kernel_density_estimation#A_rule-of-thumb_bandwidth_estimator).
      * @private
      */
     nrd: function (x /*: Array<number> */) {
-        return 1.06 * stddev(x) * Math.pow(x.length, -0.2);
+        var h = stddev(x);
+        var iqr = interquartileRange(x);
+        if (typeof iqr === 'number') {
+            h = Math.min(h, iqr / 1.34)
+        }
+        return 1.06 * h * Math.pow(x.length, -0.2);
     }
 }
 
@@ -42,7 +50,7 @@ var bandwidthMethods /*: {[string]: (Array<number>) => number} */ = {
  * @param X sample values
  * @param kernel The kernel function to use. If a function is provided, it should return non-negative values and integrate to 1. Defaults to 'gaussian'.
  * @param bandwidth The "bandwidth selection" method to use.  If a function is provided, it should compute a positive bandwidth value from the sample.
- * @returns An estimated [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) for the given sample. The returned function runs in `O(X.length)`.
+ * @returns {Function} An estimated [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) for the given sample. The returned function runs in `O(X.length)`.
  */
 function kde(
     X /*: Array<number> */,
@@ -50,7 +58,7 @@ function kde(
     bandwidth /*: $Keys<typeof bandwidthMethods> | number | void*/
 ) {
     var kernelFn/*: (number) => number */;
-    if (typeof kernel === 'undefined') {
+    if (kernel === 'undefined') {
         kernelFn = kernels.gaussian;
     } else if (typeof kernel === 'string') {
         if (!kernels[kernel]) {
@@ -73,15 +81,13 @@ function kde(
         bw = bandwidth;
     }
 
-    var N = X.length;
-
     return function (x /*: number*/) {
         var i = 0;
         var output = 0;
-        for (i = 0; i < N; i++) {
+        for (i = 0; i < X.length; i++) {
             output += kernelFn((x - X[i]) / bw);
         }
-        return output / bw / N;
+        return output / bw / X.length;
     }
 }
 
