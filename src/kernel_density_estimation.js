@@ -33,12 +33,12 @@ var bandwidthMethods /*: {[string]: (Array<number>) => number} */ = {
      * @private
      */
     nrd: function (x /*: Array<number> */) {
-        var h = stddev(x);
+        var s = stddev(x);
         var iqr = interquartileRange(x);
         if (typeof iqr === 'number') {
-            h = Math.min(h, iqr / 1.34)
+            s = Math.min(s, iqr / 1.34)
         }
-        return 1.06 * h * Math.pow(x.length, -0.2);
+        return 1.06 * s * Math.pow(x.length, -0.2);
     }
 }
 
@@ -58,7 +58,7 @@ function kde(
     bandwidth /*: $Keys<typeof bandwidthMethods> | number | void*/
 ) {
     var kernelFn/*: (number) => number */;
-    if (kernel === 'undefined') {
+    if (kernel === undefined) {
         kernelFn = kernels.gaussian;
     } else if (typeof kernel === 'string') {
         if (!kernels[kernel]) {
@@ -83,11 +83,11 @@ function kde(
 
     return function (x /*: number*/) {
         var i = 0;
-        var output = 0;
+        var sum = 0;
         for (i = 0; i < X.length; i++) {
-            output += kernelFn((x - X[i]) / bw);
+            sum += kernelFn((x - X[i]) / bw);
         }
-        return output / bw / X.length;
+        return sum / bw / X.length;
     }
 }
 
