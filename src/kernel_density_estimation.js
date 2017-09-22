@@ -49,13 +49,13 @@ var bandwidthMethods /*: {[string]: (Array<number>) => number} */ = {
  *
  * @param X sample values
  * @param kernel The kernel function to use. If a function is provided, it should return non-negative values and integrate to 1. Defaults to 'gaussian'.
- * @param bandwidth The "bandwidth selection" method to use.  If a function is provided, it should compute a positive bandwidth value from the sample.
+ * @param bandwidthMethod The "bandwidth selection" method to use, or a fixed bandwidth value. Defaults to "nrd", the commonly-used ["normal reference distribution" rule-of-thumb](https://stat.ethz.ch/R-manual/R-devel/library/MASS/html/bandwidth.nrd.html).
  * @returns {Function} An estimated [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) for the given sample. The returned function runs in `O(X.length)`.
  */
 function kde(
     X /*: Array<number> */,
     kernel /*: $Keys<typeof kernels> | ((number) => number) | void*/,
-    bandwidth /*: $Keys<typeof bandwidthMethods> | number | void*/
+    bandwidthMethod /*: $Keys<typeof bandwidthMethods> | number | void*/
 ) {
     var kernelFn/*: (number) => number */;
     if (kernel === undefined) {
@@ -69,25 +69,25 @@ function kde(
         kernelFn = kernel;
     }
 
-    var bw/*: number */;
-    if (typeof bandwidth === 'undefined') {
-        bw = bandwidthMethods.nrd(X);
-    } else if (typeof bandwidth === 'string') {
-        if (!bandwidthMethods[bandwidth]) {
-            throw new Error('Unknown bandwidth method "' + bandwidth + '"');
+    var bandwidth;
+    if (typeof bandwidthMethod === 'undefined') {
+        bandwidth = bandwidthMethods.nrd(X);
+    } else if (typeof bandwidthMethod === 'string') {
+        if (!bandwidthMethods[bandwidthMethod]) {
+            throw new Error('Unknown bandwidth method "' + bandwidthMethod + '"');
         }
-        bw = bandwidthMethods[bandwidth](X);
-    } else if (typeof bandwidth === 'number') {
-        bw = bandwidth;
+        bandwidth = bandwidthMethods[bandwidthMethod](X);
+    } else {
+        bandwidth = bandwidthMethod;
     }
 
     return function (x /*: number*/) {
         var i = 0;
         var sum = 0;
         for (i = 0; i < X.length; i++) {
-            sum += kernelFn((x - X[i]) / bw);
+            sum += kernelFn((x - X[i]) / bandwidth);
         }
-        return sum / bw / X.length;
+        return sum / bandwidth / X.length;
     }
 }
 
