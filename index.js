@@ -77,6 +77,7 @@ ss.bernoulliDistribution = require('./src/bernoulli_distribution');
 ss.binomialDistribution = require('./src/binomial_distribution');
 ss.poissonDistribution = require('./src/poisson_distribution');
 ss.chiSquaredGoodnessOfFit = require('./src/chi_squared_goodness_of_fit');
+ss.kernelDensityEstimation = require('./src/kernel_density_estimation');
 
 // Normal distribution
 ss.zScore = require('./src/z_score');
