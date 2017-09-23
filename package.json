@@ -16,6 +16,7 @@
   "devDependencies": {
     "are-we-flow-yet": "^1.0.0",
     "cz-conventional-changelog": "^2.0.0",
+    "documentation": "^5.3.2",
     "eslint": "^4.1.0",
     "flow-bin": "^0.53.0",
     "random-js": "^1.0.4",
