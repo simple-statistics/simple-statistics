@@ -1,7 +1,6 @@
-'use strict';
 /* @flow */
 
-var variance = require('./variance');
+import variance from './variance';
 
 /**
  * The [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
@@ -27,4 +26,4 @@ function standardDeviation(x /*: Array<number> */)/*:number*/ {
     return Math.sqrt(v);
 }
 
-module.exports = standardDeviation;
+export default standardDeviation;

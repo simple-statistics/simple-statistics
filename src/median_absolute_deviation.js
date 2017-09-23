@@ -1,7 +1,6 @@
-'use strict';
 /* @flow */
 
-var median = require('./median');
+import median from './median';
 
 /**
  * The [Median Absolute Deviation](http://en.wikipedia.org/wiki/Median_absolute_deviation) is
@@ -27,4 +26,4 @@ function medianAbsoluteDeviation(x /*: Array<number> */) {
     return median(medianAbsoluteDeviations);
 }
 
-module.exports = medianAbsoluteDeviation;
+export default medianAbsoluteDeviation;

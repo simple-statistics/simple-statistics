@@ -1,8 +1,8 @@
 /* eslint no-shadow: 0 */
-'use strict';
+
 
 var test = require('tap').test;
-var equalIntervalBreaks = require('../src/equal_interval_breaks');
+var equalIntervalBreaks = require('../').equalIntervalBreaks;
 
 test('equalIntervalBreaks', function(t) {
     t.deepEqual(equalIntervalBreaks([1], 4), [1], '1-length case');

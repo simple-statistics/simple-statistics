@@ -1,5 +1,5 @@
 /* @flow */
-'use strict';
+
 /**
  * Implementation of Combinations
  * Combinations are unique subsets of a collection - in this case, k x from a collection at a time.
@@ -33,4 +33,4 @@ function combinations(x /*: Array<any> */, k/*: number */) {
     return combinationList;
 }
 
-module.exports = combinations;
+export default combinations;

@@ -15,30 +15,30 @@
   "dependencies": {},
   "devDependencies": {
     "are-we-flow-yet": "^1.0.0",
-    "browserify": "^14.1.0",
-    "bundle-collapser": "^1.0.0",
     "cz-conventional-changelog": "^2.0.0",
     "eslint": "^4.1.0",
-    "exorcist": "^0.4.0",
     "flow-bin": "^0.53.0",
-    "jsdoctest": "https://github.com/yamadapc/jsdoctest/archive/2313d157117b31e1b862375c26445f3befcfab23.tar.gz",
-    "mocha": "3.5.3",
     "random-js": "^1.0.4",
+    "rollup": "^0.50.0",
+    "rollup-plugin-uglify": "^2.0.1",
     "standard-version": "^4.0.0",
     "tap": "^10.1.1",
     "uglify-js": "^3.0.0"
   },
   "scripts": {
     "release": "standard-version && sh ./scripts/update_website.sh",
-    "test": "are-we-flow-yet src && flow check src && eslint index.js src/*.js test/*.js && tap --coverage test/*.js && npm run jsdoctest",
+    "pretest": "npm run build",
+    "test": "npm run lint && tap --coverage test/*.js",
     "test-sauce": "node scripts/browser_test.js",
-    "build": "npm run bundle && npm run minify",
+    "build": "rm -rf dist && mkdir dist && rollup -c",
     "prepublish": "npm run build && ./scripts/update_readme.js",
-    "bundle": "mkdir -p dist && browserify -p bundle-collapser/plugin -s ss index.js --debug | exorcist dist/simple-statistics.js.map > dist/simple-statistics.js",
-    "minify": "uglifyjs dist/simple-statistics.js -c -m --source-map content=dist/simple-statistics.js.map -o dist/simple-statistics.min.js",
-    "jsdoctest": "mocha --require jsdoctest index.js"
+    "prelint": "are-we-flow-yet src && flow check src",
+    "lint": "eslint index.js src test",
+    "postlint": "documentation lint src"
   },
-  "main": "index.js",
+  "main": "dist/simple-statistics.js",
+  "module": "index",
+  "jsnext:main": "index",
   "engines": {
     "node": "*"
   },

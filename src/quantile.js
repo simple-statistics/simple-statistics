@@ -1,8 +1,7 @@
-'use strict';
 /* @flow */
 
-var quantileSorted = require('./quantile_sorted');
-var quickselect = require('./quickselect');
+import quantileSorted from './quantile_sorted';
+import quickselect from './quickselect';
 
 /**
  * The [quantile](https://en.wikipedia.org/wiki/Quantile):
@@ -104,4 +103,4 @@ function quantileIndex(len /*: number */, p /*: number */)/*:number*/ {
     }
 }
 
-module.exports = quantile;
+export default quantile;

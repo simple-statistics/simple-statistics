@@ -1,7 +1,6 @@
-'use strict';
 /* @flow */
 
-var sum = require('./sum');
+import sum from './sum';
 
 /**
  * The mean, _also known as average_,
@@ -26,4 +25,4 @@ function mean(x /*: Array<number> */)/*:number*/ {
     return sum(x) / x.length;
 }
 
-module.exports = mean;
+export default mean;

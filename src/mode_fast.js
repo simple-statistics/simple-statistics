@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 /* globals Map: false */
 
@@ -56,4 +55,4 @@ function modeFast/*::<T>*/(x /*: Array<T> */)/*: ?T */ {
     return mode;
 }
 
-module.exports = modeFast;
+export default modeFast;

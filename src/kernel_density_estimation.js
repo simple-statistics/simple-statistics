@@ -1,8 +1,7 @@
-'use strict';
 /* @flow */
 
-var stddev = require('./sample_standard_deviation');
-var interquartileRange = require('./interquartile_range');
+import interquartileRange from './interquartile_range';
+import stddev from './sample_standard_deviation';
 
 var SQRT_2PI = Math.sqrt(2 * Math.PI);
 
@@ -47,6 +46,7 @@ var bandwidthMethods /*: {[string]: (Array<number>) => number} */ = {
  * is a useful tool for, among other things, estimating the shape of the
  * underlying probability distribution from a sample.
  *
+ * @name kde
  * @param X sample values
  * @param kernel The kernel function to use. If a function is provided, it should return non-negative values and integrate to 1. Defaults to 'gaussian'.
  * @param bandwidthMethod The "bandwidth selection" method to use, or a fixed bandwidth value. Defaults to "nrd", the commonly-used ["normal reference distribution" rule-of-thumb](https://stat.ethz.ch/R-manual/R-devel/library/MASS/html/bandwidth.nrd.html).
@@ -91,4 +91,4 @@ function kde(
     }
 }
 
-module.exports = kde;
+export default kde;

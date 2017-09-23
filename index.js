@@ -1,91 +1,93 @@
 /* @flow */
-'use strict';
 
 // # simple-statistics
 //
 // A simple, literate statistics system.
 
-var ss = module.exports = {};
-
 // Linear Regression
-ss.linearRegression = require('./src/linear_regression');
-ss.linearRegressionLine = require('./src/linear_regression_line');
-ss.standardDeviation = require('./src/standard_deviation');
-ss.rSquared = require('./src/r_squared');
-ss.mode = require('./src/mode');
-ss.modeFast = require('./src/mode_fast');
-ss.modeSorted = require('./src/mode_sorted');
-ss.min = require('./src/min');
-ss.max = require('./src/max');
-ss.minSorted = require('./src/min_sorted');
-ss.maxSorted = require('./src/max_sorted');
-ss.sum = require('./src/sum');
-ss.sumSimple = require('./src/sum_simple');
-ss.product = require('./src/product');
-ss.quantile = require('./src/quantile');
-ss.quantileSorted = require('./src/quantile_sorted');
-ss.interquartileRange = ss.iqr = require('./src/interquartile_range');
-ss.medianAbsoluteDeviation = ss.mad = require('./src/median_absolute_deviation');
-ss.chunk = require('./src/chunk');
-ss.sampleWithReplacement = require('./src/sample_with_replacement');
-ss.shuffle = require('./src/shuffle');
-ss.shuffleInPlace = require('./src/shuffle_in_place');
-ss.sample = require('./src/sample');
-ss.ckmeans = require('./src/ckmeans');
-ss.uniqueCountSorted = require('./src/unique_count_sorted');
-ss.sumNthPowerDeviations = require('./src/sum_nth_power_deviations');
-ss.equalIntervalBreaks = require('./src/equal_interval_breaks');
+export { default as linearRegression } from './src/linear_regression';
+export { default as linearRegressionLine } from './src/linear_regression_line';
+export { default as standardDeviation } from './src/standard_deviation';
+export { default as rSquared } from './src/r_squared';
+export { default as mode } from './src/mode';
+export { default as modeFast } from './src/mode_fast';
+export { default as modeSorted } from './src/mode_sorted';
+export { default as min } from './src/min';
+export { default as max } from './src/max';
+export { default as minSorted } from './src/min_sorted';
+export { default as maxSorted } from './src/max_sorted';
+export { default as sum } from './src/sum';
+export { default as sumSimple } from './src/sum_simple';
+export { default as product } from './src/product';
+export { default as quantile } from './src/quantile';
+export { default as quantileSorted } from './src/quantile_sorted';
+export { default as interquartileRange, default as iqr } from './src/interquartile_range';
+export { default as medianAbsoluteDeviation, default as mad } from './src/median_absolute_deviation';
+export { default as chunk } from './src/chunk';
+export { default as sampleWithReplacement } from './src/sample_with_replacement';
+export { default as shuffle } from './src/shuffle';
+export { default as shuffleInPlace } from './src/shuffle_in_place';
+export { default as sample } from './src/sample';
+export { default as ckmeans } from './src/ckmeans';
+export { default as uniqueCountSorted } from './src/unique_count_sorted';
+export { default as sumNthPowerDeviations } from './src/sum_nth_power_deviations';
+export { default as equalIntervalBreaks } from './src/equal_interval_breaks';
 
 // sample statistics
-ss.sampleCovariance = require('./src/sample_covariance');
-ss.sampleCorrelation = require('./src/sample_correlation');
-ss.sampleVariance = require('./src/sample_variance');
-ss.sampleStandardDeviation = require('./src/sample_standard_deviation');
-ss.sampleSkewness = require('./src/sample_skewness');
-ss.sampleKurtosis = require('./src/sample_kurtosis');
+export { default as sampleCovariance } from './src/sample_covariance';
+export { default as sampleCorrelation } from './src/sample_correlation';
+export { default as sampleVariance } from './src/sample_variance';
+export { default as sampleStandardDeviation } from './src/sample_standard_deviation';
+export { default as sampleSkewness } from './src/sample_skewness';
+export { default as sampleKurtosis } from './src/sample_kurtosis';
 
 // combinatorics
-ss.permutationsHeap = require('./src/permutations_heap');
-ss.combinations = require('./src/combinations');
-ss.combinationsReplacement = require('./src/combinations_replacement');
+export { default as permutationsHeap } from './src/permutations_heap';
+export { default as combinations } from './src/combinations';
+export { default as combinationsReplacement } from './src/combinations_replacement';
 
 // measures of centrality
-ss.addToMean = require('./src/add_to_mean');
-ss.combineMeans = require('./src/combine_means');
-ss.combineVariances = require('./src/combine_variances');
-ss.geometricMean = require('./src/geometric_mean');
-ss.harmonicMean = require('./src/harmonic_mean');
-ss.mean = ss.average = require('./src/mean');
-ss.median = require('./src/median');
-ss.medianSorted = require('./src/median_sorted');
-ss.subtractFromMean = require('./src/subtract_from_mean');
+export { default as addToMean } from './src/add_to_mean';
+export { default as combineMeans } from './src/combine_means';
+export { default as combineVariances } from './src/combine_variances';
+export { default as geometricMean } from './src/geometric_mean';
+export { default as harmonicMean } from './src/harmonic_mean';
+export { default as average, default as mean } from './src/mean';
+export { default as median } from './src/median';
+export { default as medianSorted } from './src/median_sorted';
+export { default as subtractFromMean } from './src/subtract_from_mean';
 
-ss.rootMeanSquare = ss.rms = require('./src/root_mean_square');
-ss.variance = require('./src/variance');
-ss.tTest = require('./src/t_test');
-ss.tTestTwoSample = require('./src/t_test_two_sample');
+export { default as rootMeanSquare, default as rms } from './src/root_mean_square';
+export { default as variance } from './src/variance';
+export { default as tTest } from './src/t_test';
+export { default as tTestTwoSample } from './src/t_test_two_sample';
 // ss.jenks = require('./src/jenks');
 
 // Classifiers
-ss.BayesianClassifier = ss.bayesian = require('./src/bayesian_classifier');
-ss.PerceptronModel = ss.perceptron = require('./src/perceptron');
+export { default as BayesianClassifier, default as bayesian } from './src/bayesian_classifier';
+export { default as PerceptronModel, default as perceptron } from './src/perceptron';
 
 // Distribution-related methods
-ss.epsilon = require('./src/epsilon'); // We make ε available to the test suite.
-ss.factorial = require('./src/factorial');
-ss.bernoulliDistribution = require('./src/bernoulli_distribution');
-ss.binomialDistribution = require('./src/binomial_distribution');
-ss.poissonDistribution = require('./src/poisson_distribution');
-ss.chiSquaredGoodnessOfFit = require('./src/chi_squared_goodness_of_fit');
-ss.kernelDensityEstimation = require('./src/kernel_density_estimation');
+export { default as epsilon } from './src/epsilon'; // We make ε available to the test suite.
+export { default as factorial } from './src/factorial';
+export { default as bernoulliDistribution } from './src/bernoulli_distribution';
+export { default as binomialDistribution } from './src/binomial_distribution';
+export { default as poissonDistribution } from './src/poisson_distribution';
+export { default as chiSquaredGoodnessOfFit } from './src/chi_squared_goodness_of_fit';
+export { default as kernelDensityEstimation } from './src/kernel_density_estimation';
 
 // Normal distribution
-ss.zScore = require('./src/z_score');
-ss.cumulativeStdNormalProbability = require('./src/cumulative_std_normal_probability');
-ss.standardNormalTable = require('./src/standard_normal_table');
-ss.errorFunction = ss.erf = require('./src/error_function');
-ss.inverseErrorFunction = require('./src/inverse_error_function');
-ss.probit = require('./src/probit');
+export { default as zScore } from './src/z_score';
+export { default as cumulativeStdNormalProbability } from './src/cumulative_std_normal_probability';
+export { default as standardNormalTable } from './src/standard_normal_table';
+export { default as errorFunction, default as erf } from './src/error_function';
+export { default as inverseErrorFunction } from './src/inverse_error_function';
+export { default as probit } from './src/probit';
 
 // Root-finding methods
-ss.bisect = require('./src/bisect');
+export { default as bisect } from './src/bisect';
+
+// Utils
+export { default as quickselect } from './src/quickselect';
+export { default as sign } from './src/sign';
+export { default as numericSort } from './src/numeric_sort';

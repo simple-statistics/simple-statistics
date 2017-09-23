@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -57,4 +56,4 @@ function geometricMean(x /*: Array<number> */) {
     return Math.pow(value, 1 / x.length);
 }
 
-module.exports = geometricMean;
+export default geometricMean;

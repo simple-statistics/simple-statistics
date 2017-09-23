@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
-'use strict';
 
-var PerceptronModel = require('../src/perceptron');
+
+var PerceptronModel = require('../').PerceptronModel;
 var test = require('tap').test;
 
 test('perceptron', function(t) {

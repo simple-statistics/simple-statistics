@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -24,4 +23,4 @@ function inverseErrorFunction(x/*: number */)/*: number */ {
     }
 }
 
-module.exports = inverseErrorFunction;
+export default inverseErrorFunction;

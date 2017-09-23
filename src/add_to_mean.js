@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -21,4 +20,4 @@ function addToMean(mean /*: number*/, n/*: number */, newValue/*: number */)/*: 
     return mean + ((newValue - mean) / (n + 1));
 }
 
-module.exports = addToMean;
+export default addToMean;

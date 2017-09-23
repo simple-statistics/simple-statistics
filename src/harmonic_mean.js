@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -40,4 +39,4 @@ function harmonicMean(x /*: Array<number> */) {
     return x.length / reciprocalSum;
 }
 
-module.exports = harmonicMean;
+export default harmonicMean;

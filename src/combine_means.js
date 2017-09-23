@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -22,4 +21,4 @@ function combineMeans(mean1 /*: number*/, n1/*: number */, mean2 /*: number*/, n
     return (mean1 * n1 + mean2 * n2) / (n1 + n2);
 }
 
-module.exports = combineMeans;
+export default combineMeans;

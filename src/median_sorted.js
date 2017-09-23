@@ -1,7 +1,6 @@
-'use strict';
 /* @flow */
 
-var quantileSorted = require('./quantile_sorted');
+import quantileSorted from './quantile_sorted';
 
 /**
  * The [median](http://en.wikipedia.org/wiki/Median) is
@@ -23,4 +22,4 @@ function medianSorted(sorted /*: Array<number> */)/*:number*/ {
     return quantileSorted(sorted, 0.5);
 }
 
-module.exports = medianSorted;
+export default medianSorted;

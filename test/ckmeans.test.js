@@ -1,8 +1,8 @@
 /* eslint no-shadow: 0 */
-'use strict';
+
 
 var test = require('tap').test;
-var cK = require('../src/ckmeans');
+var cK = require('../').ckmeans;
 
 test('C k-means', function(t) {
     t.ok(cK, 'exports fn');

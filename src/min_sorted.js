@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -15,4 +14,4 @@ function minSorted(x /*: Array<number> */)/*:number*/ {
     return x[0];
 }
 
-module.exports = minSorted;
+export default minSorted;

@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -39,4 +38,4 @@ function sampleWithReplacement/*::<T>*/(x/*:Array<T>*/,
     return sample;
 }
 
-module.exports = sampleWithReplacement;
+export default sampleWithReplacement;

@@ -1,7 +1,6 @@
-'use strict';
 /* @flow */
 
-var standardNormalTable = require('./standard_normal_table');
+import standardNormalTable from './standard_normal_table';
 
 /**
  * **[Cumulative Standard Normal Probability](http://en.wikipedia.org/wiki/Standard_normal_table)**
@@ -40,4 +39,4 @@ function cumulativeStdNormalProbability(z /*:number */)/*:number */ {
     }
 }
 
-module.exports = cumulativeStdNormalProbability;
+export default cumulativeStdNormalProbability;

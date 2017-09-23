@@ -1,8 +1,7 @@
-'use strict';
 /* @flow */
 
-var sampleCovariance = require('./sample_covariance');
-var sampleStandardDeviation = require('./sample_standard_deviation');
+import sampleCovariance from './sample_covariance';
+import sampleStandardDeviation from './sample_standard_deviation';
 
 /**
  * The [correlation](http://en.wikipedia.org/wiki/Correlation_and_dependence) is
@@ -23,4 +22,4 @@ function sampleCorrelation(x/*: Array<number> */, y/*: Array<number> */)/*:numbe
     return cov / xstd / ystd;
 }
 
-module.exports = sampleCorrelation;
+export default sampleCorrelation;

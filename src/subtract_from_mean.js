@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -20,4 +19,4 @@ function subtractFromMean(mean /*: number*/, n/*: number */, value/*: number */)
     return ((mean * n) - value) / (n - 1);
 }
 
-module.exports = subtractFromMean;
+export default subtractFromMean;

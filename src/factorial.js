@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -37,4 +36,4 @@ function factorial(n /*: number */)/*: number */ {
     return accumulator;
 }
 
-module.exports = factorial;
+export default factorial;
