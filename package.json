@@ -19,6 +19,8 @@
     "documentation": "^5.3.2",
     "eslint": "^4.1.0",
     "flow-bin": "^0.53.0",
+    "jsdoctest": "^1.7.1",
+    "mocha": "^3.5.3",
     "random-js": "^1.0.4",
     "rollup": "^0.50.0",
     "rollup-plugin-uglify": "^2.0.1",
@@ -29,15 +31,15 @@
   "scripts": {
     "release": "standard-version && sh ./scripts/update_website.sh",
     "pretest": "npm run build",
-    "test": "npm run lint && tap --coverage test/*.js",
-    "test-sauce": "node scripts/browser_test.js",
+    "test": "npm run lint && tap --coverage test/*.js && npm run jsdoctest",
     "build": "rm -rf dist && mkdir dist && rollup -c",
     "prepublish": "npm run build && ./scripts/update_readme.js",
     "prelint": "are-we-flow-yet src && flow check src",
     "lint": "eslint index.js src test",
-    "postlint": "documentation lint src"
+    "postlint": "documentation lint src",
+    "jsdoctest": "mocha --require jsdoctest dist/index.js"
   },
-  "main": "dist/simple-statistics.js",
+  "main": "dist/index",
   "module": "index",
   "jsnext:main": "index",
   "engines": {

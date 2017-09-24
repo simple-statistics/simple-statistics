@@ -14,6 +14,14 @@ export default [{
     output: {
         extend: true,
         sourcemap: true,
+        file: 'dist/index.js',
+        format: 'cjs'
+    }
+}, {
+    input: 'index',
+    output: {
+        extend: true,
+        sourcemap: true,
         file: 'dist/simple-statistics.min.js',
         format: 'umd',
         name: 'ss'
