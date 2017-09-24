@@ -1,6 +1,10 @@
 import uglify from 'rollup-plugin-uglify';
 
-function assign({ file, format, plugins }) {
+function assign(options) {
+    const file = options.file
+    const format = options.format
+    const plugins = options.plugins
+
     return {
         input: 'index',
         output: {
