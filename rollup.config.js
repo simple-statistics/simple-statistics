@@ -1,32 +1,20 @@
 import uglify from 'rollup-plugin-uglify';
 
-export default [{
-    input: 'index',
-    output: {
-        extend: true,
-        sourcemap: true,
-        file: 'dist/simple-statistics.js',
-        format: 'umd',
-        name: 'ss'
+function assign({ file, format, plugins }) {
+    return {
+        input: 'index',
+        output: {
+            file,
+            format: format || 'umd',
+            extend: true,
+            sourcemap: true,
+            name: 'ss'
+        },
+        plugins: plugins || []
     }
-}, {
-    input: 'index',
-    output: {
-        extend: true,
-        sourcemap: true,
-        file: 'dist/index.js',
-        format: 'cjs'
-    }
-}, {
-    input: 'index',
-    output: {
-        extend: true,
-        sourcemap: true,
-        file: 'dist/simple-statistics.min.js',
-        format: 'umd',
-        name: 'ss'
-    },
-    plugins: [
-        uglify()
-    ]
-}];
+}
+export default [
+    assign({ file: 'dist/simple-statistics.js' }),
+    assign({ file: 'dist/simple-statistics.min.js', plugins: [uglify()] }),
+    assign({ format: 'cjs', file: 'dist/index.js' })
+];
