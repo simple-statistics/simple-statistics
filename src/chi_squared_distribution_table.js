@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -496,4 +495,4 @@ var chiSquaredDistributionTable = {
     }
 };
 
-module.exports = chiSquaredDistributionTable;
+export default chiSquaredDistributionTable;

@@ -1,9 +1,9 @@
 /* eslint no-shadow: 0 */
-'use strict';
+
 
 var test = require('tap').test;
-var linearRegression = require('../src/linear_regression');
-var linearRegressionLine = require('../src/linear_regression_line');
+var linearRegression = require('../').linearRegression;
+var linearRegressionLine = require('../').linearRegressionLine;
 
 test('linear regression', function(t) {
     t.test('correctly generates a line for a 0, 0 to 1, 1 dataset', function(t) {

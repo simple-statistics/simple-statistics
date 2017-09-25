@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -53,4 +52,4 @@ function shuffleInPlace(x/*:Array<any>*/, randomSource/*:Function*/)/*:Array<any
     return x;
 }
 
-module.exports = shuffleInPlace;
+export default shuffleInPlace;

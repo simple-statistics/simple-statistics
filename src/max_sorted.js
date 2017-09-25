@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -15,4 +14,4 @@ function maxSorted(x /*: Array<number> */)/*:number*/ {
     return x[x.length - 1];
 }
 
-module.exports = maxSorted;
+export default maxSorted;

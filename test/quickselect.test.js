@@ -1,7 +1,7 @@
-'use strict';
+
 
 var test = require('tap').test;
-var quickselect = require('../src/quickselect');
+var quickselect = require('../').quickselect;
 
 test('quickselect', function (t) {
     var arr = [65, 28, 59, 33, 21, 56, 22, 95, 50, 12, 90, 53, 28, 77, 39];

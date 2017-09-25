@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -40,4 +39,4 @@ function quantileSorted(x /*: Array<number> */, p /*: number */)/*:number*/ {
     }
 }
 
-module.exports = quantileSorted;
+export default quantileSorted;

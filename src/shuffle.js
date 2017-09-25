@@ -1,7 +1,6 @@
-'use strict';
 /* @flow */
 
-var shuffleInPlace = require('./shuffle_in_place');
+import shuffleInPlace from './shuffle_in_place';
 
 /**
  * A [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
@@ -25,4 +24,4 @@ function shuffle/*::<T>*/(x/*:Array<T>*/, randomSource/*:Function*/) {
     return shuffleInPlace(sample.slice(), randomSource);
 }
 
-module.exports = shuffle;
+export default shuffle;

@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -61,4 +60,4 @@ function modeSorted(sorted /*: Array<number> */)/*:number*/ {
     return value;
 }
 
-module.exports = modeSorted;
+export default modeSorted;

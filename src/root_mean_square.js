@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -28,4 +27,4 @@ function rootMeanSquare(x /*: Array<number> */)/*:number*/ {
     return Math.sqrt(sumOfSquares / x.length);
 }
 
-module.exports = rootMeanSquare;
+export default rootMeanSquare;

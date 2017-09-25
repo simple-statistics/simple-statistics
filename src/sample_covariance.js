@@ -1,7 +1,6 @@
-'use strict';
 /* @flow */
 
-var mean = require('./mean');
+import mean from './mean';
 
 /**
  * [Sample covariance](https://en.wikipedia.org/wiki/Sample_mean_and_sampleCovariance) of two datasets:
@@ -52,4 +51,4 @@ function sampleCovariance(x /*:Array<number>*/, y /*:Array<number>*/)/*:number*/
     return sum / besselsCorrection;
 }
 
-module.exports = sampleCovariance;
+export default sampleCovariance;

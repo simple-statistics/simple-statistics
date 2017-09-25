@@ -1,7 +1,6 @@
-'use strict';
 /* @flow */
 
-var epsilon = require('./epsilon');
+import epsilon from './epsilon';
 
 /**
  * The [Binomial Distribution](http://en.wikipedia.org/wiki/Binomial_distribution) is the discrete probability
@@ -51,4 +50,4 @@ function binomialDistribution(
     return cells;
 }
 
-module.exports = binomialDistribution;
+export default binomialDistribution;

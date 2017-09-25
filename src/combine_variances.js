@@ -1,7 +1,6 @@
-'use strict';
 /* @flow */
 
-var combineMeans = require('./combine_means')
+import combineMeans from './combine_means';
 
 /**
  * When combining two lists of values for which one already knows the variances,
@@ -38,4 +37,4 @@ function combineVariances(
     ) / (n1 + n2);
 }
 
-module.exports = combineVariances;
+export default combineVariances;

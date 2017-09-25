@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -27,4 +26,4 @@ function min(x /*: Array<number> */)/*:number*/ {
     return value;
 }
 
-module.exports = min;
+export default min;

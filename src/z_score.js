@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -28,4 +27,4 @@ function zScore(x/*:number*/, mean/*:number*/, standardDeviation/*:number*/)/*:n
     return (x - mean) / standardDeviation;
 }
 
-module.exports = zScore;
+export default zScore;

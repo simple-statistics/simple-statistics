@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -27,4 +26,4 @@ function linearRegressionLine(mb/*: { b: number, m: number }*/)/*: Function */ {
     };
 }
 
-module.exports = linearRegressionLine;
+export default linearRegressionLine;

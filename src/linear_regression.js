@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -69,4 +68,4 @@ function linearRegression(data/*: Array<Array<number>> */)/*: { m: number, b: nu
 }
 
 
-module.exports = linearRegression;
+export default linearRegression;

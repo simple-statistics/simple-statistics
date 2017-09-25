@@ -1,8 +1,7 @@
-'use strict';
 /* @flow */
 
-var uniqueCountSorted = require('./unique_count_sorted'),
-    numericSort = require('./numeric_sort');
+import numericSort from './numeric_sort';
+import uniqueCountSorted from './unique_count_sorted';
 
 /**
  * Create a new column x row matrix.
@@ -268,4 +267,4 @@ function ckmeans(x/*: Array<number> */, nClusters/*: number */)/*: Array<Array<n
     return clusters;
 }
 
-module.exports = ckmeans;
+export default ckmeans;

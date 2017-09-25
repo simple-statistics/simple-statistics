@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -93,4 +92,4 @@ PerceptronModel.prototype.train = function(features, label) {
     return this;
 };
 
-module.exports = PerceptronModel;
+export default PerceptronModel;

@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -37,4 +36,4 @@
  */
 var epsilon = 0.0001;
 
-module.exports = epsilon;
+export default epsilon;

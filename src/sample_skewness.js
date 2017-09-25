@@ -1,7 +1,6 @@
-'use strict';
 /* @flow */
 
-var mean = require('./mean');
+import mean from './mean';
 
 /**
  * [Skewness](http://en.wikipedia.org/wiki/Skewness) is
@@ -51,4 +50,4 @@ function sampleSkewness(x /*: Array<number> */)/*:number*/ {
     return n * sumCubedDeviations / ((n - 1) * (n - 2) * cubedS);
 }
 
-module.exports = sampleSkewness;
+export default sampleSkewness;

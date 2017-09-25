@@ -1,7 +1,6 @@
-'use strict';
 /* @flow */
 
-var quantile = require('./quantile');
+import quantile from './quantile';
 
 /**
  * The [median](http://en.wikipedia.org/wiki/Median) is
@@ -23,4 +22,4 @@ function median(x /*: Array<number> */)/*:number*/ {
     return +quantile(x, 0.5);
 }
 
-module.exports = median;
+export default median;
