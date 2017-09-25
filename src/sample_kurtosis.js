@@ -1,15 +1,14 @@
-'use strict';
 /* @flow */
 
-var mean = require('./mean');
+import mean from './mean';
 
 /**
  * [Kurtosis](http://en.wikipedia.org/wiki/Kurtosis) is
  * a measure of the heaviness of a distribution's tails relative to its
  * variance. The kurtosis value can be positive or negative, or even undefined.
  *
- * Implementation is based on Fisher's excess kurtosis definition and uses 
- * unbiased moment estimators. This is the version found in Excel and available 
+ * Implementation is based on Fisher's excess kurtosis definition and uses
+ * unbiased moment estimators. This is the version found in Excel and available
  * in several statistical packages, including SAS and SciPy.
  *
  * @param {Array<number>} x a sample of 4 or more data points
@@ -37,8 +36,8 @@ function sampleKurtosis(x /*: Array<number> */)/*:number*/ {
         fourthCentralMoment += tempValue * tempValue * tempValue * tempValue;
     }
 
-    return (n - 1) / ((n - 2) * (n - 3)) * 
+    return (n - 1) / ((n - 2) * (n - 3)) *
         (n * (n + 1) * fourthCentralMoment / (secondCentralMoment * secondCentralMoment) - 3 * (n - 1));
 }
 
-module.exports = sampleKurtosis;
+export default sampleKurtosis;

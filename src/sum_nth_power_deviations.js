@@ -1,7 +1,6 @@
-'use strict';
 /* @flow */
 
-var mean = require('./mean');
+import mean from './mean';
 
 /**
  * The sum of deviations to the Nth power.
@@ -40,4 +39,4 @@ function sumNthPowerDeviations(x/*: Array<number> */, n/*: number */)/*:number*/
     return sum;
 }
 
-module.exports = sumNthPowerDeviations;
+export default sumNthPowerDeviations;

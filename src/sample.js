@@ -1,7 +1,6 @@
-'use strict';
 /* @flow */
 
-var shuffle = require('./shuffle');
+import shuffle from './shuffle';
 
 /**
  * Create a [simple random sample](http://en.wikipedia.org/wiki/Simple_random_sample)
@@ -30,4 +29,4 @@ function sample/*:: <T> */(
     return shuffled.slice(0, n);
 }
 
-module.exports = sample;
+export default sample;

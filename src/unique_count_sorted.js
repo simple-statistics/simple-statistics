@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -27,4 +26,4 @@ function uniqueCountSorted(x/*: Array<any>*/)/*: number */ {
     return uniqueValueCount;
 }
 
-module.exports = uniqueCountSorted;
+export default uniqueCountSorted;

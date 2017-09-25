@@ -1,7 +1,6 @@
-'use strict';
 /* @flow */
 
-var quantile = require('./quantile');
+import quantile from './quantile';
 
 /**
  * The [Interquartile range](http://en.wikipedia.org/wiki/Interquartile_range) is
@@ -26,4 +25,4 @@ function interquartileRange(x/*: Array<number> */) {
     }
 }
 
-module.exports = interquartileRange;
+export default interquartileRange;

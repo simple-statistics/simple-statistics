@@ -1,5 +1,5 @@
 /* eslint no-shadow: 0 */
-'use strict';
+
 
 var test = require('tap').test,
     ss = require('../');

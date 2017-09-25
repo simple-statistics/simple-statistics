@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -20,4 +19,4 @@ function product(x/*: Array<number> */)/*: number */ {
     return value;
 }
 
-module.exports = product;
+export default product;

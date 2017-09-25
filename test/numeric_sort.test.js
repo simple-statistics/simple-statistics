@@ -1,8 +1,8 @@
 /* eslint no-shadow: 0 */
-'use strict';
+
 
 var test = require('tap').test;
-var numericSort = require('../src/numeric_sort');
+var numericSort = require('../').numericSort;
 
 test('numericSort', function(t) {
     t.deepEqual(numericSort([1, 2]), [1, 2]);

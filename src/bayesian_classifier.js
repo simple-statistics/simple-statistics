@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -113,4 +112,4 @@ BayesianClassifier.prototype.score = function(item) {
     return oddsSums;
 };
 
-module.exports = BayesianClassifier;
+export default BayesianClassifier;

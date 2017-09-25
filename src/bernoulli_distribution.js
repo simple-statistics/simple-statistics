@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -27,4 +26,4 @@ function bernoulliDistribution(p/*: number */) /*: number[] */ {
     return [1 - p, p];
 }
 
-module.exports = bernoulliDistribution;
+export default bernoulliDistribution;

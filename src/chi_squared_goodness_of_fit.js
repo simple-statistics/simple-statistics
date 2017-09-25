@@ -1,8 +1,7 @@
-'use strict';
 /* @flow */
 
-var mean = require('./mean');
-var chiSquaredDistributionTable = require('./chi_squared_distribution_table');
+import chiSquaredDistributionTable from './chi_squared_distribution_table';
+import mean from './mean';
 
 /**
  * The [χ2 (Chi-Squared) Goodness-of-Fit Test](http://en.wikipedia.org/wiki/Goodness_of_fit#Pearson.27s_chi-squared_test)
@@ -106,4 +105,4 @@ function chiSquaredGoodnessOfFit(
     return chiSquaredDistributionTable[degreesOfFreedom][significance] < chiSquared;
 }
 
-module.exports = chiSquaredGoodnessOfFit;
+export default chiSquaredGoodnessOfFit;

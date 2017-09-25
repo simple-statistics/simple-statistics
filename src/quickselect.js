@@ -1,7 +1,4 @@
-'use strict';
 /* @flow */
-
-module.exports = quickselect;
 
 /**
  * Rearrange items in `arr` so that all items in `[left, k]` range are the smallest.
@@ -69,3 +66,5 @@ function swap(arr, i, j) {
     arr[i] = arr[j];
     arr[j] = tmp;
 }
+
+export default quickselect;

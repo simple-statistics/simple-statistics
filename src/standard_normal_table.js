@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 var SQRT_2PI = Math.sqrt(2 * Math.PI);
@@ -34,4 +33,4 @@ for (var z = 0; z <= 3.09; z += 0.01) {
     standardNormalTable.push(cumulativeDistribution(z));
 }
 
-module.exports = standardNormalTable;
+export default standardNormalTable;

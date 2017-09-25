@@ -1,7 +1,6 @@
-'use strict';
 /* @flow */
 
-var sumNthPowerDeviations = require('./sum_nth_power_deviations');
+import sumNthPowerDeviations from './sum_nth_power_deviations';
 
 /**
  * The [sample variance](https://en.wikipedia.org/wiki/Variance#Sample_variance)
@@ -37,4 +36,4 @@ function sampleVariance(x /*: Array<number> */)/*:number*/ {
     return sumSquaredDeviationsValue / besselsCorrection;
 }
 
-module.exports = sampleVariance;
+export default sampleVariance;

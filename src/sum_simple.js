@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -20,4 +19,4 @@ function sumSimple(x/*: Array<number> */)/*: number */ {
     return value;
 }
 
-module.exports = sumSimple;
+export default sumSimple;

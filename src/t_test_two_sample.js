@@ -1,8 +1,7 @@
-'use strict';
 /* @flow */
 
-var mean = require('./mean');
-var sampleVariance = require('./sample_variance');
+import mean from './mean';
+import sampleVariance from './sample_variance';
 
 /**
  * This is to compute [two sample t-test](http://en.wikipedia.org/wiki/Student's_t-test).
@@ -63,4 +62,4 @@ function tTestTwoSample(
     }
 }
 
-module.exports = tTestTwoSample;
+export default tTestTwoSample;

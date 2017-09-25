@@ -1,7 +1,5 @@
 /* @flow */
 
-'use strict';
-
 /**
  * Implementation of [Heap's Algorithm](https://en.wikipedia.org/wiki/Heap%27s_algorithm)
  * for generating permutations.
@@ -46,4 +44,4 @@ function permutationsHeap/*:: <T> */(elements /*: Array<T> */)/*: Array<Array<T>
     return permutations;
 }
 
-module.exports = permutationsHeap;
+export default permutationsHeap;

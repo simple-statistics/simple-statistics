@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -28,4 +27,4 @@ function numericSort(x /*: Array<number> */) /*: Array<number> */ {
         });
 }
 
-module.exports = numericSort;
+export default numericSort;

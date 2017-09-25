@@ -1,7 +1,6 @@
-'use strict';
 /* @flow */
 
-var epsilon = require('./epsilon');
+import epsilon from './epsilon';
 
 /**
  * The [Poisson Distribution](http://en.wikipedia.org/wiki/Poisson_distribution)
@@ -45,4 +44,4 @@ function poissonDistribution(lambda/*: number */) /*: ?number[] */ {
     return cells;
 }
 
-module.exports = poissonDistribution;
+export default poissonDistribution;

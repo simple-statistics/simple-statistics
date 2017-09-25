@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -49,4 +48,4 @@ function rSquared(x /*: Array<Array<number>> */, func /*: Function */) /*: numbe
     return 1 - err / sumOfSquares;
 }
 
-module.exports = rSquared;
+export default rSquared;

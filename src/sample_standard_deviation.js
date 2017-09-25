@@ -1,7 +1,6 @@
-'use strict';
 /* @flow */
 
-var sampleVariance = require('./sample_variance');
+import sampleVariance from './sample_variance';
 
 /**
  * The [sample standard deviation](http://en.wikipedia.org/wiki/Standard_deviation#Sample_standard_deviation)
@@ -19,4 +18,4 @@ function sampleStandardDeviation(x/*:Array<number>*/)/*:number*/ {
     return Math.sqrt(sampleVarianceX);
 }
 
-module.exports = sampleStandardDeviation;
+export default sampleStandardDeviation;

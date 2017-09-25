@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -47,4 +46,4 @@ function chunk(x/*:Array<any>*/, chunkSize/*:number*/)/*:?Array<Array<any>>*/ {
     return output;
 }
 
-module.exports = chunk;
+export default chunk;

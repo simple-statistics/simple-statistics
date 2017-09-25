@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -53,4 +52,4 @@ function sum(x/*: Array<number> */)/*: number */ {
     return sum + correction;
 }
 
-module.exports = sum;
+export default sum;

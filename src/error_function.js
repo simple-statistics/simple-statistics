@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -34,4 +33,4 @@ function errorFunction(x/*: number */)/*: number */ {
     }
 }
 
-module.exports = errorFunction;
+export default errorFunction;

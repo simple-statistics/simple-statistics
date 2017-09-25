@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
-'use strict';
 
-var BayesianClassifier = require('../src/bayesian_classifier');
+
+var BayesianClassifier = require('../').BayesianClassifier;
 var test = require('tap').test;
 
 test('BayesianClassifier', function(t) {

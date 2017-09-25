@@ -1,7 +1,6 @@
-'use strict';
 /* @flow */
 
-var sumNthPowerDeviations = require('./sum_nth_power_deviations');
+import sumNthPowerDeviations from './sum_nth_power_deviations';
 
 /**
  * The [variance](http://en.wikipedia.org/wiki/Variance)
@@ -28,4 +27,4 @@ function variance(x/*: Array<number> */)/*:number*/ {
     return sumNthPowerDeviations(x, 2) / x.length;
 }
 
-module.exports = variance;
+export default variance;

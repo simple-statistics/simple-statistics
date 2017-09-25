@@ -1,4 +1,3 @@
-'use strict';
 /* @flow */
 
 /**
@@ -30,4 +29,4 @@ function max(x /*: Array<number> */) /*:number*/ {
     return value;
 }
 
-module.exports = max;
+export default max;
