@@ -148,8 +148,8 @@ var tests = [
         [
             'global.ss.medianAbsoluteDeviation',
             'global.ssMaster.medianAbsoluteDeviation',
-            'global.mathjs.mad'
-            // 'global.jStat.meddev' https://github.com/jstat/jstat/issues/205
+            'global.mathjs.mad',
+            'global.jStat.meddev'
         ]
     ],
     [
