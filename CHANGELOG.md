@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="5.0.0"></a>
+# [5.0.0](https://github.com/simple-statistics/simple-statistics/compare/v4.1.1...v5.0.0) (2017-09-26)
+
+
+### Features
+
+* Expose ES6 modules ([a775ef6](https://github.com/simple-statistics/simple-statistics/commit/a775ef6)), closes [#210](https://github.com/simple-statistics/simple-statistics/issues/210)
+* kernel density estimation ([#245](https://github.com/simple-statistics/simple-statistics/issues/245)) ([8637af1](https://github.com/simple-statistics/simple-statistics/commit/8637af1)), closes [#244](https://github.com/simple-statistics/simple-statistics/issues/244)
+
+
+### BREAKING CHANGES
+
+* simple-statistics now uses ES6 modules internally, and exposes a entry point for other modules to use it as an ES6 module.
+
+This means:
+
+- If you use Rollup or another library that supports the `jsnext:main` or `module` fields of package.json, you'll likely automatically start using this feature. When you use simple-statistics as an ES6 module, `import {min} from "simple-statistics"` and other imports of only a few of its methods will automatically do 'tree-shaking' and only pull in the parts you use (if your bundling tool supports tree-shaking)
+- Sub-requiring parts of simple-statistics, like `require('simple-statistics/min')` is **deprecated** and will not work. Its components are now written with ES6 syntax.
+
+
+
 <a name="4.1.1"></a>
 ## [4.1.1](https://github.com/simple-statistics/simple-statistics/compare/v4.1.0...v4.1.1) (2017-08-05)
 
