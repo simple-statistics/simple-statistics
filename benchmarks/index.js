@@ -111,6 +111,14 @@ var tests = [
     [
         'variance',
         [
+            'global.ss.variance',
+            'global.ssMaster.variance',
+            'global.jStat.variance'
+        ]
+    ],
+    [
+        'sampleVariance',
+        [
             'global.ss.sampleVariance',
             'global.ssMaster.sampleVariance',
             'global.science.stats.variance',
@@ -136,7 +144,7 @@ var tests = [
         ]
     ],
     [
-        'geometric mean',
+        'geometricMean',
         [
             'global.ss.geometricMean',
             'global.ssMaster.geometricMean',
