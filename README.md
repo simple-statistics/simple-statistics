@@ -36,8 +36,8 @@ in all modern browsers (including IE) as well as in [node.js](https://nodejs.org
   * When you use simple-statistics from a script tag, you don't get to choose
     the variable name it is assigned to: simple-statistics will always become
     available globally as the variable `ss`. You can reassign this variable to
-    another name if you want to, but doing so is optional. <pre><script src='https://unpkg.com/simple-statistics@4.1.1/dist/simple-statistics.js' /></pre>
+    another name if you want to, but doing so is optional. <pre><script src='https://unpkg.com/simple-statistics@5.0.0/dist/simple-statistics.js' /></pre>
     There are two options for the `src` attribute of that script tag: one with
     `.min.js` that is compressed, and the other without, that is raw.
-    * `https://unpkg.com/simple-statistics@4.1.1/dist/simple-statistics.js`
-    * `https://unpkg.com/simple-statistics@4.1.1/dist/simple-statistics.min.js`
+    * `https://unpkg.com/simple-statistics@5.0.0/dist/simple-statistics.js`
+    * `https://unpkg.com/simple-statistics@5.0.0/dist/simple-statistics.min.js`
