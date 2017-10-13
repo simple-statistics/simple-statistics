@@ -13,7 +13,7 @@
  * @example
  * quantileSorted([3, 6, 7, 8, 8, 9, 10, 13, 15, 16, 20], 0.5); // => 9
  */
-function quantileSorted(x /*: Array<number> */, p /*: number */)/*:number*/ {
+function quantileSorted(x /*: Array<number> */, p /*: number */)/*: number */ {
     var idx = x.length * p;
     if (x.length === 0) {
         throw new Error('quantile requires at least one data point.');

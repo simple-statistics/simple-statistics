@@ -1,7 +1,3 @@
-/* @flow */
-
-import quantile from './quantile';
-
 /**
  * The [median](http://en.wikipedia.org/wiki/Median) is
  * the middle number of a list. This is often a good indicator of 'the middle'
@@ -13,13 +9,11 @@ import quantile from './quantile';
  * can be the average of two elements if the list has an even length
  * and the two central values are different.
  *
- * @param {Array<number>} x input
+ * @param {Array<number>} sorted input
  * @returns {number} median value
  * @example
- * median([10, 2, 5, 100, 2, 1]); // => 3.5
+ * medianSorted([10, 2, 5, 100, 2, 1]); // => 52.5
  */
-function median(x /*: Array<number> */)/*: number */ {
-    return +quantile(x, 0.5);
-}
+declare function medianSorted(sorted: Array<number>): number
 
-export default median;
+export default medianSorted;

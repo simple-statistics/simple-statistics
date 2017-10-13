@@ -10,7 +10,9 @@
   "files": [
     "bower.json",
     "src",
-    "dist"
+    "dist",
+    "index.js",
+    "index.d.ts"
   ],
   "dependencies": {},
   "devDependencies": {
@@ -26,6 +28,7 @@
     "rollup-plugin-uglify": "^2.0.1",
     "standard-version": "^4.0.0",
     "tap": "^10.1.1",
+    "typescript": "^2.5.3",
     "uglify-js": "^3.0.0"
   },
   "scripts": {
@@ -34,7 +37,7 @@
     "test": "npm run lint && tap --coverage test/*.js && npm run jsdoctest",
     "build": "rm -rf dist && mkdir dist && rollup -c",
     "prepublish": "npm run build && ./scripts/update_readme.js",
-    "prelint": "are-we-flow-yet src && flow check src",
+    "prelint": "are-we-flow-yet src && flow check src && tsc",
     "lint": "eslint index.js src test",
     "postlint": "documentation lint src",
     "jsdoctest": "mocha --require jsdoctest dist/index.js"
@@ -42,6 +45,7 @@
   "main": "dist/index",
   "module": "index",
   "jsnext:main": "index",
+  "types": "index.d.ts",
   "engines": {
     "node": "*"
   },

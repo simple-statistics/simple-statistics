@@ -10,7 +10,7 @@
  * @example
  * minSorted([-100, -10, 1, 2, 5]); // => -100
  */
-function minSorted(x /*: Array<number> */)/*:number*/ {
+function minSorted(x /*: Array<number> */)/*: number */ {
     return x[0];
 }
 

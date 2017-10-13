@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * The [Geometric Mean](https://en.wikipedia.org/wiki/Geometric_mean) is
  * a mean function that is more useful for numbers in different
@@ -34,26 +32,6 @@
  * });
  * startingValueMean === startingValue;
  */
-function geometricMean(x /*: Array<number> */)/*: number */ {
-    // The mean of no numbers is null
-    if (x.length === 0) {
-        throw new Error('geometricMean requires at least one data point');
-    }
+declare function geometricMean(x: Array<number>): number
 
-    // the starting value.
-    var value = 1;
-
-    for (var i = 0; i < x.length; i++) {
-        // the geometric mean is only valid for positive numbers
-        if (x[i] <= 0) {
-            throw new Error('geometricMean requires only positive numbers as input');
-        }
-
-        // repeatedly multiply the value by each number
-        value *= x[i];
-    }
-
-    return Math.pow(value, 1 / x.length);
-}
-
-export default geometricMean;
+export default geometricMean
