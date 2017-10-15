@@ -20,7 +20,7 @@
     "cz-conventional-changelog": "^2.0.0",
     "documentation": "^5.3.2",
     "eslint": "^4.1.0",
-    "flow-bin": "^0.56.0",
+    "flow-bin": "^0.57.1",
     "jsdoctest": "^1.7.1",
     "mocha": "^4.0.0",
     "random-js": "^1.0.4",
