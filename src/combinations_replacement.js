@@ -14,7 +14,7 @@
  */
 function combinationsReplacement(
     x /*: Array<any> */,
-    k /*: number */)/*: Array<Array<any> */ {
+    k /*: number */)/*: Array<Array<any>> */ {
 
     var combinationList = [];
 

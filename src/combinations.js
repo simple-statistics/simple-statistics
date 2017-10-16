@@ -12,7 +12,7 @@
  */
 
 function combinations(
-    x /*: Array<any> */,
+    x/*: Array<any> */,
     k/*: number */)/*: Array<Array<any>> */ {
     var i;
     var subI;
