@@ -22,7 +22,7 @@
  * @throws {Error} if x contains a negative number
  * @example
  * var growthRates = [1.80, 1.166666, 1.428571];
- * var averageGrowth = geometricMean(growthRates);
+ * var averageGrowth = ss.geometricMean(growthRates);
  * var averageGrowthRates = [averageGrowth, averageGrowth, averageGrowth];
  * var startingValue = 10;
  * var startingValueMean = 10;

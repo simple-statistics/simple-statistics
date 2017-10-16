@@ -19,7 +19,7 @@
 // export { default as product } from './src/product';
 // export { default as quantile } from './src/quantile';
 // export { default as quantileSorted } from './src/quantile_sorted';
-// export { default as interquartileRange, default as iqr } from './src/interquartile_range';
+export { default as interquartileRange, default as iqr } from './src/interquartile_range';
 // export { default as medianAbsoluteDeviation, default as mad } from './src/median_absolute_deviation';
 export { default as chunk } from './src/chunk';
 // export { default as sampleWithReplacement } from './src/sample_with_replacement';
@@ -65,9 +65,9 @@ export { default as subtractFromMean } from './src/subtract_from_mean';
 export { default as BayesianClassifier, default as bayesian } from './src/bayesian_classifier';
 // export { default as PerceptronModel, default as perceptron } from './src/perceptron';
 
-// // Distribution-related methods
-// export { default as epsilon } from './src/epsilon'; // We make ε available to the test suite.
-// export { default as factorial } from './src/factorial';
+// Distribution-related methods
+export { default as epsilon } from './src/epsilon'; // We make ε available to the test suite.
+export { default as factorial } from './src/factorial';
 export { default as bernoulliDistribution } from './src/bernoulli_distribution';
 export { default as binomialDistribution } from './src/binomial_distribution';
 export { default as poissonDistribution } from './src/poisson_distribution';
@@ -80,7 +80,7 @@ export { default as chiSquaredGoodnessOfFit } from './src/chi_squared_goodness_o
 export { default as cumulativeStdNormalProbability } from './src/cumulative_std_normal_probability';
 // export { default as standardNormalTable } from './src/standard_normal_table';
 export { default as errorFunction, default as erf } from './src/error_function';
-// export { default as inverseErrorFunction } from './src/inverse_error_function';
+export { default as inverseErrorFunction } from './src/inverse_error_function';
 // export { default as probit } from './src/probit';
 
 // Root-finding methods
