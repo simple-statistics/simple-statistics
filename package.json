@@ -34,7 +34,7 @@
   "scripts": {
     "release": "standard-version && sh ./scripts/update_website.sh",
     "pretest": "npm run build",
-    "test": "npm run lint && tap --coverage test/*.js && npm run jsdoctest",
+    "test": "npm run lint && tap --coverage test/*.test.js && npm run jsdoctest",
     "build": "rm -rf dist && mkdir dist && rollup -c",
     "prepublish": "npm run build && ./scripts/update_readme.js",
     "prelint": "are-we-flow-yet src && flow check src && tsc",
