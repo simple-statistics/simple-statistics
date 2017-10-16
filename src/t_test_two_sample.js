@@ -25,7 +25,7 @@ import sampleVariance from './sample_variance';
  * @param {Array<number>} sampleX a sample as an array of numbers
  * @param {Array<number>} sampleY a sample as an array of numbers
  * @param {number} [difference=0]
- * @returns {number} test result
+ * @returns {number|null} test result
  *
  * @example
  * tTestTwoSample([1, 2, 3, 4], [3, 4, 5, 6], 0); // => -2.1908902300206643
@@ -33,7 +33,7 @@ import sampleVariance from './sample_variance';
 function tTestTwoSample(
     sampleX/*: Array<number> */,
     sampleY/*: Array<number> */,
-    difference/*: ?number */)/*: number */ {
+    difference/*: ?number */)/*: ?number */ {
     var n = sampleX.length,
         m = sampleY.length;
 

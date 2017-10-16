@@ -5,6 +5,6 @@ declare function tTestTwoSample(
     sampleX: number[],
     sampleY: number[],
     difference?: number
-): number
+): number | null
 
 export default tTestTwoSample;
