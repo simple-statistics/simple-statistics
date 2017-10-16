@@ -42,3 +42,7 @@ l(2); // => 2
 ss.linearRegressionLine({ b: 0, m: 1 })(1); // => 1
 ss.linearRegressionLine({ b: 1, m: 1 })(1); // => 2
 ss.linearRegression([[0, 0], [1, 1]]); // => { m: 1, b: 0 }
+ss.max([1, 2, 3, 4]);
+ss.maxSorted([-100, -10, 1, 2, 5]); // => 5
+ss.min([1, 5, -10, 100, 2]); // => -10
+ss.minSorted([-100, -10, 1, 2, 5]); // => -100

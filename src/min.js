@@ -7,7 +7,7 @@
  * @throws {Error} if the the length of x is less than one
  * @returns {number} minimum value
  * @example
- * min([1, 5, -10, 100, 2]); // => -10
+ * ss.min([1, 5, -10, 100, 2]); // => -10
  */
 function min(x /*: Array<number> */)/*:number*/ {
 
