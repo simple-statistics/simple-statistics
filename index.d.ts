@@ -87,6 +87,6 @@ export { default as probit } from './src/probit';
 export { default as bisect } from './src/bisect';
 
 // Utils
-// export { default as quickselect } from './src/quickselect';
+export { default as quickselect } from './src/quickselect';
 // export { default as sign } from './src/sign';
 export { default as numericSort } from './src/numeric_sort';
