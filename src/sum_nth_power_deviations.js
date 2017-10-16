@@ -16,7 +16,7 @@ import mean from './mean';
  * // deviations, we can calculate that with sumNthPowerDeviations:
  * var variance = sumNthPowerDeviations(input) / input.length;
  */
-function sumNthPowerDeviations(x/*: Array<number> */, n/*: number */)/*:number*/ {
+function sumNthPowerDeviations(x/*: Array<number> */, n/*: ?number */)/*:number*/ {
     var meanValue = mean(x),
         sum = 0,
         tempValue,

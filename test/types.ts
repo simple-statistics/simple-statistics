@@ -8,7 +8,6 @@ ss.harmonicMean([2, 3]).toFixed(2) // => '2.40'
 ss.mean([0, 10]); // => 5
 ss.median([10, 2, 5, 100, 2, 1]); // => 3.5
 ss.medianSorted([10, 2, 5, 100, 2, 1]); // => 52.5
-ss.subtractFromMean(20.5, 6, 53); // => 14
 
 var bayes = new ss.BayesianClassifier();
 bayes.train({species: 'Cat'}, 'animal');
@@ -86,3 +85,20 @@ ss.sampleVariance([1, 2, 3, 4, 5]); // => 2.5
 ss.sampleWithReplacement([1, 2, 3, 4], 2);
 ss.sampleWithReplacement([1, 2, 3, 4], 2, Math.random);
 ss.sampleWithReplacement([1, 2, 3, 4], 2, () => 10);
+ss.shuffleInPlace([1, 2, 3, 4]);
+ss.shuffleInPlace([1, 2, 3, 4], Math.random);
+ss.shuffleInPlace([1, 2, 3, 4], () => 2);
+ss.shuffle([1, 2, 3, 4]);
+ss.sign(2); // => 1
+ss.variance([2, 4, 4, 4, 5, 5, 7, 9]); // => 4
+ss.standardDeviation([2, 4, 4, 4, 5, 5, 7, 9]); // => 2
+ss.subtractFromMean(20.5, 6, 53); // => 14
+ss.sumNthPowerDeviations([1, 2, 3]);
+ss.sumSimple([1, 2, 3]); // => 6
+ss.sum([1, 2, 3]); // => 6
+ss.tTestTwoSample([1, 2, 3, 4], [3, 4, 5, 6], 0); // => -2.1908902300206643
+ss.tTest([1, 2, 3, 4, 5, 6], 3.385).toFixed(2); // => '0.16'
+ss.uniqueCountSorted([1, 2, 3]); // => 3
+ss.uniqueCountSorted([1, 1, 1]); // => 1
+ss.variance([1, 2, 3, 4, 5, 6]); // => 2.9166666666666665
+ss.zScore(78, 80, 5); // => -0.4
