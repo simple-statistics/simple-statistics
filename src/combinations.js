@@ -8,10 +8,12 @@
  * @param {int} k the number of objects in each group (without replacement)
  * @returns {Array<Array>} array of permutations
  * @example
- * combinations([1, 2, 3], 2); // => [[1,2], [1,3], [2,3]]
+ * ss.combinations([1, 2, 3], 2); // => [[1,2], [1,3], [2,3]]
  */
 
-function combinations(x /*: Array<any> */, k/*: number */) {
+function combinations(
+    x /*: Array<any> */,
+    k/*: number */)/*: Array<Array<any>> */ {
     var i;
     var subI;
     var combinationList = [];

@@ -213,7 +213,9 @@ function fillMatrices(data, matrix, backtrackMatrix) {
  * // The input, clustered into groups of similar numbers.
  * //= [[-1, -1, -1, -1], [2, 2, 2], [4, 5, 6]]);
  */
-function ckmeans(x/*: Array<number> */, nClusters/*: number */)/*: Array<Array<number>> */ {
+function ckmeans(
+    x/*: Array<number> */,
+    nClusters/*: number */)/*: Array<Array<number>> */ {
 
     if (nClusters > x.length) {
         throw new Error('cannot generate more classes than there are data values');
