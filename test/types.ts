@@ -36,3 +36,9 @@ ss.errorFunction(1).toFixed(2); // => '0.84'
 ss.epsilon;
 ss.factorial(5); // => 120
 ss.interquartileRange([0, 1, 2, 3]); // => 2
+var l = ss.linearRegressionLine(ss.linearRegression([[0, 0], [1, 1]]));
+l(0); // => 0
+l(2); // => 2
+ss.linearRegressionLine({ b: 0, m: 1 })(1); // => 1
+ss.linearRegressionLine({ b: 1, m: 1 })(1); // => 2
+ss.linearRegression([[0, 0], [1, 1]]); // => { m: 1, b: 0 }
