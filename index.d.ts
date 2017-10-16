@@ -16,7 +16,7 @@ export { default as minSorted } from './src/min_sorted';
 export { default as maxSorted } from './src/max_sorted';
 // export { default as sum } from './src/sum';
 // export { default as sumSimple } from './src/sum_simple';
-// export { default as product } from './src/product';
+export { default as product } from './src/product';
 // export { default as quantile } from './src/quantile';
 // export { default as quantileSorted } from './src/quantile_sorted';
 export { default as interquartileRange, default as iqr } from './src/interquartile_range';
@@ -39,8 +39,8 @@ export { default as equalIntervalBreaks } from './src/equal_interval_breaks';
 // export { default as sampleSkewness } from './src/sample_skewness';
 // export { default as sampleKurtosis } from './src/sample_kurtosis';
 
-// // combinatorics
-// export { default as permutationsHeap } from './src/permutations_heap';
+// combinatorics
+export { default as permutationsHeap } from './src/permutations_heap';
 export { default as combinations } from './src/combinations';
 export { default as combinationsReplacement } from './src/combinations_replacement';
 
@@ -81,7 +81,7 @@ export { default as cumulativeStdNormalProbability } from './src/cumulative_std_
 // export { default as standardNormalTable } from './src/standard_normal_table';
 export { default as errorFunction, default as erf } from './src/error_function';
 export { default as inverseErrorFunction } from './src/inverse_error_function';
-// export { default as probit } from './src/probit';
+export { default as probit } from './src/probit';
 
 // Root-finding methods
 export { default as bisect } from './src/bisect';

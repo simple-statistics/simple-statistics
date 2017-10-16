@@ -68,3 +68,4 @@ p.predict([0, 0]); // 0
 p.predict([0, 1]); // 0
 p.predict([1, 0]); // 0
 p.predict([1, 1]); // 1
+ss.product([1, 2, 3, 4]); // => 24
