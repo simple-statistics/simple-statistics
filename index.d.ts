@@ -62,14 +62,14 @@ export { default as subtractFromMean } from './src/subtract_from_mean';
 // // ss.jenks = require('./src/jenks');
 
 // // Classifiers
-// export { default as BayesianClassifier, default as bayesian } from './src/bayesian_classifier';
+export { default as BayesianClassifier, default as bayesian } from './src/bayesian_classifier';
 // export { default as PerceptronModel, default as perceptron } from './src/perceptron';
 
 // // Distribution-related methods
 // export { default as epsilon } from './src/epsilon'; // We make ε available to the test suite.
 // export { default as factorial } from './src/factorial';
-// export { default as bernoulliDistribution } from './src/bernoulli_distribution';
-// export { default as binomialDistribution } from './src/binomial_distribution';
+export { default as bernoulliDistribution } from './src/bernoulli_distribution';
+export { default as binomialDistribution } from './src/binomial_distribution';
 // export { default as poissonDistribution } from './src/poisson_distribution';
 // export { default as chiSquaredGoodnessOfFit } from './src/chi_squared_goodness_of_fit';
 // export { default as kernelDensityEstimation } from './src/kernel_density_estimation';
@@ -82,8 +82,8 @@ export { default as subtractFromMean } from './src/subtract_from_mean';
 // export { default as inverseErrorFunction } from './src/inverse_error_function';
 // export { default as probit } from './src/probit';
 
-// // Root-finding methods
-// export { default as bisect } from './src/bisect';
+// Root-finding methods
+export { default as bisect } from './src/bisect';
 
 // // Utils
 // export { default as quickselect } from './src/quickselect';
