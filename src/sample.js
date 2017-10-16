@@ -21,7 +21,7 @@ import shuffle from './shuffle';
 function sample/*:: <T> */(
     x /*: Array<T> */,
     n /*: number */,
-    randomSource /*: Function */) /*: Array<T> */ {
+    randomSource /*: ?Function */) /*: Array<T> */ {
     // shuffle the original array using a fisher-yates shuffle
     var shuffled = shuffle(x, randomSource);
 

@@ -6,7 +6,7 @@
 export { default as linearRegression } from './src/linear_regression';
 export { default as linearRegressionLine } from './src/linear_regression_line';
 // export { default as standardDeviation } from './src/standard_deviation';
-// export { default as rSquared } from './src/r_squared';
+export { default as rSquared } from './src/r_squared';
 export { default as mode } from './src/mode';
 export { default as modeFast } from './src/mode_fast';
 export { default as modeSorted } from './src/mode_sorted';
@@ -22,22 +22,22 @@ export { default as quantileSorted } from './src/quantile_sorted';
 export { default as interquartileRange, default as iqr } from './src/interquartile_range';
 export { default as medianAbsoluteDeviation, default as mad } from './src/median_absolute_deviation';
 export { default as chunk } from './src/chunk';
-// export { default as sampleWithReplacement } from './src/sample_with_replacement';
+export { default as sampleWithReplacement } from './src/sample_with_replacement';
 // export { default as shuffle } from './src/shuffle';
 // export { default as shuffleInPlace } from './src/shuffle_in_place';
-// export { default as sample } from './src/sample';
+export { default as sample } from './src/sample';
 export { default as ckmeans } from './src/ckmeans';
 // export { default as uniqueCountSorted } from './src/unique_count_sorted';
 // export { default as sumNthPowerDeviations } from './src/sum_nth_power_deviations';
 export { default as equalIntervalBreaks } from './src/equal_interval_breaks';
 
-// // sample statistics
-// export { default as sampleCovariance } from './src/sample_covariance';
-// export { default as sampleCorrelation } from './src/sample_correlation';
-// export { default as sampleVariance } from './src/sample_variance';
-// export { default as sampleStandardDeviation } from './src/sample_standard_deviation';
-// export { default as sampleSkewness } from './src/sample_skewness';
-// export { default as sampleKurtosis } from './src/sample_kurtosis';
+// sample statistics
+export { default as sampleCovariance } from './src/sample_covariance';
+export { default as sampleCorrelation } from './src/sample_correlation';
+export { default as sampleVariance } from './src/sample_variance';
+export { default as sampleStandardDeviation } from './src/sample_standard_deviation';
+export { default as sampleSkewness } from './src/sample_skewness';
+export { default as sampleKurtosis } from './src/sample_kurtosis';
 
 // combinatorics
 export { default as permutationsHeap } from './src/permutations_heap';
@@ -55,7 +55,7 @@ export { default as median } from './src/median';
 export { default as medianSorted } from './src/median_sorted';
 export { default as subtractFromMean } from './src/subtract_from_mean';
 
-// export { default as rootMeanSquare, default as rms } from './src/root_mean_square';
+export { default as rootMeanSquare, default as rms } from './src/root_mean_square';
 // export { default as variance } from './src/variance';
 // export { default as tTest } from './src/t_test';
 // export { default as tTestTwoSample } from './src/t_test_two_sample';
@@ -75,7 +75,7 @@ export { default as chiSquaredDistributionTable } from './src/chi_squared_distri
 export { default as chiSquaredGoodnessOfFit } from './src/chi_squared_goodness_of_fit';
 export { default as kernelDensityEstimation, default as kde } from './src/kernel_density_estimation';
 
-// // Normal distribution
+// Normal distribution
 // export { default as zScore } from './src/z_score';
 export { default as cumulativeStdNormalProbability } from './src/cumulative_std_normal_probability';
 // export { default as standardNormalTable } from './src/standard_normal_table';

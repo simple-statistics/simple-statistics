@@ -73,3 +73,16 @@ ss.quantileSorted([3, 6, 7, 8, 8, 9, 10, 13, 15, 16, 20], 0.5); // => 9
 ss.quantile([3, 6, 7, 8, 8, 9, 10, 13, 15, 16, 20], 0.5); // => 9
 var arr = [65, 28, 59, 33, 21, 56, 22, 95, 50, 12, 90, 53, 28, 77, 39];
 ss.quickselect(arr, 8);
+var samples = [[0, 0], [1, 1]];
+var regressionLine = ss.linearRegressionLine(ss.linearRegression(samples));
+ss.rSquared(samples, regressionLine); // = 1 this line is a perfect fit
+ss.rootMeanSquare([-1, 1, -1, 1]); // => 1
+ss.sampleCorrelation([1, 2, 3, 4, 5, 6], [2, 2, 3, 4, 5, 60]).toFixed(2);
+ss.sampleCovariance([1, 2, 3, 4, 5, 6], [6, 5, 4, 3, 2, 1]); // => -3.5
+ss.sampleKurtosis([1, 2, 2, 3, 5]); // => 1.4555765595463122
+ss.sampleSkewness([2, 4, 6, 3, 1]); // => 0.590128656384365
+ss.sampleStandardDeviation([2, 4, 4, 4, 5, 5, 7, 9]).toFixed(2);
+ss.sampleVariance([1, 2, 3, 4, 5]); // => 2.5
+ss.sampleWithReplacement([1, 2, 3, 4], 2);
+ss.sampleWithReplacement([1, 2, 3, 4], 2, Math.random);
+ss.sampleWithReplacement([1, 2, 3, 4], 2, () => 10);
