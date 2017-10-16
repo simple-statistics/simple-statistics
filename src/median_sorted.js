@@ -16,7 +16,7 @@ import quantileSorted from './quantile_sorted';
  * @param {Array<number>} sorted input
  * @returns {number} median value
  * @example
- * medianSorted([10, 2, 5, 100, 2, 1]); // => 52.5
+ * ss.medianSorted([10, 2, 5, 100, 2, 1]); // => 52.5
  */
 function medianSorted(sorted /*: Array<number> */)/*:number*/ {
     return quantileSorted(sorted, 0.5);

@@ -21,7 +21,7 @@
  * @throws {ReferenceError} if the JavaScript environment doesn't support Map
  * @throws {Error} if x is empty
  * @example
- * modeFast(['rabbits', 'rabbits', 'squirrels']); // => 'rabbits'
+ * ss.modeFast(['rabbits', 'rabbits', 'squirrels']); // => 'rabbits'
  */
 function modeFast/*::<T>*/(x /*: Array<T> */)/*: ?T */ {
 

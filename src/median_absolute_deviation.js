@@ -10,9 +10,9 @@ import median from './median';
  * @param {Array<number>} x input array
  * @returns {number} median absolute deviation
  * @example
- * medianAbsoluteDeviation([1, 1, 2, 2, 4, 6, 9]); // => 1
+ * ss.medianAbsoluteDeviation([1, 1, 2, 2, 4, 6, 9]); // => 1
  */
-function medianAbsoluteDeviation(x /*: Array<number> */) {
+function medianAbsoluteDeviation(x/*: Array<number> */)/*: number */ {
     // The mad of nothing is null
     var medianValue = median(x),
         medianAbsoluteDeviations = [];

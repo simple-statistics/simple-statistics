@@ -46,3 +46,10 @@ ss.max([1, 2, 3, 4]);
 ss.maxSorted([-100, -10, 1, 2, 5]); // => 5
 ss.min([1, 5, -10, 100, 2]); // => -10
 ss.minSorted([-100, -10, 1, 2, 5]); // => -100
+ss.mean([0, 10]); // => 5
+ss.medianAbsoluteDeviation([1, 1, 2, 2, 4, 6, 9]); // => 1
+ss.medianSorted([10, 2, 5, 100, 2, 1]); // => 52.5
+ss.median([10, 2, 5, 100, 2, 1]); // => 3.5
+ss.modeFast(['rabbits', 'rabbits', 'squirrels']); // => 'rabbits'
+ss.mode([0, 0, 1]); // => 0
+ss.modeSorted([0, 0, 1]); // => 0
