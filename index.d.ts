@@ -29,7 +29,7 @@ export { default as chunk } from './src/chunk';
 export { default as ckmeans } from './src/ckmeans';
 // export { default as uniqueCountSorted } from './src/unique_count_sorted';
 // export { default as sumNthPowerDeviations } from './src/sum_nth_power_deviations';
-// export { default as equalIntervalBreaks } from './src/equal_interval_breaks';
+export { default as equalIntervalBreaks } from './src/equal_interval_breaks';
 
 // // sample statistics
 // export { default as sampleCovariance } from './src/sample_covariance';
@@ -77,9 +77,9 @@ export { default as chiSquaredGoodnessOfFit } from './src/chi_squared_goodness_o
 
 // // Normal distribution
 // export { default as zScore } from './src/z_score';
-// export { default as cumulativeStdNormalProbability } from './src/cumulative_std_normal_probability';
+export { default as cumulativeStdNormalProbability } from './src/cumulative_std_normal_probability';
 // export { default as standardNormalTable } from './src/standard_normal_table';
-// export { default as errorFunction, default as erf } from './src/error_function';
+export { default as errorFunction, default as erf } from './src/error_function';
 // export { default as inverseErrorFunction } from './src/inverse_error_function';
 // export { default as probit } from './src/probit';
 

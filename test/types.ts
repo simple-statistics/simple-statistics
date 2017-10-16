@@ -31,3 +31,5 @@ ss.chunk([1, 2, 3, 4, 5, 6], 2);
 ss.ckmeans([-1, 2, -1, 2, 4, 5, 6, -1, 2, -1], 3);
 ss.combinationsReplacement([1, 2], 2); // => [[1, 1], [1, 2], [2, 2]]
 ss.combinations([1, 2, 3], 2); // => [[1,2], [1,3], [2,3]]
+ss.equalIntervalBreaks([1, 2, 3, 4, 5, 6], 4); // => [1, 2.25, 3.5, 4.75, 6]
+ss.errorFunction(1).toFixed(2); // => '0.84'
