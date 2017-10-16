@@ -24,7 +24,7 @@ import quickselect from './quickselect';
  * @example
  * quantile([3, 6, 7, 8, 8, 9, 10, 13, 15, 16, 20], 0.5); // => 9
  */
-function quantile(x /*: Array<number> */, p /*: Array<number> | number */) {
+function quantile(x/*: Array<number> */, p/*: Array<number> | number */)/*: number */ {
     var copy = x.slice();
 
     if (Array.isArray(p)) {
