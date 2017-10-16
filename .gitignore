@@ -4,4 +4,5 @@ node_modules
 docs/public/
 .nyc_output
 dist
-test/types.js
+types.js
+*.types.js

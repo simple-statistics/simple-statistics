@@ -14,7 +14,7 @@ import min from './min';
  * @param {number} nClasses number of desired classes
  * @returns {Array<number>} array of class break positions
  * @example
- * equalIntervalBreaks([1, 2, 3, 4, 5, 6], 4); //= [1, 2.25, 3.5, 4.75, 6]
+ * equalIntervalBreaks([1, 2, 3, 4, 5, 6], 4); // => [1, 2.25, 3.5, 4.75, 6]
  */
 function equalIntervalBreaks(x/*: Array<number> */, nClasses/*:number*/)/*: Array<number> */ {
 

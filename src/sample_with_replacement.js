@@ -10,12 +10,13 @@
  * returns numbers between 0 inclusive and 1 exclusive: the range [0, 1)
  * @return {Array} n sampled items from the population
  * @example
- * var sample = sampleWithReplacement([1, 2, 3, 4], 2);
- * sampleWithReplacement; // = [2, 4] or any other random sample of 2 items
+ * var values = [1, 2, 3, 4];
+ * sampleWithReplacement(values, 2); // returns 2 random values, like [2, 4];
  */
-function sampleWithReplacement/*::<T>*/(x/*:Array<T>*/,
-    n /*: number */,
-    randomSource/*:Function*/) {
+function sampleWithReplacement/*::<T>*/(
+    x/*: Array<T> */,
+    n/*: number */,
+    randomSource/*: ?Function */) {
 
     if (x.length === 0) {
         return [];

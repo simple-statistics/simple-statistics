@@ -46,13 +46,13 @@ var bandwidthMethods /*: {[string]: (Array<number>) => number} */ = {
  * is a useful tool for, among other things, estimating the shape of the
  * underlying probability distribution from a sample.
  *
- * @name kde
+ * @name kernelDensityEstimation
  * @param X sample values
  * @param kernel The kernel function to use. If a function is provided, it should return non-negative values and integrate to 1. Defaults to 'gaussian'.
  * @param bandwidthMethod The "bandwidth selection" method to use, or a fixed bandwidth value. Defaults to "nrd", the commonly-used ["normal reference distribution" rule-of-thumb](https://stat.ethz.ch/R-manual/R-devel/library/MASS/html/bandwidth.nrd.html).
  * @returns {Function} An estimated [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) for the given sample. The returned function runs in `O(X.length)`.
  */
-function kde(
+function kernelDensityEstimation(
     X /*: Array<number> */,
     kernel /*: $Keys<typeof kernels> | ((number) => number) | void*/,
     bandwidthMethod /*: $Keys<typeof bandwidthMethods> | number | void*/
@@ -91,4 +91,4 @@ function kde(
     }
 }
 
-export default kde;
+export default kernelDensityEstimation;

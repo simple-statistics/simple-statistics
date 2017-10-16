@@ -8,7 +8,7 @@
  * @param {int} k the number of objects in each group (without replacement)
  * @returns {Array<Array>} array of permutations
  * @example
- * ss.combinations([1, 2, 3], 2); // => [[1,2], [1,3], [2,3]]
+ * combinations([1, 2, 3], 2); // => [[1,2], [1,3], [2,3]]
  */
 
 function combinations(

@@ -14,6 +14,7 @@ import shuffle from './shuffle';
  * @param {Function} [randomSource=Math.random] an optional entropy source that
  * returns numbers between 0 inclusive and 1 exclusive: the range [0, 1)
  * @return {Array} subset of n elements in original array
+ *
  * @example
  * var values = [1, 2, 4, 5, 6, 7, 8, 9];
  * sample(values, 3); // returns 3 random values, like [2, 5, 8];
@@ -21,7 +22,7 @@ import shuffle from './shuffle';
 function sample/*:: <T> */(
     x /*: Array<T> */,
     n /*: number */,
-    randomSource /*: Function */) /*: Array<T> */ {
+    randomSource /*: ?Function */) /*: Array<T> */ {
     // shuffle the original array using a fisher-yates shuffle
     var shuffled = shuffle(x, randomSource);
 

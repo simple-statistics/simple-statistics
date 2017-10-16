@@ -10,13 +10,14 @@ import mean from './mean';
  * @param {Array<number>} x
  * @param {number} n power
  * @returns {number} sum of nth power deviations
+ *
  * @example
  * var input = [1, 2, 3];
  * // since the variance of a set is the mean squared
  * // deviations, we can calculate that with sumNthPowerDeviations:
- * var variance = sumNthPowerDeviations(input) / input.length;
+ * sumNthPowerDeviations(input, 2) / input.length;
  */
-function sumNthPowerDeviations(x/*: Array<number> */, n/*: number */)/*:number*/ {
+function sumNthPowerDeviations(x/*: Array<number> */, n/*: number */)/*: number */ {
     var meanValue = mean(x),
         sum = 0,
         tempValue,
