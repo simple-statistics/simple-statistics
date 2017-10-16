@@ -73,6 +73,7 @@ export { default as factorial } from './src/factorial';
 export { default as bernoulliDistribution } from './src/bernoulli_distribution';
 export { default as binomialDistribution } from './src/binomial_distribution';
 export { default as poissonDistribution } from './src/poisson_distribution';
+export { default as chiSquaredDistributionTable } from './src/chi_squared_distribution_table';
 export { default as chiSquaredGoodnessOfFit } from './src/chi_squared_goodness_of_fit';
 export { default as kernelDensityEstimation } from './src/kernel_density_estimation';
 

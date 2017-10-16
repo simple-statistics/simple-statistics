@@ -17,3 +17,15 @@ bayes.score({foo: 'foo'}); // => { animal: 1 }
 
 ss.bernoulliDistribution(0.3); // => [0.7, 0.3]
 ss.bisect(Math.cos, 0, 4, 100, 0.003); // => 1.572265625
+
+var data1019 = [
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    2, 2, 2, 2, 2, 2, 2, 2, 2,
+    3, 3, 3, 3
+]
+ss.chiSquaredGoodnessOfFit(data1019, ss.poissonDistribution, 0.05); //= false
+ss.chiSquaredDistributionTable[60][0.99]
+ss.chunk([1, 2, 3, 4, 5, 6], 2);
+ss.ckmeans([-1, 2, -1, 2, 4, 5, 6, -1, 2, -1], 3);

@@ -21,12 +21,12 @@
 // export { default as quantileSorted } from './src/quantile_sorted';
 // export { default as interquartileRange, default as iqr } from './src/interquartile_range';
 // export { default as medianAbsoluteDeviation, default as mad } from './src/median_absolute_deviation';
-// export { default as chunk } from './src/chunk';
+export { default as chunk } from './src/chunk';
 // export { default as sampleWithReplacement } from './src/sample_with_replacement';
 // export { default as shuffle } from './src/shuffle';
 // export { default as shuffleInPlace } from './src/shuffle_in_place';
 // export { default as sample } from './src/sample';
-// export { default as ckmeans } from './src/ckmeans';
+export { default as ckmeans } from './src/ckmeans';
 // export { default as uniqueCountSorted } from './src/unique_count_sorted';
 // export { default as sumNthPowerDeviations } from './src/sum_nth_power_deviations';
 // export { default as equalIntervalBreaks } from './src/equal_interval_breaks';
@@ -70,8 +70,9 @@ export { default as BayesianClassifier, default as bayesian } from './src/bayesi
 // export { default as factorial } from './src/factorial';
 export { default as bernoulliDistribution } from './src/bernoulli_distribution';
 export { default as binomialDistribution } from './src/binomial_distribution';
-// export { default as poissonDistribution } from './src/poisson_distribution';
-// export { default as chiSquaredGoodnessOfFit } from './src/chi_squared_goodness_of_fit';
+export { default as poissonDistribution } from './src/poisson_distribution';
+export { default as chiSquaredDistributionTable } from './src/chi_squared_distribution_table';
+export { default as chiSquaredGoodnessOfFit } from './src/chi_squared_goodness_of_fit';
 // export { default as kernelDensityEstimation } from './src/kernel_density_estimation';
 
 // // Normal distribution
