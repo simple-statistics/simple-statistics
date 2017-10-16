@@ -10,7 +10,7 @@
  * @returns {number} factorial: n!
  * @throws {Error} if n is less than 0 or not an integer
  * @example
- * ss.factorial(5); // => 120
+ * factorial(5); // => 120
  */
 function factorial(n /*: number */)/*: number */ {
 

@@ -14,7 +14,7 @@ import sum from './sum';
  * @throws {Error} if the the length of x is less than one
  * @returns {number} mean
  * @example
- * ss.mean([0, 10]); // => 5
+ * mean([0, 10]); // => 5
  */
 function mean(x /*: Array<number> */)/*: number */ {
     // The mean of no numbers is null

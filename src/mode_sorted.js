@@ -14,7 +14,7 @@
  * @returns {number} mode
  * @throws {Error} if sorted is empty
  * @example
- * ss.modeSorted([0, 0, 1]); // => 0
+ * modeSorted([0, 0, 1]); // => 0
  */
 function modeSorted(sorted /*: Array<number> */)/*:number*/ {
 

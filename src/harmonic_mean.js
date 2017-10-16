@@ -16,7 +16,7 @@
  * @throws {Error} if x is empty
  * @throws {Error} if x contains a negative number
  * @example
- * ss.harmonicMean([2, 3]).toFixed(2) // => '2.40'
+ * harmonicMean([2, 3]).toFixed(2) // => '2.40'
  */
 function harmonicMean(x /*: Array<number> */)/*: number */ {
     // The mean of no numbers is null

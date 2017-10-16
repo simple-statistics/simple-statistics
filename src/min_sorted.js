@@ -8,7 +8,7 @@
  * @param {Array<number>} x input
  * @returns {number} minimum value
  * @example
- * ss.minSorted([-100, -10, 1, 2, 5]); // => -100
+ * minSorted([-100, -10, 1, 2, 5]); // => -100
  */
 function minSorted(x /*: Array<number> */)/*: number */ {
     return x[0];

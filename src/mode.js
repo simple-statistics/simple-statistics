@@ -17,7 +17,7 @@ import numericSort from './numeric_sort';
  * @param {Array<number>} x input
  * @returns {number} mode
  * @example
- * ss.mode([0, 0, 1]); // => 0
+ * mode([0, 0, 1]); // => 0
  */
 function mode(x /*: Array<number> */)/*:number*/ {
     // Sorting the array lets us iterate through it below and be sure
