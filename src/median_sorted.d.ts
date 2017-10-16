@@ -1,6 +1,8 @@
 /**
  * https://simplestatistics.org/docs/#mediansorted
  */
-declare function medianSorted(sorted: Array<number>): number
+declare function medianSorted(
+    sorted: number[]
+): number
 
 export default medianSorted;

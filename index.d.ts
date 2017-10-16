@@ -42,7 +42,7 @@ export { default as ckmeans } from './src/ckmeans';
 // // combinatorics
 // export { default as permutationsHeap } from './src/permutations_heap';
 // export { default as combinations } from './src/combinations';
-// export { default as combinationsReplacement } from './src/combinations_replacement';
+export { default as combinationsReplacement } from './src/combinations_replacement';
 
 // measures of centrality
 export { default as addToMean } from './src/add_to_mean';
