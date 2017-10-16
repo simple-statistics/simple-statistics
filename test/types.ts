@@ -53,3 +53,18 @@ ss.median([10, 2, 5, 100, 2, 1]); // => 3.5
 ss.modeFast(['rabbits', 'rabbits', 'squirrels']); // => 'rabbits'
 ss.mode([0, 0, 1]); // => 0
 ss.modeSorted([0, 0, 1]); // => 0
+ss.numericSort([3, 2, 1]) // => [1, 2, 3]
+
+// Create the model
+var p = new ss.PerceptronModel();
+// Train the model with input with a diagonal boundary.
+for (var i = 0; i < 5; i++) {
+    p.train([1, 1], 1);
+    p.train([0, 1], 0);
+    p.train([1, 0], 0);
+    p.train([0, 0], 0);
+}
+p.predict([0, 0]); // 0
+p.predict([0, 1]); // 0
+p.predict([1, 0]); // 0
+p.predict([1, 1]); // 1

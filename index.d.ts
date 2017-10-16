@@ -63,7 +63,7 @@ export { default as subtractFromMean } from './src/subtract_from_mean';
 
 // // Classifiers
 export { default as BayesianClassifier, default as bayesian } from './src/bayesian_classifier';
-// export { default as PerceptronModel, default as perceptron } from './src/perceptron';
+export { default as PerceptronModel, default as perceptron } from './src/perceptron';
 
 // Distribution-related methods
 export { default as epsilon } from './src/epsilon'; // We make ε available to the test suite.
@@ -86,7 +86,7 @@ export { default as inverseErrorFunction } from './src/inverse_error_function';
 // Root-finding methods
 export { default as bisect } from './src/bisect';
 
-// // Utils
+// Utils
 // export { default as quickselect } from './src/quickselect';
 // export { default as sign } from './src/sign';
-// export { default as numericSort } from './src/numeric_sort';
+export { default as numericSort } from './src/numeric_sort';
