@@ -33,11 +33,23 @@ in all modern browsers (including IE) as well as in [node.js](https://nodejs.org
       in Rollup.<br /> <pre>import ss from 'simple-statistics';</pre>
 * **I'm not using a module bundler. I'm writing a web page, and want to include
   simple-statistics using a script tag.**
-  * When you use simple-statistics from a script tag, you don't get to choose
-    the variable name it is assigned to: simple-statistics will always become
-    available globally as the variable `ss`. You can reassign this variable to
-    another name if you want to, but doing so is optional. <pre><script src='https://unpkg.com/simple-statistics@5.1.0/dist/simple-statistics.js' /></pre>
-    There are two options for the `src` attribute of that script tag: one with
-    `.min.js` that is compressed, and the other without, that is raw.
-    * `https://unpkg.com/simple-statistics@5.1.0/dist/simple-statistics.js`
-    * `https://unpkg.com/simple-statistics@5.1.0/dist/simple-statistics.min.js`
+  * **I want to support all browsers**
+    * When you use simple-statistics from a script tag, you don't get to choose
+      the variable name it is assigned to: simple-statistics will always become
+      available globally as the variable `ss`. You can reassign this variable to
+      another name if you want to, but doing so is optional. <pre><script src='https://unpkg.com/simple-statistics@5.1.0/dist/simple-statistics.js' /></pre>
+      There are two options for the `src` attribute of that script tag: one with
+      `.min.js` that is compressed, and the other without, that is raw.
+      * `https://unpkg.com/simple-statistics@5.1.0/dist/simple-statistics.js`
+      * `https://unpkg.com/simple-statistics@5.1.0/dist/simple-statistics.min.js`
+  * **I want to use ES6 modules in a browser and I'm [willing to only support new browsers](https://caniuse.com/#feat=es6-module) to do it**
+    * This module works great with the [`?module`](https://unpkg.com/#/query-parameters) query parameter of unpkg. If you
+      specify `type='module'` in your script tag, you'll be able to import simple-statistics
+      directly - through `index.js` and with true ES6 import syntax and behavior.
+      ```js
+<script type='module'>
+import * as ss from "https://unpkg.com/simple-statistics@5.1.0/index.js?module"
+console.log(ss.min([1, 2, 3]));
+</script>
+      ```
+      This feature is still experimental in unpkg and very bleeding-edge.
