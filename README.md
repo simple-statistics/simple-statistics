@@ -45,11 +45,11 @@ in all modern browsers (including IE) as well as in [node.js](https://nodejs.org
   * **I want to use ES6 modules in a browser and I'm [willing to only support new browsers](https://caniuse.com/#feat=es6-module) to do it**
     * This module works great with the [`?module`](https://unpkg.com/#/query-parameters) query parameter of unpkg. If you
       specify `type='module'` in your script tag, you'll be able to import simple-statistics
-      directly - through `index.js` and with true ES6 import syntax and behavior.
+      directly - through `index.js` and with true [ES6 import syntax and behavior](http://exploringjs.com/es6/ch_modules.html).
       ```js
       <script type='module'>
-      import * as ss from "https://unpkg.com/simple-statistics@5.1.0/index.js?module"
-      console.log(ss.min([1, 2, 3]));
+      import {min} from "https://unpkg.com/simple-statistics@5.1.0/index.js?module"
+      console.log(min([1, 2, 3]));
       </script>
       ```
       This feature is still experimental in unpkg and very bleeding-edge.
