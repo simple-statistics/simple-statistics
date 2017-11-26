@@ -47,9 +47,9 @@ in all modern browsers (including IE) as well as in [node.js](https://nodejs.org
       specify `type='module'` in your script tag, you'll be able to import simple-statistics
       directly - through `index.js` and with true ES6 import syntax and behavior.
       ```js
-<script type='module'>
-import * as ss from "https://unpkg.com/simple-statistics@5.1.0/index.js?module"
-console.log(ss.min([1, 2, 3]));
-</script>
+      <script type='module'>
+      import * as ss from "https://unpkg.com/simple-statistics@5.1.0/index.js?module"
+      console.log(ss.min([1, 2, 3]));
+      </script>
       ```
       This feature is still experimental in unpkg and very bleeding-edge.
