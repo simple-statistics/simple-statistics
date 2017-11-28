@@ -27,8 +27,8 @@ in all modern browsers (including IE) as well as in [node.js](https://nodejs.org
       in this case, 'simple-statistics'. The `require` method returns an object
       with all of the module's methods attached to it.<br /> <pre>var ss = require('simple-statistics')</pre>
   * **I use `import` to use modules in my project. I'm probably using Babel, `@std/esm`, Webpack, or Rollup.**
-    * Import all functions under the ss object: <pre>import * as ss from 'simple-statistics';</pre>,
-      Include a specific named export: <pre>import {min} from 'simple-statistics';</pre>
+    * Import all functions under the ss object: <pre>import * as ss from 'simple-statistics'</pre>
+      Include a specific named export: <pre>import {min} from 'simple-statistics'</pre>
       Simple statistics has _only_ named exports for ES6.
 * **I'm not using a module bundler. I'm writing a web page, and want to include
   simple-statistics using a script tag.**
@@ -48,7 +48,7 @@ in all modern browsers (including IE) as well as in [node.js](https://nodejs.org
       ```js
       <script type='module'>
       import {min} from "https://unpkg.com/simple-statistics@5.1.0/index.js?module"
-      console.log(min([1, 2, 3]));
+      console.log(min([1, 2, 3]))
       </script>
       ```
       This feature is still experimental in unpkg and very bleeding-edge.
