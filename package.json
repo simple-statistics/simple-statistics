@@ -43,6 +43,7 @@
     "jsdoctest": "mocha --require jsdoctest dist/index.js"
   },
   "main": "dist/index",
+  "unpkg": "dist/simple-statistics.min.js",
   "module": "index",
   "jsnext:main": "index",
   "types": "index.d.ts",
