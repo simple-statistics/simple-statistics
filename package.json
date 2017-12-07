@@ -24,8 +24,9 @@
     "jsdoctest": "^1.7.1",
     "mocha": "^4.0.0",
     "random-js": "^1.0.4",
-    "rollup": "^0.51.0",
-    "rollup-plugin-uglify": "^2.0.1",
+    "rollup": "*",
+    "rollup-plugin-buble": "*",
+    "rollup-plugin-uglify": "*",
     "standard-version": "^4.0.0",
     "tap": "^11.0.0",
     "typescript": "^2.5.3",
@@ -42,10 +43,9 @@
     "postlint": "documentation lint src",
     "jsdoctest": "mocha --require jsdoctest dist/index.js"
   },
-  "main": "dist/index",
-  "unpkg": "dist/simple-statistics.min.js",
-  "module": "index",
-  "jsnext:main": "index",
+  "main": "dist/simple-statistics.js",
+  "module": "dist/simple-statistics.mjs",
+  "browser": "dist/simple-statistics.min.js",
   "types": "index.d.ts",
   "engines": {
     "node": "*"

@@ -1,24 +1,32 @@
-import uglify from 'rollup-plugin-uglify';
+import buble from 'rollup-plugin-buble';
+import uglify from 'rollup-plugin-uglify'
 
-function assign(options) {
-    const file = options.file
-    const format = options.format
-    const plugins = options.plugins
+const input = 'index.js'
+const sourcemap = true
 
-    return {
-        input: 'index',
-        output: {
-            file,
-            format: format || 'umd',
-            extend: true,
-            sourcemap: true,
-            name: 'ss'
-        },
-        plugins: plugins || []
+export default [{
+    input,
+    output: {
+        file: 'dist/simple-statistics.mjs',
+        format: 'es',
+        sourcemap
     }
-}
-export default [
-    assign({ file: 'dist/simple-statistics.js' }),
-    assign({ file: 'dist/simple-statistics.min.js', plugins: [uglify()] }),
-    assign({ format: 'cjs', file: 'dist/index.js' })
-];
+}, {
+    input,
+    output: {
+        file: 'dist/simple-statistics.js',
+        format: 'cjs',
+        sourcemap
+    },
+    plugins: [buble()]
+},
+{
+    input,
+    output: {
+        file: 'dist/simple-statistics.min.js',
+        format: 'umd',
+        name: 'ss',
+        sourcemap
+    },
+    plugins: [buble(), uglify()]
+}]
