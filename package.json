@@ -25,7 +25,6 @@
     "mocha": "^4.0.0",
     "random-js": "^1.0.4",
     "rollup": "^0.52.1",
-    "rollup-plugin-buble": "^0.18.0",
     "rollup-plugin-uglify": "^2.0.1",
     "standard-version": "^4.0.0",
     "tap": "^11.0.0",

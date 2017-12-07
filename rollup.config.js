@@ -1,4 +1,3 @@
-import buble from 'rollup-plugin-buble';
 import uglify from 'rollup-plugin-uglify'
 
 const input = 'index.js'
@@ -17,8 +16,7 @@ export default [{
         file: 'dist/simple-statistics.js',
         format: 'cjs',
         sourcemap
-    },
-    plugins: [buble()]
+    }
 },
 {
     input,
@@ -28,5 +26,5 @@ export default [{
         name: 'ss',
         sourcemap
     },
-    plugins: [buble(), uglify()]
+    plugins: [uglify()]
 }]
