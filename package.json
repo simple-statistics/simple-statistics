@@ -41,7 +41,7 @@
     "prelint": "are-we-flow-yet src && flow check src && tsc",
     "lint": "eslint index.js src test",
     "postlint": "documentation lint src",
-    "jsdoctest": "mocha --require jsdoctest dist/index.js"
+    "jsdoctest": "mocha --require jsdoctest dist/simple-statistics.js"
   },
   "main": "dist/simple-statistics.js",
   "module": "dist/simple-statistics.mjs",
