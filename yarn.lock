@@ -4349,14 +4349,14 @@ rimraf@2, rimraf@^2.2.8, rimraf@^2.5.1, rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.
   dependencies:
     glob "^7.0.5"
 
-rollup-plugin-buble@*:
+rollup-plugin-buble@^0.18.0:
   version "0.18.0"
   resolved "https://registry.yarnpkg.com/rollup-plugin-buble/-/rollup-plugin-buble-0.18.0.tgz#6e20d1b2840c59eb496b9f954f75243e51786ac1"
   dependencies:
     buble "^0.18.0"
     rollup-pluginutils "^2.0.1"
 
-rollup-plugin-uglify@*:
+rollup-plugin-uglify@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/rollup-plugin-uglify/-/rollup-plugin-uglify-2.0.1.tgz#67b37ad1efdafbd83af4c36b40c189ee4866c969"
   dependencies:
@@ -4369,7 +4369,7 @@ rollup-pluginutils@^2.0.1:
     estree-walker "^0.3.0"
     micromatch "^2.3.11"
 
-rollup@*:
+rollup@^0.52.1:
   version "0.52.1"
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.52.1.tgz#610e8e1be432f18fcfbfa865408a1cd7618cd707"
 
