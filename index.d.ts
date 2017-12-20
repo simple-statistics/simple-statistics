@@ -1,3 +1,5 @@
+/* @flow */
+
 // # simple-statistics
 //
 // A simple, literate statistics system.
@@ -61,7 +63,7 @@ export { default as tTest } from './src/t_test';
 export { default as tTestTwoSample } from './src/t_test_two_sample';
 // ss.jenks = require('./src/jenks');
 
-// // Classifiers
+// Classifiers
 export { default as BayesianClassifier, default as bayesian } from './src/bayesian_classifier';
 export { default as PerceptronModel, default as perceptron } from './src/perceptron';
 

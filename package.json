@@ -40,12 +40,11 @@
     "prelint": "are-we-flow-yet src && flow check src && tsc",
     "lint": "eslint index.js src test",
     "postlint": "documentation lint src",
-    "jsdoctest": "mocha --require jsdoctest dist/index.js"
+    "jsdoctest": "mocha --require jsdoctest dist/simple-statistics.js"
   },
-  "main": "dist/index",
-  "unpkg": "dist/simple-statistics.min.js",
-  "module": "index",
-  "jsnext:main": "index",
+  "main": "dist/simple-statistics.js",
+  "module": "dist/simple-statistics.mjs",
+  "browser": "dist/simple-statistics.min.js",
   "types": "index.d.ts",
   "engines": {
     "node": "*"
