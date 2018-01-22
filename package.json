@@ -22,7 +22,7 @@
     "eslint": "^4.1.0",
     "flow-bin": "^0.59.0",
     "jsdoctest": "^1.7.1",
-    "mocha": "^4.0.0",
+    "mocha": "^5.0.0",
     "random-js": "^1.0.4",
     "rollup": "^0.53.3",
     "rollup-plugin-uglify": "^3.0.0",
