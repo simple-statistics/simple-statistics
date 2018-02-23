@@ -14,6 +14,7 @@ export { default as modeFast } from './src/mode_fast';
 export { default as modeSorted } from './src/mode_sorted';
 export { default as min } from './src/min';
 export { default as max } from './src/max';
+export { default as extent } from './src/extent';
 export { default as minSorted } from './src/min_sorted';
 export { default as maxSorted } from './src/max_sorted';
 export { default as sum } from './src/sum';

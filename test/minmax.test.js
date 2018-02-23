@@ -31,6 +31,22 @@ test('max', function(t) {
     t.end();
 });
 
+test('extent', function(t) {
+    t.throws(function() {
+        ss.extent([]);
+    }, 'zero length array throws');
+    t.test('can get the extent of one number', function(t) {
+        t.deepEqual(ss.extent([1]), [1, 1]);
+        t.equal(ss.extent([1])[0], ss.extent([1])[1]);
+        t.end();
+    });
+    t.test('can get the extent of three numbers', function(t) {
+        t.deepEqual(ss.extent([1, 7, -1000]), [-1000, 7]);
+        t.end();
+    });
+    t.end();
+});
+
 test('sorted', function(t) {
     t.equal(ss.maxSorted([1, 7, 1000]), 1000, 'maxSorted');
     t.equal(ss.minSorted([1, 7, 1000]), 1, 'minSorted');
