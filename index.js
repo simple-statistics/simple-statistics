@@ -17,6 +17,7 @@ export { default as max } from './src/max';
 export { default as extent } from './src/extent';
 export { default as minSorted } from './src/min_sorted';
 export { default as maxSorted } from './src/max_sorted';
+export { default as extentSorted } from './src/extent_sorted';
 export { default as sum } from './src/sum';
 export { default as sumSimple } from './src/sum_simple';
 export { default as product } from './src/product';

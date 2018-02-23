@@ -50,5 +50,6 @@ test('extent', function(t) {
 test('sorted', function(t) {
     t.equal(ss.maxSorted([1, 7, 1000]), 1000, 'maxSorted');
     t.equal(ss.minSorted([1, 7, 1000]), 1, 'minSorted');
+    t.deepEqual(ss.extentSorted([1, 7, 1000]), [1, 1000], 'extentSorted');
     t.end();
 });
