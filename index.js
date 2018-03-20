@@ -23,6 +23,7 @@ export { default as sumSimple } from './src/sum_simple';
 export { default as product } from './src/product';
 export { default as quantile } from './src/quantile';
 export { default as quantileSorted } from './src/quantile_sorted';
+export { default as quantileRankSorted } from './src/quantile_rank_sorted';
 export { default as interquartileRange, default as iqr } from './src/interquartile_range';
 export { default as medianAbsoluteDeviation, default as mad } from './src/median_absolute_deviation';
 export { default as chunk } from './src/chunk';
