@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="5.3.1"></a>
+## [5.3.1](https://github.com/simple-statistics/simple-statistics/compare/v5.3.0...v5.3.1) (2018-03-23)
+
+
+### Bug Fixes
+
+* Someone simple-statistics dependend on itself... ([12acd40](https://github.com/simple-statistics/simple-statistics/commit/12acd40))
+
+
+
 <a name="5.3.0"></a>
 # [5.3.0](https://github.com/simple-statistics/simple-statistics/compare/v5.2.1...v5.3.0) (2018-03-23)
 
