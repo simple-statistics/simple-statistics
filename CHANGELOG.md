@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="5.3.0"></a>
+# [5.3.0](https://github.com/simple-statistics/simple-statistics/compare/v5.2.1...v5.3.0) (2018-03-23)
+
+
+### Features
+
+* adding extent ([80bcc99](https://github.com/simple-statistics/simple-statistics/commit/80bcc99))
+* adding extentSorted ([053399f](https://github.com/simple-statistics/simple-statistics/commit/053399f))
+* adding quantileRankSorted ([#285](https://github.com/simple-statistics/simple-statistics/issues/285)) ([84248ea](https://github.com/simple-statistics/simple-statistics/commit/84248ea))
+
+
+
 <a name="5.2.1"></a>
 ## [5.2.1](https://github.com/simple-statistics/simple-statistics/compare/v5.2.0...v5.2.1) (2017-12-20)
 
