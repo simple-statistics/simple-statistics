@@ -1,5 +1,6 @@
 /* @flow */
 
+import numericSort from './numeric_sort';
 import quantileRankSorted from './quantile_rank_sorted';
 
 /**
@@ -21,7 +22,7 @@ function quantileRank(
     value /*: number */)/*: number */ {
 
     // Cloning and sorting the array
-    var sortedCopy = x.slice().sort();
+    var sortedCopy = numericSort(x);
 
     return quantileRankSorted(sortedCopy, value);
 }

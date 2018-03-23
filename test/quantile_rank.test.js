@@ -13,6 +13,7 @@ test('quantileRank', function(t) {
         t.equal(ss.quantileRank([2, 1, 3, 4], 6), 1);
         t.equal(ss.quantileRank([4, 1, 2, 3], -3), 0);
         t.equal(ss.quantileRank([5, 2, 1, 3, 3], 4), 0.8);
+        t.equal(ss.quantileRank([5, 567, 1, 11, 2, 22, 4, 45, 3, 34], 5), 0.5);
         t.end();
     });
     t.end();
