@@ -89,6 +89,9 @@ export { default as errorFunction, default as erf } from './src/error_function';
 export { default as inverseErrorFunction } from './src/inverse_error_function';
 export { default as probit } from './src/probit';
 
+// Non-parametric Methods
+export { default as permutationTest } from './src/permutation_test';
+
 // Root-finding methods
 export { default as bisect } from './src/bisect';
 
