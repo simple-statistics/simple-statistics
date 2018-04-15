@@ -34,27 +34,31 @@ function permutationTest(
         throw new Error('`alternative` must be either \'two_tail\', \'greater\', or \'less\'');
     }
 
+    // int pValue var
+    var pValue;
+
     // get means for each sample
     var meanX = mean(sampleX);
     var meanY = mean(sampleY);
-    // int pValue var
-    var pValue;
-    
+
     // calculate initial test statistic. This will be our point of comparison with
     // the generated test statistics.
     var testStatistic = meanX - meanY;
-    
+
     // create test-statistic distribution
     var testStatDsn = new Array(k);
+    
+    // combine datsets so we can easily shuffle later
+    var allData = sampleX.concat(sampleY);
+    var midArray = Math.floor(allData.length / 2);
     
     for (var i = 0; i < k; i++) {
         
         // 1. shuffle data assignments
-        var allData = sampleX.concat(sampleY);
-        var permData = shuffle(allData);
-        var permLeft = permData.splice(0, Math.floor(permData.length / 2));
-        var permRight = permData;
-    
+        allData = shuffle(allData);
+        var permLeft = allData.slice(0, midArray);
+        var permRight = allData.slice(midArray, allData.length);
+
         // 2.re-calculate test statistic
         var permTestStatistic = mean(permLeft) - mean(permRight);
 
