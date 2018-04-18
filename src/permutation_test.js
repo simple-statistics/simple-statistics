@@ -50,14 +50,14 @@ function permutationTest(
     
     // combine datsets so we can easily shuffle later
     var allData = sampleX.concat(sampleY);
-    var midArray = Math.floor(allData.length / 2);
+    var midIndex = Math.floor(allData.length / 2);
     
     for (var i = 0; i < k; i++) {
         
         // 1. shuffle data assignments
         allData = shuffle(allData);
-        var permLeft = allData.slice(0, midArray);
-        var permRight = allData.slice(midArray, allData.length);
+        var permLeft = allData.slice(0, midIndex);
+        var permRight = allData.slice(midIndex, allData.length);
 
         // 2.re-calculate test statistic
         var permTestStatistic = mean(permLeft) - mean(permRight);
