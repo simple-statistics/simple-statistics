@@ -65,23 +65,33 @@ function permutationTest(
         testStatDsn[i] = permTestStatistic;
     }
 
-    // Calculate p-value depending on alternative 
-    // more info on p-value calculations: https://onlinecourses.science.psu.edu/stat464/node/35
+    // Calculate p-value depending on alternative
+    // For this test, we calculate the percentage of 'extreme' test statistics (subject to our hypothesis)
+    // more info on permutation test p-value calculations: https://onlinecourses.science.psu.edu/stat464/node/35
+    var numExtremeTStats = 0;
     if (alternative === 'two_side') {
-        pValue = sum(testStatDsn.map(function(tStat) {
-            return +(Math.abs(tStat) >= Math.abs(testStatistic));
-        })) / k;
+        for (i = 0; i <= k; i++) {
+            if (Math.abs(testStatDsn[i]) >= Math.abs(testStatistic)) {
+                numExtremeTStats += 1;
+            }
+        }
     } else if (alternative === 'greater') {
-        pValue = sum(testStatDsn.map(function(tStat) {
-            return +(tStat >= testStatistic);
-        })) / k;
+        for (i = 0; i <= k; i++) {
+            if (testStatDsn[i] >= testStatistic) {
+                numExtremeTStats += 1;
+            }
+        }
     } else { // alternative === 'less'
-        pValue = sum(testStatDsn.map(function(tStat) {
-            return +(tStat <= testStatistic);
-        })) / k;
+        for (i = 0; i <= k; i++) {
+            if (testStatDsn[i] <= testStatistic) {
+                numExtremeTStats += 1;
+            }
+        }
     }
+
+    pValue = numExtremeTStats / k;
             
-    return pValue
+    return pValue;
         
 }
 
