@@ -1,8 +1,7 @@
 /* @flow */
 
 import mean from './mean';
-import shuffle from './shuffle';
-import sum from './sum';
+import shuffleInPlace from './shuffle_in_place';
 
 /**
  * Conducts a [permutation test](https://en.wikipedia.org/wiki/Resampling_(statistics)#Permutation_tests)
@@ -55,7 +54,7 @@ function permutationTest(
     for (var i = 0; i < k; i++) {
         
         // 1. shuffle data assignments
-        allData = shuffle(allData);
+        shuffleInPlace(allData);
         var permLeft = allData.slice(0, midIndex);
         var permRight = allData.slice(midIndex, allData.length);
 
