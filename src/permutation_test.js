@@ -27,13 +27,20 @@ import shuffleInPlace from './shuffle_in_place';
 function permutationTest(
     sampleX/*: Array<number> */,
     sampleY/*: Array<number> */,
-    alternative/*: string */ = 'two_side',
-    k/*: number */ = 10000)/*: ?number */ {
+    alternative/*: string */,
+    k/*: number */)/*: ?number */ {
+    // Set default arguments
+    if (k === undefined) {
+        k = 10000;
+    }
+    if (alternative === undefined) {
+        alternative = 'two_side';
+    }
     if (alternative !== 'two_side' && alternative !== 'greater' && alternative !== 'less') {
-        throw new Error('`alternative` must be either \'two_tail\', \'greater\', or \'less\'');
+        throw new Error('`alternative` must be either \'two_side\', \'greater\', or \'less\'');
     }
 
-    // int pValue var
+    // init pValue
     var pValue;
 
     // get means for each sample
