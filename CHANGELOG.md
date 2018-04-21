@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="5.4.0"></a>
+# [5.4.0](https://github.com/simple-statistics/simple-statistics/compare/v5.3.1...v5.4.0) (2018-04-21)
+
+
+### Features
+
+* Permutation test ([1be011e](https://github.com/simple-statistics/simple-statistics/commit/1be011e))
+
+
+
 <a name="5.3.1"></a>
 ## [5.3.1](https://github.com/simple-statistics/simple-statistics/compare/v5.3.0...v5.3.1) (2018-03-23)
 
