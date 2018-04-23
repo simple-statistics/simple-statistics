@@ -74,6 +74,7 @@ export { default as PerceptronModel, default as perceptron } from './src/percept
 // Distribution-related methods
 export { default as epsilon } from './src/epsilon'; // We make ε available to the test suite.
 export { default as factorial } from './src/factorial';
+export { default as gamma } from './src/gamma';
 export { default as bernoulliDistribution } from './src/bernoulli_distribution';
 export { default as binomialDistribution } from './src/binomial_distribution';
 export { default as poissonDistribution } from './src/poisson_distribution';
