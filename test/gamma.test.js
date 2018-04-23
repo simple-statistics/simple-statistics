@@ -10,7 +10,7 @@ test('gamma', function(t) {
         t.equal(ss.gamma(5), 24);
         t.end();
     });
-    t.test('gamma for positive real number should be correct', function(t) {
+    t.test('gamma for positive real float should be correct', function(t) {
         t.equal(ss.gamma(11.54), 13098426.039156161);
         t.end();
     });
@@ -19,11 +19,11 @@ test('gamma', function(t) {
         t.end();
     });
     t.test('gamma for negative integer should return NaN', function(t) {
-        t.equal(isNaN(ss.gamma(-2)), true);
+        t.ok(isNaN(ss.gamma(-2)));
         t.end();
     });
     t.test('gamma for zero should return NaN', function(t) {
-        t.equal(isNaN(ss.gamma(0)), true);
+        t.ok(isNaN(ss.gamma(0)));
         t.end();
     });
 

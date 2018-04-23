@@ -5,7 +5,7 @@ import factorial from './factorial';
 /**
  * Compute the [gamma function](https://en.wikipedia.org/wiki/Gamma_function) of a value using Nemes' approximation.
  * The gamma of n is equivalent to (n-1)!, but unlike the factorial function, gamma is defined for all real n except zero 
- * and negative integers (when NaN is returned). Note, the gamma function is also wel-defined for complex numbers, 
+ * and negative integers (where NaN is returned). Note, the gamma function is also well-defined for complex numbers, 
  * though this implementation currently does not handle complex numbers as input values.
  * Nemes' approximation is defined [here](https://arxiv.org/abs/1003.6020) as Theorem 2.2.
  * Negative values use [Euler's reflection formula](https://en.wikipedia.org/wiki/Gamma_function#Properties) for computation.
@@ -20,13 +20,14 @@ import factorial from './factorial';
  */
 function gamma(n /*: number */)/*: number */ {
     // Decrement n, because approximation is defined for n - 1
-    n -= 1;
+    n--;
     
     if (Number.isInteger(n)) {
         if (n <= 0) {
             // gamma not defined for zero or negative integers
             return NaN;
         } else {
+            // use factorial for integer inputs 
             return factorial(n);
         }
     }
