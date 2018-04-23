@@ -27,7 +27,7 @@ function gamma(n /*: number */)/*: number */ {
             return NaN;
         } else {
             // use factorial for integer inputs 
-            return factorial(n-1);
+            return factorial(n - 1);
         }
     }
 
