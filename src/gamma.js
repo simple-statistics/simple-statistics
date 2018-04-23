@@ -20,7 +20,6 @@ import factorial from './factorial';
  */
 function gamma(n /*: number */)/*: number */ {
     // Decrement n, because approximation is defined for n - 1
-    n--;
     
     if (Number.isInteger(n)) {
         if (n <= 0) {
@@ -28,9 +27,12 @@ function gamma(n /*: number */)/*: number */ {
             return NaN;
         } else {
             // use factorial for integer inputs 
-            return factorial(n);
+            return factorial(n-1);
         }
     }
+
+    n--;
+
     
     if (n < 0) {
         // Use Euler's reflection formula for negative inputs
