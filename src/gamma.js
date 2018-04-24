@@ -19,7 +19,6 @@ import factorial from './factorial';
  * gamma(5); // 24 
  */
 function gamma(n /*: number */)/*: number */ {
-    // Decrement n, because approximation is defined for n - 1
     
     if (Number.isInteger(n)) {
         if (n <= 0) {
@@ -30,7 +29,8 @@ function gamma(n /*: number */)/*: number */ {
             return factorial(n - 1);
         }
     }
-
+    
+    // Decrement n, because approximation is defined for n - 1
     n--;
 
     
