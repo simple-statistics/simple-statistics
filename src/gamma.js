@@ -18,9 +18,9 @@ import factorial from './factorial';
  * gamma(-11.5); // 2.29575810481609e-8 
  * gamma(5); // 24 
  */
-function gamma(n /*: number */)/*: number */ {
-    
-    if (Number.isInteger(n)) {
+function gamma(n /*: number */ ) /*: number */ {
+
+    if (isInteger(n)) {
         if (n <= 0) {
             // gamma not defined for zero or negative integers
             return NaN;
@@ -29,16 +29,16 @@ function gamma(n /*: number */)/*: number */ {
             return factorial(n - 1);
         }
     }
-    
+
     // Decrement n, because approximation is defined for n - 1
     n--;
 
-    
+
     if (n < 0) {
         // Use Euler's reflection formula for negative inputs
         // see:  https://en.wikipedia.org/wiki/Gamma_function#Properties
         return Math.PI / (Math.sin(Math.PI * -n) * gamma(-n));
-        
+
     } else {
         // Nemes' expansion approximation
         var seriesCoefficient = Math.pow((n / Math.E), n) * Math.sqrt(2 * Math.PI * (n + (1 / 6)));
@@ -55,7 +55,13 @@ function gamma(n /*: number */)/*: number */ {
 
         return seriesCoefficient * seriesExpansion;
     }
-    
+
+}
+
+function isInteger(value) {
+    return typeof value === 'number' &&
+        isFinite(value) &&
+        Math.floor(value) === value;
 }
 
 export default gamma;
