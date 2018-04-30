@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="6.0.0"></a>
+# [6.0.0](https://github.com/simple-statistics/simple-statistics/compare/v5.4.0...v6.0.0) (2018-04-30)
+
+
+### Bug Fixes
+
+* Polyfill Number.isInteger function before committing to dropping IE11 ([#297](https://github.com/simple-statistics/simple-statistics/issues/297)) ([01cc37e](https://github.com/simple-statistics/simple-statistics/commit/01cc37e)), closes [#296](https://github.com/simple-statistics/simple-statistics/issues/296)
+
+
+### build
+
+* **package.json:** Remove bower and component.json compatibility ([#294](https://github.com/simple-statistics/simple-statistics/issues/294)) ([0593cb8](https://github.com/simple-statistics/simple-statistics/commit/0593cb8)), closes [#293](https://github.com/simple-statistics/simple-statistics/issues/293)
+
+
+### Features
+
+* Gamma Function ([39c8ecd](https://github.com/simple-statistics/simple-statistics/commit/39c8ecd))
+
+
+### BREAKING CHANGES
+
+* **package.json:** simple-statistics is no longer supported as a component module or a bower module.
+All other forms of support - script tag, unpkg, npm - continue.
+
+
+
 <a name="5.4.0"></a>
 # [5.4.0](https://github.com/simple-statistics/simple-statistics/compare/v5.3.1...v5.4.0) (2018-04-21)
 
