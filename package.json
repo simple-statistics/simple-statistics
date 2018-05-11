@@ -43,6 +43,7 @@
   "main": "dist/simple-statistics.js",
   "module": "dist/simple-statistics.mjs",
   "browser": "dist/simple-statistics.min.js",
+  "unpkg": "dist/simple-statistics.min.js",
   "types": "index.d.ts",
   "engines": {
     "node": "*"
