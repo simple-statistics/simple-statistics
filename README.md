@@ -36,18 +36,18 @@ in all modern browsers (including IE) as well as in [node.js](https://nodejs.org
     * When you use simple-statistics from a script tag, you don't get to choose
       the variable name it is assigned to: simple-statistics will always become
       available globally as the variable `ss`. You can reassign this variable to
-      another name if you want to, but doing so is optional. <pre><script src='https://unpkg.com/simple-statistics@5.4.0/dist/simple-statistics.js' /></pre>
+      another name if you want to, but doing so is optional. <pre><script src='https://unpkg.com/simple-statistics@6.0.0/dist/simple-statistics.js' /></pre>
       There are two options for the `src` attribute of that script tag: one with
       `.min.js` that is compressed, and the other without, that is raw.
-      * `https://unpkg.com/simple-statistics@5.4.0/dist/simple-statistics.js`
-      * `https://unpkg.com/simple-statistics@5.4.0/dist/simple-statistics.min.js`
+      * `https://unpkg.com/simple-statistics@6.0.0/dist/simple-statistics.js`
+      * `https://unpkg.com/simple-statistics@6.0.0/dist/simple-statistics.min.js`
   * **I want to use ES6 modules in a browser and I'm [willing to only support new browsers](https://caniuse.com/#feat=es6-module) to do it**
     * This module works great with the [`?module`](https://unpkg.com/#/query-parameters) query parameter of unpkg. If you
       specify `type='module'` in your script tag, you'll be able to import simple-statistics
       directly - through `index.js` and with true [ES6 import syntax and behavior](http://exploringjs.com/es6/ch_modules.html).
       ```js
       <script type='module'>
-      import {min} from "https://unpkg.com/simple-statistics@5.4.0/index.js?module"
+      import {min} from "https://unpkg.com/simple-statistics@6.0.0/index.js?module"
       console.log(min([1, 2, 3]))
       </script>
       ```
