@@ -25,7 +25,7 @@
     "rollup": "^0.59.1",
     "rollup-plugin-uglify": "^3.0.0",
     "standard-version": "^4.0.0",
-    "tap": "^11.0.0",
+    "tap": "^12.0.0",
     "typescript": "^2.5.3",
     "uglify-js": "^3.0.0"
   },
