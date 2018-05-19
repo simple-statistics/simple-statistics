@@ -18,6 +18,7 @@
 * [math.js](https://github.com/josdejong/mathjs)
 * [Jerzy](https://github.com/pieterprovoost/jerzy)
 * [vega-statistics](https://github.com/vega/vega-statistics)
+* [datalib](https://github.com/vega/datalib)
 
 ### Ruby
 
