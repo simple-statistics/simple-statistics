@@ -1,4 +1,4 @@
-import uglify from 'rollup-plugin-uglify'
+import { uglify } from 'rollup-plugin-uglify'
 
 const input = 'index.js'
 const sourcemap = true
