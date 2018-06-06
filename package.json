@@ -22,7 +22,7 @@
     "jsdoctest": "^1.7.1",
     "mocha": "^5.0.0",
     "random-js": "^1.0.4",
-    "rollup": "^0.59.1",
+    "rollup": "^0.60.0",
     "rollup-plugin-uglify": "^4.0.0",
     "standard-version": "^4.0.0",
     "tap": "^12.0.1",
