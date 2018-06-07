@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * The [Geometric Mean](https://en.wikipedia.org/wiki/Geometric_mean) is
  * a mean function that is more useful for numbers in different
@@ -34,7 +32,7 @@
  * });
  * startingValueMean === startingValue;
  */
-function geometricMean(x /*: Array<number> */)/*: number */ {
+function geometricMean(x: number[]): number {
     // The mean of no numbers is null
     if (x.length === 0) {
         throw new Error('geometricMean requires at least one data point');

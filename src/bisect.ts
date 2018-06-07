@@ -1,5 +1,3 @@
-/* @flow */
-
 import sign from './sign';
 
 /**
@@ -20,11 +18,11 @@ import sign from './sign';
  * bisect(Math.cos,0,4,100,0.003); // => 1.572265625
  */
 function bisect(
-    func/*: (x: any) => number */,
-    start/*: number */,
-    end/*: number */,
-    maxIterations/*: number */,
-    errorTolerance/*: number */)/*:number*/ {
+    func: (x: any) => number,
+    start: number,
+    end: number,
+    maxIterations: number,
+    errorTolerance: number): number {
 
     if (typeof func !== 'function') throw new TypeError('func must be a function');
 

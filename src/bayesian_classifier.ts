@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * [Bayesian Classifier](http://en.wikipedia.org/wiki/Naive_Bayes_classifier)
  *
@@ -36,7 +34,7 @@ function BayesianClassifier() {
  * @param {string} category the category this item belongs to
  * @return {undefined} adds the item to the classifier
  */
-BayesianClassifier.prototype.train = function(item, category) {
+BayesianClassifier.prototype.train = function (item, category) {
     // If the data object doesn't have any values
     // for this category, create a new object for it.
     if (!this.data[category]) {
@@ -71,7 +69,7 @@ BayesianClassifier.prototype.train = function(item, category) {
  * @returns {Object} of probabilities that this item belongs to a
  * given category.
  */
-BayesianClassifier.prototype.score = function(item) {
+BayesianClassifier.prototype.score = function (item) {
     // Initialize an empty array of odds per category.
     var odds = {}, category;
     // Iterate through each key in the item,

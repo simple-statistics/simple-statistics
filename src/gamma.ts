@@ -1,5 +1,3 @@
-/* @flow */
-
 import factorial from './factorial';
 
 /**
@@ -18,7 +16,7 @@ import factorial from './factorial';
  * gamma(-11.5); // 2.29575810481609e-8 
  * gamma(5); // 24 
  */
-function gamma(n /*: number */ ) /*: number */ {
+function gamma(n: number): number {
 
     if (isInteger(n)) {
         if (n <= 0) {

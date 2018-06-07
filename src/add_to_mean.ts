@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * When adding a new value to a list, one does not have to necessary
  * recompute the mean of the list in linear time. They can instead use
@@ -16,7 +14,7 @@
  * @example
  * addToMean(14, 5, 53); // => 20.5
  */
-function addToMean(mean /*: number*/, n/*: number */, newValue/*: number */)/*: number */ {
+function addToMean(mean: number, n: number, newValue: number): number {
     return mean + ((newValue - mean) / (n + 1));
 }
 

@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * This computes the maximum number in an array.
  *
@@ -12,7 +10,7 @@
  * max([1, 2, 3, 4]);
  * // => 4
  */
-function max(x /*: Array<number> */) /*:number*/ {
+function max(x: number[]): number {
 
     if (x.length === 0) {
         throw new Error('max requires at least one data point');
