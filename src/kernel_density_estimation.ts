@@ -56,8 +56,8 @@ var bandwidthMethods = {
  */
 function kernelDensityEstimation(
     X: number[],
-    kernel: "gaussian" | ((a: number) => number) | void,
-    bandwidthMethod: "nrd" | number | void
+    kernel?: "gaussian" | ((a: number) => number),
+    bandwidthMethod?: "nrd" | number
 ) {
     var kernelFn: (a: number) => number;
     if (kernel === undefined) {

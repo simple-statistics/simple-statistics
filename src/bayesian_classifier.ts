@@ -34,7 +34,7 @@ function BayesianClassifier() {
  * @param {string} category the category this item belongs to
  * @return {undefined} adds the item to the classifier
  */
-BayesianClassifier.prototype.train = function (item: any, category: string) {
+BayesianClassifier.prototype.train = function (item: { [index: string]: any }, category: string) {
     // If the data object doesn't have any values
     // for this category, create a new object for it.
     if (!this.data[category]) {
@@ -61,6 +61,16 @@ BayesianClassifier.prototype.train = function (item: any, category: string) {
     this.totalCount++;
 };
 
+interface Odds {
+    [index: string]: {
+        [index: string]: number
+    }
+}
+
+interface OddsSums {
+    [index: string]: number
+}
+
 /**
  * Generate a score of how well this item matches all
  * possible categories based on its attributes
@@ -71,7 +81,7 @@ BayesianClassifier.prototype.train = function (item: any, category: string) {
  */
 BayesianClassifier.prototype.score = function (item: T[string]) {
     // Initialize an empty array of odds per category.
-    var odds: string[][string][number] = {}, category;
+    var odds: Odds = {}, category;
     // Iterate through each key in the item,
     // then iterate through each category that has been used
     // in previous calls to `.train()`
@@ -95,7 +105,7 @@ BayesianClassifier.prototype.score = function (item: T[string]) {
     }
 
     // Set up a new object that will contain sums of these odds by category
-    var oddsSums = {};
+    var oddsSums: OddsSums = {};
 
     for (category in odds) {
         // Tally all of the odds for each category-combination pair -
