@@ -1,5 +1,5 @@
-/* @flow */
-
+"use strict";
+exports.__esModule = true;
 /**
  * The Root Mean Square (RMS) is
  * a mean function used as a measure of the magnitude of a set
@@ -14,17 +14,14 @@
  * @example
  * rootMeanSquare([-1, 1, -1, 1]); // => 1
  */
-function rootMeanSquare(x /*: Array<number> */)/*:number*/ {
+function rootMeanSquare(x) {
     if (x.length === 0) {
         throw new Error('rootMeanSquare requires at least one data point');
     }
-
     var sumOfSquares = 0;
     for (var i = 0; i < x.length; i++) {
         sumOfSquares += Math.pow(x[i], 2);
     }
-
     return Math.sqrt(sumOfSquares / x.length);
 }
-
-export default rootMeanSquare;
+exports["default"] = rootMeanSquare;

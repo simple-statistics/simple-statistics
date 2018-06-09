@@ -1,5 +1,5 @@
-/* @flow */
-
+"use strict";
+exports.__esModule = true;
 /**
  * Sampling with replacement is a type of sampling that allows the same
  * item to be picked out of a population more than once.
@@ -13,30 +13,20 @@
  * var values = [1, 2, 3, 4];
  * sampleWithReplacement(values, 2); // returns 2 random values, like [2, 4];
  */
-function sampleWithReplacement/*::<T>*/(
-    x/*: Array<T> */,
-    n/*: number */,
-    randomSource/*: ?Function */) {
-
+function sampleWithReplacement(x, n, randomSource) {
     if (x.length === 0) {
         return [];
     }
-
     // a custom random number source can be provided if you want to use
     // a fixed seed or another random number generator, like
     // [random-js](https://www.npmjs.org/package/random-js)
     randomSource = randomSource || Math.random;
-
     var length = x.length;
     var sample = [];
-
     for (var i = 0; i < n; i++) {
         var index = Math.floor(randomSource() * length);
-
         sample.push(x[index]);
     }
-
     return sample;
 }
-
-export default sampleWithReplacement;
+exports["default"] = sampleWithReplacement;

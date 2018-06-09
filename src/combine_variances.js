@@ -1,7 +1,6 @@
-/* @flow */
-
-import combineMeans from './combine_means';
-
+"use strict";
+exports.__esModule = true;
+var combine_means_1 = require("./combine_means");
 /**
  * When combining two lists of values for which one already knows the variances,
  * one does not have to necessary recompute the variance of the combined lists
@@ -21,20 +20,9 @@ import combineMeans from './combine_means';
  * @example
  * combineVariances(14 / 3, 5, 3, 8 / 3, 4, 3); // => 47 / 12
  */
-function combineVariances(
-    variance1 /*: number*/,
-    mean1 /*: number*/,
-    n1/*: number */,
-    variance2 /*: number*/,
-    mean2 /*: number*/,
-    n2/*: number */)/*: number */ {
-
-    var newMean = combineMeans(mean1, n1, mean2, n2);
-
-    return (
-        n1 * (variance1 + Math.pow(mean1 - newMean, 2)) +
-        n2 * (variance2 + Math.pow(mean2 - newMean, 2))
-    ) / (n1 + n2);
+function combineVariances(variance1, mean1, n1, variance2, mean2, n2) {
+    var newMean = combine_means_1["default"](mean1, n1, mean2, n2);
+    return (n1 * (variance1 + Math.pow(mean1 - newMean, 2)) +
+        n2 * (variance2 + Math.pow(mean2 - newMean, 2))) / (n1 + n2);
 }
-
-export default combineVariances;
+exports["default"] = combineVariances;

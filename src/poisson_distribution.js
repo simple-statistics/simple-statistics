@@ -1,7 +1,6 @@
-/* @flow */
-
-import epsilon from './epsilon';
-
+"use strict";
+exports.__esModule = true;
+var epsilon_1 = require("./epsilon");
 /**
  * The [Poisson Distribution](http://en.wikipedia.org/wiki/Poisson_distribution)
  * is a discrete probability distribution that expresses the probability
@@ -15,19 +14,18 @@ import epsilon from './epsilon';
  * @param {number} lambda location poisson distribution
  * @returns {number[]} values of poisson distribution at that point
  */
-function poissonDistribution(lambda/*: number */) /*: ?number[] */ {
+function poissonDistribution(lambda) {
     // Check that lambda is strictly positive
-    if (lambda <= 0) { return undefined; }
-
+    if (lambda <= 0) {
+        return undefined;
+    }
     // our current place in the distribution
-    var x = 0,
-        // and we keep track of the current cumulative probability, in
-        // order to know when to stop calculating chances.
-        cumulativeProbability = 0,
-        // the calculated cells to be returned
-        cells = [],
-        factorialX = 1;
-
+    var x = 0, 
+    // and we keep track of the current cumulative probability, in
+    // order to know when to stop calculating chances.
+    cumulativeProbability = 0, 
+    // the calculated cells to be returned
+    cells = [], factorialX = 1;
     // This algorithm iterates through each potential outcome,
     // until the `cumulativeProbability` is very close to 1, at
     // which point we've defined the vast majority of outcomes
@@ -37,11 +35,9 @@ function poissonDistribution(lambda/*: number */) /*: ?number[] */ {
         cumulativeProbability += cells[x];
         x++;
         factorialX *= x;
-    // when the cumulativeProbability is nearly 1, we've calculated
-    // the useful range of this distribution
-    } while (cumulativeProbability < 1 - epsilon);
-
+        // when the cumulativeProbability is nearly 1, we've calculated
+        // the useful range of this distribution
+    } while (cumulativeProbability < 1 - epsilon_1["default"]);
     return cells;
 }
-
-export default poissonDistribution;
+exports["default"] = poissonDistribution;

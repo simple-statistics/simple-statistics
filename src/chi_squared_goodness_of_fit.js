@@ -1,8 +1,7 @@
-/* @flow */
-
-import chiSquaredDistributionTable from './chi_squared_distribution_table';
-import mean from './mean';
-
+"use strict";
+exports.__esModule = true;
+var chi_squared_distribution_table_1 = require("./chi_squared_distribution_table");
+var mean_1 = require("./mean");
 /**
  * The [χ2 (Chi-Squared) Goodness-of-Fit Test](http://en.wikipedia.org/wiki/Goodness_of_fit#Pearson.27s_chi-squared_test)
  * uses a measure of goodness of fit which is the sum of differences between observed and expected outcome frequencies
@@ -30,27 +29,20 @@ import mean from './mean';
  * ];
  * ss.chiSquaredGoodnessOfFit(data1019, ss.poissonDistribution, 0.05); //= false
  */
-function chiSquaredGoodnessOfFit(
-    data/*: Array<number> */,
-    distributionType/*: Function */,
-    significance/*: number */)/*: boolean */ {
+function chiSquaredGoodnessOfFit(data, distributionType, significance) {
     // Estimate from the sample data, a weighted mean.
-    var inputMean = mean(data),
-        // Calculated value of the χ2 statistic.
-        chiSquared = 0,
-        // Degrees of freedom, calculated as (number of class intervals -
-        // number of hypothesized distribution parameters estimated - 1)
-        degreesOfFreedom,
-        // Number of hypothesized distribution parameters estimated, expected to be supplied in the distribution test.
-        // Lose one degree of freedom for estimating `lambda` from the sample data.
-        c = 1,
-        // The hypothesized distribution.
-        // Generate the hypothesized distribution.
-        hypothesizedDistribution = distributionType(inputMean),
-        observedFrequencies = [],
-        expectedFrequencies = [],
-        k;
-
+    var inputMean = mean_1["default"](data), 
+    // Calculated value of the χ2 statistic.
+    chiSquared = 0, 
+    // Degrees of freedom, calculated as (number of class intervals -
+    // number of hypothesized distribution parameters estimated - 1)
+    degreesOfFreedom, 
+    // Number of hypothesized distribution parameters estimated, expected to be supplied in the distribution test.
+    // Lose one degree of freedom for estimating `lambda` from the sample data.
+    c = 1, 
+    // The hypothesized distribution.
+    // Generate the hypothesized distribution.
+    hypothesizedDistribution = distributionType(inputMean), observedFrequencies = [], expectedFrequencies = [], k;
     // Create an array holding a histogram from the sample data, of
     // the form `{ value: numberOfOcurrences }`
     for (var i = 0; i < data.length; i++) {
@@ -59,7 +51,6 @@ function chiSquaredGoodnessOfFit(
         }
         observedFrequencies[data[i]]++;
     }
-
     // The histogram we created might be sparse - there might be gaps
     // between values. So we iterate through the histogram, making
     // sure that instead of undefined, gaps have 0 values.
@@ -68,7 +59,6 @@ function chiSquaredGoodnessOfFit(
             observedFrequencies[i] = 0;
         }
     }
-
     // Create an array holding a histogram of expected data given the
     // sample size and hypothesized distribution.
     for (k in hypothesizedDistribution) {
@@ -76,7 +66,6 @@ function chiSquaredGoodnessOfFit(
             expectedFrequencies[+k] = hypothesizedDistribution[k] * data.length;
         }
     }
-
     // Working backward through the expected frequencies, collapse classes
     // if less than three observations are expected for a class.
     // This transformation is applied to the observed frequencies as well.
@@ -84,25 +73,20 @@ function chiSquaredGoodnessOfFit(
         if (expectedFrequencies[k] < 3) {
             expectedFrequencies[k - 1] += expectedFrequencies[k];
             expectedFrequencies.pop();
-
             observedFrequencies[k - 1] += observedFrequencies[k];
             observedFrequencies.pop();
         }
     }
-
     // Iterate through the squared differences between observed & expected
     // frequencies, accumulating the `chiSquared` statistic.
     for (k = 0; k < observedFrequencies.length; k++) {
-        chiSquared += Math.pow(
-            observedFrequencies[k] - expectedFrequencies[k], 2) /
+        chiSquared += Math.pow(observedFrequencies[k] - expectedFrequencies[k], 2) /
             expectedFrequencies[k];
     }
-
     // Calculate degrees of freedom for this test and look it up in the
     // `chiSquaredDistributionTable` in order to
     // accept or reject the goodness-of-fit of the hypothesized distribution.
     degreesOfFreedom = observedFrequencies.length - c - 1;
-    return chiSquaredDistributionTable[degreesOfFreedom][significance] < chiSquared;
+    return chi_squared_distribution_table_1["default"][degreesOfFreedom][significance] < chiSquared;
 }
-
-export default chiSquaredGoodnessOfFit;
+exports["default"] = chiSquaredGoodnessOfFit;

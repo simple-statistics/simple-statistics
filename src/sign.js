@@ -1,5 +1,5 @@
-/* @flow */
-
+"use strict";
+exports.__esModule = true;
 /**
  * [Sign](https://en.wikipedia.org/wiki/Sign_function) is a function
  * that extracts the sign of a real number
@@ -12,18 +12,20 @@
  * @example
  * sign(2); // => 1
  */
-function sign(x/*: number */)/*: number */ {
+function sign(x) {
     if (typeof x === 'number') {
         if (x < 0) {
             return -1;
-        } else if (x === 0) {
-            return 0
-        } else {
+        }
+        else if (x === 0) {
+            return 0;
+        }
+        else {
             return 1;
         }
-    } else {
+    }
+    else {
         throw new TypeError('not a number');
     }
 }
-
-export default sign;
+exports["default"] = sign;

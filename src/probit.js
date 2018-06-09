@@ -1,8 +1,7 @@
-/* @flow */
-
-import epsilon from './epsilon';
-import inverseErrorFunction from './inverse_error_function';
-
+"use strict";
+exports.__esModule = true;
+var epsilon_1 = require("./epsilon");
+var inverse_error_function_1 = require("./inverse_error_function");
 /**
  * The [Probit](http://en.wikipedia.org/wiki/Probit)
  * is the inverse of cumulativeStdNormalProbability(),
@@ -16,13 +15,13 @@ import inverseErrorFunction from './inverse_error_function';
  * @param {number} p
  * @returns {number} probit
  */
-function probit(p /*: number */)/*: number */ {
+function probit(p) {
     if (p === 0) {
-        p = epsilon;
-    } else if (p >= 1) {
-        p = 1 - epsilon;
+        p = epsilon_1["default"];
     }
-    return Math.sqrt(2) * inverseErrorFunction(2 * p - 1);
+    else if (p >= 1) {
+        p = 1 - epsilon_1["default"];
+    }
+    return Math.sqrt(2) * inverse_error_function_1["default"](2 * p - 1);
 }
-
-export default probit;
+exports["default"] = probit;

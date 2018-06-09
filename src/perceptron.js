@@ -1,5 +1,5 @@
-/* @flow */
-
+"use strict";
+exports.__esModule = true;
 /**
  * This is a single-layer [Perceptron Classifier](http://en.wikipedia.org/wiki/Perceptron) that takes
  * arrays of numbers and predicts whether they should be classified
@@ -29,7 +29,6 @@ function PerceptronModel() {
     // multiplied by one.
     this.bias = 0;
 }
-
 /**
  * **Predict**: Use an array of features with the weight array and bias
  * to predict whether an example is labeled 0 or 1.
@@ -37,12 +36,12 @@ function PerceptronModel() {
  * @param {Array<number>} features an array of features as numbers
  * @returns {number} 1 if the score is over 0, otherwise 0
  */
-PerceptronModel.prototype.predict = function(features) {
-
+PerceptronModel.prototype.predict = function (features) {
     // Only predict if previously trained
     // on the same size feature array(s).
-    if (features.length !== this.weights.length) { return null; }
-
+    if (features.length !== this.weights.length) {
+        return null;
+    }
     // Calculate the sum of features times weights,
     // with the bias added (implicitly times one).
     var score = 0;
@@ -50,15 +49,14 @@ PerceptronModel.prototype.predict = function(features) {
         score += this.weights[i] * features[i];
     }
     score += this.bias;
-
     // Classify as 1 if the score is over 0, otherwise 0.
     if (score > 0) {
         return 1;
-    } else {
+    }
+    else {
         return 0;
     }
 };
-
 /**
  * **Train** the classifier with a new example, which is
  * a numeric array of features and a 0 or 1 label.
@@ -67,9 +65,11 @@ PerceptronModel.prototype.predict = function(features) {
  * @param {number} label either 0 or 1
  * @returns {PerceptronModel} this
  */
-PerceptronModel.prototype.train = function(features, label) {
+PerceptronModel.prototype.train = function (features, label) {
     // Require that only labels of 0 or 1 are considered.
-    if (label !== 0 && label !== 1) { return null; }
+    if (label !== 0 && label !== 1) {
+        return null;
+    }
     // The length of the feature array determines
     // the length of the weight array.
     // The perceptron will continue learning as long as
@@ -91,5 +91,4 @@ PerceptronModel.prototype.train = function(features, label) {
     }
     return this;
 };
-
-export default PerceptronModel;
+exports["default"] = PerceptronModel;

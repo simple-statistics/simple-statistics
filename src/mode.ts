@@ -17,7 +17,7 @@ import numericSort from './numeric_sort';
  * @example
  * mode([0, 0, 1]); // => 0
  */
-function mode(x: Array<number>): number {
+function mode(x: number[]): number {
     // Sorting the array lets us iterate through it below and be sure
     // that every time we see a new number it's new and we'll never
     // see the same number twice

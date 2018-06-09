@@ -15,7 +15,7 @@
  * chunk([1, 2, 3, 4, 5, 6], 2);
  * // => [[1, 2], [3, 4], [5, 6]]
  */
-function chunk(x: any[], chunkSize: number)/*:?any[][]*/ {
+function chunk(x: any[], chunkSize: number): any[][] {
 
     // a list of result chunks, as arrays in an array
     var output = [];

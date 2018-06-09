@@ -1,5 +1,5 @@
-/* @flow */
-
+"use strict";
+exports.__esModule = true;
 /**
  * Implementation of [Combinations](https://en.wikipedia.org/wiki/Combination) with replacement
  * Combinations are unique subsets of a collection - in this case, k x from a collection at a time.
@@ -12,18 +12,15 @@
  * @example
  * combinationsReplacement([1, 2], 2); // => [[1, 1], [1, 2], [2, 2]]
  */
-function combinationsReplacement(
-    x /*: Array<any> */,
-    k /*: number */)/*: Array<Array<any>> */ {
-
+function combinationsReplacement(x, k) {
     var combinationList = [];
-
     for (var i = 0; i < x.length; i++) {
         if (k === 1) {
             // If we're requested to find only one element, we don't need
             // to recurse: just push `x[i]` onto the list of combinations.
-            combinationList.push([x[i]])
-        } else {
+            combinationList.push([x[i]]);
+        }
+        else {
             // Otherwise, recursively find combinations, given `k - 1`. Note that
             // we request `k - 1`, so if you were looking for k=3 combinations, we're
             // requesting k=2. This -1 gets reversed in the for loop right after this
@@ -31,18 +28,13 @@ function combinationsReplacement(
             // bringing `k` back up to your requested level.
             // This recursion may go many levels deep, since it only stops once
             // k=1.
-            var subsetCombinations = combinationsReplacement(
-                x.slice(i, x.length),
-                k - 1);
-
+            var subsetCombinations = combinationsReplacement(x.slice(i, x.length), k - 1);
             for (var j = 0; j < subsetCombinations.length; j++) {
                 combinationList.push([x[i]]
                     .concat(subsetCombinations[j]));
             }
         }
     }
-
     return combinationList;
 }
-
-export default combinationsReplacement;
+exports["default"] = combinationsReplacement;

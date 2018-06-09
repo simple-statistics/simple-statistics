@@ -1,8 +1,7 @@
-/* @flow */
-
-import numericSort from './numeric_sort';
-import quantileRankSorted from './quantile_rank_sorted';
-
+"use strict";
+exports.__esModule = true;
+var numeric_sort_1 = require("./numeric_sort");
+var quantile_rank_sorted_1 = require("./quantile_rank_sorted");
 /**
  * This function returns the quantile in which one would find the given value in
  * the given array. It will require to copy and sort your array beforehand, so
@@ -17,14 +16,9 @@ import quantileRankSorted from './quantile_rank_sorted';
  * quantileRank([2, 4, 1, 3], 6); // => 1
  * quantileRank([5, 3, 1, 2, 3], 4); // => 0.8
  */
-function quantileRank(
-    x /*: Array<number> */,
-    value /*: number */)/*: number */ {
-
+function quantileRank(x, value) {
     // Cloning and sorting the array
-    var sortedCopy = numericSort(x);
-
-    return quantileRankSorted(sortedCopy, value);
+    var sortedCopy = numeric_sort_1["default"](x);
+    return quantile_rank_sorted_1["default"](sortedCopy, value);
 }
-
-export default quantileRank;
+exports["default"] = quantileRank;

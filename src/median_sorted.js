@@ -1,7 +1,6 @@
-/* @flow */
-
-import quantileSorted from './quantile_sorted';
-
+"use strict";
+exports.__esModule = true;
+var quantile_sorted_1 = require("./quantile_sorted");
 /**
  * The [median](http://en.wikipedia.org/wiki/Median) is
  * the middle number of a list. This is often a good indicator of 'the middle'
@@ -18,8 +17,7 @@ import quantileSorted from './quantile_sorted';
  * @example
  * medianSorted([10, 2, 5, 100, 2, 1]); // => 52.5
  */
-function medianSorted(sorted /*: Array<number> */)/*:number*/ {
-    return quantileSorted(sorted, 0.5);
+function medianSorted(sorted) {
+    return quantile_sorted_1["default"](sorted, 0.5);
 }
-
-export default medianSorted;
+exports["default"] = medianSorted;

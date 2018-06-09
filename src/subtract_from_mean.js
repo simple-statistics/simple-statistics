@@ -1,5 +1,5 @@
-/* @flow */
-
+"use strict";
+exports.__esModule = true;
 /**
  * When removing a value from a list, one does not have to necessary
  * recompute the mean of the list in linear time. They can instead use
@@ -15,8 +15,7 @@
  * @example
  * subtractFromMean(20.5, 6, 53); // => 14
  */
-function subtractFromMean(mean /*: number*/, n/*: number */, value/*: number */)/*: number */ {
+function subtractFromMean(mean, n, value) {
     return ((mean * n) - value) / (n - 1);
 }
-
-export default subtractFromMean;
+exports["default"] = subtractFromMean;

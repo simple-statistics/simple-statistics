@@ -1,7 +1,6 @@
-/* @flow */
-
-import epsilon from './epsilon';
-
+"use strict";
+exports.__esModule = true;
+var epsilon_1 = require("./epsilon");
 /**
  * The [Binomial Distribution](http://en.wikipedia.org/wiki/Binomial_distribution) is the discrete probability
  * distribution of the number of successes in a sequence of n independent yes/no experiments, each of which yields
@@ -12,27 +11,20 @@ import epsilon from './epsilon';
  * @param {number} probability
  * @returns {number[]} output
  */
-function binomialDistribution(
-    trials/*: number */,
-    probability/*: number */)/*: ?number[] */ {
+function binomialDistribution(trials, probability) {
     // Check that `p` is a valid probability (0 ≤ p ≤ 1),
     // that `n` is an integer, strictly positive.
     if (probability < 0 || probability > 1 ||
         trials <= 0 || trials % 1 !== 0) {
         return undefined;
     }
-
     // We initialize `x`, the random variable, and `accumulator`, an accumulator
     // for the cumulative distribution function to 0. `distribution_functions`
     // is the object we'll return with the `probability_of_x` and the
     // `cumulativeProbability_of_x`, as well as the calculated mean &
     // variance. We iterate until the `cumulativeProbability_of_x` is
     // within `epsilon` of 1.0.
-    var x = 0,
-        cumulativeProbability = 0,
-        cells = [],
-        binomialCoefficient = 1;
-
+    var x = 0, cumulativeProbability = 0, cells = [], binomialCoefficient = 1;
     // This algorithm iterates through each potential outcome,
     // until the `cumulativeProbability` is very close to 1, at
     // which point we've defined the vast majority of outcomes
@@ -43,11 +35,9 @@ function binomialDistribution(
         cumulativeProbability += cells[x];
         x++;
         binomialCoefficient = binomialCoefficient * (trials - x + 1) / x;
-    // when the cumulativeProbability is nearly 1, we've calculated
-    // the useful range of this distribution
-    } while (cumulativeProbability < 1 - epsilon);
-
+        // when the cumulativeProbability is nearly 1, we've calculated
+        // the useful range of this distribution
+    } while (cumulativeProbability < 1 - epsilon_1["default"]);
     return cells;
 }
-
-export default binomialDistribution;
+exports["default"] = binomialDistribution;

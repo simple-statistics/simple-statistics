@@ -1,8 +1,7 @@
-/* @flow */
-
-import mean from './mean';
-import sampleVariance from './sample_variance';
-
+"use strict";
+exports.__esModule = true;
+var mean_1 = require("./mean");
+var sample_variance_1 = require("./sample_variance");
 /**
  * This is to compute [two sample t-test](http://en.wikipedia.org/wiki/Student's_t-test).
  * Tests whether "mean(X)-mean(Y) = difference", (
@@ -30,37 +29,26 @@ import sampleVariance from './sample_variance';
  * @example
  * tTestTwoSample([1, 2, 3, 4], [3, 4, 5, 6], 0); // => -2.1908902300206643
  */
-function tTestTwoSample(
-    sampleX/*: Array<number> */,
-    sampleY/*: Array<number> */,
-    difference/*: ?number */)/*: ?number */ {
-    var n = sampleX.length,
-        m = sampleY.length;
-
+function tTestTwoSample(sampleX, sampleY, difference) {
+    var n = sampleX.length, m = sampleY.length;
     // If either sample doesn't actually have any values, we can't
     // compute this at all, so we return `null`.
-    if (!n || !m) { return null; }
-
+    if (!n || !m) {
+        return null;
+    }
     // default difference (mu) is zero
     if (!difference) {
         difference = 0;
     }
-
-    var meanX = mean(sampleX),
-        meanY = mean(sampleY),
-        sampleVarianceX = sampleVariance(sampleX),
-        sampleVarianceY = sampleVariance(sampleY);
-
+    var meanX = mean_1["default"](sampleX), meanY = mean_1["default"](sampleY), sampleVarianceX = sample_variance_1["default"](sampleX), sampleVarianceY = sample_variance_1["default"](sampleY);
     if (typeof meanX === 'number' &&
         typeof meanY === 'number' &&
         typeof sampleVarianceX === 'number' &&
         typeof sampleVarianceY === 'number') {
         var weightedVariance = ((n - 1) * sampleVarianceX +
             (m - 1) * sampleVarianceY) / (n + m - 2);
-
         return (meanX - meanY - difference) /
             Math.sqrt(weightedVariance * (1 / n + 1 / m));
     }
 }
-
-export default tTestTwoSample;
+exports["default"] = tTestTwoSample;

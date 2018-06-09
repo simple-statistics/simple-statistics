@@ -1,7 +1,6 @@
-/* @flow */
-
-import sumNthPowerDeviations from './sum_nth_power_deviations';
-
+"use strict";
+exports.__esModule = true;
+var sum_nth_power_deviations_1 = require("./sum_nth_power_deviations");
 /**
  * The [sample variance](https://en.wikipedia.org/wiki/Variance#Sample_variance)
  * is the sum of squared deviations from the mean. The sample variance
@@ -19,21 +18,17 @@ import sumNthPowerDeviations from './sum_nth_power_deviations';
  * @example
  * sampleVariance([1, 2, 3, 4, 5]); // => 2.5
  */
-function sampleVariance(x /*: Array<number> */)/*:number*/ {
+function sampleVariance(x) {
     // The variance of no numbers is null
     if (x.length < 2) {
         throw new Error('sampleVariance requires at least two data points');
     }
-
-    var sumSquaredDeviationsValue = sumNthPowerDeviations(x, 2);
-
+    var sumSquaredDeviationsValue = sum_nth_power_deviations_1["default"](x, 2);
     // this is Bessels' Correction: an adjustment made to sample statistics
     // that allows for the reduced degree of freedom entailed in calculating
     // values from samples rather than complete populations.
     var besselsCorrection = x.length - 1;
-
     // Find the mean value of that list
     return sumSquaredDeviationsValue / besselsCorrection;
 }
-
-export default sampleVariance;
+exports["default"] = sampleVariance;

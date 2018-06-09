@@ -1,7 +1,6 @@
-/* @flow */
-
-import mean from './mean';
-
+"use strict";
+exports.__esModule = true;
+var mean_1 = require("./mean");
 /**
  * [Sample covariance](https://en.wikipedia.org/wiki/Sample_mean_and_sampleCovariance) of two datasets:
  * how much do the two datasets move together?
@@ -15,25 +14,19 @@ import mean from './mean';
  * @example
  * sampleCovariance([1, 2, 3, 4, 5, 6], [6, 5, 4, 3, 2, 1]); // => -3.5
  */
-function sampleCovariance(x /*:Array<number>*/, y /*:Array<number>*/)/*:number*/ {
-
+function sampleCovariance(x, y) {
     // The two datasets must have the same length which must be more than 1
     if (x.length !== y.length) {
         throw new Error('sampleCovariance requires samples with equal lengths');
     }
-
     if (x.length < 2) {
         throw new Error('sampleCovariance requires at least two data points in each sample');
     }
-
     // determine the mean of each dataset so that we can judge each
     // value of the dataset fairly as the difference from the mean. this
     // way, if one dataset is [1, 2, 3] and [2, 3, 4], their covariance
     // does not suffer because of the difference in absolute values
-    var xmean = mean(x),
-        ymean = mean(y),
-        sum = 0;
-
+    var xmean = mean_1["default"](x), ymean = mean_1["default"](y), sum = 0;
     // for each pair of values, the covariance increases when their
     // difference from the mean is associated - if both are well above
     // or if both are well below
@@ -41,14 +34,11 @@ function sampleCovariance(x /*:Array<number>*/, y /*:Array<number>*/)/*:number*/
     for (var i = 0; i < x.length; i++) {
         sum += (x[i] - xmean) * (y[i] - ymean);
     }
-
     // this is Bessels' Correction: an adjustment made to sample statistics
     // that allows for the reduced degree of freedom entailed in calculating
     // values from samples rather than complete populations.
     var besselsCorrection = x.length - 1;
-
     // the covariance is weighted by the length of the datasets.
     return sum / besselsCorrection;
 }
-
-export default sampleCovariance;
+exports["default"] = sampleCovariance;

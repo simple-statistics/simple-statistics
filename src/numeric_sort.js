@@ -1,5 +1,5 @@
-/* @flow */
-
+"use strict";
+exports.__esModule = true;
 /**
  * Sort an array of numbers by their numeric value, ensuring that the
  * array is not changed in place.
@@ -17,14 +17,13 @@
  * @example
  * numericSort([3, 2, 1]) // => [1, 2, 3]
  */
-function numericSort(x /*: Array<number> */) /*: Array<number> */ {
+function numericSort(x) {
     return x
         // ensure the array is not changed in-place
         .slice()
         // comparator function that treats input as numeric
-        .sort(function(a, b) {
-            return a - b;
-        });
+        .sort(function (a, b) {
+        return a - b;
+    });
 }
-
-export default numericSort;
+exports["default"] = numericSort;

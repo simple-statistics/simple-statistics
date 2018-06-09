@@ -1,5 +1,5 @@
-/* @flow */
-
+"use strict";
+exports.__esModule = true;
 /**
  * For a sorted input, counting the number of unique values
  * is possible in constant time and constant memory. This is
@@ -14,9 +14,8 @@
  * uniqueCountSorted([1, 2, 3]); // => 3
  * uniqueCountSorted([1, 1, 1]); // => 1
  */
-function uniqueCountSorted(x/*: Array<any>*/)/*: number */ {
-    var uniqueValueCount = 0,
-        lastSeenValue;
+function uniqueCountSorted(x) {
+    var uniqueValueCount = 0, lastSeenValue;
     for (var i = 0; i < x.length; i++) {
         if (i === 0 || x[i] !== lastSeenValue) {
             lastSeenValue = x[i];
@@ -25,5 +24,4 @@ function uniqueCountSorted(x/*: Array<any>*/)/*: number */ {
     }
     return uniqueValueCount;
 }
-
-export default uniqueCountSorted;
+exports["default"] = uniqueCountSorted;

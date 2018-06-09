@@ -1,7 +1,6 @@
-/* @flow */
-
-import shuffleInPlace from './shuffle_in_place';
-
+"use strict";
+exports.__esModule = true;
+var shuffle_in_place_1 = require("./shuffle_in_place");
 /**
  * A [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
  * is a fast way to create a random permutation of a finite set. This is
@@ -16,12 +15,10 @@ import shuffleInPlace from './shuffle_in_place';
  * var shuffled = shuffle([1, 2, 3, 4]);
  * shuffled; // = [2, 3, 1, 4] or any other random permutation
  */
-function shuffle/*::<T>*/(x/*: Array<T> */, randomSource/*: ?Function */) {
+function shuffle(x, randomSource) {
     // slice the original array so that it is not modified
     var sample = x.slice();
-
     // and then shuffle that shallow-copied array, in place
-    return shuffleInPlace(sample.slice(), randomSource);
+    return shuffle_in_place_1["default"](sample.slice(), randomSource);
 }
-
-export default shuffle;
+exports["default"] = shuffle;

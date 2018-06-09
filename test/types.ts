@@ -10,9 +10,9 @@ ss.median([10, 2, 5, 100, 2, 1]); // => 3.5
 ss.medianSorted([10, 2, 5, 100, 2, 1]); // => 52.5
 
 var bayes = new ss.BayesianClassifier();
-bayes.train({species: 'Cat'}, 'animal');
-bayes.score({species: 'Cat'}); // => { animal: 1 }
-bayes.score({foo: 'foo'}); // => { animal: 1 }
+bayes.train({ species: 'Cat' }, 'animal');
+bayes.score({ species: 'Cat' }); // => { animal: 1 }
+bayes.score({ foo: 'foo' }); // => { animal: 1 }
 
 ss.bernoulliDistribution(0.3); // => [0.7, 0.3]
 ss.bisect(Math.cos, 0, 4, 100, 0.003); // => 1.572265625
@@ -94,7 +94,7 @@ ss.sign(2); // => 1
 ss.variance([2, 4, 4, 4, 5, 5, 7, 9]); // => 4
 ss.standardDeviation([2, 4, 4, 4, 5, 5, 7, 9]); // => 2
 ss.subtractFromMean(20.5, 6, 53); // => 14
-ss.sumNthPowerDeviations([1, 2, 3]);
+ss.sumNthPowerDeviations([1, 2, 3], 2);
 ss.sumSimple([1, 2, 3]); // => 6
 ss.sum([1, 2, 3]); // => 6
 ss.tTestTwoSample([1, 2, 3, 4], [3, 4, 5, 6], 0); // => -2.1908902300206643

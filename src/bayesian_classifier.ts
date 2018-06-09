@@ -34,7 +34,7 @@ function BayesianClassifier() {
  * @param {string} category the category this item belongs to
  * @return {undefined} adds the item to the classifier
  */
-BayesianClassifier.prototype.train = function (item, category) {
+BayesianClassifier.prototype.train = function (item: any, category: string) {
     // If the data object doesn't have any values
     // for this category, create a new object for it.
     if (!this.data[category]) {
@@ -69,9 +69,9 @@ BayesianClassifier.prototype.train = function (item, category) {
  * @returns {Object} of probabilities that this item belongs to a
  * given category.
  */
-BayesianClassifier.prototype.score = function (item) {
+BayesianClassifier.prototype.score = function (item: T[string]) {
     // Initialize an empty array of odds per category.
-    var odds = {}, category;
+    var odds: string[][string][number] = {}, category;
     // Iterate through each key in the item,
     // then iterate through each category that has been used
     // in previous calls to `.train()`

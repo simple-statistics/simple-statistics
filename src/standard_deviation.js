@@ -1,7 +1,6 @@
-/* @flow */
-
-import variance from './variance';
-
+"use strict";
+exports.__esModule = true;
+var variance_1 = require("./variance");
 /**
  * The [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
  * is the square root of the variance. This is also known as the population
@@ -18,12 +17,11 @@ import variance from './variance';
  * variance([2, 4, 4, 4, 5, 5, 7, 9]); // => 4
  * standardDeviation([2, 4, 4, 4, 5, 5, 7, 9]); // => 2
  */
-function standardDeviation(x /*: Array<number> */)/*:number*/ {
+function standardDeviation(x) {
     if (x.length === 1) {
         return 0;
     }
-    var v = variance(x);
+    var v = variance_1["default"](x);
     return Math.sqrt(v);
 }
-
-export default standardDeviation;
+exports["default"] = standardDeviation;

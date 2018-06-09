@@ -1,5 +1,5 @@
-/* @flow */
-
+"use strict";
+exports.__esModule = true;
 /**
  * We use `ε`, epsilon, as a stopping criterion when we want to iterate
  * until we're "close enough". Epsilon is a very small number: for
@@ -35,5 +35,4 @@
  * console.log('Local minimum occurs at', x_new);
  */
 var epsilon = 0.0001;
-
-export default epsilon;
+exports["default"] = epsilon;

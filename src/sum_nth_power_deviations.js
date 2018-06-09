@@ -1,7 +1,6 @@
-/* @flow */
-
-import mean from './mean';
-
+"use strict";
+exports.__esModule = true;
+var mean_1 = require("./mean");
 /**
  * The sum of deviations to the Nth power.
  * When n=2 it's the sum of squared deviations.
@@ -17,12 +16,8 @@ import mean from './mean';
  * // deviations, we can calculate that with sumNthPowerDeviations:
  * sumNthPowerDeviations(input, 2) / input.length;
  */
-function sumNthPowerDeviations(x/*: Array<number> */, n/*: number */)/*: number */ {
-    var meanValue = mean(x),
-        sum = 0,
-        tempValue,
-        i;
-
+function sumNthPowerDeviations(x, n) {
+    var meanValue = mean_1["default"](x), sum = 0, tempValue, i;
     // This is an optimization: when n is 2 (we're computing a number squared),
     // multiplying the number by itself is significantly faster than using
     // the Math.pow method.
@@ -31,13 +26,12 @@ function sumNthPowerDeviations(x/*: Array<number> */, n/*: number */)/*: number 
             tempValue = x[i] - meanValue;
             sum += tempValue * tempValue;
         }
-    } else {
+    }
+    else {
         for (i = 0; i < x.length; i++) {
             sum += Math.pow(x[i] - meanValue, n);
         }
     }
-
     return sum;
 }
-
-export default sumNthPowerDeviations;
+exports["default"] = sumNthPowerDeviations;

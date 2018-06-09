@@ -1,7 +1,6 @@
-/* @flow */
-
-import median from './median';
-
+"use strict";
+exports.__esModule = true;
+var median_1 = require("./median");
 /**
  * The [Median Absolute Deviation](http://en.wikipedia.org/wiki/Median_absolute_deviation) is
  * a robust measure of statistical
@@ -12,18 +11,14 @@ import median from './median';
  * @example
  * medianAbsoluteDeviation([1, 1, 2, 2, 4, 6, 9]); // => 1
  */
-function medianAbsoluteDeviation(x/*: Array<number> */)/*: number */ {
+function medianAbsoluteDeviation(x) {
     // The mad of nothing is null
-    var medianValue = median(x),
-        medianAbsoluteDeviations = [];
-
+    var medianValue = median_1["default"](x), medianAbsoluteDeviations = [];
     // Make a list of absolute deviations from the median
     for (var i = 0; i < x.length; i++) {
         medianAbsoluteDeviations.push(Math.abs(x[i] - medianValue));
     }
-
     // Find the median value of that list
-    return median(medianAbsoluteDeviations);
+    return median_1["default"](medianAbsoluteDeviations);
 }
-
-export default medianAbsoluteDeviation;
+exports["default"] = medianAbsoluteDeviation;

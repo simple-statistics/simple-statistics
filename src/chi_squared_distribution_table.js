@@ -1,5 +1,5 @@
-/* @flow */
-
+"use strict";
+exports.__esModule = true;
 /**
  * **Percentage Points of the χ2 (Chi-Squared) Distribution**
  *
@@ -494,5 +494,4 @@ var chiSquaredDistributionTable = {
         '0.005': 140.17
     }
 };
-
-export default chiSquaredDistributionTable;
+exports["default"] = chiSquaredDistributionTable;

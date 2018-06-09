@@ -1,5 +1,5 @@
-/* @flow */
-
+"use strict";
+exports.__esModule = true;
 /**
  * When combining two lists of values for which one already knows the means,
  * one does not have to necessary recompute the mean of the combined lists in
@@ -17,8 +17,7 @@
  * @example
  * combineMeans(5, 3, 4, 3); // => 4.5
  */
-function combineMeans(mean1 /*: number*/, n1/*: number */, mean2 /*: number*/, n2/*: number */)/*: number */ {
+function combineMeans(mean1, n1, mean2, n2) {
     return (mean1 * n1 + mean2 * n2) / (n1 + n2);
 }
-
-export default combineMeans;
+exports["default"] = combineMeans;

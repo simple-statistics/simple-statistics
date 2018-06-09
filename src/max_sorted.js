@@ -1,5 +1,5 @@
-/* @flow */
-
+"use strict";
+exports.__esModule = true;
 /**
  * The maximum is the highest number in the array. With a sorted array,
  * the last element in the array is always the largest, so this calculation
@@ -10,8 +10,7 @@
  * @example
  * maxSorted([-100, -10, 1, 2, 5]); // => 5
  */
-function maxSorted(x /*: Array<number> */)/*:number*/ {
+function maxSorted(x) {
     return x[x.length - 1];
 }
-
-export default maxSorted;
+exports["default"] = maxSorted;

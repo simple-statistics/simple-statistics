@@ -1,6 +1,6 @@
-/* @flow */
+"use strict";
 /* globals Map: false */
-
+exports.__esModule = true;
 /**
  * The [mode](http://bit.ly/W5K4Yt) is the number that appears in a list the highest number of times.
  * There can be multiple modes in a list: in the event of a tie, this
@@ -23,22 +23,20 @@
  * @example
  * modeFast(['rabbits', 'rabbits', 'squirrels']); // => 'rabbits'
  */
-function modeFast/*::<T>*/(x /*: Array<T> */)/*: ?T */ {
-
+function modeFast(x) {
     // This index will reflect the incidence of different values, indexing
     // them like
     // { value: count }
     var index = new Map();
-
     // A running `mode` and the number of times it has been encountered.
     var mode;
     var modeCount = 0;
-
     for (var i = 0; i < x.length; i++) {
         var newCount = index.get(x[i]);
         if (newCount === undefined) {
             newCount = 1;
-        } else {
+        }
+        else {
             newCount++;
         }
         if (newCount > modeCount) {
@@ -47,12 +45,9 @@ function modeFast/*::<T>*/(x /*: Array<T> */)/*: ?T */ {
         }
         index.set(x[i], newCount);
     }
-
     if (modeCount === 0) {
         throw new Error('mode requires at last one data point');
     }
-
     return mode;
 }
-
-export default modeFast;
+exports["default"] = modeFast;

@@ -1,5 +1,5 @@
-/* @flow */
-
+"use strict";
+exports.__esModule = true;
 /**
  * Our default sum is the [Kahan-Babuska algorithm](https://pdfs.semanticscholar.org/1760/7d467cda1d0277ad272deb2113533131dc09.pdf).
  * This method is an improvement over the classical
@@ -18,24 +18,18 @@
  * @example
  * sum([1, 2, 3]); // => 6
  */
-function sum(x/*: Array<number> */)/*: number */ {
-
+function sum(x) {
     // If the array is empty, we needn't bother computing its sum
     if (x.length === 0) {
         return 0;
     }
-
     // Initializing the sum as the first number in the array
     var sum = x[0];
-
     // Keeping track of the floating-point error correction
     var correction = 0;
-
     var transition;
-
     for (var i = 1; i < x.length; i++) {
         transition = sum + x[i];
-
         // Here we need to update the correction in a different fashion
         // if the new absolute value is greater than the absolute sum
         if (Math.abs(sum) >= Math.abs(x[i])) {
@@ -44,12 +38,9 @@ function sum(x/*: Array<number> */)/*: number */ {
         else {
             correction += ((x[i] - transition) + sum);
         }
-
         sum = transition;
     }
-
     // Returning the corrected sum
     return sum + correction;
 }
-
-export default sum;
+exports["default"] = sum;

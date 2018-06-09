@@ -1,5 +1,4 @@
-/* @flow */
-
+"use strict";
 /**
  * Implementation of Combinations
  * Combinations are unique subsets of a collection - in this case, k x from a collection at a time.
@@ -10,21 +9,19 @@
  * @example
  * combinations([1, 2, 3], 2); // => [[1,2], [1,3], [2,3]]
  */
-
-function combinations(
-    x/*: Array<any> */,
-    k/*: number */)/*: Array<Array<any>> */ {
+exports.__esModule = true;
+function combinations(x, k) {
     var i;
     var subI;
     var combinationList = [];
     var subsetCombinations;
     var next;
-
     for (i = 0; i < x.length; i++) {
         if (k === 1) {
-            combinationList.push([x[i]])
-        } else {
-            subsetCombinations = combinations(x.slice( i + 1, x.length ), k - 1);
+            combinationList.push([x[i]]);
+        }
+        else {
+            subsetCombinations = combinations(x.slice(i + 1, x.length), k - 1);
             for (subI = 0; subI < subsetCombinations.length; subI++) {
                 next = subsetCombinations[subI];
                 next.unshift(x[i]);
@@ -34,5 +31,4 @@ function combinations(
     }
     return combinationList;
 }
-
-export default combinations;
+exports["default"] = combinations;

@@ -1,7 +1,6 @@
-/* @flow */
-
-import standardNormalTable from './standard_normal_table';
-
+"use strict";
+exports.__esModule = true;
+var standard_normal_table_1 = require("./standard_normal_table");
 /**
  * **[Cumulative Standard Normal Probability](http://en.wikipedia.org/wiki/Standard_normal_table)**
  *
@@ -16,27 +15,25 @@ import standardNormalTable from './standard_normal_table';
  * @param {number} z
  * @returns {number} cumulative standard normal probability
  */
-function cumulativeStdNormalProbability(z /*:number */)/*:number */ {
-
+function cumulativeStdNormalProbability(z) {
     // Calculate the position of this value.
-    var absZ = Math.abs(z),
-        // Each row begins with a different
-        // significant digit: 0.5, 0.6, 0.7, and so on. Each value in the table
-        // corresponds to a range of 0.01 in the input values, so the value is
-        // multiplied by 100.
-        index = Math.min(Math.round(absZ * 100), standardNormalTable.length - 1);
-
+    var absZ = Math.abs(z), 
+    // Each row begins with a different
+    // significant digit: 0.5, 0.6, 0.7, and so on. Each value in the table
+    // corresponds to a range of 0.01 in the input values, so the value is
+    // multiplied by 100.
+    index = Math.min(Math.round(absZ * 100), standard_normal_table_1["default"].length - 1);
     // The index we calculate must be in the table as a positive value,
     // but we still pay attention to whether the input is positive
     // or negative, and flip the output value as a last step.
     if (z >= 0) {
-        return standardNormalTable[index];
-    } else {
+        return standard_normal_table_1["default"][index];
+    }
+    else {
         // due to floating-point arithmetic, values in the table with
         // 4 significant figures can nevertheless end up as repeating
         // fractions when they're computed here.
-        return +(1 - standardNormalTable[index]).toFixed(4);
+        return +(1 - standard_normal_table_1["default"][index]).toFixed(4);
     }
 }
-
-export default cumulativeStdNormalProbability;
+exports["default"] = cumulativeStdNormalProbability;

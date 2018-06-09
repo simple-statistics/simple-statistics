@@ -1,7 +1,6 @@
-/* @flow */
-
-import mean from './mean';
-
+"use strict";
+exports.__esModule = true;
+var mean_1 = require("./mean");
 /**
  * [Kurtosis](http://en.wikipedia.org/wiki/Kurtosis) is
  * a measure of the heaviness of a distribution's tails relative to its
@@ -17,27 +16,21 @@ import mean from './mean';
  * @example
  * sampleKurtosis([1, 2, 2, 3, 5]); // => 1.4555765595463122
  */
-function sampleKurtosis(x /*: Array<number> */)/*:number*/ {
-
+function sampleKurtosis(x) {
     var n = x.length;
-
     if (n < 4) {
         throw new Error('sampleKurtosis requires at least four data points');
     }
-
-    var meanValue = mean(x);
+    var meanValue = mean_1["default"](x);
     var tempValue;
     var secondCentralMoment = 0;
     var fourthCentralMoment = 0;
-
     for (var i = 0; i < n; i++) {
         tempValue = x[i] - meanValue;
         secondCentralMoment += tempValue * tempValue;
         fourthCentralMoment += tempValue * tempValue * tempValue * tempValue;
     }
-
     return (n - 1) / ((n - 2) * (n - 3)) *
         (n * (n + 1) * fourthCentralMoment / (secondCentralMoment * secondCentralMoment) - 3 * (n - 1));
 }
-
-export default sampleKurtosis;
+exports["default"] = sampleKurtosis;

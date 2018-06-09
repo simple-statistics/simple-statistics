@@ -1,5 +1,5 @@
-/* @flow */
-
+"use strict";
+exports.__esModule = true;
 /**
  * The simple [sum](https://en.wikipedia.org/wiki/Summation) of an array
  * is the result of adding all numbers together, starting from zero.
@@ -11,12 +11,11 @@
  * @example
  * sumSimple([1, 2, 3]); // => 6
  */
-function sumSimple(x/*: Array<number> */)/*: number */ {
+function sumSimple(x) {
     var value = 0;
     for (var i = 0; i < x.length; i++) {
         value += x[i];
     }
     return value;
 }
-
-export default sumSimple;
+exports["default"] = sumSimple;
