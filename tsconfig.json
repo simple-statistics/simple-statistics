@@ -1,13 +1,10 @@
 {
-  "compilerOptions": {
-      "module": "commonjs",
-      "lib": [
-          "es6"
-      ],
-      "noImplicitAny": true
-  },
-  "files": [
-      "index.d.ts",
-      "test/types.ts"
-  ]
+    "compilerOptions": {
+        "module": "ES6",
+        "noImplicitAny": true
+    },
+    "files": [
+        "index.ts",
+        "test/types.ts"
+    ]
 }

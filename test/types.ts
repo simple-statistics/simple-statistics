@@ -1,4 +1,5 @@
 import * as ss from '../'
+import PerceptronModel from '../src/perceptron';
 
 ss.addToMean(14, 5, 53); // => 20.5
 ss.combineMeans(5, 3, 4, 3); // => 4.5
@@ -55,7 +56,7 @@ ss.modeSorted([0, 0, 1]); // => 0
 ss.numericSort([3, 2, 1]) // => [1, 2, 3]
 
 // Create the model
-var p = new ss.PerceptronModel();
+var p: PerceptronModel = new ss.PerceptronModel();
 // Train the model with input with a diagonal boundary.
 for (var i = 0; i < 5; i++) {
     p.train([1, 1], 1);

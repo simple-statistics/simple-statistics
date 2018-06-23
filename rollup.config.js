@@ -1,6 +1,7 @@
 import { uglify } from 'rollup-plugin-uglify'
+import typescript from 'rollup-plugin-typescript';
 
-const input = 'index.js'
+const input = 'index.ts'
 const sourcemap = true
 
 export default [{
@@ -9,14 +10,16 @@ export default [{
         file: 'dist/simple-statistics.mjs',
         format: 'es',
         sourcemap
-    }
+    },
+    plugins: [typescript()]
 }, {
     input,
     output: {
         file: 'dist/simple-statistics.js',
         format: 'cjs',
         sourcemap
-    }
+    },
+    plugins: [typescript()]
 },
 {
     input,
@@ -26,5 +29,5 @@ export default [{
         name: 'ss',
         sourcemap
     },
-    plugins: [uglify()]
+    plugins: [typescript(), uglify()]
 }]

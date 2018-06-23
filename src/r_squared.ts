@@ -1,7 +1,3 @@
-interface RsquaredFn {
-    (a: number): number
-}
-
 /**
  * The [R Squared](http://en.wikipedia.org/wiki/Coefficient_of_determination)
  * value of data compared with a function `f`
@@ -16,7 +12,7 @@ interface RsquaredFn {
  * var regressionLine = linearRegressionLine(linearRegression(samples));
  * rSquared(samples, regressionLine); // = 1 this line is a perfect fit
  */
-function rSquared(x: number[][], func: RsquaredFn): number {
+function rSquared(x: number[][], func: (a: number) => number): number {
     if (x.length < 2) { return 1; }
 
     // Compute the average y value for the actual

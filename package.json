@@ -14,15 +14,14 @@
     "index.d.ts"
   ],
   "devDependencies": {
-    "are-we-flow-yet": "^1.0.0",
     "cz-conventional-changelog": "^2.0.0",
     "documentation": "^6.0.0",
     "eslint": "^4.1.0",
-    "flow-bin": "^0.71.0",
     "jsdoctest": "^1.7.1",
     "mocha": "^5.0.0",
     "random-js": "^1.0.4",
     "rollup": "^0.59.1",
+    "rollup-plugin-typescript": "^0.8.1",
     "rollup-plugin-uglify": "^4.0.0",
     "standard-version": "^4.0.0",
     "tap": "^12.0.1",
@@ -33,9 +32,8 @@
     "release": "standard-version && sh ./scripts/update_website.sh",
     "pretest": "npm run build",
     "test": "npm run lint && tap --coverage test/*.test.js --jobs=4 && npm run jsdoctest",
-    "build": "rm -rf dist && mkdir dist && rollup -c",
+    "build": "rm -rf dist && mkdir dist && rollup -c && tsc",
     "prepublish": "npm run build && ./scripts/update_readme.js",
-    "prelint": "are-we-flow-yet src && flow check src && tsc",
     "lint": "eslint index.js src test",
     "postlint": "documentation lint src",
     "jsdoctest": "mocha --require jsdoctest dist/simple-statistics.js"
