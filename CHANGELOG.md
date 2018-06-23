@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="6.1.0"></a>
+# [6.1.0](https://github.com/simple-statistics/simple-statistics/compare/v6.0.1...v6.1.0) (2018-06-23)
+
+
+### Features
+
+* gammaln ([9d03631](https://github.com/simple-statistics/simple-statistics/commit/9d03631))
+
+
+
 <a name="6.0.1"></a>
 ## [6.0.1](https://github.com/simple-statistics/simple-statistics/compare/v6.0.0...v6.0.1) (2018-05-11)
 
