@@ -14,7 +14,7 @@
     "index.d.ts"
   ],
   "devDependencies": {
-    "are-we-flow-yet": "^1.0.0",
+    "are-we-flow-yet": "^1.1.1",
     "cz-conventional-changelog": "^2.0.0",
     "documentation": "^8.0.0",
     "eslint": "^5.0.1",
