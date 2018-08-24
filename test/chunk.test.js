@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
-var test = require("tap").test;
-var ss = require("../");
+const test = require("tap").test;
+const ss = require("../");
 
 test("chunk", function(t) {
     t.test("can get chunks of an array", function(t) {

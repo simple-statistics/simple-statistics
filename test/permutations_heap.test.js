@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
-var test = require("tap").test;
-var ss = require("../");
+const test = require("tap").test;
+const ss = require("../");
 
 test("permutationsHeap", function(t) {
     t.test("generates 1 permutation", function(t) {

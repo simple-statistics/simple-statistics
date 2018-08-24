@@ -27,11 +27,11 @@ function sampleWithReplacement /*::<T>*/(
     // [random-js](https://www.npmjs.org/package/random-js)
     randomSource = randomSource || Math.random;
 
-    var length = x.length;
-    var sample = [];
+    const length = x.length;
+    const sample = [];
 
-    for (var i = 0; i < n; i++) {
-        var index = Math.floor(randomSource() * length);
+    for (let i = 0; i < n; i++) {
+        const index = Math.floor(randomSource() * length);
 
         sample.push(x[index]);
     }

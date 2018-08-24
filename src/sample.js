@@ -25,7 +25,7 @@ function sample /*:: <T> */(
     randomSource /*: ?Function */
 ) /*: Array<T> */ {
     // shuffle the original array using a fisher-yates shuffle
-    var shuffled = shuffle(x, randomSource);
+    const shuffled = shuffle(x, randomSource);
 
     // and then return a subset of it - the first `n` elements.
     return shuffled.slice(0, n);

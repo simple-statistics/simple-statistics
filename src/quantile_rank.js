@@ -22,7 +22,7 @@ function quantileRank(
     value /*: number */
 ) /*: number */ {
     // Cloning and sorting the array
-    var sortedCopy = numericSort(x);
+    const sortedCopy = numericSort(x);
 
     return quantileRankSorted(sortedCopy, value);
 }

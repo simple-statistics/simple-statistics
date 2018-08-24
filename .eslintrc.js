@@ -5,7 +5,7 @@ module.exports = {
     plugins: ["prettier"],
     extends: "eslint:recommended",
     parserOptions: {
-        ecmaVersion: 6,
+        ecmaVersion: 7,
         sourceType: "module"
     },
     rules: {
@@ -127,6 +127,7 @@ module.exports = {
         "padded-blocks": "off",
         "prefer-arrow-callback": "off",
         "prefer-const": "error",
+        "no-var": "error",
         "prefer-reflect": "off",
         "prefer-rest-params": "off",
         "prefer-spread": "off",

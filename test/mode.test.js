@@ -1,12 +1,12 @@
 /* eslint no-shadow: 0 */
 
-var test = require("tap").test;
-var ss = require("../");
+const test = require("tap").test;
+const ss = require("../");
 
 test("mode", function(t) {
     ["mode", "modeFast"].forEach(function(modeName) {
         t.test(modeName, function(t) {
-            var modeFn = ss[modeName];
+            const modeFn = ss[modeName];
 
             t.test(
                 "the mode of a single-number array is that one number",

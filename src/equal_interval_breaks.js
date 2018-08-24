@@ -24,20 +24,20 @@ function equalIntervalBreaks(
         return x;
     }
 
-    var theMin = min(x);
-    var theMax = max(x);
+    const theMin = min(x);
+    const theMax = max(x);
 
     // the first break will always be the minimum value
     // in the xset
-    var breaks = [theMin];
+    const breaks = [theMin];
 
     // The size of each break is the full range of the x
     // divided by the number of classes requested
-    var breakSize = (theMax - theMin) / nClasses;
+    const breakSize = (theMax - theMin) / nClasses;
 
     // In the case of nClasses = 1, this loop won't run
     // and the returned breaks will be [min, max]
-    for (var i = 1; i < nClasses; i++) {
+    for (let i = 1; i < nClasses; i++) {
         breaks.push(breaks[0] + breakSize * i);
     }
 

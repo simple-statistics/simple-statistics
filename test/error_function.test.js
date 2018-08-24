@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
-var test = require("tap").test;
-var ss = require("../");
+const test = require("tap").test;
+const ss = require("../");
 
 test("errorFunction", function(t) {
     test("symmetry", function(t) {
@@ -10,7 +10,7 @@ test("errorFunction", function(t) {
     });
     t.end();
     test("inverse", function(t) {
-        for (var i = -1; i <= 1; i += 0.01) {
+        for (let i = -1; i <= 1; i += 0.01) {
             t.equal(
                 Math.abs(ss.errorFunction(ss.inverseErrorFunction(i)) - i) <
                     4 * ss.epsilon,

@@ -22,7 +22,7 @@ function standardDeviation(x /*: Array<number> */) /*:number*/ {
     if (x.length === 1) {
         return 0;
     }
-    var v = variance(x);
+    const v = variance(x);
     return Math.sqrt(v);
 }
 

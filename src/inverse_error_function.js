@@ -9,9 +9,9 @@
  * @returns {number} estimated inverted value
  */
 function inverseErrorFunction(x /*: number */) /*: number */ {
-    var a = (8 * (Math.PI - 3)) / (3 * Math.PI * (4 - Math.PI));
+    const a = (8 * (Math.PI - 3)) / (3 * Math.PI * (4 - Math.PI));
 
-    var inv = Math.sqrt(
+    const inv = Math.sqrt(
         Math.sqrt(
             Math.pow(2 / (Math.PI * a) + Math.log(1 - x * x) / 2, 2) -
                 Math.log(1 - x * x) / a

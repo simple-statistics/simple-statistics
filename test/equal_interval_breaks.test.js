@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
-var test = require("tap").test;
-var equalIntervalBreaks = require("../").equalIntervalBreaks;
+const test = require("tap").test;
+const equalIntervalBreaks = require("../").equalIntervalBreaks;
 
 test("equalIntervalBreaks", function(t) {
     t.deepEqual(equalIntervalBreaks([1], 4), [1], "1-length case");

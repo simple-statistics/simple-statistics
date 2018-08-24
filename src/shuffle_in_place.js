@@ -28,14 +28,14 @@ function shuffleInPlace(
 
     // store the current length of the x to determine
     // when no elements remain to shuffle.
-    var length = x.length;
+    let length = x.length;
 
     // temporary is used to hold an item when it is being
     // swapped between indices.
-    var temporary;
+    let temporary;
 
     // The index to swap at each stage.
-    var index;
+    let index;
 
     // While there are still items to shuffle
     while (length > 0) {

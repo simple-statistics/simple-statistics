@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
-var test = require("tap").test;
-var ss = require("../");
+const test = require("tap").test;
+const ss = require("../");
 
 function rnd(x) {
     return Math.round(x * 1000) / 1000;

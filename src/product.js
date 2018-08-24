@@ -12,8 +12,8 @@
  * product([1, 2, 3, 4]); // => 24
  */
 function product(x /*: Array<number> */) /*: number */ {
-    var value = 1;
-    for (var i = 0; i < x.length; i++) {
+    let value = 1;
+    for (let i = 0; i < x.length; i++) {
         value *= x[i];
     }
     return value;

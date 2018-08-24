@@ -25,12 +25,12 @@ function sampleVariance(x /*: Array<number> */) /*:number*/ {
         throw new Error("sampleVariance requires at least two data points");
     }
 
-    var sumSquaredDeviationsValue = sumNthPowerDeviations(x, 2);
+    const sumSquaredDeviationsValue = sumNthPowerDeviations(x, 2);
 
     // this is Bessels' Correction: an adjustment made to sample statistics
     // that allows for the reduced degree of freedom entailed in calculating
     // values from samples rather than complete populations.
-    var besselsCorrection = x.length - 1;
+    const besselsCorrection = x.length - 1;
 
     // Find the mean value of that list
     return sumSquaredDeviationsValue / besselsCorrection;

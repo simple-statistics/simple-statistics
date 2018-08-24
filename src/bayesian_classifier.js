@@ -44,8 +44,8 @@ BayesianClassifier.prototype.train = function(item, category) {
     }
 
     // Iterate through each key in the item.
-    for (var k in item) {
-        var v = item[k];
+    for (const k in item) {
+        const v = item[k];
         // Initialize the nested object `data[category][k][item[k]]`
         // with an object of keys that equal 0.
         if (this.data[category][k] === undefined) {
@@ -73,13 +73,13 @@ BayesianClassifier.prototype.train = function(item, category) {
  */
 BayesianClassifier.prototype.score = function(item) {
     // Initialize an empty array of odds per category.
-    var odds = {},
-        category;
+    const odds = {};
+    let category;
     // Iterate through each key in the item,
     // then iterate through each category that has been used
     // in previous calls to `.train()`
-    for (var k in item) {
-        var v = item[k];
+    for (const k in item) {
+        const v = item[k];
         for (category in this.data) {
             // Create an empty object for storing key - value combinations
             // for this category.
@@ -99,14 +99,14 @@ BayesianClassifier.prototype.score = function(item) {
     }
 
     // Set up a new object that will contain sums of these odds by category
-    var oddsSums = {};
+    const oddsSums = {};
 
     for (category in odds) {
         // Tally all of the odds for each category-combination pair -
         // the non-existence of a category does not add anything to the
         // score.
         oddsSums[category] = 0;
-        for (var combination in odds[category]) {
+        for (const combination in odds[category]) {
             oddsSums[category] += odds[category][combination];
         }
     }

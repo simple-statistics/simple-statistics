@@ -14,11 +14,11 @@ import median from "./median";
  */
 function medianAbsoluteDeviation(x /*: Array<number> */) /*: number */ {
     // The mad of nothing is null
-    var medianValue = median(x),
-        medianAbsoluteDeviations = [];
+    const medianValue = median(x);
+    const medianAbsoluteDeviations = [];
 
     // Make a list of absolute deviations from the median
-    for (var i = 0; i < x.length; i++) {
+    for (let i = 0; i < x.length; i++) {
         medianAbsoluteDeviations.push(Math.abs(x[i] - medianValue));
     }
 

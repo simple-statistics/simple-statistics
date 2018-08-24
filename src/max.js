@@ -17,8 +17,8 @@ function max(x /*: Array<number> */) /*:number*/ {
         throw new Error("max requires at least one data point");
     }
 
-    var value = x[0];
-    for (var i = 1; i < x.length; i++) {
+    let value = x[0];
+    for (let i = 1; i < x.length; i++) {
         // On the first iteration of this loop, max is
         // undefined and is thus made the maximum element in the array
         if (x[i] > value) {

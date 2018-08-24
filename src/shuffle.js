@@ -18,7 +18,7 @@ import shuffleInPlace from "./shuffle_in_place";
  */
 function shuffle /*::<T>*/(x /*: Array<T> */, randomSource /*: ?Function */) {
     // slice the original array so that it is not modified
-    var sample = x.slice();
+    const sample = x.slice();
 
     // and then shuffle that shallow-copied array, in place
     return shuffleInPlace(sample.slice(), randomSource);

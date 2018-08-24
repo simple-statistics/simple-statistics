@@ -35,8 +35,8 @@ function tTestTwoSample(
     sampleY /*: Array<number> */,
     difference /*: ?number */
 ) /*: ?number */ {
-    var n = sampleX.length,
-        m = sampleY.length;
+    const n = sampleX.length;
+    const m = sampleY.length;
 
     // If either sample doesn't actually have any values, we can't
     // compute this at all, so we return `null`.
@@ -49,10 +49,10 @@ function tTestTwoSample(
         difference = 0;
     }
 
-    var meanX = mean(sampleX),
-        meanY = mean(sampleY),
-        sampleVarianceX = sampleVariance(sampleX),
-        sampleVarianceY = sampleVariance(sampleY);
+    const meanX = mean(sampleX);
+    const meanY = mean(sampleY);
+    const sampleVarianceX = sampleVariance(sampleX);
+    const sampleVarianceY = sampleVariance(sampleY);
 
     if (
         typeof meanX === "number" &&
@@ -60,7 +60,7 @@ function tTestTwoSample(
         typeof sampleVarianceX === "number" &&
         typeof sampleVarianceY === "number"
     ) {
-        var weightedVariance =
+        const weightedVariance =
             ((n - 1) * sampleVarianceX + (m - 1) * sampleVarianceY) /
             (n + m - 2);
 

@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
-var test = require("tap").test;
-var ss = require("../");
+const test = require("tap").test;
+const ss = require("../");
 
 test("natural distribution and z-score", function(t) {
     t.test("normal table is exposed in the API", function(t) {
@@ -61,8 +61,8 @@ test("natural distribution and z-score", function(t) {
         // Taken from the examples of use in http://en.wikipedia.org/wiki/Standard_normal_table
         // A professor's exam scores are approximately distributed normally with mean 80 and standard deviation 5.
         // What is the probability that a student scores between 78 and 88?
-        var prob88 = ss.cumulativeStdNormalProbability(ss.zScore(88, 80, 5)),
-            prob78 = ss.cumulativeStdNormalProbability(ss.zScore(78, 80, 5));
+        const prob88 = ss.cumulativeStdNormalProbability(ss.zScore(88, 80, 5));
+        const prob78 = ss.cumulativeStdNormalProbability(ss.zScore(78, 80, 5));
 
         t.equal(+(prob88 - prob78).toPrecision(5), 0.6006);
         t.end();

@@ -1,11 +1,11 @@
 /* eslint no-shadow: 0 */
 
-var BayesianClassifier = require("../").BayesianClassifier;
-var test = require("tap").test;
+const BayesianClassifier = require("../").BayesianClassifier;
+const test = require("tap").test;
 
 test("BayesianClassifier", function(t) {
     t.test("makes an easy call with one training round", function(t) {
-        var bayes = new BayesianClassifier();
+        const bayes = new BayesianClassifier();
         bayes.train(
             {
                 species: "Cat"
@@ -24,7 +24,7 @@ test("BayesianClassifier", function(t) {
     });
 
     t.test("makes fify-fifty call", function(t) {
-        var bayes = new BayesianClassifier();
+        const bayes = new BayesianClassifier();
         bayes.train(
             {
                 species: "Cat"
@@ -50,7 +50,7 @@ test("BayesianClassifier", function(t) {
     });
 
     t.test("makes seventy-five/twenty-five call", function(t) {
-        var bayes = new BayesianClassifier();
+        const bayes = new BayesianClassifier();
         bayes.train(
             {
                 species: "Cat"
@@ -88,7 +88,7 @@ test("BayesianClassifier", function(t) {
     });
 
     t.test("tests multiple properties", function(t) {
-        var bayes = new BayesianClassifier();
+        const bayes = new BayesianClassifier();
         bayes.train(
             {
                 species: "Cat"
@@ -133,7 +133,7 @@ test("BayesianClassifier", function(t) {
     });
 
     t.test("classifies multiple things", function(t) {
-        var bayes = new BayesianClassifier();
+        const bayes = new BayesianClassifier();
         bayes.train(
             {
                 species: "Cat"

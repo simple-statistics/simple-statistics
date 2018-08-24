@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
-var test = require("tap").test;
-var ss = require("../");
+const test = require("tap").test;
+const ss = require("../");
 
 test("median", function(t) {
     t.test("can get the median of three numbers", function(t) {
@@ -33,7 +33,7 @@ test("median", function(t) {
     });
 
     t.test("does not change the sorting order of its input", function(t) {
-        var x = [1, 0];
+        const x = [1, 0];
         t.equal(ss.median(x), 0.5);
         t.equal(x[0], 1);
         t.equal(x[1], 0);

@@ -26,8 +26,8 @@ function factorial(n /*: number */) /*: number */ {
     // 5! = 5 * 4 * 3 * 2 * 1. This is going in the opposite direction,
     // counting from 2 up to the number in question, and since anything
     // multiplied by 1 is itself, the loop only needs to start at 2.
-    var accumulator = 1;
-    for (var i = 2; i <= n; i++) {
+    let accumulator = 1;
+    for (let i = 2; i <= n; i++) {
         // for each number up to and including the number `n`, multiply
         // the accumulator my that number.
         accumulator *= i;

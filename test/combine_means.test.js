@@ -1,12 +1,12 @@
 /* eslint no-shadow: 0 */
 
-var test = require("tap").test;
-var ss = require("../");
+const test = require("tap").test;
+const ss = require("../");
 
 test("combineMeans", function(t) {
     t.test("can combine the means of two lists", function(t) {
-        var values1 = [8, 3, 4];
-        var values2 = [2, 6, 4];
+        const values1 = [8, 3, 4];
+        const values2 = [2, 6, 4];
         t.equal(
             ss.combineMeans(
                 ss.mean(values1),

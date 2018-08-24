@@ -36,25 +36,21 @@ function chiSquaredGoodnessOfFit(
     significance /*: number */
 ) /*: boolean */ {
     // Estimate from the sample data, a weighted mean.
-    var inputMean = mean(data),
-        // Calculated value of the χ2 statistic.
-        chiSquared = 0,
-        // Degrees of freedom, calculated as (number of class intervals -
-        // number of hypothesized distribution parameters estimated - 1)
-        degreesOfFreedom,
-        // Number of hypothesized distribution parameters estimated, expected to be supplied in the distribution test.
-        // Lose one degree of freedom for estimating `lambda` from the sample data.
-        c = 1,
-        // The hypothesized distribution.
-        // Generate the hypothesized distribution.
-        hypothesizedDistribution = distributionType(inputMean),
-        observedFrequencies = [],
-        expectedFrequencies = [],
-        k;
+    const inputMean = mean(data);
+    // Calculated value of the χ2 statistic.
+    let chiSquared = 0;
+    // Number of hypothesized distribution parameters estimated, expected to be supplied in the distribution test.
+    // Lose one degree of freedom for estimating `lambda` from the sample data.
+    const c = 1;
+    // The hypothesized distribution.
+    // Generate the hypothesized distribution.
+    const hypothesizedDistribution = distributionType(inputMean);
+    const observedFrequencies = [];
+    const expectedFrequencies = [];
 
     // Create an array holding a histogram from the sample data, of
     // the form `{ value: numberOfOcurrences }`
-    for (var i = 0; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
         if (observedFrequencies[data[i]] === undefined) {
             observedFrequencies[data[i]] = 0;
         }
@@ -64,7 +60,7 @@ function chiSquaredGoodnessOfFit(
     // The histogram we created might be sparse - there might be gaps
     // between values. So we iterate through the histogram, making
     // sure that instead of undefined, gaps have 0 values.
-    for (i = 0; i < observedFrequencies.length; i++) {
+    for (let i = 0; i < observedFrequencies.length; i++) {
         if (observedFrequencies[i] === undefined) {
             observedFrequencies[i] = 0;
         }
@@ -72,7 +68,7 @@ function chiSquaredGoodnessOfFit(
 
     // Create an array holding a histogram of expected data given the
     // sample size and hypothesized distribution.
-    for (k in hypothesizedDistribution) {
+    for (const k in hypothesizedDistribution) {
         if (k in observedFrequencies) {
             expectedFrequencies[+k] = hypothesizedDistribution[k] * data.length;
         }
@@ -81,7 +77,7 @@ function chiSquaredGoodnessOfFit(
     // Working backward through the expected frequencies, collapse classes
     // if less than three observations are expected for a class.
     // This transformation is applied to the observed frequencies as well.
-    for (k = expectedFrequencies.length - 1; k >= 0; k--) {
+    for (let k = expectedFrequencies.length - 1; k >= 0; k--) {
         if (expectedFrequencies[k] < 3) {
             expectedFrequencies[k - 1] += expectedFrequencies[k];
             expectedFrequencies.pop();
@@ -93,7 +89,7 @@ function chiSquaredGoodnessOfFit(
 
     // Iterate through the squared differences between observed & expected
     // frequencies, accumulating the `chiSquared` statistic.
-    for (k = 0; k < observedFrequencies.length; k++) {
+    for (let k = 0; k < observedFrequencies.length; k++) {
         chiSquared +=
             Math.pow(observedFrequencies[k] - expectedFrequencies[k], 2) /
             expectedFrequencies[k];
@@ -102,7 +98,9 @@ function chiSquaredGoodnessOfFit(
     // Calculate degrees of freedom for this test and look it up in the
     // `chiSquaredDistributionTable` in order to
     // accept or reject the goodness-of-fit of the hypothesized distribution.
-    degreesOfFreedom = observedFrequencies.length - c - 1;
+    // Degrees of freedom, calculated as (number of class intervals -
+    // number of hypothesized distribution parameters estimated - 1)
+    const degreesOfFreedom = observedFrequencies.length - c - 1;
     return (
         chiSquaredDistributionTable[degreesOfFreedom][significance] < chiSquared
     );
