@@ -1,6 +1,6 @@
 /* @flow */
 
-import epsilon from './epsilon';
+import epsilon from "./epsilon";
 
 /**
  * The [Binomial Distribution](http://en.wikipedia.org/wiki/Binomial_distribution) is the discrete probability
@@ -13,12 +13,12 @@ import epsilon from './epsilon';
  * @returns {number[]} output
  */
 function binomialDistribution(
-    trials/*: number */,
-    probability/*: number */)/*: ?number[] */ {
+    trials /*: number */,
+    probability /*: number */
+) /*: ?number[] */ {
     // Check that `p` is a valid probability (0 ≤ p ≤ 1),
     // that `n` is an integer, strictly positive.
-    if (probability < 0 || probability > 1 ||
-        trials <= 0 || trials % 1 !== 0) {
+    if (probability < 0 || probability > 1 || trials <= 0 || trials % 1 !== 0) {
         return undefined;
     }
 
@@ -38,13 +38,15 @@ function binomialDistribution(
     // which point we've defined the vast majority of outcomes
     do {
         // a [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function)
-        cells[x] = binomialCoefficient *
-            Math.pow(probability, x) * Math.pow(1 - probability, trials - x);
+        cells[x] =
+            binomialCoefficient *
+            Math.pow(probability, x) *
+            Math.pow(1 - probability, trials - x);
         cumulativeProbability += cells[x];
         x++;
-        binomialCoefficient = binomialCoefficient * (trials - x + 1) / x;
-    // when the cumulativeProbability is nearly 1, we've calculated
-    // the useful range of this distribution
+        binomialCoefficient = (binomialCoefficient * (trials - x + 1)) / x;
+        // when the cumulativeProbability is nearly 1, we've calculated
+        // the useful range of this distribution
     } while (cumulativeProbability < 1 - epsilon);
 
     return cells;

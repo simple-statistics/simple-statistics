@@ -1,6 +1,6 @@
 /* @flow */
 
-import mean from './mean';
+import mean from "./mean";
 
 /**
  * [Kurtosis](http://en.wikipedia.org/wiki/Kurtosis) is
@@ -17,12 +17,11 @@ import mean from './mean';
  * @example
  * sampleKurtosis([1, 2, 2, 3, 5]); // => 1.4555765595463122
  */
-function sampleKurtosis(x /*: Array<number> */)/*:number*/ {
-
+function sampleKurtosis(x /*: Array<number> */) /*:number*/ {
     var n = x.length;
 
     if (n < 4) {
-        throw new Error('sampleKurtosis requires at least four data points');
+        throw new Error("sampleKurtosis requires at least four data points");
     }
 
     var meanValue = mean(x);
@@ -36,8 +35,12 @@ function sampleKurtosis(x /*: Array<number> */)/*:number*/ {
         fourthCentralMoment += tempValue * tempValue * tempValue * tempValue;
     }
 
-    return (n - 1) / ((n - 2) * (n - 3)) *
-        (n * (n + 1) * fourthCentralMoment / (secondCentralMoment * secondCentralMoment) - 3 * (n - 1));
+    return (
+        ((n - 1) / ((n - 2) * (n - 3))) *
+        ((n * (n + 1) * fourthCentralMoment) /
+            (secondCentralMoment * secondCentralMoment) -
+            3 * (n - 1))
+    );
 }
 
 export default sampleKurtosis;

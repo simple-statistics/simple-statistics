@@ -17,10 +17,12 @@
  * @example
  * bernoulliDistribution(0.3); // => [0.7, 0.3]
  */
-function bernoulliDistribution(p/*: number */) /*: number[] */ {
+function bernoulliDistribution(p /*: number */) /*: number[] */ {
     // Check that `p` is a valid probability (0 ≤ p ≤ 1)
-    if (p < 0 || p > 1 ) {
-        throw new Error('bernoulliDistribution requires probability to be between 0 and 1 inclusive');
+    if (p < 0 || p > 1) {
+        throw new Error(
+            "bernoulliDistribution requires probability to be between 0 and 1 inclusive"
+        );
     }
 
     return [1 - p, p];

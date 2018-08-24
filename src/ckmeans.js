@@ -1,7 +1,7 @@
 /* @flow */
 
-import numericSort from './numeric_sort';
-import uniqueCountSorted from './unique_count_sorted';
+import numericSort from "./numeric_sort";
+import uniqueCountSorted from "./unique_count_sorted";
 
 /**
  * Create a new column x row matrix.
@@ -42,9 +42,10 @@ function ssq(j, i, sums, sumsOfSquares) {
     var sji; // s(j, i)
     if (j > 0) {
         var muji = (sums[i] - sums[j - 1]) / (i - j + 1); // mu(j, i)
-        sji = sumsOfSquares[i] - sumsOfSquares[j - 1] - (i - j + 1) * muji * muji;
+        sji =
+            sumsOfSquares[i] - sumsOfSquares[j - 1] - (i - j + 1) * muji * muji;
     } else {
-        sji = sumsOfSquares[i] - sums[i] * sums[i] / (i + 1);
+        sji = sumsOfSquares[i] - (sums[i] * sums[i]) / (i + 1);
     }
     if (sji < 0) {
         return 0;
@@ -65,7 +66,15 @@ function ssq(j, i, sums, sumsOfSquares) {
  * @param {Array<number>} sums
  * @param {Array<number>} sumsOfSquares
  */
-function fillMatrixColumn(iMin, iMax, cluster, matrix, backtrackMatrix, sums, sumsOfSquares) {
+function fillMatrixColumn(
+    iMin,
+    iMax,
+    cluster,
+    matrix,
+    backtrackMatrix,
+    sums,
+    sumsOfSquares
+) {
     if (iMin > iMax) {
         return;
     }
@@ -118,8 +127,24 @@ function fillMatrixColumn(iMin, iMax, cluster, matrix, backtrackMatrix, sums, su
         }
     }
 
-    fillMatrixColumn(iMin, i - 1, cluster, matrix, backtrackMatrix, sums, sumsOfSquares);
-    fillMatrixColumn(i + 1, iMax, cluster, matrix, backtrackMatrix, sums, sumsOfSquares);
+    fillMatrixColumn(
+        iMin,
+        i - 1,
+        cluster,
+        matrix,
+        backtrackMatrix,
+        sums,
+        sumsOfSquares
+    );
+    fillMatrixColumn(
+        i + 1,
+        iMax,
+        cluster,
+        matrix,
+        backtrackMatrix,
+        sums,
+        sumsOfSquares
+    );
 }
 
 /**
@@ -149,7 +174,9 @@ function fillMatrices(data, matrix, backtrackMatrix) {
             sumsOfSquares.push(shiftedValue * shiftedValue);
         } else {
             sums.push(sums[i - 1] + shiftedValue);
-            sumsOfSquares.push(sumsOfSquares[i - 1] + shiftedValue * shiftedValue);
+            sumsOfSquares.push(
+                sumsOfSquares[i - 1] + shiftedValue * shiftedValue
+            );
         }
 
         // Initialize for cluster = 0
@@ -167,7 +194,15 @@ function fillMatrices(data, matrix, backtrackMatrix) {
             iMin = nValues - 1;
         }
 
-        fillMatrixColumn(iMin, nValues - 1, cluster, matrix, backtrackMatrix, sums, sumsOfSquares);
+        fillMatrixColumn(
+            iMin,
+            nValues - 1,
+            cluster,
+            matrix,
+            backtrackMatrix,
+            sums,
+            sumsOfSquares
+        );
     }
 }
 
@@ -214,11 +249,13 @@ function fillMatrices(data, matrix, backtrackMatrix) {
  * //= [[-1, -1, -1, -1], [2, 2, 2], [4, 5, 6]]);
  */
 function ckmeans(
-    x/*: Array<number> */,
-    nClusters/*: number */)/*: Array<Array<number>> */ {
-
+    x /*: Array<number> */,
+    nClusters /*: number */
+) /*: Array<Array<number>> */ {
     if (nClusters > x.length) {
-        throw new Error('cannot generate more classes than there are data values');
+        throw new Error(
+            "cannot generate more classes than there are data values"
+        );
     }
 
     var sorted = numericSort(x),
@@ -253,7 +290,6 @@ function ckmeans(
     // starts at the bottom-right corner of the matrix (if the top-left is 0, 0),
     // and moves the cluster target with the loop.
     for (var cluster = backtrackMatrix.length - 1; cluster >= 0; cluster--) {
-
         var clusterLeft = backtrackMatrix[cluster][clusterRight];
 
         // fill the cluster from the sorted input by taking a slice of the

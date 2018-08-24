@@ -1,7 +1,7 @@
 /* @flow */
 
-import epsilon from './epsilon';
-import inverseErrorFunction from './inverse_error_function';
+import epsilon from "./epsilon";
+import inverseErrorFunction from "./inverse_error_function";
 
 /**
  * The [Probit](http://en.wikipedia.org/wiki/Probit)
@@ -16,7 +16,7 @@ import inverseErrorFunction from './inverse_error_function';
  * @param {number} p
  * @returns {number} probit
  */
-function probit(p /*: number */)/*: number */ {
+function probit(p /*: number */) /*: number */ {
     if (p === 0) {
         p = epsilon;
     } else if (p >= 1) {

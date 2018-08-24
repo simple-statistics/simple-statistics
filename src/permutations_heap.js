@@ -7,7 +7,9 @@
  * @param {Array} elements any type of data
  * @returns {Array<Array>} array of permutations
  */
-function permutationsHeap/*:: <T> */(elements /*: Array<T> */)/*: Array<Array<T>> */ {
+function permutationsHeap /*:: <T> */(
+    elements /*: Array<T> */
+) /*: Array<Array<T>> */ {
     var indexes = new Array(elements.length);
     var permutations = [elements.slice()];
 
@@ -15,9 +17,8 @@ function permutationsHeap/*:: <T> */(elements /*: Array<T> */)/*: Array<Array<T>
         indexes[i] = 0;
     }
 
-    for (i = 0; i < elements.length;) {
+    for (i = 0; i < elements.length; ) {
         if (indexes[i] < i) {
-
             // At odd indexes, swap from indexes[i] instead
             // of from the beginning of the array
             var swapFrom = 0;
@@ -34,7 +35,6 @@ function permutationsHeap/*:: <T> */(elements /*: Array<T> */)/*: Array<Array<T>
             permutations.push(elements.slice());
             indexes[i]++;
             i = 0;
-
         } else {
             indexes[i] = 0;
             i++;

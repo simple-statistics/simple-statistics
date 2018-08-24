@@ -12,17 +12,17 @@
  * @example
  * sign(2); // => 1
  */
-function sign(x/*: number */)/*: number */ {
-    if (typeof x === 'number') {
+function sign(x /*: number */) /*: number */ {
+    if (typeof x === "number") {
         if (x < 0) {
             return -1;
         } else if (x === 0) {
-            return 0
+            return 0;
         } else {
             return 1;
         }
     } else {
-        throw new TypeError('not a number');
+        throw new TypeError("not a number");
     }
 }
 

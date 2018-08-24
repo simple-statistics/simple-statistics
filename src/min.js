@@ -9,10 +9,9 @@
  * @example
  * min([1, 5, -10, 100, 2]); // => -10
  */
-function min(x /*: Array<number> */)/*:number*/ {
-
+function min(x /*: Array<number> */) /*:number*/ {
     if (x.length === 0) {
-        throw new Error('min requires at least one data point');
+        throw new Error("min requires at least one data point");
     }
 
     var value = x[0];

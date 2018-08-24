@@ -1,6 +1,6 @@
 /* @flow */
 
-import quantile from './quantile';
+import quantile from "./quantile";
 
 /**
  * The [Interquartile range](http://en.wikipedia.org/wiki/Interquartile_range) is
@@ -14,13 +14,13 @@ import quantile from './quantile';
  * @example
  * interquartileRange([0, 1, 2, 3]); // => 2
  */
-function interquartileRange(x/*: Array<number> */) {
+function interquartileRange(x /*: Array<number> */) {
     // Interquartile range is the span between the upper quartile,
     // at `0.75`, and lower quartile, `0.25`
     var q1 = quantile(x, 0.75),
         q2 = quantile(x, 0.25);
 
-    if (typeof q1 === 'number' && typeof q2 === 'number') {
+    if (typeof q1 === "number" && typeof q2 === "number") {
         return q1 - q2;
     }
 }

@@ -17,7 +17,12 @@
  * @example
  * combineMeans(5, 3, 4, 3); // => 4.5
  */
-function combineMeans(mean1 /*: number*/, n1/*: number */, mean2 /*: number*/, n2/*: number */)/*: number */ {
+function combineMeans(
+    mean1 /*: number*/,
+    n1 /*: number */,
+    mean2 /*: number*/,
+    n2 /*: number */
+) /*: number */ {
     return (mean1 * n1 + mean2 * n2) / (n1 + n2);
 }
 

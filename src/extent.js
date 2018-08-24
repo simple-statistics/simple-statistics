@@ -13,9 +13,8 @@
  * // => [1, 4]
  */
 function extent(x /*: Array<number> */) /*:Array<number>*/ {
-
     if (x.length === 0) {
-        throw new Error('extent requires at least one data point');
+        throw new Error("extent requires at least one data point");
     }
 
     var min = x[0];

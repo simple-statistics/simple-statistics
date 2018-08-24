@@ -13,11 +13,11 @@
  * var values = [1, 2, 3, 4];
  * sampleWithReplacement(values, 2); // returns 2 random values, like [2, 4];
  */
-function sampleWithReplacement/*::<T>*/(
-    x/*: Array<T> */,
-    n/*: number */,
-    randomSource/*: ?Function */) {
-
+function sampleWithReplacement /*::<T>*/(
+    x /*: Array<T> */,
+    n /*: number */,
+    randomSource /*: ?Function */
+) {
     if (x.length === 0) {
         return [];
     }

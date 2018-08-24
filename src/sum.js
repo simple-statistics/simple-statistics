@@ -18,8 +18,7 @@
  * @example
  * sum([1, 2, 3]); // => 6
  */
-function sum(x/*: Array<number> */)/*: number */ {
-
+function sum(x /*: Array<number> */) /*: number */ {
     // If the array is empty, we needn't bother computing its sum
     if (x.length === 0) {
         return 0;
@@ -39,10 +38,9 @@ function sum(x/*: Array<number> */)/*: number */ {
         // Here we need to update the correction in a different fashion
         // if the new absolute value is greater than the absolute sum
         if (Math.abs(sum) >= Math.abs(x[i])) {
-            correction += ((sum - transition) + x[i]);
-        }
-        else {
-            correction += ((x[i] - transition) + sum);
+            correction += sum - transition + x[i];
+        } else {
+            correction += x[i] - transition + sum;
         }
 
         sum = transition;

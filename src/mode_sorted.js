@@ -16,12 +16,11 @@
  * @example
  * modeSorted([0, 0, 1]); // => 0
  */
-function modeSorted(sorted /*: Array<number> */)/*:number*/ {
-
+function modeSorted(sorted /*: Array<number> */) /*:number*/ {
     // Handle edge cases:
     // The mode of an empty list is undefined
     if (sorted.length === 0) {
-        throw new Error('mode requires at least one data point');
+        throw new Error("mode requires at least one data point");
     } else if (sorted.length === 1) {
         return sorted[0];
     }
@@ -53,9 +52,11 @@ function modeSorted(sorted /*: Array<number> */)/*:number*/ {
             }
             seenThis = 1;
             last = sorted[i];
-        // if this isn't a new number, it's one more occurrence of
-        // the potential mode
-        } else { seenThis++; }
+            // if this isn't a new number, it's one more occurrence of
+            // the potential mode
+        } else {
+            seenThis++;
+        }
     }
     return value;
 }

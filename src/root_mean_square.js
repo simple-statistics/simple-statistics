@@ -14,9 +14,9 @@
  * @example
  * rootMeanSquare([-1, 1, -1, 1]); // => 1
  */
-function rootMeanSquare(x /*: Array<number> */)/*:number*/ {
+function rootMeanSquare(x /*: Array<number> */) /*:number*/ {
     if (x.length === 0) {
-        throw new Error('rootMeanSquare requires at least one data point');
+        throw new Error("rootMeanSquare requires at least one data point");
     }
 
     var sumOfSquares = 0;

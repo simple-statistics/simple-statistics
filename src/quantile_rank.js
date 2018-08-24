@@ -1,7 +1,7 @@
 /* @flow */
 
-import numericSort from './numeric_sort';
-import quantileRankSorted from './quantile_rank_sorted';
+import numericSort from "./numeric_sort";
+import quantileRankSorted from "./quantile_rank_sorted";
 
 /**
  * This function returns the quantile in which one would find the given value in
@@ -19,8 +19,8 @@ import quantileRankSorted from './quantile_rank_sorted';
  */
 function quantileRank(
     x /*: Array<number> */,
-    value /*: number */)/*: number */ {
-
+    value /*: number */
+) /*: number */ {
     // Cloning and sorting the array
     var sortedCopy = numericSort(x);
 

@@ -1,6 +1,6 @@
 /* @flow */
 
-import combineMeans from './combine_means';
+import combineMeans from "./combine_means";
 
 /**
  * When combining two lists of values for which one already knows the variances,
@@ -24,17 +24,18 @@ import combineMeans from './combine_means';
 function combineVariances(
     variance1 /*: number*/,
     mean1 /*: number*/,
-    n1/*: number */,
+    n1 /*: number */,
     variance2 /*: number*/,
     mean2 /*: number*/,
-    n2/*: number */)/*: number */ {
-
+    n2 /*: number */
+) /*: number */ {
     var newMean = combineMeans(mean1, n1, mean2, n2);
 
     return (
-        n1 * (variance1 + Math.pow(mean1 - newMean, 2)) +
-        n2 * (variance2 + Math.pow(mean2 - newMean, 2))
-    ) / (n1 + n2);
+        (n1 * (variance1 + Math.pow(mean1 - newMean, 2)) +
+            n2 * (variance2 + Math.pow(mean2 - newMean, 2))) /
+        (n1 + n2)
+    );
 }
 
 export default combineVariances;
