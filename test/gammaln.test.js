@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
-var test = require("tap").test,
-    ss = require("../");
+const test = require("tap").test;
+const ss = require("../");
 
 test("gammaln", function(t) {
     t.test("gammaln for positive real float should be correct", function(t) {

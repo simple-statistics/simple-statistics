@@ -29,8 +29,8 @@ function bisect(
     if (typeof func !== "function")
         throw new TypeError("func must be a function");
 
-    for (var i = 0; i < maxIterations; i++) {
-        var output = (start + end) / 2;
+    for (let i = 0; i < maxIterations; i++) {
+        const output = (start + end) / 2;
 
         if (
             func(output) === 0 ||

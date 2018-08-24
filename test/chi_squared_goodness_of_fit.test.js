@@ -1,11 +1,11 @@
 /* eslint no-shadow: 0 */
 
-var test = require("tap").test;
-var ss = require("../");
+const test = require("tap").test;
+const ss = require("../");
 
 // Data from Poisson goodness-of-fit example 10-19 in William W. Hines & Douglas C. Montgomery,
 // "Probability and Statistics in Engineering and Management Science", Wiley (1980).
-var data1019 = [
+const data1019 = [
     0,
     0,
     0,

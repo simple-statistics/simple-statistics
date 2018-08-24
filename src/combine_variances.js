@@ -29,7 +29,7 @@ function combineVariances(
     mean2 /*: number*/,
     n2 /*: number */
 ) /*: number */ {
-    var newMean = combineMeans(mean1, n1, mean2, n2);
+    const newMean = combineMeans(mean1, n1, mean2, n2);
 
     return (
         (n1 * (variance1 + Math.pow(mean1 - newMean, 2)) +

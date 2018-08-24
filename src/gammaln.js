@@ -1,7 +1,7 @@
 /* @flow */
 
 // Define series coefficients
-var COEFFICIENTS = [
+const COEFFICIENTS = [
     0.99999999999999709182,
     57.156235665862923517,
     -59.597960355475491248,
@@ -19,8 +19,8 @@ var COEFFICIENTS = [
     0.36899182659531622704e-5
 ];
 
-var g = 607 / 128;
-var LOGSQRT2PI = Math.log(Math.sqrt(2 * Math.PI));
+const g = 607 / 128;
+const LOGSQRT2PI = Math.log(Math.sqrt(2 * Math.PI));
 
 /**
  * Compute the logarithm of the [gamma function](https://en.wikipedia.org/wiki/Gamma_function) of a value using Lanczos' approximation.
@@ -45,13 +45,13 @@ function gammaln(n /*: number */) /*: number */ {
     n--;
 
     // Create series approximation
-    var a = COEFFICIENTS[0];
+    let a = COEFFICIENTS[0];
 
-    for (var i = 1; i < 15; i++) {
+    for (let i = 1; i < 15; i++) {
         a += COEFFICIENTS[i] / (n + i);
     }
 
-    var tmp = g + 0.5 + n;
+    const tmp = g + 0.5 + n;
 
     // Return natural logarithm of gamma(n)
     return LOGSQRT2PI + Math.log(a) - tmp + (n + 0.5) * Math.log(tmp);

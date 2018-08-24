@@ -38,12 +38,12 @@ function gamma(n /*: number */) /*: number */ {
         return Math.PI / (Math.sin(Math.PI * -n) * gamma(-n));
     } else {
         // Nemes' expansion approximation
-        var seriesCoefficient =
+        const seriesCoefficient =
             Math.pow(n / Math.E, n) * Math.sqrt(2 * Math.PI * (n + 1 / 6));
 
-        var seriesDenom = n + 1 / 4;
+        const seriesDenom = n + 1 / 4;
 
-        var seriesExpansion =
+        const seriesExpansion =
             1 +
             1 / 144 / Math.pow(seriesDenom, 2) -
             1 / 12960 / Math.pow(seriesDenom, 3) -

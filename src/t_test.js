@@ -25,13 +25,13 @@ function tTest(
     expectedValue /*: number */
 ) /*:number*/ {
     // The mean of the sample
-    var sampleMean = mean(x);
+    const sampleMean = mean(x);
 
     // The standard deviation of the sample
-    var sd = standardDeviation(x);
+    const sd = standardDeviation(x);
 
     // Square root the length of the sample
-    var rootN = Math.sqrt(x.length);
+    const rootN = Math.sqrt(x.length);
 
     // returning the t value
     return (sampleMean - expectedValue) / (sd / rootN);

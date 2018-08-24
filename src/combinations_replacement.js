@@ -16,9 +16,9 @@ function combinationsReplacement(
     x /*: Array<any> */,
     k /*: number */
 ) /*: Array<Array<any>> */ {
-    var combinationList = [];
+    const combinationList = [];
 
-    for (var i = 0; i < x.length; i++) {
+    for (let i = 0; i < x.length; i++) {
         if (k === 1) {
             // If we're requested to find only one element, we don't need
             // to recurse: just push `x[i]` onto the list of combinations.
@@ -31,12 +31,12 @@ function combinationsReplacement(
             // bringing `k` back up to your requested level.
             // This recursion may go many levels deep, since it only stops once
             // k=1.
-            var subsetCombinations = combinationsReplacement(
+            const subsetCombinations = combinationsReplacement(
                 x.slice(i, x.length),
                 k - 1
             );
 
-            for (var j = 0; j < subsetCombinations.length; j++) {
+            for (let j = 0; j < subsetCombinations.length; j++) {
                 combinationList.push([x[i]].concat(subsetCombinations[j]));
             }
         }

@@ -1,11 +1,11 @@
 /* eslint no-shadow: 0 */
 
-var test = require("tap").test;
-var ss = require("../");
+const test = require("tap").test;
+const ss = require("../");
 
 test("standardNormalTable", function(t) {
     test("all entries are numeric", function(t) {
-        for (var i = 0; i < ss.standardNormalTable.length; i++) {
+        for (let i = 0; i < ss.standardNormalTable.length; i++) {
             if (
                 typeof ss.standardNormalTable[i] !== "number" ||
                 ss.standardNormalTable[i] < 0 ||

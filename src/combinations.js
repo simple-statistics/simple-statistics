@@ -15,11 +15,11 @@ function combinations(
     x /*: Array<any> */,
     k /*: number */
 ) /*: Array<Array<any>> */ {
-    var i;
-    var subI;
-    var combinationList = [];
-    var subsetCombinations;
-    var next;
+    let i;
+    let subI;
+    const combinationList = [];
+    let subsetCombinations;
+    let next;
 
     for (i = 0; i < x.length; i++) {
         if (k === 1) {

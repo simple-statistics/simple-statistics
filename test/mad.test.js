@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
-var test = require("tap").test;
-var ss = require("../");
+const test = require("tap").test;
+const ss = require("../");
 
 test("median absolute deviation (mad)", function(t) {
     t.test("median absolute deviation of an example on wikipedia", function(t) {

@@ -18,9 +18,9 @@ function sampleCorrelation(
     x /*: Array<number> */,
     y /*: Array<number> */
 ) /*:number*/ {
-    var cov = sampleCovariance(x, y),
-        xstd = sampleStandardDeviation(x),
-        ystd = sampleStandardDeviation(y);
+    const cov = sampleCovariance(x, y);
+    const xstd = sampleStandardDeviation(x);
+    const ystd = sampleStandardDeviation(y);
 
     return cov / xstd / ystd;
 }

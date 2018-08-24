@@ -22,7 +22,7 @@ function chunk(
     chunkSize /*:number*/
 ) /*:?Array<Array<any>>*/ {
     // a list of result chunks, as arrays in an array
-    var output = [];
+    const output = [];
 
     // `chunkSize` must be zero or higher - otherwise the loop below,
     // in which we call `start += chunkSize`, will loop infinitely.
@@ -38,7 +38,7 @@ function chunk(
 
     // `start` is the index at which `.slice` will start selecting
     // new array elements
-    for (var start = 0; start < x.length; start += chunkSize) {
+    for (let start = 0; start < x.length; start += chunkSize) {
         // for each chunk, slice that part of the array and add it
         // to the output. The `.slice` function does not change
         // the original array.

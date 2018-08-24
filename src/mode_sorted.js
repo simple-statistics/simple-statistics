@@ -28,7 +28,7 @@ function modeSorted(sorted /*: Array<number> */) /*:number*/ {
     // This assumes it is dealing with an array of size > 1, since size
     // 0 and 1 are handled immediately. Hence it starts at index 1 in the
     // array.
-    var last = sorted[0],
+    let last = sorted[0],
         // store the mode as we find new modes
         value = NaN,
         // store how many times we've seen the mode
@@ -41,7 +41,7 @@ function modeSorted(sorted /*: Array<number> */) /*:number*/ {
     // the highest number that occurs in the sequence. the last iteration
     // compares sorted[i], which is undefined, to the highest number
     // in the series
-    for (var i = 1; i < sorted.length + 1; i++) {
+    for (let i = 1; i < sorted.length + 1; i++) {
         // we're seeing a new number pass by
         if (sorted[i] !== last) {
             // the last number is the new mode since we saw it more

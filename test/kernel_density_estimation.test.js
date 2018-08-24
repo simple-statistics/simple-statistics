@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
-var test = require("tap").test;
-var ss = require("../");
+const test = require("tap").test;
+const ss = require("../");
 
 // Data generated in R
 // sample:
@@ -11,7 +11,7 @@ var ss = require("../");
 // density:
 // d <- density(X, from=-3, to=3, n=7, bw="nrd")
 // paste(paste("[", d$x, ", ", d$y, "]", sep=""), collapse=", ")
-var normallyDistributed = {
+const normallyDistributed = {
     sample: [
         -1.85884822191703,
         0.602520739129486,
@@ -77,11 +77,11 @@ var normallyDistributed = {
 
 test("kernel density estimation", function(t) {
     t.test("default kernel and bandwidth", function(t) {
-        var kde = ss.kernelDensityEstimation(normallyDistributed.sample);
-        for (var i = 0; i < normallyDistributed.density.length; i++) {
-            var x = normallyDistributed.density[i][0];
-            var expected = normallyDistributed.density[i][1];
-            var actual = kde(x);
+        const kde = ss.kernelDensityEstimation(normallyDistributed.sample);
+        for (let i = 0; i < normallyDistributed.density.length; i++) {
+            const x = normallyDistributed.density[i][0];
+            const expected = normallyDistributed.density[i][1];
+            const actual = kde(x);
             t.ok(
                 Math.abs(actual - expected) / expected < 0.1,
                 "density(" + x + ") = " + actual + " != " + expected

@@ -28,10 +28,10 @@ function binomialDistribution(
     // `cumulativeProbability_of_x`, as well as the calculated mean &
     // variance. We iterate until the `cumulativeProbability_of_x` is
     // within `epsilon` of 1.0.
-    var x = 0,
-        cumulativeProbability = 0,
-        cells = [],
-        binomialCoefficient = 1;
+    let x = 0;
+    let cumulativeProbability = 0;
+    const cells = [];
+    let binomialCoefficient = 1;
 
     // This algorithm iterates through each potential outcome,
     // until the `cumulativeProbability` is very close to 1, at

@@ -28,23 +28,23 @@ function quickselect(
     while (right > left) {
         // 600 and 0.5 are arbitrary constants chosen in the original paper to minimize execution time
         if (right - left > 600) {
-            var n = right - left + 1;
-            var m = k - left + 1;
-            var z = Math.log(n);
-            var s = 0.5 * Math.exp((2 * z) / 3);
-            var sd = 0.5 * Math.sqrt((z * s * (n - s)) / n);
+            const n = right - left + 1;
+            const m = k - left + 1;
+            const z = Math.log(n);
+            const s = 0.5 * Math.exp((2 * z) / 3);
+            let sd = 0.5 * Math.sqrt((z * s * (n - s)) / n);
             if (m - n / 2 < 0) sd *= -1;
-            var newLeft = Math.max(left, Math.floor(k - (m * s) / n + sd));
-            var newRight = Math.min(
+            const newLeft = Math.max(left, Math.floor(k - (m * s) / n + sd));
+            const newRight = Math.min(
                 right,
                 Math.floor(k + ((n - m) * s) / n + sd)
             );
             quickselect(arr, k, newLeft, newRight);
         }
 
-        var t = arr[k];
-        var i = left;
-        var j = right;
+        const t = arr[k];
+        let i = left;
+        let j = right;
 
         swap(arr, left, k);
         if (arr[right] > t) swap(arr, left, right);
@@ -69,7 +69,7 @@ function quickselect(
 }
 
 function swap(arr, i, j) {
-    var tmp = arr[i];
+    const tmp = arr[i];
     arr[i] = arr[j];
     arr[j] = tmp;
 }

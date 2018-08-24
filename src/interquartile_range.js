@@ -17,8 +17,8 @@ import quantile from "./quantile";
 function interquartileRange(x /*: Array<number> */) {
     // Interquartile range is the span between the upper quartile,
     // at `0.75`, and lower quartile, `0.25`
-    var q1 = quantile(x, 0.75),
-        q2 = quantile(x, 0.25);
+    const q1 = quantile(x, 0.75);
+    const q2 = quantile(x, 0.25);
 
     if (typeof q1 === "number" && typeof q2 === "number") {
         return q1 - q2;

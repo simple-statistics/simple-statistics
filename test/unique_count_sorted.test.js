@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
-var test = require("tap").test;
-var uniqueCountSorted = require("../").uniqueCountSorted;
+const test = require("tap").test;
+const uniqueCountSorted = require("../").uniqueCountSorted;
 
 test("uniqueCountSorted", function(t) {
     t.equal(uniqueCountSorted([]), 0);

@@ -22,13 +22,13 @@ function poissonDistribution(lambda /*: number */) /*: ?number[] */ {
     }
 
     // our current place in the distribution
-    var x = 0,
-        // and we keep track of the current cumulative probability, in
-        // order to know when to stop calculating chances.
-        cumulativeProbability = 0,
-        // the calculated cells to be returned
-        cells = [],
-        factorialX = 1;
+    let x = 0;
+    // and we keep track of the current cumulative probability, in
+    // order to know when to stop calculating chances.
+    let cumulativeProbability = 0;
+    // the calculated cells to be returned
+    const cells = [];
+    let factorialX = 1;
 
     // This algorithm iterates through each potential outcome,
     // until the `cumulativeProbability` is very close to 1, at

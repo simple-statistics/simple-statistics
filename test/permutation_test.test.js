@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
-var test = require("tap").test,
-    ss = require("../");
+const test = require("tap").test;
+const ss = require("../");
 
 test("permutation test", function(t) {
     t.test(

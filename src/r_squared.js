@@ -25,26 +25,25 @@ function rSquared(
     // Compute the average y value for the actual
     // data set in order to compute the
     // _total sum of squares_
-    var sum = 0,
-        average;
-    for (var i = 0; i < x.length; i++) {
+    let sum = 0;
+    for (let i = 0; i < x.length; i++) {
         sum += x[i][1];
     }
-    average = sum / x.length;
+    const average = sum / x.length;
 
     // Compute the total sum of squares - the
     // squared difference between each point
     // and the average of all points.
-    var sumOfSquares = 0;
-    for (var j = 0; j < x.length; j++) {
+    let sumOfSquares = 0;
+    for (let j = 0; j < x.length; j++) {
         sumOfSquares += Math.pow(average - x[j][1], 2);
     }
 
     // Finally estimate the error: the squared
     // difference between the estimate and the actual data
     // value at each point.
-    var err = 0;
-    for (var k = 0; k < x.length; k++) {
+    let err = 0;
+    for (let k = 0; k < x.length; k++) {
         err += Math.pow(x[k][1] - func(x[k][0]), 2);
     }
 

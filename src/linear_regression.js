@@ -15,11 +15,11 @@
 function linearRegression(
     data /*: Array<Array<number>> */
 ) /*: { m: number, b: number } */ {
-    var m, b;
+    let m, b;
 
     // Store data length in a local variable to reduce
     // repeated object property lookups
-    var dataLength = data.length;
+    const dataLength = data.length;
 
     //if there's only one point, arbitrarily choose a slope of 0
     //and a y-intercept of whatever the y of the initial point is
@@ -29,21 +29,21 @@ function linearRegression(
     } else {
         // Initialize our sums and scope the `m` and `b`
         // variables that define the line.
-        var sumX = 0,
+        let sumX = 0,
             sumY = 0,
             sumXX = 0,
             sumXY = 0;
 
         // Use local variables to grab point values
         // with minimal object property lookups
-        var point, x, y;
+        let point, x, y;
 
         // Gather the sum of all x values, the sum of all
         // y values, and the sum of x^2 and (x*y) for each
         // value.
         //
         // In math notation, these would be SS_x, SS_y, SS_xx, and SS_xy
-        for (var i = 0; i < dataLength; i++) {
+        for (let i = 0; i < dataLength; i++) {
             point = data[i];
             x = point[0];
             y = point[1];

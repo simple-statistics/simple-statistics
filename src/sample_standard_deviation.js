@@ -14,7 +14,7 @@ import sampleVariance from "./sample_variance";
  */
 function sampleStandardDeviation(x /*:Array<number>*/) /*:number*/ {
     // The standard deviation of no numbers is null
-    var sampleVarianceX = sampleVariance(x);
+    const sampleVarianceX = sampleVariance(x);
     return Math.sqrt(sampleVarianceX);
 }
 

@@ -18,18 +18,18 @@ import mean from "./mean";
  * sampleKurtosis([1, 2, 2, 3, 5]); // => 1.4555765595463122
  */
 function sampleKurtosis(x /*: Array<number> */) /*:number*/ {
-    var n = x.length;
+    const n = x.length;
 
     if (n < 4) {
         throw new Error("sampleKurtosis requires at least four data points");
     }
 
-    var meanValue = mean(x);
-    var tempValue;
-    var secondCentralMoment = 0;
-    var fourthCentralMoment = 0;
+    const meanValue = mean(x);
+    let tempValue;
+    let secondCentralMoment = 0;
+    let fourthCentralMoment = 0;
 
-    for (var i = 0; i < n; i++) {
+    for (let i = 0; i < n; i++) {
         tempValue = x[i] - meanValue;
         secondCentralMoment += tempValue * tempValue;
         fourthCentralMoment += tempValue * tempValue * tempValue * tempValue;

@@ -1,9 +1,9 @@
 /* eslint no-shadow: 0 */
 
-var test = require("tap").test;
-var Random = require("random-js");
-var random = new Random(Random.engines.mt19937().seed(0));
-var ss = require("../");
+const test = require("tap").test;
+const Random = require("random-js");
+const random = new Random(Random.engines.mt19937().seed(0));
+const ss = require("../");
 
 function rng() {
     return random.real(0, 1);

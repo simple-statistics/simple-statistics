@@ -41,9 +41,9 @@ function geometricMean(x /*: Array<number> */) /*: number */ {
     }
 
     // the starting value.
-    var value = 1;
+    let value = 1;
 
-    for (var i = 0; i < x.length; i++) {
+    for (let i = 0; i < x.length; i++) {
         // the geometric mean is only valid for positive numbers
         if (x[i] <= 0) {
             throw new Error(

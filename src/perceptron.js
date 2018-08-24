@@ -46,8 +46,8 @@ PerceptronModel.prototype.predict = function(features) {
 
     // Calculate the sum of features times weights,
     // with the bias added (implicitly times one).
-    var score = 0;
-    for (var i = 0; i < this.weights.length; i++) {
+    let score = 0;
+    for (let i = 0; i < this.weights.length; i++) {
         score += this.weights[i] * features[i];
     }
     score += this.bias;
@@ -83,11 +83,11 @@ PerceptronModel.prototype.train = function(features, label) {
         this.bias = 1;
     }
     // Make a prediction based on current weights.
-    var prediction = this.predict(features);
+    const prediction = this.predict(features);
     // Update the weights if the prediction is wrong.
     if (prediction !== label) {
-        var gradient = label - prediction;
-        for (var i = 0; i < this.weights.length; i++) {
+        const gradient = label - prediction;
+        for (let i = 0; i < this.weights.length; i++) {
             this.weights[i] += gradient * features[i];
         }
         this.bias += gradient;

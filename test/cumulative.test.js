@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
-var test = require("tap").test;
-var ss = require("../");
+const test = require("tap").test;
+const ss = require("../");
 
 test("cumulativeStdNormalProbability", function(t) {
     // https://en.wikipedia.org/wiki/Standard_normal_table#Examples_of_use
@@ -10,7 +10,7 @@ test("cumulativeStdNormalProbability", function(t) {
         t.end();
     });
     t.test("nondecreasing", function(t) {
-        for (var i = 0; i < ss.standardNormalTable.length; i++) {
+        for (let i = 0; i < ss.standardNormalTable.length; i++) {
             if (
                 !ss.cumulativeStdNormalProbability(i / 100) >=
                 ss.cumulativeStdNormalProbability((i - 1) / 100)
@@ -21,7 +21,7 @@ test("cumulativeStdNormalProbability", function(t) {
         t.end();
     });
     t.test("matches errorFunction", function(t) {
-        for (var i = 0; i < ss.standardNormalTable.length; i++) {
+        for (let i = 0; i < ss.standardNormalTable.length; i++) {
             if (
                 !(
                     Math.abs(
@@ -47,7 +47,7 @@ test("cumulativeStdNormalProbability", function(t) {
         t.end();
     });
     t.test("inverse", function(t) {
-        for (var i = 0; i <= 1 + ss.epsilon; i += 0.01) {
+        for (let i = 0; i <= 1 + ss.epsilon; i += 0.01) {
             t.equal(
                 Math.abs(ss.cumulativeStdNormalProbability(ss.probit(i)) - i) <
                     21 * ss.epsilon,

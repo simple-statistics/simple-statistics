@@ -15,9 +15,9 @@
  * uniqueCountSorted([1, 1, 1]); // => 1
  */
 function uniqueCountSorted(x /*: Array<any>*/) /*: number */ {
-    var uniqueValueCount = 0,
+    let uniqueValueCount = 0,
         lastSeenValue;
-    for (var i = 0; i < x.length; i++) {
+    for (let i = 0; i < x.length; i++) {
         if (i === 0 || x[i] !== lastSeenValue) {
             lastSeenValue = x[i];
             uniqueValueCount++;

@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
-var test = require("tap").test;
-var ss = require("../");
+const test = require("tap").test;
+const ss = require("../");
 
 test("sumNthPowerDeviations", function(t) {
     t.equal(ss.sumNthPowerDeviations([0, 0, 0], 2), 0);

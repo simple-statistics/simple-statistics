@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
-var test = require("tap").test,
-    ss = require("../");
+const test = require("tap").test;
+const ss = require("../");
 
 test("gamma", function(t) {
     t.test("gamma for integer should return whole number", function(t) {

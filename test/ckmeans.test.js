@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
-var test = require("tap").test;
-var cK = require("../").ckmeans;
+const test = require("tap").test;
+const cK = require("../").ckmeans;
 
 test("C k-means", function(t) {
     t.ok(cK, "exports fn");
@@ -14,8 +14,8 @@ test("C k-means", function(t) {
 
     t.deepEqual(cK([1, 1, 1, 1], 1), [[1, 1, 1, 1]], "same-value case");
 
-    var exampleInput = [-1, 2, -1, 2, 4, 5, 6, -1, 2, -1];
-    var example = cK(exampleInput, 3);
+    const exampleInput = [-1, 2, -1, 2, 4, 5, 6, -1, 2, -1];
+    const example = cK(exampleInput, 3);
 
     t.deepEqual(example, [[-1, -1, -1, -1], [2, 2, 2], [4, 5, 6]]);
     t.deepEqual(cK([1, 2, 3], 3), [[1], [2], [3]]);

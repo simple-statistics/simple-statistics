@@ -25,14 +25,14 @@ function sum(x /*: Array<number> */) /*: number */ {
     }
 
     // Initializing the sum as the first number in the array
-    var sum = x[0];
+    let sum = x[0];
 
     // Keeping track of the floating-point error correction
-    var correction = 0;
+    let correction = 0;
 
-    var transition;
+    let transition;
 
-    for (var i = 1; i < x.length; i++) {
+    for (let i = 1; i < x.length; i++) {
         transition = sum + x[i];
 
         // Here we need to update the correction in a different fashion

@@ -24,9 +24,9 @@ function harmonicMean(x /*: Array<number> */) /*: number */ {
         throw new Error("harmonicMean requires at least one data point");
     }
 
-    var reciprocalSum = 0;
+    let reciprocalSum = 0;
 
-    for (var i = 0; i < x.length; i++) {
+    for (let i = 0; i < x.length; i++) {
         // the harmonic mean is only valid for positive numbers
         if (x[i] <= 0) {
             throw new Error(

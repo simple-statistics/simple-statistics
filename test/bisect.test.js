@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
-var test = require("tap").test;
-var bisect = require("../").bisect;
+const test = require("tap").test;
+const bisect = require("../").bisect;
 
 test("bisect", function(t) {
     t.test("can find root of sin and cos", function(t) {

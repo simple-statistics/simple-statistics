@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
-var test = require("tap").test;
-var sign = require("../").sign;
+const test = require("tap").test;
+const sign = require("../").sign;
 
 test("bisect", function(t) {
     t.test("can find sign of number", function(t) {
