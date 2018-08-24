@@ -10,7 +10,7 @@
  * @example
  * extentSorted([-100, -10, 1, 2, 5]); // => [-100, 5]
  */
-function extentSorted(x /*: Array<number> */)/*:Array<number>*/ {
+function extentSorted(x /*: Array<number> */) /*:Array<number>*/ {
     return [x[0], x[x.length - 1]];
 }
 

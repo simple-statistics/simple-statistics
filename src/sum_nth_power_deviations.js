@@ -1,6 +1,6 @@
 /* @flow */
 
-import mean from './mean';
+import mean from "./mean";
 
 /**
  * The sum of deviations to the Nth power.
@@ -17,7 +17,10 @@ import mean from './mean';
  * // deviations, we can calculate that with sumNthPowerDeviations:
  * sumNthPowerDeviations(input, 2) / input.length;
  */
-function sumNthPowerDeviations(x/*: Array<number> */, n/*: number */)/*: number */ {
+function sumNthPowerDeviations(
+    x /*: Array<number> */,
+    n /*: number */
+) /*: number */ {
     var meanValue = mean(x),
         sum = 0,
         tempValue,

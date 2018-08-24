@@ -16,8 +16,8 @@
  */
 function quantileRankSorted(
     x /*: Array<number> */,
-    value /*: number */)/*: number */ {
-
+    value /*: number */
+) /*: number */ {
     // Value is lesser than any value in the array
     if (value < x[0]) {
         return 0;
@@ -65,8 +65,7 @@ function lowerBound(x, value) {
 
         if (value <= x[mid]) {
             hi = mid;
-        }
-        else {
+        } else {
             lo = -~mid;
         }
     }
@@ -84,8 +83,7 @@ function upperBound(x, value) {
 
         if (value >= x[mid]) {
             lo = -~mid;
-        }
-        else {
+        } else {
             hi = mid;
         }
     }

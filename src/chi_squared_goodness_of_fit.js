@@ -1,7 +1,7 @@
 /* @flow */
 
-import chiSquaredDistributionTable from './chi_squared_distribution_table';
-import mean from './mean';
+import chiSquaredDistributionTable from "./chi_squared_distribution_table";
+import mean from "./mean";
 
 /**
  * The [χ2 (Chi-Squared) Goodness-of-Fit Test](http://en.wikipedia.org/wiki/Goodness_of_fit#Pearson.27s_chi-squared_test)
@@ -31,9 +31,10 @@ import mean from './mean';
  * ss.chiSquaredGoodnessOfFit(data1019, ss.poissonDistribution, 0.05); //= false
  */
 function chiSquaredGoodnessOfFit(
-    data/*: Array<number> */,
-    distributionType/*: Function */,
-    significance/*: number */)/*: boolean */ {
+    data /*: Array<number> */,
+    distributionType /*: Function */,
+    significance /*: number */
+) /*: boolean */ {
     // Estimate from the sample data, a weighted mean.
     var inputMean = mean(data),
         // Calculated value of the χ2 statistic.
@@ -93,8 +94,8 @@ function chiSquaredGoodnessOfFit(
     // Iterate through the squared differences between observed & expected
     // frequencies, accumulating the `chiSquared` statistic.
     for (k = 0; k < observedFrequencies.length; k++) {
-        chiSquared += Math.pow(
-            observedFrequencies[k] - expectedFrequencies[k], 2) /
+        chiSquared +=
+            Math.pow(observedFrequencies[k] - expectedFrequencies[k], 2) /
             expectedFrequencies[k];
     }
 
@@ -102,7 +103,9 @@ function chiSquaredGoodnessOfFit(
     // `chiSquaredDistributionTable` in order to
     // accept or reject the goodness-of-fit of the hypothesized distribution.
     degreesOfFreedom = observedFrequencies.length - c - 1;
-    return chiSquaredDistributionTable[degreesOfFreedom][significance] < chiSquared;
+    return (
+        chiSquaredDistributionTable[degreesOfFreedom][significance] < chiSquared
+    );
 }
 
 export default chiSquaredGoodnessOfFit;

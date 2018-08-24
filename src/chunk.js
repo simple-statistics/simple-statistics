@@ -17,8 +17,10 @@
  * chunk([1, 2, 3, 4, 5, 6], 2);
  * // => [[1, 2], [3, 4], [5, 6]]
  */
-function chunk(x/*:Array<any>*/, chunkSize/*:number*/)/*:?Array<Array<any>>*/ {
-
+function chunk(
+    x /*:Array<any>*/,
+    chunkSize /*:number*/
+) /*:?Array<Array<any>>*/ {
     // a list of result chunks, as arrays in an array
     var output = [];
 
@@ -27,17 +29,16 @@ function chunk(x/*:Array<any>*/, chunkSize/*:number*/)/*:?Array<Array<any>>*/ {
     // So, we'll detect and throw in that case to indicate
     // invalid input.
     if (chunkSize < 1) {
-        throw new Error('chunk size must be a positive number');
+        throw new Error("chunk size must be a positive number");
     }
 
     if (Math.floor(chunkSize) !== chunkSize) {
-        throw new Error('chunk size must be an integer');
+        throw new Error("chunk size must be an integer");
     }
 
     // `start` is the index at which `.slice` will start selecting
     // new array elements
     for (var start = 0; start < x.length; start += chunkSize) {
-
         // for each chunk, slice that part of the array and add it
         // to the output. The `.slice` function does not change
         // the original array.

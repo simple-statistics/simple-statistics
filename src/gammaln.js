@@ -11,10 +11,11 @@ var COEFFICIENTS = [
     0.46523628927048575665e-4,
     -0.98374475304879564677e-4,
     0.15808870322491248884e-3,
-    -0.21026444172410488319e-3, 0.21743961811521264320e-3,
+    -0.21026444172410488319e-3,
+    0.2174396181152126432e-3,
     -0.16431810653676389022e-3,
     0.84418223983852743293e-4,
-    -0.26190838401581408670e-4,
+    -0.2619083840158140867e-4,
     0.36899182659531622704e-5
 ];
 
@@ -32,27 +33,26 @@ var LOGSQRT2PI = Math.log(Math.sqrt(2 * Math.PI));
  *
  * @example
  * gammaln(500); // 2605.1158503617335
- * gammaln(2.4); // 0.21685932244884043 
+ * gammaln(2.4); // 0.21685932244884043
  */
-function gammaln(n /*: number */ ) /*: number */ {
-
+function gammaln(n /*: number */) /*: number */ {
     // Return infinity if value not in domain
     if (n <= 0) {
         return Infinity;
     }
-    
+
     // Decrement n, because approximation is defined for n - 1
     n--;
-    
+
     // Create series approximation
     var a = COEFFICIENTS[0];
-    
+
     for (var i = 1; i < 15; i++) {
         a += COEFFICIENTS[i] / (n + i);
     }
-    
+
     var tmp = g + 0.5 + n;
-    
+
     // Return natural logarithm of gamma(n)
     return LOGSQRT2PI + Math.log(a) - tmp + (n + 0.5) * Math.log(tmp);
 }

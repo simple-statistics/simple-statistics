@@ -11,7 +11,7 @@
  * @example
  * sumSimple([1, 2, 3]); // => 6
  */
-function sumSimple(x/*: Array<number> */)/*: number */ {
+function sumSimple(x /*: Array<number> */) /*: number */ {
     var value = 0;
     for (var i = 0; i < x.length; i++) {
         value += x[i];

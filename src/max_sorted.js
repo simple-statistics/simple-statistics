@@ -10,7 +10,7 @@
  * @example
  * maxSorted([-100, -10, 1, 2, 5]); // => 5
  */
-function maxSorted(x /*: Array<number> */)/*:number*/ {
+function maxSorted(x /*: Array<number> */) /*:number*/ {
     return x[x.length - 1];
 }
 

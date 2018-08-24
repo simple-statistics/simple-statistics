@@ -13,9 +13,8 @@
  * // => 4
  */
 function max(x /*: Array<number> */) /*:number*/ {
-
     if (x.length === 0) {
-        throw new Error('max requires at least one data point');
+        throw new Error("max requires at least one data point");
     }
 
     var value = x[0];

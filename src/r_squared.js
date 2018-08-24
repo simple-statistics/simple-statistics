@@ -14,13 +14,19 @@
  * var regressionLine = linearRegressionLine(linearRegression(samples));
  * rSquared(samples, regressionLine); // = 1 this line is a perfect fit
  */
-function rSquared(x /*: Array<Array<number>> */, func /*: Function */) /*: number */ {
-    if (x.length < 2) { return 1; }
+function rSquared(
+    x /*: Array<Array<number>> */,
+    func /*: Function */
+) /*: number */ {
+    if (x.length < 2) {
+        return 1;
+    }
 
     // Compute the average y value for the actual
     // data set in order to compute the
     // _total sum of squares_
-    var sum = 0, average;
+    var sum = 0,
+        average;
     for (var i = 0; i < x.length; i++) {
         sum += x[i][1];
     }

@@ -1,6 +1,6 @@
 /* @flow */
 
-import sum from './sum';
+import sum from "./sum";
 
 /**
  * The mean, _also known as average_,
@@ -16,10 +16,10 @@ import sum from './sum';
  * @example
  * mean([0, 10]); // => 5
  */
-function mean(x /*: Array<number> */)/*: number */ {
+function mean(x /*: Array<number> */) /*: number */ {
     // The mean of no numbers is null
     if (x.length === 0) {
-        throw new Error('mean requires at least one data point');
+        throw new Error("mean requires at least one data point");
     }
 
     return sum(x) / x.length;

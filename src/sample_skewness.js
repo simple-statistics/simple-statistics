@@ -1,6 +1,6 @@
 /* @flow */
 
-import mean from './mean';
+import mean from "./mean";
 
 /**
  * [Skewness](http://en.wikipedia.org/wiki/Skewness) is
@@ -19,10 +19,9 @@ import mean from './mean';
  * @example
  * sampleSkewness([2, 4, 6, 3, 1]); // => 0.590128656384365
  */
-function sampleSkewness(x /*: Array<number> */)/*:number*/ {
-
+function sampleSkewness(x /*: Array<number> */) /*:number*/ {
     if (x.length < 3) {
-        throw new Error('sampleSkewness requires at least three data points');
+        throw new Error("sampleSkewness requires at least three data points");
     }
 
     var meanValue = mean(x);
@@ -42,12 +41,14 @@ function sampleSkewness(x /*: Array<number> */)/*:number*/ {
     var besselsCorrection = x.length - 1;
 
     // Find the mean value of that list
-    var theSampleStandardDeviation = Math.sqrt(sumSquaredDeviations / besselsCorrection);
+    var theSampleStandardDeviation = Math.sqrt(
+        sumSquaredDeviations / besselsCorrection
+    );
 
     var n = x.length,
         cubedS = Math.pow(theSampleStandardDeviation, 3);
 
-    return n * sumCubedDeviations / ((n - 1) * (n - 2) * cubedS);
+    return (n * sumCubedDeviations) / ((n - 1) * (n - 2) * cubedS);
 }
 
 export default sampleSkewness;

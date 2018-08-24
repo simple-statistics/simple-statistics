@@ -18,13 +18,15 @@
  * numericSort([3, 2, 1]) // => [1, 2, 3]
  */
 function numericSort(x /*: Array<number> */) /*: Array<number> */ {
-    return x
-        // ensure the array is not changed in-place
-        .slice()
-        // comparator function that treats input as numeric
-        .sort(function(a, b) {
-            return a - b;
-        });
+    return (
+        x
+            // ensure the array is not changed in-place
+            .slice()
+            // comparator function that treats input as numeric
+            .sort(function(a, b) {
+                return a - b;
+            })
+    );
 }
 
 export default numericSort;

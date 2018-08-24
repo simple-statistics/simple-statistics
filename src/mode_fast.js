@@ -23,8 +23,7 @@
  * @example
  * modeFast(['rabbits', 'rabbits', 'squirrels']); // => 'rabbits'
  */
-function modeFast/*::<T>*/(x /*: Array<T> */)/*: ?T */ {
-
+function modeFast /*::<T>*/(x /*: Array<T> */) /*: ?T */ {
     // This index will reflect the incidence of different values, indexing
     // them like
     // { value: count }
@@ -49,7 +48,7 @@ function modeFast/*::<T>*/(x /*: Array<T> */)/*: ?T */ {
     }
 
     if (modeCount === 0) {
-        throw new Error('mode requires at last one data point');
+        throw new Error("mode requires at last one data point");
     }
 
     return mode;

@@ -14,15 +14,15 @@
  */
 function combinationsReplacement(
     x /*: Array<any> */,
-    k /*: number */)/*: Array<Array<any>> */ {
-
+    k /*: number */
+) /*: Array<Array<any>> */ {
     var combinationList = [];
 
     for (var i = 0; i < x.length; i++) {
         if (k === 1) {
             // If we're requested to find only one element, we don't need
             // to recurse: just push `x[i]` onto the list of combinations.
-            combinationList.push([x[i]])
+            combinationList.push([x[i]]);
         } else {
             // Otherwise, recursively find combinations, given `k - 1`. Note that
             // we request `k - 1`, so if you were looking for k=3 combinations, we're
@@ -33,11 +33,11 @@ function combinationsReplacement(
             // k=1.
             var subsetCombinations = combinationsReplacement(
                 x.slice(i, x.length),
-                k - 1);
+                k - 1
+            );
 
             for (var j = 0; j < subsetCombinations.length; j++) {
-                combinationList.push([x[i]]
-                    .concat(subsetCombinations[j]));
+                combinationList.push([x[i]].concat(subsetCombinations[j]));
             }
         }
     }

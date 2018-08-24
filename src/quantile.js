@@ -1,7 +1,7 @@
 /* @flow */
 
-import quantileSorted from './quantile_sorted';
-import quickselect from './quickselect';
+import quantileSorted from "./quantile_sorted";
+import quickselect from "./quickselect";
 
 /**
  * The [quantile](https://en.wikipedia.org/wiki/Quantile):
@@ -24,7 +24,10 @@ import quickselect from './quickselect';
  * @example
  * quantile([3, 6, 7, 8, 8, 9, 10, 13, 15, 16, 20], 0.5); // => 9
  */
-function quantile(x/*: Array<number> */, p/*: Array<number> | number */)/*: Array<number> | number */ {
+function quantile(
+    x /*: Array<number> */,
+    p /*: Array<number> | number */
+) /*: Array<number> | number */ {
     var copy = x.slice();
 
     if (Array.isArray(p)) {
@@ -81,7 +84,7 @@ function compare(a, b) {
     return a - b;
 }
 
-function quantileIndex(len /*: number */, p /*: number */)/*:number*/ {
+function quantileIndex(len /*: number */, p /*: number */) /*:number*/ {
     var idx = len * p;
     if (p === 1) {
         // If p is 1, directly return the last index

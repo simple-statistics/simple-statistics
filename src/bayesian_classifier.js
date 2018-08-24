@@ -73,7 +73,8 @@ BayesianClassifier.prototype.train = function(item, category) {
  */
 BayesianClassifier.prototype.score = function(item) {
     // Initialize an empty array of odds per category.
-    var odds = {}, category;
+    var odds = {},
+        category;
     // Iterate through each key in the item,
     // then iterate through each category that has been used
     // in previous calls to `.train()`
@@ -89,9 +90,10 @@ BayesianClassifier.prototype.score = function(item) {
             // the item to categorize, it counts based on how popular it is
             // versus the whole population.
             if (this.data[category][k]) {
-                odds[category][k + '_' + v] = (this.data[category][k][v] || 0) / this.totalCount;
+                odds[category][k + "_" + v] =
+                    (this.data[category][k][v] || 0) / this.totalCount;
             } else {
-                odds[category][k + '_' + v] = 0;
+                odds[category][k + "_" + v] = 0;
             }
         }
     }

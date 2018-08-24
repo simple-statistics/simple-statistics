@@ -1,16 +1,17 @@
 /* eslint no-shadow: 0 */
 
+var test = require("tap").test;
+var ss = require("../");
 
-var test = require('tap').test;
-var ss = require('../');
-
-test('standardNormalTable', function(t) {
-    test('all entries are numeric', function(t) {
+test("standardNormalTable", function(t) {
+    test("all entries are numeric", function(t) {
         for (var i = 0; i < ss.standardNormalTable.length; i++) {
-            if (typeof ss.standardNormalTable[i] !== 'number' ||
+            if (
+                typeof ss.standardNormalTable[i] !== "number" ||
                 ss.standardNormalTable[i] < 0 ||
-                ss.standardNormalTable[i] > 1) {
-                t.fail('standard normal table value invalid');
+                ss.standardNormalTable[i] > 1
+            ) {
+                t.fail("standard normal table value invalid");
             }
         }
         t.end();

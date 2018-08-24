@@ -12,8 +12,9 @@
  * @example
  * linearRegression([[0, 0], [1, 1]]); // => { m: 1, b: 0 }
  */
-function linearRegression(data/*: Array<Array<number>> */)/*: { m: number, b: number } */ {
-
+function linearRegression(
+    data /*: Array<Array<number>> */
+) /*: { m: number, b: number } */ {
     var m, b;
 
     // Store data length in a local variable to reduce
@@ -28,8 +29,10 @@ function linearRegression(data/*: Array<Array<number>> */)/*: { m: number, b: nu
     } else {
         // Initialize our sums and scope the `m` and `b`
         // variables that define the line.
-        var sumX = 0, sumY = 0,
-            sumXX = 0, sumXY = 0;
+        var sumX = 0,
+            sumY = 0,
+            sumXX = 0,
+            sumXY = 0;
 
         // Use local variables to grab point values
         // with minimal object property lookups
@@ -53,11 +56,12 @@ function linearRegression(data/*: Array<Array<number>> */)/*: { m: number, b: nu
         }
 
         // `m` is the slope of the regression line
-        m = ((dataLength * sumXY) - (sumX * sumY)) /
-            ((dataLength * sumXX) - (sumX * sumX));
+        m =
+            (dataLength * sumXY - sumX * sumY) /
+            (dataLength * sumXX - sumX * sumX);
 
         // `b` is the y-intercept of the line.
-        b = (sumY / dataLength) - ((m * sumX) / dataLength);
+        b = sumY / dataLength - (m * sumX) / dataLength;
     }
 
     // Return both values as an object.
@@ -66,6 +70,5 @@ function linearRegression(data/*: Array<Array<number>> */)/*: { m: number, b: nu
         b: b
     };
 }
-
 
 export default linearRegression;

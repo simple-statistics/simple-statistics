@@ -1,6 +1,6 @@
 /* @flow */
 
-import epsilon from './epsilon';
+import epsilon from "./epsilon";
 
 /**
  * The [Poisson Distribution](http://en.wikipedia.org/wiki/Poisson_distribution)
@@ -15,9 +15,11 @@ import epsilon from './epsilon';
  * @param {number} lambda location poisson distribution
  * @returns {number[]} values of poisson distribution at that point
  */
-function poissonDistribution(lambda/*: number */) /*: ?number[] */ {
+function poissonDistribution(lambda /*: number */) /*: ?number[] */ {
     // Check that lambda is strictly positive
-    if (lambda <= 0) { return undefined; }
+    if (lambda <= 0) {
+        return undefined;
+    }
 
     // our current place in the distribution
     var x = 0,
@@ -37,8 +39,8 @@ function poissonDistribution(lambda/*: number */) /*: ?number[] */ {
         cumulativeProbability += cells[x];
         x++;
         factorialX *= x;
-    // when the cumulativeProbability is nearly 1, we've calculated
-    // the useful range of this distribution
+        // when the cumulativeProbability is nearly 1, we've calculated
+        // the useful range of this distribution
     } while (cumulativeProbability < 1 - epsilon);
 
     return cells;

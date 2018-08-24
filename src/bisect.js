@@ -1,6 +1,6 @@
 /* @flow */
 
-import sign from './sign';
+import sign from "./sign";
 
 /**
  * [Bisection method](https://en.wikipedia.org/wiki/Bisection_method) is a root-finding
@@ -20,18 +20,22 @@ import sign from './sign';
  * bisect(Math.cos,0,4,100,0.003); // => 1.572265625
  */
 function bisect(
-    func/*: (x: any) => number */,
-    start/*: number */,
-    end/*: number */,
-    maxIterations/*: number */,
-    errorTolerance/*: number */)/*:number*/ {
-
-    if (typeof func !== 'function') throw new TypeError('func must be a function');
+    func /*: (x: any) => number */,
+    start /*: number */,
+    end /*: number */,
+    maxIterations /*: number */,
+    errorTolerance /*: number */
+) /*:number*/ {
+    if (typeof func !== "function")
+        throw new TypeError("func must be a function");
 
     for (var i = 0; i < maxIterations; i++) {
         var output = (start + end) / 2;
 
-        if (func(output) === 0 || Math.abs((end - start) / 2) < errorTolerance) {
+        if (
+            func(output) === 0 ||
+            Math.abs((end - start) / 2) < errorTolerance
+        ) {
             return output;
         }
 
@@ -42,7 +46,7 @@ function bisect(
         }
     }
 
-    throw new Error('maximum number of iterations exceeded');
+    throw new Error("maximum number of iterations exceeded");
 }
 
 export default bisect;
