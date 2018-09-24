@@ -74,7 +74,12 @@ function multiQuantileSelect(arr, p) {
         if (r - l <= 1) continue;
 
         const m = Math.floor((l + r) / 2);
-        quantileSelect(arr, indices[m], indices[l], indices[r]);
+        quantileSelect(
+            arr,
+            indices[m],
+            Math.floor(indices[l]),
+            Math.ceil(indices[r])
+        );
 
         stack.push(l, m, m, r);
     }
