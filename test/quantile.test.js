@@ -74,5 +74,22 @@ test("quantile", function(t) {
             t.end();
         }
     );
+
+    t.test(
+        "can get an array of quantiles on a small number of elements",
+        function(t) {
+            const input = [500, 468, 454, 469];
+            t.same(ss.quantile(input, [0.25, 0.5, 0.75]), [461, 468.5, 484.5]);
+            t.same(ss.quantile(input, [0.05, 0.25, 0.5, 0.75, 0.95]), [
+                454,
+                461,
+                468.5,
+                484.5,
+                500
+            ]);
+            t.end();
+        }
+    );
+
     t.end();
 });
