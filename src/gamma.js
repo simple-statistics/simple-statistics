@@ -19,7 +19,7 @@ import factorial from "./factorial";
  * gamma(5); // 24
  */
 function gamma(n /*: number */) /*: number */ {
-    if (isInteger(n)) {
+    if (Number.isInteger(n)) {
         if (n <= 0) {
             // gamma not defined for zero or negative integers
             return NaN;
@@ -54,14 +54,6 @@ function gamma(n /*: number */) /*: number */ {
 
         return seriesCoefficient * seriesExpansion;
     }
-}
-
-function isInteger(value) {
-    return (
-        typeof value === "number" &&
-        isFinite(value) &&
-        Math.floor(value) === value
-    );
 }
 
 export default gamma;
