@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="6.1.1"></a>
+## [6.1.1](https://github.com/simple-statistics/simple-statistics/compare/v6.1.0...v6.1.1) (2018-09-24)
+
+
+### Bug Fixes
+
+* **permutationTest:** Add TypeScript definition for permutationTest ([e7fa9db](https://github.com/simple-statistics/simple-statistics/commit/e7fa9db)), closes [#298](https://github.com/simple-statistics/simple-statistics/issues/298)
+* array quantile on certain kinds of input ([#334](https://github.com/simple-statistics/simple-statistics/issues/334)) ([e9d007e](https://github.com/simple-statistics/simple-statistics/commit/e9d007e))
+
+
+
 <a name="6.1.0"></a>
 # [6.1.0](https://github.com/simple-statistics/simple-statistics/compare/v6.0.1...v6.1.0) (2018-06-23)
 
