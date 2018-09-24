@@ -31,9 +31,9 @@
   },
   "scripts": {
     "release": "standard-version && sh ./scripts/update_website.sh",
-    "test": "microbundle && npm run lint && tap --coverage test/*.test.js --jobs=4 && npm run jsdoctest",
-    "build": "microbundle",
-    "prepublish": "microbundle && ./scripts/update_readme.js",
+    "test": "microbundle --name ss && npm run lint && tap --coverage test/*.test.js --jobs=4 && npm run jsdoctest",
+    "build": "microbundle --name ss",
+    "prepublish": "microbundle --name ss && ./scripts/update_readme.js",
     "prelint": "are-we-flow-yet src && flow check src && tsc",
     "lint": "eslint index.js src test",
     "postlint": "documentation lint src",
