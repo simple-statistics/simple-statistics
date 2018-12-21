@@ -16,7 +16,7 @@
   "devDependencies": {
     "are-we-flow-yet": "^1.1.1",
     "cz-conventional-changelog": "^2.0.0",
-    "documentation": "^8.0.0",
+    "documentation": "^9.1.1",
     "eslint": "^5.0.1",
     "eslint-plugin-prettier": "^3.0.0",
     "flow-bin": "^0.79.1",
