@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * This is a single-layer [Perceptron Classifier](http://en.wikipedia.org/wiki/Perceptron) that takes
  * arrays of numbers and predicts whether they should be classified
@@ -39,7 +37,7 @@ class PerceptronModel {
      * @param {Array<number>} features an array of features as numbers
      * @returns {number} 1 if the score is over 0, otherwise 0
      */
-    predict(features /*: Array<number> */) /*: ?number */ {
+    predict(features) {
         // Only predict if previously trained
         // on the same size feature array(s).
         if (features.length !== this.weights.length) {
@@ -70,7 +68,7 @@ class PerceptronModel {
      * @param {number} label either 0 or 1
      * @returns {PerceptronModel} this
      */
-    train(features /*: Array<number> */, label /*: number */) {
+    train(features, label) {
         // Require that only labels of 0 or 1 are considered.
         if (label !== 0 && label !== 1) {
             return null;

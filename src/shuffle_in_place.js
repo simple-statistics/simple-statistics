@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * A [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
  * in-place - which means that it **will change the order of the original
@@ -17,10 +15,7 @@
  * shuffleInPlace(x);
  * // x is shuffled to a value like [2, 1, 4, 3]
  */
-function shuffleInPlace(
-    x /*: Array<any> */,
-    randomSource /*: ?Function */
-) /*: Array<any> */ {
+function shuffleInPlace(x, randomSource) {
     // a custom random number source can be provided if you want to use
     // a fixed seed or another random number generator, like
     // [random-js](https://www.npmjs.org/package/random-js)

@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * For a sorted input, counting the number of unique values
  * is possible in constant time and constant memory. This is
@@ -14,7 +12,7 @@
  * uniqueCountSorted([1, 2, 3]); // => 3
  * uniqueCountSorted([1, 1, 1]); // => 1
  */
-function uniqueCountSorted(x /*: Array<any>*/) /*: number */ {
+function uniqueCountSorted(x) {
     let uniqueValueCount = 0,
         lastSeenValue;
     for (let i = 0; i < x.length; i++) {

@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * The extent is the lowest & highest number in the array. With a sorted array,
  * the first element in the array is always the lowest while the last element is always the largest, so this calculation
@@ -10,7 +8,7 @@
  * @example
  * extentSorted([-100, -10, 1, 2, 5]); // => [-100, 5]
  */
-function extentSorted(x /*: Array<number> */) /*:Array<number>*/ {
+function extentSorted(x) {
     return [x[0], x[x.length - 1]];
 }
 

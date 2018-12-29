@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * The [Z-Score, or Standard Score](http://en.wikipedia.org/wiki/Standard_score).
  *
@@ -23,11 +21,7 @@
  * @example
  * zScore(78, 80, 5); // => -0.4
  */
-function zScore(
-    x /*:number*/,
-    mean /*:number*/,
-    standardDeviation /*:number*/
-) /*:number*/ {
+function zScore(x, mean, standardDeviation) {
     return (x - mean) / standardDeviation;
 }
 

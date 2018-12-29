@@ -14,12 +14,10 @@
     "index.d.ts"
   ],
   "devDependencies": {
-    "are-we-flow-yet": "^1.1.1",
     "cz-conventional-changelog": "^2.0.0",
     "documentation": "^9.1.1",
     "eslint": "^5.0.1",
     "eslint-plugin-prettier": "^3.0.0",
-    "flow-bin": "^0.79.1",
     "jsdoctest": "^1.7.1",
     "microbundle": "^0.9.0",
     "mocha": "^5.0.0",
@@ -34,7 +32,7 @@
     "test": "microbundle --name ss && npm run lint && tap --coverage test/*.test.js --jobs=4 && npm run jsdoctest",
     "build": "microbundle --name ss",
     "prepublish": "microbundle --name ss && ./scripts/update_readme.js",
-    "prelint": "are-we-flow-yet src && flow check src && tsc",
+    "prelint": "tsc",
     "lint": "eslint index.js src test",
     "postlint": "documentation lint src",
     "jsdoctest": "mocha --require jsdoctest dist/simple-statistics.js"

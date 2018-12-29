@@ -1,5 +1,3 @@
-/* @flow */
-
 import sampleVariance from "./sample_variance";
 
 /**
@@ -12,7 +10,7 @@ import sampleVariance from "./sample_variance";
  * sampleStandardDeviation([2, 4, 4, 4, 5, 5, 7, 9]).toFixed(2);
  * // => '2.14'
  */
-function sampleStandardDeviation(x /*:Array<number>*/) /*:number*/ {
+function sampleStandardDeviation(x) {
     // The standard deviation of no numbers is null
     const sampleVarianceX = sampleVariance(x);
     return Math.sqrt(sampleVarianceX);

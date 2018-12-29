@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * Given the output of `linearRegression`: an object
  * with `m` and `b` values indicating slope and intercept,
@@ -17,9 +15,7 @@
  * linearRegressionLine({ b: 0, m: 1 })(1); // => 1
  * linearRegressionLine({ b: 1, m: 1 })(1); // => 2
  */
-function linearRegressionLine(
-    mb /*: { b: number, m: number }*/
-) /*: Function */ {
+function linearRegressionLine(mb /*: { b: number, m: number }*/) {
     // Return a function that computes a `y` value for each
     // x value it is given, based on the values of `b` and `a`
     // that we just computed.

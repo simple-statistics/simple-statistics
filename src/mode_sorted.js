@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * The [mode](http://bit.ly/W5K4Yt) is the number that appears in a list the highest number of times.
  * There can be multiple modes in a list: in the event of a tie, this
@@ -16,7 +14,7 @@
  * @example
  * modeSorted([0, 0, 1]); // => 0
  */
-function modeSorted(sorted /*: Array<number> */) /*:number*/ {
+function modeSorted(sorted) {
     // Handle edge cases:
     // The mode of an empty list is undefined
     if (sorted.length === 0) {

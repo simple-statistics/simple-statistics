@@ -1,5 +1,3 @@
-/* @flow */
-
 import variance from "./variance";
 
 /**
@@ -18,7 +16,7 @@ import variance from "./variance";
  * variance([2, 4, 4, 4, 5, 5, 7, 9]); // => 4
  * standardDeviation([2, 4, 4, 4, 5, 5, 7, 9]); // => 2
  */
-function standardDeviation(x /*: Array<number> */) /*:number*/ {
+function standardDeviation(x) {
     if (x.length === 1) {
         return 0;
     }

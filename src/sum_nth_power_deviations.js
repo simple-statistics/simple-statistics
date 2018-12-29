@@ -1,5 +1,3 @@
-/* @flow */
-
 import mean from "./mean";
 
 /**
@@ -17,10 +15,7 @@ import mean from "./mean";
  * // deviations, we can calculate that with sumNthPowerDeviations:
  * sumNthPowerDeviations(input, 2) / input.length;
  */
-function sumNthPowerDeviations(
-    x /*: Array<number> */,
-    n /*: number */
-) /*: number */ {
+function sumNthPowerDeviations(x, n) {
     const meanValue = mean(x);
     let sum = 0;
     let tempValue;

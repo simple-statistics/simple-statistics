@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * Implementation of Combinations
  * Combinations are unique subsets of a collection - in this case, k x from a collection at a time.
@@ -11,10 +9,7 @@
  * combinations([1, 2, 3], 2); // => [[1,2], [1,3], [2,3]]
  */
 
-function combinations(
-    x /*: Array<any> */,
-    k /*: number */
-) /*: Array<Array<any>> */ {
+function combinations(x, k) {
     let i;
     let subI;
     const combinationList = [];

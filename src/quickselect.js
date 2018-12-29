@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * Rearrange items in `arr` so that all items in `[left, k]` range are the smallest.
  * The `k`-th element will have the `(k - left + 1)`-th smallest value in `[left, right]`.
@@ -16,12 +14,7 @@
  * quickselect(arr, 8);
  * // = [39, 28, 28, 33, 21, 12, 22, 50, 53, 56, 59, 65, 90, 77, 95]
  */
-function quickselect(
-    arr /*: Array<number> */,
-    k /*: number */,
-    left /*: ?number */,
-    right /*: ?number */
-) /*: void */ {
+function quickselect(arr, k, left, right) {
     left = left || 0;
     right = right || arr.length - 1;
 

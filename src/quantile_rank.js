@@ -1,5 +1,3 @@
-/* @flow */
-
 import numericSort from "./numeric_sort";
 import quantileRankSorted from "./quantile_rank_sorted";
 
@@ -17,10 +15,7 @@ import quantileRankSorted from "./quantile_rank_sorted";
  * quantileRank([2, 4, 1, 3], 6); // => 1
  * quantileRank([5, 3, 1, 2, 3], 4); // => 0.8
  */
-function quantileRank(
-    x /*: Array<number> */,
-    value /*: number */
-) /*: number */ {
+function quantileRank(x, value) {
     // Cloning and sorting the array
     const sortedCopy = numericSort(x);
 

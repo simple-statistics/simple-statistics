@@ -1,5 +1,3 @@
-/* @flow */
-
 import shuffle from "./shuffle";
 
 /**
@@ -19,11 +17,7 @@ import shuffle from "./shuffle";
  * var values = [1, 2, 4, 5, 6, 7, 8, 9];
  * sample(values, 3); // returns 3 random values, like [2, 5, 8];
  */
-function sample /*:: <T> */(
-    x /*: Array<T> */,
-    n /*: number */,
-    randomSource /*: ?Function */
-) /*: Array<T> */ {
+function sample(x, n, randomSource) {
     // shuffle the original array using a fisher-yates shuffle
     const shuffled = shuffle(x, randomSource);
 

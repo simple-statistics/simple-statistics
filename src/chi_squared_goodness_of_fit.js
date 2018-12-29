@@ -1,5 +1,3 @@
-/* @flow */
-
 import chiSquaredDistributionTable from "./chi_squared_distribution_table";
 import mean from "./mean";
 
@@ -30,11 +28,7 @@ import mean from "./mean";
  * ];
  * ss.chiSquaredGoodnessOfFit(data1019, ss.poissonDistribution, 0.05); //= false
  */
-function chiSquaredGoodnessOfFit(
-    data /*: Array<number> */,
-    distributionType /*: Function */,
-    significance /*: number */
-) /*: boolean */ {
+function chiSquaredGoodnessOfFit(data, distributionType, significance) {
     // Estimate from the sample data, a weighted mean.
     const inputMean = mean(data);
     // Calculated value of the χ2 statistic.

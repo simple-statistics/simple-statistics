@@ -1,5 +1,3 @@
-/* @flow */
-
 import mean from "./mean";
 import shuffleInPlace from "./shuffle_in_place";
 
@@ -24,12 +22,7 @@ import shuffleInPlace from "./shuffle_in_place";
  * var treatment = [20, 5, 13, 12, 7, 2, 2];
  * permutationTest(control, treatment); // ~0.1324
  */
-function permutationTest(
-    sampleX /*: Array<number> */,
-    sampleY /*: Array<number> */,
-    alternative /*: string */,
-    k /*: number */
-) /*: ?number */ {
+function permutationTest(sampleX, sampleY, alternative, k) {
     // Set default arguments
     if (k === undefined) {
         k = 10000;

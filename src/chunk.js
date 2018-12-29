@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * Split an array into chunks of a specified size. This function
  * has the same behavior as [PHP's array_chunk](http://php.net/manual/en/function.array-chunk.php)
@@ -17,10 +15,7 @@
  * chunk([1, 2, 3, 4, 5, 6], 2);
  * // => [[1, 2], [3, 4], [5, 6]]
  */
-function chunk(
-    x /*:Array<any>*/,
-    chunkSize /*:number*/
-) /*:?Array<Array<any>>*/ {
+function chunk(x, chunkSize) {
     // a list of result chunks, as arrays in an array
     const output = [];
 

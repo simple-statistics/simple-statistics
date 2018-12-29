@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * [Bayesian Classifier](http://en.wikipedia.org/wiki/Naive_Bayes_classifier)
  *
@@ -39,7 +37,7 @@ class BayesianClassifier {
      * @param {string} category the category this item belongs to
      * @return {undefined} adds the item to the classifier
      */
-    train(item /*: Object */, category /*: string */) {
+    train(item, category) {
         // If the data object doesn't have any values
         // for this category, create a new object for it.
         if (!this.data[category]) {
@@ -74,7 +72,7 @@ class BayesianClassifier {
      * @returns {Object} of probabilities that this item belongs to a
      * given category.
      */
-    score(item /*: Object */) /*: Object */ {
+    score(item) {
         // Initialize an empty array of odds per category.
         const odds = {};
         let category;

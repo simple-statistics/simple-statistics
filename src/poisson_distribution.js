@@ -1,5 +1,3 @@
-/* @flow */
-
 import epsilon from "./epsilon";
 
 /**
@@ -15,7 +13,7 @@ import epsilon from "./epsilon";
  * @param {number} lambda location poisson distribution
  * @returns {number[]} values of poisson distribution at that point
  */
-function poissonDistribution(lambda /*: number */) /*: ?number[] */ {
+function poissonDistribution(lambda) /*: ?number[] */ {
     // Check that lambda is strictly positive
     if (lambda <= 0) {
         return undefined;

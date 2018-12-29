@@ -1,5 +1,3 @@
-/* @flow */
-
 import median from "./median";
 
 /**
@@ -12,7 +10,7 @@ import median from "./median";
  * @example
  * medianAbsoluteDeviation([1, 1, 2, 2, 4, 6, 9]); // => 1
  */
-function medianAbsoluteDeviation(x /*: Array<number> */) /*: number */ {
+function medianAbsoluteDeviation(x) {
     // The mad of nothing is null
     const medianValue = median(x);
     const medianAbsoluteDeviations = [];

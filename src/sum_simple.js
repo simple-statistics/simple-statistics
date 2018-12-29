@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * The simple [sum](https://en.wikipedia.org/wiki/Summation) of an array
  * is the result of adding all numbers together, starting from zero.
@@ -11,7 +9,7 @@
  * @example
  * sumSimple([1, 2, 3]); // => 6
  */
-function sumSimple(x /*: Array<number> */) /*: number */ {
+function sumSimple(x) {
     let value = 0;
     for (let i = 0; i < x.length; i++) {
         value += x[i];

@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * The Inverse [Gaussian error function](http://en.wikipedia.org/wiki/Error_function)
  * returns a numerical approximation to the value that would have caused
@@ -8,7 +6,7 @@
  * @param {number} x value of error function
  * @returns {number} estimated inverted value
  */
-function inverseErrorFunction(x /*: number */) /*: number */ {
+function inverseErrorFunction(x) {
     const a = (8 * (Math.PI - 3)) / (3 * Math.PI * (4 - Math.PI));
 
     const inv = Math.sqrt(

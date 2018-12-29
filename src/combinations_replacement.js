@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * Implementation of [Combinations](https://en.wikipedia.org/wiki/Combination) with replacement
  * Combinations are unique subsets of a collection - in this case, k x from a collection at a time.
@@ -12,10 +10,7 @@
  * @example
  * combinationsReplacement([1, 2], 2); // => [[1, 1], [1, 2], [2, 2]]
  */
-function combinationsReplacement(
-    x /*: Array<any> */,
-    k /*: number */
-) /*: Array<Array<any>> */ {
+function combinationsReplacement(x, k) {
     const combinationList = [];
 
     for (let i = 0; i < x.length; i++) {

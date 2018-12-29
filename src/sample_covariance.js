@@ -1,5 +1,3 @@
-/* @flow */
-
 import mean from "./mean";
 
 /**
@@ -15,10 +13,7 @@ import mean from "./mean";
  * @example
  * sampleCovariance([1, 2, 3, 4, 5, 6], [6, 5, 4, 3, 2, 1]); // => -3.5
  */
-function sampleCovariance(
-    x /*:Array<number>*/,
-    y /*:Array<number>*/
-) /*:number*/ {
+function sampleCovariance(x, y) {
     // The two datasets must have the same length which must be more than 1
     if (x.length !== y.length) {
         throw new Error("sampleCovariance requires samples with equal lengths");

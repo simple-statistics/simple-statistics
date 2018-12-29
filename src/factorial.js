@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * A [Factorial](https://en.wikipedia.org/wiki/Factorial), usually written n!, is the product of all positive
  * integers less than or equal to n. Often factorial is implemented
@@ -12,7 +10,7 @@
  * @example
  * factorial(5); // => 120
  */
-function factorial(n /*: number */) /*: number */ {
+function factorial(n) {
     // factorial is mathematically undefined for negative numbers
     if (n < 0) {
         throw new Error("factorial requires a non-negative value");
