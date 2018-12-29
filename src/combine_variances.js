@@ -1,5 +1,3 @@
-/* @flow */
-
 import combineMeans from "./combine_means";
 
 /**
@@ -21,14 +19,7 @@ import combineMeans from "./combine_means";
  * @example
  * combineVariances(14 / 3, 5, 3, 8 / 3, 4, 3); // => 47 / 12
  */
-function combineVariances(
-    variance1 /*: number*/,
-    mean1 /*: number*/,
-    n1 /*: number */,
-    variance2 /*: number*/,
-    mean2 /*: number*/,
-    n2 /*: number */
-) /*: number */ {
+function combineVariances(variance1, mean1, n1, variance2, mean2, n2) {
     const newMean = combineMeans(mean1, n1, mean2, n2);
 
     return (

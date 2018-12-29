@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * Our default sum is the [Kahan-Babuska algorithm](https://pdfs.semanticscholar.org/1760/7d467cda1d0277ad272deb2113533131dc09.pdf).
  * This method is an improvement over the classical
@@ -18,7 +16,7 @@
  * @example
  * sum([1, 2, 3]); // => 6
  */
-function sum(x /*: Array<number> */) /*: number */ {
+function sum(x) {
     // If the array is empty, we needn't bother computing its sum
     if (x.length === 0) {
         return 0;

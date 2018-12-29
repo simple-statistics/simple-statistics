@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * Sort an array of numbers by their numeric value, ensuring that the
  * array is not changed in place.
@@ -17,7 +15,7 @@
  * @example
  * numericSort([3, 2, 1]) // => [1, 2, 3]
  */
-function numericSort(x /*: Array<number> */) /*: Array<number> */ {
+function numericSort(x) {
     return (
         x
             // ensure the array is not changed in-place

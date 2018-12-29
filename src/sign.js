@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * [Sign](https://en.wikipedia.org/wiki/Sign_function) is a function
  * that extracts the sign of a real number
@@ -12,7 +10,7 @@
  * @example
  * sign(2); // => 1
  */
-function sign(x /*: number */) /*: number */ {
+function sign(x) {
     if (typeof x === "number") {
         if (x < 0) {
             return -1;

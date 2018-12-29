@@ -1,5 +1,3 @@
-/* @flow */
-
 import standardNormalTable from "./standard_normal_table";
 
 /**
@@ -16,7 +14,7 @@ import standardNormalTable from "./standard_normal_table";
  * @param {number} z
  * @returns {number} cumulative standard normal probability
  */
-function cumulativeStdNormalProbability(z /*:number */) /*:number */ {
+function cumulativeStdNormalProbability(z) {
     // Calculate the position of this value.
     const absZ = Math.abs(z);
     // Each row begins with a different

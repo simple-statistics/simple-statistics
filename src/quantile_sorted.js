@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * This is the internal implementation of quantiles: when you know
  * that the order is sorted, you don't need to re-sort it, and the computations
@@ -13,7 +11,7 @@
  * @example
  * quantileSorted([3, 6, 7, 8, 8, 9, 10, 13, 15, 16, 20], 0.5); // => 9
  */
-function quantileSorted(x /*: Array<number> */, p /*: number */) /*: number */ {
+function quantileSorted(x, p) {
     const idx = x.length * p;
     if (x.length === 0) {
         throw new Error("quantile requires at least one data point.");

@@ -1,5 +1,3 @@
-/* @flow */
-
 import numericSort from "./numeric_sort";
 import uniqueCountSorted from "./unique_count_sorted";
 
@@ -248,10 +246,7 @@ function fillMatrices(data, matrix, backtrackMatrix) {
  * // The input, clustered into groups of similar numbers.
  * //= [[-1, -1, -1, -1], [2, 2, 2], [4, 5, 6]]);
  */
-function ckmeans(
-    x /*: Array<number> */,
-    nClusters /*: number */
-) /*: Array<Array<number>> */ {
+function ckmeans(x, nClusters) {
     if (nClusters > x.length) {
         throw new Error(
             "cannot generate more classes than there are data values"

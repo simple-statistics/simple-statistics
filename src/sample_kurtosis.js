@@ -1,5 +1,3 @@
-/* @flow */
-
 import mean from "./mean";
 
 /**
@@ -17,7 +15,7 @@ import mean from "./mean";
  * @example
  * sampleKurtosis([1, 2, 2, 3, 5]); // => 1.4555765595463122
  */
-function sampleKurtosis(x /*: Array<number> */) /*:number*/ {
+function sampleKurtosis(x) {
     const n = x.length;
 
     if (n < 4) {

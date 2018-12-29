@@ -1,5 +1,3 @@
-/* @flow */
-
 import interquartileRange from "./interquartile_range";
 import stddev from "./sample_standard_deviation";
 
@@ -9,7 +7,7 @@ const SQRT_2PI = Math.sqrt(2 * Math.PI);
  * [Well-known kernels](https://en.wikipedia.org/wiki/Kernel_(statistics)#Kernel_functions_in_common_use)
  * @private
  */
-const kernels /*: {[string]: (number) => number} */ = {
+const kernels = {
     /**
      * The gaussian kernel.
      * @private
@@ -23,7 +21,7 @@ const kernels /*: {[string]: (number) => number} */ = {
  * Well known bandwidth selection methods
  * @private
  */
-const bandwidthMethods /*: {[string]: (Array<number>) => number} */ = {
+const bandwidthMethods = {
     /**
      * The ["normal reference distribution"
      * rule-of-thumb](https://stat.ethz.ch/R-manual/R-devel/library/MASS/html/bandwidth.nrd.html),
@@ -31,7 +29,7 @@ const bandwidthMethods /*: {[string]: (Array<number>) => number} */ = {
      * rule-of-thumb](https://en.wikipedia.org/wiki/Kernel_density_estimation#A_rule-of-thumb_bandwidth_estimator).
      * @private
      */
-    nrd: function(x /*: Array<number> */) {
+    nrd: function(x) {
         let s = stddev(x);
         const iqr = interquartileRange(x);
         if (typeof iqr === "number") {
@@ -52,12 +50,8 @@ const bandwidthMethods /*: {[string]: (Array<number>) => number} */ = {
  * @param bandwidthMethod The "bandwidth selection" method to use, or a fixed bandwidth value. Defaults to "nrd", the commonly-used ["normal reference distribution" rule-of-thumb](https://stat.ethz.ch/R-manual/R-devel/library/MASS/html/bandwidth.nrd.html).
  * @returns {Function} An estimated [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) for the given sample. The returned function runs in `O(X.length)`.
  */
-function kernelDensityEstimation(
-    X /*: Array<number> */,
-    kernel /*: $Keys<typeof kernels> | ((number) => number) | void*/,
-    bandwidthMethod /*: $Keys<typeof bandwidthMethods> | number | void*/
-) {
-    let kernelFn /*: (number) => number */;
+function kernelDensityEstimation(X, kernel, bandwidthMethod) {
+    let kernelFn;
     if (kernel === undefined) {
         kernelFn = kernels.gaussian;
     } else if (typeof kernel === "string") {
@@ -83,7 +77,7 @@ function kernelDensityEstimation(
         bandwidth = bandwidthMethod;
     }
 
-    return function(x /*: number*/) {
+    return function(x) {
         let i = 0;
         let sum = 0;
         for (i = 0; i < X.length; i++) {

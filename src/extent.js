@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * This computes the minimum & maximum number in an array.
  *
@@ -12,7 +10,7 @@
  * extent([1, 2, 3, 4]);
  * // => [1, 4]
  */
-function extent(x /*: Array<number> */) /*:Array<number>*/ {
+function extent(x) {
     if (x.length === 0) {
         throw new Error("extent requires at least one data point");
     }

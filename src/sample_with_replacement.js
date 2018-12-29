@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * Sampling with replacement is a type of sampling that allows the same
  * item to be picked out of a population more than once.
@@ -13,11 +11,7 @@
  * var values = [1, 2, 3, 4];
  * sampleWithReplacement(values, 2); // returns 2 random values, like [2, 4];
  */
-function sampleWithReplacement /*::<T>*/(
-    x /*: Array<T> */,
-    n /*: number */,
-    randomSource /*: ?Function */
-) {
+function sampleWithReplacement(x, n, randomSource) {
     if (x.length === 0) {
         return [];
     }

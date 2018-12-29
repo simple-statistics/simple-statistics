@@ -1,5 +1,3 @@
-/* @flow */
-
 import epsilon from "./epsilon";
 
 /**
@@ -12,10 +10,7 @@ import epsilon from "./epsilon";
  * @param {number} probability
  * @returns {number[]} output
  */
-function binomialDistribution(
-    trials /*: number */,
-    probability /*: number */
-) /*: ?number[] */ {
+function binomialDistribution(trials, probability) /*: ?number[] */ {
     // Check that `p` is a valid probability (0 ≤ p ≤ 1),
     // that `n` is an integer, strictly positive.
     if (probability < 0 || probability > 1 || trials <= 0 || trials % 1 !== 0) {

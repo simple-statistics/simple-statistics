@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * **Percentage Points of the χ2 (Chi-Squared) Distribution**
  *

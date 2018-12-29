@@ -1,5 +1,3 @@
-/* @flow */
-
 import max from "./max";
 import min from "./min";
 
@@ -16,10 +14,7 @@ import min from "./min";
  * @example
  * equalIntervalBreaks([1, 2, 3, 4, 5, 6], 4); // => [1, 2.25, 3.5, 4.75, 6]
  */
-function equalIntervalBreaks(
-    x /*: Array<number> */,
-    nClasses /*:number*/
-) /*: Array<number> */ {
+function equalIntervalBreaks(x, nClasses) {
     if (x.length < 2) {
         return x;
     }

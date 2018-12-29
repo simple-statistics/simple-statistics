@@ -1,4 +1,3 @@
-/* @flow */
 /* globals Map: false */
 
 /**
@@ -23,7 +22,7 @@
  * @example
  * modeFast(['rabbits', 'rabbits', 'squirrels']); // => 'rabbits'
  */
-function modeFast /*::<T>*/(x /*: Array<T> */) /*: ?T */ {
+function modeFast(x) {
     // This index will reflect the incidence of different values, indexing
     // them like
     // { value: count }

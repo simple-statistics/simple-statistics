@@ -1,5 +1,3 @@
-/* @flow */
-
 import sampleCovariance from "./sample_covariance";
 import sampleStandardDeviation from "./sample_standard_deviation";
 
@@ -14,10 +12,7 @@ import sampleStandardDeviation from "./sample_standard_deviation";
  * sampleCorrelation([1, 2, 3, 4, 5, 6], [2, 2, 3, 4, 5, 60]).toFixed(2);
  * // => '0.69'
  */
-function sampleCorrelation(
-    x /*: Array<number> */,
-    y /*: Array<number> */
-) /*:number*/ {
+function sampleCorrelation(x, y) {
     const cov = sampleCovariance(x, y);
     const xstd = sampleStandardDeviation(x);
     const ystd = sampleStandardDeviation(y);

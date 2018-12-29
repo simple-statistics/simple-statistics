@@ -1,5 +1,3 @@
-/* @flow */
-
 import mean from "./mean";
 
 /**
@@ -19,7 +17,7 @@ import mean from "./mean";
  * @example
  * sampleSkewness([2, 4, 6, 3, 1]); // => 0.590128656384365
  */
-function sampleSkewness(x /*: Array<number> */) /*:number*/ {
+function sampleSkewness(x) {
     if (x.length < 3) {
         throw new Error("sampleSkewness requires at least three data points");
     }

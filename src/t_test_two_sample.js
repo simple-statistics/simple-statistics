@@ -1,5 +1,3 @@
-/* @flow */
-
 import mean from "./mean";
 import sampleVariance from "./sample_variance";
 
@@ -30,11 +28,7 @@ import sampleVariance from "./sample_variance";
  * @example
  * tTestTwoSample([1, 2, 3, 4], [3, 4, 5, 6], 0); // => -2.1908902300206643
  */
-function tTestTwoSample(
-    sampleX /*: Array<number> */,
-    sampleY /*: Array<number> */,
-    difference /*: ?number */
-) /*: ?number */ {
+function tTestTwoSample(sampleX, sampleY, difference) {
     const n = sampleX.length;
     const m = sampleY.length;
 

@@ -1,5 +1,3 @@
-/* @flow */
-
 /**
  * Implementation of [Heap's Algorithm](https://en.wikipedia.org/wiki/Heap%27s_algorithm)
  * for generating permutations.
@@ -7,9 +5,7 @@
  * @param {Array} elements any type of data
  * @returns {Array<Array>} array of permutations
  */
-function permutationsHeap /*:: <T> */(
-    elements /*: Array<T> */
-) /*: Array<Array<T>> */ {
+function permutationsHeap(elements) {
     const indexes = new Array(elements.length);
     const permutations = [elements.slice()];
 
