@@ -40,7 +40,7 @@
   "source": "index.js",
   "main": "dist/simple-statistics.js",
   "module": "dist/simple-statistics.mjs",
-  "main:umd": "dist/simple-statistics.min.js",
+  "umd:main": "dist/simple-statistics.min.js",
   "browser": "dist/simple-statistics.min.js",
   "unpkg": "dist/simple-statistics.min.js",
   "types": "index.d.ts",
