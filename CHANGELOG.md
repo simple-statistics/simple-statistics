@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="7.0.0"></a>
+# [7.0.0](https://github.com/simple-statistics/simple-statistics/compare/v6.1.1...v7.0.0) (2018-12-30)
+
+
+### Bug Fixes
+
+* change umd name from simpleStatistics to ss ([59b42c0](https://github.com/simple-statistics/simple-statistics/commit/59b42c0))
+* Fix flipped umd:main package entry ([c9fe55b](https://github.com/simple-statistics/simple-statistics/commit/c9fe55b))
+
+
+### Chores
+
+* Refactor from functions to classes, use Number.isInteger ([d974a1a](https://github.com/simple-statistics/simple-statistics/commit/d974a1a)), closes [#296](https://github.com/simple-statistics/simple-statistics/issues/296)
+
+
+### BREAKING CHANGES
+
+* IE11 support is dropped.
+
+
+
 <a name="6.1.1"></a>
 ## [6.1.1](https://github.com/simple-statistics/simple-statistics/compare/v6.1.0...v6.1.1) (2018-09-24)
 
