@@ -1,5 +1,3 @@
-/* @flow */
-
 // # simple-statistics
 //
 // A simple, literate statistics system.
