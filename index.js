@@ -35,6 +35,9 @@ export { default as chunk } from "./src/chunk";
 export {
     default as sampleWithReplacement
 } from "./src/sample_with_replacement";
+export {
+    default as generateSampleWithReplacement
+} from "./src/generate_sample_with_replacement";
 export { default as shuffle } from "./src/shuffle";
 export { default as shuffleInPlace } from "./src/shuffle_in_place";
 export { default as sample } from "./src/sample";
@@ -57,6 +60,9 @@ export { default as sampleKurtosis } from "./src/sample_kurtosis";
 
 // combinatorics
 export { default as permutationsHeap } from "./src/permutations_heap";
+export {
+    default as generatePermutationsHeap
+} from "./src/generate_permutations_heap";
 export { default as combinations } from "./src/combinations";
 export {
     default as combinationsReplacement
