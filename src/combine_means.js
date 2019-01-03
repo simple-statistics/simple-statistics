@@ -15,8 +15,6 @@
  * @example
  * combineMeans(5, 3, 4, 3); // => 4.5
  */
-function combineMeans(mean1, n1, mean2, n2) {
+export function combineMeans(mean1, n1, mean2, n2) {
     return (mean1 * n1 + mean2 * n2) / (n1 + n2);
 }
-
-export default combineMeans;

@@ -8,8 +8,6 @@
  * @example
  * minSorted([-100, -10, 1, 2, 5]); // => -100
  */
-function minSorted(x) {
+export function minSorted(x) {
     return x[0];
 }
-
-export default minSorted;

@@ -18,9 +18,7 @@
  * //   animal: 1
  * // }
  */
-class BayesianClassifier {
-    /*:: totalCount: number */
-    /*:: data: Object */
+export class BayesianClassifier {
     constructor() {
         // The number of items that are currently
         // classified in the model
@@ -115,5 +113,3 @@ class BayesianClassifier {
         return oddsSums;
     }
 }
-
-export default BayesianClassifier;

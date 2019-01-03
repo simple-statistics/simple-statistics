@@ -1,5 +1,5 @@
-import quantileSorted from "./quantile_sorted";
-import quickselect from "./quickselect";
+import { quantileSorted } from "./quantile_sorted";
+import { quickselect } from "./quickselect";
 
 /**
  * The [quantile](https://en.wikipedia.org/wiki/Quantile):
@@ -22,7 +22,7 @@ import quickselect from "./quickselect";
  * @example
  * quantile([3, 6, 7, 8, 8, 9, 10, 13, 15, 16, 20], 0.5); // => 9
  */
-function quantile(x, p) {
+export function quantile(x, p) {
     const copy = x.slice();
 
     if (Array.isArray(p)) {
@@ -105,5 +105,3 @@ function quantileIndex(len, p) {
         return idx;
     }
 }
-
-export default quantile;

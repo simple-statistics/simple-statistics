@@ -1,5 +1,5 @@
-import mean from "./mean";
-import sampleVariance from "./sample_variance";
+import { mean } from "./mean";
+import { sampleVariance } from "./sample_variance";
 
 /**
  * This is to compute [two sample t-test](http://en.wikipedia.org/wiki/Student's_t-test).
@@ -28,7 +28,7 @@ import sampleVariance from "./sample_variance";
  * @example
  * tTestTwoSample([1, 2, 3, 4], [3, 4, 5, 6], 0); // => -2.1908902300206643
  */
-function tTestTwoSample(sampleX, sampleY, difference) {
+export function tTestTwoSample(sampleX, sampleY, difference) {
     const n = sampleX.length;
     const m = sampleY.length;
 
@@ -64,5 +64,3 @@ function tTestTwoSample(sampleX, sampleY, difference) {
         );
     }
 }
-
-export default tTestTwoSample;

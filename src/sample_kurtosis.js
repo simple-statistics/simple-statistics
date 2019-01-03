@@ -1,4 +1,4 @@
-import mean from "./mean";
+import { mean } from "./mean";
 
 /**
  * [Kurtosis](http://en.wikipedia.org/wiki/Kurtosis) is
@@ -15,7 +15,7 @@ import mean from "./mean";
  * @example
  * sampleKurtosis([1, 2, 2, 3, 5]); // => 1.4555765595463122
  */
-function sampleKurtosis(x) {
+export function sampleKurtosis(x) {
     const n = x.length;
 
     if (n < 4) {
@@ -40,5 +40,3 @@ function sampleKurtosis(x) {
             3 * (n - 1))
     );
 }
-
-export default sampleKurtosis;

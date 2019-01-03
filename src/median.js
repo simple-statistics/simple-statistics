@@ -1,4 +1,4 @@
-import quantile from "./quantile";
+import { quantile } from "./quantile";
 
 /**
  * The [median](http://en.wikipedia.org/wiki/Median) is
@@ -16,8 +16,6 @@ import quantile from "./quantile";
  * @example
  * median([10, 2, 5, 100, 2, 1]); // => 3.5
  */
-function median(x) {
+export function median(x) {
     return +quantile(x, 0.5);
 }
-
-export default median;

@@ -18,9 +18,7 @@
  * p.predict([1, 0]); // 0
  * p.predict([1, 1]); // 1
  */
-class PerceptronModel {
-    /*:: bias: number */
-    /*:: weights: Array<number> */
+export class PerceptronModel {
     constructor() {
         // The weights, or coefficients of the model;
         // weights are only populated when training with data.
@@ -95,5 +93,3 @@ class PerceptronModel {
         return this;
     }
 }
-
-export default PerceptronModel;

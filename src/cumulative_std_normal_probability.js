@@ -1,4 +1,4 @@
-import standardNormalTable from "./standard_normal_table";
+import { standardNormalTable } from "./standard_normal_table";
 
 /**
  * **[Cumulative Standard Normal Probability](http://en.wikipedia.org/wiki/Standard_normal_table)**
@@ -14,7 +14,7 @@ import standardNormalTable from "./standard_normal_table";
  * @param {number} z
  * @returns {number} cumulative standard normal probability
  */
-function cumulativeStdNormalProbability(z) {
+export function cumulativeStdNormalProbability(z) {
     // Calculate the position of this value.
     const absZ = Math.abs(z);
     // Each row begins with a different
@@ -38,5 +38,3 @@ function cumulativeStdNormalProbability(z) {
         return +(1 - standardNormalTable[index]).toFixed(4);
     }
 }
-
-export default cumulativeStdNormalProbability;

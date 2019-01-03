@@ -10,7 +10,7 @@
  * extent([1, 2, 3, 4]);
  * // => [1, 4]
  */
-function extent(x) {
+export function extent(x) {
     if (x.length === 0) {
         throw new Error("extent requires at least one data point");
     }
@@ -27,5 +27,3 @@ function extent(x) {
     }
     return [min, max];
 }
-
-export default extent;

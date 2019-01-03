@@ -14,8 +14,6 @@
  * @example
  * addToMean(14, 5, 53); // => 20.5
  */
-function addToMean(mean, n, newValue) {
+export function addToMean(mean, n, newValue) {
     return mean + (newValue - mean) / (n + 1);
 }
-
-export default addToMean;

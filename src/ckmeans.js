@@ -1,5 +1,5 @@
-import numericSort from "./numeric_sort";
-import uniqueCountSorted from "./unique_count_sorted";
+import { numericSort } from "./numeric_sort";
+import { uniqueCountSorted } from "./unique_count_sorted";
 
 /**
  * Create a new column x row matrix.
@@ -246,7 +246,7 @@ function fillMatrices(data, matrix, backtrackMatrix) {
  * // The input, clustered into groups of similar numbers.
  * //= [[-1, -1, -1, -1], [2, 2, 2], [4, 5, 6]]);
  */
-function ckmeans(x, nClusters) {
+export function ckmeans(x, nClusters) {
     if (nClusters > x.length) {
         throw new Error(
             "cannot generate more classes than there are data values"
@@ -299,5 +299,3 @@ function ckmeans(x, nClusters) {
 
     return clusters;
 }
-
-export default ckmeans;

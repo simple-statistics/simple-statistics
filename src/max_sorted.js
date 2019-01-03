@@ -8,8 +8,6 @@
  * @example
  * maxSorted([-100, -10, 1, 2, 5]); // => 5
  */
-function maxSorted(x) {
+export function maxSorted(x) {
     return x[x.length - 1];
 }
-
-export default maxSorted;

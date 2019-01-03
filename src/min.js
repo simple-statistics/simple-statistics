@@ -7,7 +7,7 @@
  * @example
  * min([1, 5, -10, 100, 2]); // => -10
  */
-function min(x) {
+export function min(x) {
     if (x.length === 0) {
         throw new Error("min requires at least one data point");
     }
@@ -22,5 +22,3 @@ function min(x) {
     }
     return value;
 }
-
-export default min;

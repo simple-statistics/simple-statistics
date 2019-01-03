@@ -10,7 +10,7 @@
  * max([1, 2, 3, 4]);
  * // => 4
  */
-function max(x) {
+export function max(x) {
     if (x.length === 0) {
         throw new Error("max requires at least one data point");
     }
@@ -25,5 +25,3 @@ function max(x) {
     }
     return value;
 }
-
-export default max;

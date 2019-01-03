@@ -12,7 +12,7 @@
  * @example
  * rootMeanSquare([-1, 1, -1, 1]); // => 1
  */
-function rootMeanSquare(x) {
+export function rootMeanSquare(x) {
     if (x.length === 0) {
         throw new Error("rootMeanSquare requires at least one data point");
     }
@@ -24,5 +24,3 @@ function rootMeanSquare(x) {
 
     return Math.sqrt(sumOfSquares / x.length);
 }
-
-export default rootMeanSquare;

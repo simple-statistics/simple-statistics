@@ -11,7 +11,7 @@
  * var values = [1, 2, 3, 4];
  * sampleWithReplacement(values, 2); // returns 2 random values, like [2, 4];
  */
-function sampleWithReplacement(x, n, randomSource) {
+export function sampleWithReplacement(x, n, randomSource) {
     if (x.length === 0) {
         return [];
     }
@@ -33,4 +33,19 @@ function sampleWithReplacement(x, n, randomSource) {
     return sample;
 }
 
-export default sampleWithReplacement;
+export function* generateSampleWithReplacement(x, n, randomSource) {
+    if (x.length === 0) {
+        return;
+    }
+
+    // a custom random number source can be provided if you want to use
+    // a fixed seed or another random number generator, like
+    // [random-js](https://www.npmjs.org/package/random-js)
+    randomSource = randomSource || Math.random;
+
+    for (let i = 0; i < n; i++) {
+        const index = Math.floor(randomSource() * x.length);
+
+        yield x[index];
+    }
+}

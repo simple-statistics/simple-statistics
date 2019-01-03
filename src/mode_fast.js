@@ -22,7 +22,7 @@
  * @example
  * modeFast(['rabbits', 'rabbits', 'squirrels']); // => 'rabbits'
  */
-function modeFast(x) {
+export function modeFast(x) {
     // This index will reflect the incidence of different values, indexing
     // them like
     // { value: count }
@@ -52,5 +52,3 @@ function modeFast(x) {
 
     return mode;
 }
-
-export default modeFast;

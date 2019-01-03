@@ -21,8 +21,6 @@
  * @example
  * zScore(78, 80, 5); // => -0.4
  */
-function zScore(x, mean, standardDeviation) {
+export function zScore(x, mean, standardDeviation) {
     return (x - mean) / standardDeviation;
 }
-
-export default zScore;

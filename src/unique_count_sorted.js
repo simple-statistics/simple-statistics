@@ -12,7 +12,7 @@
  * uniqueCountSorted([1, 2, 3]); // => 3
  * uniqueCountSorted([1, 1, 1]); // => 1
  */
-function uniqueCountSorted(x) {
+export function uniqueCountSorted(x) {
     let uniqueValueCount = 0,
         lastSeenValue;
     for (let i = 0; i < x.length; i++) {
@@ -23,5 +23,3 @@ function uniqueCountSorted(x) {
     }
     return uniqueValueCount;
 }
-
-export default uniqueCountSorted;

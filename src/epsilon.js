@@ -32,6 +32,4 @@
  *
  * console.log('Local minimum occurs at', x_new);
  */
-const epsilon = 0.0001;
-
-export default epsilon;
+export const epsilon = 0.0001;

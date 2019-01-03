@@ -1,4 +1,4 @@
-import combineMeans from "./combine_means";
+import { combineMeans } from "./combine_means";
 
 /**
  * When combining two lists of values for which one already knows the variances,
@@ -19,7 +19,7 @@ import combineMeans from "./combine_means";
  * @example
  * combineVariances(14 / 3, 5, 3, 8 / 3, 4, 3); // => 47 / 12
  */
-function combineVariances(variance1, mean1, n1, variance2, mean2, n2) {
+export function combineVariances(variance1, mean1, n1, variance2, mean2, n2) {
     const newMean = combineMeans(mean1, n1, mean2, n2);
 
     return (
@@ -28,5 +28,3 @@ function combineVariances(variance1, mean1, n1, variance2, mean2, n2) {
         (n1 + n2)
     );
 }
-
-export default combineVariances;

@@ -6,7 +6,7 @@
  * @param {number} x value of error function
  * @returns {number} estimated inverted value
  */
-function inverseErrorFunction(x) {
+export function inverseErrorFunction(x) {
     const a = (8 * (Math.PI - 3)) / (3 * Math.PI * (4 - Math.PI));
 
     const inv = Math.sqrt(
@@ -23,5 +23,3 @@ function inverseErrorFunction(x) {
         return -inv;
     }
 }
-
-export default inverseErrorFunction;

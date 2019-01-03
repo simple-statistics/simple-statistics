@@ -1,5 +1,5 @@
-import epsilon from "./epsilon";
-import inverseErrorFunction from "./inverse_error_function";
+import { epsilon } from "./epsilon";
+import { inverseErrorFunction } from "./inverse_error_function";
 
 /**
  * The [Probit](http://en.wikipedia.org/wiki/Probit)
@@ -14,7 +14,7 @@ import inverseErrorFunction from "./inverse_error_function";
  * @param {number} p
  * @returns {number} probit
  */
-function probit(p) {
+export function probit(p) {
     if (p === 0) {
         p = epsilon;
     } else if (p >= 1) {
@@ -22,5 +22,3 @@ function probit(p) {
     }
     return Math.sqrt(2) * inverseErrorFunction(2 * p - 1);
 }
-
-export default probit;

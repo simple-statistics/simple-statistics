@@ -10,7 +10,7 @@
  * @example
  * sign(2); // => 1
  */
-function sign(x) {
+export function sign(x) {
     if (typeof x === "number") {
         if (x < 0) {
             return -1;
@@ -23,5 +23,3 @@ function sign(x) {
         throw new TypeError("not a number");
     }
 }
-
-export default sign;

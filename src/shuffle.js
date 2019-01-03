@@ -1,4 +1,4 @@
-import shuffleInPlace from "./shuffle_in_place";
+import { shuffleInPlace } from "./shuffle_in_place";
 
 /**
  * A [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
@@ -14,12 +14,10 @@ import shuffleInPlace from "./shuffle_in_place";
  * var shuffled = shuffle([1, 2, 3, 4]);
  * shuffled; // = [2, 3, 1, 4] or any other random permutation
  */
-function shuffle(x, randomSource) {
+export function shuffle(x, randomSource) {
     // slice the original array so that it is not modified
     const sample = x.slice();
 
     // and then shuffle that shallow-copied array, in place
     return shuffleInPlace(sample.slice(), randomSource);
 }
-
-export default shuffle;

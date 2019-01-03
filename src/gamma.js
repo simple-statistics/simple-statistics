@@ -1,4 +1,4 @@
-import factorial from "./factorial";
+import { factorial } from "./factorial";
 
 /**
  * Compute the [gamma function](https://en.wikipedia.org/wiki/Gamma_function) of a value using Nemes' approximation.
@@ -16,7 +16,7 @@ import factorial from "./factorial";
  * gamma(-11.5); // 2.29575810481609e-8
  * gamma(5); // 24
  */
-function gamma(n) {
+export function gamma(n) {
     if (Number.isInteger(n)) {
         if (n <= 0) {
             // gamma not defined for zero or negative integers
@@ -53,5 +53,3 @@ function gamma(n) {
         return seriesCoefficient * seriesExpansion;
     }
 }
-
-export default gamma;

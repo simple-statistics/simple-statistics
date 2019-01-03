@@ -10,7 +10,7 @@
  * @example
  * combinationsReplacement([1, 2], 2); // => [[1, 1], [1, 2], [2, 2]]
  */
-function combinationsReplacement(x, k) {
+export function combinationsReplacement(x, k) {
     const combinationList = [];
 
     for (let i = 0; i < x.length; i++) {
@@ -39,5 +39,3 @@ function combinationsReplacement(x, k) {
 
     return combinationList;
 }
-
-export default combinationsReplacement;

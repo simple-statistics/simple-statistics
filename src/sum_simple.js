@@ -9,12 +9,10 @@
  * @example
  * sumSimple([1, 2, 3]); // => 6
  */
-function sumSimple(x) {
+export function sumSimple(x) {
     let value = 0;
     for (let i = 0; i < x.length; i++) {
         value += x[i];
     }
     return value;
 }
-
-export default sumSimple;

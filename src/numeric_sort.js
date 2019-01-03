@@ -15,7 +15,7 @@
  * @example
  * numericSort([3, 2, 1]) // => [1, 2, 3]
  */
-function numericSort(x) {
+export function numericSort(x) {
     return (
         x
             // ensure the array is not changed in-place
@@ -26,5 +26,3 @@ function numericSort(x) {
             })
     );
 }
-
-export default numericSort;

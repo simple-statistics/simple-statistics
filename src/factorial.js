@@ -10,7 +10,7 @@
  * @example
  * factorial(5); // => 120
  */
-function factorial(n) {
+export function factorial(n) {
     // factorial is mathematically undefined for negative numbers
     if (n < 0) {
         throw new Error("factorial requires a non-negative value");
@@ -32,5 +32,3 @@ function factorial(n) {
     }
     return accumulator;
 }
-
-export default factorial;

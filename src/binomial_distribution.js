@@ -1,4 +1,4 @@
-import epsilon from "./epsilon";
+import { epsilon } from "./epsilon";
 
 /**
  * The [Binomial Distribution](http://en.wikipedia.org/wiki/Binomial_distribution) is the discrete probability
@@ -10,7 +10,7 @@ import epsilon from "./epsilon";
  * @param {number} probability
  * @returns {number[]} output
  */
-function binomialDistribution(trials, probability) /*: ?number[] */ {
+export function binomialDistribution(trials, probability) /*: ?number[] */ {
     // Check that `p` is a valid probability (0 ≤ p ≤ 1),
     // that `n` is an integer, strictly positive.
     if (probability < 0 || probability > 1 || trials <= 0 || trials % 1 !== 0) {
@@ -46,5 +46,3 @@ function binomialDistribution(trials, probability) /*: ?number[] */ {
 
     return cells;
 }
-
-export default binomialDistribution;

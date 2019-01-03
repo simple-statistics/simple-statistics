@@ -1,4 +1,4 @@
-import mean from "./mean";
+import { mean } from "./mean";
 
 /**
  * The sum of deviations to the Nth power.
@@ -15,7 +15,7 @@ import mean from "./mean";
  * // deviations, we can calculate that with sumNthPowerDeviations:
  * sumNthPowerDeviations(input, 2) / input.length;
  */
-function sumNthPowerDeviations(x, n) {
+export function sumNthPowerDeviations(x, n) {
     const meanValue = mean(x);
     let sum = 0;
     let tempValue;
@@ -37,5 +37,3 @@ function sumNthPowerDeviations(x, n) {
 
     return sum;
 }
-
-export default sumNthPowerDeviations;

@@ -1,5 +1,5 @@
-import chiSquaredDistributionTable from "./chi_squared_distribution_table";
-import mean from "./mean";
+import { chiSquaredDistributionTable } from "./chi_squared_distribution_table";
+import { mean } from "./mean";
 
 /**
  * The [χ2 (Chi-Squared) Goodness-of-Fit Test](http://en.wikipedia.org/wiki/Goodness_of_fit#Pearson.27s_chi-squared_test)
@@ -28,7 +28,7 @@ import mean from "./mean";
  * ];
  * ss.chiSquaredGoodnessOfFit(data1019, ss.poissonDistribution, 0.05); //= false
  */
-function chiSquaredGoodnessOfFit(data, distributionType, significance) {
+export function chiSquaredGoodnessOfFit(data, distributionType, significance) {
     // Estimate from the sample data, a weighted mean.
     const inputMean = mean(data);
     // Calculated value of the χ2 statistic.
@@ -99,5 +99,3 @@ function chiSquaredGoodnessOfFit(data, distributionType, significance) {
         chiSquaredDistributionTable[degreesOfFreedom][significance] < chiSquared
     );
 }
-
-export default chiSquaredGoodnessOfFit;

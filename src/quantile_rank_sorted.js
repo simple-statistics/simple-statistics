@@ -13,7 +13,7 @@
  * quantileRankSorted([1, 2, 3, 4], 6); // => 1
  * quantileRankSorted([1, 2, 3, 3, 5], 4); // => 0.8
  */
-function quantileRankSorted(x, value) {
+export function quantileRankSorted(x, value) {
     // Value is lesser than any value in the array
     if (value < x[0]) {
         return 0;
@@ -86,5 +86,3 @@ function upperBound(x, value) {
 
     return lo;
 }
-
-export default quantileRankSorted;

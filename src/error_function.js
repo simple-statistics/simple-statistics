@@ -11,7 +11,7 @@
  * @example
  * errorFunction(1).toFixed(2); // => '0.84'
  */
-function errorFunction(x) {
+export function errorFunction(x) {
     const t = 1 / (1 + 0.5 * Math.abs(x));
     const tau =
         t *
@@ -34,5 +34,3 @@ function errorFunction(x) {
         return tau - 1;
     }
 }
-
-export default errorFunction;

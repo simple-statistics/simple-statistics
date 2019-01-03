@@ -16,7 +16,7 @@
  * @example
  * harmonicMean([2, 3]).toFixed(2) // => '2.40'
  */
-function harmonicMean(x) {
+export function harmonicMean(x) {
     // The mean of no numbers is null
     if (x.length === 0) {
         throw new Error("harmonicMean requires at least one data point");

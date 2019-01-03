@@ -9,12 +9,10 @@
  * @example
  * product([1, 2, 3, 4]); // => 24
  */
-function product(x) {
+export function product(x) {
     let value = 1;
     for (let i = 0; i < x.length; i++) {
         value *= x[i];
     }
     return value;
 }
-
-export default product;

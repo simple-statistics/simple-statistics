@@ -1,5 +1,5 @@
-import mean from "./mean";
-import shuffleInPlace from "./shuffle_in_place";
+import { mean } from "./mean";
+import { shuffleInPlace } from "./shuffle_in_place";
 
 /**
  * Conducts a [permutation test](https://en.wikipedia.org/wiki/Resampling_(statistics)#Permutation_tests)
@@ -22,7 +22,7 @@ import shuffleInPlace from "./shuffle_in_place";
  * var treatment = [20, 5, 13, 12, 7, 2, 2];
  * permutationTest(control, treatment); // ~0.1324
  */
-function permutationTest(sampleX, sampleY, alternative, k) {
+export function permutationTest(sampleX, sampleY, alternative, k) {
     // Set default arguments
     if (k === undefined) {
         k = 10000;
@@ -95,5 +95,3 @@ function permutationTest(sampleX, sampleY, alternative, k) {
 
     return numExtremeTStats / k;
 }
-
-export default permutationTest;

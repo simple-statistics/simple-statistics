@@ -1,4 +1,4 @@
-import sum from "./sum";
+import { sum } from "./sum";
 
 /**
  * The mean, _also known as average_,
@@ -14,7 +14,7 @@ import sum from "./sum";
  * @example
  * mean([0, 10]); // => 5
  */
-function mean(x) {
+export function mean(x) {
     // The mean of no numbers is null
     if (x.length === 0) {
         throw new Error("mean requires at least one data point");
@@ -22,5 +22,3 @@ function mean(x) {
 
     return sum(x) / x.length;
 }
-
-export default mean;

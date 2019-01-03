@@ -1,4 +1,4 @@
-import median from "./median";
+import { median } from "./median";
 
 /**
  * The [Median Absolute Deviation](http://en.wikipedia.org/wiki/Median_absolute_deviation) is
@@ -10,7 +10,7 @@ import median from "./median";
  * @example
  * medianAbsoluteDeviation([1, 1, 2, 2, 4, 6, 9]); // => 1
  */
-function medianAbsoluteDeviation(x) {
+export function medianAbsoluteDeviation(x) {
     // The mad of nothing is null
     const medianValue = median(x);
     const medianAbsoluteDeviations = [];
@@ -24,4 +24,4 @@ function medianAbsoluteDeviation(x) {
     return median(medianAbsoluteDeviations);
 }
 
-export default medianAbsoluteDeviation;
+export const mad = medianAbsoluteDeviation;

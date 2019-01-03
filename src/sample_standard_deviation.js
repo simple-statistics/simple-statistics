@@ -1,4 +1,4 @@
-import sampleVariance from "./sample_variance";
+import { sampleVariance } from "./sample_variance";
 
 /**
  * The [sample standard deviation](http://en.wikipedia.org/wiki/Standard_deviation#Sample_standard_deviation)
@@ -10,10 +10,8 @@ import sampleVariance from "./sample_variance";
  * sampleStandardDeviation([2, 4, 4, 4, 5, 5, 7, 9]).toFixed(2);
  * // => '2.14'
  */
-function sampleStandardDeviation(x) {
+export function sampleStandardDeviation(x) {
     // The standard deviation of no numbers is null
     const sampleVarianceX = sampleVariance(x);
     return Math.sqrt(sampleVarianceX);
 }
-
-export default sampleStandardDeviation;

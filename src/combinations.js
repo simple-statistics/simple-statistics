@@ -9,7 +9,7 @@
  * combinations([1, 2, 3], 2); // => [[1,2], [1,3], [2,3]]
  */
 
-function combinations(x, k) {
+export function combinations(x, k) {
     let i;
     let subI;
     const combinationList = [];
@@ -31,4 +31,22 @@ function combinations(x, k) {
     return combinationList;
 }
 
-export default combinations;
+export function* generateCombinations(x, k) {
+    let i;
+    let subI;
+    let subsetCombinations;
+    let next;
+
+    for (i = 0; i < x.length; i++) {
+        if (k === 1) {
+            yield [x[i]];
+        } else {
+            subsetCombinations = combinations(x.slice(i + 1, x.length), k - 1);
+            for (subI = 0; subI < subsetCombinations.length; subI++) {
+                next = subsetCombinations[subI];
+                next.unshift(x[i]);
+                yield next;
+            }
+        }
+    }
+}

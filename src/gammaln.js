@@ -33,7 +33,7 @@ const LOGSQRT2PI = Math.log(Math.sqrt(2 * Math.PI));
  * gammaln(500); // 2605.1158503617335
  * gammaln(2.4); // 0.21685932244884043
  */
-function gammaln(n) {
+export function gammaln(n) {
     // Return infinity if value not in domain
     if (n <= 0) {
         return Infinity;
@@ -54,5 +54,3 @@ function gammaln(n) {
     // Return natural logarithm of gamma(n)
     return LOGSQRT2PI + Math.log(a) - tmp + (n + 0.5) * Math.log(tmp);
 }
-
-export default gammaln;

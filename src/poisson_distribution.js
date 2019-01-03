@@ -1,4 +1,4 @@
-import epsilon from "./epsilon";
+import { epsilon } from "./epsilon";
 
 /**
  * The [Poisson Distribution](http://en.wikipedia.org/wiki/Poisson_distribution)
@@ -13,7 +13,7 @@ import epsilon from "./epsilon";
  * @param {number} lambda location poisson distribution
  * @returns {number[]} values of poisson distribution at that point
  */
-function poissonDistribution(lambda) /*: ?number[] */ {
+export function poissonDistribution(lambda) /*: ?number[] */ {
     // Check that lambda is strictly positive
     if (lambda <= 0) {
         return undefined;
@@ -43,5 +43,3 @@ function poissonDistribution(lambda) /*: ?number[] */ {
 
     return cells;
 }
-
-export default poissonDistribution;

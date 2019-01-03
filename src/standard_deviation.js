@@ -1,4 +1,4 @@
-import variance from "./variance";
+import { variance } from "./variance";
 
 /**
  * The [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)
@@ -16,12 +16,10 @@ import variance from "./variance";
  * variance([2, 4, 4, 4, 5, 5, 7, 9]); // => 4
  * standardDeviation([2, 4, 4, 4, 5, 5, 7, 9]); // => 2
  */
-function standardDeviation(x) {
+export function standardDeviation(x) {
     if (x.length === 1) {
         return 0;
     }
     const v = variance(x);
     return Math.sqrt(v);
 }
-
-export default standardDeviation;

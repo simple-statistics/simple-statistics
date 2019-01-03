@@ -1,5 +1,5 @@
-import mean from "./mean";
-import standardDeviation from "./standard_deviation";
+import { mean } from "./mean";
+import { standardDeviation } from "./standard_deviation";
 
 /**
  * This is to compute [a one-sample t-test](https://en.wikipedia.org/wiki/Student%27s_t-test#One-sample_t-test), comparing the mean
@@ -18,7 +18,7 @@ import standardDeviation from "./standard_deviation";
  * @example
  * tTest([1, 2, 3, 4, 5, 6], 3.385).toFixed(2); // => '0.16'
  */
-function tTest(x, expectedValue) {
+export function tTest(x, expectedValue) {
     // The mean of the sample
     const sampleMean = mean(x);
 
@@ -31,5 +31,3 @@ function tTest(x, expectedValue) {
     // returning the t value
     return (sampleMean - expectedValue) / (sd / rootN);
 }
-
-export default tTest;

@@ -10,7 +10,7 @@
  * @example
  * linearRegression([[0, 0], [1, 1]]); // => { m: 1, b: 0 }
  */
-function linearRegression(data) {
+export function linearRegression(data) {
     let m, b;
 
     // Store data length in a local variable to reduce
@@ -66,5 +66,3 @@ function linearRegression(data) {
         b: b
     };
 }
-
-export default linearRegression;

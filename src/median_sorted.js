@@ -1,4 +1,4 @@
-import quantileSorted from "./quantile_sorted";
+import { quantileSorted } from "./quantile_sorted";
 
 /**
  * The [median](http://en.wikipedia.org/wiki/Median) is
@@ -16,8 +16,6 @@ import quantileSorted from "./quantile_sorted";
  * @example
  * medianSorted([10, 2, 5, 100, 2, 1]); // => 52.5
  */
-function medianSorted(sorted) {
+export function medianSorted(sorted) {
     return quantileSorted(sorted, 0.5);
 }
-
-export default medianSorted;

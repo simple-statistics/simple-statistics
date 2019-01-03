@@ -12,7 +12,7 @@
  * var regressionLine = linearRegressionLine(linearRegression(samples));
  * rSquared(samples, regressionLine); // = 1 this line is a perfect fit
  */
-function rSquared(x, func) {
+export function rSquared(x, func) {
     if (x.length < 2) {
         return 1;
     }
@@ -47,5 +47,3 @@ function rSquared(x, func) {
     // value grows lower.
     return 1 - err / sumOfSquares;
 }
-
-export default rSquared;

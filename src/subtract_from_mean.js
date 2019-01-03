@@ -13,8 +13,6 @@
  * @example
  * subtractFromMean(20.5, 6, 53); // => 14
  */
-function subtractFromMean(mean, n, value) {
+export function subtractFromMean(mean, n, value) {
     return (mean * n - value) / (n - 1);
 }
-
-export default subtractFromMean;

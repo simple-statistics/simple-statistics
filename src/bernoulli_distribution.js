@@ -15,7 +15,7 @@
  * @example
  * bernoulliDistribution(0.3); // => [0.7, 0.3]
  */
-function bernoulliDistribution(p) /*: number[] */ {
+export function bernoulliDistribution(p) /*: number[] */ {
     // Check that `p` is a valid probability (0 ≤ p ≤ 1)
     if (p < 0 || p > 1) {
         throw new Error(
@@ -25,5 +25,3 @@ function bernoulliDistribution(p) /*: number[] */ {
 
     return [1 - p, p];
 }
-
-export default bernoulliDistribution;

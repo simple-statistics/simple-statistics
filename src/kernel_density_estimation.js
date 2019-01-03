@@ -1,5 +1,5 @@
-import interquartileRange from "./interquartile_range";
-import stddev from "./sample_standard_deviation";
+import { interquartileRange } from "./interquartile_range";
+import { sampleStandardDeviation } from "./sample_standard_deviation";
 
 const SQRT_2PI = Math.sqrt(2 * Math.PI);
 
@@ -30,7 +30,7 @@ const bandwidthMethods = {
      * @private
      */
     nrd: function(x) {
-        let s = stddev(x);
+        let s = sampleStandardDeviation(x);
         const iqr = interquartileRange(x);
         if (typeof iqr === "number") {
             s = Math.min(s, iqr / 1.34);
@@ -50,7 +50,7 @@ const bandwidthMethods = {
  * @param bandwidthMethod The "bandwidth selection" method to use, or a fixed bandwidth value. Defaults to "nrd", the commonly-used ["normal reference distribution" rule-of-thumb](https://stat.ethz.ch/R-manual/R-devel/library/MASS/html/bandwidth.nrd.html).
  * @returns {Function} An estimated [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) for the given sample. The returned function runs in `O(X.length)`.
  */
-function kernelDensityEstimation(X, kernel, bandwidthMethod) {
+export function kernelDensityEstimation(X, kernel, bandwidthMethod) {
     let kernelFn;
     if (kernel === undefined) {
         kernelFn = kernels.gaussian;
@@ -86,5 +86,3 @@ function kernelDensityEstimation(X, kernel, bandwidthMethod) {
         return sum / bandwidth / X.length;
     };
 }
-
-export default kernelDensityEstimation;

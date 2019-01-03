@@ -1,5 +1,5 @@
-import numericSort from "./numeric_sort";
-import quantileRankSorted from "./quantile_rank_sorted";
+import { numericSort } from "./numeric_sort";
+import { quantileRankSorted } from "./quantile_rank_sorted";
 
 /**
  * This function returns the quantile in which one would find the given value in
@@ -15,11 +15,9 @@ import quantileRankSorted from "./quantile_rank_sorted";
  * quantileRank([2, 4, 1, 3], 6); // => 1
  * quantileRank([5, 3, 1, 2, 3], 4); // => 0.8
  */
-function quantileRank(x, value) {
+export function quantileRank(x, value) {
     // Cloning and sorting the array
     const sortedCopy = numericSort(x);
 
     return quantileRankSorted(sortedCopy, value);
 }
-
-export default quantileRank;

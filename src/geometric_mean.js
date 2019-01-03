@@ -32,7 +32,7 @@
  * });
  * startingValueMean === startingValue;
  */
-function geometricMean(x) {
+export function geometricMean(x) {
     // The mean of no numbers is null
     if (x.length === 0) {
         throw new Error("geometricMean requires at least one data point");
@@ -55,5 +55,3 @@ function geometricMean(x) {
 
     return Math.pow(value, 1 / x.length);
 }
-
-export default geometricMean;

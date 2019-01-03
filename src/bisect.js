@@ -1,4 +1,4 @@
-import sign from "./sign";
+import { sign } from "./sign";
 
 /**
  * [Bisection method](https://en.wikipedia.org/wiki/Bisection_method) is a root-finding
@@ -17,7 +17,7 @@ import sign from "./sign";
  * @example
  * bisect(Math.cos,0,4,100,0.003); // => 1.572265625
  */
-function bisect(func, start, end, maxIterations, errorTolerance) {
+export function bisect(func, start, end, maxIterations, errorTolerance) {
     if (typeof func !== "function")
         throw new TypeError("func must be a function");
 
@@ -40,5 +40,3 @@ function bisect(func, start, end, maxIterations, errorTolerance) {
 
     throw new Error("maximum number of iterations exceeded");
 }
-
-export default bisect;

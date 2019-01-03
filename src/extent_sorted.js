@@ -8,8 +8,6 @@
  * @example
  * extentSorted([-100, -10, 1, 2, 5]); // => [-100, 5]
  */
-function extentSorted(x) {
+export function extentSorted(x) {
     return [x[0], x[x.length - 1]];
 }
-
-export default extentSorted;

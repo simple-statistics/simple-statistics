@@ -14,7 +14,7 @@
  * @example
  * modeSorted([0, 0, 1]); // => 0
  */
-function modeSorted(sorted) {
+export function modeSorted(sorted) {
     // Handle edge cases:
     // The mode of an empty list is undefined
     if (sorted.length === 0) {
@@ -58,5 +58,3 @@ function modeSorted(sorted) {
     }
     return value;
 }
-
-export default modeSorted;

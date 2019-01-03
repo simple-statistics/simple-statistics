@@ -1,4 +1,4 @@
-import quantile from "./quantile";
+import { quantile } from "./quantile";
 
 /**
  * The [Interquartile range](http://en.wikipedia.org/wiki/Interquartile_range) is
@@ -12,7 +12,7 @@ import quantile from "./quantile";
  * @example
  * interquartileRange([0, 1, 2, 3]); // => 2
  */
-function interquartileRange(x) {
+export function interquartileRange(x) {
     // Interquartile range is the span between the upper quartile,
     // at `0.75`, and lower quartile, `0.25`
     const q1 = quantile(x, 0.75);
@@ -23,4 +23,4 @@ function interquartileRange(x) {
     }
 }
 
-export default interquartileRange;
+export const iqr = interquartileRange;

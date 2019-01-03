@@ -15,7 +15,7 @@
  * shuffleInPlace(x);
  * // x is shuffled to a value like [2, 1, 4, 3]
  */
-function shuffleInPlace(x, randomSource) {
+export function shuffleInPlace(x, randomSource) {
     // a custom random number source can be provided if you want to use
     // a fixed seed or another random number generator, like
     // [random-js](https://www.npmjs.org/package/random-js)
@@ -48,5 +48,3 @@ function shuffleInPlace(x, randomSource) {
 
     return x;
 }
-
-export default shuffleInPlace;
