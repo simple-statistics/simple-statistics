@@ -4,44 +4,37 @@
  *
  * @param {Array} elements any type of data
  */
-function generatePermutationsHeap(elements) {
-    const indexes = Array(elements.length).fill(0);
-    let i = 0;
-    const iter = {
-        next: function() {
-            for (; i < elements.length; ) {
-                if (indexes[i] < i) {
-                    // At odd indexes, swap from indexes[i] instead
-                    // of from the beginning of the array
-                    let swapFrom = 0;
-                    if (i % 2 !== 0) {
-                        swapFrom = indexes[i];
-                    }
+function* generatePermutationsHeap(elements) {
+    const indexes = new Array(elements.length);
+    yield elements.slice();
 
-                    // swap between swapFrom and i, using
-                    // a temporary variable as storage.
-                    const temp = elements[swapFrom];
-                    elements[swapFrom] = elements[i];
-                    elements[i] = temp;
+    for (let i = 0; i < elements.length; i++) {
+        indexes[i] = 0;
+    }
 
-                    indexes[i]++;
-                    i = 0;
-                    return {
-                        value: elements.slice(),
-                        done: false
-                    };
-                } else {
-                    indexes[i] = 0;
-                    i++;
-                }
+    for (let i = 0; i < elements.length; ) {
+        if (indexes[i] < i) {
+            // At odd indexes, swap from indexes[i] instead
+            // of from the beginning of the array
+            let swapFrom = 0;
+            if (i % 2 !== 0) {
+                swapFrom = indexes[i];
             }
-            return { done: true };
-        },
-        [Symbol.iterator]: function() {
-            return this;
+
+            // swap between swapFrom and i, using
+            // a temporary variable as storage.
+            const temp = elements[swapFrom];
+            elements[swapFrom] = elements[i];
+            elements[i] = temp;
+
+            yield elements.slice();
+            indexes[i]++;
+            i = 0;
+        } else {
+            indexes[i] = 0;
+            i++;
         }
-    };
-    return iter;
+    }
 }
 
 export default generatePermutationsHeap;
