@@ -16,7 +16,7 @@ function errorFunction(x) {
     const tau =
         t *
         Math.exp(
-            -x * x -
+            -x * x +
                 ((((((((0.17087277 * t - 0.82215223) * t + 1.48851587) * t -
                     1.13520398) *
                     t +
