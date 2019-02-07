@@ -5,6 +5,7 @@
  * normal distribution with standard deviation sd is within x of the mean.
  *
  * This function returns a numerical approximation to the exact value.
+ * It uses Horner's method to evaluate the polynomial of τ (tau).
  *
  * @param {number} x input
  * @return {number} error estimation
