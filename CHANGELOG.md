@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="7.0.1"></a>
+## [7.0.1](https://github.com/simple-statistics/simple-statistics/compare/v7.0.0...v7.0.1) (2019-02-07)
+
+
+### Bug Fixes
+
+* code format error ([a1b9f15](https://github.com/simple-statistics/simple-statistics/commit/a1b9f15))
+* plus minus sign error ([f0b047d](https://github.com/simple-statistics/simple-statistics/commit/f0b047d))
+
+
+
 <a name="7.0.0"></a>
 # [7.0.0](https://github.com/simple-statistics/simple-statistics/compare/v6.1.1...v7.0.0) (2018-12-30)
 
