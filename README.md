@@ -41,7 +41,6 @@ in all modern browsers (including IE) as well as in [node.js](https://nodejs.org
       <script src='https://unpkg.com/simple-statistics@6.1.1/dist/simple-statistics.min.js'>
       </script>
       ```
-      * `https://unpkg.com/simple-statistics@6.1.1/dist/simple-statistics.min.js`
   * **I want to use ES6 modules in a browser and I'm [willing to only support new browsers](https://caniuse.com/#feat=es6-module) to do it**
     * This module works great with the [`?module`](https://unpkg.com/#/query-parameters) query parameter of unpkg. If you
       specify `type='module'` in your script tag, you'll be able to import simple-statistics
