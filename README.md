@@ -36,7 +36,11 @@ in all modern browsers (including IE) as well as in [node.js](https://nodejs.org
     * When you use simple-statistics from a script tag, you don't get to choose
       the variable name it is assigned to: simple-statistics will always become
       available globally as the variable `ss`. You can reassign this variable to
-      another name if you want to, but doing so is optional. <pre><script src='https://unpkg.com/simple-statistics@6.1.1/dist/simple-statistics.min.js' /></pre>
+      another name if you want to, but doing so is optional.
+      ```HTML
+      <script src='https://unpkg.com/simple-statistics@6.1.1/dist/simple-statistics.min.js'>
+      </script>
+      ```
       * `https://unpkg.com/simple-statistics@6.1.1/dist/simple-statistics.min.js`
   * **I want to use ES6 modules in a browser and I'm [willing to only support new browsers](https://caniuse.com/#feat=es6-module) to do it**
     * This module works great with the [`?module`](https://unpkg.com/#/query-parameters) query parameter of unpkg. If you
