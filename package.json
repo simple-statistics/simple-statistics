@@ -20,7 +20,7 @@
     "eslint-plugin-prettier": "^3.0.0",
     "jsdoctest": "^1.7.1",
     "microbundle": "^0.10.0",
-    "mocha": "^6.0.0",
+    "mocha": "6.0.1",
     "prettier": "^1.15.3",
     "random-js": "^1.0.4",
     "standard-version": "^5.0.0",
