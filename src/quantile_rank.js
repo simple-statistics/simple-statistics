@@ -3,9 +3,9 @@ import quantileRankSorted from "./quantile_rank_sorted";
 
 /**
  * This function returns the quantile in which one would find the given value in
- * the given array. It will require to copy and sort your array beforehand, so
- * if you know your array is already sorted, you would rather use
- * `quantileRankSorted`.
+ * the given array. It will copy and sort your array before each run, so
+ * if you know your array is already sorted, you should use `quantileRankSorted`
+ * instead.
  *
  * @param {Array<number>} x input
  * @returns {number} value value
