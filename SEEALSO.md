@@ -8,7 +8,7 @@
   many of the same measures for streaming data - as online algorithms
 
 ### Javascript
-
+* [R-js](https://github.com/R-js) port of r core libRmath and BLAS to typescript
 * [science.js](https://github.com/jasondavies/science.js)
 * [atoll.js](https://github.com/nsfmc/atoll.js)
 * [jStat](http://www.jstat.org/)
