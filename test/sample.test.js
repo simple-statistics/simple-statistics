@@ -2,7 +2,7 @@
 
 const test = require("tap").test;
 const Random = require("random-js");
-const random = new Random(Random.engines.mt19937().seed(0));
+const random = new Random.Random(Random.MersenneTwister19937.seed(0));
 const ss = require("../");
 
 function rng() {
