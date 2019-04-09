@@ -19,6 +19,7 @@
 * [Jerzy](https://github.com/pieterprovoost/jerzy)
 * [vega-statistics](https://github.com/vega/vega-statistics)
 * [datalib](https://github.com/vega/datalib)
+* [d3-regression](https://github.com/harrystevens/d3-regression)
 
 ### Ruby
 
