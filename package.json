@@ -15,7 +15,7 @@
   ],
   "devDependencies": {
     "cz-conventional-changelog": "^2.0.0",
-    "documentation": "^9.1.1",
+    "documentation": "^10.0.0",
     "eslint": "^5.0.1",
     "eslint-plugin-prettier": "^3.0.0",
     "jsdoctest": "^1.7.1",
