@@ -21,7 +21,7 @@
     "jsdoctest": "^1.7.1",
     "microbundle": "^0.11.0",
     "mocha": "^6.0.0",
-    "prettier": "^1.15.3",
+    "prettier": "^1.18.2",
     "random-js": "^2.0.0",
     "standard-version": "^6.0.1",
     "tap": "^14.4.1",
