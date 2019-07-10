@@ -1,6 +1,20 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [7.0.3](https://github.com/simple-statistics/simple-statistics/compare/v7.0.2...v7.0.3) (2019-07-10)
+
+
+### Bug Fixes
+
+* export permutationTest for ts ([#383](https://github.com/simple-statistics/simple-statistics/issues/383)) ([1915cd2](https://github.com/simple-statistics/simple-statistics/commit/1915cd2))
+
+
+### Tests
+
+* Add --skipLibCheck to make tsc ignore node modules. ([089f47a](https://github.com/simple-statistics/simple-statistics/commit/089f47a))
+
+
 
 ## [7.0.2](https://github.com/simple-statistics/simple-statistics/compare/v7.0.1...v7.0.2) (2019-02-26)
 
