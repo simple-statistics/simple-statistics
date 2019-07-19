@@ -14,7 +14,7 @@
     "index.d.ts"
   ],
   "devDependencies": {
-    "cz-conventional-changelog": "^2.0.0",
+    "cz-conventional-changelog": "^3.0.0",
     "documentation": "^12",
     "eslint": "^6.0.1",
     "eslint-plugin-prettier": "^3.0.0",
