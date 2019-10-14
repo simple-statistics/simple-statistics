@@ -24,7 +24,7 @@
     "prettier": "^1.18.2",
     "random-js": "^2.0.0",
     "standard-version": "^7.0.0",
-    "tap": "^14.4.1",
+    "tap": "14.6.9",
     "typescript": "^2.5.3"
   },
   "scripts": {
