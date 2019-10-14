@@ -25,7 +25,7 @@
     "random-js": "^2.0.0",
     "standard-version": "^7.0.0",
     "tap": "^14.4.1",
-    "typescript": "^2.5.3"
+    "typescript": "^3.6.4"
   },
   "scripts": {
     "release": "standard-version && sh ./scripts/update_website.sh",
