@@ -22,6 +22,7 @@
     "mocha": "^6.0.0",
     "prettier": "^1.18.2",
     "random-js": "^2.0.0",
+    "rollup": "^1.27.0",
     "rollup-plugin-terser": "^5.1.2",
     "standard-version": "^7.0.0",
     "tap": "^14.4.1",
@@ -29,9 +30,9 @@
   },
   "scripts": {
     "release": "standard-version && sh ./scripts/update_website.sh",
-    "test": "npm run build && npm run lint && tap --coverage test/*.test.js --jobs=4 && npm run jsdoctest",
+    "test": "rollup -c rollup.config.js && npm run lint && tap --coverage test/*.test.js --jobs=4 && npm run jsdoctest",
     "build": "rollup -c rollup.config.js",
-    "prepublish": "npm run build && ./scripts/update_readme.js",
+    "prepublish": "rollup -c rollup.config.js && ./scripts/update_readme.js",
     "prelint": "tsc --skipLibCheck",
     "lint": "eslint index.js src test",
     "postlint": "documentation lint src",
@@ -60,8 +61,5 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "dependencies": {
-    "rollup": "^1.27.0"
   }
 }
