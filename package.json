@@ -19,19 +19,19 @@
     "eslint": "^6.0.1",
     "eslint-plugin-prettier": "^3.0.0",
     "jsdoctest": "^1.7.1",
-    "microbundle": "^0.11.0",
     "mocha": "^6.0.0",
     "prettier": "^1.18.2",
     "random-js": "^2.0.0",
+    "rollup-plugin-terser": "^5.1.2",
     "standard-version": "^7.0.0",
     "tap": "^14.4.1",
     "typescript": "^3.6.4"
   },
   "scripts": {
     "release": "standard-version && sh ./scripts/update_website.sh",
-    "test": "microbundle --name ss && npm run lint && tap --coverage test/*.test.js --jobs=4 && npm run jsdoctest",
-    "build": "microbundle --name ss",
-    "prepublish": "microbundle --name ss && ./scripts/update_readme.js",
+    "test": "npm run build && npm run lint && tap --coverage test/*.test.js --jobs=4 && npm run jsdoctest",
+    "build": "rollup -c rollup.config.js",
+    "prepublish": "npm run build && ./scripts/update_readme.js",
     "prelint": "tsc --skipLibCheck",
     "lint": "eslint index.js src test",
     "postlint": "documentation lint src",
@@ -60,5 +60,8 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "rollup": "^1.27.0"
   }
 }
