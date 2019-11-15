@@ -32,35 +32,27 @@ export {
     default as mad
 } from "./src/median_absolute_deviation";
 export { default as chunk } from "./src/chunk";
-export {
-    default as sampleWithReplacement
-} from "./src/sample_with_replacement";
+export { default as sampleWithReplacement } from "./src/sample_with_replacement";
 export { default as shuffle } from "./src/shuffle";
 export { default as shuffleInPlace } from "./src/shuffle_in_place";
 export { default as sample } from "./src/sample";
 export { default as ckmeans } from "./src/ckmeans";
 export { default as uniqueCountSorted } from "./src/unique_count_sorted";
-export {
-    default as sumNthPowerDeviations
-} from "./src/sum_nth_power_deviations";
+export { default as sumNthPowerDeviations } from "./src/sum_nth_power_deviations";
 export { default as equalIntervalBreaks } from "./src/equal_interval_breaks";
 
 // sample statistics
 export { default as sampleCovariance } from "./src/sample_covariance";
 export { default as sampleCorrelation } from "./src/sample_correlation";
 export { default as sampleVariance } from "./src/sample_variance";
-export {
-    default as sampleStandardDeviation
-} from "./src/sample_standard_deviation";
+export { default as sampleStandardDeviation } from "./src/sample_standard_deviation";
 export { default as sampleSkewness } from "./src/sample_skewness";
 export { default as sampleKurtosis } from "./src/sample_kurtosis";
 
 // combinatorics
 export { default as permutationsHeap } from "./src/permutations_heap";
 export { default as combinations } from "./src/combinations";
-export {
-    default as combinationsReplacement
-} from "./src/combinations_replacement";
+export { default as combinationsReplacement } from "./src/combinations_replacement";
 
 // measures of centrality
 export { default as addToMean } from "./src/add_to_mean";
@@ -100,12 +92,8 @@ export { default as gammaln } from "./src/gammaln";
 export { default as bernoulliDistribution } from "./src/bernoulli_distribution";
 export { default as binomialDistribution } from "./src/binomial_distribution";
 export { default as poissonDistribution } from "./src/poisson_distribution";
-export {
-    default as chiSquaredDistributionTable
-} from "./src/chi_squared_distribution_table";
-export {
-    default as chiSquaredGoodnessOfFit
-} from "./src/chi_squared_goodness_of_fit";
+export { default as chiSquaredDistributionTable } from "./src/chi_squared_distribution_table";
+export { default as chiSquaredGoodnessOfFit } from "./src/chi_squared_goodness_of_fit";
 export {
     default as kernelDensityEstimation,
     default as kde
@@ -113,9 +101,7 @@ export {
 
 // Normal distribution
 export { default as zScore } from "./src/z_score";
-export {
-    default as cumulativeStdNormalProbability
-} from "./src/cumulative_std_normal_probability";
+export { default as cumulativeStdNormalProbability } from "./src/cumulative_std_normal_probability";
 export { default as standardNormalTable } from "./src/standard_normal_table";
 export { default as errorFunction, default as erf } from "./src/error_function";
 export { default as inverseErrorFunction } from "./src/inverse_error_function";
