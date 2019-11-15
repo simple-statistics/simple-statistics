@@ -9,11 +9,11 @@ test("gamma", function(t) {
         t.end();
     });
     t.test("gamma for positive real float should be correct", function(t) {
-        t.equal(ss.gamma(11.54), 13098426.039156161);
+        t.ok(Math.abs(ss.gamma(11.54) - 13098426.039156161) < ss.epsilon);
         t.end();
     });
     t.test("gamma for negative real float should be correct", function(t) {
-        t.equal(ss.gamma(-42.5), -3.419793520724856e-52);
+        t.ok(Math.abs(ss.gamma(-42.5) - -3.419793520724856e-52) < ss.epsilon);
         t.end();
     });
     t.test("gamma for negative integer should return NaN", function(t) {
