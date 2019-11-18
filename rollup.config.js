@@ -1,3 +1,4 @@
+import buble from "@rollup/plugin-buble";
 import { terser } from "rollup-plugin-terser";
 
 const input = "index.js";
@@ -10,7 +11,8 @@ export default [
             file: "dist/simple-statistics.mjs",
             format: "es",
             sourcemap
-        }
+        },
+        plugins: [buble()]
     },
     {
         input,
@@ -18,7 +20,8 @@ export default [
             file: "dist/simple-statistics.js",
             format: "cjs",
             sourcemap
-        }
+        },
+        plugins: [buble()]
     },
     {
         input,
@@ -28,6 +31,6 @@ export default [
             name: "ss",
             sourcemap
         },
-        plugins: [terser()]
+        plugins: [buble(), terser()]
     }
 ];
