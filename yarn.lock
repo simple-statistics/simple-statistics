@@ -2482,6 +2482,11 @@ detective@^4.0.0:
     acorn "^5.2.1"
     defined "^1.0.0"
 
+diff-frag@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/diff-frag/-/diff-frag-1.0.1.tgz#a7bb51789743e8c0b40e2509166bd155e5833826"
+  integrity sha512-6/v2PC/6UTGcWPPetb9acL8foberUg/CtPdALeJUdD1B/weHNvzftoo00gYznqHGRhHEbykUGzqfG9RWOSr5yw==
+
 diff@^1.3.2:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-1.4.0.tgz#7f28d2eb9ee7b15a97efd89ce63dcfdaa3ccbabf"
@@ -6607,9 +6612,9 @@ tap-yaml@^1.0.0:
     yaml "^1.5.0"
 
 tap@^14.4.1:
-  version "14.9.2"
-  resolved "https://registry.yarnpkg.com/tap/-/tap-14.9.2.tgz#7a40fb7a0198156a97448187b2275de02ff71cf6"
-  integrity sha512-Fyy/sjsw4eb+Hnphin4oMtDtKxmrob/vrnaIDv/F3thFFQjQFqMg8xf45zRFGHxUfezlrO6KsH8TpWNlTDINfA==
+  version "14.10.0"
+  resolved "https://registry.yarnpkg.com/tap/-/tap-14.10.0.tgz#8537b1ea5758b22036b4cd043088ea1a47dae237"
+  integrity sha512-5+5BD+APA36q9YnnMyENYSCifaUvWFRqKMzBomWiw+yaoqHQhjiPhU6SFdTky/Iqlwgqs6sqwFbwfvyK9AnbUg==
   dependencies:
     async-hook-domain "^1.1.2"
     bind-obj-methods "^2.0.0"
@@ -6644,8 +6649,8 @@ tap@^14.4.1:
     tap-mocha-reporter "^5.0.0"
     tap-parser "^10.0.1"
     tap-yaml "^1.0.0"
-    tcompare "^2.3.0"
-    treport "^0.4.2"
+    tcompare "^3.0.0"
+    treport "^0.5.0"
     trivial-deferred "^1.0.1"
     ts-node "^8.3.0"
     typescript "^3.6.3"
@@ -6667,10 +6672,12 @@ tar@^4:
     safe-buffer "^5.1.2"
     yallist "^3.0.3"
 
-tcompare@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/tcompare/-/tcompare-2.3.0.tgz#4f5ab56a4ab248ee2b8cc496e0675d47b4264fde"
-  integrity sha512-fAfA73uFtFGybWGt4+IYT6UPLYVZQ4NfsP+IXEZGY0vh8e2IF7LVKafcQNMRBLqP0wzEA65LM9Tqj+FSmO8GLw==
+tcompare@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/tcompare/-/tcompare-3.0.0.tgz#588a2af6d67bfb146fb21f343d6480dea7065455"
+  integrity sha512-lRD40wHaBoVvmcCT0L7qJmR+jBl1nVP0WxbMYyOtsFza+SXD9aiRVir9aWogdQwNzY6ZwOvwDp5vg3XWQGOIVQ==
+  dependencies:
+    diff-frag "^1.0.1"
 
 terser@^4.1.0:
   version "4.4.0"
@@ -6813,10 +6820,10 @@ tough-cookie@~2.4.3:
     psl "^1.1.24"
     punycode "^1.4.1"
 
-treport@^0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/treport/-/treport-0.4.2.tgz#27574ef8e7b534bd1a4feedc75b6c19044117472"
-  integrity sha512-Po8pQ/rmu4lVNmZWBgqyiHoIWXFeWaMA3H/WoCKw+DiS0xFn43UYRH6hYnjmrWCp0rkLItELQP/maO9uHDe/7A==
+treport@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/treport/-/treport-0.5.0.tgz#5d22005db19cbf8ae2e53c39476f2942d3f23635"
+  integrity sha512-9ya/f8gd2HuuEpZYEujBACvx7DgGvxTdUK3RJjF3UsmhdfRv1zYJfci4r9qmRTB9t8W0vneDMFyL3V1mT8/LvQ==
   dependencies:
     cardinal "^2.1.1"
     chalk "^2.4.2"
