@@ -6612,9 +6612,9 @@ tap-yaml@^1.0.0:
     yaml "^1.5.0"
 
 tap@^14.4.1:
-  version "14.10.0"
-  resolved "https://registry.yarnpkg.com/tap/-/tap-14.10.0.tgz#8537b1ea5758b22036b4cd043088ea1a47dae237"
-  integrity sha512-5+5BD+APA36q9YnnMyENYSCifaUvWFRqKMzBomWiw+yaoqHQhjiPhU6SFdTky/Iqlwgqs6sqwFbwfvyK9AnbUg==
+  version "14.10.1"
+  resolved "https://registry.yarnpkg.com/tap/-/tap-14.10.1.tgz#4e88d5964decec69236cb302e6ce4b2691d56fb7"
+  integrity sha512-GsjAtKf9WKe2Cj5/5OckVdwyz4kv4pjlidDPpNY32ikR6rkBnicU/gxwckXvV/pQ5uTDx+od6XqmVAB7ityXWg==
   dependencies:
     async-hook-domain "^1.1.2"
     bind-obj-methods "^2.0.0"
