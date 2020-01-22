@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#max
+ * https://simplestatistics.org/docs/#extent
  */
 declare function extent(
     x: number[]
