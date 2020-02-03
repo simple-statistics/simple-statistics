@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.0.8](https://github.com/simple-statistics/simple-statistics/compare/v7.0.7...v7.0.8) (2020-02-03)
+
+
+### Bug Fixes
+
+* add missing typings for extent ([#430](https://github.com/simple-statistics/simple-statistics/issues/430)) ([330fd63](https://github.com/simple-statistics/simple-statistics/commit/330fd6386e07b4bd7eff9860c1c31ea2c2f022d0))
+
 ### [7.0.7](https://github.com/simple-statistics/simple-statistics/compare/v7.0.6...v7.0.7) (2019-11-18)
 
 ### [7.0.6](https://github.com/simple-statistics/simple-statistics/compare/v7.0.5...v7.0.6) (2019-11-15)
