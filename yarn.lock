@@ -6610,9 +6610,9 @@ tap-yaml@^1.0.0:
     yaml "^1.5.0"
 
 tap@^14.4.1:
-  version "14.10.6"
-  resolved "https://registry.yarnpkg.com/tap/-/tap-14.10.6.tgz#554b399ee14f1794ea995363b07012c2edc9def6"
-  integrity sha512-0Ikt8ui8TIYcoKkJRWDfoO0fgsknP3d6ouBak8HkDW8dl3NWF4Nj3X3bYFGozFeclXJrzY2qBERk3iPlypwOyg==
+  version "14.10.7"
+  resolved "https://registry.yarnpkg.com/tap/-/tap-14.10.7.tgz#426ee130a81bd00951d0ab2cc1eba76cf1775c36"
+  integrity sha512-DVx00lfiMxFhofwFDP77pitRCruVQJn8Dcj/6auIU3dErJQWsKT94oG6Yj0MQRuYANhSec8ruIPyUjH/RI9Hrw==
   dependencies:
     "@types/react" "^16.9.16"
     async-hook-domain "^1.1.3"
