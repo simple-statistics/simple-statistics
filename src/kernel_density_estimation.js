@@ -12,7 +12,7 @@ const kernels = {
      * The gaussian kernel.
      * @private
      */
-    gaussian: function(u) {
+    gaussian: function (u) {
         return Math.exp(-0.5 * u * u) / SQRT_2PI;
     }
 };
@@ -29,7 +29,7 @@ const bandwidthMethods = {
      * rule-of-thumb](https://en.wikipedia.org/wiki/Kernel_density_estimation#A_rule-of-thumb_bandwidth_estimator).
      * @private
      */
-    nrd: function(x) {
+    nrd: function (x) {
         let s = stddev(x);
         const iqr = interquartileRange(x);
         if (typeof iqr === "number") {
@@ -77,7 +77,7 @@ function kernelDensityEstimation(X, kernel, bandwidthMethod) {
         bandwidth = bandwidthMethod;
     }
 
-    return function(x) {
+    return function (x) {
         let i = 0;
         let sum = 0;
         for (i = 0; i < X.length; i++) {

@@ -75,8 +75,8 @@ const normallyDistributed = {
     ]
 };
 
-test("kernel density estimation", function(t) {
-    t.test("default kernel and bandwidth", function(t) {
+test("kernel density estimation", function (t) {
+    t.test("default kernel and bandwidth", function (t) {
         const kde = ss.kernelDensityEstimation(normallyDistributed.sample);
         for (let i = 0; i < normallyDistributed.density.length; i++) {
             const x = normallyDistributed.density[i][0];

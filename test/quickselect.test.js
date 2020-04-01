@@ -1,7 +1,7 @@
 const test = require("tap").test;
 const quickselect = require("../").quickselect;
 
-test("quickselect", function(t) {
+test("quickselect", function (t) {
     const arr = [65, 28, 59, 33, 21, 56, 22, 95, 50, 12, 90, 53, 28, 77, 39];
     quickselect(arr, 8);
     t.deepEqual(arr, [
@@ -24,7 +24,7 @@ test("quickselect", function(t) {
     t.end();
 });
 
-test("quickselect long arrays", function(t) {
+test("quickselect long arrays", function (t) {
     const arr = [];
     for (let i = 1000; i >= 0; i--) arr.push(i);
     quickselect(arr, 300);
@@ -32,7 +32,7 @@ test("quickselect long arrays", function(t) {
     t.end();
 });
 
-test("quickselect long arrays L35 coverage", function(t) {
+test("quickselect long arrays L35 coverage", function (t) {
     const arr = [];
     for (let i = 1000; i >= 0; i--) arr.push(i);
     quickselect(arr, 500, 10, 620);

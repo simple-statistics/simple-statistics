@@ -19,7 +19,7 @@ function linearRegressionLine(mb /*: { b: number, m: number }*/) {
     // Return a function that computes a `y` value for each
     // x value it is given, based on the values of `b` and `a`
     // that we just computed.
-    return function(x) {
+    return function (x) {
         return mb.b + mb.m * x;
     };
 }

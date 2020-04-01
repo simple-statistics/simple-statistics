@@ -9,7 +9,7 @@ function rng() {
     return random.real(0, 1);
 }
 
-test("sampleWithReplacement", function(t) {
+test("sampleWithReplacement", function (t) {
     const input = [1, 2, 3, 4, 5, 6];
     t.deepEqual(ss.sampleWithReplacement(input, 2, rng), [6, 5]);
     t.deepEqual(ss.sampleWithReplacement(input, 3, rng), [3, 6, 4]);

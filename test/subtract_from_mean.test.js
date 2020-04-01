@@ -3,8 +3,8 @@
 const test = require("tap").test;
 const ss = require("../");
 
-test("subtractFromMean", function(t) {
-    t.test("can remove a single value from a mean", function(t) {
+test("subtractFromMean", function (t) {
+    t.test("can remove a single value from a mean", function (t) {
         const values = [13, 14, 15, 8, 20, 54];
         t.equal(ss.subtractFromMean(ss.mean(values), values.length, 54), 14);
         t.equal(

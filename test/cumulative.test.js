@@ -3,13 +3,13 @@
 const test = require("tap").test;
 const ss = require("../");
 
-test("cumulativeStdNormalProbability", function(t) {
+test("cumulativeStdNormalProbability", function (t) {
     // https://en.wikipedia.org/wiki/Standard_normal_table#Examples_of_use
-    t.test("wikipedia test example works", function(t) {
+    t.test("wikipedia test example works", function (t) {
         t.equal(ss.cumulativeStdNormalProbability(0.4), 0.6554);
         t.end();
     });
-    t.test("nondecreasing", function(t) {
+    t.test("nondecreasing", function (t) {
         for (let i = 0; i < ss.standardNormalTable.length; i++) {
             if (
                 !ss.cumulativeStdNormalProbability(i / 100) >=
@@ -20,7 +20,7 @@ test("cumulativeStdNormalProbability", function(t) {
         }
         t.end();
     });
-    t.test("matches errorFunction", function(t) {
+    t.test("matches errorFunction", function (t) {
         for (let i = 0; i < ss.standardNormalTable.length; i++) {
             if (
                 !(
@@ -36,7 +36,7 @@ test("cumulativeStdNormalProbability", function(t) {
         }
         t.end();
     });
-    t.test("symmetry", function(t) {
+    t.test("symmetry", function (t) {
         t.equal(
             Math.abs(
                 ss.cumulativeStdNormalProbability(-1) -
@@ -46,7 +46,7 @@ test("cumulativeStdNormalProbability", function(t) {
         );
         t.end();
     });
-    t.test("inverse", function(t) {
+    t.test("inverse", function (t) {
         for (let i = 0; i <= 1 + ss.epsilon; i += 0.01) {
             t.equal(
                 Math.abs(ss.cumulativeStdNormalProbability(ss.probit(i)) - i) <

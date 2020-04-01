@@ -68,10 +68,10 @@ const data1019 = [
     3
 ];
 
-test("chiSquaredGoodnessOfFit", function(t) {
+test("chiSquaredGoodnessOfFit", function (t) {
     t.test(
         "can reject the null hypothesis with level of confidence specified at 0.05",
-        function(t) {
+        function (t) {
             t.equal(
                 false,
                 ss.chiSquaredGoodnessOfFit(
@@ -85,7 +85,7 @@ test("chiSquaredGoodnessOfFit", function(t) {
     );
     t.test(
         "can accept the null hypothesis with level of confidence specified at 0.10",
-        function(t) {
+        function (t) {
             t.equal(
                 true,
                 ss.chiSquaredGoodnessOfFit(
@@ -97,7 +97,7 @@ test("chiSquaredGoodnessOfFit", function(t) {
             t.end();
         }
     );
-    t.test("can tolerate gaps in distribution", function(t) {
+    t.test("can tolerate gaps in distribution", function (t) {
         t.equal(
             true,
             ss.chiSquaredGoodnessOfFit(

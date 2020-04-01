@@ -3,14 +3,14 @@
 const test = require("tap").test;
 const ss = require("../");
 
-test("combinations", function(t) {
-    t.test("generates 1 permutation", function(t) {
+test("combinations", function (t) {
+    t.test("generates 1 permutation", function (t) {
         t.deepEqual(ss.combinationsReplacement([1], 1), [[1]]);
         t.end();
     });
     t.test(
         "generates combinations of 1,2 choosing two at a time, with replacement",
-        function(t) {
+        function (t) {
             t.deepEqual(ss.combinationsReplacement([1, 2], 2), [
                 [1, 1],
                 [1, 2],

@@ -3,7 +3,7 @@
 const test = require("tap").test;
 const numericSort = require("../").numericSort;
 
-test("numericSort", function(t) {
+test("numericSort", function (t) {
     t.deepEqual(numericSort([1, 2]), [1, 2]);
     t.deepEqual(numericSort([2, 1]), [1, 2]);
 

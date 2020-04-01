@@ -9,7 +9,7 @@ function rng() {
     return random.real(0, 1);
 }
 
-test("shuffle", function(t) {
+test("shuffle", function (t) {
     const input = [1, 2, 3, 4, 5, 6];
     t.deepEqual(ss.shuffle([], rng), []);
     t.deepEqual(ss.shuffle(input, rng), [1, 5, 3, 2, 4, 6]);
@@ -19,7 +19,7 @@ test("shuffle", function(t) {
     t.end();
 });
 
-test("shuffleInPlace", function(t) {
+test("shuffleInPlace", function (t) {
     const input = [1, 2, 3, 4, 5, 6];
     t.deepEqual(ss.shuffleInPlace([], rng), []);
     t.deepEqual(ss.shuffleInPlace(input, rng), [6, 1, 5, 2, 4, 3]);
@@ -27,7 +27,7 @@ test("shuffleInPlace", function(t) {
     t.end();
 });
 
-test("shuffleInPlace truly random", function(t) {
+test("shuffleInPlace truly random", function (t) {
     const input = [1, 2, 3, 4, 5, 6];
     t.deepEqual(ss.shuffleInPlace([]), []);
     t.deepEqual(ss.shuffleInPlace(input).sort(), [1, 2, 3, 4, 5, 6]);
