@@ -3,14 +3,14 @@
 const test = require("tap").test;
 const ss = require("../");
 
-test("mode", function(t) {
-    ["mode", "modeFast"].forEach(function(modeName) {
-        t.test(modeName, function(t) {
+test("mode", function (t) {
+    ["mode", "modeFast"].forEach(function (modeName) {
+        t.test(modeName, function (t) {
             const modeFn = ss[modeName];
 
             t.test(
                 "the mode of a single-number array is that one number",
-                function(t) {
+                function (t) {
                     t.equal(modeFn([1]), 1);
                     t.end();
                 }
@@ -18,13 +18,13 @@ test("mode", function(t) {
 
             t.test(
                 "the mode of a two-number array is that one number",
-                function(t) {
+                function (t) {
                     t.equal(modeFn([1, 1]), 1);
                     t.end();
                 }
             );
 
-            t.test("other cases", function(t) {
+            t.test("other cases", function (t) {
                 t.equal(modeFn([1, 1, 2]), 1);
                 t.equal(modeFn([1, 1, 2, 3]), 1);
                 t.equal(modeFn([1, 1, 2, 3, 3]), 1);
@@ -36,8 +36,8 @@ test("mode", function(t) {
                 t.end();
             });
 
-            t.test("the mode of an empty array is null", function(t) {
-                t.throws(function() {
+            t.test("the mode of an empty array is null", function (t) {
+                t.throws(function () {
                     modeFn([]);
                 });
                 t.end();
@@ -45,7 +45,7 @@ test("mode", function(t) {
 
             t.test(
                 "the mode of a three-number array with two same numbers is the repeated one",
-                function(t) {
+                function (t) {
                     t.equal(modeFn([1, 2, 2]), 2);
                     t.end();
                 }
@@ -55,7 +55,7 @@ test("mode", function(t) {
         });
     });
 
-    t.test("mode sorted", function(t) {
+    t.test("mode sorted", function (t) {
         t.equal(ss.modeSorted([1, 2, 2]), 2);
         t.end();
     });

@@ -3,8 +3,8 @@
 const test = require("tap").test;
 const ss = require("../");
 
-test("standardNormalTable", function(t) {
-    test("all entries are numeric", function(t) {
+test("standardNormalTable", function (t) {
+    test("all entries are numeric", function (t) {
         for (let i = 0; i < ss.standardNormalTable.length; i++) {
             if (
                 typeof ss.standardNormalTable[i] !== "number" ||

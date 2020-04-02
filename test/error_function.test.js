@@ -3,13 +3,13 @@
 const test = require("tap").test;
 const ss = require("../");
 
-test("errorFunction", function(t) {
-    test("symmetry", function(t) {
+test("errorFunction", function (t) {
+    test("symmetry", function (t) {
         t.equal(ss.errorFunction(-1), -ss.errorFunction(1));
         t.end();
     });
     t.end();
-    test("inverse", function(t) {
+    test("inverse", function (t) {
         for (let i = -1; i <= 1; i += 0.01) {
             t.equal(
                 Math.abs(ss.errorFunction(ss.inverseErrorFunction(i)) - i) <

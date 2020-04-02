@@ -21,7 +21,7 @@ function numericSort(x) {
             // ensure the array is not changed in-place
             .slice()
             // comparator function that treats input as numeric
-            .sort(function(a, b) {
+            .sort(function (a, b) {
                 return a - b;
             })
     );

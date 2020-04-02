@@ -3,8 +3,8 @@
 const test = require("tap").test;
 const ss = require("../");
 
-test("r-squared", function(t) {
-    t.test("says that the r squared of a two-point line is perfect", function(
+test("r-squared", function (t) {
+    t.test("says that the r squared of a two-point line is perfect", function (
         t
     ) {
         const d = [
@@ -18,7 +18,7 @@ test("r-squared", function(t) {
 
     t.test(
         "says that the r squared of a three-point line is not perfect",
-        function(t) {
+        function (t) {
             const d = [
                 [0, 0],
                 [0.5, 0.2],
@@ -30,7 +30,7 @@ test("r-squared", function(t) {
         }
     );
 
-    t.test("r-squared of single sample is 1", function(t) {
+    t.test("r-squared of single sample is 1", function (t) {
         const d = [[0, 0]];
         const l = ss.linearRegressionLine(ss.linearRegression(d));
         t.equal(ss.rSquared(d, l), 1);

@@ -3,8 +3,8 @@
 const PerceptronModel = require("../").PerceptronModel;
 const test = require("tap").test;
 
-test("perceptron", function(t) {
-    t.test("initializes to zeros if label is zero", function(t) {
+test("perceptron", function (t) {
+    t.test("initializes to zeros if label is zero", function (t) {
         const p = new PerceptronModel();
         p.train([1, 2, 3], 0);
         t.deepEqual(p.weights, [0, 0, 0]);
@@ -12,7 +12,7 @@ test("perceptron", function(t) {
         t.end();
     });
 
-    t.test("initializes to values if label is one", function(t) {
+    t.test("initializes to values if label is one", function (t) {
         const p = new PerceptronModel();
         p.train([1, 2, 3], 1);
         t.deepEqual(p.weights, [1, 2, 3]);
@@ -20,7 +20,7 @@ test("perceptron", function(t) {
         t.end();
     });
 
-    t.test("learns to separate one from two", function(t) {
+    t.test("learns to separate one from two", function (t) {
         const p = new PerceptronModel();
         for (let i = 0; i < 4; i++) {
             p.train([1], 0);
@@ -31,7 +31,7 @@ test("perceptron", function(t) {
         t.end();
     });
 
-    t.test("learns a diagonal boundary", function(t) {
+    t.test("learns a diagonal boundary", function (t) {
         const p = new PerceptronModel();
         for (let i = 0; i < 5; i++) {
             p.train([1, 1], 1);

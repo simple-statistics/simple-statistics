@@ -7,12 +7,12 @@ function rnd(n) {
     return parseFloat(n.toFixed(4));
 }
 
-test("binomialDistribution", function(t) {
+test("binomialDistribution", function (t) {
     // Data given in the [Wikipedia example](http://en.wikipedia.org/wiki/Binomial_distribution#Example) retrieved 29 Mar 2014
     // Cumulative probabilities worked by hand to mitigate accumulated rounding errors.
     t.test(
         "can return generate probability and cumulative probability distributions for n = 6, p = 0.3",
-        function(t) {
+        function (t) {
             t.equal("object", typeof ss.binomialDistribution(6, 0.3));
             t.equal(
                 rnd(ss.binomialDistribution(6, 0.3)[0]),
@@ -53,7 +53,9 @@ test("binomialDistribution", function(t) {
         }
     );
 
-    t.test("can return null when p or n are not valid parameters", function(t) {
+    t.test("can return null when p or n are not valid parameters", function (
+        t
+    ) {
         t.equal(
             ss.binomialDistribution(0, 0.5),
             undefined,

@@ -3,10 +3,10 @@
 const test = require("tap").test;
 const cK = require("../").ckmeans;
 
-test("C k-means", function(t) {
+test("C k-means", function (t) {
     t.ok(cK, "exports fn");
 
-    t.throws(function() {
+    t.throws(function () {
         cK([], 10);
     }, "Cannot generate more values than input");
 

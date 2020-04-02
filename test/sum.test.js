@@ -3,26 +3,26 @@
 const test = require("tap").test;
 const ss = require("../");
 
-test("sum", function(t) {
-    t.test("can get the sum of two numbers", function(t) {
+test("sum", function (t) {
+    t.test("can get the sum of two numbers", function (t) {
         t.equal(ss.sum([1, 2]), 3);
         t.end();
     });
 
-    t.test("the sum of no numbers is zero", function(t) {
+    t.test("the sum of no numbers is zero", function (t) {
         t.equal(ss.sum([]), 0);
         t.end();
     });
     t.end();
 });
 
-test("sumSimple", function(t) {
-    t.test("can get the sum of two numbers", function(t) {
+test("sumSimple", function (t) {
+    t.test("can get the sum of two numbers", function (t) {
         t.equal(ss.sumSimple([1, 2]), 3);
         t.end();
     });
 
-    t.test("can get the sum of two numbers", function(t) {
+    t.test("can get the sum of two numbers", function (t) {
         t.equal(
             ss.sumSimple([
                 0.1,
@@ -70,7 +70,7 @@ test("sumSimple", function(t) {
         t.end();
     });
 
-    t.test("the sum of no numbers is zero", function(t) {
+    t.test("the sum of no numbers is zero", function (t) {
         t.equal(ss.sumSimple([]), 0);
         t.end();
     });

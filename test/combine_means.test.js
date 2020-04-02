@@ -3,8 +3,8 @@
 const test = require("tap").test;
 const ss = require("../");
 
-test("combineMeans", function(t) {
-    t.test("can combine the means of two lists", function(t) {
+test("combineMeans", function (t) {
+    t.test("can combine the means of two lists", function (t) {
         const values1 = [8, 3, 4];
         const values2 = [2, 6, 4];
         t.equal(

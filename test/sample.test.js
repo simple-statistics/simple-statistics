@@ -9,7 +9,7 @@ function rng() {
     return random.real(0, 1);
 }
 
-test("sample", function(t) {
+test("sample", function (t) {
     t.deepEqual(ss.sample([], 0, rng), [], "edge case - zero array");
     t.deepEqual(ss.sample([], 2, rng), [], "edge case - zero array");
     t.deepEqual(ss.sample([1, 2, 3], 0, rng, 0), [], "edge case - zero array");

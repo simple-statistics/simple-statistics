@@ -4,8 +4,8 @@ const test = require("tap").test;
 const linearRegression = require("../").linearRegression;
 const linearRegressionLine = require("../").linearRegressionLine;
 
-test("linear regression", function(t) {
-    t.test("correctly generates a line for a 0, 0 to 1, 1 dataset", function(
+test("linear regression", function (t) {
+    t.test("correctly generates a line for a 0, 0 to 1, 1 dataset", function (
         t
     ) {
         const l = linearRegressionLine(
@@ -20,7 +20,7 @@ test("linear regression", function(t) {
         t.end();
     });
 
-    t.test("correctly generates a line for a 0, 0 to 1, 0 dataset", function(
+    t.test("correctly generates a line for a 0, 0 to 1, 0 dataset", function (
         t
     ) {
         const l = linearRegressionLine(
@@ -35,13 +35,13 @@ test("linear regression", function(t) {
         t.end();
     });
 
-    t.test("handles a single-point sample", function(t) {
+    t.test("handles a single-point sample", function (t) {
         const l = linearRegressionLine(linearRegression([[0, 0]]));
         t.deepEqual(l(10), 0);
         t.end();
     });
 
-    t.test("a straight line will have a slope of 0", function(t) {
+    t.test("a straight line will have a slope of 0", function (t) {
         t.deepEqual(
             linearRegression([
                 [0, 0],
@@ -52,7 +52,7 @@ test("linear regression", function(t) {
         t.end();
     });
 
-    t.test("a line at 50% grade", function(t) {
+    t.test("a line at 50% grade", function (t) {
         t.deepEqual(
             linearRegression([
                 [0, 0],
@@ -63,7 +63,7 @@ test("linear regression", function(t) {
         t.end();
     });
 
-    t.test("a line with a high y-intercept", function(t) {
+    t.test("a line with a high y-intercept", function (t) {
         t.deepEqual(
             linearRegression([
                 [0, 20],

@@ -3,8 +3,8 @@
 const BayesianClassifier = require("../").BayesianClassifier;
 const test = require("tap").test;
 
-test("BayesianClassifier", function(t) {
-    t.test("makes an easy call with one training round", function(t) {
+test("BayesianClassifier", function (t) {
+    t.test("makes an easy call with one training round", function (t) {
         const bayes = new BayesianClassifier();
         bayes.train(
             {
@@ -23,7 +23,7 @@ test("BayesianClassifier", function(t) {
         t.end();
     });
 
-    t.test("makes fify-fifty call", function(t) {
+    t.test("makes fify-fifty call", function (t) {
         const bayes = new BayesianClassifier();
         bayes.train(
             {
@@ -49,7 +49,7 @@ test("BayesianClassifier", function(t) {
         t.end();
     });
 
-    t.test("makes seventy-five/twenty-five call", function(t) {
+    t.test("makes seventy-five/twenty-five call", function (t) {
         const bayes = new BayesianClassifier();
         bayes.train(
             {
@@ -87,7 +87,7 @@ test("BayesianClassifier", function(t) {
         t.end();
     });
 
-    t.test("tests multiple properties", function(t) {
+    t.test("tests multiple properties", function (t) {
         const bayes = new BayesianClassifier();
         bayes.train(
             {
@@ -132,7 +132,7 @@ test("BayesianClassifier", function(t) {
         t.end();
     });
 
-    t.test("classifies multiple things", function(t) {
+    t.test("classifies multiple things", function (t) {
         const bayes = new BayesianClassifier();
         bayes.train(
             {

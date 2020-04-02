@@ -3,7 +3,7 @@
 const test = require("tap").test;
 const equalIntervalBreaks = require("../").equalIntervalBreaks;
 
-test("equalIntervalBreaks", function(t) {
+test("equalIntervalBreaks", function (t) {
     t.deepEqual(equalIntervalBreaks([1], 4), [1], "1-length case");
     t.deepEqual(
         equalIntervalBreaks([1, 2, 3, 4, 5, 6], 4),
