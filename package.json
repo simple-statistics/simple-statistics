@@ -43,6 +43,10 @@
   "browser": "dist/simple-statistics.min.js",
   "unpkg": "dist/simple-statistics.min.js",
   "types": "index.d.ts",
+  "exports": {
+    "import": "./dist/simple-statistics.mjs",
+    "require": "./dist/simple-statistics.js"
+  },
   "engines": {
     "node": "*"
   },
