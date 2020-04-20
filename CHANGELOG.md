@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.0.9](https://github.com/simple-statistics/simple-statistics/compare/v7.0.8...v7.0.9) (2020-04-20)
+
 ### [7.0.8](https://github.com/simple-statistics/simple-statistics/compare/v7.0.7...v7.0.8) (2020-02-03)
 
 
