@@ -6,7 +6,13 @@ import sumSimple from "./sum_simple";
  * This is a [measure of central tendency](https://en.wikipedia.org/wiki/Central_tendency):
  * a method of finding a typical or central value of a set of numbers.
  *
- * This runs on `O(n)`, linear time in respect to the array
+ * The simple mean uses the successive addition method internally
+ * to calculate it's result. Errors in floating-point addition are
+ * not accounted for, so if precision is required, the standard {@link mean}
+ * method should be used instead.
+ *
+ * This runs on `O(n)`, linear time in respect to the array.
+ *
  *
  * @param {Array<number>} x sample of one or more data points
  * @throws {Error} if the the length of x is less than one
@@ -17,7 +23,7 @@ import sumSimple from "./sum_simple";
 function meanSimple(x) {
     // The mean of no numbers is null
     if (x.length === 0) {
-        throw new Error("mean requires at least one data point");
+        throw new Error("meanSimple requires at least one data point");
     }
 
     return sumSimple(x) / x.length;
