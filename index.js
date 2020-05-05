@@ -61,6 +61,12 @@ export { default as combineVariances } from "./src/combine_variances";
 export { default as geometricMean } from "./src/geometric_mean";
 export { default as harmonicMean } from "./src/harmonic_mean";
 export { default as average, default as mean } from "./src/mean";
+
+export {
+    default as averageSimple,
+    default as meanSimple
+} from "./src/mean_simple";
+
 export { default as median } from "./src/median";
 export { default as medianSorted } from "./src/median_sorted";
 export { default as subtractFromMean } from "./src/subtract_from_mean";
