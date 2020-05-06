@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.1.0](https://github.com/simple-statistics/simple-statistics/compare/v7.0.9...v7.1.0) (2020-05-06)
+
+
+### Features
+
+* meanSimple method that uses sumSimple for higher performance ([8e82333](https://github.com/simple-statistics/simple-statistics/commit/8e82333bf4d2101c990aa542e34b710240d77f36))
+
 ### [7.0.9](https://github.com/simple-statistics/simple-statistics/compare/v7.0.8...v7.0.9) (2020-04-20)
 
 ### [7.0.8](https://github.com/simple-statistics/simple-statistics/compare/v7.0.7...v7.0.8) (2020-02-03)
