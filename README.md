@@ -3,7 +3,7 @@
 
 A JavaScript implementation of descriptive, regression, and inference statistics.
 
-[![codecov.io](https://codecov.io/github/simple-statistics/simple-statistics/coverage.svg?branch=master)](https://codecov.io/github/simple-statistics/simple-statistics?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/simple-statistics/simple-statistics/badge.svg)](https://coveralls.io/github/simple-statistics/simple-statistics)
 [![npm version](https://badge.fury.io/js/simple-statistics.svg)](http://badge.fury.io/js/simple-statistics)
 
 Implemented in literate JavaScript with no dependencies, designed to work
