@@ -2230,16 +2230,16 @@ cosmiconfig@^5.2.0:
     js-yaml "^3.13.1"
     parse-json "^4.0.0"
 
-coveralls@^3.0.8:
-  version "3.0.11"
-  resolved "https://registry.yarnpkg.com/coveralls/-/coveralls-3.0.11.tgz#e141da0922b632fcc66620f334460c3f0026a4ce"
-  integrity sha512-LZPWPR2NyGKyaABnc49dR0fpeP6UqhvGq4B5nUrTQ1UBy55z96+ga7r+/ChMdMJUwBgyJDXBi88UBgz2rs9IiQ==
+coveralls@^3.0.11:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/coveralls/-/coveralls-3.1.0.tgz#13c754d5e7a2dd8b44fe5269e21ca394fb4d615b"
+  integrity sha512-sHxOu2ELzW8/NC1UP5XVLbZDzO4S3VxfFye3XYCznopHy02YjNkHcj5bKaVw2O7hVaBdBjEdQGpie4II1mWhuQ==
   dependencies:
     js-yaml "^3.13.1"
     lcov-parse "^1.0.0"
     log-driver "^1.2.7"
     minimist "^1.2.5"
-    request "^2.88.0"
+    request "^2.88.2"
 
 cp-file@^6.2.0:
   version "6.2.0"
@@ -4688,10 +4688,10 @@ mixin-deep@^1.2.0:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
 
-mkdirp@^0.5.0, mkdirp@^0.5.1:
-  version "0.5.4"
-  resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.4.tgz#fd01504a6797ec5c9be81ff43d204961ed64a512"
-  integrity sha512-iG9AK/dJLtJ0XNgTuDbSyNS3zECqDlAhnQW4CsNxBG3LQJBbHmRX1egw39DmtOdCAqY+dKXV+sgPgilNWUKMVw==
+mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@^0.5.4:
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.5.tgz#d91cefd62d1436ca0f41620e251288d420099def"
+  integrity sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==
   dependencies:
     minimist "^1.2.5"
 
@@ -5816,7 +5816,7 @@ replace-ext@1.0.0, replace-ext@^1.0.0:
   resolved "https://registry.yarnpkg.com/replace-ext/-/replace-ext-1.0.0.tgz#de63128373fcbf7c3ccfa4de5a480c45a67958eb"
   integrity sha1-3mMSg3P8v3w8z6TeWkgMRaZ5WOs=
 
-request@^2.88.0:
+request@^2.88.2:
   version "2.88.2"
   resolved "https://registry.yarnpkg.com/request/-/request-2.88.2.tgz#d73c918731cb5a87da047e207234146f664d12b3"
   integrity sha512-MsvtOrfG9ZcrOwAW+Qi+F6HbD0CWXEh9ou77uOb7FM2WPhwT7smM833PzanhJLsgXjN89Ir6V2PczXNnMpwKhw==
@@ -6576,9 +6576,9 @@ tap-yaml@^1.0.0:
     yaml "^1.5.0"
 
 tap@^14.4.1:
-  version "14.10.7"
-  resolved "https://registry.yarnpkg.com/tap/-/tap-14.10.7.tgz#426ee130a81bd00951d0ab2cc1eba76cf1775c36"
-  integrity sha512-DVx00lfiMxFhofwFDP77pitRCruVQJn8Dcj/6auIU3dErJQWsKT94oG6Yj0MQRuYANhSec8ruIPyUjH/RI9Hrw==
+  version "14.10.8"
+  resolved "https://registry.yarnpkg.com/tap/-/tap-14.10.8.tgz#3c9ce79519acca2f40e57350513b2aa51c6e57c2"
+  integrity sha512-aamkWefJ0G8GGf9t5LWFtrNF5tfVd8ut/tDUianLF6N4621ERITIl0qkocWCVEnsM6hZnaMKa+SggSAaBlC2tA==
   dependencies:
     "@types/react" "^16.9.16"
     async-hook-domain "^1.1.3"
@@ -6586,7 +6586,7 @@ tap@^14.4.1:
     browser-process-hrtime "^1.0.0"
     chokidar "^3.3.0"
     color-support "^1.1.0"
-    coveralls "^3.0.8"
+    coveralls "^3.0.11"
     diff "^4.0.1"
     esm "^3.2.25"
     findit "^2.0.0"
@@ -6601,7 +6601,7 @@ tap@^14.4.1:
     istanbul-lib-processinfo "^1.0.0"
     jackspeak "^1.4.0"
     minipass "^3.1.1"
-    mkdirp "^0.5.1"
+    mkdirp "^0.5.4"
     nyc "^14.1.1"
     opener "^1.5.1"
     own-or "^1.0.0"
