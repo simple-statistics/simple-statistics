@@ -23,7 +23,7 @@ test("permutation test", function (t) {
     t.test(
         "P-value of small sample greater than large sample should be 0",
         function (t) {
-            t.equal(
+            t.ok(
                 ss.permutationTest(
                     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
                     [
@@ -39,8 +39,7 @@ test("permutation test", function (t) {
                         99999
                     ],
                     "less"
-                ),
-                0
+                ) < ss.epsilon
             );
             t.end();
         }
