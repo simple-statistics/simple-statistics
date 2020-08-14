@@ -119,6 +119,9 @@ export { default as permutationTest } from "./src/permutation_test";
 // Root-finding methods
 export { default as bisect } from "./src/bisect";
 
+// Clustering methods
+export { default as kMeansCluster } from "./src/k_means_cluster";
+
 // Utils
 export { default as quickselect } from "./src/quickselect";
 export { default as sign } from "./src/sign";
