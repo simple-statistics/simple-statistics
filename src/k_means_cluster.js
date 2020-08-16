@@ -3,20 +3,32 @@ import makeMatrix from "./make_matrix";
 import sample from "./sample";
 
 /**
+ * @typedef {Object} kMeansReturn
+ * @property {Array<number>} labels The labels.
+ * @property {Array<Array<number>>} centroids The cluster centroids.
+ */
+
+/**
  * Perform k-means clustering.
  *
  * @param {Array<Array<number>>} points N-dimensional coordinates of points to be clustered.
  * @param {number} numCluster How many clusters to create.
  * @param {Function} randomSource An optional entropy source that generates uniform values in [0, 1).
- * @returns {Array<number>, Array<Array<number>>} Labels (same length as data)
- * and centroids (XY coordinates, same length as numCluster).
+ * @return {kMeansReturn} Labels (same length as data) and centroids (same length as numCluster).
  * @throws {Error} If any centroids wind up friendless (i.e., without associated points).
+ *
+ * @example
+ * kMeansCluster([[0.0, 0.5], [1.0, 0.5]], 2); // => {labels: [0, 1], centroids: [[0.0, 0.5], [1.0 0.5]]}
  */
 function kMeansCluster(points, numCluster, randomSource = Math.random) {
-    let oldCentroids = null,
-        newCentroids = generateInitialCentroids(points, numCluster, randomSource),
-        labels = null,
-        change = Number.MAX_VALUE;
+    let oldCentroids = null;
+    let newCentroids = generateInitialCentroids(
+        points,
+        numCluster,
+        randomSource
+    );
+    let labels = null;
+    let change = Number.MAX_VALUE;
     while (change !== 0) {
         labels = labelPoints(points, newCentroids);
         oldCentroids = newCentroids;
@@ -31,10 +43,12 @@ function kMeansCluster(points, numCluster, randomSource = Math.random) {
 
 /**
  * Generate starting points for clusters by randomly selecting points.
+ *
+ * @private
  * @param {Array<Array<number>>} points Array of XY coordinates.
  * @param {number} num How many points to select.
  * @param {function} randomSource Generate uniform random values in [0, 1).
- * @returns {Array<Array<number>>} XY coordinates of centroids.
+ * @return {Array<Array<number>>} XY coordinates of centroids.
  */
 function generateInitialCentroids(points, num, randomSource) {
     return sample(points, num, randomSource);
@@ -42,14 +56,16 @@ function generateInitialCentroids(points, num, randomSource) {
 
 /**
  * Label each point according to which centroid it is closest to.
+ *
+ * @private
  * @param {Array<Array<number>>} points Array of XY coordinates.
  * @param {Array<Array<number>>} centroids Current centroids.
- * @returns {Array<number>} Group labels.
+ * @return {Array<number>} Group labels.
  */
 function labelPoints(points, centroids) {
     return points.map((p) => {
-        let minDist = Number.MAX_VALUE,
-            label = -1;
+        let minDist = Number.MAX_VALUE;
+        let label = -1;
         for (let i = 0; i < centroids.length; i++) {
             const dist = euclideanDistance(p, centroids[i]);
             if (dist < minDist) {
@@ -63,10 +79,12 @@ function labelPoints(points, centroids) {
 
 /**
  * Calculate centroids for points given labels.
+ *
+ * @private
  * @param {Array<Array<number>>} points Array of XY coordinates.
  * @param {Array<number>} labels Which groups points belong to.
  * @param {number} numCluster Number of clusters being created.
- * @returns {Array<Array<number>>} Centroid for each group.
+ * @return {Array<Array<number>>} Centroid for each group.
  * @throws {Error} If any centroids wind up friendless (i.e., without associated points).
  */
 function calculateCentroids(points, labels, numCluster) {
@@ -103,9 +121,11 @@ function calculateCentroids(points, labels, numCluster) {
 
 /**
  * Calculate the difference between old centroids and new centroids.
+ *
+ * @private
  * @param {Array<Array<number>>} left One list of centroids.
  * @param {Array<Array<number>>} right Another list of centroids.
- * @returns {number} Distance between centroids.
+ * @return {number} Distance between centroids.
  */
 function calculateChange(left, right) {
     let total = 0;
