@@ -6,23 +6,22 @@ const ss = require("../");
 // Force shuffling to return the first points in the array to ensure
 // reproducibility of tests. This works because of the way the Fisher-Yates
 // shuffle selects array elements via multiplication and flooring.
-const nonRNG = () => 1.0 - ss.epsilon;
+function nonRNG() {
+    return 1.0 - ss.epsilon;
+}
 
 test("k-means clustering test", function (t) {
-    t.test(
-        "Single cluster of one point should contain only that point",
-        function (t) {
-            const points = [[0.5]];
-            const { labels, centroids } = ss.kMeansCluster(points, 1, nonRNG);
-            t.deepEqual(labels, [0]);
-            t.deepEqual(centroids, [[0.5]]);
-            t.end();
-        }
-    );
-
-    t.test("Single cluster of two points should contain both points", function (
+    t.test("Single cluster of one point contains only that point", function (
         t
     ) {
+        const points = [[0.5]];
+        const { labels, centroids } = ss.kMeansCluster(points, 1, nonRNG);
+        t.deepEqual(labels, [0]);
+        t.deepEqual(centroids, [[0.5]]);
+        t.end();
+    });
+
+    t.test("Single cluster of two points contains both points", function (t) {
         const points = [[0.0], [1.0]];
         const { labels, centroids } = ss.kMeansCluster(points, 1, nonRNG);
         t.deepEqual(labels, [0, 0]);
@@ -31,7 +30,7 @@ test("k-means clustering test", function (t) {
     });
 
     t.test(
-        "Two clusters of two points should put each point in its own cluster",
+        "Two clusters of two points puts each point in its own cluster",
         function (t) {
             const points = [[0.0], [1.0]];
             const { labels, centroids } = ss.kMeansCluster(points, 2, nonRNG);
@@ -42,7 +41,7 @@ test("k-means clustering test", function (t) {
     );
 
     t.test(
-        "Two clusters of four paired points should put each pair in its own cluster",
+        "Two clusters of four paired points puts each pair in a cluster",
         function (t) {
             const points = [[0.0], [1.0], [0.0], [1.0]];
             const { labels, centroids } = ss.kMeansCluster(points, 2, nonRNG);
@@ -53,7 +52,7 @@ test("k-means clustering test", function (t) {
     );
 
     t.test(
-        "Two clusters of two 2D points should put each point in its own cluster",
+        "Two clusters of two 2D points puts each point in its own cluster",
         function (t) {
             const points = [
                 [0.0, 0.5],
@@ -70,7 +69,7 @@ test("k-means clustering test", function (t) {
     );
 
     t.test(
-        "Two clusters of three unevenly-spaced 2D points should put two points in one cluster and one in the other",
+        "Two clusters of three 2D points puts two points in one cluster and one in the other",
         function (t) {
             const points = [
                 [0.0, 0.5],
