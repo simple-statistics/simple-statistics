@@ -32,14 +32,14 @@ test("silhouette test", function (t) {
             t.end();
     });
 
-    // Outer points have a = 0.2, b = 0.5, s = 3/5.
-    // Inner points have a = 0.2, b = 0.3, s = 1/3.
+    // Outer points have a = 0.1, b = 0.5, s = 4/5.
+    // Inner points have a = 0.1, b = 0.3, s = 2/3.
     t.test("Two clusters with two points each has metric 0.5",
         function (t) {
             const points = [[0.2], [0.4], [0.6], [0.8]];
             const labels = [0, 0, 1, 1];
             const actual = ss.silhouette(points, labels);
-            const expected = [3/5, 1/3, 1/3, 3/5];
+            const expected = [4/5, 2/3, 2/3, 4/5];
             t.true(allApproxEqual(actual, expected));
             t.end();
     });
