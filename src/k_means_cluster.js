@@ -1,3 +1,5 @@
+import euclideanDistance from "./euclidean_distance";
+import makeMatrix from "./make_matrix";
 import sample from "./sample";
 
 /**
@@ -10,7 +12,7 @@ import sample from "./sample";
  * and centroids (XY coordinates, same length as numCluster).
  * @throws {Error} If any centroids wind up friendless (i.e., without associated points).
  */
-function kMeansCluster (points, numCluster, randomSource=Math.random) {
+function kMeansCluster(points, numCluster, randomSource = Math.random) {
     let oldCentroids = null,
         newCentroids = generateInitialCentroids(points, numCluster, randomSource),
         labels = null,
@@ -21,7 +23,10 @@ function kMeansCluster (points, numCluster, randomSource=Math.random) {
         newCentroids = calculateCentroids(points, labels, numCluster);
         change = calculateChange(newCentroids, oldCentroids);
     }
-    return {labels: labels, centroids: newCentroids};
+    return {
+        labels: labels,
+        centroids: newCentroids
+    };
 }
 
 /**
@@ -31,7 +36,7 @@ function kMeansCluster (points, numCluster, randomSource=Math.random) {
  * @param {function} randomSource Generate uniform random values in [0, 1).
  * @returns {Array<Array<number>>} XY coordinates of centroids.
  */
-function generateInitialCentroids (points, num, randomSource) {
+function generateInitialCentroids(points, num, randomSource) {
     return sample(points, num, randomSource);
 }
 
@@ -41,60 +46,58 @@ function generateInitialCentroids (points, num, randomSource) {
  * @param {Array<Array<number>>} centroids Current centroids.
  * @returns {Array<number>} Group labels.
  */
-function labelPoints (points, centroids) {
-    return points.map(p => {
+function labelPoints(points, centroids) {
+    return points.map((p) => {
         let minDist = Number.MAX_VALUE,
             label = -1;
-        for (let i=0; i<centroids.length; i++) {
-            const dist = distance(p, centroids[i]);
+        for (let i = 0; i < centroids.length; i++) {
+            const dist = euclideanDistance(p, centroids[i]);
             if (dist < minDist) {
                 minDist = dist;
                 label = i;
             }
         }
         return label;
-    })
+    });
 }
 
 /**
  * Calculate centroids for points given labels.
  * @param {Array<Array<number>>} points Array of XY coordinates.
  * @param {Array<number>} labels Which groups points belong to.
- * @param {number} num Number of clusters being created.
+ * @param {number} numCluster Number of clusters being created.
  * @returns {Array<Array<number>>} Centroid for each group.
  * @throws {Error} If any centroids wind up friendless (i.e., without associated points).
  */
-function calculateCentroids (points, labels, num) {
+function calculateCentroids(points, labels, numCluster) {
     // Initialize accumulators.
-    const width = points[0].length;
-    const centroids = [];
-    for (let i=0; i<num; i++) {
-        centroids.push(Array(width).fill(0));
-    }
-    const counts = Array(num).fill(0);
+    const dimension = points[0].length;
+    const centroids = makeMatrix(numCluster, dimension);
+    const counts = Array(numCluster).fill(0);
 
     // Add points to centroids' accumulators and count points per centroid.
-    for (let i=0; i<points.length; i++) {
+    const numPoints = points.length;
+    for (let i = 0; i < numPoints; i++) {
         const point = points[i];
         const label = labels[i];
         const current = centroids[label];
-        for (let j=0; j<current.length; j++) {
+        for (let j = 0; j < dimension; j++) {
             current[j] += point[j];
         }
         counts[label] += 1;
     }
 
     // Rescale centroids, checking for any that have no points.
-    for (let i=0; i<centroids.length; i++) {
+    for (let i = 0; i < numCluster; i++) {
         if (counts[i] === 0) {
             throw new Error(`Centroid ${i} has no friends`);
         }
         const centroid = centroids[i];
-        for (let j=0; j<centroid.length; j++) {
+        for (let j = 0; j < dimension; j++) {
             centroid[j] /= counts[i];
         }
     }
-    
+
     return centroids;
 }
 
@@ -104,27 +107,12 @@ function calculateCentroids (points, labels, num) {
  * @param {Array<Array<number>>} right Another list of centroids.
  * @returns {number} Distance between centroids.
  */
-function calculateChange (left, right) {
+function calculateChange(left, right) {
     let total = 0;
-    for (let i=0; i<left.length; i++) {
-        total += distance(left[i], right[i]);
+    for (let i = 0; i < left.length; i++) {
+        total += euclideanDistance(left[i], right[i]);
     }
     return total;
-}
-
-/**
- * Calculate Euclidean distance between two points.
- * @param {Array<number>} left First N-dimensional point.
- * @param {Array<number>} right Second N-dimensional point.
- * @returns {number} Distance.
- */
-function distance (left, right) {
-    let sum = 0;
-    for (let i=0; i<left.length; i++) {
-        const diff = left[i] - right[i];
-        sum += diff * diff
-    }
-    return Math.sqrt(sum);
 }
 
 export default kMeansCluster;
