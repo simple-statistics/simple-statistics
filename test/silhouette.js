@@ -2,7 +2,10 @@
 
 const test = require("tap").test;
 const ss = require("../");
-const { allApproxEqual } = require("./approx");
+const {
+    approxEqual,
+    allApproxEqual
+} = require("./approx");
 
 test("silhouette test", function (t) {
     t.test("Single cluster of one point has metric 0",
@@ -11,6 +14,8 @@ test("silhouette test", function (t) {
             const labels = [0];
             const actual = ss.silhouette(points, labels);
             t.deepEqual(actual, [0.0]);
+            const metric = ss.silhouetteMetric(points, labels);
+            t.equal(metric, 0.0);
             t.end();
     });
 
@@ -20,6 +25,8 @@ test("silhouette test", function (t) {
             const labels = [0, 0];
             const actual = ss.silhouette(points, labels);
             t.deepEqual(actual, [1.0, 1.0]);
+            const metric = ss.silhouetteMetric(points, labels);
+            t.equal(metric, 1.0);
             t.end();
     });
 
@@ -29,6 +36,8 @@ test("silhouette test", function (t) {
             const labels = [0, 1];
             const actual = ss.silhouette(points, labels);
             t.deepEqual(actual, [0.0, 0.0]);
+            const metric = ss.silhouetteMetric(points, labels);
+            t.equal(metric, 0.0);
             t.end();
     });
 
@@ -41,6 +50,8 @@ test("silhouette test", function (t) {
             const actual = ss.silhouette(points, labels);
             const expected = [4/5, 2/3, 2/3, 4/5];
             t.true(allApproxEqual(actual, expected));
+            const metric = ss.silhouetteMetric(points, labels);
+            t.true(approxEqual(metric, 4/5));
             t.end();
     });
 
