@@ -13,10 +13,14 @@ import sample from "./sample";
  * @throws {Error} If any centroids wind up friendless (i.e., without associated points).
  */
 function kMeansCluster(points, numCluster, randomSource = Math.random) {
-    let oldCentroids = null,
-        newCentroids = generateInitialCentroids(points, numCluster, randomSource),
-        labels = null,
-        change = Number.MAX_VALUE;
+    let oldCentroids = null;
+    let newCentroids = generateInitialCentroids(
+        points,
+        numCluster,
+        randomSource
+    );
+    let labels = null;
+    let change = Number.MAX_VALUE;
     while (change !== 0) {
         labels = labelPoints(points, newCentroids);
         oldCentroids = newCentroids;
@@ -48,8 +52,8 @@ function generateInitialCentroids(points, num, randomSource) {
  */
 function labelPoints(points, centroids) {
     return points.map((p) => {
-        let minDist = Number.MAX_VALUE,
-            label = -1;
+        let minDist = Number.MAX_VALUE;
+        let label = -1;
         for (let i = 0; i < centroids.length; i++) {
             const dist = euclideanDistance(p, centroids[i]);
             if (dist < minDist) {
