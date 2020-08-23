@@ -40,7 +40,7 @@ function allApproxEqual(a, b, tolerance = ss.epsilon) {
     }
     const size = a.length;
     for (let i = 0; i < size; i++) {
-        if (!approxEqual(a[i], b[i])) {
+        if (!approxEqual(a[i], b[i], tolerance)) {
             return false;
         }
     }
