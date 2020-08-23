@@ -14,7 +14,7 @@ import silhouette from "./silhouette";
  * @example
  * silhouetteMetric([[0.25], [0.75]], [0, 0]); // => 1.0
  */
-function silhouetteMetric(points, labels){
+function silhouetteMetric(points, labels) {
     const values = silhouette(points, labels);
     return max(values);
 }

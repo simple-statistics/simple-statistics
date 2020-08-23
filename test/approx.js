@@ -36,7 +36,7 @@ function approxEqual(a, b, tolerance = ss.epsilon) {
  */
 function allApproxEqual(a, b, tolerance = ss.epsilon) {
     if (a.length !== b.length) {
-        throw new Error("input vectors must have the same length")
+        throw new Error("input vectors must have the same length");
     }
     const size = a.length;
     for (let i = 0; i < size; i++) {
@@ -47,8 +47,4 @@ function allApproxEqual(a, b, tolerance = ss.epsilon) {
     return true;
 }
 
-export {
-    relativeError,
-    approxEqual,
-    allApproxEqual
-};
+export { relativeError, approxEqual, allApproxEqual };

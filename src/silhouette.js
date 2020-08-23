@@ -25,7 +25,12 @@ function silhouette(points, labels) {
         let s = 0;
         if (groupings[labels[i]].length > 1) {
             const a = meanDistanceWithinGroup(i, labels, groupings, distances);
-            const b = meanDistanceToNearestGroup(i, labels, groupings, distances);
+            const b = meanDistanceToNearestGroup(
+                i,
+                labels,
+                groupings,
+                distances
+            );
             s = (b - a) / Math.max(a, b);
         }
         result.push(s);
@@ -89,7 +94,11 @@ function calculateAllDistances(points) {
  * @return {number} The mean distance from this point to others in its group.
  */
 function meanDistanceWithinGroup(which, labels, groupings, distances) {
-    return meanDistanceFromPointToGroup(which, groupings[labels[which]], distances);
+    return meanDistanceFromPointToGroup(
+        which,
+        groupings[labels[which]],
+        distances
+    );
 }
 
 /**
@@ -111,7 +120,11 @@ function meanDistanceToNearestGroup(which, labels, groupings, distances) {
     let result = Number.MAX_VALUE;
     for (let i = 0; i < groupings.length; i++) {
         if (i !== label) {
-            const d = meanDistanceFromPointToGroup(which, groupings[i], distances);
+            const d = meanDistanceFromPointToGroup(
+                which,
+                groupings[i],
+                distances
+            );
             if (d < result) {
                 result = d;
             }
