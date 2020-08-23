@@ -5,6 +5,13 @@ const ss = require("../");
 const { approxEqual, allApproxEqual } = require("./approx");
 
 test("silhouette test", function (t) {
+    t.test("Requires equal-sized arrays", function (t) {
+        t.throws(function () {
+            ss.silhouette([[0]], [1, 2]);
+        });
+        t.end();
+    });
+
     t.test("Single cluster of one point has metric 0", function (t) {
         const points = [[0.5]];
         const labels = [0];

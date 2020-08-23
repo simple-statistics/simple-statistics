@@ -24,7 +24,11 @@ function silhouette(points, labels) {
     for (let i = 0; i < points.length; i++) {
         let s = 0;
         if (groupings[labels[i]].length > 1) {
-            const a = meanDistanceWithinGroup(i, labels, groupings, distances);
+            const a = meanDistanceFromPointToGroup(
+                i,
+                groupings[labels[i]],
+                distances
+            );
             const b = meanDistanceToNearestGroup(
                 i,
                 labels,
@@ -78,27 +82,6 @@ function calculateAllDistances(points) {
         }
     }
     return result;
-}
-
-/**
- * Calculate the mean distance between a point and other points in its group
- * (which is zero if the group only has one element).
- *
- * @private
- * @param {number} which The index of this point.
- * @param {Array<number>} labels Labels of points.
- * @param {Array<Array<number>>} groupings An array whose entries are arrays
- * containing the indices of the points in that group.
- * @param {Array<Array<number>>} distances A symmetric square array of inter-point
- * distances.
- * @return {number} The mean distance from this point to others in its group.
- */
-function meanDistanceWithinGroup(which, labels, groupings, distances) {
-    return meanDistanceFromPointToGroup(
-        which,
-        groupings[labels[which]],
-        distances
-    );
 }
 
 /**
