@@ -22,11 +22,7 @@ import sample from "./sample";
  */
 function kMeansCluster(points, numCluster, randomSource = Math.random) {
     let oldCentroids = null;
-    let newCentroids = generateInitialCentroids(
-        points,
-        numCluster,
-        randomSource
-    );
+    let newCentroids = sample(points, numCluster, randomSource);
     let labels = null;
     let change = Number.MAX_VALUE;
     while (change !== 0) {
@@ -39,19 +35,6 @@ function kMeansCluster(points, numCluster, randomSource = Math.random) {
         labels: labels,
         centroids: newCentroids
     };
-}
-
-/**
- * Generate starting points for clusters by randomly selecting points.
- *
- * @private
- * @param {Array<Array<number>>} points Array of XY coordinates.
- * @param {number} num How many points to select.
- * @param {function} randomSource Generate uniform random values in [0, 1).
- * @return {Array<Array<number>>} XY coordinates of centroids.
- */
-function generateInitialCentroids(points, num, randomSource) {
-    return sample(points, num, randomSource);
 }
 
 /**
