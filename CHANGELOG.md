@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.2.0](https://github.com/simple-statistics/simple-statistics/compare/v7.1.0...v7.2.0) (2020-08-23)
+
+
+### Features
+
+* K means clustering ([#484](https://github.com/simple-statistics/simple-statistics/issues/484)) ([7913bcb](https://github.com/simple-statistics/simple-statistics/commit/7913bcbf393786fe8b5212afe133c1b90d9c61ba))
+* Silhouette metric ([269a4b8](https://github.com/simple-statistics/simple-statistics/commit/269a4b8982e645c89445cd208db14f1c9079a4ec))
+
 ## [7.1.0](https://github.com/simple-statistics/simple-statistics/compare/v7.0.9...v7.1.0) (2020-05-06)
 
 
