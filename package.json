@@ -30,6 +30,7 @@
   "scripts": {
     "release": "standard-version && sh ./scripts/update_website.sh",
     "test": "rollup -c rollup.config.js && npm run lint && tap --coverage test/*.test.js --jobs=4",
+    "testonly": "tap --no-coverage test/*.test.js",
     "build": "rollup -c rollup.config.js",
     "prepublish": "rollup -c rollup.config.js && ./scripts/update_readme.js",
     "prelint": "tsc --skipLibCheck",
