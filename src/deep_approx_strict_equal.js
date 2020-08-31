@@ -3,9 +3,9 @@ import epsilon from "./epsilon";
 
 /**
  * Approximate strict equality for all elements of two structures, which may be
- * null, undefined, number, string, array, or object.  This implements a subset
- * of the Node sourc file 'lib/internal/util/comparisons.js', which is mirrored
- * by 'internal/util/comparisons.js' in the CommonJS assert module.
+ * null, undefined, booleans, numbers, or nested arrays of numbers.  This
+ * implements a subset of Node's 'lib/internal/util/comparisons.js', which is
+ * mirrored by 'internal/util/comparisons.js' in the CommonJS assert module.
  *
  * @param {number} actual The value to be tested.
  * @param {number} expected The reference value.
@@ -55,12 +55,7 @@ function deepApproxStrictEqual(actual, expected, tolerance = epsilon) {
         return false;
     }
 
-    // Objects must have matching keys and approximately equal values
-    else if (typeof expected === "object") {
-        return objectApproxStrictEqual(actual, expected, tolerance);
-    }
-
-    // Functions, symbols, etc.
+    // Everything else.
     return expected === actual;
 }
 
@@ -82,33 +77,6 @@ function arrayApproxStrictEqual(actual, expected, tolerance) {
     }
     for (let i = 0; i < expected.length; i++) {
         if (!deepApproxStrictEqual(actual[i], expected[i], tolerance)) {
-            return false;
-        }
-    }
-    return true;
-}
-
-/**
- * Approximate strict equality for corresponding elements of objects, which must
- * have exactly the same keys with approximately equal values.
- *
- * @private
- * @param {number} actual The object to be tested.
- * @param {number} expected The reference object.
- * @param {number} tolerance The acceptable relative difference between elements.
- * @return {boolean} Whether all numbers are within tolerance.
- */
-function objectApproxStrictEqual(actual, expected, tolerance) {
-    for (const key in expected) {
-        if (!(key in actual)) {
-            return false;
-        }
-        if (!deepApproxStrictEqual(actual[key], expected[key], tolerance)) {
-            return false;
-        }
-    }
-    for (const key in actual) {
-        if (!(key in expected)) {
             return false;
         }
     }
