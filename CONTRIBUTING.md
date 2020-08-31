@@ -105,7 +105,7 @@ npm test
 
 Simple statistics maintains API documentation with [JSDoc](http://usejsdoc.org/) syntax
 and the [documentation.js](https://github.com/documentationjs/documentation) generator.
-Consult the JSDoc and [gettings started docs](https://github.com/documentationjs/documentation/blob/master/docs/GETTTING_STARTED.md) for
+Consult the JSDoc and [gettings started docs](https://github.com/documentationjs/documentation/blob/master/docs/GETTING_STARTED.md) for
 hints for how to document each function, or read other documentation comments
 in `src` for inspiration.
 
