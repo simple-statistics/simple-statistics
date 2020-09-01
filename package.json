@@ -22,7 +22,7 @@
     "prettier": "^2.0.2",
     "random-js": "^2.0.0",
     "rollup": "^2.3.2",
-    "rollup-plugin-terser": "^6.1.0",
+    "rollup-plugin-terser": "^7.0.1",
     "standard-version": "^8.0.0",
     "tap": "^14.4.1",
     "typescript": "^3.6.4"
