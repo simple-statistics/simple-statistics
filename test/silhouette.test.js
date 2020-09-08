@@ -48,11 +48,9 @@ test("silhouette test", function (t) {
         const labels = [0, 0, 1, 1];
         const actual = ss.silhouette(points, labels);
         const expected = [4 / 5, 2 / 3, 2 / 3, 4 / 5];
-        t.true(
-            actual.every((val, i) => ss.approxStrictEqual(val, expected[i]))
-        );
+        t.true(actual.every((val, i) => ss.approxEqual(val, expected[i])));
         const metric = ss.silhouetteMetric(points, labels);
-        t.true(ss.approxStrictEqual(metric, 4 / 5));
+        t.true(ss.approxEqual(metric, 4 / 5));
         t.end();
     });
 
