@@ -3,7 +3,6 @@
 const test = require("tap").test;
 const ss = require("../");
 
-const EPS = ss.epsilon;
 const HALF_EPS = ss.epsilon / 2;
 const TWO_EPS = ss.epsilon * 2;
 
@@ -19,8 +18,7 @@ test("deep approximate equality", function (t) {
             for (const [rightType, rightVal] of fixtures) {
                 if (leftType === rightType) {
                     t.true(ss.deepApproxStrictEqual(leftVal, rightVal));
-                }
-                else {
+                } else {
                     t.true(!ss.deepApproxStrictEqual(leftVal, rightVal));
                 }
             }
@@ -38,11 +36,6 @@ test("deep approximate equality", function (t) {
         t.end();
     });
 
-    t.test("does not think scalars and sets are equal", function (t) {
-        t.true(!ss.deepApproxStrictEqual(10, new Set([10])));
-        t.end();
-    });
-
     t.test("handles undefined values", function (t) {
         t.true(ss.deepApproxStrictEqual(undefined, undefined));
         t.end();
@@ -56,8 +49,9 @@ test("deep approximate equality", function (t) {
 
     t.test("requires arrays to have similar values", function (t) {
         t.true(ss.deepApproxStrictEqual([1, -1], [1, -1]));
-        t.true(ss.deepApproxStrictEqual([1 + HALF_EPS, -1 + HALF_EPS],
-                                        [1, -1]));
+        t.true(
+            ss.deepApproxStrictEqual([1 + HALF_EPS, -1 + HALF_EPS], [1, -1])
+        );
         t.true(!ss.deepApproxStrictEqual([1, 1], [1, 1 + TWO_EPS]));
         t.end();
     });

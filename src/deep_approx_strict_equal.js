@@ -27,8 +27,7 @@ function deepApproxStrictEqual(actual, expected, tolerance = epsilon) {
     // properties of null further down)
     else if (expected === null) {
         return actual === null;
-    }
-    else if (actual === null) {
+    } else if (actual === null) {
         return false;
     }
 
@@ -50,8 +49,7 @@ function deepApproxStrictEqual(actual, expected, tolerance = epsilon) {
     // Corresponding array elements must be equal
     else if (Array.isArray(expected)) {
         return arrayApproxStrictEqual(actual, expected, tolerance);
-    }
-    else if (Array.isArray(actual)) {
+    } else if (Array.isArray(actual)) {
         return false;
     }
 

@@ -23,15 +23,21 @@ test("approximate strict equality", function (t) {
         t.end();
     });
 
-    t.test("handles values separated by relatively less than epsilon", function (t) {
-        t.true(ss.approxStrictEqual(100, 100 + (99 * ss.epsilon)));
-        t.end();
-    });
+    t.test(
+        "handles values separated by relatively less than epsilon",
+        function (t) {
+            t.true(ss.approxStrictEqual(100, 100 + 99 * ss.epsilon));
+            t.end();
+        }
+    );
 
-    t.test("handles values separated by relatively more than epsilon", function (t) {
-        t.true(!ss.approxStrictEqual(100, 100 + (101 * ss.epsilon)));
-        t.end();
-    });
+    t.test(
+        "handles values separated by relatively more than epsilon",
+        function (t) {
+            t.true(!ss.approxStrictEqual(100, 100 + 101 * ss.epsilon));
+            t.end();
+        }
+    );
 
     t.test("handles negative values", function (t) {
         t.true(ss.approxStrictEqual(-10, -10));
