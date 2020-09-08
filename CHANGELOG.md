@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.3.0](https://github.com/simple-statistics/simple-statistics/compare/v7.2.0...v7.3.0) (2020-09-08)
+
+
+### Features
+
+* Add randomSource argument to permutationTest ([#505](https://github.com/simple-statistics/simple-statistics/issues/505)) ([f289fd1](https://github.com/simple-statistics/simple-statistics/commit/f289fd11bd4eafcd5df319979b051a030bf60f88))
+* Relative error and approximate equality ([#506](https://github.com/simple-statistics/simple-statistics/issues/506)) ([88e8794](https://github.com/simple-statistics/simple-statistics/commit/88e87943fdb984c7b410fb7db606cd0fe8b87317))
+
 ## [7.2.0](https://github.com/simple-statistics/simple-statistics/compare/v7.1.0...v7.2.0) (2020-08-23)
 
 
