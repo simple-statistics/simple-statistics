@@ -1,8 +1,6 @@
 /**
  * https://simplestatistics.org/docs/#errorfunction
  */
-declare function errorFunction(
-    x: number
-): number
+declare function errorFunction(x: number): number;
 
 export default errorFunction;
