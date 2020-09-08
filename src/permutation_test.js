@@ -15,6 +15,7 @@ import shuffleInPlace from "./shuffle_in_place";
  * @param {Array<number>} sampleY second dataset (e.g. control data)
  * @param {string} alternative alternative hypothesis, either 'two_sided' (default), 'greater', or 'less'
  * @param {number} k number of values in permutation distribution.
+ * @param {Function} [randomSource=Math.random] an optional entropy source
  * @returns {number} p-value The probability of observing the difference between groups (as or more extreme than what we did), assuming the null hypothesis.
  *
  * @example
@@ -22,7 +23,7 @@ import shuffleInPlace from "./shuffle_in_place";
  * var treatment = [20, 5, 13, 12, 7, 2, 2];
  * permutationTest(control, treatment); // ~0.1324
  */
-function permutationTest(sampleX, sampleY, alternative, k) {
+function permutationTest(sampleX, sampleY, alternative, k, randomSource) {
     // Set default arguments
     if (k === undefined) {
         k = 10000;
@@ -57,7 +58,7 @@ function permutationTest(sampleX, sampleY, alternative, k) {
 
     for (let i = 0; i < k; i++) {
         // 1. shuffle data assignments
-        shuffleInPlace(allData);
+        shuffleInPlace(allData, randomSource);
         const permLeft = allData.slice(0, midIndex);
         const permRight = allData.slice(midIndex, allData.length);
 
