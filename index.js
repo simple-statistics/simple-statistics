@@ -128,3 +128,5 @@ export { default as silhouetteMetric } from "./src/silhouette_metric";
 export { default as quickselect } from "./src/quickselect";
 export { default as sign } from "./src/sign";
 export { default as numericSort } from "./src/numeric_sort";
+export { default as relativeError } from "./src/relative_error";
+export { default as approxEqual } from "./src/approx_equal";

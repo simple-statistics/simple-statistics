@@ -2,7 +2,6 @@
 
 const test = require("tap").test;
 const ss = require("../");
-const { approxEqual, allApproxEqual } = require("./approx");
 
 test("silhouette test", function (t) {
     t.test("Requires equal-sized arrays", function (t) {
@@ -49,9 +48,9 @@ test("silhouette test", function (t) {
         const labels = [0, 0, 1, 1];
         const actual = ss.silhouette(points, labels);
         const expected = [4 / 5, 2 / 3, 2 / 3, 4 / 5];
-        t.true(allApproxEqual(actual, expected));
+        t.true(actual.every((val, i) => ss.approxEqual(val, expected[i])));
         const metric = ss.silhouetteMetric(points, labels);
-        t.true(approxEqual(metric, 4 / 5));
+        t.true(ss.approxEqual(metric, 4 / 5));
         t.end();
     });
 
