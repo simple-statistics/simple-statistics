@@ -28,6 +28,8 @@ in all modern browsers (including IE) as well as in [node.js](https://nodejs.org
     * Import all functions under the ss object: <pre>import * as ss from 'simple-statistics'</pre>
       Include a specific named export: <pre>import {min} from 'simple-statistics'</pre>
       Simple statistics has _only_ named exports for ES6.
+* **I'm using Deno.**
+  * [We recommend using skypack to import the module.](https://www.skypack.dev/npm/simple-statistics)
 * **I'm not using a module bundler. I'm writing a web page, and want to include
   simple-statistics using a script tag.**
   * **I want to support all browsers**
@@ -36,7 +38,7 @@ in all modern browsers (including IE) as well as in [node.js](https://nodejs.org
       available globally as the variable `ss`. You can reassign this variable to
       another name if you want to, but doing so is optional.
       ```HTML
-      <script src='https://unpkg.com/simple-statistics@7.2.0/dist/simple-statistics.min.js'>
+      <script src='https://unpkg.com/simple-statistics@7.3.0/dist/simple-statistics.min.js'>
       </script>
       ```
   * **I want to use ES6 modules in a browser and I'm [willing to only support new browsers](https://caniuse.com/#feat=es6-module) to do it**
@@ -45,7 +47,7 @@ in all modern browsers (including IE) as well as in [node.js](https://nodejs.org
       directly - through `index.js` and with true [ES6 import syntax and behavior](http://exploringjs.com/es6/ch_modules.html).
       ```js
       <script type='module'>
-      import {min} from "https://unpkg.com/simple-statistics@7.2.0/index.js?module"
+      import {min} from "https://unpkg.com/simple-statistics@7.3.0/index.js?module"
       console.log(min([1, 2, 3]))
       </script>
       ```
