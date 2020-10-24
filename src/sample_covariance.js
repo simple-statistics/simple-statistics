@@ -1,7 +1,7 @@
 import mean from "./mean";
 
 /**
- * [Sample covariance](https://en.wikipedia.org/wiki/Sample_mean_and_sampleCovariance) of two datasets:
+ * [Sample covariance](https://en.wikipedia.org/wiki/Sample_mean_and_covariance) of two datasets:
  * how much do the two datasets move together?
  * x and y are two datasets, represented as arrays of numbers.
  *
