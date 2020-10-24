@@ -19,7 +19,7 @@ function shuffle(x, randomSource) {
     const sample = x.slice();
 
     // and then shuffle that shallow-copied array, in place
-    return shuffleInPlace(sample.slice(), randomSource);
+    return shuffleInPlace(sample, randomSource);
 }
 
 export default shuffle;
