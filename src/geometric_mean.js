@@ -33,7 +33,6 @@
  * startingValueMean === startingValue;
  */
 function geometricMean(x) {
-    // The mean of no numbers is null
     if (x.length === 0) {
         throw new Error("geometricMean requires at least one data point");
     }

@@ -15,7 +15,6 @@ import sum from "./sum";
  * mean([0, 10]); // => 5
  */
 function mean(x) {
-    // The mean of no numbers is null
     if (x.length === 0) {
         throw new Error("mean requires at least one data point");
     }

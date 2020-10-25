@@ -11,7 +11,6 @@ import sampleVariance from "./sample_variance";
  * // => '2.14'
  */
 function sampleStandardDeviation(x) {
-    // The standard deviation of no numbers is null
     const sampleVarianceX = sampleVariance(x);
     return Math.sqrt(sampleVarianceX);
 }

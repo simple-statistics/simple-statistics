@@ -18,7 +18,6 @@ import sumNthPowerDeviations from "./sum_nth_power_deviations";
  * sampleVariance([1, 2, 3, 4, 5]); // => 2.5
  */
 function sampleVariance(x) {
-    // The variance of no numbers is null
     if (x.length < 2) {
         throw new Error("sampleVariance requires at least two data points");
     }

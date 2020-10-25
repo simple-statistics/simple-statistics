@@ -21,7 +21,6 @@ import sumSimple from "./sum_simple";
  * mean([0, 10]); // => 5
  */
 function meanSimple(x) {
-    // The mean of no numbers is null
     if (x.length === 0) {
         throw new Error("meanSimple requires at least one data point");
     }

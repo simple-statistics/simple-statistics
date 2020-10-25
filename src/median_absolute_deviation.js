@@ -11,7 +11,6 @@ import median from "./median";
  * medianAbsoluteDeviation([1, 1, 2, 2, 4, 6, 9]); // => 1
  */
 function medianAbsoluteDeviation(x) {
-    // The mad of nothing is null
     const medianValue = median(x);
     const medianAbsoluteDeviations = [];
 
