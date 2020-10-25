@@ -9,7 +9,7 @@
  * algorithm is more accurate than the simple way of calculating sums by simple
  * addition.
  *
- * This runs on `O(n)`, linear time in respect to the array.
+ * This runs in `O(n)`, linear time, with respect to the length of the array.
  *
  * @param {Array<number>} x input
  * @return {number} sum of all input numbers

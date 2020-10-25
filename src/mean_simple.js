@@ -11,7 +11,7 @@ import sumSimple from "./sum_simple";
  * not accounted for, so if precision is required, the standard {@link mean}
  * method should be used instead.
  *
- * This runs on `O(n)`, linear time in respect to the array.
+ * This runs in `O(n)`, linear time, with respect to the length of the array.
  *
  *
  * @param {Array<number>} x sample of one or more data points

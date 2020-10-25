@@ -4,7 +4,7 @@
  * of numbers, regardless of their sign.
  * This is the square root of the mean of the squares of the
  * input numbers.
- * This runs on `O(n)`, linear time in respect to the array
+ * This runs in `O(n)`, linear time, with respect to the length of the array.
  *
  * @param {Array<number>} x a sample of one or more data points
  * @returns {number} root mean square

@@ -9,7 +9,7 @@ import numericSort from "./numeric_sort";
  * This is a [measure of central tendency](https://en.wikipedia.org/wiki/Central_tendency):
  * a method of finding a typical or central value of a set of numbers.
  *
- * This runs on `O(nlog(n))` because it needs to sort the array internally
+ * This runs in `O(n log(n))` because it needs to sort the array internally
  * before running an `O(n)` search to find the mode.
  *
  * @param {Array<number>} x input
