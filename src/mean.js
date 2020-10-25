@@ -6,7 +6,7 @@ import sum from "./sum";
  * This is a [measure of central tendency](https://en.wikipedia.org/wiki/Central_tendency):
  * a method of finding a typical or central value of a set of numbers.
  *
- * This runs on `O(n)`, linear time in respect to the array
+ * This runs in `O(n)`, linear time, with respect to the length of the array.
  *
  * @param {Array<number>} x sample of one or more data points
  * @throws {Error} if the the length of x is less than one

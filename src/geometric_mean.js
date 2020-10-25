@@ -12,7 +12,7 @@
  * mean will correctly estimate a growth rate that, over those years,
  * will yield the same end value.
  *
- * This runs on `O(n)`, linear time in respect to the array
+ * This runs in `O(n)`, linear time, with respect to the length of the array.
  *
  * @param {Array<number>} x sample of one or more data points
  * @returns {number} geometric mean
