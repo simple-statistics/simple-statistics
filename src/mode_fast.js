@@ -1,7 +1,8 @@
 /* globals Map: false */
 
 /**
- * The [mode](http://bit.ly/W5K4Yt) is the number that appears in a list the highest number of times.
+ * The [mode](https://en.wikipedia.org/wiki/Mode_%28statistics%29) is the number
+ * that appears in a list the highest number of times.
  * There can be multiple modes in a list: in the event of a tie, this
  * algorithm will return the most recently seen mode.
  *
