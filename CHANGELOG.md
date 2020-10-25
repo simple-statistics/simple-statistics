@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.3.1](https://github.com/simple-statistics/simple-statistics/compare/v7.3.0...v7.3.1) (2020-10-25)
+
+
+### Bug Fixes
+
+* Avoid unnecessary copy in shuffle ([#515](https://github.com/simple-statistics/simple-statistics/issues/515)) ([34f0e2e](https://github.com/simple-statistics/simple-statistics/commit/34f0e2e21915f42884704947ac3f8c49230fd164))
+
 ## [7.3.0](https://github.com/simple-statistics/simple-statistics/compare/v7.2.0...v7.3.0) (2020-09-08)
 
 
