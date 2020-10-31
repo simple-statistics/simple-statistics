@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.3.2](https://github.com/simple-statistics/simple-statistics/compare/v7.3.1...v7.3.2) (2020-10-31)
+
+
+### Bug Fixes
+
+* increase `ckmeans` performance ([#521](https://github.com/simple-statistics/simple-statistics/issues/521)) ([af279ee](https://github.com/simple-statistics/simple-statistics/commit/af279eed6c7ebb8c6894bb8e095ff6e93982bc4e))
+
 ### [7.3.1](https://github.com/simple-statistics/simple-statistics/compare/v7.3.0...v7.3.1) (2020-10-25)
 
 
