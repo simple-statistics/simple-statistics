@@ -6077,10 +6077,12 @@ sshpk@^1.7.0:
     safer-buffer "^2.0.2"
     tweetnacl "~0.14.0"
 
-stack-utils@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/stack-utils/-/stack-utils-1.0.2.tgz#33eba3897788558bebfc2db059dc158ec36cebb8"
-  integrity sha512-MTX+MeG5U994cazkjd/9KNAapsHnibjMLnfXodlkXw76JEea0UiNzrqidzo1emMwk7w5Qhc9jd4Bn9TBb1MFwA==
+stack-utils@^1.0.3:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/stack-utils/-/stack-utils-1.0.4.tgz#4b600971dcfc6aed0cbdf2a8268177cc916c87c8"
+  integrity sha512-IPDJfugEGbfizBwBZRZ3xpccMdRyP5lqsBWXGQWimVjua/ccLCeMOAVjlc1R7LxFjo5sEDhyNIXd8mo/AiDS9w==
+  dependencies:
+    escape-string-regexp "^2.0.0"
 
 standard-version@^9.0.0:
   version "9.0.0"
@@ -6366,9 +6368,9 @@ tap-yaml@^1.0.0:
     yaml "^1.5.0"
 
 tap@^14.4.1:
-  version "14.10.8"
-  resolved "https://registry.yarnpkg.com/tap/-/tap-14.10.8.tgz#3c9ce79519acca2f40e57350513b2aa51c6e57c2"
-  integrity sha512-aamkWefJ0G8GGf9t5LWFtrNF5tfVd8ut/tDUianLF6N4621ERITIl0qkocWCVEnsM6hZnaMKa+SggSAaBlC2tA==
+  version "14.11.0"
+  resolved "https://registry.yarnpkg.com/tap/-/tap-14.11.0.tgz#64f1f50b10280d5149690c9a7059d859f2bbcd24"
+  integrity sha512-z8qnNFVyIjLh/bNoTLFRkEk09XZUDAZbCkz/BjvHHly3ao5H+y60gPnedALfheEjA6dA4tpp/mrKq2NWlMuq0A==
   dependencies:
     "@types/react" "^16.9.16"
     async-hook-domain "^1.1.3"
@@ -6400,7 +6402,7 @@ tap@^14.4.1:
     rimraf "^2.7.1"
     signal-exit "^3.0.0"
     source-map-support "^0.5.16"
-    stack-utils "^1.0.2"
+    stack-utils "^1.0.3"
     tap-mocha-reporter "^5.0.0"
     tap-parser "^10.0.1"
     tap-yaml "^1.0.0"
