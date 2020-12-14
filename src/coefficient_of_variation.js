@@ -1,10 +1,11 @@
-import sampleStandardDeviation from "./sample_standard_deviation";
 import mean from "./mean";
+import sampleStandardDeviation from "./sample_standard_deviation";
+
 /**
  * The`coefficient of variation`_ is the ratio of the standard deviation to the mean.
  * .._`coefficient of variation`: https://en.wikipedia.org/wiki/Coefficient_of_variation
- * 
- * 
+ *
+ *
  * @param {Array} x input
  * @returns {number} coefficient of variation
  * @example
@@ -13,7 +14,7 @@ import mean from "./mean";
  * coefficientOfVariation([-1, 0, 1, 2, 3, 4]).toFixed(3); // => 1.247
  */
 function coefficientOfVariation(x) {
-    return sampleStandardDeviation(x) / mean(x)
+    return sampleStandardDeviation(x) / mean(x);
 }
 
 export default coefficientOfVariation;

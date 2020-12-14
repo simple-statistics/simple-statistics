@@ -76,6 +76,7 @@ export {
     default as rms
 } from "./src/root_mean_square";
 export { default as variance } from "./src/variance";
+export { default as coefficientOfVariation } from "./src/coefficient_of_variation";
 export { default as tTest } from "./src/t_test";
 export { default as tTestTwoSample } from "./src/t_test_two_sample";
 // ss.jenks = require('./src/jenks');

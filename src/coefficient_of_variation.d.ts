@@ -1,4 +1,3 @@
-
 /**
  * https://simplestatistics.org/docs/#coefficientofvariation
  */
