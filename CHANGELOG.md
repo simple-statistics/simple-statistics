@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.4.0](https://github.com/simple-statistics/simple-statistics/compare/v7.3.2...v7.4.0) (2020-12-14)
+
+
+### Features
+
+* Add coefficient of variation ([ead74c6](https://github.com/simple-statistics/simple-statistics/commit/ead74c6806c07be883387d053890a40354540176))
+
 ### [7.3.2](https://github.com/simple-statistics/simple-statistics/compare/v7.3.1...v7.3.2) (2020-10-31)
 
 
