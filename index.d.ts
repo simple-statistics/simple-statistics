@@ -94,6 +94,7 @@ export { default as bisect } from './src/bisect';
 
 // Clustering methods
 export { default as kMeansCluster } from './src/k_means_cluster';
+export { default as silhouette } from './src/silhouette';
 
 // Utils
 export { default as quickselect } from './src/quickselect';
