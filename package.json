@@ -1,6 +1,6 @@
 {
   "name": "simple-statistics",
-  "version": "7.4.0",
+  "version": "7.4.1",
   "description": "Simple Statistics",
   "author": "Tom MacWright <tom@macwright.org> (http://macwright.org/)",
   "repository": {
@@ -45,7 +45,7 @@
   "types": "index.d.ts",
   "exports": {
     "./package.json": "./package.json",
-    "." : {
+    ".": {
       "import": "./dist/simple-statistics.mjs",
       "require": "./dist/simple-statistics.js"
     }
