@@ -44,8 +44,11 @@
   "unpkg": "dist/simple-statistics.min.js",
   "types": "index.d.ts",
   "exports": {
-    "import": "./dist/simple-statistics.mjs",
-    "require": "./dist/simple-statistics.js"
+    "./package.json": "./package.json",
+    "." : {
+      "import": "./dist/simple-statistics.mjs",
+      "require": "./dist/simple-statistics.js"
+    }
   },
   "engines": {
     "node": "*"
