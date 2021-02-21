@@ -109,10 +109,12 @@ export {
 // Normal distribution
 export { default as zScore } from "./src/z_score";
 export { default as cumulativeStdNormalProbability } from "./src/cumulative_std_normal_probability";
+export { default as cumulativeStdLogisticProbability } from "./src/cumulative_std_logistic_probability";
 export { default as standardNormalTable } from "./src/standard_normal_table";
 export { default as errorFunction, default as erf } from "./src/error_function";
 export { default as inverseErrorFunction } from "./src/inverse_error_function";
 export { default as probit } from "./src/probit";
+export { default as logit } from "./src/logit";
 
 // Non-parametric Methods
 export { default as permutationTest } from "./src/permutation_test";
