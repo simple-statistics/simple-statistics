@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.5.0](https://github.com/simple-statistics/simple-statistics/compare/v7.4.1...v7.5.0) (2021-02-24)
+
+
+### Features
+
+* Add logit and cumulativeStdLogisticProbability methods ([7279632](https://github.com/simple-statistics/simple-statistics/commit/7279632f3010ab2c00e33f01891083bbecea2b96))
+
 ### [7.4.1](https://github.com/simple-statistics/simple-statistics/compare/v7.4.0...v7.4.1) (2021-02-12)
 
 
