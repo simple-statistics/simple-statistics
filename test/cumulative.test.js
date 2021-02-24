@@ -58,3 +58,35 @@ test("cumulativeStdNormalProbability", function (t) {
     });
     t.end();
 });
+
+test("cumulativeStdLogisticProbability", function (t) {
+    t.test("median is zero", function (t) {
+        t.equal(ss.cumulativeStdLogisticProbability(0), 0.5);
+        t.end();
+    });
+    t.test("increasing", function (t) {
+        for (let i = -3; i <= 3; i += 0.01) {
+            if (
+                ss.cumulativeStdLogisticProbability(i + ss.epsilon) <=
+                ss.cumulativeStdLogisticProbability(i)
+            ) {
+                t.fail("increasing failure at " + i);
+            }
+        }
+        t.end();
+    });
+    t.test("symmetry", function (t) {
+        for (let i = 0; i <= 3; i += 0.01) {
+            if (
+                Math.abs(
+                    ss.cumulativeStdLogisticProbability(i) -
+                        (1 - ss.cumulativeStdLogisticProbability(-i))
+                ) > ss.epsilon
+            ) {
+                t.fail("not symmetric about zero");
+            }
+        }
+        t.end();
+    });
+    t.end();
+});
