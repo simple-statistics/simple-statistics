@@ -34,7 +34,7 @@ function shuffleInPlace(x, randomSource) {
 
     // While there are still items to shuffle
     while (length > 0) {
-        // chose a random index within the subset of the array
+        // choose a random index within the subset of the array
         // that is not yet shuffled
         index = Math.floor(randomSource() * length--);
 
