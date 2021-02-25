@@ -30,3 +30,21 @@ test("sample correlation", function (t) {
 
     t.end();
 });
+
+test("sample rank correlation", function (t) {
+    t.test(
+        "absolute rank correlation for monotonic function equals one",
+        function (t) {
+            const x = [1, 2, 3, 4, 5, 6];
+            let y;
+            for (const sign of [-1, 1]) {
+                y = x.map((a) => sign * a * a);
+                if (rnd(ss.sampleRankCorrelation(x, y)) !== sign * 1) {
+                    t.fail("absolute rank correlation not equal to one");
+                }
+            }
+            t.end();
+        }
+    );
+    t.end();
+});
