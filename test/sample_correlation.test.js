@@ -47,7 +47,7 @@ test("sample rank correlation", function (t) {
         }
     );
 
-    t.test("rank correlation agrees with R calculation", function (t) {
+    t.test("rank correlation agrees with R calculation for random data", function (t) {
         const x = [
             -0.008718749,
             -0.06111878,
