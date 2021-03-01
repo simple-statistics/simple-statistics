@@ -42,9 +42,9 @@ function geometricMean(x) {
 
     for (let i = 0; i < x.length; i++) {
         // the geometric mean is only valid for positive numbers
-        if (x[i] <= 0) {
+        if (x[i] < 0) {
             throw new Error(
-                "geometricMean requires only positive numbers as input"
+                "geometricMean requires only non-negative numbers as input"
             );
         }
 

@@ -59,6 +59,7 @@ export { default as addToMean } from "./src/add_to_mean";
 export { default as combineMeans } from "./src/combine_means";
 export { default as combineVariances } from "./src/combine_variances";
 export { default as geometricMean } from "./src/geometric_mean";
+export { default as logAverage } from "./src/log_average";
 export { default as harmonicMean } from "./src/harmonic_mean";
 export { default as average, default as mean } from "./src/mean";
 
