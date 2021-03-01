@@ -25,7 +25,7 @@ test("log average", function (t) {
             array.push(value);
         }
         if (!isFinite(ss.logAverage(array))) {
-            t.fail("geometric mean failed for large product");
+            t.fail("log average failed for large product");
         }
         t.end();
     });
@@ -37,7 +37,7 @@ test("log average", function (t) {
             array.push(value);
         }
         if (ss.logAverage(array) === 0) {
-            t.fail("geometric mean failed for small product");
+            t.fail("log average failed for small product");
         }
         t.end();
     });
