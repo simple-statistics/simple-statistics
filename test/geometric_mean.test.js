@@ -25,5 +25,12 @@ test("geometric mean", function (t) {
         });
         t.end();
     });
+
+    t.test("equals zero if array contains zero", function (t) {
+        if (ss.geometricMean([0, 1, 2]) !== 0) {
+            t.fail("geometric mean of array containing zero is not zero");
+        }
+        t.end();
+    });
     t.end();
 });
