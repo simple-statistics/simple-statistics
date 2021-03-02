@@ -9,10 +9,24 @@ import sampleCorrelation from "./sample_correlation";
  * @returns {number} sample rank correlation
  */
 function sampleRankCorrelation(x, y) {
-    const sortedX = x.slice().sort((a, b) => a - b);
-    const sortedY = y.slice().sort((a, b) => a - b);
-    const xRanks = x.map((a) => sortedX.indexOf(a));
-    const yRanks = y.map((a) => sortedY.indexOf(a));
+    const xIndexes = x
+        .map((value, index) => [value, index])
+        .sort((a, b) => a[0] - b[0])
+        .map((pair) => pair[1]);
+    const yIndexes = y
+        .map((value, index) => [value, index])
+        .sort((a, b) => a[0] - b[0])
+        .map((pair) => pair[1]);
+
+    // At this step, we have an array of indexes
+    // that map from sorted numbers to their original indexes. We reverse
+    // that so that it is an array of the sorted destination index.
+    const xRanks = Array(xIndexes.length);
+    const yRanks = Array(xIndexes.length);
+    for (let i = 0; i < xIndexes.length; i++) {
+        xRanks[xIndexes[i]] = i;
+        yRanks[yIndexes[i]] = i;
+    }
 
     return sampleCorrelation(xRanks, yRanks);
 }

@@ -74,6 +74,7 @@ test("sample rank correlation", function (t) {
         ];
         const rankCorr = 0.6484848; // calculated using cor(x, y, method = "spearman") in R
         if (Math.abs(ss.sampleRankCorrelation(x, y) - rankCorr) > ss.epsilon) {
+            console.log(ss.sampleRankCorrelation(x, y));
             t.fail("rank correlation is incorrect for sample data");
         }
         t.end();
