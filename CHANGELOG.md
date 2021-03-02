@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.6.0](https://github.com/simple-statistics/simple-statistics/compare/v7.5.0...v7.6.0) (2021-03-02)
+
+
+### Features
+
+* Implement log average ([#556](https://github.com/simple-statistics/simple-statistics/issues/556)) ([aeda3c0](https://github.com/simple-statistics/simple-statistics/commit/aeda3c02a5c7160aa2d8df82a7fae808a5a066fe))
+
 ## [7.5.0](https://github.com/simple-statistics/simple-statistics/compare/v7.4.1...v7.5.0) (2021-02-24)
 
 
