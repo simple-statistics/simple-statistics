@@ -28,15 +28,16 @@ test("sample kurtosis", function (t) {
         t.end();
     });
 
-    t.test("the kurtosis of an sample with three numbers is null", function (
-        t
-    ) {
-        const data = [1, 2, 3];
-        t.throws(function () {
-            ss.sampleKurtosis(data);
-        });
-        t.end();
-    });
+    t.test(
+        "the kurtosis of an sample with three numbers is null",
+        function (t) {
+            const data = [1, 2, 3];
+            t.throws(function () {
+                ss.sampleKurtosis(data);
+            });
+            t.end();
+        }
+    );
 
     t.test("can calculate the kurtosis of SAS example 1", function (t) {
         // Data and answer taken from KURTOSIS function documentation at

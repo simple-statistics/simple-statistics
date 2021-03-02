@@ -21,14 +21,15 @@ test("sample covariance", function (t) {
         t.end();
     });
 
-    t.test("covariance is zero for something with no correlation", function (
-        t
-    ) {
-        const x = [1, 2, 3, 4, 5, 6];
-        const y = [1, 1, 2, 2, 1, 1];
-        t.equal(rnd(ss.sampleCovariance(x, y)), 0);
-        t.end();
-    });
+    t.test(
+        "covariance is zero for something with no correlation",
+        function (t) {
+            const x = [1, 2, 3, 4, 5, 6];
+            const y = [1, 1, 2, 2, 1, 1];
+            t.equal(rnd(ss.sampleCovariance(x, y)), 0);
+            t.end();
+        }
+    );
 
     t.test("zero-length corner case", function (t) {
         t.throws(function () {

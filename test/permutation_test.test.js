@@ -22,21 +22,22 @@ test("permutation test", function (t) {
             t.end();
         }
     );
-    t.test("P-value of distribution less than itself should be 1", function (
-        t
-    ) {
-        t.equal(
-            ss.permutationTest(
-                [2, 2, 2, 2, 2],
-                [2, 2, 2, 2, 2],
-                "greater",
-                undefined,
-                rng
-            ),
-            1
-        );
-        t.end();
-    });
+    t.test(
+        "P-value of distribution less than itself should be 1",
+        function (t) {
+            t.equal(
+                ss.permutationTest(
+                    [2, 2, 2, 2, 2],
+                    [2, 2, 2, 2, 2],
+                    "greater",
+                    undefined,
+                    rng
+                ),
+                1
+            );
+            t.end();
+        }
+    );
     t.test(
         "P-value of small sample greater than large sample should be 0",
         function (t) {
