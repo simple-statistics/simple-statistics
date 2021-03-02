@@ -8,12 +8,13 @@ function rnd(x) {
 }
 
 test("coefficient_of_variation", function (t) {
-    t.test("can get the coefficientOfVariation of a six-sided die", function (
-        t
-    ) {
-        t.equal(rnd(ss.coefficientOfVariation([1, 2, 3, 4])), 0.516);
-        t.end();
-    });
+    t.test(
+        "can get the coefficientOfVariation of a six-sided die",
+        function (t) {
+            t.equal(rnd(ss.coefficientOfVariation([1, 2, 3, 4])), 0.516);
+            t.end();
+        }
+    );
 
     t.end();
 });

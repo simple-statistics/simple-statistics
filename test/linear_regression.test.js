@@ -5,35 +5,37 @@ const linearRegression = require("../").linearRegression;
 const linearRegressionLine = require("../").linearRegressionLine;
 
 test("linear regression", function (t) {
-    t.test("correctly generates a line for a 0, 0 to 1, 1 dataset", function (
-        t
-    ) {
-        const l = linearRegressionLine(
-            linearRegression([
-                [0, 0],
-                [1, 1]
-            ])
-        );
-        t.equal(l(0), 0);
-        t.equal(l(0.5), 0.5);
-        t.equal(l(1), 1);
-        t.end();
-    });
+    t.test(
+        "correctly generates a line for a 0, 0 to 1, 1 dataset",
+        function (t) {
+            const l = linearRegressionLine(
+                linearRegression([
+                    [0, 0],
+                    [1, 1]
+                ])
+            );
+            t.equal(l(0), 0);
+            t.equal(l(0.5), 0.5);
+            t.equal(l(1), 1);
+            t.end();
+        }
+    );
 
-    t.test("correctly generates a line for a 0, 0 to 1, 0 dataset", function (
-        t
-    ) {
-        const l = linearRegressionLine(
-            linearRegression([
-                [0, 0],
-                [1, 0]
-            ])
-        );
-        t.equal(l(0), 0);
-        t.equal(l(0.5), 0);
-        t.equal(l(1), 0);
-        t.end();
-    });
+    t.test(
+        "correctly generates a line for a 0, 0 to 1, 0 dataset",
+        function (t) {
+            const l = linearRegressionLine(
+                linearRegression([
+                    [0, 0],
+                    [1, 0]
+                ])
+            );
+            t.equal(l(0), 0);
+            t.equal(l(0.5), 0);
+            t.equal(l(1), 0);
+            t.end();
+        }
+    );
 
     t.test("handles a single-point sample", function (t) {
         const l = linearRegressionLine(linearRegression([[0, 0]]));

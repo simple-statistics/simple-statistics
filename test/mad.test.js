@@ -4,12 +4,13 @@ const test = require("tap").test;
 const ss = require("../");
 
 test("median absolute deviation (mad)", function (t) {
-    t.test("median absolute deviation of an example on wikipedia", function (
-        t
-    ) {
-        t.equal(ss.mad([1, 1, 2, 2, 4, 6, 9]), 1);
-        t.end();
-    });
+    t.test(
+        "median absolute deviation of an example on wikipedia",
+        function (t) {
+            t.equal(ss.mad([1, 1, 2, 2, 4, 6, 9]), 1);
+            t.end();
+        }
+    );
 
     // wolfram alpha: median absolute deviation {0,1,2,3,4,5,6,7,8,9,10}
     t.test("median absolute deviation of 0-10", function (t) {
