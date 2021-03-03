@@ -1,4 +1,4 @@
-import shuffle from "./shuffle";
+import shuffleSubsetInPlace from "./shuffle_subset_in_place";
 
 /**
  * Create a [simple random sample](http://en.wikipedia.org/wiki/Simple_random_sample)
@@ -18,11 +18,9 @@ import shuffle from "./shuffle";
  * sample(values, 3); // returns 3 random values, like [2, 5, 8];
  */
 function sample(x, n, randomSource) {
-    // shuffle the original array using a fisher-yates shuffle
-    const shuffled = shuffle(x, randomSource);
-
-    // and then return a subset of it - the first `n` elements.
-    return shuffled.slice(0, n);
+    const data = x.slice();
+    // shuffle the tail of the array using a fisher-yates shuffle
+    return shuffleSubsetInPlace(data, n, randomSource);
 }
 
 export default sample;
