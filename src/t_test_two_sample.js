@@ -16,7 +16,7 @@ import sampleVariance from "./sample_variance";
  *
  * `diff` can be omitted if it equals 0.
  *
- * [This is used to confirm or deny](http://www.monarchlab.org/Lab/Research/Stats/2SampleT.aspx)
+ * [This is used to reject](https://en.wikipedia.org/wiki/Exclusion_of_the_null_hypothesis)
  * a null hypothesis that the two populations that have been sampled into
  * `sampleX` and `sampleY` are equal to each other.
  *
