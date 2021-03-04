@@ -78,10 +78,10 @@ test("k-means clustering test", function (t) {
                 [0.1, 0.0]
             ];
             const { labels, centroids } = ss.kMeansCluster(points, 2, nonRNG);
-            t.deepEqual(labels, [0, 1, 0]);
+            t.deepEqual(labels, [1, 0, 1]);
             t.deepEqual(centroids, [
-                [0.05, 0.25],
-                [1.0, 0.5]
+                [1.0, 0.5],
+                [0.05, 0.25]
             ]);
             t.end();
         }
