@@ -44,6 +44,7 @@ export { default as equalIntervalBreaks } from "./src/equal_interval_breaks";
 // sample statistics
 export { default as sampleCovariance } from "./src/sample_covariance";
 export { default as sampleCorrelation } from "./src/sample_correlation";
+export { default as sampleRankCorrelation } from "./src/sample_rank_correlation";
 export { default as sampleVariance } from "./src/sample_variance";
 export { default as sampleStandardDeviation } from "./src/sample_standard_deviation";
 export { default as sampleSkewness } from "./src/sample_skewness";
