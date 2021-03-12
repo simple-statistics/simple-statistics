@@ -5,7 +5,7 @@
  *
  * @param {Array<number>} x sample of one or more data points
  * @returns {Array<number>} minimum & maximum value
- * @throws {Error} if the the length of x is less than one
+ * @throws {Error} if the length of x is less than one
  * @example
  * extent([1, 2, 3, 4]);
  * // => [1, 4]

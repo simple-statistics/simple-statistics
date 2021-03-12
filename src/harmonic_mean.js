@@ -34,7 +34,7 @@ function harmonicMean(x) {
         reciprocalSum += 1 / x[i];
     }
 
-    // divide n by the the reciprocal sum
+    // divide n by the reciprocal sum
     return x.length / reciprocalSum;
 }
 
