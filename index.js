@@ -81,6 +81,7 @@ export { default as variance } from "./src/variance";
 export { default as coefficientOfVariation } from "./src/coefficient_of_variation";
 export { default as tTest } from "./src/t_test";
 export { default as tTestTwoSample } from "./src/t_test_two_sample";
+export { default as wilcoxonRankSum } from "./src/wilcoxon_rank_sum";
 // ss.jenks = require('./src/jenks');
 
 // Classifiers
