@@ -24,8 +24,11 @@ function wilcoxonRankSum(sampleX, sampleY) {
     const pooledSamples = sampleX
         .map((x) => ({ label: "x", value: x }))
         .concat(sampleY.map((y) => ({ label: "y", value: y })))
-        .sort((a, b) => a.value - b.value)
-        .map((s, idx) => ({ label: s.label, value: s.value, rank: idx }));
+        .sort((a, b) => a.value - b.value);
+
+    for (let rank = 0; rank < pooledSamples.length; rank++) {
+        pooledSamples[rank].rank = rank;
+    }
 
     let tiedRanks = [pooledSamples[0].rank];
     for (let i = 1; i < pooledSamples.length; i++) {
