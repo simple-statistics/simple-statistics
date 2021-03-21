@@ -51,10 +51,16 @@ function wilcoxonRankSum(sampleX, sampleY) {
         }
     }
 
-    return pooledSamples
-        .filter((s) => s.label === "x")
-        .map((s) => s.rank + 1)
-        .reduce((a, b) => a + b);
+    let rankSum = 0;
+
+    for (let i = 0; i < pooledSamples.length; i++) {
+        const sample = pooledSamples[i];
+        if (sample.label === "x") {
+            rankSum += sample.rank + 1;
+        }
+    }
+
+    return rankSum;
 }
 
 export default wilcoxonRankSum;
