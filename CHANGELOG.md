@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.7.0](https://github.com/simple-statistics/simple-statistics/compare/v7.6.0...v7.7.0) (2021-03-31)
+
+
+### Features
+
+* Implement Wilcoxon rank sum statistic ([#568](https://github.com/simple-statistics/simple-statistics/issues/568)) ([77cbec2](https://github.com/simple-statistics/simple-statistics/commit/77cbec21b2f0dd6cb2e47c244859612b4a8f2064))
+* Rank correlation ([#562](https://github.com/simple-statistics/simple-statistics/issues/562)) ([4244faf](https://github.com/simple-statistics/simple-statistics/commit/4244fafd81dd25e49c1d848432bfa15109c1cab0))
+
 ## [7.6.0](https://github.com/simple-statistics/simple-statistics/compare/v7.5.0...v7.6.0) (2021-03-02)
 
 
