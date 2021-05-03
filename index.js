@@ -40,6 +40,7 @@ export { default as ckmeans } from "./src/ckmeans";
 export { default as uniqueCountSorted } from "./src/unique_count_sorted";
 export { default as sumNthPowerDeviations } from "./src/sum_nth_power_deviations";
 export { default as equalIntervalBreaks } from "./src/equal_interval_breaks";
+export { default as standardError } from "./src/standard_error";
 
 // sample statistics
 export { default as sampleCovariance } from "./src/sample_covariance";
