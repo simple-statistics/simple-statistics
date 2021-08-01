@@ -6249,9 +6249,9 @@ stack-utils@^1.0.3:
     escape-string-regexp "^2.0.0"
 
 standard-version@^9.0.0, standard-version@^9.1.1:
-  version "9.2.0"
-  resolved "https://registry.yarnpkg.com/standard-version/-/standard-version-9.2.0.tgz#d4e64b201ec1abb8a677b265d8755e5e8b9e33a3"
-  integrity sha512-utJcqjk/wR4sePSwDoRcc5CzJ6S+kec5Hd0+1TJI+j1TRYuuptweAnEUdkkjGf2vYoGab2ezefyVtW065HZ1Uw==
+  version "9.3.1"
+  resolved "https://registry.yarnpkg.com/standard-version/-/standard-version-9.3.1.tgz#786c16c318847f58a31a2434f97e8db33a635853"
+  integrity sha512-5qMxXw/FxLouC5nANyx/5RY1kiorJx9BppUso8gN07MG64q2uLRmrPb4KfXp3Ql4s/gxjZwZ89e0FwxeLubGww==
   dependencies:
     chalk "^2.4.2"
     conventional-changelog "3.1.24"
