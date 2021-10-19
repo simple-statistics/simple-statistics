@@ -13,7 +13,7 @@ in all modern browsers (including IE) as well as in [node.js](https://nodejs.org
 * :chart_with_upwards_trend: [Benchmarks](./benchmarks/)
 * :kissing: [A list of other statistics libraries](./SEEALSO.md)
 
-## Installation
+## Installation for everything
 
 * **I'm using Node.js, Webpack, Browserify, Rollup, or another module bundler,
   and install packages from npm.**
