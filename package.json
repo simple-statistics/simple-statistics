@@ -17,7 +17,7 @@
     "@rollup/plugin-buble": "^0.21.3",
     "cz-conventional-changelog": "^3.3.0",
     "documentation": "^13",
-    "eslint": "^7.23.0",
+    "eslint": "^8.6.0",
     "eslint-plugin-prettier": "^3.3.1",
     "prettier": "^2.2.1",
     "random-js": "^2.1.0",
