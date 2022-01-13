@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.7.1](https://github.com/simple-statistics/simple-statistics/compare/v7.7.0...v7.7.1) (2022-01-13)
+
+
+### Bug Fixes
+
+* add missing TypeScript typing for silhouetteMetric ([#589](https://github.com/simple-statistics/simple-statistics/issues/589)) ([d4ca159](https://github.com/simple-statistics/simple-statistics/commit/d4ca1590e93a71c625099d21d84ab0230bad9ccc))
+
 ## [7.7.0](https://github.com/simple-statistics/simple-statistics/compare/v7.6.0...v7.7.0) (2021-03-31)
 
 
