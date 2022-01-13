@@ -11,10 +11,10 @@ function rng() {
 
 test("sampleWithReplacement", function (t) {
     const input = [1, 2, 3, 4, 5, 6];
-    t.deepEqual(ss.sampleWithReplacement(input, 2, rng), [6, 5]);
-    t.deepEqual(ss.sampleWithReplacement(input, 3, rng), [3, 6, 4]);
-    t.deepEqual(ss.sampleWithReplacement(input, 4, rng), [5, 2, 3, 4]);
-    t.deepEqual(ss.sampleWithReplacement(input, 0, rng), []);
-    t.deepEqual(ss.sampleWithReplacement([], 1, rng), []);
+    t.same(ss.sampleWithReplacement(input, 2, rng), [6, 5]);
+    t.same(ss.sampleWithReplacement(input, 3, rng), [3, 6, 4]);
+    t.same(ss.sampleWithReplacement(input, 4, rng), [5, 2, 3, 4]);
+    t.same(ss.sampleWithReplacement(input, 0, rng), []);
+    t.same(ss.sampleWithReplacement([], 1, rng), []);
     t.end();
 });

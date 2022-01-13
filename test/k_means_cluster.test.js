@@ -16,8 +16,8 @@ test("k-means clustering test", function (t) {
         function (t) {
             const points = [[0.5]];
             const { labels, centroids } = ss.kMeansCluster(points, 1, nonRNG);
-            t.deepEqual(labels, [0]);
-            t.deepEqual(centroids, [[0.5]]);
+            t.same(labels, [0]);
+            t.same(centroids, [[0.5]]);
             t.end();
         }
     );
@@ -25,8 +25,8 @@ test("k-means clustering test", function (t) {
     t.test("Single cluster of two points contains both points", function (t) {
         const points = [[0.0], [1.0]];
         const { labels, centroids } = ss.kMeansCluster(points, 1, nonRNG);
-        t.deepEqual(labels, [0, 0]);
-        t.deepEqual(centroids, [[0.5]]);
+        t.same(labels, [0, 0]);
+        t.same(centroids, [[0.5]]);
         t.end();
     });
 
@@ -35,8 +35,8 @@ test("k-means clustering test", function (t) {
         function (t) {
             const points = [[0.0], [1.0]];
             const { labels, centroids } = ss.kMeansCluster(points, 2, nonRNG);
-            t.deepEqual(labels, [0, 1]);
-            t.deepEqual(centroids, [[0.0], [1.0]]);
+            t.same(labels, [0, 1]);
+            t.same(centroids, [[0.0], [1.0]]);
             t.end();
         }
     );
@@ -46,8 +46,8 @@ test("k-means clustering test", function (t) {
         function (t) {
             const points = [[0.0], [1.0], [0.0], [1.0]];
             const { labels, centroids } = ss.kMeansCluster(points, 2, nonRNG);
-            t.deepEqual(labels, [0, 1, 0, 1]);
-            t.deepEqual(centroids, [[0.0], [1.0]]);
+            t.same(labels, [0, 1, 0, 1]);
+            t.same(centroids, [[0.0], [1.0]]);
             t.end();
         }
     );
@@ -60,14 +60,21 @@ test("k-means clustering test", function (t) {
                 [1.0, 0.5]
             ];
             const { labels, centroids } = ss.kMeansCluster(points, 2, nonRNG);
-            t.deepEqual(labels, [0, 1]);
-            t.deepEqual(centroids, [
+            t.same(labels, [0, 1]);
+            t.same(centroids, [
                 [0.0, 0.5],
                 [1.0, 0.5]
             ]);
             t.end();
         }
     );
+
+    t.test("Base case of one value", function (t) {
+        t.throws(() => {
+            ss.kMeansCluster([1], 2, nonRNG);
+        });
+        t.end();
+    });
 
     t.test(
         "Two clusters of three 2D points puts two points in one cluster and one in the other",
@@ -78,8 +85,8 @@ test("k-means clustering test", function (t) {
                 [0.1, 0.0]
             ];
             const { labels, centroids } = ss.kMeansCluster(points, 2, nonRNG);
-            t.deepEqual(labels, [0, 1, 0]);
-            t.deepEqual(centroids, [
+            t.same(labels, [0, 1, 0]);
+            t.same(centroids, [
                 [0.05, 0.25],
                 [1.0, 0.5]
             ]);

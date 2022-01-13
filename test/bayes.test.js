@@ -12,7 +12,7 @@ test("BayesianClassifier", function (t) {
             },
             "animal"
         );
-        t.deepEqual(
+        t.same(
             bayes.score({
                 species: "Cat"
             }),
@@ -37,7 +37,7 @@ test("BayesianClassifier", function (t) {
             },
             "chair"
         );
-        t.deepEqual(
+        t.same(
             bayes.score({
                 species: "Cat"
             }),
@@ -75,7 +75,7 @@ test("BayesianClassifier", function (t) {
             },
             "chair"
         );
-        t.deepEqual(
+        t.same(
             bayes.score({
                 species: "Cat"
             }),
@@ -120,7 +120,7 @@ test("BayesianClassifier", function (t) {
             },
             "chair"
         );
-        t.deepEqual(
+        t.same(
             bayes.score({
                 color: "white"
             }),
@@ -158,7 +158,7 @@ test("BayesianClassifier", function (t) {
             },
             "chair"
         );
-        t.deepEqual(
+        t.same(
             bayes.score({
                 species: "Cat"
             }),
@@ -167,7 +167,7 @@ test("BayesianClassifier", function (t) {
                 chair: 0.25
             }
         );
-        t.deepEqual(
+        t.same(
             bayes.score({
                 species: "Dog"
             }),
