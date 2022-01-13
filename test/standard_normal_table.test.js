@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
 const test = require("tap").test;
-const ss = require("../");
+const ss = require("../index.js");
 
 test("standardNormalTable", function (t) {
     test("all entries are numeric", function (t) {

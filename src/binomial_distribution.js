@@ -1,4 +1,4 @@
-import epsilon from "./epsilon";
+import epsilon from "./epsilon.js";
 
 /**
  * The [Binomial Distribution](http://en.wikipedia.org/wiki/Binomial_distribution) is the discrete probability

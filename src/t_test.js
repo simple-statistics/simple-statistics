@@ -1,5 +1,5 @@
-import mean from "./mean";
-import standardDeviation from "./standard_deviation";
+import mean from "./mean.js";
+import standardDeviation from "./standard_deviation.js";
 
 /**
  * This is to compute [a one-sample t-test](https://en.wikipedia.org/wiki/Student%27s_t-test#One-sample_t-test), comparing the mean

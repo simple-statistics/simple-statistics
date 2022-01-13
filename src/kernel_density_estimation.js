@@ -1,5 +1,5 @@
-import interquartileRange from "./interquartile_range";
-import stddev from "./sample_standard_deviation";
+import interquartileRange from "./interquartile_range.js";
+import stddev from "./sample_standard_deviation.js";
 
 const SQRT_2PI = Math.sqrt(2 * Math.PI);
 

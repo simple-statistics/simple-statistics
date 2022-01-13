@@ -1,6 +1,6 @@
 /* eslint no-shadow: 0 */
 
-const PerceptronModel = require("../").PerceptronModel;
+const PerceptronModel = require("../index.js").PerceptronModel;
 const test = require("tap").test;
 
 test("perceptron", function (t) {

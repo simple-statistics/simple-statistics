@@ -1,4 +1,4 @@
-import shuffleInPlace from "./shuffle_in_place";
+import shuffleInPlace from "./shuffle_in_place.js";
 
 /**
  * A [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)

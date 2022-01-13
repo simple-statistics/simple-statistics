@@ -1,6 +1,6 @@
-import makeMatrix from "./make_matrix";
-import numericSort from "./numeric_sort";
-import uniqueCountSorted from "./unique_count_sorted";
+import makeMatrix from "./make_matrix.js";
+import numericSort from "./numeric_sort.js";
+import uniqueCountSorted from "./unique_count_sorted.js";
 
 /**
  * Generates incrementally computed values based on the sums and sums of

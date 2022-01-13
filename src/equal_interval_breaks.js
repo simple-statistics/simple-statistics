@@ -1,5 +1,5 @@
-import max from "./max";
-import min from "./min";
+import max from "./max.js";
+import min from "./min.js";
 
 /**
  * Given an array of x, this will find the extent of the

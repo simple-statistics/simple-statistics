@@ -1,4 +1,4 @@
-import median from "./median";
+import median from "./median.js";
 
 /**
  * The [Median Absolute Deviation](http://en.wikipedia.org/wiki/Median_absolute_deviation) is

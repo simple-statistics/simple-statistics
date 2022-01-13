@@ -18,6 +18,7 @@
     "cz-conventional-changelog": "^3.3.0",
     "documentation": "^13",
     "eslint": "^8.6.0",
+    "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.5.1",
     "random-js": "^2.1.0",

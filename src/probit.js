@@ -1,5 +1,5 @@
-import epsilon from "./epsilon";
-import inverseErrorFunction from "./inverse_error_function";
+import epsilon from "./epsilon.js";
+import inverseErrorFunction from "./inverse_error_function.js";
 
 /**
  * The [Probit](http://en.wikipedia.org/wiki/Probit)

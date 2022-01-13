@@ -1,4 +1,4 @@
-import standardNormalTable from "./standard_normal_table";
+import standardNormalTable from "./standard_normal_table.js";
 
 /**
  * **[Cumulative Standard Normal Probability](http://en.wikipedia.org/wiki/Standard_normal_table)**

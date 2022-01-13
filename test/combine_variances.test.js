@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
 const test = require("tap").test;
-const ss = require("../");
+const ss = require("../index.js");
 
 test("combineVariances", function (t) {
     t.test("can combine the variances of two lists", function (t) {

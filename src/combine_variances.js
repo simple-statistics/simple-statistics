@@ -1,4 +1,4 @@
-import combineMeans from "./combine_means";
+import combineMeans from "./combine_means.js";
 
 /**
  * When combining two lists of values for which one already knows the variances,

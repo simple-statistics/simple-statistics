@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
 const test = require("tap").test;
-const ss = require("../");
+const ss = require("../index.js");
 
 test("tTestTwoSample", function (t) {
     t.test("can test independency of two samples", function (t) {

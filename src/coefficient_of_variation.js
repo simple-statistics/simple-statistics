@@ -1,5 +1,5 @@
-import mean from "./mean";
-import sampleStandardDeviation from "./sample_standard_deviation";
+import mean from "./mean.js";
+import sampleStandardDeviation from "./sample_standard_deviation.js";
 
 /**
  * The`coefficient of variation`_ is the ratio of the standard deviation to the mean.

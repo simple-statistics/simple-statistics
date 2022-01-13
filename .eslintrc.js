@@ -2,7 +2,7 @@ module.exports = {
     env: {
         node: true
     },
-    plugins: ["prettier"],
+    plugins: ["prettier", "import"],
     extends: "eslint:recommended",
     parserOptions: {
         ecmaVersion: 6,
@@ -141,6 +141,7 @@ module.exports = {
         strict: "error",
         "template-curly-spacing": "error",
         "unicode-bom": ["error", "never"],
+        "import/extensions": ["error", "always"],
         "vars-on-top": "off",
         "wrap-iife": "error",
         "wrap-regex": "error",

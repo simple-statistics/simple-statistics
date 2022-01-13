@@ -1,4 +1,4 @@
-import epsilon from "./epsilon";
+import epsilon from "./epsilon.js";
 
 /**
  * The [Poisson Distribution](http://en.wikipedia.org/wiki/Poisson_distribution)

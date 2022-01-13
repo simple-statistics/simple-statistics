@@ -1,5 +1,5 @@
-import modeSorted from "./mode_sorted";
-import numericSort from "./numeric_sort";
+import modeSorted from "./mode_sorted.js";
+import numericSort from "./numeric_sort.js";
 
 /**
  * The [mode](https://en.wikipedia.org/wiki/Mode_%28statistics%29) is the number

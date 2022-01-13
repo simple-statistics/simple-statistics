@@ -1,5 +1,5 @@
-import mean from "./mean";
-import shuffleInPlace from "./shuffle_in_place";
+import mean from "./mean.js";
+import shuffleInPlace from "./shuffle_in_place.js";
 
 /**
  * Conducts a [permutation test](https://en.wikipedia.org/wiki/Resampling_(statistics)#Permutation_tests)
@@ -29,7 +29,7 @@ function permutationTest(sampleX, sampleY, alternative, k, randomSource) {
         k = 10000;
     }
     if (alternative === undefined) {
-        alternative = "two_side";
+        alternative = "two_side.js";
     }
     if (
         alternative !== "two_side" &&

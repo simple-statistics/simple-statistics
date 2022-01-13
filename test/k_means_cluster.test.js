@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
 const test = require("tap").test;
-const ss = require("../");
+const ss = require("../index.js");
 
 // Force shuffling to return the first points in the array to ensure
 // reproducibility of tests. This works because of the way the Fisher-Yates

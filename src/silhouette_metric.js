@@ -1,5 +1,5 @@
-import max from "./max";
-import silhouette from "./silhouette";
+import max from "./max.js";
+import silhouette from "./silhouette.js";
 
 /**
  * Calculate the [silhouette metric](https://en.wikipedia.org/wiki/Silhouette_(clustering))

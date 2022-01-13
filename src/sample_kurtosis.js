@@ -1,4 +1,4 @@
-import mean from "./mean";
+import mean from "./mean.js";
 
 /**
  * [Kurtosis](http://en.wikipedia.org/wiki/Kurtosis) is

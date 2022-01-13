@@ -1,4 +1,4 @@
-import sumSimple from "./sum_simple";
+import sumSimple from "./sum_simple.js";
 
 /**
  * The mean, _also known as average_,

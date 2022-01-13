@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
 const test = require("tap").test;
-const cK = require("../").ckmeans;
+const cK = require("../index.js").ckmeans;
 
 test("C k-means", function (t) {
     t.ok(cK, "exports fn");

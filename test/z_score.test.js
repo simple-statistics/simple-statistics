@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
 const test = require("tap").test;
-const ss = require("../");
+const ss = require("../index.js");
 
 // The zScore method is also tested in the normal distribution tests.
 test("zScore", function (t) {

@@ -1,6 +1,6 @@
-import euclideanDistance from "./euclidean_distance";
-import makeMatrix from "./make_matrix";
-import sample from "./sample";
+import euclideanDistance from "./euclidean_distance.js";
+import makeMatrix from "./make_matrix.js";
+import sample from "./sample.js";
 
 /**
  * @typedef {Object} kMeansReturn

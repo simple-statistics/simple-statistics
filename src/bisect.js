@@ -1,4 +1,4 @@
-import sign from "./sign";
+import sign from "./sign.js";
 
 /**
  * [Bisection method](https://en.wikipedia.org/wiki/Bisection_method) is a root-finding
