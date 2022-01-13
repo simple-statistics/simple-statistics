@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
 const test = require("tap").test;
-const ss = require("../");
+const ss = require("../dist/simple-statistics.js");
 
 test("natural distribution and z-score", function (t) {
     t.test("normal table is exposed in the API", function (t) {

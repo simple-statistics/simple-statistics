@@ -1,4 +1,4 @@
-import sumNthPowerDeviations from "./sum_nth_power_deviations";
+import sumNthPowerDeviations from "./sum_nth_power_deviations.js";
 
 /**
  * The [variance](http://en.wikipedia.org/wiki/Variance)

@@ -3,7 +3,7 @@
 const test = require("tap").test;
 const Random = require("random-js");
 const random = new Random.Random(Random.MersenneTwister19937.seed(0));
-const ss = require("../");
+const ss = require("../dist/simple-statistics.js");
 
 function rng() {
     return random.real(0, 1);

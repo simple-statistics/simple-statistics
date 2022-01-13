@@ -1,5 +1,5 @@
 const test = require("tap").test;
-const quickselect = require("../").quickselect;
+const quickselect = require("../dist/simple-statistics.js").quickselect;
 
 test("quickselect", function (t) {
     const arr = [65, 28, 59, 33, 21, 56, 22, 95, 50, 12, 90, 53, 28, 77, 39];

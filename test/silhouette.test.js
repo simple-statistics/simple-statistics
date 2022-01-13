@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
 const test = require("tap").test;
-const ss = require("../");
+const ss = require("../dist/simple-statistics.js");
 
 test("silhouette test", function (t) {
     t.test("Requires equal-sized arrays", function (t) {

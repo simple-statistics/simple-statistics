@@ -1,5 +1,5 @@
-import epsilon from "./epsilon";
-import relativeError from "./relative_error";
+import epsilon from "./epsilon.js";
+import relativeError from "./relative_error.js";
 
 /**
  * Approximate equality.

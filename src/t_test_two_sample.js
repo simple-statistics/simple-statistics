@@ -1,5 +1,5 @@
-import mean from "./mean";
-import sampleVariance from "./sample_variance";
+import mean from "./mean.js";
+import sampleVariance from "./sample_variance.js";
 
 /**
  * This is to compute [two sample t-test](http://en.wikipedia.org/wiki/Student's_t-test).

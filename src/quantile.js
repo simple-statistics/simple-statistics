@@ -1,5 +1,5 @@
-import quantileSorted from "./quantile_sorted";
-import quickselect from "./quickselect";
+import quantileSorted from "./quantile_sorted.js";
+import quickselect from "./quickselect.js";
 
 /**
  * The [quantile](https://en.wikipedia.org/wiki/Quantile):

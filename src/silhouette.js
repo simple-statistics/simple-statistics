@@ -1,6 +1,6 @@
-import euclideanDistance from "./euclidean_distance";
-import makeMatrix from "./make_matrix";
-import max from "./max";
+import euclideanDistance from "./euclidean_distance.js";
+import makeMatrix from "./make_matrix.js";
+import max from "./max.js";
 
 /**
  * Calculate the [silhouette values](https://en.wikipedia.org/wiki/Silhouette_(clustering))

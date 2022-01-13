@@ -1,4 +1,4 @@
-import mean from "./mean";
+import mean from "./mean.js";
 
 /**
  * [Sample covariance](https://en.wikipedia.org/wiki/Sample_mean_and_covariance) of two datasets:

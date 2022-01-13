@@ -1,6 +1,7 @@
 /* eslint no-shadow: 0 */
 
-const BayesianClassifier = require("../").BayesianClassifier;
+const BayesianClassifier =
+    require("../dist/simple-statistics.js").BayesianClassifier;
 const test = require("tap").test;
 
 test("BayesianClassifier", function (t) {

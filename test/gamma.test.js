@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
 const test = require("tap").test;
-const ss = require("../");
+const ss = require("../dist/simple-statistics.js");
 
 test("gamma", function (t) {
     t.test("gamma for integer should return whole number", function (t) {

@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
 const test = require("tap").test;
-const numericSort = require("../").numericSort;
+const numericSort = require("../dist/simple-statistics.js").numericSort;
 
 test("numericSort", function (t) {
     t.same(numericSort([1, 2]), [1, 2]);

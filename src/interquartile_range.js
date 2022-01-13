@@ -1,4 +1,4 @@
-import quantile from "./quantile";
+import quantile from "./quantile.js";
 
 /**
  * The [Interquartile range](http://en.wikipedia.org/wiki/Interquartile_range) is

@@ -1,5 +1,5 @@
-import sampleCovariance from "./sample_covariance";
-import sampleStandardDeviation from "./sample_standard_deviation";
+import sampleCovariance from "./sample_covariance.js";
+import sampleStandardDeviation from "./sample_standard_deviation.js";
 
 /**
  * The [correlation](http://en.wikipedia.org/wiki/Correlation_and_dependence) is

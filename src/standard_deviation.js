@@ -1,4 +1,4 @@
-import variance from "./variance";
+import variance from "./variance.js";
 
 /**
  * The [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation)

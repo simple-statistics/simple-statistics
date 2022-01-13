@@ -1,5 +1,5 @@
-import mean from "./mean";
-import shuffleInPlace from "./shuffle_in_place";
+import mean from "./mean.js";
+import shuffleInPlace from "./shuffle_in_place.js";
 
 /**
  * Conducts a [permutation test](https://en.wikipedia.org/wiki/Resampling_(statistics)#Permutation_tests)
@@ -37,7 +37,7 @@ function permutationTest(sampleX, sampleY, alternative, k, randomSource) {
         alternative !== "less"
     ) {
         throw new Error(
-            "`alternative` must be either 'two_side', 'greater', or 'less'"
+            "`alternative` must be either 'two_side', 'greater', or 'less'."
         );
     }
 

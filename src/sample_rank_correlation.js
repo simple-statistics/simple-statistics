@@ -1,4 +1,4 @@
-import sampleCorrelation from "./sample_correlation";
+import sampleCorrelation from "./sample_correlation.js";
 
 /**
  * The [rank correlation](https://en.wikipedia.org/wiki/Rank_correlation) is

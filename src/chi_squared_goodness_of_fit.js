@@ -1,5 +1,5 @@
-import chiSquaredDistributionTable from "./chi_squared_distribution_table";
-import mean from "./mean";
+import chiSquaredDistributionTable from "./chi_squared_distribution_table.js";
+import mean from "./mean.js";
 
 /**
  * The [χ2 (Chi-Squared) Goodness-of-Fit Test](http://en.wikipedia.org/wiki/Goodness_of_fit#Pearson.27s_chi-squared_test)

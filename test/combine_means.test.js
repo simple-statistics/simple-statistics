@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
 const test = require("tap").test;
-const ss = require("../");
+const ss = require("../dist/simple-statistics.js");
 
 test("combineMeans", function (t) {
     t.test("can combine the means of two lists", function (t) {

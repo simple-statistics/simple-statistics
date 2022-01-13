@@ -1,4 +1,4 @@
-import quantileSorted from "./quantile_sorted";
+import quantileSorted from "./quantile_sorted.js";
 
 /**
  * The [median](http://en.wikipedia.org/wiki/Median) is

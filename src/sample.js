@@ -1,4 +1,4 @@
-import shuffle from "./shuffle";
+import shuffle from "./shuffle.js";
 
 /**
  * Create a [simple random sample](http://en.wikipedia.org/wiki/Simple_random_sample)

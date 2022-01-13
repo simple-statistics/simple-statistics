@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
 const test = require("tap").test;
-const ss = require("../");
+const ss = require("../dist/simple-statistics.js");
 
 test("subtractFromMean", function (t) {
     t.test("can remove a single value from a mean", function (t) {

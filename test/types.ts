@@ -1,4 +1,4 @@
-import * as ss from "../";
+import * as ss from "../index.js";
 
 ss.addToMean(14, 5, 53); // => 20.5
 ss.combineMeans(5, 3, 4, 3); // => 4.5

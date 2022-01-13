@@ -1,4 +1,4 @@
-import quantile from "./quantile";
+import quantile from "./quantile.js";
 
 /**
  * The [median](http://en.wikipedia.org/wiki/Median) is

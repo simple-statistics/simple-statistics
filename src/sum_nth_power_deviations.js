@@ -1,4 +1,4 @@
-import mean from "./mean";
+import mean from "./mean.js";
 
 /**
  * The sum of deviations to the Nth power.
