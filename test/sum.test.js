@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
 const test = require("tap").test;
-const ss = require("../index.js");
+const ss = require("../dist/simple-statistics.js");
 
 test("sum", function (t) {
     t.test("can get the sum of two numbers", function (t) {

@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
 const test = require("tap").test;
-const ss = require("../index.js");
+const ss = require("../dist/simple-statistics.js");
 
 // Data from Poisson goodness-of-fit example 10-19 in William W. Hines & Douglas C. Montgomery,
 // "Probability and Statistics in Engineering and Management Science", Wiley (1980).

@@ -29,7 +29,7 @@ function permutationTest(sampleX, sampleY, alternative, k, randomSource) {
         k = 10000;
     }
     if (alternative === undefined) {
-        alternative = "two_side.js";
+        alternative = "two_side";
     }
     if (
         alternative !== "two_side" &&
@@ -37,7 +37,7 @@ function permutationTest(sampleX, sampleY, alternative, k, randomSource) {
         alternative !== "less"
     ) {
         throw new Error(
-            "`alternative` must be either 'two_side', 'greater', or 'less'"
+            "`alternative` must be either 'two_side', 'greater', or 'less'."
         );
     }
 

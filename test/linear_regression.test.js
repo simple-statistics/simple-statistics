@@ -1,8 +1,10 @@
 /* eslint no-shadow: 0 */
 
 const test = require("tap").test;
-const linearRegression = require("../index.js").linearRegression;
-const linearRegressionLine = require("../index.js").linearRegressionLine;
+const linearRegression =
+    require("../dist/simple-statistics.js").linearRegression;
+const linearRegressionLine =
+    require("../dist/simple-statistics.js").linearRegressionLine;
 
 test("linear regression", function (t) {
     t.test(

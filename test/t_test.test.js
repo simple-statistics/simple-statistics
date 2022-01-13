@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
 const test = require("tap").test;
-const ss = require("../index.js");
+const ss = require("../dist/simple-statistics.js");
 
 test("t test", function (t) {
     t.test("can compare a known value to the mean of samples", function (t) {

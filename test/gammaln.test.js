@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
 const test = require("tap").test;
-const ss = require("../index.js");
+const ss = require("../dist/simple-statistics.js");
 
 test("gammaln", function (t) {
     t.test("gammaln for positive real float should be correct", function (t) {

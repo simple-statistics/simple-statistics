@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
 const test = require("tap").test;
-const ss = require("../index.js");
+const ss = require("../dist/simple-statistics.js");
 
 test("geometric mean", function (t) {
     // From http://en.wikipedia.org/wiki/Geometric_mean

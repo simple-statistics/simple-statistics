@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
 const test = require("tap").test;
-const ss = require("../index.js");
+const ss = require("../dist/simple-statistics.js");
 
 test("cumulativeStdNormalProbability", function (t) {
     // https://en.wikipedia.org/wiki/Standard_normal_table#Examples_of_use

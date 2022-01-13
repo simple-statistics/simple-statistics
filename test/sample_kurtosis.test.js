@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
 const test = require("tap").test;
-const ss = require("../index.js");
+const ss = require("../dist/simple-statistics.js");
 
 test("sample kurtosis", function (t) {
     t.test("the kurtosis of an empty sample is null", function (t) {

@@ -1,7 +1,7 @@
 /* eslint no-shadow: 0 */
 
 const test = require("tap").test;
-const ss = require("../index.js");
+const ss = require("../dist/simple-statistics.js");
 
 test("sumNthPowerDeviations", function (t) {
     t.equal(ss.sumNthPowerDeviations([0, 0, 0], 2), 0);
