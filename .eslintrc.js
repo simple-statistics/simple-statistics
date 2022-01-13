@@ -121,6 +121,7 @@ module.exports = {
         "no-void": "error",
         "no-warning-comments": "error",
         "no-with": "error",
+        "no-loss-of-precision": "off",
         "object-shorthand": "off",
         "operator-assignment": ["error", "always"],
         "operator-linebreak": "error",

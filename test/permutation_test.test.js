@@ -45,16 +45,8 @@ test("permutation test", function (t) {
                 ss.permutationTest(
                     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
                     [
-                        99999,
-                        99999,
-                        99999,
-                        99999,
-                        99999,
-                        99999,
-                        99999,
-                        99999,
-                        99999,
-                        99999
+                        99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999,
+                        99999, 99999
                     ],
                     "less",
                     undefined,
@@ -64,6 +56,7 @@ test("permutation test", function (t) {
             t.end();
         }
     );
+
     t.test(
         "permutationTest should throw error if wrong argument received",
         function (t) {

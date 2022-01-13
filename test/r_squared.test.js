@@ -26,7 +26,7 @@ test("r-squared", function (t) {
                 [1, 1]
             ];
             const l = ss.linearRegressionLine(ss.linearRegression(d));
-            t.notEqual(ss.rSquared(d, l), 1);
+            t.not(ss.rSquared(d, l), 1);
             t.end();
         }
     );

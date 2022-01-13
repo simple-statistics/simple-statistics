@@ -31,6 +31,13 @@ test("sample covariance", function (t) {
         }
     );
 
+    t.test("unequal-length corner case", function (t) {
+        t.throws(function () {
+            ss.sampleCovariance([1], []);
+        });
+        t.end();
+    });
+
     t.test("zero-length corner case", function (t) {
         t.throws(function () {
             ss.sampleCovariance([], []);

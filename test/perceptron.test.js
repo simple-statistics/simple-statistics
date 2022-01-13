@@ -7,7 +7,7 @@ test("perceptron", function (t) {
     t.test("initializes to zeros if label is zero", function (t) {
         const p = new PerceptronModel();
         p.train([1, 2, 3], 0);
-        t.deepEqual(p.weights, [0, 0, 0]);
+        t.same(p.weights, [0, 0, 0]);
         t.equal(p.bias, 0);
         t.end();
     });
@@ -15,8 +15,21 @@ test("perceptron", function (t) {
     t.test("initializes to values if label is one", function (t) {
         const p = new PerceptronModel();
         p.train([1, 2, 3], 1);
-        t.deepEqual(p.weights, [1, 2, 3]);
+        t.same(p.weights, [1, 2, 3]);
         t.equal(p.bias, 1);
+        t.end();
+    });
+
+    t.test("base case of zero prediction features", function (t) {
+        const p = new PerceptronModel();
+        p.train([1, 2, 3], 1);
+        t.same(p.predict([]), null);
+        t.end();
+    });
+
+    t.test("train with invalid label", function (t) {
+        const p = new PerceptronModel();
+        t.same(p.train([1, 2, 3], 0.5), null);
         t.end();
     });
 
