@@ -13,6 +13,14 @@ test("sum", function (t) {
         t.equal(ss.sum([]), 0);
         t.end();
     });
+
+    t.test("returns NaN if a non-number is given", function (t) {
+        t.ok(isNaN(ss.sum([1, null])));
+        t.ok(isNaN(ss.sum([null, 1])));
+        t.ok(isNaN(ss.sum([1, 2, null])));
+        t.ok(isNaN(ss.sum([1, 2, true])));
+        t.end();
+    });
     t.end();
 });
 
@@ -42,6 +50,12 @@ test("sumSimple", function (t) {
 
     t.test("the sum of no numbers is zero", function (t) {
         t.equal(ss.sumSimple([]), 0);
+        t.end();
+    });
+
+    t.test("same NaN behavior as sum", function (t) {
+        t.ok(isNaN(ss.sumSimple([null])));
+        t.ok(isNaN(ss.sumSimple([1, 2, null])));
         t.end();
     });
     t.end();
