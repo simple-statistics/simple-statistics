@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.7.4](https://github.com/simple-statistics/simple-statistics/compare/v7.7.3...v7.7.4) (2022-03-01)
+
+
+### Bug Fixes
+
+* Return NaN on sum with non-number inputs ([#633](https://github.com/simple-statistics/simple-statistics/issues/633)) ([6547df7](https://github.com/simple-statistics/simple-statistics/commit/6547df71963bb05390dbe3458759de7d80ba9056))
+
 ### [7.7.3](https://github.com/simple-statistics/simple-statistics/compare/v7.7.2...v7.7.3) (2022-01-13)
 
 ### [7.7.2](https://github.com/simple-statistics/simple-statistics/compare/v7.7.1...v7.7.2) (2022-01-13)
