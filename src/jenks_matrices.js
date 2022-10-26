@@ -7,22 +7,22 @@
  * @private
  */
 function jenksMatrices(data, nClasses) {
-
     // in the original implementation, these matrices are referred to
     // as `LC` and `OP`
     //
     // * lowerClassLimits (LC): optimal lower class limits
     // * varianceCombinations (OP): optimal variance combinations for all classes
-    let lowerClassLimits = [],
-        varianceCombinations = [],
-        // loop counters
-        i, j,
-        // the variance, as computed at each step in the calculation
-        variance = 0;
+    const lowerClassLimits = [];
+    const varianceCombinations = [];
+    // loop counters
+    let i, j;
+    // the variance, as computed at each step in the calculation
+    let variance = 0;
 
     // Initialize and fill each matrix with zeroes
     for (i = 0; i < data.length + 1; i++) {
-        let tmp1 = [], tmp2 = [];
+        const tmp1 = [];
+        const tmp2 = [];
         // despite these arrays having the same values, we need
         // to keep them separate so that changing one does not change
         // the other
@@ -45,26 +45,24 @@ function jenksMatrices(data, nClasses) {
     }
 
     for (let l = 2; l < data.length + 1; l++) {
-
         // `SZ` originally. this is the sum of the values seen thus
         // far when calculating variance.
-        let sum = 0,
-            // `ZSQ` originally. the sum of squares of values seen
-            // thus far
-            sumSquares = 0,
-            // `WT` originally. This is the number of
-            w = 0,
-            // `IV` originally
-            i4 = 0;
+        let sum = 0;
+        // `ZSQ` originally. the sum of squares of values seen
+        // thus far
+        let sumSquares = 0;
+        // `WT` originally. This is the number of
+        let w = 0;
+        // `IV` originally
+        let i4 = 0;
 
         // in several instances, you could say `Math.pow(x, 2)`
         // instead of `x * x`, but this is slower in some browsers
         // introduces an unnecessary concept.
         for (let m = 1; m < l + 1; m++) {
-
             // `III` originally
-            let lowerClassLimit = l - m + 1,
-                val = data[lowerClassLimit - 1];
+            const lowerClassLimit = l - m + 1;
+            const val = data[lowerClassLimit - 1];
 
             // here we're estimating variance for each potential classing
             // of the data, for each potential number of classes. `w`
@@ -88,11 +86,13 @@ function jenksMatrices(data, nClasses) {
                     // will increase its variance beyond the limit, break
                     // the class at this point, setting the `lowerClassLimit`
                     // at this point.
-                    if (varianceCombinations[l][j] >=
-                        (variance + varianceCombinations[i4][j - 1])) {
+                    if (
+                        varianceCombinations[l][j] >=
+                        variance + varianceCombinations[i4][j - 1]
+                    ) {
                         lowerClassLimits[l][j] = lowerClassLimit;
-                        varianceCombinations[l][j] = variance +
-                            varianceCombinations[i4][j - 1];
+                        varianceCombinations[l][j] =
+                            variance + varianceCombinations[i4][j - 1];
                     }
                 }
             }

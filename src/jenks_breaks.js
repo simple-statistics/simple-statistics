@@ -7,10 +7,9 @@
  * @private
  */
 function jenksBreaks(data, lowerClassLimits, nClasses) {
-
-    let k = data.length,
-        kclass = [],
-        countNum = nClasses;
+    let k = data.length;
+    const kclass = [];
+    let countNum = nClasses;
 
     // the calculation of classes will never include the upper
     // bound, so we need to explicitly set it
