@@ -17,7 +17,7 @@
   "devDependencies": {
     "@rollup/plugin-buble": "^0.21.3",
     "cz-conventional-changelog": "^3.3.0",
-    "documentation": "^13",
+    "documentation": "^14",
     "eslint": "^8.26.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
