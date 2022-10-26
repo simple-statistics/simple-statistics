@@ -37,6 +37,7 @@ export { default as shuffle } from "./src/shuffle.js";
 export { default as shuffleInPlace } from "./src/shuffle_in_place.js";
 export { default as sample } from "./src/sample.js";
 export { default as ckmeans } from "./src/ckmeans.js";
+export { default as jenks } from "./src/jenks.js";
 export { default as uniqueCountSorted } from "./src/unique_count_sorted.js";
 export { default as sumNthPowerDeviations } from "./src/sum_nth_power_deviations.js";
 export { default as equalIntervalBreaks } from "./src/equal_interval_breaks.js";
