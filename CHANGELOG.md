@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.8.0](https://github.com/simple-statistics/simple-statistics/compare/v7.7.6...v7.8.0) (2022-10-26)
+
+
+### Features
+
+* Re-add Jenks algorithm ([90990cc](https://github.com/simple-statistics/simple-statistics/commit/90990cc8ba67ebddd4369f80110a67defa2fc13b))
+
 ### [7.7.6](https://github.com/simple-statistics/simple-statistics/compare/v7.7.5...v7.7.6) (2022-08-12)
 
 ### [7.7.5](https://github.com/simple-statistics/simple-statistics/compare/v7.7.4...v7.7.5) (2022-03-06)
