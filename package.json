@@ -36,6 +36,7 @@
     "prepublish": "rollup -c rollup.config.js && ./scripts/update_readme.js",
     "prelint": "tsc --skipLibCheck",
     "lint": "eslint index.js src test && prettier --check src test \"!test/types.js\"",
+    "lint-fix": "eslint index.js src test --fix && prettier src test \"!test/types.js\" --write",
     "postlint": "documentation lint src"
   },
   "source": "index.js",
