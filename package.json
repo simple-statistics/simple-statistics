@@ -49,9 +49,10 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
+      "types": "./index.d.ts",
       "import": "./dist/simple-statistics.mjs",
-      "require": "./dist/simple-statistics.js",
-      "types": "./index.d.ts"
+      "browser": "dist/simple-statistics.min.js",
+      "require": "./dist/simple-statistics.js"
     }
   },
   "engines": {
