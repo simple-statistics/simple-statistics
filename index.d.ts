@@ -47,6 +47,7 @@ export { default as sampleVariance } from "./src/sample_variance";
 export { default as sampleStandardDeviation } from "./src/sample_standard_deviation";
 export { default as sampleSkewness } from "./src/sample_skewness";
 export { default as sampleKurtosis } from "./src/sample_kurtosis";
+export { default as sampleRankCorrelation } from "./src/sample_rank_correlation";
 
 // combinatorics
 export { default as permutationsHeap } from "./src/permutations_heap";
