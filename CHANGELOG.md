@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.8.1](https://github.com/simple-statistics/simple-statistics/compare/v7.8.0...v7.8.1) (2023-01-15)
+
+
+### Bug Fixes
+
+* Export sampleRankCorrelation type ([#690](https://github.com/simple-statistics/simple-statistics/issues/690)) ([1acace8](https://github.com/simple-statistics/simple-statistics/commit/1acace8fad59340fd3d720b7b86b8cd48fb22cba))
+
 ## [7.8.0](https://github.com/simple-statistics/simple-statistics/compare/v7.7.6...v7.8.0) (2022-10-26)
 
 
