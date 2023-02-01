@@ -458,9 +458,9 @@
     fastq "^1.6.0"
 
 "@rollup/plugin-buble@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-buble/-/plugin-buble-1.0.1.tgz#ca4fe8074901caeef3535a1aadf86e3cbf5f6b9d"
-  integrity sha512-4srowx9TM2C2m5qDz72E9eOY7jC2Z0R5jw27tYanm1tEwi22Bl1Sh0ccubGIF3v30wmXWiH0dpvwO7+F5cPiWg==
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-buble/-/plugin-buble-1.0.2.tgz#30af390341b0888490f781fcf17e469198d118a2"
+  integrity sha512-Hz9+AigRWwS93vmorrVrhyG9SdSCZAkBDx614w09iFQYFUAP2HmdUrQyZsb1WO2n+iDvPFznrTE16la+eGNcEQ==
   dependencies:
     "@rollup/pluginutils" "^5.0.1"
     "@types/buble" "^0.19.2"
