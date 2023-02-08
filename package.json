@@ -51,7 +51,7 @@
     ".": {
       "types": "./index.d.ts",
       "import": "./dist/simple-statistics.mjs",
-      "browser": "dist/simple-statistics.min.js",
+      "browser": "./dist/simple-statistics.min.js",
       "require": "./dist/simple-statistics.js"
     }
   },
