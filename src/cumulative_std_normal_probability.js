@@ -35,7 +35,7 @@ function cumulativeStdNormalProbability(z) {
         // due to floating-point arithmetic, values in the table with
         // 4 significant figures can nevertheless end up as repeating
         // fractions when they're computed here.
-        return +(1 - standardNormalTable[index]).toFixed(4);
+        return Math.round((1 - standardNormalTable[index]) * 1e4) / 1e4;
     }
 }
 
