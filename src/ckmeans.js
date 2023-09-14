@@ -1,4 +1,6 @@
 import makeMatrix from "./make_matrix.js";
+import max from "./max.js";
+import min from "./min.js";
 import numericSort from "./numeric_sort.js";
 import uniqueCountSorted from "./unique_count_sorted.js";
 
@@ -65,13 +67,13 @@ function fillMatrixColumn(
     let jlow = cluster; // the lower end for j
 
     if (iMin > cluster) {
-        jlow = Math.max(jlow, backtrackMatrix[cluster][iMin - 1] || 0);
+        jlow = max([jlow, backtrackMatrix[cluster][iMin - 1] || 0]);
     }
-    jlow = Math.max(jlow, backtrackMatrix[cluster - 1][i] || 0);
+    jlow = max([jlow, backtrackMatrix[cluster - 1][i] || 0]);
 
     let jhigh = i - 1; // the upper end for j
     if (iMax < matrix[0].length - 1) {
-        jhigh = Math.min(jhigh, backtrackMatrix[cluster][iMax + 1] || 0);
+        jhigh = min([jhigh, backtrackMatrix[cluster][iMax + 1] || 0]);
     }
 
     let sji;
