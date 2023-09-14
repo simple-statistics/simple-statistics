@@ -1,3 +1,6 @@
+import max from "./max.js";
+import min from "./min.js";
+
 /**
  * Rearrange items in `arr` so that all items in `[left, k]` range are the smallest.
  * The `k`-th element will have the `(k - left + 1)`-th smallest value in `[left, right]`.
@@ -27,11 +30,11 @@ function quickselect(arr, k, left, right) {
             const s = 0.5 * Math.exp((2 * z) / 3);
             let sd = 0.5 * Math.sqrt((z * s * (n - s)) / n);
             if (m - n / 2 < 0) sd *= -1;
-            const newLeft = Math.max(left, Math.floor(k - (m * s) / n + sd));
-            const newRight = Math.min(
+            const newLeft = max([left, Math.floor(k - (m * s) / n + sd)]);
+            const newRight = min([
                 right,
                 Math.floor(k + ((n - m) * s) / n + sd)
-            );
+            ]);
             quickselect(arr, k, newLeft, newRight);
         }
 

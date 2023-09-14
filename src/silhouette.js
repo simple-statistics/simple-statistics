@@ -35,7 +35,7 @@ function silhouette(points, labels) {
                 groupings,
                 distances
             );
-            s = (b - a) / Math.max(a, b);
+            s = (b - a) / max([a, b]);
         }
         result.push(s);
     }

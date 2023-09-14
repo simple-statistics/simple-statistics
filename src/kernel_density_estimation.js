@@ -1,4 +1,5 @@
 import interquartileRange from "./interquartile_range.js";
+import min from "./min.js";
 import stddev from "./sample_standard_deviation.js";
 
 const SQRT_2PI = Math.sqrt(2 * Math.PI);
@@ -33,7 +34,7 @@ const bandwidthMethods = {
         let s = stddev(x);
         const iqr = interquartileRange(x);
         if (typeof iqr === "number") {
-            s = Math.min(s, iqr / 1.34);
+            s = min([s, iqr / 1.34]);
         }
         return 1.06 * s * Math.pow(x.length, -0.2);
     }

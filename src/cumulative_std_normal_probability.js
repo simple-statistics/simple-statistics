@@ -1,3 +1,4 @@
+import min from "./min.js";
 import standardNormalTable from "./standard_normal_table.js";
 
 /**
@@ -21,10 +22,7 @@ function cumulativeStdNormalProbability(z) {
     // significant digit: 0.5, 0.6, 0.7, and so on. Each value in the table
     // corresponds to a range of 0.01 in the input values, so the value is
     // multiplied by 100.
-    const index = Math.min(
-        Math.round(absZ * 100),
-        standardNormalTable.length - 1
-    );
+    const index = min([Math.round(absZ * 100), standardNormalTable.length - 1]);
 
     // The index we calculate must be in the table as a positive value,
     // but we still pay attention to whether the input is positive
