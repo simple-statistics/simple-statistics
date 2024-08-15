@@ -27,7 +27,7 @@ test("sample variance", function (t) {
         function (t) {
             t.equal(rnd(ss.sampleVariance([1, 1])), 0);
             t.end();
-        }
+        },
     );
 
     t.throws(function () {

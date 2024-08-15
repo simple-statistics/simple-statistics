@@ -65,11 +65,11 @@ test("quantile", function (t) {
             const odd = [3, 6, 7, 8, 8, 9, 10, 13, 15, 16, 20];
             t.same(
                 ss.quantile(odd, [0, 0.25, 0.5, 0.75, 1]),
-                [3, 7, 9, 15, 20]
+                [3, 7, 9, 15, 20],
             );
             t.same(ss.quantile(odd, [0.75, 0.5]), [15, 9]);
             t.end();
-        }
+        },
     );
 
     t.test(
@@ -79,10 +79,10 @@ test("quantile", function (t) {
             t.same(ss.quantile(input, [0.25, 0.5, 0.75]), [461, 468.5, 484.5]);
             t.same(
                 ss.quantile(input, [0.05, 0.25, 0.5, 0.75, 0.95]),
-                [454, 461, 468.5, 484.5, 500]
+                [454, 461, 468.5, 484.5, 500],
             );
             t.end();
-        }
+        },
     );
 
     t.end();

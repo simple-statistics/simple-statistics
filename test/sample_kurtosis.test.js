@@ -36,7 +36,7 @@ test("sample kurtosis", function (t) {
                 ss.sampleKurtosis(data);
             });
             t.end();
-        }
+        },
     );
 
     t.test("can calculate the kurtosis of SAS example 1", function (t) {

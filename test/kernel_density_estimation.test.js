@@ -29,7 +29,7 @@ const normallyDistributed = {
         0.847717867319239, -0.631380378496465, -1.23218376426349,
         1.8274052037247, 0.303031661057796, 0.940686211521394,
         -0.565932683487323, -0.793791866093677, -0.950742000255766,
-        -2.05768339176415
+        -2.05768339176415,
     ],
     density: [
         [-3, 0.00622253574711248],
@@ -38,8 +38,8 @@ const normallyDistributed = {
         [0, 0.35334369527338],
         [1, 0.214348469979353],
         [2, 0.0652701909587952],
-        [3, 0.00303679902517155]
-    ]
+        [3, 0.00303679902517155],
+    ],
 };
 
 test("kernel density estimation", function (t) {
@@ -51,7 +51,7 @@ test("kernel density estimation", function (t) {
             const actual = kde(x);
             t.ok(
                 Math.abs(actual - expected) / expected < 0.1,
-                "density(" + x + ") = " + actual + " != " + expected
+                "density(" + x + ") = " + actual + " != " + expected,
             );
         }
         t.end();
@@ -63,8 +63,8 @@ test("kernel density estimation", function (t) {
             ss.kernelDensityEstimation(
                 normallyDistributed.sample,
                 "gaussian",
-                "nrd"
-            )
+                "nrd",
+            ),
         );
         const SQRT_2PI = Math.sqrt(2 * Math.PI);
         t.same(
@@ -73,8 +73,8 @@ test("kernel density estimation", function (t) {
                 normallyDistributed.sample,
                 function (u) {
                     return Math.exp(-0.5 * u * u) / SQRT_2PI;
-                }
-            )
+                },
+            ),
         );
 
         t.end();
@@ -88,7 +88,7 @@ test("kernel density estimation", function (t) {
             ss.kernelDensityEstimation(
                 normallyDistributed.sample,
                 "gaussian",
-                "bz"
+                "bz",
             );
         });
         t.end();

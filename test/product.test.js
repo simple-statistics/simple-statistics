@@ -24,7 +24,7 @@ test("product", function (t) {
         function (t) {
             t.equal(ss.product([]), 1);
             t.end();
-        }
+        },
     );
     t.end();
 });

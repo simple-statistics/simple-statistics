@@ -13,14 +13,14 @@ test("linear regression", function (t) {
             const l = linearRegressionLine(
                 linearRegression([
                     [0, 0],
-                    [1, 1]
-                ])
+                    [1, 1],
+                ]),
             );
             t.equal(l(0), 0);
             t.equal(l(0.5), 0.5);
             t.equal(l(1), 1);
             t.end();
-        }
+        },
     );
 
     t.test(
@@ -29,14 +29,14 @@ test("linear regression", function (t) {
             const l = linearRegressionLine(
                 linearRegression([
                     [0, 0],
-                    [1, 0]
-                ])
+                    [1, 0],
+                ]),
             );
             t.equal(l(0), 0);
             t.equal(l(0.5), 0);
             t.equal(l(1), 0);
             t.end();
-        }
+        },
     );
 
     t.test("handles a single-point sample", function (t) {
@@ -49,9 +49,9 @@ test("linear regression", function (t) {
         t.same(
             linearRegression([
                 [0, 0],
-                [1, 0]
+                [1, 0],
             ]),
-            { m: 0, b: 0 }
+            { m: 0, b: 0 },
         );
         t.end();
     });
@@ -60,9 +60,9 @@ test("linear regression", function (t) {
         t.same(
             linearRegression([
                 [0, 0],
-                [1, 0.5]
+                [1, 0.5],
             ]),
-            { m: 0.5, b: 0 }
+            { m: 0.5, b: 0 },
         );
         t.end();
     });
@@ -71,9 +71,9 @@ test("linear regression", function (t) {
         t.same(
             linearRegression([
                 [0, 20],
-                [1, 10]
+                [1, 10],
             ]),
-            { m: -10, b: 20 }
+            { m: -10, b: 20 },
         );
         t.end();
     });

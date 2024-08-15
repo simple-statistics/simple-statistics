@@ -10,14 +10,14 @@ test("chunk", function (t) {
         t.same(ss.chunk([1, 2, 3, 4], 4), [[1, 2, 3, 4]]);
         t.same(ss.chunk([1, 2, 3, 4], 2), [
             [1, 2],
-            [3, 4]
+            [3, 4],
         ]);
         t.same(ss.chunk([1, 2, 3, 4], 3), [[1, 2, 3], [4]]);
         t.same(ss.chunk([1, 2, 3, 4, 5, 6, 7], 2), [
             [1, 2],
             [3, 4],
             [5, 6],
-            [7]
+            [7],
         ]);
         t.same(ss.chunk([], 2), []);
         t.throws(function () {

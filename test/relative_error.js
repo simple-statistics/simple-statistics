@@ -15,7 +15,7 @@ test("relative error", function (t) {
     });
 
     t.test("correct handling of zero", function (t) {
-        t.equal(ss.relativeError(10101, 0), Infinity);
+        t.equal(ss.relativeError(10101, 0), Number.POSITIVE_INFINITY);
         t.end();
     });
 

@@ -11,7 +11,7 @@ test("bernoulliDistribution", function (t) {
             t.equal(ss.bernoulliDistribution(0.3)[0], 0.7, ss.epsilon);
             t.equal(ss.bernoulliDistribution(0.3)[1], 0.3, ss.epsilon);
             t.end();
-        }
+        },
     );
     t.test("can return null when p is not a valid probability", function (t) {
         t.throws(function () {

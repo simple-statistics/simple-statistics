@@ -28,7 +28,7 @@ test("natural distribution and z-score", function (t) {
         // What is the probability that a student scores an 82 or less?
         t.equal(
             ss.cumulativeStdNormalProbability(ss.zScore(82, 80, 5)),
-            0.6554
+            0.6554,
         );
         t.end();
     });
@@ -41,7 +41,7 @@ test("natural distribution and z-score", function (t) {
             +(
                 1 - ss.cumulativeStdNormalProbability(ss.zScore(90, 80, 5))
             ).toPrecision(5),
-            0.0228
+            0.0228,
         );
         t.end();
     });
@@ -52,7 +52,7 @@ test("natural distribution and z-score", function (t) {
         // What is the probability that a student scores a 74 or less?
         t.equal(
             ss.cumulativeStdNormalProbability(ss.zScore(74, 80, 5)),
-            0.1151
+            0.1151,
         );
         t.end();
     });

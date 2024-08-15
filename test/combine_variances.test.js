@@ -16,10 +16,10 @@ test("combineVariances", function (t) {
                     values1.length,
                     ss.variance(values2),
                     ss.mean(values2),
-                    values2.length
+                    values2.length,
                 )
                 .toPrecision(3),
-            3.92
+            3.92,
         );
         t.equal(
             ss.combineVariances(
@@ -28,9 +28,9 @@ test("combineVariances", function (t) {
                 values1.length,
                 ss.variance(values2),
                 ss.mean(values2),
-                values2.length
+                values2.length,
             ),
-            ss.variance(values1.concat(values2))
+            ss.variance(values1.concat(values2)),
         );
         t.end();
     });

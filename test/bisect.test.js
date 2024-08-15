@@ -10,7 +10,7 @@ test("bisect", function (t) {
         t.throws(function () {
             t.equal(
                 Number(bisect(Math.cos, 0, 4, 1, 0.003).toFixed(4)),
-                1.5723
+                1.5723,
             );
         }, "Throws if it exceeds the number of iterations allowed");
         t.throws(function () {

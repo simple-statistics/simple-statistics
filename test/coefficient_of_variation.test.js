@@ -13,7 +13,7 @@ test("coefficient_of_variation", function (t) {
         function (t) {
             t.equal(rnd(ss.coefficientOfVariation([1, 2, 3, 4])), 0.516);
             t.end();
-        }
+        },
     );
 
     t.end();

@@ -15,10 +15,10 @@ test("sum", function (t) {
     });
 
     t.test("returns NaN if a non-number is given", function (t) {
-        t.ok(isNaN(ss.sum([1, null])));
-        t.ok(isNaN(ss.sum([null, 1])));
-        t.ok(isNaN(ss.sum([1, 2, null])));
-        t.ok(isNaN(ss.sum([1, 2, true])));
+        t.ok(Number.isNaN(ss.sum([1, null])));
+        t.ok(Number.isNaN(ss.sum([null, 1])));
+        t.ok(Number.isNaN(ss.sum([1, 2, null])));
+        t.ok(Number.isNaN(ss.sum([1, 2, true])));
         t.end();
     });
     t.end();
@@ -34,16 +34,16 @@ test("sumSimple", function (t) {
         t.equal(
             ss.sumSimple([
                 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3,
-                1.4, 1.5, 1.6, 1.7
+                1.4, 1.5, 1.6, 1.7,
             ]),
-            15.299999999999999
+            15.299999999999999,
         );
         t.equal(
             ss.sum([
                 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3,
-                1.4, 1.5, 1.6, 1.7
+                1.4, 1.5, 1.6, 1.7,
             ]),
-            15.3
+            15.3,
         );
         t.end();
     });
@@ -54,8 +54,8 @@ test("sumSimple", function (t) {
     });
 
     t.test("same NaN behavior as sum", function (t) {
-        t.ok(isNaN(ss.sumSimple([null])));
-        t.ok(isNaN(ss.sumSimple([1, 2, null])));
+        t.ok(Number.isNaN(ss.sumSimple([null])));
+        t.ok(Number.isNaN(ss.sumSimple([1, 2, null])));
         t.end();
     });
     t.end();

@@ -4,7 +4,7 @@ const test = require("tap").test;
 const ss = require("../dist/simple-statistics.js");
 
 function rnd(n) {
-    return parseFloat(n.toFixed(4));
+    return Number.parseFloat(n.toFixed(4));
 }
 
 test("binomialDistribution", function (t) {
@@ -17,40 +17,40 @@ test("binomialDistribution", function (t) {
             t.equal(
                 rnd(ss.binomialDistribution(6, 0.3)[0]),
                 0.1176,
-                ss.epsilon
+                ss.epsilon,
             );
             t.equal(
                 rnd(ss.binomialDistribution(6, 0.3)[1]),
                 0.3025,
-                ss.epsilon
+                ss.epsilon,
             );
             t.equal(
                 rnd(ss.binomialDistribution(6, 0.3)[2]),
                 0.3241,
-                ss.epsilon
+                ss.epsilon,
             );
             t.equal(
                 rnd(ss.binomialDistribution(6, 0.3)[3]),
                 0.1852,
-                ss.epsilon
+                ss.epsilon,
             );
             t.equal(
                 rnd(ss.binomialDistribution(6, 0.3)[4]),
                 0.0595,
-                ss.epsilon
+                ss.epsilon,
             );
             t.equal(
                 rnd(ss.binomialDistribution(6, 0.3)[5]),
                 0.0102,
-                ss.epsilon
+                ss.epsilon,
             );
             t.equal(
                 rnd(ss.binomialDistribution(6, 0.3)[6]),
                 0.0007,
-                ss.epsilon
+                ss.epsilon,
             );
             t.end();
-        }
+        },
     );
 
     t.test(
@@ -59,25 +59,25 @@ test("binomialDistribution", function (t) {
             t.equal(
                 ss.binomialDistribution(0, 0.5),
                 undefined,
-                "n should be strictly positive"
+                "n should be strictly positive",
             );
             t.equal(
                 ss.binomialDistribution(1.5, 0.5),
                 undefined,
-                "n should be an integer"
+                "n should be an integer",
             );
             t.equal(
                 ss.binomialDistribution(2, -0.01),
                 undefined,
-                "p should be greater than 0.0"
+                "p should be greater than 0.0",
             );
             t.equal(
                 ss.binomialDistribution(2, 1.5),
                 undefined,
-                "p should be less than 1.0"
+                "p should be less than 1.0",
             );
             t.end();
-        }
+        },
     );
     t.end();
 });

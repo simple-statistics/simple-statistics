@@ -13,7 +13,7 @@ test("mode", function (t) {
                 function (t) {
                     t.equal(modeFn([1]), 1);
                     t.end();
-                }
+                },
             );
 
             t.test(
@@ -21,7 +21,7 @@ test("mode", function (t) {
                 function (t) {
                     t.equal(modeFn([1, 1]), 1);
                     t.end();
-                }
+                },
             );
 
             t.test("other cases", function (t) {
@@ -48,7 +48,7 @@ test("mode", function (t) {
                 function (t) {
                     t.equal(modeFn([1, 2, 2]), 2);
                     t.end();
-                }
+                },
             );
 
             t.end();

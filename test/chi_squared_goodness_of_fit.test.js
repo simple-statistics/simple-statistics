@@ -8,7 +8,7 @@ const ss = require("../dist/simple-statistics.js");
 const data1019 = [
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 3, 3, 3, 3
+    2, 2, 2, 2, 2, 2, 3, 3, 3, 3,
 ];
 
 test("chiSquaredGoodnessOfFit", function (t) {
@@ -20,11 +20,11 @@ test("chiSquaredGoodnessOfFit", function (t) {
                 ss.chiSquaredGoodnessOfFit(
                     data1019,
                     ss.poissonDistribution,
-                    0.05
-                )
+                    0.05,
+                ),
             );
             t.end();
-        }
+        },
     );
     t.test(
         "can accept the null hypothesis with level of confidence specified at 0.10",
@@ -34,11 +34,11 @@ test("chiSquaredGoodnessOfFit", function (t) {
                 ss.chiSquaredGoodnessOfFit(
                     data1019,
                     ss.poissonDistribution,
-                    0.1
-                )
+                    0.1,
+                ),
             );
             t.end();
-        }
+        },
     );
     t.test("can tolerate gaps in distribution", function (t) {
         t.equal(
@@ -46,8 +46,8 @@ test("chiSquaredGoodnessOfFit", function (t) {
             ss.chiSquaredGoodnessOfFit(
                 [0, 2, 3, 7, 7, 7, 7, 7, 7, 9, 10],
                 ss.poissonDistribution,
-                0.1
-            )
+                0.1,
+            ),
         );
         t.end();
     });

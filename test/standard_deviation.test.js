@@ -13,7 +13,7 @@ test("standardDeviation", function (t) {
         function (t) {
             t.equal(rnd(ss.standardDeviation([2, 4, 4, 4, 5, 5, 7, 9])), 2);
             t.end();
-        }
+        },
     );
 
     // confirmed with numpy
@@ -36,7 +36,7 @@ test("standardDeviation", function (t) {
     t.test("can get the standard deviation of 1-10", function (t) {
         t.equal(
             rnd(ss.standardDeviation([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])),
-            3.162
+            3.162,
         );
         t.end();
     });

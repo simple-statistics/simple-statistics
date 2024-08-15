@@ -19,9 +19,9 @@ ss.bernoulliDistribution(0.3); // => [0.7, 0.3]
 ss.bisect(Math.cos, 0, 4, 100, 0.003); // => 1.572265625
 
 var data1019 = [
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2,
-  2, 2, 2, 2, 3, 3, 3, 3
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 3, 3, 3, 3,
 ];
 ss.chiSquaredGoodnessOfFit(data1019, ss.poissonDistribution, 0.05); //= false
 ss.chiSquaredDistributionTable[60][0.99];
@@ -35,18 +35,18 @@ ss.epsilon;
 ss.factorial(5); // => 120
 ss.interquartileRange([0, 1, 2, 3]); // => 2
 var l = ss.linearRegressionLine(
-  ss.linearRegression([
-    [0, 0],
-    [1, 1]
-  ])
+    ss.linearRegression([
+        [0, 0],
+        [1, 1],
+    ]),
 );
 l(0); // => 0
 l(2); // => 2
 ss.linearRegressionLine({ b: 0, m: 1 })(1); // => 1
 ss.linearRegressionLine({ b: 1, m: 1 })(1); // => 2
 ss.linearRegression([
-  [0, 0],
-  [1, 1]
+    [0, 0],
+    [1, 1],
 ]); // => { m: 1, b: 0 }
 ss.max([1, 2, 3, 4]);
 ss.maxSorted([-100, -10, 1, 2, 5]); // => 5
@@ -65,10 +65,10 @@ ss.numericSort([3, 2, 1]); // => [1, 2, 3]
 var p = new ss.PerceptronModel();
 // Train the model with input with a diagonal boundary.
 for (var i = 0; i < 5; i++) {
-  p.train([1, 1], 1);
-  p.train([0, 1], 0);
-  p.train([1, 0], 0);
-  p.train([0, 0], 0);
+    p.train([1, 1], 1);
+    p.train([0, 1], 0);
+    p.train([1, 0], 0);
+    p.train([0, 0], 0);
 }
 p.predict([0, 0]); // 0
 p.predict([0, 1]); // 0
@@ -81,8 +81,8 @@ ss.quantile([3, 6, 7, 8, 8, 9, 10, 13, 15, 16, 20], [0.5, 0.6, 0.7]);
 var arr = [65, 28, 59, 33, 21, 56, 22, 95, 50, 12, 90, 53, 28, 77, 39];
 ss.quickselect(arr, 8);
 var samples = [
-  [0, 0],
-  [1, 1]
+    [0, 0],
+    [1, 1],
 ];
 var regressionLine = ss.linearRegressionLine(ss.linearRegression(samples));
 ss.rSquared(samples, regressionLine); // = 1 this line is a perfect fit
