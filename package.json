@@ -22,7 +22,6 @@
     "prettier": "^3.3.3",
     "random-js": "^2.1.0",
     "rollup": "^4.20.0",
-    "rollup-plugin-terser": "^7.0.2",
     "standard-version": "^9.5.0",
     "tap": "^21.0.1",
     "typescript": "^5.5.4"
@@ -72,5 +71,8 @@
   },
   "volta": {
     "node": "20.16.0"
+  },
+  "dependencies": {
+    "@rollup/plugin-terser": "^0.4.4"
   }
 }
