@@ -53,7 +53,7 @@
     }
   },
   "engines": {
-    "node": ">= 16"
+    "node": ">= 18"
   },
   "license": "ISC",
   "keywords": [
