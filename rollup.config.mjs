@@ -1,5 +1,5 @@
 import buble from "@rollup/plugin-buble";
-import { terser } from "@rollup/plugin-terser";
+import terser from "@rollup/plugin-terser";
 
 const input = "index.js";
 const sourcemap = true;
