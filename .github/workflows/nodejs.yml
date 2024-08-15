@@ -11,15 +11,16 @@ jobs:
         node-version: [18.x, 20.x, 22.x]
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
+          cache: "pnpm"
           node-version: ${{ matrix.node-version }}
       - name: yarn install, build, and test
         run: |
-          yarn install
-          yarn test
+          pnpm install
+          pnpm test
         env:
           CI: true
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
