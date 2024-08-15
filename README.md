@@ -9,7 +9,7 @@ A JavaScript implementation of descriptive, regression, and inference statistics
 Implemented in literate JavaScript with no dependencies, designed to work
 in all modern browsers (including IE) as well as in [node.js](https://nodejs.org/).
 
-* :green_book: [API Documentation](http://simplestatistics.org/docs/)
+* :green_book: [API Documentation](https://simple-statistics.github.io/)
 * :chart_with_upwards_trend: [Benchmarks](./benchmarks/)
 * :kissing: [A list of other statistics libraries](./SEEALSO.md)
 
