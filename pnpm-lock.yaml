@@ -24,9 +24,6 @@ importers:
       documentation:
         specifier: ^14
         version: 14.0.3
-      prettier:
-        specifier: ^3.3.3
-        version: 3.3.3
       random-js:
         specifier: ^2.1.0
         version: 2.1.0
@@ -2317,11 +2314,6 @@ packages:
   postcss@8.4.41:
     resolution: {integrity: sha512-TesUflQ0WKZqAvg52PWL6kHgLKP6xB6heTOdoYM0Wt2UHyxNa4K25EZZMgKns3BH1RLVbZCREPpLY0rhnNoHVQ==}
     engines: {node: ^10 || ^12 || >=14}
-
-  prettier@3.3.3:
-    resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
-    engines: {node: '>=14'}
-    hasBin: true
 
   prismjs-terminal@1.2.3:
     resolution: {integrity: sha512-xc0zuJ5FMqvW+DpiRkvxURlz98DdfDsZcFHdO699+oL+ykbFfgI7O4VDEgUyc07BSL2NHl3zdb8m/tZ/aaqUrw==}
@@ -5854,8 +5846,6 @@ snapshots:
       picocolors: 1.0.1
       source-map-js: 1.2.0
     optional: true
-
-  prettier@3.3.3: {}
 
   prismjs-terminal@1.2.3:
     dependencies:

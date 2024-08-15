@@ -19,7 +19,6 @@
     "@rollup/plugin-buble": "^1.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "documentation": "^14",
-    "prettier": "^3.3.3",
     "random-js": "^2.1.0",
     "rollup": "^4.20.0",
     "standard-version": "^9.5.0",
