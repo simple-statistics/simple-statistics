@@ -28,7 +28,7 @@ function combinationsReplacement(x, k) {
             // k=1.
             const subsetCombinations = combinationsReplacement(
                 x.slice(i, x.length),
-                k - 1
+                k - 1,
             );
 
             for (let j = 0; j < subsetCombinations.length; j++) {

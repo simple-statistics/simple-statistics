@@ -15,7 +15,8 @@ function jenksMatrices(data, nClasses) {
     const lowerClassLimits = [];
     const varianceCombinations = [];
     // loop counters
-    let i, j;
+    let i;
+    let j;
     // the variance, as computed at each step in the calculation
     let variance = 0;
 
@@ -40,7 +41,7 @@ function jenksMatrices(data, nClasses) {
         // in the original implementation, 9999999 is used but
         // since Javascript has `Infinity`, we use that.
         for (j = 2; j < data.length + 1; j++) {
-            varianceCombinations[j][i] = Infinity;
+            varianceCombinations[j][i] = Number.POSITIVE_INFINITY;
         }
     }
 
@@ -107,7 +108,7 @@ function jenksMatrices(data, nClasses) {
     // evaluate goodness of fit.
     return {
         lowerClassLimits: lowerClassLimits,
-        varianceCombinations: varianceCombinations
+        varianceCombinations: varianceCombinations,
     };
 }
 

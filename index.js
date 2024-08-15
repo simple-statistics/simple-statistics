@@ -25,11 +25,11 @@ export { default as quantileRank } from "./src/quantile_rank.js";
 export { default as quantileRankSorted } from "./src/quantile_rank_sorted.js";
 export {
     default as interquartileRange,
-    default as iqr
+    default as iqr,
 } from "./src/interquartile_range.js";
 export {
     default as medianAbsoluteDeviation,
-    default as mad
+    default as mad,
 } from "./src/median_absolute_deviation.js";
 export { default as chunk } from "./src/chunk.js";
 export { default as sampleWithReplacement } from "./src/sample_with_replacement.js";
@@ -67,7 +67,7 @@ export { default as average, default as mean } from "./src/mean.js";
 
 export {
     default as averageSimple,
-    default as meanSimple
+    default as meanSimple,
 } from "./src/mean_simple.js";
 
 export { default as median } from "./src/median.js";
@@ -76,7 +76,7 @@ export { default as subtractFromMean } from "./src/subtract_from_mean.js";
 
 export {
     default as rootMeanSquare,
-    default as rms
+    default as rms,
 } from "./src/root_mean_square.js";
 export { default as variance } from "./src/variance.js";
 export { default as coefficientOfVariation } from "./src/coefficient_of_variation.js";
@@ -88,11 +88,11 @@ export { default as wilcoxonRankSum } from "./src/wilcoxon_rank_sum.js";
 // Classifiers
 export {
     default as BayesianClassifier,
-    default as bayesian
+    default as bayesian,
 } from "./src/bayesian_classifier.js";
 export {
     default as PerceptronModel,
-    default as perceptron
+    default as perceptron,
 } from "./src/perceptron.js";
 
 // Distribution-related methods
@@ -107,7 +107,7 @@ export { default as chiSquaredDistributionTable } from "./src/chi_squared_distri
 export { default as chiSquaredGoodnessOfFit } from "./src/chi_squared_goodness_of_fit.js";
 export {
     default as kernelDensityEstimation,
-    default as kde
+    default as kde,
 } from "./src/kernel_density_estimation.js";
 
 // Normal distribution
@@ -117,7 +117,7 @@ export { default as cumulativeStdLogisticProbability } from "./src/cumulative_st
 export { default as standardNormalTable } from "./src/standard_normal_table.js";
 export {
     default as errorFunction,
-    default as erf
+    default as erf,
 } from "./src/error_function.js";
 export { default as inverseErrorFunction } from "./src/inverse_error_function.js";
 export { default as probit } from "./src/probit.js";

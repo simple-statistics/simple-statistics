@@ -18,7 +18,7 @@ function logAverage(x) {
     for (let i = 0; i < x.length; i++) {
         if (x[i] < 0) {
             throw new Error(
-                "logAverage requires only non-negative numbers as input"
+                "logAverage requires only non-negative numbers as input",
             );
         }
         value += Math.log(x[i]);

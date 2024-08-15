@@ -1,8 +1,8 @@
 const SQRT_2PI = Math.sqrt(2 * Math.PI);
 
 function cumulativeDistribution(z) {
-    let sum = z,
-        tmp = z;
+    let sum = z;
+    let tmp = z;
 
     // 15 iterations are enough for 4-digit precision
     for (let i = 1; i < 15; i++) {

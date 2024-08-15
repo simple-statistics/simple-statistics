@@ -13,8 +13,8 @@
  * uniqueCountSorted([1, 1, 1]); // => 1
  */
 function uniqueCountSorted(x) {
-    let uniqueValueCount = 0,
-        lastSeenValue;
+    let uniqueValueCount = 0;
+    let lastSeenValue;
     for (let i = 0; i < x.length; i++) {
         if (i === 0 || x[i] !== lastSeenValue) {
             lastSeenValue = x[i];

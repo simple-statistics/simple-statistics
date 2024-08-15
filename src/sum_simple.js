@@ -13,7 +13,7 @@ function sumSimple(x) {
     let value = 0;
     for (let i = 0; i < x.length; i++) {
         if (typeof x[i] !== "number") {
-            return NaN;
+            return Number.NaN;
         }
         value += x[i];
     }

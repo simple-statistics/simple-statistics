@@ -31,12 +31,12 @@ function sum(x) {
     let transition;
 
     if (typeof sum !== "number") {
-        return NaN;
+        return Number.NaN;
     }
 
     for (let i = 1; i < x.length; i++) {
         if (typeof x[i] !== "number") {
-            return NaN;
+            return Number.NaN;
         }
         transition = sum + x[i];
 

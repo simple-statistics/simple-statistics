@@ -31,7 +31,7 @@ function errorFunction(x) {
                     t +
                     1.00002368) *
                     t -
-                1.26551223
+                1.26551223,
         );
     if (x >= 0) {
         return 1 - tau;

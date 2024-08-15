@@ -21,7 +21,7 @@ function sampleCovariance(x, y) {
 
     if (x.length < 2) {
         throw new Error(
-            "sampleCovariance requires at least two data points in each sample"
+            "sampleCovariance requires at least two data points in each sample",
         );
     }
 

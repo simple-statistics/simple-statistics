@@ -19,7 +19,7 @@ function bernoulliDistribution(p) /*: number[] */ {
     // Check that `p` is a valid probability (0 ≤ p ≤ 1)
     if (p < 0 || p > 1) {
         throw new Error(
-            "bernoulliDistribution requires probability to be between 0 and 1 inclusive"
+            "bernoulliDistribution requires probability to be between 0 and 1 inclusive",
         );
     }
 

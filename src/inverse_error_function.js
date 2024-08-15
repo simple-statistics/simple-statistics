@@ -12,9 +12,9 @@ function inverseErrorFunction(x) {
     const inv = Math.sqrt(
         Math.sqrt(
             Math.pow(2 / (Math.PI * a) + Math.log(1 - x * x) / 2, 2) -
-                Math.log(1 - x * x) / a
+                Math.log(1 - x * x) / a,
         ) -
-            (2 / (Math.PI * a) + Math.log(1 - x * x) / 2)
+            (2 / (Math.PI * a) + Math.log(1 - x * x) / 2),
     );
 
     if (x >= 0) {

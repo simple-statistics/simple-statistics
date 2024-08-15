@@ -15,12 +15,10 @@
     "index.d.ts"
   ],
   "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
     "@rollup/plugin-buble": "^1.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "documentation": "^14",
-    "eslint": "^9.9.0",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-prettier": "^5.2.1",
     "prettier": "^3.3.3",
     "random-js": "^2.1.0",
     "rollup": "^4.20.0",
@@ -34,9 +32,9 @@
     "test": "rollup -c rollup.config.mjs && npm run lint && tap --lines 95 --branches 95 --functions 95 --statements 95 --coverage test/*.test.js --jobs=4",
     "build": "rollup -c rollup.config.mjs",
     "prepublish": "rollup -c rollup.config.mjs && ./scripts/update_readme.js",
-    "prelint": "tsc --skipLibCheck",
-    "lint": "eslint index.js src test && prettier --check src test \"!test/types.js\"",
-    "lint-fix": "eslint index.js src test --fix && prettier src test \"!test/types.js\" --write",
+    "prelint": "tsc --skipLibCheck --noEmit",
+    "lint": "biome check index.js src test",
+    "lint-fix": "biome check --fix index.js src test",
     "postlint": "documentation lint src"
   },
   "source": "index.js",
