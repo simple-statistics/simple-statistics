@@ -4,7 +4,7 @@ const test = require("tap").test;
 const ss = require("../dist/simple-statistics.js");
 
 function rnd(n) {
-    return parseFloat(n.toFixed(4));
+    return Number.parseFloat(n.toFixed(4));
 }
 
 test("binomialDistribution", function (t) {

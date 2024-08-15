@@ -28,7 +28,7 @@ const LOGSQRT2PI = Math.log(Math.sqrt(2 * Math.PI));
 function gammaln(n) {
     // Return infinity if value not in domain
     if (n <= 0) {
-        return Infinity;
+        return Number.POSITIVE_INFINITY;
     }
 
     // Decrement n, because approximation is defined for n - 1

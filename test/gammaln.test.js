@@ -16,11 +16,11 @@ test("gammaln", function (t) {
         t.end();
     });
     t.test("gammaln for negative n should be Infinity", function (t) {
-        t.equal(ss.gammaln(-42.5), Infinity);
+        t.equal(ss.gammaln(-42.5), Number.POSITIVE_INFINITY);
         t.end();
     });
     t.test("gammaln for n === 0 should return NaN", function (t) {
-        t.equal(ss.gammaln(0), Infinity);
+        t.equal(ss.gammaln(0), Number.POSITIVE_INFINITY);
         t.end();
     });
 

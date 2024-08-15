@@ -24,7 +24,7 @@ test("log average", function (t) {
         for (let i = 0; i < 100; i++) {
             array.push(value);
         }
-        if (!isFinite(ss.logAverage(array))) {
+        if (!Number.isFinite(ss.logAverage(array))) {
             t.fail("log average failed for large product");
         }
         t.end();

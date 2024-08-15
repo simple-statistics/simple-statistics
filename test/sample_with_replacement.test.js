@@ -18,3 +18,8 @@ test("sampleWithReplacement", function (t) {
     t.same(ss.sampleWithReplacement([], 1, rng), []);
     t.end();
 });
+
+test("sampleWithReplacement with no rng", (t) => {
+    t.same(ss.sampleWithReplacement([1], 1), [1]);
+    t.end();
+});

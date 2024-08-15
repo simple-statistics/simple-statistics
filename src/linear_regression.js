@@ -11,7 +11,8 @@
  * linearRegression([[0, 0], [1, 1]]); // => { m: 1, b: 0 }
  */
 function linearRegression(data) {
-    let m, b;
+    let m;
+    let b;
 
     // Store data length in a local variable to reduce
     // repeated object property lookups
@@ -25,14 +26,16 @@ function linearRegression(data) {
     } else {
         // Initialize our sums and scope the `m` and `b`
         // variables that define the line.
-        let sumX = 0,
-            sumY = 0,
-            sumXX = 0,
-            sumXY = 0;
+        let sumX = 0;
+        let sumY = 0;
+        let sumXX = 0;
+        let sumXY = 0;
 
         // Use local variables to grab point values
         // with minimal object property lookups
-        let point, x, y;
+        let point;
+        let x;
+        let y;
 
         // Gather the sum of all x values, the sum of all
         // y values, and the sum of x^2 and (x*y) for each

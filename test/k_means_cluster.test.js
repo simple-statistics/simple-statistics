@@ -22,6 +22,14 @@ test("k-means clustering test", function (t) {
         }
     );
 
+    t.test("Clustering with default Math.random", function (t) {
+        const points = [[0.5]];
+        const { labels, centroids } = ss.kMeansCluster(points, 1);
+        t.same(labels.length, 1);
+        t.same(centroids.length, 1);
+        t.end();
+    });
+
     t.test("Single cluster of two points contains both points", function (t) {
         const points = [[0.0], [1.0]];
         const { labels, centroids } = ss.kMeansCluster(points, 1, nonRNG);

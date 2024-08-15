@@ -20,21 +20,22 @@ function modeSorted(sorted) {
     // The mode of an empty list is undefined
     if (sorted.length === 0) {
         throw new Error("mode requires at least one data point");
-    } else if (sorted.length === 1) {
+    }
+    if (sorted.length === 1) {
         return sorted[0];
     }
 
     // This assumes it is dealing with an array of size > 1, since size
     // 0 and 1 are handled immediately. Hence it starts at index 1 in the
     // array.
-    let last = sorted[0],
-        // store the mode as we find new modes
-        value = NaN,
-        // store how many times we've seen the mode
-        maxSeen = 0,
-        // how many times the current candidate for the mode
-        // has been seen
-        seenThis = 1;
+    let last = sorted[0];
+    // store the mode as we find new modes
+    let value = Number.NaN;
+    // store how many times we've seen the mode
+    let maxSeen = 0;
+    // how many times the current candidate for the mode
+    // has been seen
+    let seenThis = 1;
 
     // end at sorted.length + 1 to fix the case in which the mode is
     // the highest number that occurs in the sequence. the last iteration

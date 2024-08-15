@@ -20,7 +20,7 @@ function gamma(n) {
     if (Number.isInteger(n)) {
         if (n <= 0) {
             // gamma not defined for zero or negative integers
-            return NaN;
+            return Number.NaN;
         } else {
             // use factorial for integer inputs
             return factorial(n - 1);

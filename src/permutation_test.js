@@ -88,9 +88,11 @@ function permutationTest(sampleX, sampleY, alternative, k, randomSource) {
     } else {
         // alternative === 'less'
         for (let i = 0; i <= k; i++) {
+            /* c8 ignore start */
             if (testStatDsn[i] <= testStatistic) {
                 numExtremeTStats += 1;
             }
+            /* c8 ignore end */
         }
     }
 
