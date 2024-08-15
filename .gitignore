@@ -6,3 +6,5 @@ docs/public/
 dist
 types.js
 *.types.js
+.tap
+.DS_Store

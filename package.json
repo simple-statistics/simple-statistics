@@ -29,7 +29,7 @@
   },
   "scripts": {
     "release": "standard-version && sh ./scripts/update_website.sh",
-    "test": "rollup -c rollup.config.mjs && npm run lint && tap --lines 95 --branches 95 --functions 95 --statements 95 --coverage test/*.test.js --jobs=4",
+    "test": "rollup -c rollup.config.mjs && npm run lint && tap test/*.test.js --jobs=4",
     "build": "rollup -c rollup.config.mjs",
     "prepublish": "rollup -c rollup.config.mjs && ./scripts/update_readme.js",
     "prelint": "tsc --skipLibCheck --noEmit",
