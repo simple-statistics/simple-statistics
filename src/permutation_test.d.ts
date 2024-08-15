@@ -6,7 +6,7 @@ declare function permutationTest(
     sampleY: number[],
     string?: string,
     k?: number,
-    randomSource?: () => number,
+    randomSource?: () => number
 ): number;
 
 export default permutationTest;

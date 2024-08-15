@@ -13,10 +13,10 @@ test("sampleStandardDeviation", function (t) {
         function (t) {
             t.equal(
                 rnd(ss.sampleStandardDeviation([2, 4, 4, 4, 5, 5, 7, 9])),
-                2.138,
+                2.138
             );
             t.end();
-        },
+        }
     );
 
     t.throws(function () {

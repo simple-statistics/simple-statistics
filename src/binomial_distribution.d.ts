@@ -3,7 +3,7 @@
  */
 declare function binomialDistribution(
     trials: number,
-    probability: number,
+    probability: number
 ): number[];
 
 export default binomialDistribution;

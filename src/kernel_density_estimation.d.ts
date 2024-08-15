@@ -7,7 +7,7 @@ export type BandwidthMethods = "nrd";
 declare function kernelDensityEstimation(
     X: number[],
     kernel?: Kernels | ((u: number) => number),
-    bandwidthMethod?: BandwidthMethods | number,
+    bandwidthMethod?: BandwidthMethods | number
 ): (x: number) => number;
 
 export default kernelDensityEstimation;

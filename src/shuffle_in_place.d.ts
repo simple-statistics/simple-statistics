@@ -3,7 +3,7 @@
  */
 declare function shuffleInPlace<T extends any[]>(
     x: T,
-    randomSource?: () => number,
+    randomSource?: () => number
 ): T;
 
 export default shuffleInPlace;

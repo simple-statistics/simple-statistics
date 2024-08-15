@@ -4,7 +4,7 @@
 declare function sampleWithReplacement<T>(
     x: T[],
     n: number,
-    randomSource?: () => number,
+    randomSource?: () => number
 ): T[];
 
 export default sampleWithReplacement;

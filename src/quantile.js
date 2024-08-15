@@ -73,7 +73,7 @@ function multiQuantileSelect(arr, p) {
             arr,
             indices[m],
             Math.floor(indices[l]),
-            Math.ceil(indices[r]),
+            Math.ceil(indices[r])
         );
 
         stack.push(l, m, m, r);

@@ -23,7 +23,7 @@ function cumulativeStdNormalProbability(z) {
     // multiplied by 100.
     const index = Math.min(
         Math.round(absZ * 100),
-        standardNormalTable.length - 1,
+        standardNormalTable.length - 1
     );
 
     // The index we calculate must be in the table as a positive value,

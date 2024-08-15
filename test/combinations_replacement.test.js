@@ -14,10 +14,10 @@ test("combinations", function (t) {
             t.same(ss.combinationsReplacement([1, 2], 2), [
                 [1, 1],
                 [1, 2],
-                [2, 2],
+                [2, 2]
             ]);
             t.end();
-        },
+        }
     );
     t.end();
 });

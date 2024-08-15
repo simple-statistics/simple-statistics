@@ -14,7 +14,7 @@ test("errorFunction", function (t) {
             t.equal(
                 Math.abs(ss.errorFunction(ss.inverseErrorFunction(i)) - i) <
                     4 * ss.epsilon,
-                true,
+                true
             );
         }
         t.end();

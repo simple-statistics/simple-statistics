@@ -4,7 +4,7 @@
 declare function kMeansCluster(
     points: number[][],
     numCluster: number,
-    randomSource?: () => number,
+    randomSource?: () => number
 ): { labels: number[]; centroids: number[][] };
 
 export default kMeansCluster;

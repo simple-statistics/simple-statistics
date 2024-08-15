@@ -50,7 +50,7 @@ function fillMatrixColumn(
     matrix,
     backtrackMatrix,
     sums,
-    sumsOfSquares,
+    sumsOfSquares
 ) {
     if (iMin > iMax) {
         return;
@@ -113,7 +113,7 @@ function fillMatrixColumn(
         matrix,
         backtrackMatrix,
         sums,
-        sumsOfSquares,
+        sumsOfSquares
     );
     fillMatrixColumn(
         i + 1,
@@ -122,7 +122,7 @@ function fillMatrixColumn(
         matrix,
         backtrackMatrix,
         sums,
-        sumsOfSquares,
+        sumsOfSquares
     );
 }
 
@@ -154,7 +154,7 @@ function fillMatrices(data, matrix, backtrackMatrix) {
         } else {
             sums.push(sums[i - 1] + shiftedValue);
             sumsOfSquares.push(
-                sumsOfSquares[i - 1] + shiftedValue * shiftedValue,
+                sumsOfSquares[i - 1] + shiftedValue * shiftedValue
             );
         }
 
@@ -180,7 +180,7 @@ function fillMatrices(data, matrix, backtrackMatrix) {
             matrix,
             backtrackMatrix,
             sums,
-            sumsOfSquares,
+            sumsOfSquares
         );
     }
 }
@@ -230,7 +230,7 @@ function fillMatrices(data, matrix, backtrackMatrix) {
 function ckmeans(x, nClusters) {
     if (nClusters > x.length) {
         throw new Error(
-            "cannot generate more classes than there are data values",
+            "cannot generate more classes than there are data values"
         );
     }
 

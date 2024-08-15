@@ -7,7 +7,7 @@ declare function combineVariances(
     n1: number,
     variance2: number,
     mean2: number,
-    n2: number,
+    n2: number
 ): number;
 
 export default combineVariances;

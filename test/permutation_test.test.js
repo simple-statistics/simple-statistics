@@ -17,10 +17,10 @@ test("permutation test", function (t) {
                 ss.permutationTest([2, 2, 2, 2, 2], [2, 2, 2, 2, 2]),
                 1,
                 undefined,
-                rng,
+                rng
             );
             t.end();
-        },
+        }
     );
     t.test(
         "P-value of distribution less than itself should be 1",
@@ -31,12 +31,12 @@ test("permutation test", function (t) {
                     [2, 2, 2, 2, 2],
                     "greater",
                     undefined,
-                    rng,
+                    rng
                 ),
-                1,
+                1
             );
             t.end();
-        },
+        }
     );
     t.test(
         "P-value of small sample greater than large sample should be 0",
@@ -46,15 +46,15 @@ test("permutation test", function (t) {
                     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
                     [
                         99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999,
-                        99999, 99999,
+                        99999, 99999
                     ],
                     "less",
                     undefined,
-                    rng,
-                ) < ss.epsilon,
+                    rng
+                ) < ss.epsilon
             );
             t.end();
-        },
+        }
     );
 
     t.test(
@@ -64,7 +64,7 @@ test("permutation test", function (t) {
                 ss.permutationTest([1, 69, 420], [42, 42, 42], "one-tailed");
             }, "alternative must be one of specified options");
             t.end();
-        },
+        }
     );
 
     t.end();

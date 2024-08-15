@@ -37,7 +37,7 @@ function permutationTest(sampleX, sampleY, alternative, k, randomSource) {
         alternative !== "less"
     ) {
         throw new Error(
-            "`alternative` must be either 'two_side', 'greater', or 'less'.",
+            "`alternative` must be either 'two_side', 'greater', or 'less'."
         );
     }
 

@@ -66,7 +66,7 @@ function linearRegression(data) {
     // Return both values as an object.
     return {
         m: m,
-        b: b,
+        b: b
     };
 }
 

@@ -4,7 +4,7 @@
 declare function chiSquaredGoodnessOfFit(
     data: number[],
     distributionType: Function,
-    significance: number,
+    significance: number
 ): boolean;
 
 export default chiSquaredGoodnessOfFit;

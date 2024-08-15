@@ -28,7 +28,7 @@ test("sample covariance", function (t) {
             const y = [1, 1, 2, 2, 1, 1];
             t.equal(rnd(ss.sampleCovariance(x, y)), 0);
             t.end();
-        },
+        }
     );
 
     t.test("unequal-length corner case", function (t) {

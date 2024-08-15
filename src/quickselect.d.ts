@@ -5,7 +5,7 @@ declare function quickselect(
     arr: number[],
     k: number,
     left?: number,
-    right?: number,
+    right?: number
 ): void;
 
 export default quickselect;

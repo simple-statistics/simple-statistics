@@ -8,7 +8,9 @@
     "indentWidth": 4
   },
   "javascript": {
-    "formatter": {}
+    "formatter": {
+      "trailingCommas": "none"
+    }
   },
   "linter": {
     "enabled": true,

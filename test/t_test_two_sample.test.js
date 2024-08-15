@@ -22,7 +22,7 @@ test("tTestTwoSample", function (t) {
             const res = ss.tTestTwoSample([1, 2, 3, 4], [3, 4, 5, 6, 1, 2, 0]);
             t.equal(res, -0.4165977904505309);
             t.end();
-        },
+        }
     );
 
     t.test("has an edge case for one sample being of size zero", function (t) {

@@ -12,18 +12,18 @@ test("combineMeans", function (t) {
                 ss.mean(values1),
                 values1.length,
                 ss.mean(values2),
-                values2.length,
+                values2.length
             ),
-            4.5,
+            4.5
         );
         t.equal(
             ss.combineMeans(
                 ss.mean(values1),
                 values1.length,
                 ss.mean(values2),
-                values2.length,
+                values2.length
             ),
-            ss.mean(values1.concat(values2)),
+            ss.mean(values1.concat(values2))
         );
         t.end();
     });

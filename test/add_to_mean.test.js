@@ -9,7 +9,7 @@ test("addToMean", function (t) {
         t.equal(ss.addToMean(ss.mean(values), values.length, 53), 20.5);
         t.equal(
             ss.addToMean(ss.mean(values), values.length, 53),
-            ss.mean(values.concat(53)),
+            ss.mean(values.concat(53))
         );
         t.end();
     });

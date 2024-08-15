@@ -108,7 +108,7 @@ function jenksMatrices(data, nClasses) {
     // evaluate goodness of fit.
     return {
         lowerClassLimits: lowerClassLimits,
-        varianceCombinations: varianceCombinations,
+        varianceCombinations: varianceCombinations
     };
 }
 

@@ -4,7 +4,7 @@
 declare function zScore(
     x: number,
     mean: number,
-    standardDeviation: number,
+    standardDeviation: number
 ): number;
 
 export default zScore;

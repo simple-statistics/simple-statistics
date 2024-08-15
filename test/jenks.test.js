@@ -21,7 +21,7 @@ test("jenks", function (t) {
         function (t) {
             t.same(jenks([9, 10, 11, 12, 13], 5), [9, 10, 11, 12, 13, 13]);
             t.end();
-        },
+        }
     );
     t.end();
 });

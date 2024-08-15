@@ -33,7 +33,7 @@ function kMeansCluster(points, numCluster, randomSource = Math.random) {
     }
     return {
         labels: labels,
-        centroids: newCentroids,
+        centroids: newCentroids
     };
 }
 

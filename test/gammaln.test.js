@@ -11,7 +11,7 @@ test("gammaln", function (t) {
     t.test("exp(gammaln(n)) for n should equal gamma(n)", function (t) {
         t.equal(
             Math.round(Math.exp(ss.gammaln(8.2))),
-            Math.round(ss.gamma(8.2)),
+            Math.round(ss.gamma(8.2))
         );
         t.end();
     });

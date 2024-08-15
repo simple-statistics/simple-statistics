@@ -28,7 +28,7 @@ test("approximate strict equality", function (t) {
         function (t) {
             t.ok(ss.approxEqual(100, 100 + 99 * ss.epsilon));
             t.end();
-        },
+        }
     );
 
     t.test(
@@ -36,7 +36,7 @@ test("approximate strict equality", function (t) {
         function (t) {
             t.ok(!ss.approxEqual(100, 100 + 101 * ss.epsilon));
             t.end();
-        },
+        }
     );
 
     t.test("handles negative values", function (t) {

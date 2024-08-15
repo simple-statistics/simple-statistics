@@ -27,13 +27,13 @@ function silhouette(points, labels) {
             const a = meanDistanceFromPointToGroup(
                 i,
                 groupings[labels[i]],
-                distances,
+                distances
             );
             const b = meanDistanceToNearestGroup(
                 i,
                 labels,
                 groupings,
-                distances,
+                distances
             );
             s = (b - a) / Math.max(a, b);
         }
@@ -106,7 +106,7 @@ function meanDistanceToNearestGroup(which, labels, groupings, distances) {
             const d = meanDistanceFromPointToGroup(
                 which,
                 groupings[i],
-                distances,
+                distances
             );
             if (d < result) {
                 result = d;

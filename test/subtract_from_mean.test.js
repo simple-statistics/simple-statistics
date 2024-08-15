@@ -9,7 +9,7 @@ test("subtractFromMean", function (t) {
         t.equal(ss.subtractFromMean(ss.mean(values), values.length, 54), 14);
         t.equal(
             ss.subtractFromMean(ss.mean(values), values.length, 54),
-            ss.mean(values.slice(0, -1)),
+            ss.mean(values.slice(0, -1))
         );
         t.end();
     });

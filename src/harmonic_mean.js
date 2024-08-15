@@ -27,7 +27,7 @@ function harmonicMean(x) {
         // the harmonic mean is only valid for positive numbers
         if (x[i] <= 0) {
             throw new Error(
-                "harmonicMean requires only positive numbers as input",
+                "harmonicMean requires only positive numbers as input"
             );
         }
 

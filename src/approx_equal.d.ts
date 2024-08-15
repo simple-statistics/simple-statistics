@@ -4,7 +4,7 @@
 declare function approxEqual(
     actual: number,
     expected: number,
-    tolerance: number,
+    tolerance: number
 ): boolean;
 
 export default approxEqual;

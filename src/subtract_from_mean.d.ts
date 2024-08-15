@@ -4,7 +4,7 @@
 declare function subtractFromMean(
     mean: number,
     n: number,
-    value: number,
+    value: number
 ): number;
 
 export default subtractFromMean;

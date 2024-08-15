@@ -6,7 +6,7 @@ declare function bisect(
     start: number,
     end: number,
     maxIterations: number,
-    errorTolerance: number,
+    errorTolerance: number
 ): number;
 
 export default bisect;

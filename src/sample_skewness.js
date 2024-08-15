@@ -40,7 +40,7 @@ function sampleSkewness(x) {
 
     // Find the mean value of that list
     const theSampleStandardDeviation = Math.sqrt(
-        sumSquaredDeviations / besselsCorrection,
+        sumSquaredDeviations / besselsCorrection
     );
 
     const n = x.length;

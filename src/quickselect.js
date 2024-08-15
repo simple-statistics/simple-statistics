@@ -30,7 +30,7 @@ function quickselect(arr, k, left, right) {
             const newLeft = Math.max(left, Math.floor(k - (m * s) / n + sd));
             const newRight = Math.min(
                 right,
-                Math.floor(k + ((n - m) * s) / n + sd),
+                Math.floor(k + ((n - m) * s) / n + sd)
             );
             quickselect(arr, k, newLeft, newRight);
         }

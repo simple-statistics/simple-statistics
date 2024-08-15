@@ -44,7 +44,7 @@ function geometricMean(x) {
         // the geometric mean is only valid for positive numbers
         if (x[i] < 0) {
             throw new Error(
-                "geometricMean requires only non-negative numbers as input",
+                "geometricMean requires only non-negative numbers as input"
             );
         }
 

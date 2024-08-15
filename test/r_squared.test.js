@@ -9,12 +9,12 @@ test("r-squared", function (t) {
         function (t) {
             const d = [
                 [0, 0],
-                [1, 1],
+                [1, 1]
             ];
             const l = ss.linearRegressionLine(ss.linearRegression(d));
             t.equal(ss.rSquared(d, l), 1);
             t.end();
-        },
+        }
     );
 
     t.test(
@@ -23,12 +23,12 @@ test("r-squared", function (t) {
             const d = [
                 [0, 0],
                 [0.5, 0.2],
-                [1, 1],
+                [1, 1]
             ];
             const l = ss.linearRegressionLine(ss.linearRegression(d));
             t.not(ss.rSquared(d, l), 1);
             t.end();
-        },
+        }
     );
 
     t.test("r-squared of single sample is 1", function (t) {

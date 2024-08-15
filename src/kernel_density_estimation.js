@@ -14,7 +14,7 @@ const kernels = {
      */
     gaussian: function (u) {
         return Math.exp(-0.5 * u * u) / SQRT_2PI;
-    },
+    }
 };
 
 /**
@@ -36,7 +36,7 @@ const bandwidthMethods = {
             s = Math.min(s, iqr / 1.34);
         }
         return 1.06 * s * Math.pow(x.length, -0.2);
-    },
+    }
 };
 
 /**
@@ -69,7 +69,7 @@ function kernelDensityEstimation(X, kernel, bandwidthMethod) {
     } else if (typeof bandwidthMethod === "string") {
         if (!bandwidthMethods[bandwidthMethod]) {
             throw new Error(
-                'Unknown bandwidth method "' + bandwidthMethod + '"',
+                'Unknown bandwidth method "' + bandwidthMethod + '"'
             );
         }
         bandwidth = bandwidthMethods[bandwidthMethod](X);

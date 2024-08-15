@@ -9,17 +9,17 @@ test("BayesianClassifier", function (t) {
         const bayes = new BayesianClassifier();
         bayes.train(
             {
-                species: "Cat",
+                species: "Cat"
             },
-            "animal",
+            "animal"
         );
         t.same(
             bayes.score({
-                species: "Cat",
+                species: "Cat"
             }),
             {
-                animal: 1,
-            },
+                animal: 1
+            }
         );
         t.end();
     });
@@ -28,24 +28,24 @@ test("BayesianClassifier", function (t) {
         const bayes = new BayesianClassifier();
         bayes.train(
             {
-                species: "Cat",
+                species: "Cat"
             },
-            "animal",
+            "animal"
         );
         bayes.train(
             {
-                species: "Cat",
+                species: "Cat"
             },
-            "chair",
+            "chair"
         );
         t.same(
             bayes.score({
-                species: "Cat",
+                species: "Cat"
             }),
             {
                 animal: 0.5,
-                chair: 0.5,
-            },
+                chair: 0.5
+            }
         );
         t.end();
     });
@@ -54,36 +54,36 @@ test("BayesianClassifier", function (t) {
         const bayes = new BayesianClassifier();
         bayes.train(
             {
-                species: "Cat",
+                species: "Cat"
             },
-            "animal",
+            "animal"
         );
         bayes.train(
             {
-                species: "Cat",
+                species: "Cat"
             },
-            "animal",
+            "animal"
         );
         bayes.train(
             {
-                species: "Cat",
+                species: "Cat"
             },
-            "animal",
+            "animal"
         );
         bayes.train(
             {
-                species: "Cat",
+                species: "Cat"
             },
-            "chair",
+            "chair"
         );
         t.same(
             bayes.score({
-                species: "Cat",
+                species: "Cat"
             }),
             {
                 animal: 0.75,
-                chair: 0.25,
-            },
+                chair: 0.25
+            }
         );
         t.end();
     });
@@ -92,43 +92,43 @@ test("BayesianClassifier", function (t) {
         const bayes = new BayesianClassifier();
         bayes.train(
             {
-                species: "Cat",
+                species: "Cat"
             },
-            "animal",
+            "animal"
+        );
+        bayes.train(
+            {
+                species: "Cat"
+            },
+            "animal"
+        );
+        bayes.train(
+            {
+                species: "Cat"
+            },
+            "animal"
+        );
+        bayes.train(
+            {
+                species: "Cat"
+            },
+            "chair"
         );
         bayes.train(
             {
                 species: "Cat",
+                color: "white"
             },
-            "animal",
-        );
-        bayes.train(
-            {
-                species: "Cat",
-            },
-            "animal",
-        );
-        bayes.train(
-            {
-                species: "Cat",
-            },
-            "chair",
-        );
-        bayes.train(
-            {
-                species: "Cat",
-                color: "white",
-            },
-            "chair",
+            "chair"
         );
         t.same(
             bayes.score({
-                color: "white",
+                color: "white"
             }),
             {
                 animal: 0,
-                chair: 0.2,
-            },
+                chair: 0.2
+            }
         );
         t.end();
     });
@@ -137,45 +137,45 @@ test("BayesianClassifier", function (t) {
         const bayes = new BayesianClassifier();
         bayes.train(
             {
-                species: "Cat",
+                species: "Cat"
             },
-            "animal",
+            "animal"
         );
         bayes.train(
             {
-                species: "Dog",
+                species: "Dog"
             },
-            "animal",
+            "animal"
         );
         bayes.train(
             {
-                species: "Dog",
+                species: "Dog"
             },
-            "animal",
+            "animal"
         );
         bayes.train(
             {
-                species: "Cat",
+                species: "Cat"
             },
-            "chair",
+            "chair"
         );
         t.same(
             bayes.score({
-                species: "Cat",
+                species: "Cat"
             }),
             {
                 animal: 0.25,
-                chair: 0.25,
-            },
+                chair: 0.25
+            }
         );
         t.same(
             bayes.score({
-                species: "Dog",
+                species: "Dog"
             }),
             {
                 animal: 0.5,
-                chair: 0,
-            },
+                chair: 0
+            }
         );
         t.end();
     });

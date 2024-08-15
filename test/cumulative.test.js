@@ -27,7 +27,7 @@ test("cumulativeStdNormalProbability", function (t) {
                     Math.abs(
                         ss.cumulativeStdNormalProbability(i / 100) -
                             (0.5 +
-                                0.5 * ss.errorFunction(i / 100 / Math.sqrt(2))),
+                                0.5 * ss.errorFunction(i / 100 / Math.sqrt(2)))
                     ) < ss.epsilon
                 )
             ) {
@@ -40,9 +40,9 @@ test("cumulativeStdNormalProbability", function (t) {
         t.equal(
             Math.abs(
                 ss.cumulativeStdNormalProbability(-1) -
-                    (1 - ss.cumulativeStdNormalProbability(1)),
+                    (1 - ss.cumulativeStdNormalProbability(1))
             ) < ss.epsilon,
-            true,
+            true
         );
         t.end();
     });
@@ -51,7 +51,7 @@ test("cumulativeStdNormalProbability", function (t) {
             t.equal(
                 Math.abs(ss.cumulativeStdNormalProbability(ss.probit(i)) - i) <
                     21 * ss.epsilon,
-                true,
+                true
             );
         }
         t.end();
@@ -80,7 +80,7 @@ test("cumulativeStdLogisticProbability", function (t) {
             if (
                 Math.abs(
                     ss.cumulativeStdLogisticProbability(i) -
-                        (1 - ss.cumulativeStdLogisticProbability(-i)),
+                        (1 - ss.cumulativeStdLogisticProbability(-i))
                 ) > ss.epsilon
             ) {
                 t.fail("not symmetric about zero");
