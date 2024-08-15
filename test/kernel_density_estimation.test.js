@@ -80,6 +80,19 @@ test("kernel density estimation", function (t) {
         t.end();
     });
 
+    t.test("custom kernel value", function (t) {
+        t.same(
+            ss.kernelDensityEstimation(
+                normallyDistributed.sample,
+                "gaussian",
+                1,
+            )(0),
+            0.2806999313061038,
+        );
+
+        t.end();
+    });
+
     t.test("invalid kernel", function (t) {
         t.throws(() => {
             ss.kernelDensityEstimation(normallyDistributed.sample, "bz");

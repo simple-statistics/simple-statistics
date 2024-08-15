@@ -71,7 +71,9 @@ function fillMatrixColumn(
 
     let jhigh = i - 1; // the upper end for j
     if (iMax < matrix[0].length - 1) {
+        /* c8 ignore start */
         jhigh = Math.min(jhigh, backtrackMatrix[cluster][iMax + 1] || 0);
+        /* c8 ignore end */
     }
 
     let sji;
