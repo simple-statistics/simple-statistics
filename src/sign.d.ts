@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#sign
+ * https://simple-statistics.github.io/docs/#sign
  */
 declare function sign(x: number): number;
 

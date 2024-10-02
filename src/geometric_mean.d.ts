@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#geometricmean
+ * https://simple-statistics.github.io/docs/#geometricmean
  */
 declare function geometricMean(x: number[]): number;
 

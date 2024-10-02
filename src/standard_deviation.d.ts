@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#standarddeviation
+ * https://simple-statistics.github.io/docs/#standarddeviation
  */
 declare function standardDeviation(x: number[]): number;
 

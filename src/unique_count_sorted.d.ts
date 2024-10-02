@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#uniquecountsorted
+ * https://simple-statistics.github.io/docs/#uniquecountsorted
  */
 declare function uniqueCountSorted(x: any[]): number;
 

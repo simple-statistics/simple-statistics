@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#equalintervalbreaks
+ * https://simple-statistics.github.io/docs/#equalintervalbreaks
  */
 declare function equalIntervalBreaks(x: number[], nClasses: number): number[];
 

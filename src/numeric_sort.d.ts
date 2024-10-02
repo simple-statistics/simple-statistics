@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#numericsort
+ * https://simple-statistics.github.io/docs/#numericsort
  */
 declare function numericSort(x: number[]): number[];
 

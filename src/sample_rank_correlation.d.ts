@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#samplerankcorrelation
+ * https://simple-statistics.github.io/docs/#samplerankcorrelation
  */
 declare function sampleRankCorrelation(x: number[], y: number[]): number;
 
