@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#mean
+ * https://simple-statistics.github.io/docs/#mean
  */
 declare function meanSimple(x: number[]): number;
 

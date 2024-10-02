@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#approx_strict_equal
+ * https://simple-statistics.github.io/docs/#approx_strict_equal
  */
 declare function approxEqual(
     actual: number,

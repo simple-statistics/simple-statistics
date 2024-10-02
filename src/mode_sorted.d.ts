@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#modesorted
+ * https://simple-statistics.github.io/docs/#modesorted
  */
 declare function modeSorted(sorted: number[]): number;
 

@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#quickselect
+ * https://simple-statistics.github.io/docs/#quickselect
  */
 declare function quickselect(
     arr: number[],

@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#factorial
+ * https://simple-statistics.github.io/docs/#factorial
  */
 declare function factorial(n: number): number;
 

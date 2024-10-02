@@ -13,7 +13,7 @@ export interface DistributionTable {
 }
 
 /**
- * https://simplestatistics.org/docs/#chisquareddistributiontable
+ * https://simple-statistics.github.io/docs/#chisquareddistributiontable
  */
 declare const chiSquaredDistributionTable: {
     1: DistributionTable;

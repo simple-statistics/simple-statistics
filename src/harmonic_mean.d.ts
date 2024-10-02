@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#harmonicmean
+ * https://simple-statistics.github.io/docs/#harmonicmean
  */
 declare function harmonicMean(x: number[]): number;
 

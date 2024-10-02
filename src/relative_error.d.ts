@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#relative_error
+ * https://simple-statistics.github.io/docs/#relative_error
  */
 declare function relativeError(actual: number, expected: number): number;
 

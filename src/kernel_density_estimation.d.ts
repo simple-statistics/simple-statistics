@@ -2,7 +2,7 @@ export type Kernels = "gaussian";
 export type BandwidthMethods = "nrd";
 
 /**
- * https://simplestatistics.org/docs/#kde
+ * https://simple-statistics.github.io/docs/#kde
  */
 declare function kernelDensityEstimation(
     X: number[],

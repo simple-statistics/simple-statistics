@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#bisect
+ * https://simple-statistics.github.io/docs/#bisect
  */
 declare function bisect(
     func: (x: any) => number,

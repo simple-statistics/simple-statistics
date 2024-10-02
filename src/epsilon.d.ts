@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#epsilon
+ * https://simple-statistics.github.io/docs/#epsilon
  */
 declare const epsilon: number;
 

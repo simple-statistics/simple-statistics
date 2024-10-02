@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#interquartilerange
+ * https://simple-statistics.github.io/docs/#interquartilerange
  */
 declare function interquartileRange(x: number[]): number;
 

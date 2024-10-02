@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#sum
+ * https://simple-statistics.github.io/docs/#sum
  */
 declare function sum(x: number[]): number;
 

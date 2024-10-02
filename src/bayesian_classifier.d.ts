@@ -3,7 +3,7 @@ type Item = object;
 type OddsSums = object;
 
 /**
- * https://simplestatistics.org/docs/#bayesianclassifier
+ * https://simple-statistics.github.io/docs/#bayesianclassifier
  */
 declare class BayesianClassifier {
     public totalCount: number;

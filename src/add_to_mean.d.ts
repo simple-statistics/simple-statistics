@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#addtomean
+ * https://simple-statistics.github.io/docs/#addtomean
  */
 declare function addToMean(mean: number, n: number, newValue: number): number;
 

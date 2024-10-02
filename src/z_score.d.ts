@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#zscore
+ * https://simple-statistics.github.io/docs/#zscore
  */
 declare function zScore(
     x: number,

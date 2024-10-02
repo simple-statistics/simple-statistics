@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#binomialdistribution
+ * https://simple-statistics.github.io/docs/#binomialdistribution
  */
 declare function binomialDistribution(
     trials: number,

@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#linearregressionline
+ * https://simple-statistics.github.io/docs/#linearregressionline
  */
 declare function linearRegressionLine(mb: {
     b: number;

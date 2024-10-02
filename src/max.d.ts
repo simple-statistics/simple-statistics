@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#max
+ * https://simple-statistics.github.io/docs/#max
  */
 declare function max(x: number[]): number;
 

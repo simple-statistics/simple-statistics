@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#ttesttwosample
+ * https://simple-statistics.github.io/docs/#ttesttwosample
  */
 declare function tTestTwoSample(
     sampleX: number[],

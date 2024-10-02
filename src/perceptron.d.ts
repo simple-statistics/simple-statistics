@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#perceptronmodel
+ * https://simple-statistics.github.io/docs/#perceptronmodel
  */
 declare class PerceptronModel {
     public weights: number[];

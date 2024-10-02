@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#mediansorted
+ * https://simple-statistics.github.io/docs/#mediansorted
  */
 declare function medianSorted(sorted: number[]): number;
 

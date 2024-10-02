@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#quantileranksorted
+ * https://simple-statistics.github.io/docs/#quantileranksorted
  */
 declare function quantileRankSorted(x: number[], value: number): number;
 

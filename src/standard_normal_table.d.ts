@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#standardnormaltable
+ * https://simple-statistics.github.io/docs/#standardnormaltable
  */
 declare const standardNormalTable: number[];
 

@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#combinevariances
+ * https://simple-statistics.github.io/docs/#combinevariances
  */
 declare function combineVariances(
     variance1: number,

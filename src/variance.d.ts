@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#variance
+ * https://simple-statistics.github.io/docs/#variance
  */
 declare function variance(x: number[]): number;
 

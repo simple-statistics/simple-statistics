@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#cumulativestdnormalprobability
+ * https://simple-statistics.github.io/docs/#cumulativestdnormalprobability
  */
 declare function cumulativeStdNormalProbability(z: number): number;
 

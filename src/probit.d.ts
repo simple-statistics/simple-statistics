@@ -1,5 +1,5 @@
 /**
- * https://simplestatistics.org/docs/#probit
+ * https://simple-statistics.github.io/docs/#probit
  */
 declare function probit(p: number): number;
 
