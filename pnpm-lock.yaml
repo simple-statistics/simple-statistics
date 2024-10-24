@@ -17,6 +17,9 @@ importers:
       '@rollup/plugin-terser':
         specifier: ^0.4.4
         version: 0.4.4(rollup@4.23.0)
+      '@types/buble':
+        specifier: ^0.20.5
+        version: 0.20.5
       cz-conventional-changelog:
         specifier: ^3.3.0
         version: 3.3.0(@types/node@22.3.0)(typescript@5.6.2)
@@ -586,6 +589,9 @@ packages:
 
   '@types/buble@0.19.2':
     resolution: {integrity: sha512-uUD8zIfXMKThmFkahTXDGI3CthFH1kMg2dOm3KLi4GlC5cbARA64bEcUMbbWdWdE73eoc/iBB9PiTMqH0dNS2Q==}
+
+  '@types/buble@0.20.5':
+    resolution: {integrity: sha512-CNpql2WPrZloamMweLkyM42nPsUVa10NDurkhTB5+tGu8SstDd568dothJi7tFSAsbqJK0rSb83W9ZwGt8My/A==}
 
   '@types/conventional-commits-parser@5.0.0':
     resolution: {integrity: sha512-loB369iXNmAZglwWATL+WRe+CRMmmBPtpolYzIebFaX4YA3x+BEfLqhUAV9WanycKI3TG1IMr5bMJDajDKLlUQ==}
@@ -3815,6 +3821,10 @@ snapshots:
       minimatch: 9.0.5
 
   '@types/buble@0.19.2':
+    dependencies:
+      magic-string: 0.25.9
+
+  '@types/buble@0.20.5':
     dependencies:
       magic-string: 0.25.9
 
