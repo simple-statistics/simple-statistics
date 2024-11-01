@@ -19,7 +19,7 @@ importers:
         version: 0.4.4(rollup@4.23.0)
       cz-conventional-changelog:
         specifier: ^3.3.0
-        version: 3.3.0(@types/node@22.3.0)(typescript@5.6.2)
+        version: 3.3.0(@types/node@22.3.0)(typescript@5.6.3)
       documentation:
         specifier: ^14
         version: 14.0.3
@@ -34,10 +34,10 @@ importers:
         version: 9.5.0
       tap:
         specifier: ^21.0.1
-        version: 21.0.1(@types/node@22.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.2)
+        version: 21.0.1(@types/node@22.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3)
       typescript:
         specifier: ^5.5.4
-        version: 5.6.2
+        version: 5.6.3
 
 packages:
 
@@ -2849,8 +2849,8 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  typescript@5.6.2:
-    resolution: {integrity: sha512-NW8ByodCSNCwZeghjN3o+JX5OFH0Ojg6sadjEKY4huZ52TqbJTJnDo5+Tw98lSy63NZvi4n+ez5m2u5d4PkZyw==}
+  typescript@5.6.3:
+    resolution: {integrity: sha512-hjcS1mhfuyi4WW8IWtjP7brDrG2cuDZukyrYrSauoXGNgx0S7zceP07adYkJycEr56BOUTNPzbInooiN3fn1qw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -3260,15 +3260,15 @@ snapshots:
   '@commitlint/execute-rule@19.0.0':
     optional: true
 
-  '@commitlint/load@19.4.0(@types/node@22.3.0)(typescript@5.6.2)':
+  '@commitlint/load@19.4.0(@types/node@22.3.0)(typescript@5.6.3)':
     dependencies:
       '@commitlint/config-validator': 19.0.3
       '@commitlint/execute-rule': 19.0.0
       '@commitlint/resolve-extends': 19.1.0
       '@commitlint/types': 19.0.3
       chalk: 5.3.0
-      cosmiconfig: 9.0.0(typescript@5.6.2)
-      cosmiconfig-typescript-loader: 5.0.0(@types/node@22.3.0)(cosmiconfig@9.0.0(typescript@5.6.2))(typescript@5.6.2)
+      cosmiconfig: 9.0.0(typescript@5.6.3)
+      cosmiconfig-typescript-loader: 5.0.0(@types/node@22.3.0)(cosmiconfig@9.0.0(typescript@5.6.3))(typescript@5.6.3)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -3324,7 +3324,7 @@ snapshots:
       typescript: 5.5.4
       v8-compile-cache-lib: 3.0.1
 
-  '@isaacs/ts-node-temp-fork-for-pr-2009@10.9.7(@types/node@22.3.0)(typescript@5.6.2)':
+  '@isaacs/ts-node-temp-fork-for-pr-2009@10.9.7(@types/node@22.3.0)(typescript@5.6.3)':
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node14': 14.1.2
@@ -3337,7 +3337,7 @@ snapshots:
       arg: 4.1.3
       diff: 4.0.2
       make-error: 1.3.6
-      typescript: 5.6.2
+      typescript: 5.6.3
       v8-compile-cache-lib: 3.0.1
 
   '@istanbuljs/schema@0.1.3': {}
@@ -3785,9 +3785,9 @@ snapshots:
       - '@types/node'
       - typescript
 
-  '@tapjs/typescript@3.0.0(@tapjs/core@4.0.0(@types/node@22.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.3.0)(typescript@5.6.2)':
+  '@tapjs/typescript@3.0.0(@tapjs/core@4.0.0(@types/node@22.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.3.0)(typescript@5.6.3)':
     dependencies:
-      '@isaacs/ts-node-temp-fork-for-pr-2009': 10.9.7(@types/node@22.3.0)(typescript@5.6.2)
+      '@isaacs/ts-node-temp-fork-for-pr-2009': 10.9.7(@types/node@22.3.0)(typescript@5.6.3)
       '@tapjs/core': 4.0.0(@types/node@22.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     transitivePeerDependencies:
       - '@swc/core'
@@ -4168,10 +4168,10 @@ snapshots:
 
   commander@2.20.3: {}
 
-  commitizen@4.3.0(@types/node@22.3.0)(typescript@5.6.2):
+  commitizen@4.3.0(@types/node@22.3.0)(typescript@5.6.3):
     dependencies:
       cachedir: 2.3.0
-      cz-conventional-changelog: 3.3.0(@types/node@22.3.0)(typescript@5.6.2)
+      cz-conventional-changelog: 3.3.0(@types/node@22.3.0)(typescript@5.6.3)
       dedent: 0.7.0
       detect-indent: 6.1.0
       find-node-modules: 2.1.3
@@ -4322,22 +4322,22 @@ snapshots:
 
   core-util-is@1.0.3: {}
 
-  cosmiconfig-typescript-loader@5.0.0(@types/node@22.3.0)(cosmiconfig@9.0.0(typescript@5.6.2))(typescript@5.6.2):
+  cosmiconfig-typescript-loader@5.0.0(@types/node@22.3.0)(cosmiconfig@9.0.0(typescript@5.6.3))(typescript@5.6.3):
     dependencies:
       '@types/node': 22.3.0
-      cosmiconfig: 9.0.0(typescript@5.6.2)
+      cosmiconfig: 9.0.0(typescript@5.6.3)
       jiti: 1.21.6
-      typescript: 5.6.2
+      typescript: 5.6.3
     optional: true
 
-  cosmiconfig@9.0.0(typescript@5.6.2):
+  cosmiconfig@9.0.0(typescript@5.6.3):
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.0
       js-yaml: 4.1.0
       parse-json: 5.2.0
     optionalDependencies:
-      typescript: 5.6.2
+      typescript: 5.6.3
     optional: true
 
   cross-spawn@7.0.3:
@@ -4346,16 +4346,16 @@ snapshots:
       shebang-command: 2.0.0
       which: 2.0.2
 
-  cz-conventional-changelog@3.3.0(@types/node@22.3.0)(typescript@5.6.2):
+  cz-conventional-changelog@3.3.0(@types/node@22.3.0)(typescript@5.6.3):
     dependencies:
       chalk: 2.4.2
-      commitizen: 4.3.0(@types/node@22.3.0)(typescript@5.6.2)
+      commitizen: 4.3.0(@types/node@22.3.0)(typescript@5.6.3)
       conventional-commit-types: 3.0.0
       lodash.map: 4.6.0
       longest: 2.0.1
       word-wrap: 1.2.5
     optionalDependencies:
-      '@commitlint/load': 19.4.0(@types/node@22.3.0)(typescript@5.6.2)
+      '@commitlint/load': 19.4.0(@types/node@22.3.0)(typescript@5.6.3)
     transitivePeerDependencies:
       - '@types/node'
       - typescript
@@ -6374,7 +6374,7 @@ snapshots:
       yaml: 2.5.0
       yaml-types: 0.4.0(yaml@2.5.0)
 
-  tap@21.0.1(@types/node@22.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.2):
+  tap@21.0.1(@types/node@22.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3):
     dependencies:
       '@tapjs/after': 3.0.0(@tapjs/core@4.0.0(@types/node@22.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@tapjs/after-each': 4.0.0(@tapjs/core@4.0.0(@types/node@22.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
@@ -6393,7 +6393,7 @@ snapshots:
       '@tapjs/spawn': 4.0.0(@tapjs/core@4.0.0(@types/node@22.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@tapjs/stdin': 4.0.0(@tapjs/core@4.0.0(@types/node@22.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@tapjs/test': 4.0.0(@tapjs/core@4.0.0(@types/node@22.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@tapjs/typescript': 3.0.0(@tapjs/core@4.0.0(@types/node@22.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.3.0)(typescript@5.6.2)
+      '@tapjs/typescript': 3.0.0(@tapjs/core@4.0.0(@types/node@22.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/node@22.3.0)(typescript@5.6.3)
       '@tapjs/worker': 4.0.0(@tapjs/core@4.0.0(@types/node@22.3.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       resolve-import: 2.0.0
     transitivePeerDependencies:
@@ -6483,7 +6483,7 @@ snapshots:
       resolve-import: 2.0.0
       rimraf: 6.0.1
       sync-content: 2.0.1
-      typescript: 5.6.2
+      typescript: 5.6.3
       walk-up-path: 4.0.0
 
   tslib@2.6.3: {}
@@ -6512,7 +6512,7 @@ snapshots:
 
   typescript@5.5.4: {}
 
-  typescript@5.6.2: {}
+  typescript@5.6.3: {}
 
   uglify-js@3.19.2:
     optional: true
