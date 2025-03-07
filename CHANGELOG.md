@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.8.8](https://github.com/simple-statistics/simple-statistics/compare/v7.8.7...v7.8.8) (2025-03-07)
+
+
+### Bug Fixes
+
+* Add missing types from types bundle file ([#756](https://github.com/simple-statistics/simple-statistics/issues/756)) ([20d7e44](https://github.com/simple-statistics/simple-statistics/commit/20d7e44995f025f67b962bfb34f50e9acd7711d2))
+
 ### [7.8.7](https://github.com/simple-statistics/simple-statistics/compare/v7.8.6...v7.8.7) (2024-10-16)
 
 ### [7.8.6](https://github.com/simple-statistics/simple-statistics/compare/v7.8.3...v7.8.6) (2024-10-16)
