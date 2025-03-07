@@ -38,7 +38,7 @@ in all modern browsers (including IE) as well as in [node.js](https://nodejs.org
       available globally as the variable `ss`. You can reassign this variable to
       another name if you want to, but doing so is optional.
       ```HTML
-      <script src='https://unpkg.com/simple-statistics@7.8.3/dist/simple-statistics.min.js'>
+      <script src='https://unpkg.com/simple-statistics@7.8.8/dist/simple-statistics.min.js'>
       </script>
       ```
   * **I want to use ES6 modules in a browser and I'm [willing to only support new browsers](https://caniuse.com/#feat=es6-module) to do it**
@@ -47,7 +47,7 @@ in all modern browsers (including IE) as well as in [node.js](https://nodejs.org
       directly - through `index.js` and with true [ES6 import syntax and behavior](http://exploringjs.com/es6/ch_modules.html).
       ```js
       <script type='module'>
-      import {min} from "https://unpkg.com/simple-statistics@7.8.3/index.js?module"
+      import {min} from "https://unpkg.com/simple-statistics@7.8.8/index.js?module"
       console.log(min([1, 2, 3]))
       </script>
       ```
