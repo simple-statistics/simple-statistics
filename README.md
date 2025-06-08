@@ -29,7 +29,7 @@ in all modern browsers (including IE) as well as in [node.js](https://nodejs.org
       Include a specific named export: <pre>import {min} from 'simple-statistics'</pre>
       Simple statistics has _only_ named exports for ES6.
 * **I'm using Deno.**
-  * Simple Statistics is published for Deno: https://deno.land/x/simplestatistics
+  * We recommend using Deno's first-class [NPM compatibility](https://docs.deno.com/runtime/fundamentals/node/) to use simple-statistics from NPM: you'll need to import it as `npm:simple-statistics`.
 * **I'm not using a module bundler. I'm writing a web page, and want to include
   simple-statistics using a script tag.**
   * **I want to support all browsers**
