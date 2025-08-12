@@ -11,8 +11,8 @@ jobs:
         node-version: [18.x, 20.x, 22.x, 24.x]
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
         with:
           version: 10.6.0
       - name: Use Node.js ${{ matrix.node-version }}
