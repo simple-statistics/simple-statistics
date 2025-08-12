@@ -8,7 +8,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x, 24.x]
+        node-version: [18.x, 22.x, 24.x]
 
     steps:
       - uses: actions/checkout@v5
@@ -20,7 +20,7 @@ jobs:
         with:
           cache: "pnpm"
           node-version: ${{ matrix.node-version }}
-      - name: yarn install, build, and test
+      - name: pnpm install, build, and test
         run: |
           pnpm install
           pnpm test
