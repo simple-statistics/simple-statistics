@@ -4,6 +4,6 @@
 declare function jenks(
     data: readonly number[],
     nClasses: number
-): readonly number[];
+): number[];
 
 export default jenks;

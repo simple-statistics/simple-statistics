@@ -4,6 +4,6 @@
 declare function equalIntervalBreaks(
     x: readonly number[],
     nClasses: number
-): readonly number[];
+): number[];
 
 export default equalIntervalBreaks;

@@ -5,6 +5,6 @@ declare function quantile(x: readonly number[], p: number): number;
 declare function quantile(
     x: readonly number[],
     p: readonly number[]
-): readonly number[];
+): number[];
 
 export default quantile;
