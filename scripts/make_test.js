@@ -1,5 +1,5 @@
-var fs = require("fs"),
-    path = require("path");
+var fs = require("node:fs"),
+    path = require("node:path");
 
 // Browserify needs a single entry point. This doesn't mix
 // well with our testing approach that runs tests as individual

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-var fs = require("fs");
+var fs = require("node:fs");
 
 var version = JSON.parse(fs.readFileSync("./package.json")).version;
 var README = fs.readFileSync("./README.md", "utf8");
