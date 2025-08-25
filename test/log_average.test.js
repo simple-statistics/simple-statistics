@@ -24,7 +24,7 @@ test("log average", function (t) {
         for (let i = 0; i < 100; i++) {
             array.push(value);
         }
-        if (!Number.isFinite(ss.logAverage(array))) {
+        if (!Number.isFinite(ss.logAverage(Object.freeze(array)))) {
             t.fail("log average failed for large product");
         }
         t.end();
@@ -36,7 +36,7 @@ test("log average", function (t) {
         for (let i = 0; i < 100; i++) {
             array.push(value);
         }
-        if (ss.logAverage(array) === 0) {
+        if (ss.logAverage(Object.freeze(array)) === 0) {
             t.fail("log average failed for small product");
         }
         t.end();
@@ -47,7 +47,12 @@ test("log average", function (t) {
         for (let i = 0; i < 10; i++) {
             arr.push(Math.exp(Math.random()));
         }
-        if (Math.abs(ss.logAverage(arr) - ss.geometricMean(arr)) > ss.epsilon) {
+        if (
+            Math.abs(
+                ss.logAverage(Object.freeze(arr)) -
+                    ss.geometricMean(Object.freeze(arr))
+            ) > ss.epsilon
+        ) {
             t.fail("log average and geometric mean are not equal");
         }
         t.end();

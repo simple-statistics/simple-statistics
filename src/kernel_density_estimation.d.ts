@@ -5,7 +5,7 @@ export type BandwidthMethods = "nrd";
  * https://simple-statistics.github.io/docs/#kde
  */
 declare function kernelDensityEstimation(
-    X: number[],
+    X: readonly number[],
     kernel?: Kernels | ((u: number) => number),
     bandwidthMethod?: BandwidthMethods | number
 ): (x: number) => number;

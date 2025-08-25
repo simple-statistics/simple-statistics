@@ -5,40 +5,40 @@ const ss = require("../dist/simple-statistics.js");
 
 test("wilcoxonRankSum", function (t) {
     t.test("x is dominated by y", function (t) {
-        const x = [1, 2, 3];
-        const y = [4, 5, 6];
+        const x = Object.freeze([1, 2, 3]);
+        const y = Object.freeze([4, 5, 6]);
         const res = ss.wilcoxonRankSum(x, y);
         t.equal(res, 6);
         t.end();
     });
 
     t.test("y is dominated by x", function (t) {
-        const x = [4, 5, 6];
-        const y = [1, 2, 3];
+        const x = Object.freeze([4, 5, 6]);
+        const y = Object.freeze([1, 2, 3]);
         const res = ss.wilcoxonRankSum(x, y);
         t.equal(res, 15);
         t.end();
     });
 
     t.test("x and y are interleaved", function (t) {
-        const x = [1, 3, 5];
-        const y = [2, 4, 6];
+        const x = Object.freeze([1, 3, 5]);
+        const y = Object.freeze([2, 4, 6]);
         const res = ss.wilcoxonRankSum(x, y);
         t.equal(res, 9);
         t.end();
     });
 
     t.test("x and y overlap at one value", function (t) {
-        const x = [1, 2, 3];
-        const y = [3, 4, 5];
+        const x = Object.freeze([1, 2, 3]);
+        const y = Object.freeze([3, 4, 5]);
         const res = ss.wilcoxonRankSum(x, y);
         t.equal(res, 6.5);
         t.end();
     });
 
     t.test("trailing tied ranks are handled correctly", function (t) {
-        const x = [1, 2, 3];
-        const y = [3];
+        const x = Object.freeze([1, 2, 3]);
+        const y = Object.freeze([3]);
         const res = ss.wilcoxonRankSum(x, y);
         t.equal(res, 6.5);
         t.end();

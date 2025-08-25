@@ -5,7 +5,7 @@ const ss = require("../dist/simple-statistics.js");
 
 test("addToMean", function (t) {
     t.test("can get add a single value to a mean", function (t) {
-        const values = [13, 14, 15, 8, 20];
+        const values = Object.freeze([13, 14, 15, 8, 20]);
         t.equal(ss.addToMean(ss.mean(values), values.length, 53), 20.5);
         t.equal(
             ss.addToMean(ss.mean(values), values.length, 53),

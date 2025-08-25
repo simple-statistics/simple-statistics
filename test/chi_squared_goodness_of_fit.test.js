@@ -5,11 +5,11 @@ const ss = require("../dist/simple-statistics.js");
 
 // Data from Poisson goodness-of-fit example 10-19 in William W. Hines & Douglas C. Montgomery,
 // "Probability and Statistics in Engineering and Management Science", Wiley (1980).
-const data1019 = [
+const data1019 = Object.freeze([
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2,
     2, 2, 2, 2, 2, 2, 3, 3, 3, 3
-];
+]);
 
 test("chiSquaredGoodnessOfFit", function (t) {
     t.test(

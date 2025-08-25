@@ -10,7 +10,7 @@ function rng() {
 }
 
 test("shuffle", function (t) {
-    const input = [1, 2, 3, 4, 5, 6];
+    const input = Object.freeze([1, 2, 3, 4, 5, 6]);
     t.same(ss.shuffle([], rng), []);
     t.same(ss.shuffle(input, rng), [1, 5, 3, 2, 4, 6]);
     t.same(input, [1, 2, 3, 4, 5, 6], "does not change original array");
