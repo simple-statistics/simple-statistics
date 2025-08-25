@@ -14,7 +14,7 @@ test("C k-means", function (t) {
 
     t.same(cK([1, 1, 1, 1], 1), [[1, 1, 1, 1]], "same-value case");
 
-    const exampleInput = [-1, 2, -1, 2, 4, 5, 6, -1, 2, -1];
+    const exampleInput = Object.freeze([-1, 2, -1, 2, 4, 5, 6, -1, 2, -1]);
     const example = cK(exampleInput, 3);
 
     t.same(example, [

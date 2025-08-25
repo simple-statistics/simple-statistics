@@ -10,7 +10,7 @@ function rng() {
 }
 
 test("sampleWithReplacement", function (t) {
-    const input = [1, 2, 3, 4, 5, 6];
+    const input = Object.freeze([1, 2, 3, 4, 5, 6]);
     t.same(ss.sampleWithReplacement(input, 2, rng), [6, 5]);
     t.same(ss.sampleWithReplacement(input, 3, rng), [3, 6, 4]);
     t.same(ss.sampleWithReplacement(input, 4, rng), [5, 2, 3, 4]);
