@@ -6,7 +6,7 @@ var README = fs.readFileSync("./README.md", "utf8");
 fs.writeFileSync(
     "README.md",
     README.replace(
-        /simple-statistics@([\d\.]+)/g,
+        /simple-statistics@([\d.]+)/g,
         "simple-statistics@" + version
     )
 );

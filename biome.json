@@ -1,7 +1,10 @@
 {
-    "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
-    "organizeImports": {
-        "enabled": true
+    "$schema": "https://biomejs.dev/schemas/2.2.2/schema.json",
+    "assist": { "actions": { "source": { "organizeImports": "on" } } },
+    "vcs": {
+        "enabled": true,
+        "clientKind": "git",
+        "useIgnoreFile": true
     },
     "formatter": {
         "indentStyle": "space",
@@ -17,7 +20,6 @@
         "rules": {
             "recommended": true,
             "style": {
-                "noVar": "off",
                 "noUselessElse": "off",
                 "useTemplate": "off",
                 "useExponentiationOperator": "off",
@@ -25,7 +27,8 @@
             },
             "suspicious": {
                 "noExplicitAny": "off",
-                "noApproximativeNumericConstant": "off"
+                "noApproximativeNumericConstant": "off",
+                "noVar": "off"
             },
             "complexity": {
                 "useArrowFunction": "off",
