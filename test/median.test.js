@@ -33,7 +33,7 @@ test("median", function (t) {
     });
 
     t.test("does not change the sorting order of its input", function (t) {
-        const x = [1, 0];
+        const x = Object.freeze([1, 0]);
         t.equal(ss.median(x), 0.5);
         t.equal(x[0], 1);
         t.equal(x[1], 0);

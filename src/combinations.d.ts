@@ -1,6 +1,6 @@
 /**
  * https://simple-statistics.github.io/docs/#combinations
  */
-declare function combinations<T extends any[]>(x: T, k: number): T[];
+declare function combinations<T>(x: readonly T[], k: number): T[][];
 
 export default combinations;

@@ -14,7 +14,7 @@ test("k-means clustering test", function (t) {
     t.test(
         "Single cluster of one point contains only that point",
         function (t) {
-            const points = [[0.5]];
+            const points = Object.freeze([[0.5]]);
             const { labels, centroids } = ss.kMeansCluster(points, 1, nonRNG);
             t.same(labels, [0]);
             t.same(centroids, [[0.5]]);
@@ -23,7 +23,7 @@ test("k-means clustering test", function (t) {
     );
 
     t.test("Clustering with default Math.random", function (t) {
-        const points = [[0.5]];
+        const points = Object.freeze([[0.5]]);
         const { labels, centroids } = ss.kMeansCluster(points, 1);
         t.same(labels.length, 1);
         t.same(centroids.length, 1);
@@ -31,7 +31,7 @@ test("k-means clustering test", function (t) {
     });
 
     t.test("Single cluster of two points contains both points", function (t) {
-        const points = [[0.0], [1.0]];
+        const points = Object.freeze([[0.0], [1.0]]);
         const { labels, centroids } = ss.kMeansCluster(points, 1, nonRNG);
         t.same(labels, [0, 0]);
         t.same(centroids, [[0.5]]);
@@ -41,7 +41,7 @@ test("k-means clustering test", function (t) {
     t.test(
         "Two clusters of two points puts each point in its own cluster",
         function (t) {
-            const points = [[0.0], [1.0]];
+            const points = Object.freeze([[0.0], [1.0]]);
             const { labels, centroids } = ss.kMeansCluster(points, 2, nonRNG);
             t.same(labels, [0, 1]);
             t.same(centroids, [[0.0], [1.0]]);
@@ -52,7 +52,7 @@ test("k-means clustering test", function (t) {
     t.test(
         "Two clusters of four paired points puts each pair in a cluster",
         function (t) {
-            const points = [[0.0], [1.0], [0.0], [1.0]];
+            const points = Object.freeze([[0.0], [1.0], [0.0], [1.0]]);
             const { labels, centroids } = ss.kMeansCluster(points, 2, nonRNG);
             t.same(labels, [0, 1, 0, 1]);
             t.same(centroids, [[0.0], [1.0]]);
@@ -63,10 +63,10 @@ test("k-means clustering test", function (t) {
     t.test(
         "Two clusters of two 2D points puts each point in its own cluster",
         function (t) {
-            const points = [
+            const points = Object.freeze([
                 [0.0, 0.5],
                 [1.0, 0.5]
-            ];
+            ]);
             const { labels, centroids } = ss.kMeansCluster(points, 2, nonRNG);
             t.same(labels, [0, 1]);
             t.same(centroids, [
@@ -87,11 +87,11 @@ test("k-means clustering test", function (t) {
     t.test(
         "Two clusters of three 2D points puts two points in one cluster and one in the other",
         function (t) {
-            const points = [
+            const points = Object.freeze([
                 [0.0, 0.5],
                 [1.0, 0.5],
                 [0.1, 0.0]
-            ];
+            ]);
             const { labels, centroids } = ss.kMeansCluster(points, 2, nonRNG);
             t.same(labels, [0, 1, 0]);
             t.same(centroids, [

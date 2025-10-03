@@ -5,8 +5,8 @@ const ss = require("../dist/simple-statistics.js");
 
 test("combineMeans", function (t) {
     t.test("can combine the means of two lists", function (t) {
-        const values1 = [8, 3, 4];
-        const values2 = [2, 6, 4];
+        const values1 = Object.freeze([8, 3, 4]);
+        const values2 = Object.freeze([2, 6, 4]);
         t.equal(
             ss.combineMeans(
                 ss.mean(values1),
