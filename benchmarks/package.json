@@ -1,20 +1,20 @@
 {
-  "name": "simple-statistics-benchmarks",
-  "version": "1.0.0",
-  "description": "a group of benchmarks for simple-statistics against other libraries",
-  "main": "index.js",
-  "author": "Tom MacWright",
-  "license": "MIT",
-  "scripts": {
-    "start": "node index.js > readme.md"
-  },
-  "dependencies": {
-    "benchmark": "^2.1.4",
-    "d3-array": "^1.2.0",
-    "jstat": "^1.7.0",
-    "markdown-table": "^1.1.0",
-    "mathjs": "^3.11.4",
-    "science": "^1.9.3",
-    "simple-statistics": "^5.0.0"
-  }
+    "name": "simple-statistics-benchmarks",
+    "version": "1.0.0",
+    "description": "a group of benchmarks for simple-statistics against other libraries",
+    "main": "index.js",
+    "author": "Tom MacWright",
+    "license": "MIT",
+    "scripts": {
+        "start": "node index.js > readme.md"
+    },
+    "dependencies": {
+        "benchmark": "^2.1.4",
+        "d3-array": "^1.2.0",
+        "jstat": "^1.7.0",
+        "markdown-table": "^1.1.0",
+        "mathjs": "^3.11.4",
+        "science": "^1.9.3",
+        "simple-statistics": "^5.0.0"
+    }
 }

@@ -1,41 +1,44 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
-  "organizeImports": {
-    "enabled": true
-  },
-  "formatter": {
-    "indentStyle": "space",
-    "indentWidth": 4
-  },
-  "javascript": {
+    "$schema": "https://biomejs.dev/schemas/2.2.4/schema.json",
+    "assist": { "actions": { "source": { "organizeImports": "on" } } },
+    "vcs": {
+        "enabled": true,
+        "clientKind": "git",
+        "useIgnoreFile": true
+    },
     "formatter": {
-      "trailingCommas": "none"
+        "indentStyle": "space",
+        "indentWidth": 4
+    },
+    "javascript": {
+        "formatter": {
+            "trailingCommas": "none"
+        }
+    },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "recommended": true,
+            "style": {
+                "noUselessElse": "off",
+                "useTemplate": "off",
+                "useExponentiationOperator": "off",
+                "noParameterAssign": "off"
+            },
+            "suspicious": {
+                "noExplicitAny": "off",
+                "noApproximativeNumericConstant": "off",
+                "noVar": "off"
+            },
+            "complexity": {
+                "useArrowFunction": "off",
+                "noForEach": "off",
+                "noBannedTypes": "off"
+            },
+            "correctness": {
+                "noInnerDeclarations": "off",
+                "noPrecisionLoss": "off"
+            }
+        }
     }
-  },
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "recommended": true,
-      "style": {
-        "noVar": "off",
-        "noUselessElse": "off",
-        "useTemplate": "off",
-        "useExponentiationOperator": "off",
-        "noParameterAssign": "off"
-      },
-      "suspicious": {
-        "noExplicitAny": "off",
-        "noApproximativeNumericConstant": "off"
-      },
-      "complexity": {
-        "useArrowFunction": "off",
-        "noForEach": "off",
-        "noBannedTypes": "off"
-      },
-      "correctness": {
-        "noInnerDeclarations": "off",
-        "noPrecisionLoss": "off"
-      }
-    }
-  }
 }
