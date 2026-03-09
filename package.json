@@ -16,6 +16,7 @@
     ],
     "devDependencies": {
         "@biomejs/biome": "2",
+        "@changesets/cli": "^2.30.0",
         "@rollup/plugin-buble": "^1.0.3",
         "@rollup/plugin-terser": "^0.4.4",
         "cz-conventional-changelog": "^3.3.0",
