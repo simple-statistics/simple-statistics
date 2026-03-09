@@ -85,7 +85,8 @@ function compare(a, b) {
 }
 
 function quantileIndex(len, p) {
-    const idx = len * p;
+    // Use (n-1) * p to match numpy's linear method (type=7)
+    const idx = (len - 1) * p;
     if (p === 1) {
         // If p is 1, directly return the last index
         return len - 1;
@@ -93,15 +94,10 @@ function quantileIndex(len, p) {
         // If p is 0, directly return the first index
         return 0;
     } else if (idx % 1 !== 0) {
-        // If index is not integer, return the next index in array
-        return Math.ceil(idx) - 1;
-    } else if (len % 2 === 0) {
-        // If the list has even-length, we'll return the middle of two indices
-        // around quantile to indicate that we need an average value of the two
-        return idx - 0.5;
+        // If index is not integer, return the floor index for quickselect
+        return Math.floor(idx);
     } else {
-        // Finally, in the simple case of an integer index
-        // with an odd-length list, return the index
+        // If index is integer, return the index for averaging
         return idx;
     }
 }
