@@ -32,12 +32,10 @@ function quantileSorted(x, p) {
         const lower = Math.floor(idx);
         const upper = Math.ceil(idx);
         const fraction = idx - lower;
-        const result = x[lower] + fraction * (x[upper] - x[lower]);
-        // Round to 10 decimal places to avoid floating point precision issues
-        return Math.round(result * 1e10) / 1e10;
+        return x[lower] + fraction * (x[upper] - x[lower]);
     } else {
-        // If idx is integer, return the average of that index and next
-        return (x[idx] + x[idx + 1]) / 2;
+        // If idx is integer, type=7 returns the value at that index
+        return x[idx];
     }
 }
 

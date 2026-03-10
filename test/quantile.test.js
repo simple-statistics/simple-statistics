@@ -5,7 +5,7 @@ const ss = require("../dist/simple-statistics.js");
 
 test("quantile", function (t) {
     // Data and results from
-    // [Wikipedia](http://en.wikipedia.org/wiki/Quantile#Quantiles_of_a_population)
+    // [Wikipedia](http://en.wikipedia.org/wiki/Quantile#Quantiles_of_a_population),
     // Updated to use numpy linear interpolation method (type=7)
     t.test("can get proper quantiles of an even-length list", function (t) {
         const even = Object.freeze([3, 6, 7, 8, 8, 10, 13, 15, 16, 20]);
@@ -18,7 +18,7 @@ test("quantile", function (t) {
     t.test("can get proper quantiles of an odd-length list", function (t) {
         const odd = Object.freeze([3, 6, 7, 8, 8, 9, 10, 13, 15, 16, 20]);
         t.equal(ss.quantile(odd, 0.25), 7.5);
-        t.equal(ss.quantile(odd, 0.5), 9.5);
+        t.equal(ss.quantile(odd, 0.5), 9);
         t.equal(ss.quantile(odd, 0.75), 14);
         t.end();
     });
@@ -66,9 +66,9 @@ test("quantile", function (t) {
             const odd = Object.freeze([3, 6, 7, 8, 8, 9, 10, 13, 15, 16, 20]);
             t.same(
                 ss.quantile(odd, [0, 0.25, 0.5, 0.75, 1]),
-                [3, 7.5, 9.5, 14, 20]
+                [3, 7.5, 9, 14, 20]
             );
-            t.same(ss.quantile(odd, [0.75, 0.5]), [14, 9.5]);
+            t.same(ss.quantile(odd, [0.75, 0.5]), [14, 9]);
             t.end();
         }
     );
@@ -77,10 +77,13 @@ test("quantile", function (t) {
         "can get an array of quantiles on a small number of elements",
         function (t) {
             const input = Object.freeze([500, 468, 454, 469]);
-            t.same(ss.quantile(input, [0.25, 0.5, 0.75]), [464.5, 468.5, 476.75]);
+            t.same(
+                ss.quantile(input, [0.25, 0.5, 0.75]),
+                [464.5, 468.5, 476.75]
+            );
             t.same(
                 ss.quantile(input, [0.05, 0.25, 0.5, 0.75, 0.95]),
-                [456.1, 464.5, 468.5, 476.75, 495.35]
+                [456.1, 464.5, 468.5, 476.75, 495.34999999999997]
             );
             t.end();
         }
