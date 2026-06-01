@@ -103,6 +103,11 @@ ss.shuffle([1, 2, 3, 4]);
 ss.sign(2); // => 1
 ss.variance([2, 4, 4, 4, 5, 5, 7, 9]); // => 4
 ss.standardDeviation([2, 4, 4, 4, 5, 5, 7, 9]); // => 2
+ss.weightedMean([80, 90, 100], [1, 1, 2]); // => 92.5
+ss.weightedVariance([1, 2, 3], [1, 1, 2]); // => 0.6875
+ss.weightedStandardDeviation([1, 2, 3], [1, 1, 2]); // => 0.82915619758885
+ss.weightedQuantile([1, 2, 3], [1, 1, 2], 0.75); // => 3
+ss.weightedQuantile([1, 2, 3], [1, 1, 2], [0.5, 0.75]); // => [2, 3]
 ss.subtractFromMean(20.5, 6, 53); // => 14
 ss.sumNthPowerDeviations([1, 2, 3]);
 ss.sumSimple([1, 2, 3]); // => 6
