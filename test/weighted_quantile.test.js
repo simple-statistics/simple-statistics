@@ -17,6 +17,11 @@ test("weightedQuantile", function (t) {
         t.end();
     });
 
+    t.test("handles floating point weight totals after sorting", function (t) {
+        t.equal(ss.weightedQuantile([3, 2, 1], [0.1, 0.2, 0.3], 1), 3);
+        t.end();
+    });
+
     t.test("ignores zero weights", function (t) {
         t.equal(ss.weightedQuantile([1, 100], [1, 0], 1), 1);
         t.end();
