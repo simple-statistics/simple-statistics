@@ -1,5 +1,11 @@
 # Changelog
 
+## 7.9.0
+
+### Minor Changes
+
+- b7b2053: Add weighted mean, weighted variance, weighted standard deviation, and weighted quantile.
+
 ## 7.8.9
 
 ### Patch Changes
