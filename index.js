@@ -76,6 +76,10 @@ export { default as tTest } from "./src/t_test.js";
 export { default as tTestTwoSample } from "./src/t_test_two_sample.js";
 export { default as uniqueCountSorted } from "./src/unique_count_sorted.js";
 export { default as variance } from "./src/variance.js";
+export { default as weightedMean } from "./src/weighted_mean.js";
+export { default as weightedQuantile } from "./src/weighted_quantile.js";
+export { default as weightedStandardDeviation } from "./src/weighted_standard_deviation.js";
+export { default as weightedVariance } from "./src/weighted_variance.js";
 export { default as wilcoxonRankSum } from "./src/wilcoxon_rank_sum.js";
 
 // ss.jenks = require('./src/jenks');
