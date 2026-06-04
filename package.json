@@ -23,7 +23,7 @@
         "random-js": "^2.1.0",
         "rollup": "^4.20.0",
         "tap": "^21.0.1",
-        "typescript": "^5.5.4"
+        "typescript": "^6.0.3"
     },
     "scripts": {
         "release": "sh ./scripts/update_website.sh",
