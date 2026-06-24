@@ -27,6 +27,18 @@ function gamma(n) {
         }
     }
 
+    if (n > 0 && n < 1) {
+        // Arguments in (0, 1) would otherwise recurse forever through
+        // the reflection branch below, because the reflected argument
+        // stays in (0, 1) and never reaches the Nemes expansion.
+        // Lift into the supported domain via the recurrence
+        // gamma(n) = gamma(n + 2) / (n * (n + 1)). Stepping up by two
+        // lands the evaluation on (2, 3), where the Nemes expansion is
+        // far better conditioned than just above 1, so the result is
+        // near-exact rather than merely finite.
+        return gamma(n + 2) / (n * (n + 1));
+    }
+
     // Decrement n, because approximation is defined for n - 1
     n--;
 
