@@ -1,5 +1,11 @@
 # Changelog
 
+## 7.9.1
+
+### Patch Changes
+
+- 9c1bb2f: fix: gamma() no longer infinitely recurses for 0 < n < 1
+
 ## 7.9.0
 
 ### Minor Changes
