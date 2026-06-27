@@ -89,5 +89,73 @@ test("quantile", function (t) {
         }
     );
 
+    t.test(
+        "array of quantiles is independent of which quantiles are requested (#704)",
+        function (t) {
+            // Each quantile must equal the result of computing it on its own,
+            // regardless of the other quantiles requested alongside it.
+            const data = Object.freeze([
+                4534264.499853279, 0, 0, 4441655.968117084, 7982031.499157332,
+                11183760.330270268, 8374531.7466523405, 7537166.851276029,
+                6408451.109897822, 4858231.646338846, 6409803.519554875,
+                4296216.572964368, 5367514.3078208575, 6364913.420875475,
+                8621150.51996475, 9236261.500350267, 7850954.174512796,
+                6026897.449805159, 3569031.9331034794, 5336662.162307054,
+                6953168.388225255, 6789669.207787706, 6225885.17604323,
+                5217135.654872652, 6199349.484675659, 5858452.126622974
+            ]);
+            const ps = [0.0, 0.05, 0.95, 1.0];
+            t.same(
+                ss.quantile(data, ps),
+                ps.map((p) => ss.quantile(data, p))
+            );
+            t.end();
+        }
+    );
+
+    t.test(
+        "array of quantiles matches a full sort for tricky inputs",
+        function (t) {
+            // Regression for multiQuantileSelect: a narrow quickselect could
+            // disturb an already-finalized order statistic. Compare against a
+            // brute-force fully-sorted computation across duplicate-heavy data.
+            const quantileSorted = (sorted, p) => {
+                const idx = (sorted.length - 1) * p;
+                if (p === 1) return sorted[sorted.length - 1];
+                if (p === 0) return sorted[0];
+                const lower = Math.floor(idx);
+                const upper = Math.ceil(idx);
+                return (
+                    sorted[lower] +
+                    (idx - lower) * (sorted[upper] - sorted[lower])
+                );
+            };
+            const cases = [
+                {
+                    x: [
+                        31, 16, 67, 56, 16, 12, 79, 13, 3, 37, 41, 68, 3, 52,
+                        88, 55, 44, 7
+                    ],
+                    ps: [0.75, 0, 0.1, 0.95, 0.2]
+                },
+                {
+                    x: [
+                        9784654, 9784654, 1295491, 3093978, 5430034, 0, 9057878,
+                        4402670, 9734910, 4110841, 8156564, 2673582, 3841950
+                    ],
+                    ps: [0, 0.33, 0.5, 0.95, 1]
+                }
+            ];
+            for (const { x, ps } of cases) {
+                const sorted = x.slice().sort((a, b) => a - b);
+                t.same(
+                    ss.quantile(x, ps),
+                    ps.map((p) => quantileSorted(sorted, p))
+                );
+            }
+            t.end();
+        }
+    );
+
     t.end();
 });
