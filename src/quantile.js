@@ -56,8 +56,8 @@ function multiQuantileSelect(arr, p) {
     // Collect every integer order statistic that the requested quantiles need.
     // Linear interpolation (type=7) reads x[floor(idx)] and x[ceil(idx)], so both
     // surrounding positions must be placed. Deduplicate to integer positions
-    // (including the endpoints) so each is selected with an unambiguous index.
-    const positions = new Set([0, arr.length - 1]);
+    // so each is selected with an unambiguous index.
+    const positions = new Set();
     for (let i = 0; i < p.length; i++) {
         const idx = quantileIndex(arr.length, p[i]);
         positions.add(Math.floor(idx));
@@ -65,23 +65,19 @@ function multiQuantileSelect(arr, p) {
     }
     const indices = Array.from(positions).sort(compare);
 
-    // Recursively partition around the median requested position, then the two
-    // halves. The just-placed pivot is excluded from the child ranges so that a
-    // later, narrower quickselect cannot disturb an already-finalized position.
-    const stack = [0, indices.length - 1, 0, arr.length - 1];
-    while (stack.length) {
-        const right = stack.pop();
-        const left = stack.pop();
-        const r = stack.pop();
-        const l = stack.pop();
-        if (l > r) continue;
+    multiselect(arr, indices, 0, indices.length - 1, 0, arr.length - 1);
+}
 
-        const m = (l + r) >> 1;
-        quickselect(arr, indices[m], left, right);
-
-        stack.push(l, m - 1, left, indices[m] - 1);
-        stack.push(m + 1, r, indices[m] + 1, right);
-    }
+// Place every order statistic in `indices` by partitioning around the median
+// requested position, then recursing into the two halves. The just-placed pivot
+// is excluded from the child ranges (indices[mid] ± 1) so that a later, narrower
+// quickselect cannot disturb an already-finalized position.
+function multiselect(arr, indices, lo, hi, left, right) {
+    if (lo > hi) return;
+    const mid = (lo + hi) >> 1;
+    quickselect(arr, indices[mid], left, right);
+    multiselect(arr, indices, lo, mid - 1, left, indices[mid] - 1);
+    multiselect(arr, indices, mid + 1, hi, indices[mid] + 1, right);
 }
 
 function compare(a, b) {
