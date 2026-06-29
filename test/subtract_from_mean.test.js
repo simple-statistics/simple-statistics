@@ -1,17 +1,17 @@
-/* eslint no-shadow: 0 */
-
-const test = require("tap").test;
+const { describe, it } = require("node:test");
+const assert = require("node:assert/strict");
 const ss = require("../dist/simple-statistics.js");
 
-test("subtractFromMean", function (t) {
-    t.test("can remove a single value from a mean", function (t) {
+describe("subtractFromMean", function () {
+    it("can remove a single value from a mean", function () {
         const values = Object.freeze([13, 14, 15, 8, 20, 54]);
-        t.equal(ss.subtractFromMean(ss.mean(values), values.length, 54), 14);
-        t.equal(
+        assert.equal(
+            ss.subtractFromMean(ss.mean(values), values.length, 54),
+            14
+        );
+        assert.equal(
             ss.subtractFromMean(ss.mean(values), values.length, 54),
             ss.mean(values.slice(0, -1))
         );
-        t.end();
     });
-    t.end();
 });

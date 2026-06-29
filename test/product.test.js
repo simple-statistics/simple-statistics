@@ -1,30 +1,21 @@
-/* eslint no-shadow: 0 */
-
-const test = require("tap").test;
+const { describe, it } = require("node:test");
+const assert = require("node:assert/strict");
 const ss = require("../dist/simple-statistics.js");
 
-test("product", function (t) {
-    t.test("can get the product of one number", function (t) {
-        t.equal(ss.product([2]), 2);
-        t.end();
+describe("product", function () {
+    it("can get the product of one number", function () {
+        assert.equal(ss.product([2]), 2);
     });
 
-    t.test("can get the product of two numbers", function (t) {
-        t.equal(ss.product([2, 3]), 6);
-        t.end();
+    it("can get the product of two numbers", function () {
+        assert.equal(ss.product([2, 3]), 6);
     });
 
-    t.test("can get the product of a negative number", function (t) {
-        t.equal(ss.product([-1, 2, 3, 4]), -24);
-        t.end();
+    it("can get the product of a negative number", function () {
+        assert.equal(ss.product([-1, 2, 3, 4]), -24);
     });
 
-    t.test(
-        "the product of no numbers is one - the multiplicative identity",
-        function (t) {
-            t.equal(ss.product([]), 1);
-            t.end();
-        }
-    );
-    t.end();
+    it("the product of no numbers is one - the multiplicative identity", function () {
+        assert.equal(ss.product([]), 1);
+    });
 });

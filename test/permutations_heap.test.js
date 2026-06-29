@@ -1,15 +1,13 @@
-/* eslint no-shadow: 0 */
-
-const test = require("tap").test;
+const { describe, it } = require("node:test");
+const assert = require("node:assert/strict");
 const ss = require("../dist/simple-statistics.js");
 
-test("permutationsHeap", function (t) {
-    t.test("generates 1 permutation", function (t) {
-        t.same(ss.permutationsHeap([1]), [[1]]);
-        t.end();
+describe("permutationsHeap", function () {
+    it("generates 1 permutation", function () {
+        assert.deepEqual(ss.permutationsHeap([1]), [[1]]);
     });
-    t.test("generates 1, 2, 3 permutations", function (t) {
-        t.same(ss.permutationsHeap([1, 2, 3]), [
+    it("generates 1, 2, 3 permutations", function () {
+        assert.deepEqual(ss.permutationsHeap([1, 2, 3]), [
             [1, 2, 3],
             [2, 1, 3],
             [3, 1, 2],
@@ -17,7 +15,5 @@ test("permutationsHeap", function (t) {
             [2, 3, 1],
             [3, 2, 1]
         ]);
-        t.end();
     });
-    t.end();
 });

@@ -1,18 +1,15 @@
-/* eslint no-shadow: 0 */
-
-const test = require("tap").test;
+const { describe, it } = require("node:test");
+const assert = require("node:assert/strict");
 const ss = require("../dist/simple-statistics.js");
 
-test("quantileRankSorted", function (t) {
+describe("quantileRankSorted", function () {
     // Data and results from
     // [Scipy](https://github.com/scipy/scipy/blob/master/scipy/stats/stats.py)
-    t.test("can get proper quantile ranks", function (t) {
-        t.equal(ss.quantileRankSorted([1, 2, 3, 4], 3), 0.75);
-        t.equal(ss.quantileRankSorted([1, 2, 3, 3, 4], 3), 0.7);
-        t.equal(ss.quantileRankSorted([1, 2, 3, 4], 6), 1);
-        t.equal(ss.quantileRankSorted([1, 2, 3, 4], -3), 0);
-        t.equal(ss.quantileRankSorted([1, 2, 3, 3, 5], 4), 0.8);
-        t.end();
+    it("can get proper quantile ranks", function () {
+        assert.equal(ss.quantileRankSorted([1, 2, 3, 4], 3), 0.75);
+        assert.equal(ss.quantileRankSorted([1, 2, 3, 3, 4], 3), 0.7);
+        assert.equal(ss.quantileRankSorted([1, 2, 3, 4], 6), 1);
+        assert.equal(ss.quantileRankSorted([1, 2, 3, 4], -3), 0);
+        assert.equal(ss.quantileRankSorted([1, 2, 3, 3, 5], 4), 0.8);
     });
-    t.end();
 });

@@ -1,17 +1,14 @@
-/* eslint no-shadow: 0 */
-
-const test = require("tap").test;
+const { describe, it } = require("node:test");
+const assert = require("node:assert/strict");
 const ss = require("../dist/simple-statistics.js");
 
-test("addToMean", function (t) {
-    t.test("can get add a single value to a mean", function (t) {
+describe("addToMean", function () {
+    it("can get add a single value to a mean", function () {
         const values = Object.freeze([13, 14, 15, 8, 20]);
-        t.equal(ss.addToMean(ss.mean(values), values.length, 53), 20.5);
-        t.equal(
+        assert.equal(ss.addToMean(ss.mean(values), values.length, 53), 20.5);
+        assert.equal(
             ss.addToMean(ss.mean(values), values.length, 53),
             ss.mean(values.concat(53))
         );
-        t.end();
     });
-    t.end();
 });

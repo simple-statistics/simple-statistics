@@ -1,14 +1,13 @@
-/* eslint no-shadow: 0 */
-
-const test = require("tap").test;
+const { describe, it } = require("node:test");
+const assert = require("node:assert/strict");
 const ss = require("../dist/simple-statistics.js");
 
-test("combineVariances", function (t) {
-    t.test("can combine the variances of two lists", function (t) {
+describe("combineVariances", function () {
+    it("can combine the variances of two lists", function () {
         const values1 = Object.freeze([8, 3, 4]);
         const values2 = Object.freeze([2, 6, 4]);
 
-        t.equal(
+        assert.equal(
             +ss
                 .combineVariances(
                     ss.variance(values1),
@@ -21,7 +20,7 @@ test("combineVariances", function (t) {
                 .toPrecision(3),
             3.92
         );
-        t.equal(
+        assert.equal(
             ss.combineVariances(
                 ss.variance(values1),
                 ss.mean(values1),
@@ -32,7 +31,5 @@ test("combineVariances", function (t) {
             ),
             ss.variance(values1.concat(values2))
         );
-        t.end();
     });
-    t.end();
 });

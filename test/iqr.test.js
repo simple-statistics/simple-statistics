@@ -1,31 +1,29 @@
-/* eslint no-shadow: 0 */
-
-const test = require("tap").test;
+const { describe, it } = require("node:test");
+const assert = require("node:assert/strict");
 const ss = require("../dist/simple-statistics.js");
 
-test("interquartile range (iqr)", function (t) {
+describe("interquartile range (iqr)", function () {
     // Data and results from
     // [Wikipedia](http://en.wikipedia.org/wiki/Quantile#Quantiles_of_a_population)
-    t.test("can get proper iqr of an even-length list", function (t) {
+    it("can get proper iqr of an even-length list", function () {
         const even = Object.freeze([3, 6, 7, 8, 8, 10, 13, 15, 16, 20]);
-        t.equal(
+        assert.equal(
             ss.quantile(even, 0.75) - ss.quantile(even, 0.25),
             ss.iqr(even)
         );
-        t.end();
     });
 
-    t.test("can get proper iqr of an odd-length list", function (t) {
+    it("can get proper iqr of an odd-length list", function () {
         const odd = Object.freeze([3, 6, 7, 8, 8, 9, 10, 13, 15, 16, 20]);
-        t.equal(ss.quantile(odd, 0.75) - ss.quantile(odd, 0.25), ss.iqr(odd));
-        t.end();
+        assert.equal(
+            ss.quantile(odd, 0.75) - ss.quantile(odd, 0.25),
+            ss.iqr(odd)
+        );
     });
 
-    t.test("an iqr of a zero-length list cannot be calculated", function (t) {
-        t.throws(function () {
+    it("an iqr of a zero-length list cannot be calculated", function () {
+        assert.throws(function () {
             ss.iqr([]);
         });
-        t.end();
     });
-    t.end();
 });

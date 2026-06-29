@@ -1,6 +1,5 @@
-/* eslint no-shadow: 0 */
-
-const test = require("tap").test;
+const { describe, it } = require("node:test");
+const assert = require("node:assert/strict");
 const ss = require("../dist/simple-statistics.js");
 
 // Force shuffling to return the first points in the array to ensure
@@ -10,97 +9,72 @@ function nonRNG() {
     return 1.0 - ss.epsilon;
 }
 
-test("k-means clustering test", function (t) {
-    t.test(
-        "Single cluster of one point contains only that point",
-        function (t) {
-            const points = Object.freeze([[0.5]]);
-            const { labels, centroids } = ss.kMeansCluster(points, 1, nonRNG);
-            t.same(labels, [0]);
-            t.same(centroids, [[0.5]]);
-            t.end();
-        }
-    );
+describe("k-means clustering test", function () {
+    it("Single cluster of one point contains only that point", function () {
+        const points = Object.freeze([[0.5]]);
+        const { labels, centroids } = ss.kMeansCluster(points, 1, nonRNG);
+        assert.deepEqual(labels, [0]);
+        assert.deepEqual(centroids, [[0.5]]);
+    });
 
-    t.test("Clustering with default Math.random", function (t) {
+    it("Clustering with default Math.random", function () {
         const points = Object.freeze([[0.5]]);
         const { labels, centroids } = ss.kMeansCluster(points, 1);
-        t.same(labels.length, 1);
-        t.same(centroids.length, 1);
-        t.end();
+        assert.deepEqual(labels.length, 1);
+        assert.deepEqual(centroids.length, 1);
     });
 
-    t.test("Single cluster of two points contains both points", function (t) {
+    it("Single cluster of two points contains both points", function () {
         const points = Object.freeze([[0.0], [1.0]]);
         const { labels, centroids } = ss.kMeansCluster(points, 1, nonRNG);
-        t.same(labels, [0, 0]);
-        t.same(centroids, [[0.5]]);
-        t.end();
+        assert.deepEqual(labels, [0, 0]);
+        assert.deepEqual(centroids, [[0.5]]);
     });
 
-    t.test(
-        "Two clusters of two points puts each point in its own cluster",
-        function (t) {
-            const points = Object.freeze([[0.0], [1.0]]);
-            const { labels, centroids } = ss.kMeansCluster(points, 2, nonRNG);
-            t.same(labels, [0, 1]);
-            t.same(centroids, [[0.0], [1.0]]);
-            t.end();
-        }
-    );
+    it("Two clusters of two points puts each point in its own cluster", function () {
+        const points = Object.freeze([[0.0], [1.0]]);
+        const { labels, centroids } = ss.kMeansCluster(points, 2, nonRNG);
+        assert.deepEqual(labels, [0, 1]);
+        assert.deepEqual(centroids, [[0.0], [1.0]]);
+    });
 
-    t.test(
-        "Two clusters of four paired points puts each pair in a cluster",
-        function (t) {
-            const points = Object.freeze([[0.0], [1.0], [0.0], [1.0]]);
-            const { labels, centroids } = ss.kMeansCluster(points, 2, nonRNG);
-            t.same(labels, [0, 1, 0, 1]);
-            t.same(centroids, [[0.0], [1.0]]);
-            t.end();
-        }
-    );
+    it("Two clusters of four paired points puts each pair in a cluster", function () {
+        const points = Object.freeze([[0.0], [1.0], [0.0], [1.0]]);
+        const { labels, centroids } = ss.kMeansCluster(points, 2, nonRNG);
+        assert.deepEqual(labels, [0, 1, 0, 1]);
+        assert.deepEqual(centroids, [[0.0], [1.0]]);
+    });
 
-    t.test(
-        "Two clusters of two 2D points puts each point in its own cluster",
-        function (t) {
-            const points = Object.freeze([
-                [0.0, 0.5],
-                [1.0, 0.5]
-            ]);
-            const { labels, centroids } = ss.kMeansCluster(points, 2, nonRNG);
-            t.same(labels, [0, 1]);
-            t.same(centroids, [
-                [0.0, 0.5],
-                [1.0, 0.5]
-            ]);
-            t.end();
-        }
-    );
+    it("Two clusters of two 2D points puts each point in its own cluster", function () {
+        const points = Object.freeze([
+            [0.0, 0.5],
+            [1.0, 0.5]
+        ]);
+        const { labels, centroids } = ss.kMeansCluster(points, 2, nonRNG);
+        assert.deepEqual(labels, [0, 1]);
+        assert.deepEqual(centroids, [
+            [0.0, 0.5],
+            [1.0, 0.5]
+        ]);
+    });
 
-    t.test("Base case of one value", function (t) {
-        t.throws(() => {
+    it("Base case of one value", function () {
+        assert.throws(() => {
             ss.kMeansCluster([1], 2, nonRNG);
         });
-        t.end();
     });
 
-    t.test(
-        "Two clusters of three 2D points puts two points in one cluster and one in the other",
-        function (t) {
-            const points = Object.freeze([
-                [0.0, 0.5],
-                [1.0, 0.5],
-                [0.1, 0.0]
-            ]);
-            const { labels, centroids } = ss.kMeansCluster(points, 2, nonRNG);
-            t.same(labels, [0, 1, 0]);
-            t.same(centroids, [
-                [0.05, 0.25],
-                [1.0, 0.5]
-            ]);
-            t.end();
-        }
-    );
-
-    t.end();
+    it("Two clusters of three 2D points puts two points in one cluster and one in the other", function () {
+        const points = Object.freeze([
+            [0.0, 0.5],
+            [1.0, 0.5],
+            [0.1, 0.0]
+        ]);
+        const { labels, centroids } = ss.kMeansCluster(points, 2, nonRNG);
+        assert.deepEqual(labels, [0, 1, 0]);
+        assert.deepEqual(centroids, [
+            [0.05, 0.25],
+            [1.0, 0.5]
+        ]);
+    });
 });

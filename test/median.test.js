@@ -1,43 +1,35 @@
-/* eslint no-shadow: 0 */
-
-const test = require("tap").test;
+const { describe, it } = require("node:test");
+const assert = require("node:assert/strict");
 const ss = require("../dist/simple-statistics.js");
 
-test("median", function (t) {
-    t.test("can get the median of three numbers", function (t) {
-        t.equal(ss.median([1, 2, 3]), 2);
-        t.end();
+describe("median", function () {
+    it("can get the median of three numbers", function () {
+        assert.equal(ss.median([1, 2, 3]), 2);
     });
 
-    t.test("can get the median of two numbers", function (t) {
-        t.equal(ss.median([1, 2]), 1.5);
-        t.equal(ss.medianSorted([1, 2]), 1.5);
-        t.end();
+    it("can get the median of two numbers", function () {
+        assert.equal(ss.median([1, 2]), 1.5);
+        assert.equal(ss.medianSorted([1, 2]), 1.5);
     });
 
-    t.test("can get the median of four numbers", function (t) {
-        t.equal(ss.median([1, 2, 3, 4]), 2.5);
-        t.end();
+    it("can get the median of four numbers", function () {
+        assert.equal(ss.median([1, 2, 3, 4]), 2.5);
     });
 
-    t.test("cannot calculate the median of an empty list", function (t) {
-        t.throws(function () {
+    it("cannot calculate the median of an empty list", function () {
+        assert.throws(function () {
             ss.median([]);
         });
-        t.end();
     });
 
-    t.test("sorts numbers numerically", function (t) {
-        t.equal(ss.median([8, 9, 10]), 9);
-        t.end();
+    it("sorts numbers numerically", function () {
+        assert.equal(ss.median([8, 9, 10]), 9);
     });
 
-    t.test("does not change the sorting order of its input", function (t) {
+    it("does not change the sorting order of its input", function () {
         const x = Object.freeze([1, 0]);
-        t.equal(ss.median(x), 0.5);
-        t.equal(x[0], 1);
-        t.equal(x[1], 0);
-        t.end();
+        assert.equal(ss.median(x), 0.5);
+        assert.equal(x[0], 1);
+        assert.equal(x[1], 0);
     });
-    t.end();
 });
