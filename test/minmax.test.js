@@ -1,54 +1,44 @@
-/* eslint no-shadow: 0 */
-
-const test = require("tap").test;
+const { describe, it } = require("node:test");
+const assert = require("node:assert/strict");
 const ss = require("../dist/simple-statistics.js");
 
-test("min", function (t) {
-    t.throws(function () {
+describe("min", function () {
+    assert.throws(function () {
         ss.min([]);
-    }, "zero length array throws");
-    t.test("can get the minimum of one number", function (t) {
-        t.equal(ss.min([1]), 1);
-        t.end();
+    });
+    it("can get the minimum of one number", function () {
+        assert.equal(ss.min([1]), 1);
     });
 
-    t.test("can get the minimum of three numbers", function (t) {
-        t.equal(ss.min([1, 7, -1000]), -1000);
-        t.end();
+    it("can get the minimum of three numbers", function () {
+        assert.equal(ss.min([1, 7, -1000]), -1000);
     });
-    t.end();
 });
 
-test("max", function (t) {
-    t.throws(function () {
+describe("max", function () {
+    assert.throws(function () {
         ss.max([]);
-    }, "zero length array throws");
-    t.test("can get the maximum of three numbers", function (t) {
-        t.equal(ss.max([1, 7, -1000]), 7);
-        t.end();
     });
-    t.end();
+    it("can get the maximum of three numbers", function () {
+        assert.equal(ss.max([1, 7, -1000]), 7);
+    });
 });
 
-test("extent", function (t) {
-    t.throws(function () {
+describe("extent", function () {
+    assert.throws(function () {
         ss.extent([]);
-    }, "zero length array throws");
-    t.test("can get the extent of one number", function (t) {
-        t.same(ss.extent([1]), [1, 1]);
-        t.equal(ss.extent([1])[0], ss.extent([1])[1]);
-        t.end();
     });
-    t.test("can get the extent of three numbers", function (t) {
-        t.same(ss.extent([1, 7, -1000]), [-1000, 7]);
-        t.end();
+    it("can get the extent of one number", function () {
+        assert.deepEqual(ss.extent([1]), [1, 1]);
+        assert.equal(ss.extent([1])[0], ss.extent([1])[1]);
     });
-    t.end();
+    it("can get the extent of three numbers", function () {
+        assert.deepEqual(ss.extent([1, 7, -1000]), [-1000, 7]);
+    });
 });
 
-test("sorted", function (t) {
-    t.equal(ss.maxSorted([1, 7, 1000]), 1000, "maxSorted");
-    t.equal(ss.minSorted([1, 7, 1000]), 1, "minSorted");
-    t.same(ss.extentSorted([1, 7, 1000]), [1, 1000], "extentSorted");
-    t.end();
+it("sorted", function () {
+    assert.equal(ss.maxSorted([1, 7, 1000]), 1000, "maxSorted");
+    assert.equal(ss.minSorted([1, 7, 1000]), 1, "minSorted");
+    assert.deepEqual(ss.extentSorted([1, 7, 1000]), [1, 1000], "extentSorted");
 });

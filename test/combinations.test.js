@@ -1,23 +1,16 @@
-/* eslint no-shadow: 0 */
-
-const test = require("tap").test;
+const { describe, it } = require("node:test");
+const assert = require("node:assert/strict");
 const ss = require("../dist/simple-statistics.js");
 
-test("combinations", function (t) {
-    t.test("generates 1 permutation", function (t) {
-        t.same(ss.combinations([1], 1), [[1]]);
-        t.end();
+describe("combinations", function () {
+    it("generates 1 permutation", function () {
+        assert.deepEqual(ss.combinations([1], 1), [[1]]);
     });
-    t.test(
-        "generates combinations of 1,2,3 choosing two at a time",
-        function (t) {
-            t.same(ss.combinations([1, 2, 3], 2), [
-                [1, 2],
-                [1, 3],
-                [2, 3]
-            ]);
-            t.end();
-        }
-    );
-    t.end();
+    it("generates combinations of 1,2,3 choosing two at a time", function () {
+        assert.deepEqual(ss.combinations([1, 2, 3], 2), [
+            [1, 2],
+            [1, 3],
+            [2, 3]
+        ]);
+    });
 });

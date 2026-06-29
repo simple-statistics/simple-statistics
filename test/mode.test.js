@@ -1,64 +1,44 @@
-/* eslint no-shadow: 0 */
-
-const test = require("tap").test;
+const { describe, it } = require("node:test");
+const assert = require("node:assert/strict");
 const ss = require("../dist/simple-statistics.js");
 
-test("mode", function (t) {
+describe("mode", function () {
     ["mode", "modeFast"].forEach(function (modeName) {
-        t.test(modeName, function (t) {
+        describe(modeName, function () {
             const modeFn = ss[modeName];
 
-            t.test(
-                "the mode of a single-number array is that one number",
-                function (t) {
-                    t.equal(modeFn([1]), 1);
-                    t.end();
-                }
-            );
-
-            t.test(
-                "the mode of a two-number array is that one number",
-                function (t) {
-                    t.equal(modeFn([1, 1]), 1);
-                    t.end();
-                }
-            );
-
-            t.test("other cases", function (t) {
-                t.equal(modeFn([1, 1, 2]), 1);
-                t.equal(modeFn([1, 1, 2, 3]), 1);
-                t.equal(modeFn([1, 1, 2, 3, 3]), 1);
-                t.equal(modeFn([1, 1, 2, 3, 3, 3]), 3);
-                t.equal(modeFn([1, 2, 2, 2, 1, 2, 3, 3, 3]), 2);
-                t.equal(modeFn([1, 2, 3, 4, 5]), 1);
-                t.equal(modeFn([1, 2, 3, 4, 5, 5]), 5);
-                t.equal(modeFn([1, 2, 2, 3, 3, 4, 1, 4, 1]), 1);
-                t.end();
+            it("the mode of a single-number array is that one number", function () {
+                assert.equal(modeFn([1]), 1);
             });
 
-            t.test("the mode of an empty array is null", function (t) {
-                t.throws(function () {
+            it("the mode of a two-number array is that one number", function () {
+                assert.equal(modeFn([1, 1]), 1);
+            });
+
+            it("other cases", function () {
+                assert.equal(modeFn([1, 1, 2]), 1);
+                assert.equal(modeFn([1, 1, 2, 3]), 1);
+                assert.equal(modeFn([1, 1, 2, 3, 3]), 1);
+                assert.equal(modeFn([1, 1, 2, 3, 3, 3]), 3);
+                assert.equal(modeFn([1, 2, 2, 2, 1, 2, 3, 3, 3]), 2);
+                assert.equal(modeFn([1, 2, 3, 4, 5]), 1);
+                assert.equal(modeFn([1, 2, 3, 4, 5, 5]), 5);
+                assert.equal(modeFn([1, 2, 2, 3, 3, 4, 1, 4, 1]), 1);
+            });
+
+            it("the mode of an empty array is null", function () {
+                assert.throws(function () {
                     modeFn([]);
                 });
-                t.end();
             });
 
-            t.test(
-                "the mode of a three-number array with two same numbers is the repeated one",
-                function (t) {
-                    t.equal(modeFn([1, 2, 2]), 2);
-                    t.end();
-                }
-            );
-
-            t.end();
+            it("the mode of a three-number array with two same numbers is the repeated one", function () {
+                assert.equal(modeFn([1, 2, 2]), 2);
+            });
         });
     });
 
-    t.test("mode sorted", function (t) {
-        t.equal(ss.modeSorted([1, 2, 2]), 2);
-        t.end();
+    it("mode sorted", function () {
+        assert.equal(ss.modeSorted([1, 2, 2]), 2);
     });
-
-    t.end();
 });

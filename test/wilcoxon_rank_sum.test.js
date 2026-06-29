@@ -1,62 +1,53 @@
-/* eslint no-shadow: 0 */
-
-const test = require("tap").test;
+const { describe, it } = require("node:test");
+const assert = require("node:assert/strict");
 const ss = require("../dist/simple-statistics.js");
 
-test("wilcoxonRankSum", function (t) {
-    t.test("x is dominated by y", function (t) {
+describe("wilcoxonRankSum", function () {
+    it("x is dominated by y", function () {
         const x = Object.freeze([1, 2, 3]);
         const y = Object.freeze([4, 5, 6]);
         const res = ss.wilcoxonRankSum(x, y);
-        t.equal(res, 6);
-        t.end();
+        assert.equal(res, 6);
     });
 
-    t.test("y is dominated by x", function (t) {
+    it("y is dominated by x", function () {
         const x = Object.freeze([4, 5, 6]);
         const y = Object.freeze([1, 2, 3]);
         const res = ss.wilcoxonRankSum(x, y);
-        t.equal(res, 15);
-        t.end();
+        assert.equal(res, 15);
     });
 
-    t.test("x and y are interleaved", function (t) {
+    it("x and y are interleaved", function () {
         const x = Object.freeze([1, 3, 5]);
         const y = Object.freeze([2, 4, 6]);
         const res = ss.wilcoxonRankSum(x, y);
-        t.equal(res, 9);
-        t.end();
+        assert.equal(res, 9);
     });
 
-    t.test("x and y overlap at one value", function (t) {
+    it("x and y overlap at one value", function () {
         const x = Object.freeze([1, 2, 3]);
         const y = Object.freeze([3, 4, 5]);
         const res = ss.wilcoxonRankSum(x, y);
-        t.equal(res, 6.5);
-        t.end();
+        assert.equal(res, 6.5);
     });
 
-    t.test("trailing tied ranks are handled correctly", function (t) {
+    it("trailing tied ranks are handled correctly", function () {
         const x = Object.freeze([1, 2, 3]);
         const y = Object.freeze([3]);
         const res = ss.wilcoxonRankSum(x, y);
-        t.equal(res, 6.5);
-        t.end();
+        assert.equal(res, 6.5);
     });
 
-    t.test("empty input throws", function (t) {
-        const message = "Neither sample can be empty";
-        t.throws(function () {
+    it("empty input throws", function () {
+        const message = /Neither sample can be empty/;
+        assert.throws(function () {
             ss.wilcoxonRankSum([], []);
         }, message);
-        t.throws(function () {
+        assert.throws(function () {
             ss.wilcoxonRankSum([1, 2, 3], []);
         }, message);
-        t.throws(function () {
+        assert.throws(function () {
             ss.wilcoxonRankSum([], [1, 2, 3]);
         }, message);
-        t.end();
     });
-
-    t.end();
 });

@@ -1,6 +1,5 @@
-/* eslint no-shadow: 0 */
-
-const test = require("tap").test;
+const { describe, it } = require("node:test");
+const assert = require("node:assert/strict");
 const ss = require("../dist/simple-statistics.js");
 
 // Data generated in R
@@ -42,46 +41,45 @@ const normallyDistributed = {
     ]
 };
 
-test("kernel density estimation", function (t) {
-    t.test("default kernel and bandwidth", function (t) {
+describe("kernel density estimation", function () {
+    it("default kernel and bandwidth", function () {
         const kde = ss.kernelDensityEstimation(normallyDistributed.sample);
         for (let i = 0; i < normallyDistributed.density.length; i++) {
             const x = normallyDistributed.density[i][0];
             const expected = normallyDistributed.density[i][1];
             const actual = kde(x);
-            t.ok(
+            assert.ok(
                 Math.abs(actual - expected) / expected < 0.1,
                 "density(" + x + ") = " + actual + " != " + expected
             );
         }
-        t.end();
     });
 
-    t.test("gaussian default kernel", function (t) {
-        t.same(
-            ss.kernelDensityEstimation(normallyDistributed.sample),
-            ss.kernelDensityEstimation(
-                normallyDistributed.sample,
-                "gaussian",
-                "nrd"
-            )
-        );
+    it("gaussian default kernel", function () {
         const SQRT_2PI = Math.sqrt(2 * Math.PI);
-        t.same(
-            ss.kernelDensityEstimation(normallyDistributed.sample),
-            ss.kernelDensityEstimation(
-                normallyDistributed.sample,
-                function (u) {
-                    return Math.exp(-0.5 * u * u) / SQRT_2PI;
-                }
-            )
+        const defaultKde = ss.kernelDensityEstimation(
+            normallyDistributed.sample
         );
-
-        t.end();
+        const explicitKde = ss.kernelDensityEstimation(
+            normallyDistributed.sample,
+            "gaussian",
+            "nrd"
+        );
+        const functionKde = ss.kernelDensityEstimation(
+            normallyDistributed.sample,
+            function (u) {
+                return Math.exp(-0.5 * u * u) / SQRT_2PI;
+            }
+        );
+        for (let i = 0; i < normallyDistributed.density.length; i++) {
+            const x = normallyDistributed.density[i][0];
+            assert.equal(defaultKde(x), explicitKde(x));
+            assert.equal(defaultKde(x), functionKde(x));
+        }
     });
 
-    t.test("custom kernel value", function (t) {
-        t.same(
+    it("custom kernel value", function () {
+        assert.deepEqual(
             ss.kernelDensityEstimation(
                 normallyDistributed.sample,
                 "gaussian",
@@ -89,23 +87,18 @@ test("kernel density estimation", function (t) {
             )(0),
             0.2806999313061038
         );
-
-        t.end();
     });
 
-    t.test("invalid kernel", function (t) {
-        t.throws(() => {
+    it("invalid kernel", function () {
+        assert.throws(() => {
             ss.kernelDensityEstimation(normallyDistributed.sample, "bz");
         });
-        t.throws(() => {
+        assert.throws(() => {
             ss.kernelDensityEstimation(
                 normallyDistributed.sample,
                 "gaussian",
                 "bz"
             );
         });
-        t.end();
     });
-
-    t.end();
 });

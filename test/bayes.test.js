@@ -1,11 +1,10 @@
-/* eslint no-shadow: 0 */
-
 const BayesianClassifier =
     require("../dist/simple-statistics.js").BayesianClassifier;
-const test = require("tap").test;
+const { describe, it } = require("node:test");
+const assert = require("node:assert/strict");
 
-test("BayesianClassifier", function (t) {
-    t.test("makes an easy call with one training round", function (t) {
+describe("BayesianClassifier", function () {
+    it("makes an easy call with one training round", function () {
         const bayes = new BayesianClassifier();
         bayes.train(
             {
@@ -13,7 +12,7 @@ test("BayesianClassifier", function (t) {
             },
             "animal"
         );
-        t.same(
+        assert.deepEqual(
             bayes.score({
                 species: "Cat"
             }),
@@ -21,10 +20,9 @@ test("BayesianClassifier", function (t) {
                 animal: 1
             }
         );
-        t.end();
     });
 
-    t.test("makes fify-fifty call", function (t) {
+    it("makes fify-fifty call", function () {
         const bayes = new BayesianClassifier();
         bayes.train(
             {
@@ -38,7 +36,7 @@ test("BayesianClassifier", function (t) {
             },
             "chair"
         );
-        t.same(
+        assert.deepEqual(
             bayes.score({
                 species: "Cat"
             }),
@@ -47,10 +45,9 @@ test("BayesianClassifier", function (t) {
                 chair: 0.5
             }
         );
-        t.end();
     });
 
-    t.test("makes seventy-five/twenty-five call", function (t) {
+    it("makes seventy-five/twenty-five call", function () {
         const bayes = new BayesianClassifier();
         bayes.train(
             {
@@ -76,7 +73,7 @@ test("BayesianClassifier", function (t) {
             },
             "chair"
         );
-        t.same(
+        assert.deepEqual(
             bayes.score({
                 species: "Cat"
             }),
@@ -85,10 +82,9 @@ test("BayesianClassifier", function (t) {
                 chair: 0.25
             }
         );
-        t.end();
     });
 
-    t.test("tests multiple properties", function (t) {
+    it("tests multiple properties", function () {
         const bayes = new BayesianClassifier();
         bayes.train(
             {
@@ -121,7 +117,7 @@ test("BayesianClassifier", function (t) {
             },
             "chair"
         );
-        t.same(
+        assert.deepEqual(
             bayes.score({
                 color: "white"
             }),
@@ -130,10 +126,9 @@ test("BayesianClassifier", function (t) {
                 chair: 0.2
             }
         );
-        t.end();
     });
 
-    t.test("classifies multiple things", function (t) {
+    it("classifies multiple things", function () {
         const bayes = new BayesianClassifier();
         bayes.train(
             {
@@ -159,7 +154,7 @@ test("BayesianClassifier", function (t) {
             },
             "chair"
         );
-        t.same(
+        assert.deepEqual(
             bayes.score({
                 species: "Cat"
             }),
@@ -168,7 +163,7 @@ test("BayesianClassifier", function (t) {
                 chair: 0.25
             }
         );
-        t.same(
+        assert.deepEqual(
             bayes.score({
                 species: "Dog"
             }),
@@ -177,7 +172,5 @@ test("BayesianClassifier", function (t) {
                 chair: 0
             }
         );
-        t.end();
     });
-    t.end();
 });

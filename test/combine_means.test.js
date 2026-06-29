@@ -1,13 +1,12 @@
-/* eslint no-shadow: 0 */
-
-const test = require("tap").test;
+const { describe, it } = require("node:test");
+const assert = require("node:assert/strict");
 const ss = require("../dist/simple-statistics.js");
 
-test("combineMeans", function (t) {
-    t.test("can combine the means of two lists", function (t) {
+describe("combineMeans", function () {
+    it("can combine the means of two lists", function () {
         const values1 = Object.freeze([8, 3, 4]);
         const values2 = Object.freeze([2, 6, 4]);
-        t.equal(
+        assert.equal(
             ss.combineMeans(
                 ss.mean(values1),
                 values1.length,
@@ -16,7 +15,7 @@ test("combineMeans", function (t) {
             ),
             4.5
         );
-        t.equal(
+        assert.equal(
             ss.combineMeans(
                 ss.mean(values1),
                 values1.length,
@@ -25,7 +24,5 @@ test("combineMeans", function (t) {
             ),
             ss.mean(values1.concat(values2))
         );
-        t.end();
     });
-    t.end();
 });

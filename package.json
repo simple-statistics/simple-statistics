@@ -22,12 +22,11 @@
         "documentation": "^14",
         "random-js": "^2.1.0",
         "rollup": "^4.62.2",
-        "tap": "^21.7.4",
         "typescript": "^6.0.3"
     },
     "scripts": {
         "release": "sh ./scripts/update_website.sh",
-        "test": "rollup -c rollup.config.mjs && npm run lint && tap test/*.test.js --jobs=4",
+        "test": "rollup -c rollup.config.mjs && npm run lint && node --test --experimental-test-isolation=none test/*.test.js",
         "build": "rollup -c rollup.config.mjs",
         "prepublish": "rollup -c rollup.config.mjs && ./scripts/update_readme.js",
         "prelint": "tsc --skipLibCheck --noEmit",

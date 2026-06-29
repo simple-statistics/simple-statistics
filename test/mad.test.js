@@ -1,31 +1,24 @@
-const test = require("tap").test;
+const { describe, it } = require("node:test");
+const assert = require("node:assert/strict");
 const ss = require("../dist/simple-statistics.js");
 
-test("median absolute deviation (mad)", function (t) {
-    t.test(
-        "median absolute deviation of an example on wikipedia",
-        function (t) {
-            t.equal(ss.mad([1, 1, 2, 2, 4, 6, 9]), 1);
-            t.end();
-        }
-    );
+describe("median absolute deviation (mad)", function () {
+    it("median absolute deviation of an example on wikipedia", function () {
+        assert.equal(ss.mad([1, 1, 2, 2, 4, 6, 9]), 1);
+    });
 
     // wolfram alpha: median absolute deviation {0,1,2,3,4,5,6,7,8,9,10}
-    t.test("median absolute deviation of 0-10", function (t) {
-        t.equal(ss.mad([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), 3);
-        t.end();
+    it("median absolute deviation of 0-10", function () {
+        assert.equal(ss.mad([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), 3);
     });
 
-    t.test("median absolute deviation of one number is zero", function (t) {
-        t.equal(ss.mad([1]), 0);
-        t.end();
+    it("median absolute deviation of one number is zero", function () {
+        assert.equal(ss.mad([1]), 0);
     });
 
-    t.test("zero-length corner case", function (t) {
-        t.throws(function () {
+    it("zero-length corner case", function () {
+        assert.throws(function () {
             ss.mad([]);
         });
-        t.end();
     });
-    t.end();
 });

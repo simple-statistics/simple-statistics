@@ -1,28 +1,21 @@
-/* eslint no-shadow: 0 */
-
-const test = require("tap").test;
+const { describe, it } = require("node:test");
+const assert = require("node:assert/strict");
 const ss = require("../dist/simple-statistics.js");
 
-test("gammaln", function (t) {
-    t.test("gammaln for positive real float should be correct", function (t) {
-        t.equal(ss.gammaln(11.54), 16.388002631263966);
-        t.end();
+describe("gammaln", function () {
+    it("gammaln for positive real float should be correct", function () {
+        assert.equal(ss.gammaln(11.54), 16.388002631263966);
     });
-    t.test("exp(gammaln(n)) for n should equal gamma(n)", function (t) {
-        t.equal(
+    it("exp(gammaln(n)) for n should equal gamma(n)", function () {
+        assert.equal(
             Math.round(Math.exp(ss.gammaln(8.2))),
             Math.round(ss.gamma(8.2))
         );
-        t.end();
     });
-    t.test("gammaln for negative n should be Infinity", function (t) {
-        t.equal(ss.gammaln(-42.5), Number.POSITIVE_INFINITY);
-        t.end();
+    it("gammaln for negative n should be Infinity", function () {
+        assert.equal(ss.gammaln(-42.5), Number.POSITIVE_INFINITY);
     });
-    t.test("gammaln for n === 0 should return NaN", function (t) {
-        t.equal(ss.gammaln(0), Number.POSITIVE_INFINITY);
-        t.end();
+    it("gammaln for n === 0 should return NaN", function () {
+        assert.equal(ss.gammaln(0), Number.POSITIVE_INFINITY);
     });
-
-    t.end();
 });
