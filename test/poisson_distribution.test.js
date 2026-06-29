@@ -1,6 +1,6 @@
-const { describe, it } = require("node:test");
-const assert = require("node:assert/strict");
-const ss = require("../dist/simple-statistics.js");
+import assert from "node:assert/strict";
+import { describe, it } from "node:test";
+import * as ss from "../index.js";
 
 function rnd(n) {
     return Number.parseFloat(n.toFixed(4));

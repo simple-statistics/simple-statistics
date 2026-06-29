@@ -1,6 +1,6 @@
-const PerceptronModel = require("../dist/simple-statistics.js").PerceptronModel;
-const { describe, it } = require("node:test");
-const assert = require("node:assert/strict");
+import assert from "node:assert/strict";
+import { describe, it } from "node:test";
+import { PerceptronModel } from "../index.js";
 
 describe("perceptron", function () {
     it("initializes to zeros if label is zero", function () {

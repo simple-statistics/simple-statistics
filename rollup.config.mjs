@@ -17,7 +17,7 @@ export default [
     {
         input,
         output: {
-            file: "dist/simple-statistics.js",
+            file: "dist/simple-statistics.cjs",
             format: "cjs",
             sourcemap
         },

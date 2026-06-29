@@ -1,6 +1,6 @@
-const { describe, it } = require("node:test");
-const assert = require("node:assert/strict");
-const ss = require("../dist/simple-statistics.js");
+import assert from "node:assert/strict";
+import { describe, it } from "node:test";
+import * as ss from "../index.js";
 
 describe("median absolute deviation (mad)", function () {
     it("median absolute deviation of an example on wikipedia", function () {

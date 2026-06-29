@@ -1,6 +1,6 @@
-const { describe, it } = require("node:test");
-const assert = require("node:assert/strict");
-const ss = require("../dist/simple-statistics.js");
+import assert from "node:assert/strict";
+import { describe, it } from "node:test";
+import * as ss from "../index.js";
 
 describe("cumulativeStdNormalProbability", function () {
     // https://en.wikipedia.org/wiki/Standard_normal_table#Examples_of_use

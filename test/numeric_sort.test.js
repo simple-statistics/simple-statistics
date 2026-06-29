@@ -1,6 +1,6 @@
-const { it } = require("node:test");
-const assert = require("node:assert/strict");
-const numericSort = require("../dist/simple-statistics.js").numericSort;
+import assert from "node:assert/strict";
+import { it } from "node:test";
+import { numericSort } from "../index.js";
 
 it("numericSort", function () {
     assert.deepEqual(numericSort([1, 2]), [1, 2]);

@@ -1,6 +1,6 @@
-const { it } = require("node:test");
-const assert = require("node:assert/strict");
-const ss = require("../dist/simple-statistics.js");
+import assert from "node:assert/strict";
+import { it } from "node:test";
+import * as ss from "../index.js";
 
 // The zScore method is also tested in the normal distribution tests.
 it("zScore", function () {

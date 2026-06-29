@@ -1,6 +1,6 @@
-const { describe, it } = require("node:test");
-const assert = require("node:assert/strict");
-const bisect = require("../dist/simple-statistics.js").bisect;
+import assert from "node:assert/strict";
+import { describe, it } from "node:test";
+import { bisect } from "../index.js";
 
 describe("bisect", function () {
     it("can find root of sin and cos", function () {

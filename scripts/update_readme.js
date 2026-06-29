@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-var fs = require("node:fs");
+import { readFileSync, writeFileSync } from "node:fs";
+import pkg from "../package.json" with { type: "json" };
 
-var version = JSON.parse(fs.readFileSync("./package.json")).version;
-var README = fs.readFileSync("./README.md", "utf8");
-fs.writeFileSync(
+const README = readFileSync("./README.md", "utf8");
+writeFileSync(
     "README.md",
     README.replace(
         /simple-statistics@([\d.]+)/g,
-        "simple-statistics@" + version
+        `simple-statistics@${pkg.version}`
     )
 );
