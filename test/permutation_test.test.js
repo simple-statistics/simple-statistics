@@ -1,8 +1,10 @@
-const { describe, it } = require("node:test");
-const assert = require("node:assert/strict");
-const Random = require("random-js");
+import assert from "node:assert/strict";
+import { describe, it } from "node:test";
+import * as Random from "random-js";
+
 const random = new Random.Random(Random.MersenneTwister19937.seed(0));
-const ss = require("../dist/simple-statistics.js");
+
+import * as ss from "../index.js";
 
 function rng() {
     return random.real(0, 1);

@@ -1,6 +1,6 @@
-const { describe, it } = require("node:test");
-const assert = require("node:assert/strict");
-const ss = require("../dist/simple-statistics.js");
+import assert from "node:assert/strict";
+import { describe, it } from "node:test";
+import * as ss from "../index.js";
 
 describe("t test", function () {
     it("can compare a known value to the mean of samples", function () {

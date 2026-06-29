@@ -1,7 +1,6 @@
-const BayesianClassifier =
-    require("../dist/simple-statistics.js").BayesianClassifier;
-const { describe, it } = require("node:test");
-const assert = require("node:assert/strict");
+import assert from "node:assert/strict";
+import { describe, it } from "node:test";
+import { BayesianClassifier } from "../index.js";
 
 describe("BayesianClassifier", function () {
     it("makes an easy call with one training round", function () {

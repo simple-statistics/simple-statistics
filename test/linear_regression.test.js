@@ -1,9 +1,6 @@
-const { describe, it } = require("node:test");
-const assert = require("node:assert/strict");
-const linearRegression =
-    require("../dist/simple-statistics.js").linearRegression;
-const linearRegressionLine =
-    require("../dist/simple-statistics.js").linearRegressionLine;
+import assert from "node:assert/strict";
+import { describe, it } from "node:test";
+import { linearRegression, linearRegressionLine } from "../index.js";
 
 describe("linear regression", function () {
     it("correctly generates a line for a 0, 0 to 1, 1 dataset", function () {

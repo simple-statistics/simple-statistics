@@ -1,7 +1,6 @@
-const { it } = require("node:test");
-const assert = require("node:assert/strict");
-const equalIntervalBreaks =
-    require("../dist/simple-statistics.js").equalIntervalBreaks;
+import assert from "node:assert/strict";
+import { it } from "node:test";
+import { equalIntervalBreaks } from "../index.js";
 
 it("equalIntervalBreaks", function () {
     assert.deepEqual(equalIntervalBreaks([1], 4), [1], "1-length case");

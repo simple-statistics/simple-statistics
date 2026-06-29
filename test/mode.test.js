@@ -1,12 +1,13 @@
-const { describe, it } = require("node:test");
-const assert = require("node:assert/strict");
-const ss = require("../dist/simple-statistics.js");
+import assert from "node:assert/strict";
+import { describe, it } from "node:test";
+import { mode, modeFast, modeSorted } from "../index.js";
 
 describe("mode", function () {
-    ["mode", "modeFast"].forEach(function (modeName) {
+    [
+        ["mode", mode],
+        ["modeFast", modeFast]
+    ].forEach(function ([modeName, modeFn]) {
         describe(modeName, function () {
-            const modeFn = ss[modeName];
-
             it("the mode of a single-number array is that one number", function () {
                 assert.equal(modeFn([1]), 1);
             });
@@ -39,6 +40,6 @@ describe("mode", function () {
     });
 
     it("mode sorted", function () {
-        assert.equal(ss.modeSorted([1, 2, 2]), 2);
+        assert.equal(modeSorted([1, 2, 2]), 2);
     });
 });

@@ -1,6 +1,6 @@
-const { describe, it } = require("node:test");
-const assert = require("node:assert/strict");
-const jenks = require("../dist/simple-statistics.js").jenks;
+import assert from "node:assert/strict";
+import { describe, it } from "node:test";
+import { jenks } from "../index.js";
 
 describe("jenks", function () {
     it("will not try to assign more classes than datapoints", function () {

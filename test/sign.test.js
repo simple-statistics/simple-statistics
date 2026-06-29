@@ -1,6 +1,6 @@
-const { describe, it } = require("node:test");
-const assert = require("node:assert/strict");
-const sign = require("../dist/simple-statistics.js").sign;
+import assert from "node:assert/strict";
+import { describe, it } from "node:test";
+import { sign } from "../index.js";
 
 describe("bisect", function () {
     it("can find sign of number", function () {

@@ -26,16 +26,17 @@
     },
     "scripts": {
         "release": "sh ./scripts/update_website.sh",
-        "test": "rollup -c rollup.config.mjs && npm run lint && node --test --experimental-test-isolation=none test/*.test.js",
+        "test": "npm run lint && node --test --experimental-test-isolation=none test/*.test.js",
         "build": "rollup -c rollup.config.mjs",
-        "prepublish": "rollup -c rollup.config.mjs && ./scripts/update_readme.js",
+        "prepublishOnly": "rollup -c rollup.config.mjs && ./scripts/update_readme.js",
         "prelint": "tsc --skipLibCheck --noEmit",
         "lint": "biome check index.js src test",
         "lint-fix": "biome check --fix index.js src test",
         "postlint": "documentation lint src"
     },
+    "type": "module",
     "source": "index.js",
-    "main": "dist/simple-statistics.js",
+    "main": "dist/simple-statistics.cjs",
     "module": "dist/simple-statistics.mjs",
     "umd:main": "dist/simple-statistics.min.js",
     "browser": "dist/simple-statistics.min.js",
@@ -47,7 +48,7 @@
             "types": "./index.d.ts",
             "import": "./dist/simple-statistics.mjs",
             "browser": "./dist/simple-statistics.min.js",
-            "require": "./dist/simple-statistics.js"
+            "require": "./dist/simple-statistics.cjs"
         }
     },
     "engines": {

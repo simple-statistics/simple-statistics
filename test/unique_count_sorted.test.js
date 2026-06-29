@@ -1,7 +1,6 @@
-const { it } = require("node:test");
-const assert = require("node:assert/strict");
-const uniqueCountSorted =
-    require("../dist/simple-statistics.js").uniqueCountSorted;
+import assert from "node:assert/strict";
+import { it } from "node:test";
+import { uniqueCountSorted } from "../index.js";
 
 it("uniqueCountSorted", function () {
     assert.equal(uniqueCountSorted([]), 0);

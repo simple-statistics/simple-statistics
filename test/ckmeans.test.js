@@ -1,6 +1,6 @@
-const { it } = require("node:test");
-const assert = require("node:assert/strict");
-const cK = require("../dist/simple-statistics.js").ckmeans;
+import assert from "node:assert/strict";
+import { it } from "node:test";
+import { ckmeans as cK } from "../index.js";
 
 it("C k-means", function () {
     assert.ok(cK, "exports fn");
