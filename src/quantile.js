@@ -53,30 +53,31 @@ function quantileSelect(arr, k, left, right) {
 }
 
 function multiQuantileSelect(arr, p) {
-    const indices = [0];
+    // Collect every integer order statistic that the requested quantiles need.
+    // Linear interpolation (type=7) reads x[floor(idx)] and x[ceil(idx)], so both
+    // surrounding positions must be placed. Deduplicate to integer positions
+    // so each is selected with an unambiguous index.
+    const positions = new Set();
     for (let i = 0; i < p.length; i++) {
-        indices.push(quantileIndex(arr.length, p[i]));
+        const idx = quantileIndex(arr.length, p[i]);
+        positions.add(Math.floor(idx));
+        positions.add(Math.ceil(idx));
     }
-    indices.push(arr.length - 1);
-    indices.sort(compare);
+    const indices = Array.from(positions).sort(compare);
 
-    const stack = [0, indices.length - 1];
+    multiselect(arr, indices, 0, indices.length - 1, 0, arr.length - 1);
+}
 
-    while (stack.length) {
-        const r = Math.ceil(stack.pop());
-        const l = Math.floor(stack.pop());
-        if (r - l <= 1) continue;
-
-        const m = Math.floor((l + r) / 2);
-        quantileSelect(
-            arr,
-            indices[m],
-            Math.floor(indices[l]),
-            Math.ceil(indices[r])
-        );
-
-        stack.push(l, m, m, r);
-    }
+// Place every order statistic in `indices` by partitioning around the median
+// requested position, then recursing into the two halves. The just-placed pivot
+// is excluded from the child ranges (indices[mid] ± 1) so that a later, narrower
+// quickselect cannot disturb an already-finalized position.
+function multiselect(arr, indices, lo, hi, left, right) {
+    if (lo > hi) return;
+    const mid = (lo + hi) >> 1;
+    quickselect(arr, indices[mid], left, right);
+    multiselect(arr, indices, lo, mid - 1, left, indices[mid] - 1);
+    multiselect(arr, indices, mid + 1, hi, indices[mid] + 1, right);
 }
 
 function compare(a, b) {
