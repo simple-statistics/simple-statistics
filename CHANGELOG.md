@@ -1,5 +1,14 @@
 # Changelog
 
+## 7.9.2
+
+### Patch Changes
+
+- d571a60: Fix quantile() bug when an array was provided as the second argument
+
+  Thanks [Alexander Kireyev](https://github.com/chatman-media) for the identification
+  and fix.
+
 ## 7.9.1
 
 ### Patch Changes
