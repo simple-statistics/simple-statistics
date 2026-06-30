@@ -54,13 +54,17 @@ function permutationTest(sampleX, sampleY, alternative, k, randomSource) {
 
     // combine datsets so we can easily shuffle later
     const allData = sampleX.concat(sampleY);
-    const midIndex = Math.floor(allData.length / 2);
+    // Each permutation reassigns the pooled values into two groups that keep
+    // the original sample sizes. Splitting at the midpoint only matches when
+    // both samples are the same length; for unequal samples it built the
+    // permutation distribution from the wrong group sizes.
+    const splitIndex = sampleX.length;
 
     for (let i = 0; i < k; i++) {
         // 1. shuffle data assignments
         shuffleInPlace(allData, randomSource);
-        const permLeft = allData.slice(0, midIndex);
-        const permRight = allData.slice(midIndex, allData.length);
+        const permLeft = allData.slice(0, splitIndex);
+        const permRight = allData.slice(splitIndex, allData.length);
 
         // 2.re-calculate test statistic
         const permTestStatistic = mean(permLeft) - mean(permRight);
