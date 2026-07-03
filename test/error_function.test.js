@@ -1,22 +1,18 @@
-/* eslint no-shadow: 0 */
+import assert from "node:assert/strict";
+import { describe, it } from "node:test";
+import * as ss from "../index.js";
 
-const test = require("tap").test;
-const ss = require("../dist/simple-statistics.js");
-
-test("errorFunction", function (t) {
-    test("symmetry", function (t) {
-        t.equal(ss.errorFunction(-1), -ss.errorFunction(1));
-        t.end();
+describe("errorFunction", function () {
+    it("symmetry", function () {
+        assert.equal(ss.errorFunction(-1), -ss.errorFunction(1));
     });
-    t.end();
-    test("inverse", function (t) {
+    it("inverse", function () {
         for (let i = -1; i <= 1; i += 0.01) {
-            t.equal(
+            assert.equal(
                 Math.abs(ss.errorFunction(ss.inverseErrorFunction(i)) - i) <
                     4 * ss.epsilon,
                 true
             );
         }
-        t.end();
     });
 });

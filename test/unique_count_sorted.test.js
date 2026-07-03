@@ -1,16 +1,13 @@
-/* eslint no-shadow: 0 */
+import assert from "node:assert/strict";
+import { it } from "node:test";
+import { uniqueCountSorted } from "../index.js";
 
-const test = require("tap").test;
-const uniqueCountSorted =
-    require("../dist/simple-statistics.js").uniqueCountSorted;
-
-test("uniqueCountSorted", function (t) {
-    t.equal(uniqueCountSorted([]), 0);
-    t.equal(uniqueCountSorted([1]), 1);
-    t.equal(uniqueCountSorted([undefined]), 1);
-    t.equal(uniqueCountSorted([1, 2, 3, 4]), 4);
-    t.equal(uniqueCountSorted([1, 2, 3, 3, 4]), 4);
-    t.equal(uniqueCountSorted([1, 2, 3, 3, 4, 4]), 4);
-    t.equal(uniqueCountSorted([1, 1, 2, 3, 3, 4, 4]), 4);
-    t.end();
+it("uniqueCountSorted", function () {
+    assert.equal(uniqueCountSorted([]), 0);
+    assert.equal(uniqueCountSorted([1]), 1);
+    assert.equal(uniqueCountSorted([undefined]), 1);
+    assert.equal(uniqueCountSorted([1, 2, 3, 4]), 4);
+    assert.equal(uniqueCountSorted([1, 2, 3, 3, 4]), 4);
+    assert.equal(uniqueCountSorted([1, 2, 3, 3, 4, 4]), 4);
+    assert.equal(uniqueCountSorted([1, 1, 2, 3, 3, 4, 4]), 4);
 });

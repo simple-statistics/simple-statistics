@@ -1,22 +1,17 @@
-/* eslint no-shadow: 0 */
+import assert from "node:assert/strict";
+import { describe, it } from "node:test";
+import * as ss from "../index.js";
 
-const test = require("tap").test;
-const ss = require("../dist/simple-statistics.js");
-
-test("mean", function (t) {
-    t.test("can get the mean of two numbers", function (t) {
-        t.equal(ss.mean([1, 2]), 1.5);
-        t.end();
+describe("mean", function () {
+    it("can get the mean of two numbers", function () {
+        assert.equal(ss.mean([1, 2]), 1.5);
     });
-    t.test("can get the mean of one number", function (t) {
-        t.equal(ss.mean([1]), 1);
-        t.end();
+    it("can get the mean of one number", function () {
+        assert.equal(ss.mean([1]), 1);
     });
-    t.test("an empty list has no average", function (t) {
-        t.throws(function () {
+    it("an empty list has no average", function () {
+        assert.throws(function () {
             ss.mean([]);
         });
-        t.end();
     });
-    t.end();
 });

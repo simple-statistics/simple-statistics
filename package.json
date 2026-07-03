@@ -22,21 +22,22 @@
         "documentation": "^14",
         "random-js": "^2.1.0",
         "rollup": "^4.62.2",
-        "tap": "^21.7.4",
         "typescript": "^6.0.3"
     },
     "scripts": {
         "release": "sh ./scripts/update_website.sh",
-        "test": "rollup -c rollup.config.mjs && npm run lint && tap test/*.test.js --jobs=4",
+        "test": "npm run lint && node --test --experimental-test-isolation=none test/*.test.js",
         "build": "rollup -c rollup.config.mjs",
-        "prepublish": "rollup -c rollup.config.mjs && ./scripts/update_readme.js",
+        "prepublishOnly": "rollup -c rollup.config.mjs",
+        "changeset:version": "changeset version && node ./scripts/update_readme.js",
         "prelint": "tsc --skipLibCheck --noEmit",
         "lint": "biome check index.js src test",
         "lint-fix": "biome check --fix index.js src test",
         "postlint": "documentation lint src"
     },
+    "type": "module",
     "source": "index.js",
-    "main": "dist/simple-statistics.js",
+    "main": "dist/simple-statistics.cjs",
     "module": "dist/simple-statistics.mjs",
     "umd:main": "dist/simple-statistics.min.js",
     "browser": "dist/simple-statistics.min.js",
@@ -48,7 +49,7 @@
             "types": "./index.d.ts",
             "import": "./dist/simple-statistics.mjs",
             "browser": "./dist/simple-statistics.min.js",
-            "require": "./dist/simple-statistics.js"
+            "require": "./dist/simple-statistics.cjs"
         }
     },
     "engines": {

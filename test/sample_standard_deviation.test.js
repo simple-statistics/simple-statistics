@@ -1,27 +1,20 @@
-/* eslint no-shadow: 0 */
-
-const test = require("tap").test;
-const ss = require("../dist/simple-statistics.js");
+import assert from "node:assert/strict";
+import { describe, it } from "node:test";
+import * as ss from "../index.js";
 
 function rnd(x) {
     return Math.round(x * 1000) / 1000;
 }
 
-test("sampleStandardDeviation", function (t) {
-    t.test(
-        "can get the standard deviation of an example on wikipedia",
-        function (t) {
-            t.equal(
-                rnd(ss.sampleStandardDeviation([2, 4, 4, 4, 5, 5, 7, 9])),
-                2.138
-            );
-            t.end();
-        }
-    );
+describe("sampleStandardDeviation", function () {
+    it("can get the standard deviation of an example on wikipedia", function () {
+        assert.equal(
+            rnd(ss.sampleStandardDeviation([2, 4, 4, 4, 5, 5, 7, 9])),
+            2.138
+        );
+    });
 
-    t.throws(function () {
+    assert.throws(function () {
         ss.sampleStandardDeviation([]);
-    }, "zero-length corner case");
-
-    t.end();
+    });
 });

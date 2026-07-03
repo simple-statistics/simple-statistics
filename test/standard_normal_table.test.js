@@ -1,20 +1,17 @@
-/* eslint no-shadow: 0 */
+import assert from "node:assert/strict";
+import { describe, it } from "node:test";
+import * as ss from "../index.js";
 
-const test = require("tap").test;
-const ss = require("../dist/simple-statistics.js");
-
-test("standardNormalTable", function (t) {
-    test("all entries are numeric", function (t) {
+describe("standardNormalTable", function () {
+    it("all entries are numeric", function () {
         for (let i = 0; i < ss.standardNormalTable.length; i++) {
             if (
                 typeof ss.standardNormalTable[i] !== "number" ||
                 ss.standardNormalTable[i] < 0 ||
                 ss.standardNormalTable[i] > 1
             ) {
-                t.fail("standard normal table value invalid");
+                assert.fail("standard normal table value invalid");
             }
         }
-        t.end();
     });
-    t.end();
 });
