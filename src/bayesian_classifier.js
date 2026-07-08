@@ -83,8 +83,11 @@ class BayesianClassifier {
             const v = item[k];
             for (category in this.data) {
                 // Create an empty object for storing key - value combinations
-                // for this category.
-                odds[category] = {};
+                // for this category, keeping combinations already collected
+                // from earlier properties of the same item.
+                if (odds[category] === undefined) {
+                    odds[category] = {};
+                }
 
                 // If this item doesn't even have a property, it counts for nothing,
                 // but if it does have the property that we're looking for from
