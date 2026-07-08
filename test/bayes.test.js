@@ -172,4 +172,31 @@ describe("BayesianClassifier", function () {
             }
         );
     });
+
+    it("sums the scores of every property in the item", function () {
+        const bayes = new BayesianClassifier();
+        bayes.train(
+            {
+                species: "Cat",
+                color: "white"
+            },
+            "animal"
+        );
+        bayes.train(
+            {
+                species: "Cat",
+                color: "black"
+            },
+            "animal"
+        );
+        assert.deepEqual(
+            bayes.score({
+                species: "Cat",
+                color: "white"
+            }),
+            {
+                animal: 1.5
+            }
+        );
+    });
 });
