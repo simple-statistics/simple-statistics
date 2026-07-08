@@ -39,6 +39,7 @@ function wilcoxonRankSum(sampleX, sampleY) {
             }
         } else if (tiedRanks.length > 1) {
             replaceRanksInPlace(pooledSamples, tiedRanks);
+            tiedRanks = [pooledSamples[i].rank];
         } else {
             tiedRanks = [pooledSamples[i].rank];
         }
