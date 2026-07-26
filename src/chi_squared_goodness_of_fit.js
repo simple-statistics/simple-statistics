@@ -68,16 +68,37 @@ function chiSquaredGoodnessOfFit(data, distributionType, significance) {
         }
     }
 
+    if (expectedFrequencies.length === 0) {
+        throw new Error(
+            "chiSquaredGoodnessOfFit requires distributionType to return a distribution for the mean of the data"
+        );
+    }
+
+    // The hypothesized distribution can stop short of the largest observation,
+    // leaving those observations with no expected frequency to be compared
+    // against. Fold them into the last class the distribution does cover, the
+    // same treatment the collapse below gives to sparse classes, so that the
+    // two histograms describe the same classes.
+    const lastClass = expectedFrequencies.length - 1;
+    for (let k = observedFrequencies.length - 1; k > lastClass; k--) {
+        observedFrequencies[lastClass] += observedFrequencies[k];
+        observedFrequencies.pop();
+    }
+
     // Working backward through the expected frequencies, collapse classes
     // if less than three observations are expected for a class.
     // This transformation is applied to the observed frequencies as well.
-    for (let k = expectedFrequencies.length - 1; k >= 0; k--) {
+    // The class that was merged is the one that has to go: popping instead
+    // drops the last class, which is only the same thing until a class is
+    // large enough to keep. The first class is left alone, since there is no
+    // class before it to collapse it into.
+    for (let k = expectedFrequencies.length - 1; k >= 1; k--) {
         if (expectedFrequencies[k] < 3) {
             expectedFrequencies[k - 1] += expectedFrequencies[k];
-            expectedFrequencies.pop();
+            expectedFrequencies.splice(k, 1);
 
             observedFrequencies[k - 1] += observedFrequencies[k];
-            observedFrequencies.pop();
+            observedFrequencies.splice(k, 1);
         }
     }
 
@@ -89,15 +110,37 @@ function chiSquaredGoodnessOfFit(data, distributionType, significance) {
             expectedFrequencies[k];
     }
 
+    if (!Number.isFinite(chiSquared)) {
+        throw new Error(
+            "chiSquaredGoodnessOfFit could not compute a test statistic for this data and distribution"
+        );
+    }
+
     // Calculate degrees of freedom for this test and look it up in the
     // `chiSquaredDistributionTable` in order to
     // accept or reject the goodness-of-fit of the hypothesized distribution.
     // Degrees of freedom, calculated as (number of class intervals -
     // number of hypothesized distribution parameters estimated - 1)
     const degreesOfFreedom = observedFrequencies.length - c - 1;
-    return (
-        chiSquaredDistributionTable[degreesOfFreedom][significance] < chiSquared
-    );
+    if (degreesOfFreedom < 1) {
+        throw new Error(
+            "chiSquaredGoodnessOfFit requires more data: the classes that survive collapsing leave no degrees of freedom"
+        );
+    }
+
+    const criticalValues = chiSquaredDistributionTable[degreesOfFreedom];
+    if (criticalValues === undefined) {
+        throw new Error(
+            `chiSquaredGoodnessOfFit has no critical values tabulated for ${degreesOfFreedom} degrees of freedom`
+        );
+    }
+    if (criticalValues[significance] === undefined) {
+        throw new Error(
+            `chiSquaredGoodnessOfFit has no critical value tabulated for a significance of ${significance}`
+        );
+    }
+
+    return criticalValues[significance] < chiSquared;
 }
 
 export default chiSquaredGoodnessOfFit;
