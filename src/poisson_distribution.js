@@ -1,4 +1,10 @@
 import epsilon from "./epsilon.js";
+import gammaln from "./gammaln.js";
+
+// The Poisson distribution has no upper bound, so cap the table at a length we
+// can still allocate. Past that we report a distribution we cannot produce
+// rather than a partial one.
+const maxCells = 1e6;
 
 /**
  * The [Poisson Distribution](http://en.wikipedia.org/wiki/Poisson_distribution)
@@ -26,20 +32,31 @@ function poissonDistribution(lambda) /*: ?number[] */ {
     let cumulativeProbability = 0;
     // the calculated cells to be returned
     const cells = [];
-    let factorialX = 1;
 
     // This algorithm iterates through each potential outcome,
     // until the `cumulativeProbability` is very close to 1, at
     // which point we've defined the vast majority of outcomes
     do {
-        // a [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function)
-        cells[x] = (Math.exp(-lambda) * Math.pow(lambda, x)) / factorialX;
+        // a [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function),
+        // taken through its logarithm: `lambda` raised to `x` and the factorial
+        // of `x` each leave floating-point range long before their ratio does,
+        // so computing them separately loses cells the distribution needs.
+        cells[x] = Math.exp(x * Math.log(lambda) - lambda - gammaln(x + 1));
         cumulativeProbability += cells[x];
         x++;
-        factorialX *= x;
         // when the cumulativeProbability is nearly 1, we've calculated
         // the useful range of this distribution
-    } while (cumulativeProbability < 1 - epsilon);
+    } while (cumulativeProbability < 1 - epsilon && x < maxCells);
+
+    // Stopping for any other reason - a lambda that is not a number, or a
+    // distribution too wide for the table - leaves cells that do not add up to
+    // a distribution, so report that rather than returning them.
+    if (
+        Number.isNaN(cumulativeProbability) ||
+        cumulativeProbability < 1 - epsilon
+    ) {
+        return undefined;
+    }
 
     return cells;
 }
