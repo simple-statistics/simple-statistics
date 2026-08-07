@@ -8,9 +8,17 @@
  * @returns {number} total weight
  * @private
  */
+const MAX_WEIGHTED_INPUT_SIZE = 1_000_000;
+
 function validateWeightedInput(x, weights, name) {
     if (x.length === 0) {
         throw new Error(`${name} requires at least one data point`);
+    }
+
+    if (x.length > MAX_WEIGHTED_INPUT_SIZE) {
+        throw new Error(
+            `${name} requires arrays with fewer than ${MAX_WEIGHTED_INPUT_SIZE} elements`
+        );
     }
 
     if (x.length !== weights.length) {
