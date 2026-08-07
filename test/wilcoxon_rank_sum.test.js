@@ -38,6 +38,13 @@ describe("wilcoxonRankSum", function () {
         assert.equal(res, 6.5);
     });
 
+    it("multiple separate tied groups are handled correctly", function () {
+        const x = Object.freeze([1, 1]);
+        const y = Object.freeze([2, 2]);
+        const res = ss.wilcoxonRankSum(x, y);
+        assert.equal(res, 3);
+    });
+
     it("empty input throws", function () {
         const message = /Neither sample can be empty/;
         assert.throws(function () {
