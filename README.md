@@ -1,10 +1,6 @@
 # Simple Statistics
 
-
 A JavaScript implementation of descriptive, regression, and inference statistics.
-
-[![Coverage Status](https://coveralls.io/repos/github/simple-statistics/simple-statistics/badge.svg)](https://coveralls.io/github/simple-statistics/simple-statistics)
-[![npm version](https://badge.fury.io/js/simple-statistics.svg)](http://badge.fury.io/js/simple-statistics)
 
 Implemented in literate JavaScript with no dependencies, designed to work
 in all modern browsers (including IE) as well as in [node.js](https://nodejs.org/).
