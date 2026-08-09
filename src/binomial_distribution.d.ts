@@ -4,6 +4,6 @@
 declare function binomialDistribution(
     trials: number,
     probability: number
-): number[];
+): number[] | undefined;
 
 export default binomialDistribution;

@@ -1,4 +1,6 @@
 import epsilon from "./epsilon.js";
+import gammaln from "./gammaln.js";
+import maxDistributionCells from "./max_distribution_cells.js";
 
 /**
  * The [Binomial Distribution](http://en.wikipedia.org/wiki/Binomial_distribution) is the discrete probability
@@ -6,9 +8,13 @@ import epsilon from "./epsilon.js";
  * success with probability `probability`. Such a success/failure experiment is also called a Bernoulli experiment or
  * Bernoulli trial; when trials = 1, the Binomial Distribution is a Bernoulli Distribution.
  *
+ * Returns `undefined` when the distribution cannot be calculated: either
+ * argument is outside its domain or is not a number, or when `trials` is large
+ * enough that the table would run past a million cells.
+ *
  * @param {number} trials number of trials to simulate
  * @param {number} probability
- * @returns {number[]} output
+ * @returns {number[] | undefined} output
  */
 function binomialDistribution(trials, probability) /*: ?number[] */ {
     // Check that `p` is a valid probability (0 ≤ p ≤ 1),
@@ -17,32 +23,69 @@ function binomialDistribution(trials, probability) /*: ?number[] */ {
         return undefined;
     }
 
-    // We initialize `x`, the random variable, and `accumulator`, an accumulator
-    // for the cumulative distribution function to 0. `distribution_functions`
-    // is the object we'll return with the `probability_of_x` and the
-    // `cumulativeProbability_of_x`, as well as the calculated mean &
-    // variance. We iterate until the `cumulativeProbability_of_x` is
-    // within `epsilon` of 1.0.
+    // More successes than trials are impossible, and the table cannot outgrow
+    // what we can allocate.
+    const lastCell = Math.min(trials, maxDistributionCells - 1);
+
+    // The logarithms below are undefined at the ends of the probability range,
+    // where the outcome is certain anyway.
+    if (probability === 0) {
+        return [1];
+    }
+    if (probability === 1) {
+        if (trials > lastCell) {
+            return undefined;
+        }
+        const certain = new Array(trials + 1).fill(0);
+        certain[trials] = 1;
+        return certain;
+    }
+
+    // `x` is the random variable: the number of successes. We iterate until
+    // the cumulative probability is within `epsilon` of 1.0, at which point we
+    // have the useful range of the distribution.
     let x = 0;
     let cumulativeProbability = 0;
     const cells = [];
-    let binomialCoefficient = 1;
+
+    // The terms of the mass function below that do not vary with `x`
+    const logTrialsFactorial = gammaln(trials + 1);
+    const logProbability = Math.log(probability);
+    // `log1p` rather than `Math.log(1 - probability)`, which cancels away the
+    // low digits of the complement as `probability` approaches 1.
+    const log1mProbability = Math.log1p(-probability);
 
     // This algorithm iterates through each potential outcome,
     // until the `cumulativeProbability` is very close to 1, at
     // which point we've defined the vast majority of outcomes
     do {
-        // a [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function)
-        cells[x] =
-            binomialCoefficient *
-            Math.pow(probability, x) *
-            Math.pow(1 - probability, trials - x);
+        // A [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function),
+        // taken through its logarithm: the binomial coefficient and the two
+        // powers each leave floating-point range long before the product they
+        // form does, so computing them separately loses cells the distribution
+        // needs.
+        cells[x] = Math.exp(
+            logTrialsFactorial -
+                gammaln(x + 1) -
+                gammaln(trials - x + 1) +
+                x * logProbability +
+                (trials - x) * log1mProbability
+        );
         cumulativeProbability += cells[x];
         x++;
-        binomialCoefficient = (binomialCoefficient * (trials - x + 1)) / x;
-        // when the cumulativeProbability is nearly 1, we've calculated
+        // When the `cumulativeProbability` is nearly 1, we've calculated
         // the useful range of this distribution
-    } while (cumulativeProbability < 1 - epsilon);
+    } while (cumulativeProbability < 1 - epsilon && x <= lastCell);
+
+    // Stopping for any other reason - a probability that is not a number, or
+    // more trials than the table can hold - leaves cells that do not add up to
+    // a distribution, so report that rather than returning them.
+    if (
+        Number.isNaN(cumulativeProbability) ||
+        cumulativeProbability < 1 - epsilon
+    ) {
+        return undefined;
+    }
 
     return cells;
 }
