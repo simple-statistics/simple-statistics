@@ -7,42 +7,6 @@ import gammaln from "./gammaln.js";
 const maxCells = 1e6;
 
 /**
- * The probability of exactly `x` successes, taken through its logarithm: the
- * binomial coefficient and the two powers each leave floating-point range long
- * before the product they form does, so computing them separately loses cells
- * the distribution needs.
- *
- * @private
- * @param {number} trials number of trials
- * @param {number} probability probability of success in one trial
- * @param {number} x number of successes
- * @returns {number} probability of exactly `x` successes
- */
-function probabilityOfSuccesses(trials, probability, x) {
-    // The logarithms below are undefined at the ends of the probability range,
-    // where the outcome is certain anyway.
-    if (probability === 0) {
-        if (x === 0) {
-            return 1;
-        }
-        return 0;
-    }
-    if (probability === 1) {
-        if (x === trials) {
-            return 1;
-        }
-        return 0;
-    }
-    return Math.exp(
-        gammaln(trials + 1) -
-            gammaln(x + 1) -
-            gammaln(trials - x + 1) +
-            x * Math.log(probability) +
-            (trials - x) * Math.log(1 - probability)
-    );
-}
-
-/**
  * The [Binomial Distribution](http://en.wikipedia.org/wiki/Binomial_distribution) is the discrete probability
  * distribution of the number of successes in a sequence of n independent yes/no experiments, each of which yields
  * success with probability `probability`. Such a success/failure experiment is also called a Bernoulli experiment or
@@ -50,7 +14,7 @@ function probabilityOfSuccesses(trials, probability, x) {
  *
  * @param {number} trials number of trials to simulate
  * @param {number} probability
- * @returns {number[]} output
+ * @returns {number[] | undefined} output
  */
 function binomialDistribution(trials, probability) /*: ?number[] */ {
     // Check that `p` is a valid probability (0 ≤ p ≤ 1),
@@ -72,12 +36,43 @@ function binomialDistribution(trials, probability) /*: ?number[] */ {
     // what we can allocate.
     const lastCell = Math.min(trials, maxCells - 1);
 
+    // These are loop-invariant, so calculate them once up front.
+    const logProbability = Math.log(probability);
+    const log1Probability = Math.log(1 - probability);
+    const gammalnTrials1 = gammaln(trials + 1);
+
     // This algorithm iterates through each potential outcome,
     // until the `cumulativeProbability` is very close to 1, at
     // which point we've defined the vast majority of outcomes
     do {
-        // a [probability mass function](https://en.wikipedia.org/wiki/Probability_mass_function)
-        cells[x] = probabilityOfSuccesses(trials, probability, x);
+        // The probability of exactly `x` successes, taken through its logarithm: the
+        // binomial coefficient and the two powers each leave floating-point range long
+        // before the product they form does, so computing them separately loses cells
+        // the distribution needs.
+        // The logarithms below are undefined at the ends of the probability range,
+        // where the outcome is certain anyway.
+        if (probability === 0) {
+            if (x === 0) {
+                cells[x] = 1;
+            } else {
+                cells[x] = 0;
+            }
+        } else if (probability === 1) {
+            if (x === trials) {
+                cells[x] = 1;
+            } else {
+                cells[x] = 0;
+            }
+        } else {
+            cells[x] = Math.exp(
+                gammalnTrials1 -
+                    gammaln(x + 1) -
+                    gammaln(trials - x + 1) +
+                    x * logProbability +
+                    (trials - x) * log1Probability
+            );
+        }
+
         cumulativeProbability += cells[x];
         x++;
         // when the cumulativeProbability is nearly 1, we've calculated
