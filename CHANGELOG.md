@@ -1,5 +1,26 @@
 # Changelog
 
+## 7.10.0
+
+### Minor Changes
+
+- 2149cff: Fix `poissonDistribution()` and `binomialDistribution()` returning a truncated table ending in `Infinity` or `NaN`. Both built each cell from a power and a factorial (or a binomial coefficient) that leave floating-point range long before their product does, so the cumulative-probability stopping rule was satisfied by a non-finite sum instead of by the distribution: `poissonDistribution(200)` returned 135 cells covering 0.000045% of the distribution, and `binomialDistribution(10000, 0.5)` returned 135 cells covering none of it. Cells are now taken through `gammaln`, and a table that cannot be completed returns `undefined` rather than a partial one.
+
+  NOTE: this is tagged as a minor change but you should be aware that it does change behavior
+  for `binomialDistribution`. For most users this won't be a big deal.
+
+  1. Both functions now return `undefined` in cases where they used to return an array of non-finite cells. `binomialDistribution(5, NaN)` returned `[NaN]` and now returns `undefined`. Their TypeScript declarations widen to `number[] | undefined`.
+  2. Evaluating cells through logarithms costs a precision where the old product form was exact: `binomialDistribution(2, 0.5)` returns `[0.25000000000000006, 0.5000000000000006, 0.25000000000000006]` rather than `[0.25, 0.5, 0.25]`. This precision loss is small but if you're comparing exact results, it may require updates or rounding.
+
+### Patch Changes
+
+- 13530b2: Fix wilcoxon rank-sum test behavior
+
+  This fixes a bug in which the tie averaging in `wilcoxonRankSum` was
+  incorrect and would return an unrelated position.
+
+- 0779f22: Fix `sampleRankCorrelation` returning different results for the same data depending on the order the pairs are listed in. Tied values were given distinct consecutive ranks broken by original array position, rather than sharing the average of the ranks they span as Spearman's rho requires. Reordering rows could change the magnitude and even the sign of the result. Tied values now receive midranks, so the correlation depends only on the paired data. As a consequence an input with no rank variance — every value tied — now correctly returns `NaN` instead of reporting near-perfect correlation. Results for inputs with no ties are unchanged.
+
 ## 7.9.3
 
 ### Patch Changes
