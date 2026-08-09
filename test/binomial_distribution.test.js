@@ -124,6 +124,10 @@ describe("binomialDistribution", function () {
     it("can return undefined when the distribution cannot be tabulated", function () {
         assert.equal(undefined, ss.binomialDistribution(5, Number.NaN));
         assert.equal(undefined, ss.binomialDistribution(1e9, 0.5));
+        // The table holds a million cells, so the last distribution that can
+        // reach its own final outcome is the one over 999999 trials.
+        assert.equal(ss.binomialDistribution(999999, 1).length, 1000000);
+        assert.equal(undefined, ss.binomialDistribution(1000000, 1));
     });
 
     it("can return null when p or n are not valid parameters", function () {

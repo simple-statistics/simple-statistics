@@ -1,10 +1,6 @@
 import epsilon from "./epsilon.js";
 import gammaln from "./gammaln.js";
-
-// The Poisson distribution has no upper bound, so cap the table at a length we
-// can still allocate. Past that we report a distribution we cannot produce
-// rather than a partial one.
-const maxCells = 1e6;
+import maxDistributionCells from "./max_distribution_cells.js";
 
 /**
  * The [Poisson Distribution](http://en.wikipedia.org/wiki/Poisson_distribution)
@@ -16,8 +12,12 @@ const maxCells = 1e6;
  * The Poisson Distribution is characterized by the strictly positive
  * mean arrival or occurrence rate, `λ`.
  *
+ * Returns `undefined` when the distribution cannot be calculated: when `lambda`
+ * is not a strictly positive number, or when it is large enough that the table
+ * would run past a million cells.
+ *
  * @param {number} lambda location poisson distribution
- * @returns {number[]} values of poisson distribution at that point
+ * @returns {number[] | undefined} values of poisson distribution at that point
  */
 function poissonDistribution(lambda) /*: ?number[] */ {
     // Check that lambda is strictly positive
@@ -25,13 +25,22 @@ function poissonDistribution(lambda) /*: ?number[] */ {
         return undefined;
     }
 
-    // our current place in the distribution
+    // The distribution peaks at `lambda`, so past the length of the table
+    // there is nothing to tabulate and no reason to start.
+    if (lambda >= maxDistributionCells) {
+        return undefined;
+    }
+
+    // Our current place in the distribution
     let x = 0;
-    // and we keep track of the current cumulative probability, in
+    // And we keep track of the current cumulative probability, in
     // order to know when to stop calculating chances.
     let cumulativeProbability = 0;
-    // the calculated cells to be returned
+    // The calculated cells to be returned
     const cells = [];
+
+    // The only term of the mass function below that does not vary with `x`
+    const logLambda = Math.log(lambda);
 
     // This algorithm iterates through each potential outcome,
     // until the `cumulativeProbability` is very close to 1, at
@@ -41,12 +50,12 @@ function poissonDistribution(lambda) /*: ?number[] */ {
         // taken through its logarithm: `lambda` raised to `x` and the factorial
         // of `x` each leave floating-point range long before their ratio does,
         // so computing them separately loses cells the distribution needs.
-        cells[x] = Math.exp(x * Math.log(lambda) - lambda - gammaln(x + 1));
+        cells[x] = Math.exp(x * logLambda - lambda - gammaln(x + 1));
         cumulativeProbability += cells[x];
         x++;
-        // when the cumulativeProbability is nearly 1, we've calculated
+        // When the `cumulativeProbability` is nearly 1, we've calculated
         // the useful range of this distribution
-    } while (cumulativeProbability < 1 - epsilon && x < maxCells);
+    } while (cumulativeProbability < 1 - epsilon && x < maxDistributionCells);
 
     // Stopping for any other reason - a lambda that is not a number, or a
     // distribution too wide for the table - leaves cells that do not add up to

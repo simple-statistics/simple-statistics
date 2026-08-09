@@ -6,7 +6,7 @@ function rnd(n) {
     return Number.parseFloat(n.toFixed(4));
 }
 
-// expected cumulative probabilities taken from Appendix 1, Table I of William W. Hines & Douglas C.
+// Expected cumulative probabilities taken from Appendix 1, Table I of William W. Hines & Douglas C.
 // Montgomery, "Probability and Statistics in Engineering and Management Science", Wiley (1980).
 describe("poissonDistribution", function () {
     it("can return generate probability and cumulative probability distributions for lambda = 3.0", function () {
@@ -52,9 +52,14 @@ describe("poissonDistribution", function () {
         }
     });
 
+    // lambda - 1 and lambda are both modes of an integer-valued Poisson, and
+    // they come out of the mass function equal to the last bit, so which one
+    // indexOf reports rests on nothing more than the rounding of Math.exp and
+    // Math.log - which the language does not pin down. Accept either.
     it("peaks at the mean for a large lambda", function () {
         const cells = ss.poissonDistribution(200);
-        assert.equal(cells.indexOf(ss.max(cells)), 199);
+        const peak = cells.indexOf(ss.max(cells));
+        assert.ok(peak === 199 || peak === 200, "peaks at " + peak);
     });
 
     // Reference cells evaluated at 50 significant digits with mpmath and
