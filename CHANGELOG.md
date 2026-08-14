@@ -1,5 +1,12 @@
 # Changelog
 
+## 7.10.1
+
+### Patch Changes
+
+- 894958a: Fix `chiSquaredGoodnessOfFit()` reporting a fit it never measured. Collapsing a sparse class dropped the last class instead of the one that had just been merged, so observations were discarded and others double counted; an observation past the end of the hypothesized distribution had no expected frequency at all, which made the statistic `NaN`; and `criticalValue < NaN` is `false`, the same answer the function gives for a good fit. Degrees of freedom and significance levels the table does not cover now raise a descriptive error instead of a `TypeError` or a silent `false`.
+- a078231: Declare that `PerceptronModel#predict` and `PerceptronModel#train` can return `null`. `predict` returns `null` when the feature array's length differs from what the model was trained on, and `train` returns `null` when the label is not 0 or 1 — both since their introduction — but the type declarations promised plain `number` and `PerceptronModel`, so TypeScript consumers under `strictNullChecks` got no warning before dereferencing the result. Runtime behavior is unchanged; only the declarations and docstrings now state the `null` cases.
+
 ## 7.10.0
 
 ### Minor Changes
