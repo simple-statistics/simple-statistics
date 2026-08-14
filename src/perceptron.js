@@ -35,7 +35,8 @@ class PerceptronModel {
      * to predict whether an example is labeled 0 or 1.
      *
      * @param {Array<number>} features an array of features as numbers
-     * @returns {number} 1 if the score is over 0, otherwise 0
+     * @returns {number|null} 1 if the score is over 0, otherwise 0; null if
+     * the model has not been trained on feature arrays of this length
      */
     predict(features) {
         // Only predict if previously trained
@@ -66,7 +67,7 @@ class PerceptronModel {
      *
      * @param {Array<number>} features an array of features as numbers
      * @param {number} label either 0 or 1
-     * @returns {PerceptronModel} this
+     * @returns {PerceptronModel|null} this, or null if the label is not 0 or 1
      */
     train(features, label) {
         // Require that only labels of 0 or 1 are considered.

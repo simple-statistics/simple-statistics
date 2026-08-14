@@ -74,6 +74,8 @@ p.predict([0, 0]); // 0
 p.predict([0, 1]); // 0
 p.predict([1, 0]); // 0
 p.predict([1, 1]); // 1
+p.predict([]); // null: feature length differs from the trained length
+p.train([1, 2], 0.5); // null: label is not 0 or 1
 ss.product([1, 2, 3, 4]); // => 24
 ss.quantileSorted([3, 6, 7, 8, 8, 9, 10, 13, 15, 16, 20], 0.5); // => 9
 ss.quantile([3, 6, 7, 8, 8, 9, 10, 13, 15, 16, 20], 0.5); // => 9
