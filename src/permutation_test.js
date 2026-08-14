@@ -6,14 +6,14 @@ import shuffleInPlace from "./shuffle_in_place.js";
  * to determine if two data sets are *significantly* different from each other, using
  * the difference of means between the groups as the test statistic.
  * The function allows for the following hypotheses:
- * - two_tail = Null hypothesis: the two distributions are equal.
+ * - two_side = Null hypothesis: the two distributions are equal.
  * - greater = Null hypothesis: observations from sampleX tend to be smaller than those from sampleY.
  * - less = Null hypothesis: observations from sampleX tend to be greater than those from sampleY.
  * [Learn more about one-tail vs two-tail tests.](https://en.wikipedia.org/wiki/One-_and_two-tailed_tests)
  *
  * @param {Array<number>} sampleX first dataset (e.g. treatment data)
  * @param {Array<number>} sampleY second dataset (e.g. control data)
- * @param {string} alternative alternative hypothesis, either 'two_sided' (default), 'greater', or 'less'
+ * @param {string} alternative alternative hypothesis, either 'two_side' (default), 'greater', or 'less'
  * @param {number} k number of values in permutation distribution.
  * @param {Function} [randomSource=Math.random] an optional entropy source
  * @returns {number} p-value The probability of observing the difference between groups (as or more extreme than what we did), assuming the null hypothesis.
