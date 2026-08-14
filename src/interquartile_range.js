@@ -10,7 +10,7 @@ import quantile from "./quantile.js";
  * @returns {number} interquartile range: the span between lower and upper quartile,
  * 0.25 and 0.75
  * @example
- * interquartileRange([0, 1, 2, 3]); // => 2
+ * interquartileRange([0, 1, 2, 3]); // => 1.5
  */
 function interquartileRange(x) {
     // Interquartile range is the span between the upper quartile,

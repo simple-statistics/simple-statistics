@@ -15,7 +15,7 @@ import validateWeightedInput from "./validate_weighted_input.js";
  * @throws {Error} if x is empty, weights is a different length than x, all weights are zero, a weight is negative, or p is outside of the range from 0 to 1
  * @returns {number} weighted quantile
  * @example
- * weightedQuantile([1, 2, 3], [1, 1, 2], 0.5); // => 3
+ * weightedQuantile([1, 2, 3], [1, 1, 2], 0.5); // => 2
  */
 function weightedQuantile(x, weights, p) {
     const totalWeight = validateWeightedInput(x, weights, "weightedQuantile");
