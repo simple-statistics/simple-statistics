@@ -15,8 +15,8 @@
         "index.d.ts"
     ],
     "devDependencies": {
-        "@biomejs/biome": "^2.5.7",
-        "@changesets/cli": "^2.31.1",
+        "@biomejs/biome": "^2.5.8",
+        "@changesets/cli": "^3.0.0",
         "@rollup/plugin-buble": "^1.0.3",
         "@rollup/plugin-terser": "^1.0.0",
         "documentation": "^14.0.3",
