@@ -92,8 +92,8 @@ describe("normalDistribution", function () {
     });
 
     it("P(X <= mean) is one half within the error function's precision", function () {
-        // errorFunction approximates erf(0) as about 3.1e-8 rather than
-        // zero, so the cumulative probability at the mean is not exactly
+        // errorFunction approximates erf(0) as about -3.0e-8 rather than
+        // zero, so the cumulative probability at the mean falls just below
         // one half. The approximation's absolute error stays below 1.5e-7.
         assert.ok(
             Math.abs(ss.normalDistribution(40, 40, 1.5, true) - 0.5) < 1e-7
