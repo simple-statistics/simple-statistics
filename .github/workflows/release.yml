@@ -25,12 +25,9 @@ jobs:
         with:
           node-version: 26
 
-      - name: update npm
-        run: npm update -g npm
-
       - uses: pnpm/action-setup@v6
         with:
-          version: 10
+          version: 11
 
       - name: Install Dependencies
         run: pnpm install
