@@ -14,6 +14,7 @@ import jenksMatrices from "./jenks_matrices.js";
  * @param {Array<number>} data input data, as an array of number values
  * @param {number} nClasses number of desired classes
  * @returns {Array<number>} array of class break positions
+ * @example
  * // split data into 3 break points
  * jenks([1, 2, 4, 5, 7, 9, 10, 20], 3) // = [1, 7, 20, 20]
  */

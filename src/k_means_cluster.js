@@ -18,7 +18,7 @@ import sample from "./sample.js";
  * @throws {Error} If any centroids wind up friendless (i.e., without associated points).
  *
  * @example
- * kMeansCluster([[0.0, 0.5], [1.0, 0.5]], 2); // => {labels: [0, 1], centroids: [[0.0, 0.5], [1.0 0.5]]}
+ * kMeansCluster([[0.0, 0.5], [1.0, 0.5]], 2); // => {labels: [0, 1], centroids: [[0.0, 0.5], [1.0, 0.5]]}
  */
 function kMeansCluster(points, numCluster, randomSource = Math.random) {
     let oldCentroids = null;
