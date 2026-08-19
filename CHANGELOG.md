@@ -1,5 +1,16 @@
 # Changelog
 
+## 7.10.2
+
+### Patch Changes
+
+- 7063073: Make `approxEqual`'s `tolerance` parameter optional in its type declaration. The implementation defaults it to the library's `epsilon` (0.0001), but the declaration required all three arguments, so TypeScript rejected the two-argument call the runtime supports. Runtime behavior is unchanged.
+- 62d100a: Correct two JSDoc example values that the implementation does not produce: `interquartileRange([0, 1, 2, 3])` returns 1.5 under the type-7 quantile interpolation the library switched to, not the documented 2, and `weightedQuantile([1, 2, 3], [1, 1, 2], 0.5)` returns 2 — the value its own tests assert — not the documented 3. Documentation-only; runtime behavior is untouched.
+- 08369c8: Declare that `jenks` can return `null`. The implementation returns `null` whenever `nClasses` is greater than the number of data points — since the function's introduction — but the type declaration promised a plain `number[]`, so TypeScript consumers under `strictNullChecks` got no warning before dereferencing the result. Runtime behavior is unchanged; only the declaration and docstring now state the `null` case.
+- f25c2ba: Repair JSDoc that misrenders on the documentation site: `quantileRank` and `quantileRankSorted` now document their `value` parameter (it was missing, and the `@returns` description read "value value"), `jenks`'s example is tagged `@example` so it renders as an example instead of leaking into the `@returns` description, and `kMeansCluster`'s documented example output gets the missing comma that made it invalid JavaScript. Documentation-only; runtime behavior is untouched.
+- 32096eb: Correct the third parameter of the `permutationTest` type declaration. It was named `string` and typed `string`, so TypeScript consumers saw `permutationTest(sampleX, sampleY, string?: string, ...)` with no indication of which values are accepted. It is now `alternative?: "two_side" | "greater" | "less"`, matching the JSDoc and the three values the implementation accepts before it throws. Runtime behavior is unchanged. The rename is not breaking, since TypeScript binds parameters positionally, but the narrowed type will newly reject a call that passes an arbitrary `string` — such a call already threw at runtime.
+- f59d6d2: Correct `permutationTest`'s JSDoc to name the `alternative` value the implementation accepts. The docs described the two-sided test as `two_tail` and `'two_sided' (default)`, but passing either throws `` `alternative` must be either 'two_side', 'greater', or 'less'. `` — only `'two_side'` is accepted. Documentation-only change; runtime behavior is untouched.
+
 ## 7.10.1
 
 ### Patch Changes
