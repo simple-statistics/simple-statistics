@@ -4,7 +4,7 @@
 declare function permutationTest(
     sampleX: readonly number[],
     sampleY: readonly number[],
-    string?: string,
+    alternative?: "two_side" | "greater" | "less",
     k?: number,
     randomSource?: () => number
 ): number;
