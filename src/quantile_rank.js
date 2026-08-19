@@ -8,7 +8,8 @@ import quantileRankSorted from "./quantile_rank_sorted.js";
  * instead.
  *
  * @param {Array<number>} x input
- * @returns {number} value value
+ * @param {number} value the value for which to find the quantile rank
+ * @returns {number} the quantile rank
  * @example
  * quantileRank([4, 3, 1, 2], 3); // => 0.75
  * quantileRank([4, 3, 2, 3, 1], 3); // => 0.7

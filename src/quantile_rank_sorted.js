@@ -6,7 +6,8 @@
  * this information in logarithmic time.
  *
  * @param {Array<number>} x input
- * @returns {number} value value
+ * @param {number} value the value for which to find the quantile rank
+ * @returns {number} the quantile rank
  * @example
  * quantileRankSorted([1, 2, 3, 4], 3); // => 0.75
  * quantileRankSorted([1, 2, 3, 3, 4], 3); // => 0.7
