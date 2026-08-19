@@ -6,7 +6,7 @@ import relativeError from "./relative_error.js";
  *
  * @param {number} actual The value to be tested.
  * @param {number} expected The reference value.
- * @param {number} tolerance The acceptable relative difference.
+ * @param {number} [tolerance=epsilon] The acceptable relative difference.
  * @return {boolean} Whether numbers are within tolerance.
  */
 function approxEqual(actual, expected, tolerance = epsilon) {
