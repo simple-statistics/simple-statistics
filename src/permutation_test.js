@@ -13,7 +13,7 @@ import shuffleInPlace from "./shuffle_in_place.js";
  *
  * @param {Array<number>} sampleX first dataset (e.g. treatment data)
  * @param {Array<number>} sampleY second dataset (e.g. control data)
- * @param {string} alternative alternative hypothesis, either 'two_side' (default), 'greater', or 'less'
+ * @param {'two_side'|'greater'|'less'} [alternative='two_side'] alternative hypothesis
  * @param {number} k number of values in permutation distribution.
  * @param {Function} [randomSource=Math.random] an optional entropy source
  * @returns {number} p-value The probability of observing the difference between groups (as or more extreme than what we did), assuming the null hypothesis.
