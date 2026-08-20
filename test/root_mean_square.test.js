@@ -19,4 +19,22 @@ describe("root_mean_square", function () {
             ss.rootMeanSquare([]);
         });
     });
+
+    it("is unaffected when the squares leave range", function () {
+        // The root mean square of n copies of a value is that value, so each
+        // of these is representable even though the squares are not.
+        assert.equal(ss.rootMeanSquare([1e200]), 1e200);
+        assert.equal(ss.rootMeanSquare([1e300, 1e300]), 1e300);
+        assert.equal(ss.rootMeanSquare([1e-200]), 1e-200);
+
+        const mixed = ss.rootMeanSquare([3e200, 4e200]);
+        assert.ok(
+            Math.abs(mixed - 3.5355339059327374e200) <=
+                3.5355339059327374e200 * 1e-9,
+            "expected about 3.54e200, got " + mixed
+        );
+
+        // all-zero input still has a root mean square of zero
+        assert.equal(ss.rootMeanSquare([0, 0]), 0);
+    });
 });
