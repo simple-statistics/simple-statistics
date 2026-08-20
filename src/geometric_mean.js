@@ -39,6 +39,7 @@ function geometricMean(x) {
 
     // the starting value.
     let value = 1;
+    let containsZero = false;
 
     for (let i = 0; i < x.length; i++) {
         // the geometric mean is only valid for positive numbers
@@ -48,8 +49,29 @@ function geometricMean(x) {
             );
         }
 
+        if (x[i] === 0) {
+            containsZero = true;
+        }
+
         // repeatedly multiply the value by each number
         value *= x[i];
+    }
+
+    if (containsZero) {
+        return 0;
+    }
+
+    // The running product leaves floating-point range long before the mean
+    // does: 500 copies of 1e10 overflow the product to Infinity even though
+    // the mean is exactly 1e10, and 500 copies of 1e-10 underflow it to 0.
+    // Only in that case fall back to log space, so every input whose product
+    // is representable keeps its exact product-based result.
+    if (value === 0 || !Number.isFinite(value)) {
+        let logSum = 0;
+        for (let i = 0; i < x.length; i++) {
+            logSum += Math.log(x[i]);
+        }
+        return Math.exp(logSum / x.length);
     }
 
     return Math.pow(value, 1 / x.length);

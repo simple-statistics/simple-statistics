@@ -27,4 +27,20 @@ describe("geometric mean", function () {
             assert.fail("geometric mean of array containing zero is not zero");
         }
     });
+
+    it("is unaffected when the running product leaves range", function () {
+        // The mean stays representable long after the product does not:
+        // 500 copies of 1e10 give a product of 1e5000, but a mean of 1e10.
+        const big = ss.geometricMean(new Array(500).fill(1e10));
+        assert.ok(
+            Math.abs(big - 1e10) <= 1e10 * 1e-9,
+            "expected about 1e10, got " + big
+        );
+
+        const small = ss.geometricMean(new Array(500).fill(1e-10));
+        assert.ok(
+            Math.abs(small - 1e-10) <= 1e-10 * 1e-9,
+            "expected about 1e-10, got " + small
+        );
+    });
 });
