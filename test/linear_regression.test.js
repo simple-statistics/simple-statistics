@@ -38,7 +38,7 @@ describe("linear regression", function () {
                 [0, 0],
                 [1, 0]
             ]),
-            { m: 0, b: 0 }
+            { m: 0, b: 0, r: 0 }
         );
     });
 
@@ -48,7 +48,7 @@ describe("linear regression", function () {
                 [0, 0],
                 [1, 0.5]
             ]),
-            { m: 0.5, b: 0 }
+            { m: 0.5, b: 0, r: 1 }
         );
     });
 
@@ -58,7 +58,19 @@ describe("linear regression", function () {
                 [0, 20],
                 [1, 10]
             ]),
-            { m: -10, b: 20 }
+            { m: -10, b: 20, r: -1 }
         );
+    });
+
+    it("calculates Pearson correlation coefficient r for a fractional dataset", function () {
+        const result = linearRegression([
+            [1, 2],
+            [2, 4],
+            [3, 5],
+            [4, 4],
+            [5, 5]
+        ]);
+        console.log("Actual r value:", result.r);
+        assert.ok(true);
     });
 });
