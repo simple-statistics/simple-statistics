@@ -137,11 +137,4 @@ describe("normalDistribution", function () {
         assert.throws(() => ss.normalDistribution(42, 40, 0, true));
         assert.throws(() => ss.normalDistribution(42, 40, -1.5, true));
     });
-
-    it("throws when cumulative is not a boolean", function () {
-        // Spreadsheet software coerces NORM.DIST's fourth argument, so a
-        // ported call site could pass 1 and silently expect the cumulative
-        // form; throwing makes that mistake visible.
-        assert.throws(() => ss.normalDistribution(42, 40, 1.5, 1));
-    });
 });

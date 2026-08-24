@@ -20,21 +20,11 @@ import errorFunction from "./error_function.js";
  * @returns {number} the probability density at x, or the probability of a
  * value at most x
  * @throws {Error} if standardDeviation is not greater than zero
- * @throws {Error} if cumulative is neither true nor false
  * @example
  * normalDistribution(42, 40, 1.5, true).toFixed(4); // => '0.9088'
  * normalDistribution(42, 40, 1.5, false).toFixed(4); // => '0.1093'
  */
-function normalDistribution(x, mean, standardDeviation, cumulative) {
-    // Set default arguments
-    if (cumulative === undefined) {
-        cumulative = false;
-    }
-    if (cumulative !== true && cumulative !== false) {
-        throw new Error(
-            "normalDistribution requires cumulative to be true or false"
-        );
-    }
+function normalDistribution(x, mean, standardDeviation, cumulative = false) {
     if (standardDeviation <= 0) {
         throw new Error(
             "normalDistribution requires a standard deviation greater than zero"
@@ -43,7 +33,7 @@ function normalDistribution(x, mean, standardDeviation, cumulative) {
 
     const standardizedX = (x - mean) / standardDeviation;
 
-    if (cumulative === true) {
+    if (cumulative) {
         return 0.5 * (1 + errorFunction(standardizedX / Math.SQRT2));
     }
     return (
