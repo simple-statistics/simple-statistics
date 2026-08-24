@@ -115,6 +115,7 @@ export {
     default as kde
 } from "./src/kernel_density_estimation.js";
 export { default as logit } from "./src/logit.js";
+export { default as normalDistribution } from "./src/normal_distribution.js";
 export { default as numericSort } from "./src/numeric_sort.js";
 export {
     default as PerceptronModel,
