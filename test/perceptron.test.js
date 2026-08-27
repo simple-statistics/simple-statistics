@@ -17,6 +17,21 @@ describe("perceptron", function () {
         assert.equal(p.bias, 1);
     });
 
+    it("train does not modify the caller's feature array", function () {
+        const p = new PerceptronModel();
+        const features = [1, 2, 3];
+        p.train(features, 0);
+        assert.deepEqual(features, [1, 2, 3]);
+    });
+
+    it("train does not keep a reference to the caller's array", function () {
+        const p = new PerceptronModel();
+        const features = [1, 2, 3];
+        p.train(features, 1);
+        features[0] = 999;
+        assert.deepEqual(p.weights, [1, 2, 3]);
+    });
+
     it("base case of zero prediction features", function () {
         const p = new PerceptronModel();
         p.train([1, 2, 3], 1);

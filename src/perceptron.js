@@ -80,7 +80,7 @@ class PerceptronModel {
         // it keeps seeing feature arrays of the same length.
         // When it sees a new data shape, it initializes.
         if (features.length !== this.weights.length) {
-            this.weights = features;
+            this.weights = features.slice();
             this.bias = 1;
         }
         // Make a prediction based on current weights.
