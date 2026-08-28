@@ -18,7 +18,10 @@ import sample from "./sample.js";
  * @throws {Error} If any centroids wind up friendless (i.e., without associated points).
  *
  * @example
- * kMeansCluster([[0.0, 0.5], [1.0, 0.5]], 2); // => {labels: [0, 1], centroids: [[0.0, 0.5], [1.0, 0.5]]}
+ * // a fixed randomSource makes the initial centroid choice, and so the
+ * // cluster order, reproducible; with the default Math.random the labels
+ * // below could just as well come back as [1, 0]
+ * kMeansCluster([[0.0, 0.5], [1.0, 0.5]], 2, () => 0.9999); // => {labels: [0, 1], centroids: [[0.0, 0.5], [1.0, 0.5]]}
  */
 function kMeansCluster(points, numCluster, randomSource = Math.random) {
     let oldCentroids = null;

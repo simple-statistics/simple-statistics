@@ -58,6 +58,23 @@ describe("k-means clustering test", function () {
         ]);
     });
 
+    it("The documented example is reproducible with a fixed randomSource", function () {
+        // Without a randomSource, kMeansCluster falls back to Math.random,
+        // so which point seeds which cluster - and therefore whether the
+        // labels come back as [0, 1] or [1, 0] - is not guaranteed. This
+        // pins the exact call shown in the function's JSDoc @example.
+        const points = Object.freeze([
+            [0.0, 0.5],
+            [1.0, 0.5]
+        ]);
+        const { labels, centroids } = ss.kMeansCluster(points, 2, () => 0.9999);
+        assert.deepEqual(labels, [0, 1]);
+        assert.deepEqual(centroids, [
+            [0.0, 0.5],
+            [1.0, 0.5]
+        ]);
+    });
+
     it("Base case of one value", function () {
         assert.throws(() => {
             ss.kMeansCluster([1], 2, nonRNG);
