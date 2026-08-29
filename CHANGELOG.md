@@ -1,5 +1,16 @@
 # Changelog
 
+## 7.11.0
+
+### Minor Changes
+
+- 5c54a63: Add `normalDistribution(x, mean, standardDeviation, cumulative)`, the equivalent of spreadsheet `NORM.DIST`. With `cumulative` false (the default) it returns the normal probability density, which the library previously had no function for; with `cumulative` true it returns the cumulative probability via `errorFunction`, avoiding the two-decimal z rounding and four-decimal table values that bound `cumulativeStdNormalProbability`'s precision.
+
+### Patch Changes
+
+- 5b73a3c: Correct the chi-squared critical value at 25 degrees of freedom and the 0.10 significance level. `chiSquaredDistributionTable[25][0.1]` carried 34.28 where the exact upper 10% quantile is 34.3816, which rounds to 34.38 at the table's two decimal places. `chiSquaredGoodnessOfFit` compares its statistic against that cell, so a statistic falling between 34.28 and 34.3816 was reported as significant at the 0.10 level when the correct conclusion is that the null hypothesis cannot be rejected. Checking all 407 entries against exact quantiles found this to be the only cell out of step; the neighbouring rows, 33.20 at 24 degrees of freedom and 35.56 at 26, already matched.
+- e8518fa: Correct six entries at the top of `standardNormalTable`. The table is built from a Taylor series truncated at 15 terms, which falls short of four-decimal precision above z = 2.9: `cumulativeStdNormalProbability(3)` returned 0.9986 where the published value is 0.9987, and z = 2.94, 2.96, 2.98, 3.05 and 3.08 were each low by one in the fourth decimal. Thirty terms converge across the whole domain of the table.
+
 ## 7.10.2
 
 ### Patch Changes
