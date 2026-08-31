@@ -76,6 +76,7 @@ export { default as tTest } from "./src/t_test";
 export { default as tTestTwoSample } from "./src/t_test_two_sample";
 export { default as uniqueCountSorted } from "./src/unique_count_sorted";
 export { default as variance } from "./src/variance";
+export { default as weightedLinearRegression } from "./src/weighted_linear_regression";
 export { default as weightedMean } from "./src/weighted_mean";
 export { default as weightedQuantile } from "./src/weighted_quantile";
 export { default as weightedStandardDeviation } from "./src/weighted_standard_deviation";
