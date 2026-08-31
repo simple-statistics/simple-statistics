@@ -65,6 +65,7 @@ export { default as sampleSkewness } from "./src/sample_skewness.js";
 export { default as sampleStandardDeviation } from "./src/sample_standard_deviation.js";
 export { default as sampleVariance } from "./src/sample_variance.js";
 export { default as sampleWithReplacement } from "./src/sample_with_replacement.js";
+export { default as scaledRootMeanSquare } from "./src/scaled_root_mean_square.js";
 export { default as shuffle } from "./src/shuffle.js";
 export { default as shuffleInPlace } from "./src/shuffle_in_place.js";
 export { default as standardDeviation } from "./src/standard_deviation.js";
