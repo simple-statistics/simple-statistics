@@ -1,5 +1,5 @@
 import mean from "./mean.js";
-import sampleVariance from "./sample_variance.js";
+import sampleStandardDeviation from "./sample_standard_deviation.js";
 
 /**
  * This is to compute [a one-sample t-test](https://en.wikipedia.org/wiki/Student%27s_t-test#One-sample_t-test), comparing the mean
@@ -25,7 +25,7 @@ function tTest(x, expectedValue) {
 
     // The sample standard deviation, with Bessel's correction: the
     // one-sample t statistic divides by s, not the population sigma.
-    const sd = Math.sqrt(sampleVariance(x));
+    const sd = sampleStandardDeviation(x);
 
     // Square root the length of the sample
     const rootN = Math.sqrt(x.length);
