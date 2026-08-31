@@ -29,32 +29,48 @@ describe("gamma", function () {
         assert.ok(Number.isFinite(ss.gamma(0.25)));
         assert.ok(Number.isFinite(ss.gamma(0.9)));
     });
-    it("gamma in (0, 1) should satisfy the two-step recurrence", function () {
-        // The fix lifts arguments in (0, 1) by two steps via
-        // gamma(n) = gamma(n + 2) / (n * (n + 1)), so this identity
-        // holds exactly by construction. It is a method-agnostic
-        // check that the returned value tracks the gamma function
-        // and not an arbitrary number.
-        assert.equal(ss.gamma(0.5), ss.gamma(2.5) / (0.5 * 1.5));
+    it("gamma should satisfy the recurrence it is lifted by", function () {
+        // Small arguments are raised by gamma(n) = gamma(n + 1) / n, so
+        // this identity holds exactly by construction. It is a
+        // method-agnostic check that the returned value tracks the
+        // gamma function and not an arbitrary number.
+        assert.equal(ss.gamma(0.5), ss.gamma(1.5) / 0.5);
+        assert.equal(ss.gamma(1.25), ss.gamma(2.25) / 1.25);
     });
     it("gamma(0.5) should be very close to sqrt(pi)", function () {
-        // Stepping up by two evaluates the Nemes expansion on (2, 3),
-        // where it is well conditioned, so the value is near-exact.
-        // Measured absolute error is about 8.8e-6, so 1e-5 is a tight
-        // honest bound rather than a loose one.
         const sqrtPi = Math.sqrt(Math.PI); // 1.7724538509055160
-        assert.ok(Math.abs(ss.gamma(0.5) - sqrtPi) < 1e-5);
+        assert.ok(Math.abs(ss.gamma(0.5) - sqrtPi) < 1e-12);
     });
-    it("gamma in (0, 1) should be accurate to ~1e-4", function () {
-        // Reference values from a high-precision gamma evaluation. The
-        // two-step lift keeps the relative error of these arguments
-        // below 1e-4 (measured worst case about 1.5e-5 at 0.25).
+    it("gamma(1.5) should be very close to sqrt(pi) / 2", function () {
+        assert.ok(Math.abs(ss.gamma(1.5) - Math.sqrt(Math.PI) / 2) < 1e-12);
+    });
+    it("gamma just above 1 should be accurate", function () {
+        // The Nemes expansion is asymptotic and diverges here. Applied
+        // directly it returned 1.2128 for gamma(1.1), 1.27 times the
+        // true value, and 2.8 for gamma(1.01).
         const cases = [
-            [0.25, 3.6256099082219083],
-            [0.9, 1.0686287021184886]
+            [1.01, 0.99432585119150574],
+            [1.1, 0.95135076986687339],
+            [1.9, 0.96176583190738722]
         ];
         for (const [x, expected] of cases) {
-            assert.ok(Math.abs(ss.gamma(x) - expected) / expected < 1e-4);
+            assert.ok(
+                Math.abs(ss.gamma(x) - expected) / expected < 1e-10,
+                "gamma(" + x + ")"
+            );
+        }
+    });
+    it("gamma in (0, 1) should be accurate", function () {
+        // Reference values from a high-precision gamma evaluation.
+        const cases = [
+            [0.25, 3.6256099082219064],
+            [0.9, 1.068628702119319]
+        ];
+        for (const [x, expected] of cases) {
+            assert.ok(
+                Math.abs(ss.gamma(x) - expected) / expected < 1e-10,
+                "gamma(" + x + ")"
+            );
         }
     });
 });
