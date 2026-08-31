@@ -8,7 +8,7 @@ describe("chiSquaredDistributionTable", function () {
         // degrees of freedom is 34.3816, which rounds to 34.38 at the two
         // decimal places this table carries. The neighbouring rows already
         // agree with the published values, 33.20 at 24 degrees of freedom and
-        // 35.56 at 26, so this entry was the only one out of step.
+        // 35.56 at 26.
         assert.equal(ss.chiSquaredDistributionTable[25][0.1], 34.38);
     });
 });
