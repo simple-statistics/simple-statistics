@@ -55,6 +55,7 @@ export {
     default as rootMeanSquare,
     default as rms
 } from "./src/root_mean_square";
+export { default as scaledRootMeanSquare } from "./src/scaled_root_mean_square";
 export { default as sample } from "./src/sample";
 export { default as sampleCorrelation } from "./src/sample_correlation";
 // sample statistics
