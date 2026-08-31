@@ -27,7 +27,8 @@ function silhouette(points, labels) {
             const a = meanDistanceFromPointToGroup(
                 i,
                 groupings[labels[i]],
-                distances
+                distances,
+                true
             );
             const b = meanDistanceToNearestGroup(
                 i,
@@ -120,21 +121,53 @@ function meanDistanceToNearestGroup(which, labels, groupings, distances) {
  * Calculate the mean distance between a point and all the points in a group
  * (possibly its own).
  *
+ * When `excludeSelf` is true, `which` is expected to be a member of `group`
+ * (this is the case when computing a(i), the mean intra-cluster distance)
+ * and is excluded from both the sum and the count, matching the textbook
+ * definition of a(i). When `excludeSelf` is false (the default), every
+ * member of `group` is included — this is the case when computing b(i),
+ * the mean distance to a group other than the point's own, where `which`
+ * is never itself a member of `group`.
+ *
+ * If `excludeSelf` is true and `group` has only one member (a singleton
+ * cluster), there are no other points to average over; this returns 0
+ * rather than dividing by zero. In practice `silhouette` never calls this
+ * with `excludeSelf` true for a singleton group — it assigns such points
+ * a silhouette value of 0 directly — but the guard keeps this function
+ * safe for any other caller.
+ *
  * @private
  * @param {number} which The index of this point.
  * @param {Array<number>} group The indices of all the points in the group in
  * question.
  * @param {Array<Array<number>>} distances A symmetric square array of inter-point
  * distances.
+ * @param {boolean} [excludeSelf] Whether to exclude `which` itself from the
+ * mean. Pass `true` only when `group` is the point's own cluster.
  * @return {number} The mean distance from this point to others in the
  * specified group.
  */
-function meanDistanceFromPointToGroup(which, group, distances) {
+function meanDistanceFromPointToGroup(
+    which,
+    group,
+    distances,
+    excludeSelf = false
+) {
     let total = 0;
+    let count = group.length;
     for (let i = 0; i < group.length; i++) {
+        if (excludeSelf && group[i] === which) {
+            continue;
+        }
         total += distances[which][group[i]];
     }
-    return total / group.length;
+    if (excludeSelf) {
+        count -= 1;
+    }
+    if (count <= 0) {
+        return 0;
+    }
+    return total / count;
 }
 
 export default silhouette;
