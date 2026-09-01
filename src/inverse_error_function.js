@@ -16,24 +16,23 @@ const TWO_OVER_SQRT_PI = 2 / Math.sqrt(Math.PI);
  * @returns {number} estimated inverted value
  */
 function inverseErrorFunction(x) {
+    const a = (8 * (Math.PI - 3)) / (3 * Math.PI * (4 - Math.PI));
+
+    const inv = Math.sqrt(
+        Math.sqrt(
+            Math.pow(2 / (Math.PI * a) + Math.log(1 - x * x) / 2, 2) -
+                Math.log(1 - x * x) / a
+        ) -
+            (2 / (Math.PI * a) + Math.log(1 - x * x) / 2)
+    );
+
     // `errorFunction` is off by a few parts in 1e8 at zero, so the
     // refinement below would walk the exact answer away from it.
     if (x === 0) {
         return 0;
     }
 
-    const a = (8 * (Math.PI - 3)) / (3 * Math.PI * (4 - Math.PI));
-
-    const logTerm = Math.log(1 - x * x);
-    const halfLog = 2 / (Math.PI * a) + logTerm / 2;
-
-    let estimate = Math.sqrt(
-        Math.sqrt(halfLog * halfLog - logTerm / a) - halfLog
-    );
-
-    if (x < 0) {
-        estimate = -estimate;
-    }
+    let estimate = x >= 0 ? inv : -inv;
 
     // At |x| >= 1 the estimate is already infinite or not a number, and
     // there is nothing for the refinement below to converge towards.
