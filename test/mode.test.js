@@ -42,4 +42,27 @@ describe("mode", function () {
     it("mode sorted", function () {
         assert.equal(modeSorted([1, 2, 2]), 2);
     });
+
+    it("mode and modeSorted break a tie toward the smallest value", function () {
+        // Both sort first, so the order the values arrived in cannot matter.
+        assert.equal(mode([5, 5, 2, 2]), 2);
+        assert.equal(mode([2, 2, 5, 5]), 2);
+        assert.equal(modeSorted([2, 2, 5, 5]), 2);
+    });
+
+    it("modeFast breaks a tie toward the value that reaches the count first", function () {
+        // It walks the input in order and keeps a strict maximum, so the
+        // earlier of two tied values wins.
+        assert.equal(modeFast([5, 5, 2, 2]), 5);
+        assert.equal(modeFast([2, 2, 5, 5]), 2);
+        assert.equal(modeFast(["b", "a", "a", "b"]), "a");
+    });
+
+    it("mode and modeFast disagree on ties", function () {
+        // Documented here so the difference is deliberate rather than a
+        // surprise when swapping one implementation for the other.
+        const tied = [5, 5, 2, 2];
+        assert.equal(mode(tied), 2);
+        assert.equal(modeFast(tied), 5);
+    });
 });
