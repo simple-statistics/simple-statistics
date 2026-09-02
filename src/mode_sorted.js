@@ -1,8 +1,10 @@
 /**
  * The [mode](https://en.wikipedia.org/wiki/Mode_%28statistics%29) is the number
  * that appears in a list the highest number of times.
- * There can be multiple modes in a list: in the event of a tie, this
- * algorithm will return the most recently seen mode.
+ * There can be multiple modes in a list. This algorithm expects sorted input,
+ * so equal values are adjacent and a tie resolves to the smallest of the tied
+ * values. `modeFast` breaks ties differently, returning whichever tied value
+ * reaches the highest count first.
  *
  * This is a [measure of central tendency](https://en.wikipedia.org/wiki/Central_tendency):
  * a method of finding a typical or central value of a set of numbers.
