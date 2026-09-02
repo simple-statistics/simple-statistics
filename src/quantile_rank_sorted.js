@@ -8,6 +8,7 @@
  * @param {Array<number>} x input
  * @param {number} value the value for which to find the quantile rank
  * @returns {number} the quantile rank
+ * @throws {Error} if x is empty
  * @example
  * quantileRankSorted([1, 2, 3, 4], 3); // => 0.75
  * quantileRankSorted([1, 2, 3, 3, 4], 3); // => 0.7
@@ -15,6 +16,10 @@
  * quantileRankSorted([1, 2, 3, 3, 5], 4); // => 0.8
  */
 function quantileRankSorted(x, value) {
+    if (x.length === 0) {
+        throw new Error("quantileRankSorted requires at least one data point");
+    }
+
     // Value is lesser than any value in the array
     if (value < x[0]) {
         return 0;

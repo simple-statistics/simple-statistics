@@ -16,4 +16,10 @@ describe("quantileRank", function () {
             0.5
         );
     });
+
+    it("throws on empty input instead of returning NaN", function () {
+        assert.throws(function () {
+            ss.quantileRank([], 3);
+        });
+    });
 });
