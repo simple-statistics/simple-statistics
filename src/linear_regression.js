@@ -24,43 +24,29 @@ function linearRegression(data) {
         m = 0;
         b = data[0][1];
     } else {
-        // Initialize our sums and scope the `m` and `b`
-        // variables that define the line.
+        // The means of x and y. Centering on them before accumulating the
+        // cross products keeps the sums small when the coordinates are not,
+        // which is what `weightedLinearRegression` already does.
         let sumX = 0;
         let sumY = 0;
-        let sumXX = 0;
-        let sumXY = 0;
-
-        // Use local variables to grab point values
-        // with minimal object property lookups
-        let point;
-        let x;
-        let y;
-
-        // Gather the sum of all x values, the sum of all
-        // y values, and the sum of x^2 and (x*y) for each
-        // value.
-        //
-        // In math notation, these would be SS_x, SS_y, SS_xx, and SS_xy
         for (let i = 0; i < dataLength; i++) {
-            point = data[i];
-            x = point[0];
-            y = point[1];
+            sumX += data[i][0];
+            sumY += data[i][1];
+        }
+        const meanX = sumX / dataLength;
+        const meanY = sumY / dataLength;
 
-            sumX += x;
-            sumY += y;
-
-            sumXX += x * x;
-            sumXY += x * y;
+        let sumXY = 0;
+        let sumXX = 0;
+        for (let i = 0; i < dataLength; i++) {
+            const deviationX = data[i][0] - meanX;
+            sumXY += deviationX * (data[i][1] - meanY);
+            sumXX += deviationX * deviationX;
         }
 
-        // `m` is the slope of the regression line
-        m =
-            (dataLength * sumXY - sumX * sumY) /
-            (dataLength * sumXX - sumX * sumX);
-
-        // `b` is the y-intercept of the line.
-        b = sumY / dataLength - (m * sumX) / dataLength;
+        // `m` is the slope of the regression line, `b` its y-intercept.
+        m = sumXY / sumXX;
+        b = meanY - m * meanX;
     }
 
     // Return both values as an object.
