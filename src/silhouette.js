@@ -120,11 +120,6 @@ function meanDistanceToNearestGroup(which, labels, groupings, distances) {
  * Calculate the mean distance between a point and the other points in a
  * group, which may be its own.
  *
- * A point is never its own neighbour, so it takes no part in the sum or the
- * count. When `group` is the point's own cluster that makes this a(i); when
- * `group` is any other cluster the point is not a member of it and nothing
- * is skipped, which makes this b(i).
- *
  * @private
  * @param {number} which The index of this point.
  * @param {Array<number>} group The indices of all the points in the group in

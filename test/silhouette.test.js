@@ -36,21 +36,7 @@ describe("silhouette test", function () {
         assert.equal(metric, 0.0);
     });
 
-    // a(i) is the mean distance to the OTHER members of a point's own
-    // cluster (excluding the point itself); b(i) is the mean distance to
-    // every member of the nearest other cluster.
-    //
-    // Outer points (0.2 and 0.8) each have one other member in their own
-    // cluster: a = 0.2. Their nearest-cluster mean is b = (0.4 + 0.6) / 2 = 0.5.
-    // s = (b - a) / max(a, b) = (0.5 - 0.2) / 0.5 = 0.6.
-    //
-    // Inner points (0.4 and 0.6) each have one other member in their own
-    // cluster: a = 0.2. Their nearest-cluster mean is b = (0.2 + 0.4) / 2 = 0.3.
-    // s = (0.3 - 0.2) / 0.3 = 1/3.
-    //
-    // Cross-checked against scikit-learn 1.9.0's silhouette_samples for the
-    // same points/labels: [0.6, 0.33333333333333337, 0.3333333333333322,
-    // 0.5999999999999992] (matches to floating-point tolerance).
+    // Expected values cross-checked against scikit-learn 1.9.0 silhouette_samples.
     it("Two clusters with two points each has metric 0.6", function () {
         const points = Object.freeze([[0.2], [0.4], [0.6], [0.8]]);
         const labels = Object.freeze([0, 0, 1, 1]);
