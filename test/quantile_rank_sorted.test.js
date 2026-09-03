@@ -12,4 +12,10 @@ describe("quantileRankSorted", function () {
         assert.equal(ss.quantileRankSorted([1, 2, 3, 4], -3), 0);
         assert.equal(ss.quantileRankSorted([1, 2, 3, 3, 5], 4), 0.8);
     });
+
+    it("throws on empty input instead of returning NaN", function () {
+        assert.throws(function () {
+            ss.quantileRankSorted([], 3);
+        });
+    });
 });
