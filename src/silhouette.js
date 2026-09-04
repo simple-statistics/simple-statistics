@@ -117,8 +117,8 @@ function meanDistanceToNearestGroup(which, labels, groupings, distances) {
 }
 
 /**
- * Calculate the mean distance between a point and the other points in a
- * group, which may be its own.
+ * Calculate the mean distance from a point to the other members of a group,
+ * which may be the point's own group.
  *
  * @private
  * @param {number} which The index of this point.
