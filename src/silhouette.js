@@ -117,8 +117,8 @@ function meanDistanceToNearestGroup(which, labels, groupings, distances) {
 }
 
 /**
- * Calculate the mean distance between a point and all the points in a group
- * (possibly its own).
+ * Calculate the mean distance from a point to the other members of a group,
+ * which may be the point's own group.
  *
  * @private
  * @param {number} which The index of this point.
@@ -131,10 +131,15 @@ function meanDistanceToNearestGroup(which, labels, groupings, distances) {
  */
 function meanDistanceFromPointToGroup(which, group, distances) {
     let total = 0;
+    let count = 0;
     for (let i = 0; i < group.length; i++) {
+        if (group[i] === which) {
+            continue;
+        }
         total += distances[which][group[i]];
+        count++;
     }
-    return total / group.length;
+    return total / count;
 }
 
 export default silhouette;

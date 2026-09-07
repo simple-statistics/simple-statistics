@@ -1,0 +1,5 @@
+---
+"simple-statistics": patch
+---
+
+Exclude a point from its own cluster when computing its silhouette. `a(i)`, the mean intra-cluster distance, was summed over every member of the point's own cluster including the point itself, whose distance to itself is zero, and divided by the full cluster size rather than one less. That understates `a(i)` by a factor of `(n-1)/n` for a cluster of `n` points, so `silhouette` and `silhouetteMetric` returned inflated values for every point in a cluster with more than one member. On the fixture already in the test suite, points `[[0.2], [0.4], [0.6], [0.8]]` labelled `[0, 0, 1, 1]` returned `[0.8, 2/3, 2/3, 0.8]` where the definition gives `[0.6, 1/3, 1/3, 0.6]`, which is what scikit-learn's `silhouette_samples` returns for the same input. The distortion scales with cluster size, so it is not uniform across clusterings and can affect comparisons between them. `b(i)`, the mean distance to the nearest other cluster, is unchanged: the point is never a member of that group.
