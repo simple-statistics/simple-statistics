@@ -45,6 +45,9 @@ function jenksMatrices(data, nClasses) {
         }
     }
 
+    // Shift values by the median to improve numeric stability
+    const shift = data[Math.floor(data.length / 2)];
+
     for (let l = 2; l < data.length + 1; l++) {
         // `SZ` originally. this is the sum of the values seen thus
         // far when calculating variance.
@@ -63,7 +66,7 @@ function jenksMatrices(data, nClasses) {
         for (let m = 1; m < l + 1; m++) {
             // `III` originally
             const lowerClassLimit = l - m + 1;
-            const val = data[lowerClassLimit - 1];
+            const val = data[lowerClassLimit - 1] - shift;
 
             // here we're estimating variance for each potential classing
             // of the data, for each potential number of classes. `w`
@@ -78,6 +81,10 @@ function jenksMatrices(data, nClasses) {
             // between the sum of squares and the total x 2, over the number
             // of samples.
             variance = sumSquares - (sum * sum) / w;
+
+            if (variance < 0) {
+                variance = 0;
+            }
 
             i4 = lowerClassLimit - 1;
 
