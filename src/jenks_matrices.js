@@ -82,10 +82,6 @@ function jenksMatrices(data, nClasses) {
             // of samples.
             variance = sumSquares - (sum * sum) / w;
 
-            if (variance < 0) {
-                variance = 0;
-            }
-
             i4 = lowerClassLimit - 1;
 
             if (i4 !== 0) {
