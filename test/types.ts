@@ -88,6 +88,8 @@ var samples = [
 ];
 var regressionLine = ss.linearRegressionLine(ss.linearRegression(samples));
 ss.rSquared(samples, regressionLine); // = 1 this line is a perfect fit
+ss.reservoirSample([1, 2, 3, 4], 2);
+ss.reservoirSample([1, 2, 3, 4], 2, Math.random);
 ss.rootMeanSquare([-1, 1, -1, 1]); // => 1
 ss.sampleCorrelation([1, 2, 3, 4, 5, 6], [2, 2, 3, 4, 5, 60]).toFixed(2);
 ss.sampleCovariance([1, 2, 3, 4, 5, 6], [6, 5, 4, 3, 2, 1]); // => -3.5
