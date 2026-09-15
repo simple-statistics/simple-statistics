@@ -1,3 +1,4 @@
+import sum from "./sum.js";
 import validateWeightedInput from "./validate_weighted_input.js";
 
 /**
@@ -16,13 +17,8 @@ import validateWeightedInput from "./validate_weighted_input.js";
  */
 function weightedMean(x, weights) {
     const totalWeight = validateWeightedInput(x, weights, "weightedMean");
-    let weightedSum = 0;
 
-    for (let i = 0; i < x.length; i++) {
-        weightedSum += x[i] * weights[i];
-    }
-
-    return weightedSum / totalWeight;
+    return sum(x.map((value, i) => value * weights[i])) / totalWeight;
 }
 
 export default weightedMean;

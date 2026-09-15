@@ -18,6 +18,11 @@ describe("weightedMean", function () {
         assert.equal(ss.weightedMean([1, 100], [1, 0]), 1);
     });
 
+    it("equal weights match mean even with catastrophic cancellation", function () {
+        const x = [1e16, 1, -1e16];
+        assert.equal(ss.weightedMean(x, [1, 1, 1]), ss.mean(x));
+    });
+
     it("invalid inputs throw", function () {
         assert.throws(function () {
             ss.weightedMean([], []);
