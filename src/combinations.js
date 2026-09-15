@@ -4,7 +4,7 @@
  * https://en.wikipedia.org/wiki/Combination
  * @param {Array} x any type of data
  * @param {int} k the number of objects in each group (without replacement)
- * @returns {Array<Array>} array of permutations
+ * @returns {Array<Array>} array of combinations
  * @example
  * combinations([1, 2, 3], 2); // => [[1,2], [1,3], [2,3]]
  */
