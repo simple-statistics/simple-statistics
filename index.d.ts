@@ -51,6 +51,7 @@ export { default as quantileRank } from "./src/quantile_rank";
 export { default as quantileRankSorted } from "./src/quantile_rank_sorted";
 export { default as quantileSorted } from "./src/quantile_sorted";
 export { default as rSquared } from "./src/r_squared";
+export { default as reservoirSample } from "./src/reservoir_sample";
 export {
     default as rootMeanSquare,
     default as rms
