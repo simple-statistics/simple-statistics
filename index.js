@@ -6,6 +6,7 @@
 export { default as addToMean } from "./src/add_to_mean.js";
 export { default as chunk } from "./src/chunk.js";
 export { default as ckmeans } from "./src/ckmeans.js";
+export { default as ckmeansBreaks } from "./src/ckmeans_breaks.js";
 export { default as coefficientOfVariation } from "./src/coefficient_of_variation.js";
 export { default as combinations } from "./src/combinations.js";
 export { default as combinationsReplacement } from "./src/combinations_replacement.js";
