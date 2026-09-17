@@ -38,6 +38,15 @@ describe("extent", function () {
 });
 
 it("sorted", function () {
+    assert.throws(function () {
+        ss.minSorted([]);
+    });
+    assert.throws(function () {
+        ss.maxSorted([]);
+    });
+    assert.throws(function () {
+        ss.extentSorted([]);
+    });
     assert.equal(ss.maxSorted([1, 7, 1000]), 1000, "maxSorted");
     assert.equal(ss.minSorted([1, 7, 1000]), 1, "minSorted");
     assert.deepEqual(ss.extentSorted([1, 7, 1000]), [1, 1000], "extentSorted");
