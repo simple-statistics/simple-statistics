@@ -5,6 +5,12 @@ import validateWeightedInput from "./validate_weighted_input.js";
  * _also known as weighted average_, is the sum of each value multiplied by its
  * weight, divided by the total weight.
  *
+ * The weighted values are accumulated with the same
+ * [Kahan-Babuska](https://pdfs.semanticscholar.org/1760/7d467cda1d0277ad272deb2113533131dc09.pdf)
+ * correction that {@link sum} uses, so that terms which cancel do not lose
+ * precision. The correction is applied in a single pass, without building an
+ * intermediate array.
+ *
  * This runs in `O(n)`, linear time, with respect to the length of the array.
  *
  * @param {Array<number>} x sample of one or more data points
@@ -16,13 +22,26 @@ import validateWeightedInput from "./validate_weighted_input.js";
  */
 function weightedMean(x, weights) {
     const totalWeight = validateWeightedInput(x, weights, "weightedMean");
-    let weightedSum = 0;
 
-    for (let i = 0; i < x.length; i++) {
-        weightedSum += x[i] * weights[i];
+    let weightedSum = x[0] * weights[0];
+    let correction = 0;
+    let transition;
+    let value;
+
+    for (let i = 1; i < x.length; i++) {
+        value = x[i] * weights[i];
+        transition = weightedSum + value;
+
+        if (Math.abs(weightedSum) >= Math.abs(value)) {
+            correction += weightedSum - transition + value;
+        } else {
+            correction += value - transition + weightedSum;
+        }
+
+        weightedSum = transition;
     }
 
-    return weightedSum / totalWeight;
+    return (weightedSum + correction) / totalWeight;
 }
 
 export default weightedMean;
