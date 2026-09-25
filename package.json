@@ -30,7 +30,7 @@
         "build": "rollup -c rollup.config.mjs",
         "prepublishOnly": "rollup -c rollup.config.mjs",
         "changeset:version": "changeset version && node ./scripts/update_readme.js",
-        "prelint": "tsc --skipLibCheck --noEmit",
+        "prelint": "tsc --skipLibCheck --noEmit && tsc --noEmit --module nodenext --moduleResolution nodenext",
         "lint": "biome check index.js src test",
         "lint-fix": "biome check --fix index.js src test",
         "postlint": "documentation lint src"
