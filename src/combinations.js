@@ -10,7 +10,6 @@
  */
 
 function combinations(x, k) {
-    // There is exactly one way to choose zero objects: the empty combination.
     if (k === 0) {
         return [[]];
     }
