@@ -24,3 +24,31 @@ it("quickselect long arrays L35 coverage", function () {
     quickselect(arr, 500, 10, 620);
     assert.equal(arr[300], 700);
 });
+
+it("quickselect preserves a range ending at zero", function () {
+    const arr = [3, 2, 1];
+    quickselect(arr, 0, 0, 0);
+    assert.deepEqual(arr, [3, 2, 1]);
+});
+
+it("quickselect preserves a zero right bound when left is omitted", function () {
+    const arr = [3, 2, 1];
+    quickselect(arr, 0, undefined, 0);
+    assert.deepEqual(arr, [3, 2, 1]);
+});
+
+it("quickselect defaults an omitted right bound to the end", function () {
+    const arr = [3, 2, 1];
+    quickselect(arr, 0, 0);
+    assert.equal(arr[0], 1);
+});
+
+it("quickselect leaves values outside a nonzero subrange unchanged", function () {
+    const arr = [99, 4, 1, 3, -99];
+    quickselect(arr, 2, 1, 3);
+    assert.equal(arr[0], 99);
+    assert.equal(arr[2], 3);
+    assert.equal(arr[4], -99);
+    assert.ok(arr[1] <= arr[2]);
+    assert.ok(arr[3] >= arr[2]);
+});
