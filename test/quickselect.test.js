@@ -43,6 +43,18 @@ it("quickselect defaults an omitted right bound to the end", function () {
     assert.equal(arr[0], 1);
 });
 
+it("quickselect defaults an undefined right bound to the end", function () {
+    const arr = [3, 2, 1];
+    quickselect(arr, 0, 0, undefined);
+    assert.equal(arr[0], 1);
+});
+
+it("quickselect defaults a null right bound to the end", function () {
+    const arr = [3, 2, 1];
+    quickselect(arr, 0, 0, null);
+    assert.equal(arr[0], 1);
+});
+
 it("quickselect leaves values outside a nonzero subrange unchanged", function () {
     const arr = [99, 4, 1, 3, -99];
     quickselect(arr, 2, 1, 3);

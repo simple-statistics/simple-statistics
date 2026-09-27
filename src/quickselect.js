@@ -16,7 +16,7 @@
  */
 function quickselect(arr, k, left, right) {
     left = left || 0;
-    if (right === undefined) {
+    if (right === undefined || right === null) {
         right = arr.length - 1;
     }
 
