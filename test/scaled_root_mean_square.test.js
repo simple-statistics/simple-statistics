@@ -35,9 +35,32 @@ describe("scaledRootMeanSquare", function () {
             Number.POSITIVE_INFINITY
         );
         assert.equal(
+            ss.scaledRootMeanSquare([Number.NEGATIVE_INFINITY, 0]),
+            Number.POSITIVE_INFINITY
+        );
+        assert.equal(
             Number.isNaN(ss.scaledRootMeanSquare([Number.NaN, 1])),
             true
         );
+    });
+
+    it("propagates NaN when the other values are zero", function () {
+        const cases = [[Number.NaN], [0, Number.NaN], [Number.NaN, -0]];
+        for (const x of cases) {
+            assert.equal(Number.isNaN(ss.scaledRootMeanSquare(x)), true);
+        }
+    });
+
+    it("propagates NaN alongside infinite values", function () {
+        const cases = [
+            [Number.NaN, Number.POSITIVE_INFINITY],
+            [Number.POSITIVE_INFINITY, Number.NaN],
+            [Number.NaN, Number.NEGATIVE_INFINITY],
+            [Number.NEGATIVE_INFINITY, Number.NaN]
+        ];
+        for (const x of cases) {
+            assert.equal(Number.isNaN(ss.scaledRootMeanSquare(x)), true);
+        }
     });
 
     it("throws on empty input", function () {
