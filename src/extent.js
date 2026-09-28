@@ -3,6 +3,8 @@
  *
  * This runs in `O(n)`, linear time, with respect to the length of the array.
  *
+ * If any value is `NaN`, both bounds are `NaN`, wherever that value appears.
+ *
  * @param {Array<number>} x sample of one or more data points
  * @returns {Array<number>} minimum & maximum value
  * @throws {Error} if the length of x is less than one
@@ -18,6 +20,11 @@ function extent(x) {
     let min = x[0];
     let max = x[0];
     for (let i = 1; i < x.length; i++) {
+        // Every comparison with NaN is false, so without this check a NaN
+        // would be skipped unless it happened to be the first value.
+        if (Number.isNaN(x[i])) {
+            return [Number.NaN, Number.NaN];
+        }
         if (x[i] > max) {
             max = x[i];
         }
