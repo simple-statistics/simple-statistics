@@ -16,7 +16,9 @@
  */
 function quickselect(arr, k, left, right) {
     left = left || 0;
-    right = right || arr.length - 1;
+    if (right === undefined || right === null) {
+        right = arr.length - 1;
+    }
 
     while (right > left) {
         // 600 and 0.5 are arbitrary constants chosen in the original paper to minimize execution time
