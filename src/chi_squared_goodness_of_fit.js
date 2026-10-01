@@ -15,7 +15,7 @@ import mean from "./mean.js";
  * @param {Function} distributionType a function that returns a point in a distribution:
  * for instance, binomial, bernoulli, or poisson
  * @param {number} significance
- * @returns {number} chi squared goodness of fit
+ * @returns {boolean} whether the null hypothesis is rejected
  * @example
  * // Data from Poisson goodness-of-fit example 10-19 in William W. Hines & Douglas C. Montgomery,
  * // "Probability and Statistics in Engineering and Management Science", Wiley (1980).
