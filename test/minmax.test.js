@@ -13,6 +13,17 @@ describe("min", function () {
     it("can get the minimum of three numbers", function () {
         assert.equal(ss.min([1, 7, -1000]), -1000);
     });
+
+    it("returns NaN when any value is NaN, wherever it appears", function () {
+        const cases = [
+            [Number.NaN, 1, 2],
+            [1, Number.NaN, 2],
+            [1, 2, Number.NaN]
+        ];
+        for (const x of cases) {
+            assert.equal(Number.isNaN(ss.min(x)), true);
+        }
+    });
 });
 
 describe("max", function () {
@@ -21,6 +32,17 @@ describe("max", function () {
     });
     it("can get the maximum of three numbers", function () {
         assert.equal(ss.max([1, 7, -1000]), 7);
+    });
+
+    it("returns NaN when any value is NaN, wherever it appears", function () {
+        const cases = [
+            [Number.NaN, 1, 2],
+            [1, Number.NaN, 2],
+            [1, 2, Number.NaN]
+        ];
+        for (const x of cases) {
+            assert.equal(Number.isNaN(ss.max(x)), true);
+        }
     });
 });
 
@@ -34,6 +56,17 @@ describe("extent", function () {
     });
     it("can get the extent of three numbers", function () {
         assert.deepEqual(ss.extent([1, 7, -1000]), [-1000, 7]);
+    });
+
+    it("returns NaN bounds when any value is NaN, wherever it appears", function () {
+        const cases = [
+            [Number.NaN, 1, 2],
+            [1, Number.NaN, 2],
+            [1, 2, Number.NaN]
+        ];
+        for (const x of cases) {
+            assert.deepEqual(ss.extent(x), [Number.NaN, Number.NaN]);
+        }
     });
 });
 

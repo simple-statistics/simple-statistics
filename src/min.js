@@ -2,6 +2,8 @@
  * The min is the lowest number in the array.
  * This runs in `O(n)`, linear time, with respect to the length of the array.
  *
+ * If any value is `NaN`, the result is `NaN`, wherever that value appears.
+ *
  * @param {Array<number>} x sample of one or more data points
  * @throws {Error} if the length of x is less than one
  * @returns {number} minimum value
@@ -15,6 +17,9 @@ function min(x) {
 
     let value = x[0];
     for (let i = 1; i < x.length; i++) {
+        if (Number.isNaN(x[i])) {
+            return Number.NaN;
+        }
         if (x[i] < value) {
             value = x[i];
         }
