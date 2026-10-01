@@ -22,4 +22,7 @@ describe("factorial", function () {
     it("can calculate 100! = 1", function () {
         assert.equal(ss.factorial(100), 9.33262154439441e157);
     });
+    it("returns Infinity for numbers too large to represent safely", function () {
+        assert.equal(ss.factorial(171), Infinity);
+    });
 });

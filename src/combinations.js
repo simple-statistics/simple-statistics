@@ -10,6 +10,10 @@
  */
 
 function combinations(x, k) {
+    if (k === 0) {
+        return [[]];
+    }
+
     let i;
     let subI;
     const combinationList = [];
