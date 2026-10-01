@@ -18,4 +18,24 @@ describe("jenks", function () {
             [9, 10, 11, 12, 13, 13]
         );
     });
+    it("is translation invariant", function () {
+        const offset = 1700000000000;
+        const data = [];
+        for (let i = 0; i < 12; i++) {
+            data.push(i);
+        }
+        const shifted = data.map(function (v) {
+            return v + offset;
+        });
+
+        const breaks = jenks(data, 3);
+        const shiftedBreaks = jenks(shifted, 3);
+
+        assert.deepEqual(
+            shiftedBreaks,
+            breaks.map(function (v) {
+                return v + offset;
+            })
+        );
+    });
 });
