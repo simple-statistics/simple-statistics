@@ -10,6 +10,7 @@ import quantileRankSorted from "./quantile_rank_sorted.js";
  * @param {Array<number>} x input
  * @param {number} value the value for which to find the quantile rank
  * @returns {number} the quantile rank
+ * @throws {Error} if x is empty
  * @example
  * quantileRank([4, 3, 1, 2], 3); // => 0.75
  * quantileRank([4, 3, 2, 3, 1], 3); // => 0.7
