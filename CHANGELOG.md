@@ -1,5 +1,12 @@
 # Changelog
 
+## 7.12.2
+
+### Patch Changes
+
+- f52890d: Updated min, max and extent to return NaN if the input contains NaN. This also fixes the result changing depending on where the NaN is in the array.
+- f364089: Respect an explicit zero right bound in quickselect so a one-element range does not rearrange the rest of the array.
+
 ## 7.12.1
 
 ### Patch Changes
