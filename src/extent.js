@@ -20,8 +20,6 @@ function extent(x) {
     let min = x[0];
     let max = x[0];
     for (let i = 1; i < x.length; i++) {
-        // Every comparison with NaN is false, so without this check a NaN
-        // would be skipped unless it happened to be the first value.
         if (Number.isNaN(x[i])) {
             return [Number.NaN, Number.NaN];
         }
