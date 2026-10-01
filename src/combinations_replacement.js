@@ -11,6 +11,10 @@
  * combinationsReplacement([1, 2], 2); // => [[1, 1], [1, 2], [2, 2]]
  */
 function combinationsReplacement(x, k) {
+    if (k === 0) {
+        return [[]];
+    }
+
     const combinationList = [];
 
     for (let i = 0; i < x.length; i++) {

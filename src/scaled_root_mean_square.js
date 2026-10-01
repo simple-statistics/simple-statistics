@@ -29,9 +29,7 @@ function scaledRootMeanSquare(x) {
     let max = 0;
     for (let i = 0; i < x.length; i++) {
         const magnitude = Math.abs(x[i]);
-        if (magnitude > max) {
-            max = magnitude;
-        }
+        max = Math.max(max, magnitude);
     }
 
     // Every value is zero, and the division below would be 0 / 0.

@@ -1,6 +1,6 @@
 {
     "name": "simple-statistics",
-    "version": "7.12.0",
+    "version": "7.12.1",
     "description": "Simple Statistics",
     "author": "Tom MacWright <tom@macwright.com> (https://macwright.com/)",
     "repository": {
@@ -30,7 +30,7 @@
         "build": "rollup -c rollup.config.mjs",
         "prepublishOnly": "rollup -c rollup.config.mjs",
         "changeset:version": "changeset version && node ./scripts/update_readme.js",
-        "prelint": "tsc --skipLibCheck --noEmit",
+        "prelint": "tsc --skipLibCheck --noEmit && tsc --noEmit --module nodenext --moduleResolution nodenext",
         "lint": "biome check index.js src test",
         "lint-fix": "biome check --fix index.js src test",
         "postlint": "documentation lint src"
