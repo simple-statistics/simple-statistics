@@ -10,7 +10,7 @@ const TWO_OVER_SQRT_PI = 2 / Math.sqrt(Math.PI);
  * Winitzki's approximation supplies the initial estimate, which is then
  * refined by [Newton's method](https://en.wikipedia.org/wiki/Newton%27s_method)
  * against `errorFunction()`. The derivative of the error function is
- * `2 / sqrt(π) * exp(-x²)`.
+ * `2 / sqrt(pi) * exp(-x * x)`.
  *
  * @param {number} x value of error function
  * @returns {number} estimated inverted value
@@ -32,7 +32,12 @@ function inverseErrorFunction(x) {
         return 0;
     }
 
-    let estimate = x >= 0 ? inv : -inv;
+    let estimate;
+    if (x >= 0) {
+        estimate = inv;
+    } else {
+        estimate = -inv;
+    }
 
     // At |x| >= 1 the estimate is already infinite or not a number, and
     // there is nothing for the refinement below to converge towards.
