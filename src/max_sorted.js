@@ -5,10 +5,15 @@
  *
  * @param {Array<number>} x input
  * @returns {number} maximum value
+ * @throws {Error} if x is empty
  * @example
  * maxSorted([-100, -10, 1, 2, 5]); // => 5
  */
 function maxSorted(x) {
+    if (x.length === 0) {
+        throw new Error("max requires at least one data point");
+    }
+
     return x[x.length - 1];
 }
 

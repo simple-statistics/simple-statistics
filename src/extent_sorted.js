@@ -5,10 +5,15 @@
  *
  * @param {Array<number>} x input
  * @returns {Array<number>} minimum & maximum value
+ * @throws {Error} if x is empty
  * @example
  * extentSorted([-100, -10, 1, 2, 5]); // => [-100, 5]
  */
 function extentSorted(x) {
+    if (x.length === 0) {
+        throw new Error("extent requires at least one data point");
+    }
+
     return [x[0], x[x.length - 1]];
 }
 
