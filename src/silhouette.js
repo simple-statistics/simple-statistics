@@ -35,7 +35,10 @@ function silhouette(points, labels) {
                 groupings,
                 distances
             );
-            s = (b - a) / Math.max(a, b);
+            // Coincident points in both groups have silhouette value 0.
+            if (a !== 0 || b !== 0) {
+                s = (b - a) / Math.max(a, b);
+            }
         }
         result.push(s);
     }
