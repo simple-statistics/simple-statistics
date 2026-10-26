@@ -5,10 +5,15 @@
  *
  * @param {Array<number>} x input
  * @returns {number} minimum value
+ * @throws {Error} if x is empty
  * @example
  * minSorted([-100, -10, 1, 2, 5]); // => -100
  */
 function minSorted(x) {
+    if (x.length === 0) {
+        throw new Error("min requires at least one data point");
+    }
+
     return x[0];
 }
 
