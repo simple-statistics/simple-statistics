@@ -36,6 +36,38 @@ describe("silhouette test", function () {
         assert.equal(metric, 0.0);
     });
 
+    it("Coincident points in different clusters have silhouette 0", function () {
+        const points = Object.freeze([
+            [0, 0],
+            [0, 0],
+            [0, 0],
+            [0, 0]
+        ]);
+        const labels = Object.freeze([0, 0, 1, 1]);
+        assert.deepEqual(ss.silhouette(points, labels), [0, 0, 0, 0]);
+        assert.equal(ss.silhouetteMetric(points, labels), 0);
+    });
+
+    it("Coincident clusters leave separated clusters unchanged", function () {
+        const points = Object.freeze([
+            [0, 0],
+            [0, 0],
+            [0, 0],
+            [0, 0],
+            [10, 0],
+            [10, 0]
+        ]);
+        const labels = Object.freeze([0, 0, 1, 1, 2, 2]);
+        assert.deepEqual(ss.silhouette(points, labels), [0, 0, 0, 0, 1, 1]);
+        assert.equal(ss.silhouetteMetric(points, labels), 1);
+    });
+
+    it("Zero distance to another cluster can have silhouette -1", function () {
+        const points = Object.freeze([[0], [1], [0], [0]]);
+        const labels = Object.freeze([0, 0, 1, 1]);
+        assert.deepEqual(ss.silhouette(points, labels), [-1, 0, 1, 1]);
+    });
+
     // Expected values cross-checked against scikit-learn 1.9.0 silhouette_samples.
     it("Two clusters with two points each has metric 0.6", function () {
         const points = Object.freeze([[0.2], [0.4], [0.6], [0.8]]);
