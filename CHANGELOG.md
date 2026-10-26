@@ -65,7 +65,6 @@
 
   NOTE: this is tagged as a minor change but you should be aware that it does change behavior
   for `binomialDistribution`. For most users this won't be a big deal.
-
   1. Both functions now return `undefined` in cases where they used to return an array of non-finite cells. `binomialDistribution(5, NaN)` returned `[NaN]` and now returns `undefined`. Their TypeScript declarations widen to `number[] | undefined`.
   2. Evaluating cells through logarithms costs a precision where the old product form was exact: `binomialDistribution(2, 0.5)` returns `[0.25000000000000006, 0.5000000000000006, 0.25000000000000006]` rather than `[0.25, 0.5, 0.25]`. This precision loss is small but if you're comparing exact results, it may require updates or rounding.
 
@@ -556,8 +555,8 @@ Before:
 
 ```js
 var l = ss.linear_regression().data([
-  [0, 0],
-  [1, 1],
+    [0, 0],
+    [1, 1]
 ]);
 l.line()(0); // 0
 ```
@@ -566,10 +565,10 @@ After:
 
 ```js
 var line = ss.linearRegressionLine(
-  ss.linearRegression([
-    [0, 0],
-    [1, 1],
-  ])
+    ss.linearRegression([
+        [0, 0],
+        [1, 1]
+    ])
 );
 line(0); // 0
 ```

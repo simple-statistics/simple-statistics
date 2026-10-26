@@ -3,28 +3,28 @@ name: Node CI
 on: [push, pull_request]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+    build:
+        runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [22.x, 24.x, 26.x]
+        strategy:
+            matrix:
+                node-version: [22.x, 24.x, 26.x]
 
-    steps:
-      - uses: actions/checkout@v7
-      - uses: pnpm/action-setup@v6
-        with:
-          version: 10.6.0
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          cache: "pnpm"
-          node-version: ${{ matrix.node-version }}
-      - name: pnpm install, build, and test
-        run: |
-          pnpm install
-          pnpm build
-          pnpm test
-        env:
-          CI: true
-          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+        steps:
+            - uses: actions/checkout@v7
+            - uses: pnpm/action-setup@v6
+              with:
+                  version: 10.6.0
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v4
+              with:
+                  cache: "pnpm"
+                  node-version: ${{ matrix.node-version }}
+            - name: pnpm install, build, and test
+              run: |
+                  pnpm install
+                  pnpm build
+                  pnpm test
+              env:
+                  CI: true
+                  COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
