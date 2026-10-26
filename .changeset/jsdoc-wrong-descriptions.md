@@ -2,4 +2,4 @@
 "simple-statistics": patch
 ---
 
-Fix JSDoc that describes the wrong thing. `chiSquaredGoodnessOfFit` declared `@returns {number}` while it returns a boolean, which its own example (`//= false`) and its `.d.ts` already showed. `combinations` and `combinationsReplacement` both declared they return an array of permutations; they return combinations, and order does not matter in either. `combinationsReplacement` also described its `k` as being chosen without replacement, copied from `combinations`, contradicting its own first line. Documentation only.
+Fix JSDoc that describes the wrong thing. `chiSquaredGoodnessOfFit` said it returned a number, but it actually returns a boolean. `combinations` and `combinationsReplacement` said they returned permutations, and the replacement version said _without_ replacement. This is not a functional change, just fixing incorrect docstrings.
