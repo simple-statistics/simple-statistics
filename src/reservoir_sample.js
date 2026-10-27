@@ -2,11 +2,12 @@
  * [Reservoir sampling](https://en.wikipedia.org/wiki/Reservoir_sampling) takes
  * `k` items uniformly at random from an input of unknown length, in a single
  * pass and using O(k) memory. This makes it useful for sampling from streams,
- * generators, or other iterables that are too large - or too slow - to load
+ * generators, or other iterables that are too large to load
  * into an array first.
  *
- * This implements Algorithm L, from Li, Kim-Hung. "Reservoir-sampling
- * algorithms of time complexity O(n(1+log(N/n)))." ACM Transactions on
+ * This implements Algorithm L, from Li, Kim-Hung. ["Reservoir-sampling
+ * algorithms of time complexity O(n(1+log(N/n)))."](https://research.cuhk.edu.hk/en/publications/reservoir-sampling-algorithms-of-time-complexity-on1-lognn-2/)
+ * ACM Transactions on
  * Mathematical Software (TOMS) 20.4 (1994): 481-493.
  *
  * @param {Iterable<any>} iterable a stream, generator or other iterable
@@ -23,9 +24,7 @@
  * }
  * reservoirSample(naturalNumbers(), 3); // => [482, 1913, 7006]
  */
-function reservoirSample(iterable, k, randomSource) {
-    randomSource = randomSource || Math.random;
-
+function reservoirSample(iterable, k, randomSource = Math.random) {
     const reservoir = [];
     let w;
     let next;
@@ -39,6 +38,7 @@ function reservoirSample(iterable, k, randomSource) {
         i++;
 
         if (i <= k) {
+            // Fill the reservoir with the first k items
             reservoir.push(item);
             if (i === k) {
                 // jump straight to the next item that replaces one,
