@@ -4,6 +4,7 @@ node_modules
 docs/public/
 .nyc_output
 dist
+.typedoc-src
 types.js
 *.types.js
 .tap

@@ -18,21 +18,19 @@
         "@biomejs/biome": "^2.6.3",
         "@changesets/cli": "^3.0.3",
         "@rollup/plugin-terser": "^1.0.2",
-        "documentation": "^14.0.3",
         "random-js": "^2.1.0",
         "rollup": "^4.65.0",
         "typescript": "^7.0.2"
     },
     "scripts": {
-        "release": "sh ./scripts/update_website.sh",
         "test": "npm run lint && node --test --experimental-test-isolation=none test/*.test.js",
         "build": "rollup -c rollup.config.mjs",
+        "build:docs": "node scripts/build_docs_source.js && pnpm --filter docs-site build",
         "prepublishOnly": "rollup -c rollup.config.mjs",
         "changeset:version": "changeset version && node ./scripts/update_readme.js",
         "prelint": "tsc --skipLibCheck --noEmit && tsc --noEmit --module nodenext --moduleResolution nodenext",
         "lint": "biome check index.js src test",
-        "lint-fix": "biome check --fix index.js src test",
-        "postlint": "documentation lint src"
+        "lint-fix": "biome check --fix index.js src test"
     },
     "type": "module",
     "source": "index.js",
