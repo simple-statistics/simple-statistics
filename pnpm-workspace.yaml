@@ -1,3 +1,6 @@
+packages:
+  - "."
+  - docs-site
 minimumReleaseAgeExclude:
     - vue-template-compiler@3.0.0
 overrides:

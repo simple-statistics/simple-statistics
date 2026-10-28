@@ -104,10 +104,22 @@ npm test
 ## Documentation
 
 Simple statistics maintains API documentation with [JSDoc](http://usejsdoc.org/) syntax
-and the [documentation.js](https://github.com/documentationjs/documentation) generator.
-Consult the JSDoc and [gettings started docs](https://github.com/documentationjs/documentation/blob/master/docs/GETTING_STARTED.md) for
-hints for how to document each function, or read other documentation comments
-in `src` for inspiration.
+on each function and class in `src`. Read other documentation comments in
+`src` for inspiration on how to document each function.
+
+The published API reference at <https://simple-statistics.github.io/> is
+generated with [TypeDoc](https://typedoc.org/) and [Astro](https://astro.build/) [Starlight](https://starlight.astro.build/),
+and deployed automatically on release (`.github/workflows/docs.yml`).
+To build the docs site locally:
+
+```sh
+pnpm build:docs
+```
+
+This writes the built site to `docs-site/dist`. The hand-written `.d.ts`
+files in `src` are intentionally excluded from this build (see
+`scripts/build_docs_source.js`) — only the JSDoc in the `.js` files is used,
+so there is one place to keep documentation up to date.
 
 ## Code Style
 

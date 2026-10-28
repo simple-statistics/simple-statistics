@@ -1,0 +1,52 @@
+name: Docs
+
+on:
+    release:
+        types: [published]
+
+jobs:
+    docs:
+        name: Build and deploy docs
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout simple-statistics
+              uses: actions/checkout@v7
+
+            - name: Setup Node.js 26
+              uses: actions/setup-node@v7
+              with:
+                  node-version: 26
+
+            - uses: pnpm/action-setup@v6
+              with:
+                  version: 11
+
+            - name: Install dependencies
+              run: pnpm install
+
+            - name: Build docs site
+              run: pnpm run build:docs
+
+            - name: Checkout simple-statistics.github.com
+              uses: actions/checkout@v7
+              with:
+                  repository: simple-statistics/simple-statistics.github.com
+                  token: ${{ secrets.DOCS_DEPLOY_TOKEN }}
+                  path: docs-deploy
+
+            - name: Replace deployed site with new build
+              run: |
+                  rsync -a --delete --exclude='.git' docs-site/dist/ docs-deploy/
+
+            - name: Commit and push
+              working-directory: docs-deploy
+              run: |
+                  git config user.name "github-actions[bot]"
+                  git config user.email "github-actions[bot]@users.noreply.github.com"
+                  git add -A
+                  if git diff --cached --quiet; then
+                    echo "No changes to deploy"
+                    exit 0
+                  fi
+                  git commit -m "chore: deploy docs for ${{ github.event.release.tag_name }}"
+                  git push

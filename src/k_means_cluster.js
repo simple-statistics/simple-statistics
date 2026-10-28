@@ -3,18 +3,12 @@ import makeMatrix from "./make_matrix.js";
 import sample from "./sample.js";
 
 /**
- * @typedef {Object} kMeansReturn
- * @property {Array<number>} labels The labels.
- * @property {Array<Array<number>>} centroids The cluster centroids.
- */
-
-/**
  * Perform k-means clustering.
  *
  * @param {Array<Array<number>>} points N-dimensional coordinates of points to be clustered.
  * @param {number} numCluster How many clusters to create.
  * @param {Function} randomSource An optional entropy source that generates uniform values in [0, 1).
- * @return {kMeansReturn} Labels (same length as data) and centroids (same length as numCluster).
+ * @return {{labels: Array<number>, centroids: Array<Array<number>>}} Labels (same length as data) and centroids (same length as numCluster).
  * @throws {Error} If any centroids wind up friendless (i.e., without associated points).
  *
  * @example

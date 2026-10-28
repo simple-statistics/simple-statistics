@@ -44,7 +44,6 @@ const bandwidthMethods = {
  * is a useful tool for, among other things, estimating the shape of the
  * underlying probability distribution from a sample.
  *
- * @name kernelDensityEstimation
  * @param X sample values
  * @param kernel The kernel function to use. If a function is provided, it should return non-negative values and integrate to 1. Defaults to 'gaussian'.
  * @param bandwidthMethod The "bandwidth selection" method to use, or a fixed bandwidth value. Defaults to "nrd", the commonly-used ["normal reference distribution" rule-of-thumb](https://stat.ethz.ch/R-manual/R-devel/library/MASS/html/bandwidth.nrd.html).

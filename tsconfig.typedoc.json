@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "checkJs": false,
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
+        "target": "es2022"
+    },
+    "include": [".typedoc-src/index.js", ".typedoc-src/src/**/*.js"]
+}

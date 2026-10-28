@@ -1,0 +1,23 @@
+/* Nested sidebar groups (e.g. the API reference's Functions/Classes/Variables
+ * groups) default to collapsed, with no config option to change that. Force
+ * them open and drop the now-nonfunctional disclosure triangle. */
+nav.sidebar details > :not(summary) {
+    display: block !important;
+}
+
+nav.sidebar details > summary {
+    cursor: default;
+}
+
+nav.sidebar details > summary .caret {
+    display: none;
+}
+
+:root {
+    --sl-font-system: "Spectral", Georgia, serif;
+    --sl-color-text-accent: black;
+    --sl-color-bg: #f9f5f0;
+    --sl-color-bg-nav: #f9f5f0;
+    --sl-color-hairline-shade: #c2bfbb;
+    --sl-color-bg-inline-code: #e3e7f9;
+}
