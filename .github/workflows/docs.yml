@@ -3,6 +3,7 @@ name: Docs
 on:
     release:
         types: [published]
+    workflow_dispatch:
 
 jobs:
     docs:
@@ -48,5 +49,5 @@ jobs:
                     echo "No changes to deploy"
                     exit 0
                   fi
-                  git commit -m "chore: deploy docs for ${{ github.event.release.tag_name }}"
+                  git commit -m "chore: deploy docs for ${{ github.event.release.tag_name || github.sha }}"
                   git push
