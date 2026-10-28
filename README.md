@@ -35,7 +35,7 @@ in all modern browsers as well as in [node.js](https://nodejs.org/).
       another name if you want to, but doing so is optional.
 
       ```HTML
-      <script src='https://unpkg.com/simple-statistics@7.12.1/dist/simple-statistics.min.js'>
+      <script src='https://unpkg.com/simple-statistics@8.0.0/dist/simple-statistics.min.js'>
       </script>
       ```
 
@@ -46,7 +46,7 @@ in all modern browsers as well as in [node.js](https://nodejs.org/).
 
       ```js
       <script type='module'>
-      import {min} from "https://unpkg.com/simple-statistics@7.12.1/index.js?module"
+      import {min} from "https://unpkg.com/simple-statistics@8.0.0/index.js?module"
       console.log(min([1, 2, 3]))
       </script>
       ```
