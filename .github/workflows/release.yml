@@ -38,5 +38,4 @@ jobs:
               with:
                   version-script: pnpm changeset:version
                   publish-script: pnpm dlx @changesets/cli publish
-              env:
-                  GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+                  github-token: ${{ secrets.RELEASE_TOKEN }}
