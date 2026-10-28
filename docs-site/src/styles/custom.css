@@ -1,16 +1,47 @@
 /* Nested sidebar groups (e.g. the API reference's Functions/Classes/Variables
  * groups) default to collapsed, with no config option to change that. Force
- * them open and drop the now-nonfunctional disclosure triangle. */
+ * them open and drop the now-nonfunctional disclosure triangle. Chrome renders
+ * <details> content through an internal ::details-content pseudo-element with
+ * its own content-visibility/height, so overriding `display` on the children
+ * alone isn't enough. */
 nav.sidebar details > :not(summary) {
     display: block !important;
 }
 
+nav.sidebar details::details-content {
+    block-size: auto !important;
+    content-visibility: visible !important;
+    overflow: visible !important;
+}
+
 nav.sidebar details > summary {
     cursor: default;
+    pointer-events: none;
 }
 
 nav.sidebar details > summary .caret {
     display: none;
+}
+
+/* Hide the top-level "API" group label itself, so its sub-groups
+ * (Classes/Variables/Functions/References) sit flush at the top level
+ * instead of nested under a header. */
+nav.sidebar .top-level > li > details > summary {
+    display: none;
+}
+
+/* Flatten all nesting: every item (group titles and their links, at any
+ * depth) sits at the same x position, with no stepped indentation. */
+nav.sidebar li {
+    margin-inline-start: 0 !important;
+    border-inline-start: none !important;
+    padding-inline-start: 0 !important;
+}
+
+/* Underline group titles to distinguish them typographically instead of
+ * through indentation. */
+nav.sidebar details > summary .large {
+    text-decoration: underline;
 }
 
 :root {
@@ -19,5 +50,6 @@ nav.sidebar details > summary .caret {
     --sl-color-bg: #f9f5f0;
     --sl-color-bg-nav: #f9f5f0;
     --sl-color-hairline-shade: #c2bfbb;
+    --sl-color-hairline: #c2bfbb;
     --sl-color-bg-inline-code: #e3e7f9;
 }
