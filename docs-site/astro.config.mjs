@@ -3,6 +3,7 @@ import path from "node:path";
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import starlightTypeDoc, { typeDocSidebarGroup } from "starlight-typedoc";
+import starlightLlmsTxt from "starlight-llms-txt";
 
 const root = path.resolve(import.meta.dirname, "..");
 
@@ -48,7 +49,8 @@ export default defineConfig({
                     typeDoc: {
                         treatWarningsAsErrors: true
                     }
-                })
+                }),
+                starlightLlmsTxt()
             ],
             sidebar: [typeDocSidebarGroup]
         })
