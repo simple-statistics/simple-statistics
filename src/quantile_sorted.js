@@ -32,7 +32,19 @@ function quantileSorted(x, p) {
         const lower = Math.floor(idx);
         const upper = Math.ceil(idx);
         const fraction = idx - lower;
-        return x[lower] + fraction * (x[upper] - x[lower]);
+        const lowerValue = x[lower];
+        const upperValue = x[upper];
+        const difference = upperValue - lowerValue;
+        if (Number.isFinite(lowerValue)) {
+            if (Number.isFinite(upperValue)) {
+                if (!Number.isFinite(difference)) {
+                    // Finite extremes can overflow when subtracted; a weighted
+                    // average avoids that without changing ordinary interpolation.
+                    return lowerValue * (1 - fraction) + upperValue * fraction;
+                }
+            }
+        }
+        return lowerValue + fraction * difference;
     } else {
         // If idx is integer, type=7 returns the value at that index
         return x[idx];
