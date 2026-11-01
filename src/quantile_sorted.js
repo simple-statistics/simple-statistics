@@ -35,14 +35,14 @@ function quantileSorted(x, p) {
         const lowerValue = x[lower];
         const upperValue = x[upper];
         const difference = upperValue - lowerValue;
-        if (Number.isFinite(lowerValue)) {
-            if (Number.isFinite(upperValue)) {
-                if (!Number.isFinite(difference)) {
-                    // Finite extremes can overflow when subtracted; a weighted
-                    // average avoids that without changing ordinary interpolation.
-                    return lowerValue * (1 - fraction) + upperValue * fraction;
-                }
-            }
+        if (
+            Number.isFinite(lowerValue) &&
+            Number.isFinite(upperValue) &&
+            !Number.isFinite(difference)
+        ) {
+            // Keep ordinary interpolation when subtraction is safe; finite
+            // extremes can overflow, so use a weighted average for those cases.
+            return lowerValue * (1 - fraction) + upperValue * fraction;
         }
         return lowerValue + fraction * difference;
     } else {
