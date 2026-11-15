@@ -1,5 +1,11 @@
 # Changelog
 
+## 8.0.1
+
+### Patch Changes
+
+- 20c4b12: Avoid overflow when interpolating between finite extreme values in `quantileSorted`.
+
 ## 8.0.0
 
 ### Major Changes
