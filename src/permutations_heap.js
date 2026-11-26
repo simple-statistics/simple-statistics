@@ -6,6 +6,7 @@
  * @returns {Array<Array>} array of permutations
  */
 function permutationsHeap(elements) {
+    elements = elements.slice();
     const indexes = new Array(elements.length);
     const permutations = [elements.slice()];
 
