@@ -1,5 +1,12 @@
 # Changelog
 
+## 8.0.1
+
+### Patch Changes
+
+- 361180e: Do not mutate the input array in `permutationsHeap`.
+- 20c4b12: Avoid overflow when interpolating between finite extreme values in `quantileSorted`.
+
 ## 8.0.0
 
 ### Major Changes
