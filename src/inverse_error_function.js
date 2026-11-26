@@ -26,12 +26,6 @@ function inverseErrorFunction(x) {
             (2 / (Math.PI * a) + Math.log(1 - x * x) / 2)
     );
 
-    // `errorFunction` is off by a few parts in 1e8 at zero, so the
-    // refinement below would walk the exact answer away from it.
-    if (x === 0) {
-        return 0;
-    }
-
     let estimate;
     if (x >= 0) {
         estimate = inv;

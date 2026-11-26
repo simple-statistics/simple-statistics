@@ -45,6 +45,24 @@ describe("inverseErrorFunction", function () {
         }
     });
 
+    it("is accurate for small values", function () {
+        // Reference values from the Maclaurin series of the inverse
+        // error function, which converges fast this close to zero.
+        const reference = [
+            [1e-9, 8.86226925452758e-10],
+            [1e-6, 8.862269254529899e-7],
+            [1e-3, 0.0008862271574665521]
+        ];
+        for (const [y, expected] of reference) {
+            assert.equal(
+                Math.abs(ss.inverseErrorFunction(y) - expected) <
+                    1e-12 * expected,
+                true,
+                "inverseErrorFunction(" + y + ")"
+            );
+        }
+    });
+
     it("is infinite at the ends of its domain", function () {
         assert.equal(ss.inverseErrorFunction(1), Infinity);
         assert.equal(ss.inverseErrorFunction(-1), -Infinity);
