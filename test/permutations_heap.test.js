@@ -16,4 +16,20 @@ describe("permutationsHeap", function () {
             [3, 2, 1]
         ]);
     });
+    it("does not mutate the input array", function () {
+        const input = [1, 2, 3];
+        ss.permutationsHeap(input);
+        assert.deepEqual(input, [1, 2, 3]);
+    });
+    it("handles frozen arrays", function () {
+        const input = Object.freeze([1, 2, 3]);
+        assert.deepEqual(ss.permutationsHeap(input), [
+            [1, 2, 3],
+            [2, 1, 3],
+            [3, 1, 2],
+            [1, 3, 2],
+            [2, 3, 1],
+            [3, 2, 1]
+        ]);
+    });
 });
