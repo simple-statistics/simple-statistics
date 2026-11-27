@@ -25,4 +25,9 @@ describe("factorial", function () {
     it("returns Infinity for numbers too large to represent safely", function () {
         assert.equal(ss.factorial(171), Infinity);
     });
+    it("returns Infinity for very large integers without counting up to them", function () {
+        assert.equal(ss.factorial(170), 7.257415615307994e306);
+        assert.equal(ss.factorial(1e300), Infinity);
+        assert.equal(ss.factorial(Infinity), Infinity);
+    });
 });

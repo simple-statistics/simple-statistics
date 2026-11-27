@@ -14,6 +14,10 @@ describe("gamma", function () {
             Math.abs(ss.gamma(-42.5) - -3.419793520724856e-52) < ss.epsilon
         );
     });
+    it("gamma for a very large integer should return Infinity", function () {
+        assert.equal(ss.gamma(172), Infinity);
+        assert.equal(ss.gamma(1e300), Infinity);
+    });
     it("gamma for negative integer should return NaN", function () {
         assert.ok(Number.isNaN(ss.gamma(-2)));
     });
