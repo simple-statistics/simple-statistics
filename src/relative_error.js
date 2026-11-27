@@ -38,7 +38,16 @@ function relativeError(actual, expected) {
         return 0;
     }
     /* c8 ignore end */
-    return Math.abs((actual - expected) / expected);
+    const difference = actual - expected;
+    // Opposite signs can overflow the subtraction even when their ratio is small.
+    if (
+        !Number.isFinite(difference) &&
+        Number.isFinite(actual) &&
+        Number.isFinite(expected)
+    ) {
+        return Math.abs(actual / expected - 1);
+    }
+    return Math.abs(difference / expected);
 }
 
 export default relativeError;

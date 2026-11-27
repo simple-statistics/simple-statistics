@@ -11,6 +11,12 @@ describe("relative error", function () {
         assert.equal(ss.relativeError(-4, -5), 0.2);
     });
 
+    it("keeps a finite error when the difference overflows", function () {
+        const max = Number.MAX_VALUE;
+        assert.equal(ss.relativeError(max, -max), 2);
+        assert.equal(ss.relativeError(-max, max / 2), 3);
+    });
+
     it("correct handling of zero", function () {
         assert.equal(ss.relativeError(10101, 0), Number.POSITIVE_INFINITY);
     });
