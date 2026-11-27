@@ -20,6 +20,11 @@ function factorial(n) {
         throw new Error("factorial requires an integer input");
     }
 
+    // 170! is the largest factorial a double can hold, so for n above 170 return Infinity without looping
+    if (n > 170) {
+        return Infinity;
+    }
+
     // typically you'll expand the factorial function going down, like
     // 5! = 5 * 4 * 3 * 2 * 1. This is going in the opposite direction,
     // counting from 2 up to the number in question, and since anything
